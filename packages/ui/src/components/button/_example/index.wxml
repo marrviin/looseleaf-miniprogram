@@ -119,37 +119,37 @@
       <text class="status">{{phase === 'saving' ? 'Writing it down...' : phase === 'saved' ? 'All changes kept.' : ''}}</text>
     </view>
 
-    <view class="sub-h3">With icon</view>
-    <view class="sec-desc">Icons sit before or after the label. Button tightens its padding when it sees one, sizes the pencilled icon to 16 px (12 px in xs) and keeps the drawing behind both. (The ll-icon component lands in the M2 batch; text glyphs stand in for now.)</view>
+    <view class="sub-h3">With an icon</view>
+    <view class="sec-desc">Icons sit before or after the label. Button tightens its padding when it sees one, sizes the pencilled icon to 16 px (12 px in xs) and keeps the drawing behind both.</view>
     <view class="row">
-      <ll-button>+ New note</ll-button>
-      <ll-button variant="outline">Search</ll-button>
-      <ll-button variant="secondary">Next →</ll-button>
+      <ll-button><ll-icon name="plus" /> New note</ll-button>
+      <ll-button variant="outline"><ll-icon name="search" /> Search</ll-button>
+      <ll-button variant="secondary">Next <ll-icon name="arrow-right" /></ll-button>
     </view>
     <view class="row">
-      <ll-button variant="outline" size="lg">Discard</ll-button>
-      <ll-button variant="ghost" size="sm">Copy link</ll-button>
-      <ll-button variant="outline" size="xs">Edit</ll-button>
-      <ll-button variant="link">Read more ↗</ll-button>
+      <ll-button variant="outline" size="lg"><ll-icon name="trash" /> Discard</ll-button>
+      <ll-button variant="ghost" size="sm"><ll-icon name="copy" /> Copy link</ll-button>
+      <ll-button variant="outline" size="xs"><ll-icon name="pencil" size="12" /> Edit</ll-button>
+      <ll-button variant="link">Read more <ll-icon name="arrow-up-right" /></ll-button>
     </view>
 
     <view class="sub-h3">Icon buttons</view>
     <view class="sec-desc">Square buttons for one glyph, in the four icon sizes. Give each an aria-label; the drawing is decorative. The last one is a real toggle that swaps its icon.</view>
     <view class="row">
-      <ll-button size="icon-xs" variant="outline" aria-label="Close">×</ll-button>
-      <ll-button size="icon-sm" variant="secondary" aria-label="Notifications">+</ll-button>
-      <ll-button size="icon" aria-label="Add">+</ll-button>
-      <ll-button size="icon-lg" variant="outline" aria-label="Settings">+</ll-button>
-      <ll-button size="icon" variant="ghost" aria-label="Delete">×</ll-button>
-      <ll-button size="icon" variant="outline" aria-label="{{shown ? 'Hide password' : 'Show password'}}" bind:tap="toggleShown">{{shown ? '○' : '●'}}</ll-button>
+      <ll-button size="icon-xs" variant="outline" aria-label="Close"><ll-icon name="x" size="12" /></ll-button>
+      <ll-button size="icon-sm" variant="secondary" aria-label="Notifications"><ll-icon name="bell" /></ll-button>
+      <ll-button size="icon" aria-label="Add"><ll-icon name="plus" /></ll-button>
+      <ll-button size="icon-lg" variant="outline" aria-label="Settings"><ll-icon name="settings" size="20" /></ll-button>
+      <ll-button size="icon" variant="ghost" aria-label="Delete"><ll-icon name="trash" /></ll-button>
+      <ll-button size="icon" variant="outline" aria-label="{{shown ? 'Hide password' : 'Show password'}}" bind:tap="toggleShown"><ll-icon name="{{shown ? 'eye-off' : 'eye'}}" /></ll-button>
     </view>
 
-    <view class="sub-h3">Loading spinner</view>
-    <view class="sec-desc">The shadcn pattern: a Spinner in front of the label inside a disabled button. The first and last are the static state (disabled buttons are dashed). Press the second to watch a request go through: it is aria-disabled while it works instead of disabled, so keyboard focus stays on it. (The ll-spinner component lands in M2.)</view>
+    <view class="sub-h3">Loading, with a spinner</view>
+    <view class="sec-desc">The shadcn pattern: a Spinner in front of the label inside a disabled button. The first and last are the static state (disabled buttons are dashed). Press the second to watch a request go through: it is aria-disabled while it works instead of disabled, so keyboard focus stays on it.</view>
     <view class="row">
-      <ll-button size="sm" variant="outline" disabled>Submit</ll-button>
-      <ll-button bind:tap="send">{{sending ? 'Sending' : 'Send the letter'}}</ll-button>
-      <ll-button variant="secondary" disabled>Please wait</ll-button>
+      <ll-button size="sm" variant="outline" disabled><ll-spinner /> Submit</ll-button>
+      <ll-button bind:tap="send"><ll-spinner wx:if="{{sending}}" />{{sending ? 'Sending' : 'Send the letter'}}</ll-button>
+      <ll-button variant="secondary" disabled><ll-spinner /> Please wait</ll-button>
     </view>
 
     <view class="sub-h3">Size pairs</view>
@@ -157,19 +157,19 @@
     <view class="row row-pairs">
       <view class="pair">
         <ll-button variant="outline" size="xs">Extra small</ll-button>
-        <ll-button variant="outline" size="icon-xs" aria-label="Send, extra small">↗</ll-button>
+        <ll-button variant="outline" size="icon-xs" aria-label="Send, extra small"><ll-icon name="arrow-up-right" size="12" /></ll-button>
       </view>
       <view class="pair">
         <ll-button variant="outline" size="sm">Small</ll-button>
-        <ll-button variant="outline" size="icon-sm" aria-label="Send, small">↗</ll-button>
+        <ll-button variant="outline" size="icon-sm" aria-label="Send, small"><ll-icon name="arrow-up-right" size="16" /></ll-button>
       </view>
       <view class="pair">
         <ll-button variant="outline">Default</ll-button>
-        <ll-button variant="outline" size="icon" aria-label="Send, default">↗</ll-button>
+        <ll-button variant="outline" size="icon" aria-label="Send, default"><ll-icon name="arrow-up-right" size="16" /></ll-button>
       </view>
       <view class="pair">
         <ll-button variant="outline" size="lg">Large</ll-button>
-        <ll-button variant="outline" size="icon-lg" aria-label="Send, large">↗</ll-button>
+        <ll-button variant="outline" size="icon-lg" aria-label="Send, large"><ll-icon name="arrow-up-right" size="20" /></ll-button>
       </view>
     </view>
   </view>

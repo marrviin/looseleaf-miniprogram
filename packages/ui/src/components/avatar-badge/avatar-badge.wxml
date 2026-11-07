@@ -1,0 +1,6 @@
+<!-- ll-avatar-badge — the status dot; positioned against the avatar root
+     (end-0 bottom-0 upstream, LTR right). -->
+<view class="ll-avatar-badge ll-class" style="{{customStyle}}" aria-label="{{ariaLabel}}">
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <slot />
+</view>

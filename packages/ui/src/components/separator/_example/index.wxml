@@ -1,0 +1,117 @@
+<!-- ll-separator demo — mirrors the upstream docs page (#/components/separator).
+     The labeled separator takes a label prop (React children have no
+     miniprogram equivalent). -->
+<view class="demo">
+  <view class="demo-title">Separator</view>
+  <view class="sec-desc">A rule that visually or semantically separates content, drawn by hand: pencil, ledger dashes, a squiggle, dots, a strip of tape, a running stitch or a torn edge of paper. Horizontal or vertical, with an optional centered label.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Seven ways to draw a line</view>
+    <view class="sec-desc">Pencil is the default. The others are for when a divider should say something: ledger dashes, a squiggle, dots, kraft tape, a running stitch, a torn edge.</view>
+    <view class="ways">
+      <view class="way" wx:for="{{variants}}" wx:key="*this">
+        <view class="way-name">{{item}}</view>
+        <ll-separator variant="{{item}}" seed="{{item}}" />
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Or continue with</view>
+    <view class="sec-desc">Children turn the separator into a labeled divider: two rules and a word. Here it splits a sign-in card in two, the way every sign-in card does.</view>
+    <view class="card-stage">
+      <ll-card seed="signin" custom-style="max-width:768rpx">
+        <ll-card-header>
+          <ll-card-title>Sign in</ll-card-title>
+          <ll-card-description>Pick up where you left off.</ll-card-description>
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;flex-direction:column;gap:32rpx">
+          <ll-input placeholder="you@example.com" aria-label="Email" />
+          <ll-button>Send me a link</ll-button>
+          <ll-separator variant="dashed" label="or continue with" />
+          <view class="grid2">
+            <ll-button variant="outline">Notebook</ll-button>
+            <ll-button variant="outline">Sketchpad</ll-button>
+          </view>
+        </ll-card-content>
+        <ll-card-footer custom-style="justify-content:center">
+          <text class="footer-note">No password. The link lasts an hour.</text>
+        </ll-card-footer>
+      </ll-card>
+    </view>
+
+    <view class="sub-h3">Vertical rules</view>
+    <view class="sec-desc">In a flex row give the separator a height (h-5, or self-stretch). Each vertical rule is its own drawing, so no two are quite alike.</view>
+    <view class="vrows">
+      <view class="vrow vrow--h6">
+        <text class="vrow-t">Sketches</text>
+        <ll-separator orientation="vertical" seed="v1" />
+        <text class="vrow-t">Recipes</text>
+        <ll-separator orientation="vertical" seed="v2" />
+        <text class="vrow-t">Receipts</text>
+        <ll-separator orientation="vertical" seed="v3" />
+        <text class="vrow-t">Maps</text>
+      </view>
+      <view class="vrow vrow--h6">
+        <text class="vrow-t">12 pages</text>
+        <ll-separator orientation="vertical" variant="dotted" seed="v4" />
+        <text class="vrow-t">3 tabs</text>
+        <ll-separator orientation="vertical" variant="dotted" seed="v5" />
+        <text class="vrow-t">1 coffee ring</text>
+      </view>
+      <view class="vrow vrow--h10">
+        <text class="vrow-t">Draft</text>
+        <ll-separator orientation="vertical" variant="stitched" seed="v6" />
+        <text class="vrow-t">Review</text>
+        <ll-separator orientation="vertical" variant="tape" seed="v7" />
+        <text class="vrow-t">Done</text>
+        <ll-separator orientation="vertical" variant="wavy" seed="v8" />
+        <text class="vrow-t">Filed</text>
+      </view>
+    </view>
+
+    <view class="sub-h3">Between the sections of a page</view>
+    <view class="sec-desc">A torn strip where a page changes subject, a stitch where two things are joined, tape for the fold. Real headings and paragraphs stay real; the dividers are decoration.</view>
+    <view class="article">
+      <view class="day">
+        <view class="day-h">Saturday market</view>
+        <view class="day-p">Tomatoes that were still warm, a bag of plums, and a man selling only string.</view>
+      </view>
+      <ll-separator variant="torn" decorative="{{false}}" aria-label="End of the market notes" seed="market" />
+      <view class="day">
+        <view class="day-h">Sunday, indoors</view>
+        <view class="day-p">Rain all morning. Mended the blue coat with orange thread and no regrets.</view>
+      </view>
+      <ll-separator variant="stitched" seed="stitch" />
+      <view class="day">
+        <view class="day-h">Monday</view>
+        <view class="day-p">Back to the desk. Fold here.</view>
+      </view>
+      <ll-separator variant="tape" seed="tape" />
+      <view class="day">
+        <view class="day-h">Tuesday</view>
+        <view class="day-p">Nothing happened. Wrote it all down anyway.</view>
+      </view>
+    </view>
+
+    <view class="sub-h3">Demo</view>
+    <view class="sec-desc">Official `separator-demo`: a heading and blurb, a horizontal rule, then three links divided by vertical rules. Both rules are pencil pulls; the vertical ones fill the height of their row.</view>
+    <view class="demo-box">
+      <view class="demo-stack">
+        <view class="demo-h4">Radix Primitives</view>
+        <view class="demo-p">An open-source UI component library.</view>
+      </view>
+      <ll-separator custom-style="margin:32rpx 0" seed="demo-h" />
+      <view class="vrow vrow--h5">
+        <text class="vrow-t">Blog</text>
+        <ll-separator orientation="vertical" seed="demo-1" />
+        <text class="vrow-t">Docs</text>
+        <ll-separator orientation="vertical" seed="demo-2" />
+        <text class="vrow-t">Source</text>
+      </view>
+    </view>
+  </view>
+</view>

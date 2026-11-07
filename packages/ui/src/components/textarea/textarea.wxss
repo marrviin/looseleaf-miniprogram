@@ -1,0 +1,56 @@
+/* @ll-import tokens */
+.ll-textarea {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: stretch;
+  width: 100%; /* w-full */
+  min-height: 128rpx; /* min-h-16 */
+  min-width: 0;
+  box-sizing: border-box;
+  font-size: 32rpx; /* text-base */
+}
+.ll-textarea--ruled {
+  min-height: 192rpx; /* ruled → min-h-24 */
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-textarea__control {
+  flex: 1;
+  width: 100%;
+  min-height: 128rpx;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 16rpx 24rpx; /* py-2 px-3 */
+  line-height: 48rpx; /* leading-6 */
+  font-size: inherit;
+  color: var(--ll-input-ink, #2c4f9e); /* what you type is blue felt */
+  background: transparent;
+}
+.ll-textarea--ruled .ll-textarea__control {
+  line-height: 56rpx; /* ruled: leading-7 — rules sit on the baselines */
+}
+.ll-textarea__control--count {
+  padding-bottom: 56rpx; /* pb-7 — room for the counter */
+}
+.ll-textarea__control--disabled {
+  color: #5a554e; /* disabled:text-pencil-text */
+}
+.ll-textarea__placeholder {
+  color: var(--ll-placeholder, #5a554e); /* graphite */
+}
+.ll-textarea__count {
+  position: absolute;
+  right: 48rpx; /* end-6 */
+  bottom: 12rpx; /* bottom-1.5 */
+  font-size: 25rpx; /* text-sm × 0.88 */
+  color: #6f6a60; /* text-ink-muted */
+  pointer-events: none;
+  font-variant-numeric: tabular-nums;
+}

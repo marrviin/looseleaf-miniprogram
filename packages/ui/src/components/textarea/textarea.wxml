@@ -1,0 +1,29 @@
+<!-- ll-textarea — drawn pencil frame (ink layer, ruled lines optional)
+     around a real textarea that grows with its text; counter in the corner. -->
+<view
+  class="ll-textarea {{ruled ? 'll-textarea--ruled' : ''}} ll-class"
+  style="{{customStyle}}"
+  bindtouchstart="__inkTouchStart"
+  bindtouchend="__inkTouchEnd"
+  bindtouchcancel="__inkTouchEnd"
+>
+  <!-- auto-height ignores class width on the native layer — inline width is required -->
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <textarea
+    class="ll-textarea__control {{disabled ? 'll-textarea__control--disabled' : ''}} {{showCount ? 'll-textarea__control--count' : ''}}"
+    style="width:100%;box-sizing:border-box;{{ruled ? 'line-height:56rpx;' : ''}}{{showCount ? 'padding-bottom:56rpx;' : ''}}"
+    value="{{value}}"
+    placeholder="{{placeholder}}"
+    placeholder-class="ll-textarea__placeholder"
+    disabled="{{disabled}}"
+    maxlength="{{maxlength}}"
+    auto-height="{{autoGrow}}"
+    focus="{{focus}}"
+    aria-label="{{ariaLabel}}"
+    bindinput="onInput"
+    bindfocus="onFocus"
+    bindblur="onBlur"
+    bindconfirm="onConfirm"
+  />
+  <text wx:if="{{showCount}}" class="ll-textarea__count" aria-hidden="true">{{count}}{{maxlength > 0 ? '/' + maxlength : ''}}</text>
+</view>

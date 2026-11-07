@@ -1,0 +1,34 @@
+<!-- ll-rating — a radio group of hand-drawn glyphs. Each glyph is its own
+     ink drawing (seed per index); taps land on the glyph, or on either half
+     when allowHalf. readOnly turns the group into a labelled image. -->
+<view
+  class="ll-rating ll-rating--{{size}} {{ro ? 'll-rating--ro' : ''}} ll-class"
+  style="{{customStyle}}"
+  aria-role="{{ro ? 'img' : 'radiogroup'}}"
+  aria-label="{{ro ? roLabel : ariaLabel}}"
+  aria-required="{{!ro && required ? 'true' : ''}}"
+  aria-disabled="{{disabled && !ro ? 'true' : ''}}"
+>
+  <view class="ll-rating__item" wx:for="{{items}}" wx:key="index" wx:for-item="g">
+    <view class="ll-ink-layer" style="{{g.style}}" />
+    <block wx:if="{{!ro && !disabled}}">
+      <view
+        wx:if="{{allowHalf}}"
+        class="ll-rating__hit ll-rating__hit--start"
+        data-v="{{g.v1}}"
+        bindtap="onHit"
+        aria-role="radio"
+        aria-checked="{{g.c1 ? 'true' : 'false'}}"
+        aria-label="{{g.v1}} of {{max}}"
+      />
+      <view
+        class="ll-rating__hit {{allowHalf ? 'll-rating__hit--end' : 'll-rating__hit--full'}}"
+        data-v="{{g.v2}}"
+        bindtap="onHit"
+        aria-role="radio"
+        aria-checked="{{g.c2 ? 'true' : 'false'}}"
+        aria-label="{{g.v2}} of {{max}}"
+      />
+    </block>
+  </view>
+</view>

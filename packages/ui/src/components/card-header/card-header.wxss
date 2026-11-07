@@ -1,0 +1,38 @@
+/* ll-card-header */
+/* @ll-import tokens */
+.ll-card-header {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 16rpx; /* upstream gap-2 */
+  padding: 0 48rpx; /* px-6 */
+}
+.ll-card-header--ruled {
+  padding-bottom: 48rpx; /* [.border-b]:pb-6 */
+}
+.ll-card-header__main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16rpx; /* grid gap-2 between title/description rows */
+  position: relative;
+  z-index: 1;
+}
+.ll-card-header__action {
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ink overlay — the card-rule recipe draws the pencil rule at the header's
+   real width, inset -<pad>px so the stroke overhang stays visible. */
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

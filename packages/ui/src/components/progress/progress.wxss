@@ -1,0 +1,39 @@
+/* @ll-import tokens */
+.ll-progress {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: 32rpx; /* h-4 */
+  background: #e9e4d8; /* bg-paper-shade — hidden once ink lands */
+}
+.ll-progress--sm {
+  height: 24rpx; /* h-3 */
+}
+.ll-progress--lg {
+  height: 40rpx; /* h-5 */
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-progress__fill {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: clip-path 0.3s ease-out; /* --ll-dur-sheet */
+}
+@keyframes ll-progress-slide {
+  from {
+    clip-path: inset(-12px 100% -12px -40%);
+  }
+  to {
+    clip-path: inset(-12px -40% -12px 100%);
+  }
+}
+.ll-progress__fill--waiting {
+  animation: ll-progress-slide 1.6s linear infinite;
+}

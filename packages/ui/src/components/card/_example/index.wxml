@@ -1,0 +1,125 @@
+<!-- ll-card demo — mirrors the upstream docs page (#/components/card).
+     Guest book (needs the check stock), Article card / On every stock /
+     Pinned, clipped, stapled land with the P3 paper work; Create project's
+     Select lands with the select port (the field is a placeholder there). -->
+<view class="demo">
+  <view class="demo-title">Card</view>
+  <view class="sec-desc">A card is a sheet of paper: header, title, description, action, content and footer with shadcn's spacing, on any stock and edge. Dividers are drawn pencil rules, and a card can be taped, pinned or clipped to the desk. (This port carries the card/paper/slip/index-card stocks; the other stocks, edges, tape and fasteners land with the P3 sheet work.)</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Settings card</view>
+    <view class="sec-desc">The whole family: a title and description, an action tucked into the header, content, and a footer with a pencil rule above it.</view>
+    <view class="stack-card">
+      <ll-card seed="settings">
+        <ll-card-header>
+          <ll-card-title>Notifications</ll-card-title>
+          <ll-card-description>Choose what lands in your inbox.</ll-card-description>
+          <ll-button slot="action" variant="link" size="sm">Reset</ll-button>
+        </ll-card-header>
+        <ll-card-content>
+          <view class="set-row" wx:for="{{settings}}" wx:key="id">
+            <text class="set-label">{{item.label}}</text>
+            <ll-switch checked="{{item.on}}" data-id="{{item.id}}" bind:change="onSettingChange" aria-label="{{item.label}}" />
+          </view>
+        </ll-card-content>
+        <ll-card-footer rule="pencil" custom-style="justify-content:flex-end;gap:16rpx">
+          <ll-button variant="ghost" size="sm">Cancel</ll-button>
+          <ll-button size="sm">Save</ll-button>
+        </ll-card-footer>
+      </ll-card>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Stat cards</view>
+    <view class="sec-desc">Index cards for one number each. The figures are set in the script font with tabular numerals; the trend says up or down in words, not only in color.</view>
+    <view class="stack-card">
+      <ll-card stock="index-card" seed="Pages written" custom-style="gap:24rpx;padding:40rpx 0">
+        <ll-card-header>
+          <ll-card-description>Pages written</ll-card-description>
+          <ll-card-title custom-style="font-size:54rpx;font-variant-numeric:tabular-nums lining-nums">1,284</ll-card-title>
+        </ll-card-header>
+        <ll-card-content>
+          <text class="stat-trend" style="color:#3b7a4b">up 12% on last week</text>
+        </ll-card-content>
+      </ll-card>
+      <ll-card stock="index-card" seed="Drafts open" custom-style="gap:24rpx;padding:40rpx 0">
+        <ll-card-header>
+          <ll-card-description>Drafts open</ll-card-description>
+          <ll-card-title custom-style="font-size:54rpx;font-variant-numeric:tabular-nums lining-nums">17</ll-card-title>
+        </ll-card-header>
+        <ll-card-content>
+          <text class="stat-trend" style="color:#c2412d">down 3 since Monday</text>
+        </ll-card-content>
+      </ll-card>
+      <ll-card stock="slip" seed="Words per day" custom-style="gap:24rpx;padding:40rpx 0">
+        <ll-card-header>
+          <ll-card-description>Words per day</ll-card-description>
+          <ll-card-title custom-style="font-size:54rpx;font-variant-numeric:tabular-nums lining-nums">640</ll-card-title>
+        </ll-card-header>
+        <ll-card-content>
+          <text class="stat-trend" style="color:#4a433c">steady</text>
+        </ll-card-content>
+      </ll-card>
+    </view>
+
+    <view class="sub-h3">Login</view>
+    <view class="sec-desc">The shadcn demo: a title, a description, a link tucked into CardAction, a form of two labeled fields with a "forgot" link beside the second label, and a footer of two full-width buttons. Nothing is drawn but the paper, the fields and the buttons.</view>
+    <view class="stack-card">
+      <ll-card seed="login">
+        <ll-card-header>
+          <ll-card-title>Login to your account</ll-card-title>
+          <ll-card-description>Enter your email below to login to your account</ll-card-description>
+          <ll-button slot="action" variant="link" size="sm">Sign up</ll-button>
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;flex-direction:column;gap:48rpx">
+          <view class="field">
+            <text class="label">Email</text>
+            <ll-input placeholder="m@example.com" value="{{loginEmail}}" bind:input="onLoginEmail" aria-label="Email" />
+          </view>
+          <view class="field">
+            <view class="field-row">
+              <text class="label">Password</text>
+              <text class="link">Forgot your password?</text>
+            </view>
+            <ll-input password placeholder="" value="{{loginPw}}" bind:input="onLoginPw" aria-label="Password" />
+          </view>
+        </ll-card-content>
+        <ll-card-footer custom-style="flex-direction:column;gap:24rpx;align-items:stretch">
+          <ll-button custom-style="width:100%">Login</ll-button>
+          <ll-button variant="outline" custom-style="width:100%">Login with Google</ll-button>
+        </ll-card-footer>
+      </ll-card>
+    </view>
+
+    <view class="sub-h3">Create project</view>
+    <view class="sec-desc">The shadcn demo: a card around a small form. A text field, a Select (its list opens in `position="popper"` so it lines up with the trigger) and a footer with the two answers pushed apart. Deploy reports what it would do. (The Select lands with its own port; the field is a placeholder until then.)</view>
+    <view class="stack-card">
+      <ll-card seed="create">
+        <ll-card-header>
+          <ll-card-title>Create project</ll-card-title>
+          <ll-card-description>Deploy your new project in one click.</ll-card-description>
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;flex-direction:column;gap:32rpx">
+          <view class="field">
+            <text class="label">Name</text>
+            <ll-input placeholder="Name of your project" value="{{cpName}}" bind:input="onCpName" aria-label="Name" />
+          </view>
+          <view class="field">
+            <text class="label">Framework</text>
+            <!-- ll-select lands later — placeholder for now -->
+            <view class="select-placeholder" aria-label="Framework">Select</view>
+          </view>
+          <text class="status" aria-live="polite">{{cpStatus}}</text>
+        </ll-card-content>
+        <ll-card-footer custom-style="justify-content:space-between;align-items:center;gap:16rpx">
+          <ll-button variant="outline" size="sm" bind:tap="onCancel">Cancel</ll-button>
+          <ll-button size="sm" bind:tap="onDeploy">Deploy</ll-button>
+        </ll-card-footer>
+      </ll-card>
+    </view>
+  </view>
+</view>

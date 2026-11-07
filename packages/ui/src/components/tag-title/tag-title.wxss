@@ -1,0 +1,9 @@
+/* ll-tag-title — font-script (75% size-adjust) bold 1.65rem: 26.4x.75x2 = 40rpx */
+/* @ll-import tokens */
+.ll-tag-title {
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 40rpx;
+  font-weight: 700;
+  line-height: 1;
+  color: inherit;
+}

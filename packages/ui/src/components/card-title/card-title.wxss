@@ -1,0 +1,10 @@
+/* ll-card-title — font-script (Kevin Sans at 75% size-adjust), semibold.
+   1.7rem = 27.2px x .75 (script size-adjust) x 2 = 41rpx */
+/* @ll-import tokens */
+.ll-card-title {
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 41rpx;
+  font-weight: 700;
+  line-height: 1;
+  color: inherit;
+}

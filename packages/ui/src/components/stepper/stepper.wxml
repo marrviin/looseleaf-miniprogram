@@ -1,0 +1,50 @@
+<!-- ll-stepper — one drawn box (recipe host) around minus, the number
+     (script font, real input) and plus. Hold a button to repeat; at a
+     bound the box rattles. -->
+<view
+  class="ll-stepper {{limit % 2 ? 'll-stepper--limit-a' : 'll-stepper--limit-b'}} ll-class"
+  style="{{customStyle}}"
+  aria-role="group"
+  aria-disabled="{{disabled ? 'true' : ''}}"
+  aria-invalid="{{invalid ? 'true' : ''}}"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view
+    class="ll-stepper__btn {{holding === -1 ? 'll-stepper__btn--holding' : ''}}"
+    aria-role="button"
+    aria-label="Decrease"
+    aria-disabled="{{atMin || disabled || readOnly ? 'true' : ''}}"
+    catchtouchstart="onDecStart"
+    catchtouchend="onDecEnd"
+    catchtouchcancel="onDecEnd"
+    bindtap="onDecTap"
+  >
+    <ll-icon name="minus" size="{{18}}" aria-hidden="true" />
+  </view>
+  <input
+    class="ll-stepper__input {{disabled ? 'll-stepper__input--disabled' : ''}} {{tick === 'up-a' ? 'll-stepper__input--tick-up-a' : tick === 'down-a' ? 'll-stepper__input--tick-down-a' : ''}}"
+    type="digit"
+    value="{{draft && draft.base === shown ? draft.text : shown}}"
+    disabled="{{disabled}}"
+    aria-role="spinbutton"
+    aria-label="{{ariaLabel}}"
+    aria-valuemin="{{min}}"
+    aria-valuemax="{{max}}"
+    aria-valuenow="{{inner}}"
+    bindinput="onInput"
+    bindblur="onBlur"
+    bindconfirm="onConfirm"
+  />
+  <view
+    class="ll-stepper__btn {{holding === 1 ? 'll-stepper__btn--holding' : ''}}"
+    aria-role="button"
+    aria-label="Increase"
+    aria-disabled="{{atMax || disabled || readOnly ? 'true' : ''}}"
+    catchtouchstart="onIncStart"
+    catchtouchend="onIncEnd"
+    catchtouchcancel="onIncEnd"
+    bindtap="onIncTap"
+  >
+    <ll-icon name="plus" size="{{18}}" aria-hidden="true" />
+  </view>
+</view>

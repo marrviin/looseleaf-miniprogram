@@ -1,0 +1,9 @@
+<!-- ll-radio-group — layout + state owner; the radios live in the slot. -->
+<view
+  class="ll-radio-group ll-radio-group--{{orientation}} ll-class"
+  style="{{customStyle}}"
+  aria-role="radiogroup"
+  aria-label="{{ariaLabel}}"
+>
+  <slot />
+</view>

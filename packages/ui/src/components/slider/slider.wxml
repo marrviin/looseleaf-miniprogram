@@ -1,0 +1,35 @@
+<!-- ll-slider — track ink (recipe host) + clipped range ink + one knob per
+     value. Touch is handled on the root: tap jumps the nearest thumb, drag
+     follows the finger (catchtouchmove = upstream touch-action:none). -->
+<view
+  class="ll-slider {{orientation === 'vertical' ? 'll-slider--vertical' : ''}} ll-class"
+  style="{{customStyle}}"
+  aria-role="{{values.length > 1 ? 'group' : ''}}"
+  aria-label="{{ariaLabel}}"
+  catchtouchstart="onTouchStart"
+  catchtouchmove="onTouchMove"
+  catchtouchend="onTouchEnd"
+  catchtouchcancel="onTouchEnd"
+>
+  <view class="ll-slider__track">
+    <view class="ll-ink-layer" style="{{inkStyle}}" />
+    <!-- the range drawing is painted full length; the clip window reveals it -->
+    <view class="ll-slider__range" style="{{rangeClip}}">
+      <view class="ll-ink-layer" style="{{rangeInk}}" />
+    </view>
+  </view>
+  <view
+    wx:for="{{thumbPos}}"
+    wx:key="index"
+    class="ll-slider__thumb"
+    style="{{item}}"
+    aria-role="slider"
+    aria-valuemin="{{min}}"
+    aria-valuemax="{{max}}"
+    aria-valuenow="{{values[index]}}"
+    aria-orientation="{{orientation}}"
+    aria-label="{{values.length > 1 ? '' : ariaLabel}}"
+  >
+    <view class="ll-ink-layer" style="{{thumbInks[index]}}" />
+  </view>
+</view>

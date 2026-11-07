@@ -1,0 +1,27 @@
+/* ll-rule — the host is a 1px hairline (h-px w-full / w-px h-full, like
+   shadcn); the drawing is centered on it and spills up to 12px across.
+   Along the length the host clips (upstream overflow-x/y: clip) so a rule
+   that ends at the window edge never scrolls the page sideways. */
+/* @ll-import tokens */
+.ll-rule {
+  position: relative;
+  flex-shrink: 0;
+}
+.ll-rule--horizontal {
+  height: 1px;
+  width: 100%;
+  overflow-x: clip;
+}
+.ll-rule--vertical {
+  width: 1px;
+  height: 100%;
+  overflow-y: clip;
+}
+
+.ll-ink-layer {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

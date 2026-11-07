@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-icon": "../icon/icon",
+    "ll-button": "../button/button"
+  }
+}

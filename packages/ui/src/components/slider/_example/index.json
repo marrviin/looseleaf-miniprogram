@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-slider": "../slider/slider",
+    "ll-button": "../button/button"
+  }
+}

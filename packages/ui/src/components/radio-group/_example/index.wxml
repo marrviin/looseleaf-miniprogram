@@ -1,0 +1,78 @@
+<!-- ll-radio-group demo — mirrors the upstream docs page (#/components/radio-group). -->
+<view class="demo">
+  <view class="demo-title">Radio Group</view>
+  <view class="sec-desc">Pick exactly one. Each choice is a hand-circled ring; picking it colors the dot in with a terracotta blot and writes a felt spiral into it. Radix Radio Group underneath: roving focus, arrow keys, form value, orientation and direction.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">Pick one. The choice is circled, then colored in: a terracotta blot with a felt spiral written into it. Arrow keys move the choice.</view>
+    <ll-radio-group value="{{density}}" bind:change="onDensityChange" aria-label="Density">
+      <view class="row" wx:for="{{densityOptions}}" wx:key="value">
+        <ll-radio value="{{item.value}}" aria-label="{{item.label}}" />
+        <text class="label" bind:tap="pickDensity" data-value="{{item.value}}">{{item.label}}</text>
+      </view>
+    </ll-radio-group>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Sizes and states</view>
+    <view class="sec-desc">16, 20 and 28 px; off, on, invalid (red pencil, still red on top of the dot) and disabled (dashed, graphite dot). A horizontal group lays its radios in a row.</view>
+    <view class="stack">
+      <ll-radio-group wx:for="{{sizes}}" wx:for-item="s" wx:key="px" orientation="horizontal" value="on" aria-label="{{s.name}}" custom-style="align-items:center;">
+        <text class="size-label">{{s.name}}</text>
+        <ll-radio size="{{s.px}}" value="off" aria-label="{{s.name}} off" />
+        <ll-radio size="{{s.px}}" value="on" aria-label="{{s.name}} on" />
+        <ll-radio size="{{s.px}}" value="bad" invalid aria-label="{{s.name}} invalid" />
+        <ll-radio size="{{s.px}}" value="locked" disabled aria-label="{{s.name}} disabled" />
+      </ll-radio-group>
+    </view>
+
+    <view class="sub-h3">Plan picker</view>
+    <view class="sec-desc">Radios with a title and a line of help, and a second horizontal group for billing. Hovering the row lights its radio; the description hangs off the label with aria-describedby.</view>
+    <view class="stack stack--plans">
+      <ll-radio-group value="{{plan}}" bind:change="onPlanChange" aria-label="Plan" custom-style="gap:32rpx;">
+        <view class="row row--plan" wx:for="{{plans}}" wx:key="value">
+          <ll-radio value="{{item.value}}" size="20" custom-style="margin-top:-4rpx;" aria-label="{{item.title}}" />
+          <view class="stack stack--plan-text">
+            <text class="label" bind:tap="pickPlan" data-value="{{item.value}}">{{item.title}}</text>
+            <text class="help">{{item.help}}</text>
+          </view>
+        </view>
+      </ll-radio-group>
+      <ll-radio-group orientation="horizontal" value="{{billingValue}}" bind:change="onBillingChange" aria-label="Billing">
+        <view class="row row--bill" wx:for="{{billing}}" wx:key="value">
+          <ll-radio value="{{item.value}}" aria-label="{{item.label}}" />
+          <text class="label" bind:tap="pickBilling" data-value="{{item.value}}">{{item.label}}</text>
+        </view>
+      </ll-radio-group>
+    </view>
+
+    <view class="sub-h3">In a form</view>
+    <view class="sec-desc">`name` on the group puts the chosen value in FormData (Radix keeps hidden native radios in sync) and `required` blocks the submit until one is picked.</view>
+    <view class="stack stack--tight form">
+      <view class="form-legend">Ink of the month</view>
+      <ll-radio-group value="{{ink}}" bind:change="onInkChange" aria-label="Ink of the month">
+        <view class="row" wx:for="{{inks}}" wx:key="value">
+          <ll-radio value="{{item.value}}" aria-label="{{item.label}}" />
+          <text class="label" bind:tap="pickInk" data-value="{{item.value}}">{{item.label}}</text>
+        </view>
+      </ll-radio-group>
+      <view class="row row--vote">
+        <ll-button bind:tap="vote">Vote</ll-button>
+        <text class="status">{{sent}}</text>
+      </view>
+    </view>
+
+    <view class="sub-h3">Demo</view>
+    <view class="sec-desc">Official `radio-group-demo`: three options, the middle one chosen. Click, or focus the group and use the arrow keys; the chosen ring gets its dot written in. Only change: the ids are prefixed to stay unique on a page with other examples.</view>
+    <ll-radio-group value="{{demoValue}}" bind:change="onDemoChange" class="stack stack--tight">
+      <view class="row" wx:for="{{demoOptions}}" wx:key="value">
+        <ll-radio value="{{item.value}}" aria-label="{{item.label}}" />
+        <text class="label" bind:tap="pickDemo" data-value="{{item.value}}">{{item.label}}</text>
+      </view>
+    </ll-radio-group>
+  </view>
+</view>

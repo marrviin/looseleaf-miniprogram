@@ -1,0 +1,77 @@
+<!-- ll-textarea demo — mirrors the upstream docs page (#/components/textarea). -->
+<view class="demo">
+  <view class="demo-title">Textarea</view>
+  <view class="sec-desc">A multi-line text field on paper: a pencil box around a real textarea that grows with its text, with optional hand-ruled lines on the baselines, a drawn resize handle and a character counter.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">Grows with what you write. The resize handle in the corner is drawn by hand over the browser's own.</view>
+    <view class="stack stack--tight form-md">
+      <text class="label">Your message</text>
+      <ll-textarea placeholder="Tell us what happened..." value="{{message}}" bind:input="onMessageInput" aria-label="Your message" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Ruled paper</view>
+    <view class="sec-desc">ruled draws pencil lines on the baselines of the text. The rules are re-pulled as the box grows, so they always end where the paper does.</view>
+    <view class="form-md">
+      <ll-textarea ruled value="{{diary}}" aria-label="Diary" />
+    </view>
+
+    <view class="sub-h3">Counter and states</view>
+    <view class="sec-desc">showCount with maxLength; the second field turns red when it is too short. Disabled and read-only fields are drawn as such.</view>
+    <view class="stack form-md">
+      <ll-textarea placeholder="A few words about you (20 or more)" maxlength="{{140}}" showCount value="{{bio}}" bind:input="onBioInput" invalid="{{bio.length > 0 && bio.length < 20}}" aria-label="Bio" />
+      <ll-textarea value="{{locked}}" disabled aria-label="Locked" />
+      <ll-textarea value="{{printed}}" readOnly aria-label="Read only" />
+    </view>
+
+    <view class="sub-h3">A feedback form</view>
+    <view class="sec-desc">Label, Input and a ruled Textarea in a real form: the note is required, and the button says what happened.</view>
+    <view class="stack form-md">
+      <view class="stack stack--tight">
+        <text class="label">Subject</text>
+        <ll-input value="{{fbSubject}}" bind:input="onFbSubjectInput" placeholder="The short version" aria-label="Subject" />
+      </view>
+      <view class="stack stack--tight">
+        <text class="label">Your note <text class="req">*</text></text>
+        <ll-textarea ruled showCount maxlength="{{400}}" placeholder="What should we know?" value="{{fbNote}}" bind:input="onFbNoteInput" aria-label="Your note" />
+      </view>
+      <ll-button disabled="{{fbSent}}" custom-style="align-self:flex-start" bind:tap="sendFeedback">{{fbSent ? "Sent, thank you" : "Send feedback"}}</ll-button>
+    </view>
+
+    <view class="sub-h3">Demo</view>
+    <view class="sec-desc">Official `textarea-demo`: a bare textarea with a placeholder. It sits in a hand-drawn box that grows with its text (`field-sizing: content`, as upstream) and redraws the resize grip in its corner. Only addition: an `aria-label`, since there is no visible label.</view>
+    <ll-textarea placeholder="Type your message here." value="{{demoMsg}}" bind:input="onDemoInput" custom-style="max-width:608rpx" aria-label="Message" />
+
+    <view class="sub-h3">Disabled</view>
+    <view class="sec-desc">Official `textarea-disabled`: the same field with `disabled`. The box is redrawn dashed in pencil gray, so the state does not rest on color alone.</view>
+    <ll-textarea placeholder="Type your message here." disabled custom-style="max-width:608rpx" aria-label="Message" />
+
+    <view class="sub-h3">With button</view>
+    <view class="sec-desc">Official `textarea-with-button`: the field stacked over a full-width Send button on a two-row grid. The gap is `gap-3` (the original's `gap-2` plus a pencil's width): a marker band bleeds a few pixels past its box, and a wide one would touch the field.</view>
+    <view class="stack stack--tight form-sm">
+      <ll-textarea placeholder="Type your message here." aria-label="Message" />
+      <ll-button custom-style="width:100%">Send message</ll-button>
+    </view>
+
+    <view class="sub-h3">With label</view>
+    <view class="sec-desc">Official `textarea-with-label`: a Label tied to the field by `htmlFor` and `id`, so a click on the words puts the cursor in the box. The id is prefixed to stay unique on a page with other examples.</view>
+    <view class="stack stack--tight form-sm">
+      <text class="label">Your message</text>
+      <ll-textarea placeholder="Type your message here." value="{{labelMsg}}" bind:input="onLabelInput" aria-label="Your message" />
+    </view>
+
+    <view class="sub-h3">With text</view>
+    <view class="sec-desc">Official `textarea-with-text`: a label, the field and a line of help text below. The help is linked to the field with `aria-describedby` (the original leaves it unlinked), so a screen reader reads it with the field.</view>
+    <view class="stack stack--tight form-sm">
+      <text class="label">Your Message</text>
+      <ll-textarea placeholder="Type your message here." value="{{textMsg}}" bind:input="onTextInput" aria-label="Your Message" />
+      <text class="help">Your message will be copied to the support team.</text>
+    </view>
+  </view>
+</view>

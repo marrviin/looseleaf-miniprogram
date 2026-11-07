@@ -1,0 +1,19 @@
+<!-- ll-switch — felt pill track (ink layer) + sliding paper-coin thumb.
+     Hit area extends -8rpx like upstream's after:-inset-1. -->
+<view
+  class="ll-switch {{size === 'sm' ? 'll-switch--sm' : ''}} ll-class"
+  style="{{customStyle}}"
+  aria-role="switch"
+  aria-label="{{ariaLabel}}"
+  aria-checked="{{checked ? 'true' : 'false'}}"
+  aria-disabled="{{disabled}}"
+  bind:tap="onTap"
+  bindtouchstart="__inkTouchStart"
+  bindtouchend="__inkTouchEnd"
+  bindtouchcancel="__inkTouchEnd"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-switch-thumb" style="width:{{tw}}px;height:{{tw}}px;transform:translateX({{tx}}px);">
+    <view class="ll-ink-layer" style="{{thumbStyle}}" />
+  </view>
+</view>

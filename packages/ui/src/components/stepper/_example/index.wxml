@@ -1,0 +1,101 @@
+<!-- ll-stepper demo — mirrors the upstream docs page (#/components/stepper). -->
+<view class="demo">
+  <view class="demo-title">Stepper</view>
+  <view class="sec-desc">A number you can nudge: minus, the value, plus. One hand-drawn box with a tick before each button, the number in script, buttons that repeat while you hold them, and a rattle of the box when there is nowhere left to go. The value is a real input, so it types and pastes.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Quantity</view>
+    <view class="sec-desc">Press the plus, hold it to run, or type. At 10 the plus has nothing left and rattles the box.</view>
+    <view class="col-start stack stack--tight">
+      <text class="label">Quantity</text>
+      <ll-stepper value="{{qty}}" bind:change="onQty" min="{{0}}" max="{{10}}" aria-label="Quantity" />
+      <text class="live">{{qty === null ? "Nothing chosen." : qty + " in the basket."}}</text>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Steps, decimals and units</view>
+    <view class="sec-desc">A step of 0.5 on a price (no float drift, shown with two places), a temperature in whole degrees with the wheel opt-in (click into it and scroll — no wheel on a phone), and a value that snaps to multiples of five.</view>
+    <view class="col-center stack">
+      <view class="stack stack--tight">
+        <text class="label">Price</text>
+        <ll-stepper value="{{price}}" bind:change="onPrice" min="{{0}}" step="{{0.5}}" precision="{{2}}" prefix="$" custom-style="width:352rpx" aria-label="Price" />
+      </view>
+      <view class="stack stack--tight">
+        <text class="label">Oven (wheel steps it while focused)</text>
+        <ll-stepper value="{{temp}}" bind:change="onTemp" min="{{-10}}" max="{{250}}" suffix=" C" custom-style="width:352rpx" aria-label="Oven" />
+      </view>
+      <view class="stack stack--tight">
+        <text class="label">Flour, in fives</text>
+        <ll-stepper value="{{grams}}" bind:change="onGrams" min="{{0}}" max="{{1000}}" step="{{5}}" largeStep="{{50}}" snap suffix=" g" custom-style="width:352rpx" aria-label="Flour" />
+      </view>
+    </view>
+
+    <view class="sub-h3">Cart lines with tally marks</view>
+    <view class="sec-desc">The stepper in a cart: each line counts its quantity in tally marks next to the number, the total follows, and a line at zero says so. The tally is decoration; the number is the truth.</view>
+    <view class="col-center">
+      <ll-card seed="cart" custom-style="width:100%;max-width:896rpx">
+        <ll-card-header>
+          <ll-card-title>Your basket</ll-card-title>
+          <ll-card-description>Hold the plus to run up a big order.</ll-card-description>
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;flex-direction:column;gap:32rpx">
+          <view class="line" wx:for="{{lines}}" wx:key="id" wx:for-item="l">
+            <view>
+              <text class="line-name">{{l.name}}</text>
+              <text class="line-meta">${{l.price}} each{{l.qty === 0 ? " (none)" : ""}}</text>
+            </view>
+            <view class="line-controls">
+              <ll-stepper-tally value="{{l.qty}}" />
+              <ll-stepper value="{{l.qty}}" data-id="{{l.id}}" bind:change="onLineQty" min="{{0}}" max="{{99}}" aria-label="{{l.name}} quantity" />
+            </view>
+          </view>
+        </ll-card-content>
+        <ll-card-footer rule="pencil" custom-style="justify-content:space-between;gap:24rpx;align-items:center">
+          <text class="total" aria-live="polite">Total {{total}}</text>
+          <ll-button disabled="{{total === '$0.00'}}">Check out</ll-button>
+        </ll-card-footer>
+      </ll-card>
+    </view>
+
+    <view class="sub-h3">In a form</view>
+    <view class="sec-desc">required refuses an empty field (a blank is put back); Reset returns an uncontrolled stepper to its default. The third one is invalid, the fourth disabled.</view>
+    <view class="col-center">
+      <ll-card seed="party" custom-style="width:100%;max-width:608rpx">
+        <ll-card-header>
+          <ll-card-title>Party of ...</ll-card-title>
+          <ll-card-description>How many are coming?</ll-card-description>
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;flex-direction:column;gap:32rpx">
+          <view class="form-row">
+            <text class="label">Adults</text>
+            <ll-stepper defaultValue="{{2}}" bind:change="onAdults" min="{{1}}" max="{{12}}" required aria-label="Adults" />
+          </view>
+          <view class="form-row">
+            <text class="label">Kids</text>
+            <ll-stepper defaultValue="{{0}}" bind:change="onKids" min="{{0}}" max="{{12}}" aria-label="Kids" />
+          </view>
+          <view class="form-row">
+            <text class="label">High chairs (we have two)</text>
+            <ll-stepper defaultValue="{{3}}" min="{{0}}" max="{{5}}" invalid aria-label="High chairs" />
+          </view>
+          <text class="alert">We only have two.</text>
+          <view class="form-row">
+            <text class="label">Rooftop seats</text>
+            <ll-stepper defaultValue="{{0}}" disabled aria-label="Rooftop seats" />
+          </view>
+        </ll-card-content>
+        <ll-card-footer rule="pencil" custom-style="justify-content:space-between;gap:24rpx;align-items:center">
+          <text class="live" aria-live="polite">{{sent === null ? "Nothing sent yet." : sent}}</text>
+          <view class="row-gap">
+            <ll-button variant="ghost" bind:tap="onFormReset">Reset</ll-button>
+            <ll-button bind:tap="onBook">Book</ll-button>
+          </view>
+        </ll-card-footer>
+      </ll-card>
+    </view>
+  </view>
+</view>

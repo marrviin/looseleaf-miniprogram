@@ -1,0 +1,8 @@
+/* ll-tag-description — text-sm leading-tight text-ink-soft */
+/* @ll-import tokens */
+.ll-tag-description {
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 25rpx; /* 14px x size-adjust .88 */
+  line-height: 1.25;
+  color: var(--ll-ink-soft, #4a423b);
+}

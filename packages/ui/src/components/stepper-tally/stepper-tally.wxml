@@ -1,0 +1,4 @@
+<!-- ll-stepper-tally — the value as tally marks (aria-hidden decoration). -->
+<view class="ll-stepper-tally ll-class" style="width:{{w}}px;{{customStyle}}" aria-hidden="true">
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+</view>

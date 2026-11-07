@@ -1,0 +1,12 @@
+<!-- ll-icon — the box is the layout size (px); the art layer bleeds -pad px
+     past it so the stroke overhang shows, like upstream's overflow-visible
+     svg. aria: role img + label when labeled, hidden otherwise. -->
+<view
+  class="ll-icon ll-class"
+  style="width:{{px}}px;height:{{px}}px;{{flipStyle}}{{customStyle}}"
+  aria-role="{{label ? 'img' : 'none'}}"
+  aria-label="{{label}}"
+  aria-hidden="{{label ? 'false' : 'true'}}"
+>
+  <view class="ll-icon__art" style="{{artStyle}}"></view>
+</view>

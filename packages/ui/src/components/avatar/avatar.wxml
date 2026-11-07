@@ -1,0 +1,7 @@
+<!-- ll-avatar — a face circled by hand. The loop bleeds past the round box
+     via the ink layer's negative inset; image/fallback/badge come in through
+     the slot. -->
+<view class="ll-avatar ll-avatar--{{size}} ll-class" style="{{customStyle}}">
+  <view wx:if="{{drawn}}" class="ll-ink-layer" style="{{inkStyle}}" />
+  <slot />
+</view>

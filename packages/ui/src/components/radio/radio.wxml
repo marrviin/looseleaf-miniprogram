@@ -1,0 +1,16 @@
+<!-- ll-radio — the ring; the ink layer carries rest/hover/checked/focus.
+     Hit area extends -16rpx like upstream's after:-inset-2. -->
+<view
+  class="ll-radio ll-class"
+  style="width:{{px}}px;height:{{px}}px;{{customStyle}}"
+  aria-role="radio"
+  aria-label="{{ariaLabel}}"
+  aria-checked="{{checked ? 'true' : 'false'}}"
+  aria-disabled="{{off}}"
+  bind:tap="onTap"
+  bindtouchstart="__inkTouchStart"
+  bindtouchend="__inkTouchEnd"
+  bindtouchcancel="__inkTouchEnd"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+</view>

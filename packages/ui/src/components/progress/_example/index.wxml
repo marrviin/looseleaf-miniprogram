@@ -1,0 +1,69 @@
+<!-- ll-progress demo — mirrors the upstream docs page (#/components/progress). -->
+<view class="demo">
+  <view class="demo-title">Progress</view>
+  <view class="sec-desc">A bar somebody hatched in pencil and is coloring in with a marker. The marker is one full-length pass revealed by a CSS clip up to the value, so changing the value is a transition, not a redraw. Without a value it becomes a scribble sliding across.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">A pencil-hatched box colored in with a marker as far as the value says. Change the value and the marker glides to it (a CSS clip on a full-length pass; nothing is redrawn).</view>
+    <view class="demo-box">
+      <ll-progress value="{{value}}" custom-style="width:60%;min-width:192rpx" aria-label="Chapter progress" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Sizes, tones and waiting</view>
+    <view class="sec-desc">sm, default and lg; marker, highlighter, grass and sky inks. Without a value the bar is indeterminate: a marker scribble slides across (it holds still, mid-bar, with reduced motion).</view>
+    <view class="form-md stack">
+      <ll-progress value="{{45}}" size="sm" aria-label="Small" />
+      <ll-progress value="{{45}}" aria-label="Default" />
+      <ll-progress value="{{45}}" size="lg" aria-label="Large" />
+      <ll-progress value="{{70}}" tone="hi" aria-label="Highlighter" />
+      <ll-progress value="{{70}}" tone="green" aria-label="Grass" />
+      <ll-progress value="{{70}}" tone="blue" aria-label="Sky" />
+      <ll-progress aria-label="Waiting" />
+    </view>
+
+    <view class="sub-h3">Upload queue</view>
+    <view class="sec-desc">A real-world use: three files at different speeds, an indeterminate bar while one is being checked, a green bar and a tick when it is done. Progress is announced through aria-valuenow; the percentage is text.</view>
+    <view class="form-md stack">
+      <view class="stack stack--tight" wx:for="{{files}}" wx:key="name" wx:for-item="f">
+        <view class="row-baseline">
+          <view class="file-name">
+            <ll-icon wx:if="{{f.pct === 100}}" name="check" size="{{16}}" ink="#3b7a4b" aria-hidden="true" />
+            <text class="file-label">{{f.name}}</text>
+          </view>
+          <text class="file-meta">{{f.pct === null ? "checking" : f.pct === 100 ? f.size : f.pct + "% of " + f.size}}</text>
+        </view>
+        <ll-progress value="{{f.pct}}" tone="{{f.pct === 100 ? 'green' : 'marker'}}" size="sm" aria-label="{{f.name}}" />
+      </view>
+      <view class="row-gap">
+        <ll-button size="sm" bind:tap="onUploadToggle">{{running ? "Pause" : "Start"}}</ll-button>
+        <ll-button size="sm" variant="outline" bind:tap="onUploadReset">Reset</ll-button>
+      </view>
+    </view>
+
+    <view class="sub-h3">Steps</view>
+    <view class="sec-desc">`max` sets the scale, so value and max can be a step and a step count. The label is the only text; the bar has the same value in aria-valuenow and aria-valuemax.</view>
+    <view class="form-sm stack">
+      <view class="row-baseline">
+        <text class="out-xl">{{steps[step - 1]}}</text>
+        <text class="file-meta">Step {{step}} of {{steps.length}}</text>
+      </view>
+      <ll-progress value="{{step}}" max="{{steps.length}}" aria-label="Setup progress" />
+      <view class="row-gap">
+        <ll-button size="sm" variant="outline" bind:tap="onStepBack">Back</ll-button>
+        <ll-button size="sm" bind:tap="onStepNext">Next</ll-button>
+      </view>
+    </view>
+
+    <view class="sub-h3">Demo</view>
+    <view class="sec-desc">Official `progress-demo`: the bar starts at 13 and jumps to 66 half a second later. The marker is drawn once, full length, and revealed to the value, so the change is a CSS transition. Only addition: an `aria-label`, which a progressbar needs.</view>
+    <view class="demo-box">
+      <ll-progress value="{{value}}" custom-style="width:60%" aria-label="Progress" />
+    </view>
+  </view>
+</view>

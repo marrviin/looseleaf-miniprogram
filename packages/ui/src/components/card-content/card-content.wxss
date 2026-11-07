@@ -1,0 +1,5 @@
+/* ll-card-content — px-6 only; the card's flex gap handles vertical rhythm */
+/* @ll-import tokens */
+.ll-card-content {
+  padding: 0 48rpx;
+}

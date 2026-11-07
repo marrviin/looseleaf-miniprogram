@@ -1,0 +1,4 @@
+<!-- ll-card -->
+<view class="ll-card ll-card--{{stock}} ll-class" style="{{paperStyle}};{{customStyle}}">
+  <slot />
+</view>

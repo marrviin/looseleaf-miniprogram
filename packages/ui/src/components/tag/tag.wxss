@@ -1,0 +1,76 @@
+/* ll-tag — everything drawn (paper, patch, eyelet, twine) is one sheet ink
+   layer rendered at the element's real size; the box only lays out the text.
+   The stock face is CSS (upstream .ll-face): stock color + tooth texture
+   tiles (paper-tiles chunk) + paper-light gradient, clipped to the sheet. */
+/* @ll-import tokens */
+/* @ll-import paper-tiles */
+.ll-tag {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  color: var(--ll-ink); /* text-ink */
+  font-family: 'Kevin Sans', sans-serif;
+  break-words: normal;
+}
+
+/* vertical tags (price/round): w-32 min-h-40 px-3 pt-11 pb-4 gap-1 */
+.ll-tag--default,
+.ll-tag--price {
+  width: 256rpx;
+  min-height: 320rpx;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8rpx;
+  padding: 88rpx 24rpx 32rpx;
+}
+.ll-tag--round {
+  padding-top: 96rpx; /* pt-12 */
+}
+
+/* luggage tag: horizontal, h-24 min-w-44 ps-11 pe-5 py-3 gap-2 */
+.ll-tag--luggage {
+  height: 192rpx;
+  min-width: 352rpx;
+  flex-direction: row;
+  align-items: center;
+  gap: 16rpx;
+  padding: 24rpx 40rpx 24rpx 88rpx;
+}
+
+.ll-tag__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8rpx;
+  width: 100%;
+  min-width: 0;
+}
+.ll-tag--luggage .ll-tag__content {
+  flex-direction: row;
+  align-items: center;
+  gap: 16rpx;
+}
+
+/* ink overlay — the label-tag sheet recipe (paper + string + eyelet), inset
+   by -(string+14)px so the twine loop above the tag stays visible. The face
+   view fills the same padded box and is clipped to the sheet path by inline
+   style; DOM order stacks cast < under-strokes < face < over-strokes. */
+.ll-ink-layer,
+.ll-ink-face,
+.ll-ink-cast {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.ll-ink-layer {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-ink-cast {
+  /* sized/positioned inline; inset:0 doesn't apply */
+  inset: auto;
+}

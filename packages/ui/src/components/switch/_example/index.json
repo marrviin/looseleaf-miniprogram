@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "ll-switch": "../switch/switch",
+    "ll-button": "../button/button"
+  }
+}

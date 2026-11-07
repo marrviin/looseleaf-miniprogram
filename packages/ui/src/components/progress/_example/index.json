@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-progress": "../progress/progress",
+    "ll-button": "../button/button",
+    "ll-icon": "../icon/icon"
+  }
+}

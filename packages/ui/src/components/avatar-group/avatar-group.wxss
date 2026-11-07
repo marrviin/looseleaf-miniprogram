@@ -1,0 +1,6 @@
+/* ll-avatar-group — the flex row; the overlap work happens through the
+   --ll-avatar-overlap / --ll-avatar-ring vars (see avatar-group.js). */
+.ll-avatar-group {
+  display: flex;
+  align-items: center;
+}

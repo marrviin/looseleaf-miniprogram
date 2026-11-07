@@ -1,0 +1,2 @@
+<!-- ll-tag-price -->
+<view class="ll-tag-price ll-class" style="{{customStyle}}"><slot /></view>

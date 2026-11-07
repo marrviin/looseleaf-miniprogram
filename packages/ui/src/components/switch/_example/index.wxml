@@ -1,0 +1,72 @@
+<!-- ll-switch demo — mirrors the upstream docs page (#/components/switch). -->
+<view class="demo">
+  <view class="demo-title">Switch</view>
+  <view class="sec-desc">An on/off switch drawn as one clean felt pill: the terracotta marker fills the track when it is on, and a paper coin for a thumb slides across. Radix Switch underneath.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">Flip it: the marker fills the track and the paper coin slides across. The label toggles it too.</view>
+    <view class="row">
+      <ll-switch checked="{{airplane}}" bind:change="onAirplaneChange" aria-label="Airplane mode" />
+      <text class="label" bind:tap="toggleAirplane">Airplane mode</text>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Sizes and states</view>
+    <view class="sec-desc">Default and sm, off and on, invalid (red pencil outline that stays red when it is on) and disabled (dashed pencil, graphite fill). The thumb's side and the fill carry the state, so it never rests on color alone.</view>
+    <view class="grid">
+      <view class="grid-row grid-row--head">
+        <text class="grid-cell grid-name" />
+        <text class="grid-cell grid-col" wx:for="{{cols}}" wx:key="*this">{{item}}</text>
+      </view>
+      <view class="grid-row" wx:for="{{grid}}" wx:for-item="r" wx:key="name">
+        <text class="grid-cell grid-name">{{r.name}}</text>
+        <ll-switch wx:for="{{r.cells}}" wx:for-item="c" wx:key="ci" size="{{r.sm ? 'sm' : 'default'}}" checked="{{c.checked}}" invalid="{{c.invalid}}" disabled="{{c.disabled}}" aria-label="{{r.name}} {{c.label}}" />
+      </view>
+    </view>
+    <view class="row row--locked">
+      <ll-switch disabled checked aria-label="Locked" />
+      <text class="label label--dim">Locked by your administrator</text>
+    </view>
+
+    <view class="sub-h3">Settings list</view>
+    <view class="sec-desc">The usual settings page: a title and a line of help on the left, the switch at the end. Hovering anywhere on a row lights its switch (the row is a `group/field`).</view>
+    <view class="settings">
+      <view class="setting" wx:for="{{settings}}" wx:key="id">
+        <view class="setting-text">
+          <text class="label">{{item.title}}</text>
+          <text class="help">{{item.help}}</text>
+        </view>
+        <ll-switch custom-style="margin-top:4rpx;" checked="{{item.on}}" disabled="{{item.locked}}" data-id="{{item.id}}" bind:change="onSettingsChange" aria-label="{{item.title}}" />
+      </view>
+    </view>
+
+    <view class="sub-h3">In a form</view>
+    <view class="sec-desc">With a name (and optional value) a switch submits like a native checkbox: on gives "on" or its value, off sends nothing. Controlled here, so the summary follows it.</view>
+    <view class="stack stack--form">
+      <view class="row row--between">
+        <text class="label">Weekly digest</text>
+        <ll-switch checked="{{digest}}" bind:change="onDigestChange" aria-label="Weekly digest" />
+      </view>
+      <view class="row row--between">
+        <text class="label">Product news</text>
+        <ll-switch checked="{{marketing}}" bind:change="onMarketingChange" aria-label="Product news" />
+      </view>
+      <view class="row">
+        <ll-button bind:tap="save">Save</ll-button>
+        <text class="status">{{sent}}</text>
+      </view>
+    </view>
+
+    <view class="sub-h3">Demo</view>
+    <view class="sec-desc">Official `switch-demo`: a switch and its label. Flip it and the marker fills the track while the paper coin slides across; the label toggles it too. Only the id is prefixed, so it stays unique on a page with other examples.</view>
+    <view class="row">
+      <ll-switch checked="{{demo}}" bind:change="onDemoChange" aria-label="Airplane Mode" />
+      <text class="label" bind:tap="toggleDemo">Airplane Mode</text>
+    </view>
+  </view>
+</view>

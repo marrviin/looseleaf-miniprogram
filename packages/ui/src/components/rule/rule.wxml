@@ -1,0 +1,10 @@
+<!-- ll-rule — one hand-drawn rule; the hairline host keeps shadcn layout,
+     the ink drawing is centered on it and spills across it -->
+<view
+  class="ll-rule ll-rule--{{orientation}} ll-class"
+  style="{{customStyle}}"
+  aria-role="{{decorative ? 'none' : 'separator'}}"
+  aria-label="{{ariaLabel}}"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+</view>

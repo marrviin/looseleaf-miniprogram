@@ -1,0 +1,5 @@
+<!-- ll-card-footer -->
+<view class="ll-card-footer {{rule !== 'none' ? 'll-card-footer--ruled' : ''}} ll-class" style="{{customStyle}}">
+  <view wx:if="{{rule !== 'none'}}" class="ll-ink-layer" style="{{inkStyle}}" />
+  <slot />
+</view>

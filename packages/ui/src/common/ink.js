@@ -17,7 +17,19 @@
  * root, with slot content wrapped in a positioned, z-index-raised view so
  * ink stays behind the label, as upstream.
  */
-import { RECIPES, bucketBox, runRecipe } from './ink-engine';
+import {
+  RECIPES,
+  bucketBox,
+  runRecipe,
+  hasFace,
+  splitFaces,
+  translatePath,
+  stockOf,
+  TOOTH_TILES,
+  STICKY_VEIL,
+  tileOffsets,
+  farShadow,
+} from './ink-engine';
 import TOKENS from './tokens';
 
 const KNOBS = { wobble: 1, misreg: 1, bleed: 1, width: 1 };
@@ -37,11 +49,15 @@ export function hashSeed(input) {
   return Math.abs(h);
 }
 
-/** Resolve paint keys to hex — an isolated SVG can't see the page's CSS vars. */
-function resolvePaint(svg) {
+/** Resolve paint keys to hex — an isolated SVG can't see the page's CSS vars.
+ *  Exported for ll-icon, which draws skeletons outside the recipe pipeline.
+ *  `ink` bakes a replacement for currentColor (upstream icons follow the
+ *  parent text color; a background-image data URI can't inherit it). */
+export function resolvePaint(svg, ink) {
   return svg
     .replace(/var\(--ll-([a-z0-9-]+)\)/g, (_, key) => TOKENS[`--ll-${key}`] ?? '#2a2420')
-    .replace(/var\(--font-hand[^)]*\)/g, 'cursive');
+    .replace(/var\(--font-hand[^)]*\)/g, 'cursive')
+    .replace(/currentColor/g, ink || TOKENS['--ll-ink'] || '#2a2420');
 }
 
 function svgDataUri(part, { w, h, pad }) {
@@ -51,19 +67,125 @@ function svgDataUri(part, { w, h, pad }) {
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 }
 
-/** Render (or fetch from cache) the rest+pressed+focus layers for one ink spec. */
-function renderLayers(recipeId, box, params, seed) {
+// --- sheet faces ------------------------------------------------------------
+// Sheet-kind recipes (label-tag, ...) leave <!--ll-face:...--> marks in their
+// parts. Upstream renders those as CSS (looseleaf.css .ll-face + faceLook
+// vars), NOT SVG: the face is a span clipped to the sheet path, filled with
+// the stock color, the tooth texture tiles and a paper-light gradient, and
+// (when the spec carries a cast) a far-shadow box-shadow span behind it. The
+// stroke markup before the mark draws under the face, the markup after it
+// (outline, eyelet patch, twine in front) draws over. We mirror that with
+// views inside the padded ink layer.
+
+/* --ll-paper-light (looseleaf.css) with the tokens precomputed: rgb(var()/calc())
+   space syntax isn't reliably supported in the miniprogram webview. */
+const PAPER_LIGHT =
+  'linear-gradient(135deg, rgba(255,255,255,0.38), rgba(255,255,255,0) 42%, rgba(58,44,30,0.035))';
+
+function hexToRgba(hex, a) {
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
+}
+
+/** CSS for one face spec, filling the padded ink layer (w+2pad × h+2pad). */
+function faceCss(spec, pad) {
+  const S = stockOf(spec.stock);
+  const tiles = TOOTH_TILES[S.tooth];
+  const sizes = tiles.map(([, w, h]) => [w, h]);
+  // Upstream's veil is color-mix(stock, transparent) — unsupported in the
+  // miniprogram webview, so precompute the rgba from the token hex.
+  const veil = S.gum && spec.veil !== false ? STICKY_VEIL : 0;
+  const baseHex = TOKENS[`--ll-${S.base}`] || '#f8f5ee';
+  const veilLayer = `linear-gradient(${hexToRgba(baseHex, veil)},${hexToRgba(baseHex, veil)})`;
+  const images = [veilLayer, tiles.map(([t]) => `var(--ll-tex-${t})`).join(','), PAPER_LIGHT].join(',');
+  const size = ['100% 100%', sizes.map(([w, h]) => `${w}px ${h}px`).join(','), '100% 100%'].join(',');
+  const position = ['0 0', tileOffsets(spec.seed, sizes), '0 0'].join(',');
+  const clip = `path('${spec.evenodd ? 'evenodd, ' : ''}${translatePath(spec.d, pad, pad)}')`;
+  return (
+    `left:0;top:0;width:100%;height:100%;` +
+    `background-color:var(--ll-${S.base});` +
+    `background-image:${images};background-size:${size};background-position:${position};` +
+    `clip-path:${clip};-webkit-clip-path:${clip};`
+  );
+}
+
+/** CSS for one far-shadow cast spec, positioned like upstream's .ll-face-shadow. */
+function castCss(spec, { w, h, pad }) {
+  const [t, r, b, l] = spec.cast.inset;
+  // farShadow emits rgb(var(--ll-shade) / calc(a * var(--ll-shadow-k))) —
+  // modern syntax the miniprogram webview may not parse; flatten to rgba.
+  const shadow = farShadow(spec.cast.kind, !!spec.cast.radius).replace(
+    /rgb\(var\(--ll-shade\) \/ calc\(([\d.]+) \* var\(--ll-shadow-k\)\)\)/g,
+    (_, a) => `rgba(58,44,30,${a})`,
+  );
+  let css =
+    `left:${l + pad}px;top:${t + pad}px;width:${w - l - r}px;height:${h - t - b}px;` +
+    `box-shadow:${shadow};`;
+  if (spec.cast.radius) css += `border-radius:${spec.cast.radius.map((v) => `${v}px`).join(' ')};`;
+  return css;
+}
+
+/** Split one layer part into under-strokes / faces+casts / over-strokes.
+    Returns null when the part carries no face mark (plain SVG path). */
+function splitLayer(part, frame) {
+  if (!hasFace(part)) return null;
+  const out = { before: '', after: '', faces: [], casts: [] };
+  let seenFace = false;
+  for (const piece of splitFaces(part)) {
+    if (typeof piece === 'string') {
+      if (seenFace) out.after += piece;
+      else out.before += piece;
+      continue;
+    }
+    seenFace = true;
+    if (piece.paper === false) {
+      if (piece.cast) out.casts.push(castCss(piece, frame));
+    } else {
+      if (piece.cast) out.casts.push(castCss(piece, frame));
+      out.faces.push(faceCss(piece, frame.pad));
+    }
+  }
+  return out;
+}
+
+/** Render (or fetch from cache) the rest+pressed+focus layers for one ink spec.
+ *  Exported for ll-switch, which draws the sliding thumb with the separate
+ *  switch-thumb recipe inside the same component (upstream nests a
+ *  SwitchThumb part with its own recipe in the same DOM). */
+export function renderLayers(recipeId, box, params, seed) {
   const recipe = RECIPES[recipeId];
   if (!recipe) return null;
   const key = [recipeId, `${box.w}x${box.h}`, JSON.stringify(params), seed].join('|');
   let entry = cache.get(key);
   if (!entry) {
     if (cache.size >= CACHE_MAX) cache.clear();
-    const frame = runRecipe(recipe, { ...RUN_REQ, box, params, seed, lazy: ['pressed', 'focus', 'hover'] });
-    entry = { pad: frame.pad, w: box.w, h: box.h, uris: {} };
-    for (const layer of ['rest', 'pressed', 'focus', 'hover']) {
-      if (frame.parts[layer]) entry.uris[layer] = svgDataUri(frame.parts[layer], frame);
+    const frame = runRecipe(recipe, {
+      ...RUN_REQ,
+      box,
+      params,
+      seed,
+      lazy: ['pressed', 'focus', 'hover', 'checked', 'indeterminate'],
+    });
+    entry = { pad: frame.pad, w: box.w, h: box.h, uris: {}, faces: {}, casts: [] };
+    // checked/indeterminate: on-state layers (checkbox etc.) — recipes that
+    // don't define them just leave parts undefined. invalid: field-frame
+    // recipes draw it instead of rest (see __applyInkLayer's fallback).
+    for (const layer of ['rest', 'pressed', 'focus', 'hover', 'checked', 'indeterminate', 'invalid']) {
+      const part = frame.parts[layer];
+      if (!part) continue;
+      const split = splitLayer(part, frame);
+      if (!split) {
+        entry.uris[layer] = svgDataUri(part, frame);
+      } else {
+        entry.uris[layer] = {
+          before: split.before ? svgDataUri(split.before, frame) : '',
+          after: split.after ? svgDataUri(split.after, frame) : '',
+        };
+        if (split.faces.length) entry.faces[layer] = split.faces;
+        if (layer === 'rest') entry.casts = split.casts;
+      }
     }
+    entry.faced = Object.keys(entry.faces).length > 0 || entry.casts.length > 0;
     cache.set(key, entry);
   }
   return entry;
@@ -98,6 +220,13 @@ export function attachInk() {
     data: {
       inkStyle: '',
       inkPressed: false,
+      // Faced (sheet) recipes: cast shadows, under/over stroke layers and the
+      // CSS face views between them — see __applyFaced.
+      inkFaced: false,
+      inkUnderStyle: '',
+      inkOverStyle: '',
+      inkFaces: [],
+      inkCasts: [],
     },
     lifetimes: {
       attached() {
@@ -128,8 +257,13 @@ export function attachInk() {
       __measureInk() {
         // The ink spec (recipe/variant/…) may arrive before layout; remember
         // the latest props and (re)draw once a real box is measured.
+        // Root selector: .ll-<recipe> (the guide's naming rule), overridable
+        // via data.llInkSelector when a component's root class differs.
+        const recipeId = this.data.llInkRecipe;
+        if (!recipeId) return;
+        const selector = this.data.llInkSelector || `.ll-${recipeId}`;
         this.createSelectorQuery()
-          .select('.ll-button')
+          .select(selector)
           .boundingClientRect((rect) => {
             if (!rect || !rect.width || !rect.height) {
               // Not laid out yet (e.g. wx:if branch just mounted) — retry next frame.
@@ -154,6 +288,9 @@ export function attachInk() {
           size: d.size ?? 'default',
           shape: d.shape && d.shape !== 'default' ? d.shape : undefined,
           disabled: false,
+          // Component-specific extras (badge tone/tally, ...): the component
+          // defines __inkParams (object or fn) in its attached/observers.
+          ...(typeof this.__inkParams === 'function' ? this.__inkParams() : this.__inkParams),
         };
         this.__inkSeed = seed;
         this.__inkEntry = renderLayers(recipeId, bucketBox(this.__inkBox.w, this.__inkBox.h), params, seed);
@@ -161,15 +298,21 @@ export function attachInk() {
       },
       /** Compose the ink layer: layers stack like upstream's one-SVG model.
           Upstream order rest < hover < pressed < focus (later renders on top),
-          hover hides while pressed; hover adds the -0.9deg drawing tilt. */
+          hover hides while pressed; hover adds the -0.9deg drawing tilt.
+          Faced recipes (sheet components) render a sandwich instead:
+          cast shadow → under-strokes → face views → over-strokes, mirroring
+          upstream's SheetLayers DOM. */
       __applyInkLayer() {
         const entry = this.__inkEntry;
         if (!entry) return;
         const d = this.data;
-        if (d.disabled) {
-          const uri = this.__disabledUri(entry);
-          if (uri) this.setData({ inkStyle: `inset:${-entry.pad}px;background-image:url("${uri}")` });
-          return;
+        // Disabled: recipes with a real disabled layer swap it in for all
+        // others; recipes that draw disabled inside rest (checkbox) fall
+        // through to the normal stack — the probe caches null, so the
+        // swap-in is attempted only once.
+        if (d.disabled && entry.uris.disabled !== null) {
+          if (entry.uris.disabled === undefined) this.__applyDisabled(entry);
+          if (entry.uris.disabled) return;
         }
         const pressed = this.__inkPressed || d.pressed;
         const hovered = d.hovered && !pressed;
@@ -178,33 +321,93 @@ export function attachInk() {
         if (d.focusVisible && entry.uris.focus) stack.push(entry.uris.focus);
         if (pressed && entry.uris.pressed) stack.push(entry.uris.pressed);
         if (hovered && entry.uris.hover) stack.push(entry.uris.hover);
-        stack.push(entry.uris.rest);
+        // On-state layers stack over rest like upstream's one-SVG model
+        // (checked shows its fill + reveal mark over the box; rest stays).
+        if (d.indeterminate && entry.uris.indeterminate) stack.push(entry.uris.indeterminate);
+        else if (d.checked && entry.uris.checked) stack.push(entry.uris.checked);
+        // Field-frame recipes (input, textarea) draw invalid INSTEAD of rest
+        // — the red frame replaces the pencil box, never stacks over it.
+        stack.push(entry.uris.rest ?? entry.uris.invalid);
         if (!stack.length) return;
+        if (entry.faced) {
+          this.__applyFaced(entry, stack, { focusVisible: d.focusVisible, pressed, hovered });
+          return;
+        }
         const tilt = hovered ? 'transform:rotate(var(--ll-hover-tilt, -0.9deg));' : '';
         this.setData({ inkStyle: `inset:${-entry.pad}px;${tilt}background-image:${stack.map((u) => `url("${u}")`).join(',')}` });
       },
+      /** Faced variant: pick the one active face set (upstream shows only the
+          state's face span; rest is the default), stack under/over strokes. */
+      __applyFaced(entry, stack, states) {
+        const faces = [];
+        if (states.focusVisible && entry.faces.focus) faces.push(...entry.faces.focus);
+        else if (states.pressed && entry.faces.pressed) faces.push(...entry.faces.pressed);
+        else if (states.hovered && entry.faces.hover) faces.push(...entry.faces.hover);
+        else faces.push(...(entry.faces.rest || []));
+        const layerStyle = (side) =>
+          stack
+            .map((u) => (typeof u === 'string' ? (side === 'before' ? u : '') : u[side]))
+            .filter(Boolean)
+            .map((u) => `url("${u}")`)
+            .join(',');
+        this.setData({
+          inkStyle: '',
+          inkFaced: true,
+          inkUnderStyle: `inset:${-entry.pad}px;background-image:${layerStyle('before')}`,
+          inkOverStyle: `inset:${-entry.pad}px;background-image:${layerStyle('after')}`,
+          inkFaces: faces,
+          inkCasts: entry.casts,
+        });
+      },
       /** Disabled art is drawn by the recipe only when params.disabled — render
           it on first use (replaces every other layer) and stash it on the entry. */
-      __disabledUri(entry) {
-        if (entry.uris.disabled) return entry.uris.disabled;
-        const d = this.data;
-        const recipeId = d.llInkRecipe;
-        if (!RECIPES[recipeId]) return null;
-        const params = {
-          variant: d.variant ?? 'default',
-          size: d.size ?? 'default',
-          shape: d.shape && d.shape !== 'default' ? d.shape : undefined,
-          disabled: true,
-        };
-        const frame = runRecipe(RECIPES[recipeId], {
-          ...RUN_REQ,
-          box: { w: entry.w, h: entry.h },
-          params,
-          seed: this.__inkSeed,
-          lazy: [],
-        });
-        entry.uris.disabled = frame.parts.disabled ? svgDataUri(frame.parts.disabled, frame) : null;
-        return entry.uris.disabled;
+      __applyDisabled(entry) {
+        if (!entry.uris.disabled) {
+          const d = this.data;
+          const recipeId = d.llInkRecipe;
+          if (!RECIPES[recipeId]) return;
+          const params = {
+            variant: d.variant ?? 'default',
+            size: d.size ?? 'default',
+            shape: d.shape && d.shape !== 'default' ? d.shape : undefined,
+            disabled: true,
+          };
+          const frame = runRecipe(RECIPES[recipeId], {
+            ...RUN_REQ,
+            box: { w: entry.w, h: entry.h },
+            params,
+            seed: this.__inkSeed,
+            lazy: [],
+          });
+          const part = frame.parts.disabled;
+          if (!part) {
+            entry.uris.disabled = null;
+          } else {
+            const split = splitLayer(part, frame);
+            entry.uris.disabled = split
+              ? {
+                  before: split.before ? svgDataUri(split.before, frame) : '',
+                  after: split.after ? svgDataUri(split.after, frame) : '',
+                }
+              : svgDataUri(part, frame);
+            entry.disabledFaces = split ? split.faces : [];
+            entry.disabledCasts = split ? split.casts : [];
+          }
+        }
+        const uri = entry.uris.disabled;
+        if (!uri) return;
+        if (typeof uri === 'string') {
+          this.setData({ inkFaced: false, inkStyle: `inset:${-entry.pad}px;background-image:url("${uri}")` });
+        } else {
+          this.setData({
+            inkStyle: '',
+            inkFaced: true,
+            inkUnderStyle: `inset:${-entry.pad}px;${uri.before ? `background-image:url("${uri.before}")` : ''}`,
+            inkOverStyle: `inset:${-entry.pad}px;${uri.after ? `background-image:url("${uri.after}")` : ''}`,
+            inkFaces: entry.disabledFaces || [],
+            inkCasts: entry.disabledCasts || [],
+          });
+        }
       },
     },
   });

@@ -1,0 +1,113 @@
+<!-- ll-badge demo — mirrors the upstream docs page (#/components/badge):
+     intro, Preview/Variants, then the Examples entries (Sizes, icons and
+     tones / Counts and tally marks / As a link / Release notes) with the
+     page's own copy. Installation/Usage/API reference/Accessibility/Related
+     are intentionally omitted. -->
+<view class="demo">
+  <view class="demo-title">Badge</view>
+  <view class="sec-desc">A small mark that sits next to a word: a marker stamp, a highlighter swipe, a red-hatched warning, a circled word, and a count that can be written as tally marks. Same variants and asChild as shadcn.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Variants</view>
+    <view class="sec-desc">A marker stamp, a highlighter swipe, a red-hatched pill, a circled word, and two that only show up when they are links.</view>
+    <view class="row">
+      <ll-badge>Badge</ll-badge>
+      <ll-badge variant="secondary">Secondary</ll-badge>
+      <ll-badge variant="destructive">Destructive</ll-badge>
+      <ll-badge variant="outline">Outline</ll-badge>
+      <ll-badge variant="ghost">Ghost</ll-badge>
+      <ll-badge variant="link">Link</ll-badge>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Sizes, icons and tones</view>
+    <view class="sec-desc">Three heights, an icon slot in front of the label (the icon keeps its own 14 px drawing), and the stationery accents for the marker fill. (The ll-icon component lands in the M2 batch; text glyphs stand in for now.)</view>
+    <view class="row">
+      <ll-badge size="sm">Small</ll-badge>
+      <ll-badge>Default</ll-badge>
+      <ll-badge size="lg">Large</ll-badge>
+    </view>
+    <view class="row">
+      <ll-badge variant="secondary">✓ Verified</ll-badge>
+      <ll-badge variant="destructive">⚠ Overdue</ll-badge>
+      <ll-badge variant="outline">🔔 Following</ll-badge>
+    </view>
+    <view class="row">
+      <ll-badge tone="hi">hi</ll-badge>
+      <ll-badge tone="tangerine">tangerine</ll-badge>
+      <ll-badge tone="lemon">lemon</ll-badge>
+      <ll-badge tone="grass">grass</ll-badge>
+      <ll-badge tone="teal">teal</ll-badge>
+      <ll-badge tone="sky">sky</ll-badge>
+      <ll-badge tone="bubblegum">bubblegum</ll-badge>
+    </view>
+
+    <view class="sub-h3">Counts and tally marks</view>
+    <view class="sec-desc">A number in tabular figures that stops at 99+, and the same number written the way a person keeps score: four uprights and a slash. Screen readers get the digits either way.</view>
+    <view class="row">
+      <ll-badge count="{{3}}" />
+      <ll-badge count="{{8}}" variant="secondary" />
+      <ll-badge count="{{42}}" variant="outline" />
+      <ll-badge count="{{128}}" variant="destructive" />
+      <ll-badge count="{{1200}}" max="{{999}}" variant="outline" />
+    </view>
+    <view class="row">
+      <ll-badge tally count="{{1}}" variant="outline" />
+      <ll-badge tally count="{{3}}" variant="outline" />
+      <ll-badge tally count="{{5}}" variant="outline" />
+      <ll-badge tally count="{{7}}" variant="secondary" />
+      <ll-badge tally count="{{12}}" />
+      <ll-badge tally count="{{9}}" variant="destructive" />
+    </view>
+
+    <view class="sub-h3">As a link</view>
+    <view class="sec-desc">asChild hands the badge to your own element. Hover a link badge: the filled ones lift a drop-line, the outline gets a highlighter wash, ghost swipes and link underlines. Tab to it for the felt ring. (asChild is a React-slot pattern with no miniprogram equivalent; these badges are tappable and draw the hover layer via the hoverable prop.)</view>
+    <view class="row">
+      <ll-badge hoverable>Docs</ll-badge>
+      <ll-badge hoverable variant="secondary">Releases</ll-badge>
+      <ll-badge hoverable variant="outline">#design</ll-badge>
+      <ll-badge hoverable variant="ghost">Ghost link</ll-badge>
+      <ll-badge hoverable variant="link">Read the changelog</ll-badge>
+    </view>
+
+    <view class="sub-h3">Release notes</view>
+    <view class="sec-desc">Badges doing real work in a card: a status next to the title, the kind of each change in front of its line, and a tally of how many are left to read.</view>
+    <view class="rn-card">
+      <ll-card seed="release">
+        <ll-card-header>
+          <ll-card-title custom-style="display:flex;align-items:center;gap:24rpx">
+            <text>v2.4.0</text>
+            <ll-badge variant="secondary">✓ Latest</ll-badge>
+          </ll-card-title>
+          <ll-card-description>Released this morning, four changes.</ll-card-description>
+          <ll-badge slot="action" tally count="{{4}}" variant="outline" />
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;flex-direction:column;gap:24rpx">
+          <view class="rn-item">
+            <ll-badge variant="default" size="sm" custom-style="min-width:128rpx">New</ll-badge>
+            <text class="rn-text">Pencil-drawn spinner that scribbles while it waits</text>
+          </view>
+          <view class="rn-item">
+            <ll-badge variant="secondary" size="sm" custom-style="min-width:128rpx">Fixed</ll-badge>
+            <text class="rn-text">Focus rings no longer clip inside scroll areas</text>
+          </view>
+          <view class="rn-item">
+            <ll-badge variant="destructive" size="sm" custom-style="min-width:128rpx">Breaking</ll-badge>
+            <text class="rn-text">Badge is a span again; wrap it in a link with asChild</text>
+          </view>
+          <view class="rn-item">
+            <ll-badge variant="outline" size="sm" custom-style="min-width:128rpx">Note</ll-badge>
+            <text class="rn-text">The hover tilt is off for reduced motion</text>
+          </view>
+        </ll-card-content>
+        <ll-card-footer rule="pencil">
+          <ll-button variant="link" size="sm">Read the full changelog</ll-button>
+        </ll-card-footer>
+      </ll-card>
+    </view>
+  </view>
+</view>

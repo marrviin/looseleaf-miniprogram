@@ -1,0 +1,79 @@
+<!-- ll-spinner demo — mirrors the upstream docs page (#/components/spinner).
+     Colors are passed to `ink` (backgrounds can't inherit text color). -->
+<view class="demo">
+  <view class="demo-title">Spinner</view>
+  <view class="sec-desc">A pencil that will not stop scribbling: a hand-wound spiral whose line is drawn and undrawn round and round, in the color of the text around it. Still, and whole, when motion is reduced. Stubby can write instead, in three frames like a flip book.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Sizes and colors</view>
+    <view class="sec-desc">Size it with size-*; the scribble is redrawn for the size (fewer, wider turns when it is small). It draws in whatever text color it sits in. With reduced motion on, every one of these stands still, whole.</view>
+    <view class="stack">
+      <view class="row row--gap6">
+        <ll-spinner wx:for="{{sizes}}" wx:key="*this" size="{{item}}" aria-label="Loading, {{item}} px" />
+      </view>
+      <view class="row row--gap6">
+        <ll-spinner wx:for="{{colors}}" wx:key="label" size="32" ink="{{item.ink}}" aria-label="Loading, {{item.label}}" />
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">In buttons and badges</view>
+    <view class="sec-desc">A spinner in front of a label is shadcn's pattern. The button is disabled while the request runs and says what is happening; press it to see a save go through.</view>
+    <view class="stack">
+      <view class="row row--wrap row--gap4">
+        <ll-button
+          disabled="{{phase === 'saving'}}"
+          variant="{{phase === 'saved' ? 'secondary' : 'default'}}"
+          bind:tap="save"
+        >
+          <ll-spinner wx:if="{{phase === 'saving'}}" />
+          {{phase === 'idle' ? 'Save changes' : phase === 'saving' ? 'Saving' : 'Saved, thanks'}}
+        </ll-button>
+        <ll-button variant="outline" disabled>
+          <ll-spinner />
+          Please wait
+        </ll-button>
+        <ll-button variant="outline" size="icon" disabled aria-label="Refreshing">
+          <ll-spinner />
+        </ll-button>
+      </view>
+      <view class="row row--wrap row--gap4">
+        <ll-badge variant="secondary">
+          <ll-spinner size="14" aria-label="Syncing" />
+          Syncing
+        </ll-badge>
+        <ll-badge variant="outline">
+          <ll-spinner size="14" aria-label="Uploading" />
+          Uploading 3 of 7
+        </ll-badge>
+      </view>
+    </view>
+
+    <view class="sub-h3">Stubby is writing</view>
+    <view class="sec-desc">For a page or a panel that is loading rather than a button: Stubby writes in three frames, flipped like a flip book, and the words say what they are waiting for. The role=status carries the name. With reduced motion he holds still with the scribble finished.</view>
+    <view class="cards2">
+      <ll-card seed="fetching">
+        <ll-card-header>
+          <ll-card-title>Fetching your notes</ll-card-title>
+          <ll-card-description>Stubby is finding the right page.</ll-card-description>
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;justify-content:center;padding:16rpx 0">
+          <ll-spinner variant="write" size="80" aria-label="Fetching your notes" />
+        </ll-card-content>
+      </ll-card>
+      <ll-card stock="index-card" seed="binding">
+        <ll-card-header>
+          <ll-card-title>Binding the book</ll-card-title>
+          <ll-card-description>This takes a minute. Pencils are slow, and careful.</ll-card-description>
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;justify-content:center;padding:16rpx 0">
+          <ll-spinner variant="write" size="112" aria-label="Binding the book" />
+        </ll-card-content>
+      </ll-card>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,5 @@
+<!-- ll-avatar-group — overlapping faces; avatars inside read the overlap and
+     ring vars published on this container. -->
+<view class="ll-avatar-group ll-class" style="{{groupStyle}}{{customStyle}}">
+  <slot />
+</view>

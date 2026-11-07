@@ -1,0 +1,72 @@
+<!-- ll-checkbox demo — mirrors the upstream docs page (#/components/checkbox).
+     Upstream examples 50/51 (description rows, choice cards) need the Field
+     family and land with the field port. -->
+<view class="demo">
+  <view class="demo-title">Checkbox</view>
+  <view class="sec-desc">A hand-drawn box you tick. Checking fills it with solid marker and writes a heavy felt tick over it, stroke by stroke; a dash means partly checked. Radix behavior, keyboard and form support are untouched.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">Tick it and watch the felt tick get written. Clicking the label works too.</view>
+    <view class="row">
+      <ll-checkbox checked="{{terms}}" bind:change="onTermsChange" />
+      <text class="label" bind:tap="toggleTerms">Accept the terms and conditions</text>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">States and sizes</view>
+    <view class="sec-desc">Off, on, partly on, invalid and disabled in 16, 20 and 28 px. The label of a disabled box fades with it (peer-disabled).</view>
+    <view class="stack">
+      <view class="row row--sizes" wx:for="{{sizes}}" wx:for-item="s" wx:key="px">
+        <text class="size-label">{{s.name}}</text>
+        <ll-checkbox size="{{s.px}}" aria-label="{{s.name}} off" />
+        <ll-checkbox size="{{s.px}}" checked aria-label="{{s.name}} on" />
+        <ll-checkbox size="{{s.px}}" indeterminate aria-label="{{s.name}} partly" />
+        <ll-checkbox size="{{s.px}}" invalid aria-label="{{s.name}} invalid" />
+        <ll-checkbox size="{{s.px}}" disabled aria-label="{{s.name}} disabled" />
+        <ll-checkbox size="{{s.px}}" disabled checked aria-label="{{s.name}} disabled on" />
+      </view>
+      <view class="row">
+        <ll-checkbox disabled checked aria-label="Locked" />
+        <text class="label label--dim">Locked by your admin</text>
+      </view>
+    </view>
+
+    <view class="sub-h3">Select all</view>
+    <view class="sec-desc">A parent box that shows the dash when only some children are ticked, and a Field-like row whose hover lights the box.</view>
+    <view class="stack stack--tight">
+      <view class="row">
+        <ll-checkbox checked="{{allOn}}" indeterminate="{{allIndeterminate}}" bind:change="onAllChange" aria-label="Everything on the desk" />
+        <text class="label">Everything on the desk</text>
+      </view>
+      <view class="stack stack--indent">
+        <view class="row" wx:for="{{items}}" wx:key="name">
+          <ll-checkbox data-name="{{item.name}}" checked="{{item.on}}" bind:change="onItemChange" aria-label="{{item.name}}" />
+          <text class="label">{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="sub-h3">In a form</view>
+    <view class="sec-desc">Boxes with a name and value submit like native checkboxes; required blocks the submit until the box is ticked.</view>
+    <view class="stack stack--tight form">
+      <view class="form-legend">Tell me about</view>
+      <view class="row" wx:for="{{notify}}" wx:key="name">
+        <ll-checkbox data-name="{{item.name}}" checked="{{item.on}}" bind:change="onNotifyChange" aria-label="{{item.name}}" />
+        <text class="label">{{item.name}}</text>
+      </view>
+      <view class="row row--agree">
+        <ll-checkbox checked="{{agree}}" bind:change="onAgreeChange" aria-label="I have read the small print" />
+        <text class="label">I have read the small print <text class="req">*</text></text>
+      </view>
+      <view class="row">
+        <ll-button bind:tap="save">Save</ll-button>
+        <text class="status">{{sent}}</text>
+      </view>
+    </view>
+  </view>
+</view>

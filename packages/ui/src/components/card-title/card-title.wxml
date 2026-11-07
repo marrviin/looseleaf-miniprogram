@@ -1,0 +1,2 @@
+<!-- ll-card-title -->
+<view class="ll-card-title ll-class" style="{{customStyle}}"><slot /></view>

@@ -1,0 +1,17 @@
+<!-- ll-checkbox — the 16 px box; the ink layer carries rest/hover/checked/
+     indeterminate/focus drawings. Hit area extends -12rpx like upstream's
+     after:-inset-1.5. -->
+<view
+  class="ll-checkbox ll-class"
+  style="width:{{px}}px;height:{{px}}px;{{customStyle}}"
+  aria-role="checkbox"
+  aria-label="{{ariaLabel}}"
+  aria-checked="{{indeterminate ? 'mixed' : checked ? 'true' : 'false'}}"
+  aria-disabled="{{disabled}}"
+  bind:tap="onTap"
+  bindtouchstart="__inkTouchStart"
+  bindtouchend="__inkTouchEnd"
+  bindtouchcancel="__inkTouchEnd"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+</view>

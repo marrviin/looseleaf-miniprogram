@@ -1,6 +1,8 @@
 {
   "component": true,
   "usingComponents": {
-    "ll-button": "../button/button"
+    "ll-button": "../button/button",
+    "ll-icon": "../icon/icon",
+    "ll-spinner": "../spinner/spinner"
   }
 }

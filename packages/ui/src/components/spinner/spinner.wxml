@@ -1,0 +1,19 @@
+<!-- ll-spinner — role status + "Loading" for screen readers, like upstream.
+     scribble/loops: one art layer with the comet baked in (SMIL).
+     write: Stubby's three frames stacked, flipped by wxss opacity loops. -->
+<view
+  class="ll-spinner ll-spinner--{{variant}} ll-class"
+  style="{{boxStyle}}{{customStyle}}"
+  aria-role="status"
+  aria-label="{{ariaLabel}}"
+>
+  <block wx:if="{{isWrite}}">
+    <view
+      wx:for="{{frames}}"
+      wx:key="index"
+      class="ll-spinner__frame ll-spinner__frame--{{index + 1}}"
+      style="{{item.style}}"
+    ></view>
+  </block>
+  <view wx:else class="ll-spinner__art" style="{{artStyle}}"></view>
+</view>

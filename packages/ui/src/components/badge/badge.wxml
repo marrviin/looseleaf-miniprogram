@@ -1,0 +1,16 @@
+<!-- ll-badge -->
+<view
+  class="ll-badge ll-badge--{{variant}} ll-badge--{{size}} {{countMode ? 'll-badge--count' : ''}} {{hoverable && hovered && variant === 'link' ? 'll-badge--link-hovered' : ''}} ll-class"
+  style="{{customStyle}}"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-badge__content">
+    <block wx:if="{{tallied}}">
+      <!-- The digits stay in the tree for accessibility, like upstream's sr-only span. -->
+      <text class="ll-badge__sr">{{shown}}</text>
+      <view class="ll-badge__tally" style="{{tallyStyle}}" />
+    </block>
+    <slot wx:elif="{{!countMode}}" />
+    <text wx:else class="ll-badge__num">{{shown}}</text>
+  </view>
+</view>

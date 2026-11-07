@@ -1,0 +1,104 @@
+<!-- ll-input demo — mirrors the upstream docs page (#/components/input).
+     Types: date needs <picker>, file needs wx.chooseMedia — both land with
+     their own ports; the type section carries password + number until then. -->
+<view class="demo">
+  <view class="demo-title">Input</view>
+  <view class="sec-desc">A one-line text field: a pencil box on paper around a real input, with blue felt for what you type. It draws its own hover, focus ring, invalid (red pencil and a !), disabled (dashes) and read-only (printed) states.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">A label and a field. What you type is blue felt; the placeholder is graphite.</view>
+    <view class="stack stack--tight form">
+      <text class="label">Email</text>
+      <ll-input type="text" placeholder="you@example.com" value="{{email}}" bind:input="onEmailInput" aria-label="Email" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">States</view>
+    <view class="sec-desc">Filled, invalid (red pencil, a wavy underline and a !), disabled (dashed pencil) and read-only (printed). Hover and Tab into them to see the rest.</view>
+    <view class="stack form">
+      <ll-input value="{{filled}}" aria-label="Filled" />
+      <ll-input value="{{broken}}" invalid aria-label="Invalid" />
+      <ll-input value="{{locked}}" disabled aria-label="Disabled" />
+      <ll-input value="{{printed}}" readOnly aria-label="Read only" />
+    </view>
+
+    <view class="sub-h3">Types</view>
+    <view class="sec-desc">Password, number, search, date and file. The number spinners and the search clear button are removed; the file button is a highlighter swatch.</view>
+    <view class="stack stack--form">
+      <view class="stack stack--tight">
+        <text class="label">Password</text>
+        <ll-input password value="{{pw}}" aria-label="Password" />
+      </view>
+      <view class="stack stack--tight">
+        <text class="label">Quantity</text>
+        <ll-input type="number" value="{{qty}}" bind:input="onQtyInput" custom-style="width:192rpx" aria-label="Quantity" />
+      </view>
+      <view class="stack stack--tight">
+        <text class="label">Picture</text>
+        <!-- file input needs wx.chooseMedia; lands with the picker port -->
+        <text class="note">file — needs wx.chooseMedia, lands with the picker port</text>
+      </view>
+    </view>
+
+    <view class="sub-h3">With an icon</view>
+    <view class="sec-desc">className goes to the frame, but padding goes to the input: pl-9 makes room for the pencilled magnifier exactly as it would on a plain shadcn input.</view>
+    <view class="relative form">
+      <view class="search-icon"><ll-icon name="search" size="{{16}}" /></view>
+      <ll-input type="text" placeholder="Search the notebook" value="{{search}}" bind:input="onSearchInput" custom-style="--ll-input-pl:72rpx" aria-label="Search the notebook" />
+    </view>
+
+    <view class="sub-h3">A sign-up form</view>
+    <view class="sec-desc">Real validation: the email field turns red with its message the moment it is wrong, and the form only submits when it is right.</view>
+    <view class="stack stack--form form">
+      <view class="stack stack--tight">
+        <text class="label">Your name <text class="req">*</text></text>
+        <ll-input value="{{suName}}" bind:input="onSuNameInput" placeholder="Ada Lovelace" aria-label="Your name" />
+      </view>
+      <view class="stack stack--tight">
+        <text class="label">Email <text class="req">*</text></text>
+        <ll-input value="{{suEmail}}" bind:input="onSuEmailInput" bind:blur="onSuEmailBlur" invalid="{{suInvalid}}" placeholder="you@example.com" aria-label="Email" />
+        <text class="error">{{suInvalid ? "That does not look like an email address." : ""}}</text>
+      </view>
+      <view class="row">
+        <ll-checkbox checked="{{suTerms}}" bind:change="onSuTermsChange" aria-label="I have read the small print" />
+        <text class="label">I have read the small print</text>
+      </view>
+      <ll-button custom-style="width:100%">{{suDone ? "Signed up, thanks" : "Sign up"}}</ll-button>
+    </view>
+
+    <view class="sub-h3">Email field</view>
+    <view class="sec-desc">shadcn's `input-demo`: the bare Input, nothing around it. `type="email"` and a placeholder are all it takes; what you type comes out in blue felt.</view>
+    <ll-input value="{{demoEmail}}" bind:input="onDemoEmailInput" placeholder="Email" custom-style="max-width:640rpx" aria-label="Email" />
+
+    <view class="sub-h3">Disabled</view>
+    <view class="sec-desc">shadcn's `input-disabled`: `disabled` draws the box in dashed pencil and takes the field out of the tab order and out of the form.</view>
+    <ll-input disabled placeholder="Email" custom-style="max-width:640rpx" aria-label="Email" />
+
+    <view class="sub-h3">With button</view>
+    <view class="sec-desc">shadcn's `input-with-button`: an Input and an outline Button side by side in a flex row. Two separate drawings that line up, not one shared box (InputGroup does that).</view>
+    <view class="row row--field form">
+      <ll-input value="{{subEmail}}" bind:input="onSubEmailInput" placeholder="Email" aria-label="Email" />
+      <ll-button variant="outline">Subscribe</ll-button>
+    </view>
+
+    <view class="sub-h3">With label</view>
+    <view class="sec-desc">shadcn's `input-with-label`: a Label above the field in a grid, tied to it by `htmlFor` and `id`, so a click on the word puts the cursor in the box.</view>
+    <view class="stack stack--tight form">
+      <text class="label">Email</text>
+      <ll-input value="{{labelEmail}}" bind:input="onLabelEmailInput" placeholder="Email" aria-label="Email" />
+    </view>
+
+    <view class="sub-h3">With help text</view>
+    <view class="sec-desc">shadcn's `input-with-text`: a line of muted help under the field. Here it is joined to the input with `aria-describedby`, which the original leaves to you.</view>
+    <view class="stack stack--tight form">
+      <text class="label">Email</text>
+      <ll-input value="{{helpEmail}}" bind:input="onHelpEmailInput" placeholder="Email" aria-label="Email" />
+      <text class="help">Enter your email address.</text>
+    </view>
+  </view>
+</view>

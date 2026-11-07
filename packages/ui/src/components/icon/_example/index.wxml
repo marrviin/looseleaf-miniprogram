@@ -1,0 +1,76 @@
+<!-- ll-icon demo — mirrors the upstream docs page (#/components/icon). -->
+<view class="demo">
+  <view class="demo-title">Icon</view>
+  <view class="sec-desc">Every glyph in Looseleaf is a hand-drawn felt-tip icon, redrawn at each size so a 16 px chevron is a chevron and not a shrunken 24 px one. It takes lucide names, so a shadcn snippet keeps working.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">Sixteen pixels, ink in the current text color. Names are lucide's, so a shadcn snippet keeps working.</view>
+    <view class="row row--wrap">
+      <ll-icon wx:for="{{defaults}}" wx:key="*this" name="{{item}}" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Redrawn, not scaled</view>
+    <view class="sec-desc">Each size is its own drawing: 12 px is one confident stroke, 16 px is heavier and simpler than 24, 48 px gets its extras.</view>
+    <view class="stack">
+      <view class="row row--items-end" wx:for="{{redrawn}}" wx:for-item="name" wx:key="*this">
+        <view class="figure" wx:for="{{sizes}}" wx:for-item="size" wx:key="*this">
+          <ll-icon name="{{name}}" size="{{size}}" />
+          <text class="figcaption">{{size}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="sub-h3">UI and doodle tone</view>
+    <view class="sec-desc">In UI tone an icon is ink only. In doodle tone its accent wash shows, and `accent` picks another color.</view>
+    <view class="stack">
+      <view class="row">
+        <text class="row-label">ui</text>
+        <ll-icon wx:for="{{toneIcons}}" wx:key="*this" name="{{item}}" size="32" />
+      </view>
+      <view class="row">
+        <text class="row-label">doodle</text>
+        <ll-icon wx:for="{{toneIcons}}" wx:key="*this" name="{{item}}" size="32" tone="doodle" />
+      </view>
+      <view class="row">
+        <text class="row-label">accent</text>
+        <ll-icon wx:for="{{accents}}" wx:key="*this" name="bell" size="32" tone="doodle" accent="{{item}}" />
+      </view>
+    </view>
+
+    <view class="sub-h3">In real UI</view>
+    <view class="sec-desc">Status rows and three real buttons (an icon with a label, an icon on its own, a label with a chevron): color comes from the parent, size from the usual `size-N` classes, and inside a Button the icon takes the button's own size. (Backgrounds can't inherit text color here, so the ink is passed to `ink`.)</view>
+    <view class="stack">
+      <view class="stack stack--tight">
+        <view class="row row--gap2" wx:for="{{status}}" wx:key="icon">
+          <ll-icon name="{{item.icon}}" size="20" ink="{{item.color}}" />
+          <text style="color:{{item.color}}">{{item.text}}</text>
+        </view>
+      </view>
+      <view class="row row--gap3">
+        <ll-button variant="outline" size="sm">
+          <ll-icon name="copy" />
+          Copy
+        </ll-button>
+        <ll-button variant="ghost" size="icon-sm" aria-label="More">
+          <ll-icon name="ellipsis" label="More" />
+        </ll-button>
+        <ll-button variant="ghost" size="sm">Options<ll-icon name="chevron-down" /></ll-button>
+      </view>
+    </view>
+
+    <view class="sub-h3">Every icon drawn so far</view>
+    <view class="sec-desc">The gallery grows by itself as icon batches land. Names are the lucide ids; hover-free, so it doubles as a search list.</view>
+    <view class="gallery">
+      <view class="gallery-cell" wx:for="{{gallery}}" wx:key="*this">
+        <ll-icon name="{{item}}" size="24" />
+        <text class="figcaption">{{item}}</text>
+      </view>
+    </view>
+  </view>
+</view>

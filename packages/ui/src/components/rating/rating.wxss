@@ -1,0 +1,51 @@
+/* @ll-import tokens */
+.ll-rating {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8rpx; /* gap-1 */
+  vertical-align: middle;
+}
+.ll-rating__item {
+  position: relative;
+  isolation: isolate;
+  display: inline-block;
+  flex-shrink: 0;
+  width: 48rpx; /* size-6 */
+  height: 48rpx;
+}
+.ll-rating--sm .ll-rating__item {
+  width: 40rpx; /* size-5 */
+  height: 40rpx;
+}
+.ll-rating--lg .ll-rating__item {
+  width: 64rpx; /* size-8 */
+  height: 64rpx;
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+/* upstream -inset-y-0.5 (+ -inset-x-0.5 on the full target) — the finger
+   target reaches past the drawing; halves keep a 2px overlap at the seam */
+.ll-rating__hit {
+  position: absolute;
+  top: -4rpx;
+  bottom: -4rpx;
+}
+.ll-rating__hit--full {
+  left: -4rpx;
+  right: -4rpx;
+}
+.ll-rating__hit--start {
+  left: -4rpx;
+  width: calc(50% + 4rpx);
+}
+.ll-rating__hit--end {
+  right: -4rpx;
+  width: calc(50% + 4rpx);
+}

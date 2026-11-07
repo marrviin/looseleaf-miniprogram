@@ -1,0 +1,28 @@
+<!-- ll-input — drawn pencil frame (ink layer) around a real input.
+     Left padding override: --ll-input-pl on the frame (icon rows widen it). -->
+<view
+  class="ll-input ll-class"
+  style="{{customStyle}}"
+  bindtouchstart="__inkTouchStart"
+  bindtouchend="__inkTouchEnd"
+  bindtouchcancel="__inkTouchEnd"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <input
+    class="ll-input__control {{disabled ? 'll-input__control--disabled' : ''}}"
+    value="{{value}}"
+    placeholder="{{placeholder}}"
+    placeholder-class="ll-input__placeholder"
+    disabled="{{disabled}}"
+    type="{{type}}"
+    password="{{password}}"
+    maxlength="{{maxlength}}"
+    confirm-type="{{confirmType}}"
+    focus="{{focus}}"
+    aria-label="{{ariaLabel}}"
+    bindinput="onInput"
+    bindfocus="onFocus"
+    bindblur="onBlur"
+    bindconfirm="onConfirm"
+  />
+</view>

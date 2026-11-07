@@ -1,0 +1,22 @@
+/* ll-avatar-badge — corner dot; its box is the parent avatar's
+   --ll-avatar-badge var (upstream group-data-[size] on the dot itself). */
+.ll-avatar-badge {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 10; /* isolate + z-10 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--ll-avatar-badge, 20rpx);
+  height: var(--ll-avatar-badge, 20rpx);
+  border-radius: 50%;
+  user-select: none;
+}
+.ll-avatar-badge .ll-ink-layer {
+  position: absolute;
+  pointer-events: none;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}

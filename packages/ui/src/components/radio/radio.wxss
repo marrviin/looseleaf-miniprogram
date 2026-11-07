@@ -1,0 +1,24 @@
+/* @ll-import tokens */
+.ll-radio {
+  position: relative;
+  isolation: isolate;
+  display: inline-block;
+  flex-shrink: 0;
+  width: 32rpx; /* size-4 */
+  height: 32rpx;
+  box-sizing: border-box;
+}
+/* upstream after:-inset-2 — the finger target is bigger than the drawing */
+.ll-radio::after {
+  content: '';
+  position: absolute;
+  inset: -16rpx;
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

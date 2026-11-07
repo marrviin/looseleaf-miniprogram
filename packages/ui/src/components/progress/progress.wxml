@@ -1,0 +1,16 @@
+<!-- ll-progress — hatched box (recipe host) + full-length marker pass
+     revealed by a clip window (indeterminate: the window slides). -->
+<view
+  class="ll-progress ll-progress--{{size}} ll-class"
+  style="{{customStyle}}"
+  aria-role="progressbar"
+  aria-valuemin="0"
+  aria-valuemax="{{max}}"
+  aria-valuenow="{{now}}"
+  aria-label="{{ariaLabel}}"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-progress__fill {{indeterminate ? 'll-progress__fill--waiting' : ''}}" style="{{fillClip}}">
+    <view class="ll-ink-layer" style="{{fillStyle}}" />
+  </view>
+</view>

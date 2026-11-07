@@ -1,0 +1,11 @@
+/* ll-tag-price — font-type (82% size-adjust) text-xl, tabular nums,
+   color-mix(in srgb, --ll-red 60%, --ll-ink) precomputed = #853528 */
+/* @ll-import tokens */
+.ll-tag-price {
+  margin-top: auto;
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 33rpx; /* 20px x size-adjust .82 */
+  line-height: 1;
+  font-variant-numeric: tabular-nums lining-nums; /* .ll-num */
+  color: #853528;
+}

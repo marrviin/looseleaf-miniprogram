@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-checkbox": "../checkbox/checkbox",
+    "ll-button": "../button/button"
+  }
+}

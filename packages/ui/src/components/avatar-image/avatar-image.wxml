@@ -1,0 +1,15 @@
+<!-- ll-avatar-image — the portrait; on load error it removes itself so the
+     slotted ll-avatar-fallback shows (upstream Radix behavior). The image
+     sits in a positioned wrapper: wx-image ignores z-index/position resets,
+     so the wrapper does the stacking above the fallback. -->
+<view wx:if="{{!failed}}" class="ll-avatar-image-wrap ll-class" style="{{customStyle}}">
+  <image
+    class="ll-avatar-image"
+    src="{{src}}"
+    mode="aspectFill"
+    style="width:100%;height:100%;display:block"
+    aria-role="{{alt ? 'img' : 'none'}}"
+    aria-label="{{alt}}"
+    binderror="__onError"
+  />
+</view>

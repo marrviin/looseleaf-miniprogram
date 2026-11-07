@@ -1,0 +1,92 @@
+/* @ll-import tokens */
+.ll-stepper {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: stretch;
+  width: fit-content;
+  height: 72rpx; /* h-9 */
+  font-family: 'Kevin Sans', sans-serif; /* font-hand */
+  font-size: 32rpx; /* text-base × 0.88 */
+  color: var(--ll-input-ink, #2c4f9e);
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-stepper__btn {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  aspect-ratio: 1;
+  margin: 6rpx; /* m-[3px] */
+  color: #2a2420; /* text-ink */
+}
+.ll-stepper__btn--holding {
+  background: color-mix(in srgb, var(--ll-hi, #ffe266) 85%, transparent);
+  /* color-mix unsupported in the mp runtime — precomputed below */
+  background: rgba(255, 226, 102, 0.85);
+}
+.ll-stepper__input {
+  flex: 1;
+  min-width: 0;
+  width: 128rpx; /* w-16 */
+  height: 100%;
+  padding: 0 8rpx; /* px-1 */
+  background: transparent;
+  font-family: 'Kevin Sans', sans-serif; /* font-script */
+  font-size: 46rpx; /* 1.65rem × 0.88 */
+  line-height: 1;
+  font-weight: 700;
+  text-align: center;
+  color: var(--ll-input-ink, #2c4f9e);
+  caret-color: var(--ll-caret, #2c4f9e);
+}
+.ll-stepper__input--disabled {
+  color: #5a554e; /* text-pencil-text */
+}
+
+/* the rattle when a button has nothing left (upstream data-limit a/b) */
+@keyframes ll-step-shake-a {
+  0% { rotate: 0deg; }
+  20% { rotate: -1.6deg; }
+  45% { rotate: 1.3deg; }
+  70% { rotate: -0.7deg; }
+  100% { rotate: 0deg; }
+}
+.ll-stepper--limit-a {
+  animation: ll-step-shake-a 0.36s ease-out both;
+}
+@keyframes ll-step-shake-b {
+  0% { rotate: 0deg; }
+  20% { rotate: -1.6deg; }
+  45% { rotate: 1.3deg; }
+  70% { rotate: -0.7deg; }
+  100% { rotate: 0deg; }
+}
+.ll-stepper--limit-b {
+  animation: ll-step-shake-b 0.36s ease-out both;
+}
+/* the number ticks a few pixels in the direction of a change */
+@keyframes ll-step-up-a {
+  0% { translate: 0 38%; opacity: 0.35; }
+  100% { translate: 0 0; opacity: 1; }
+}
+@keyframes ll-step-down-a {
+  0% { translate: 0 -38%; opacity: 0.35; }
+  100% { translate: 0 0; opacity: 1; }
+}
+.ll-stepper__input[data-tick='up-a'],
+.ll-stepper__input--tick-up-a {
+  animation: ll-step-up-a 0.18s cubic-bezier(0.2, 0.9, 0.3, 1.15) both; /* --ll-dur-pop / --ll-ease-pop */
+}
+.ll-stepper__input[data-tick='down-a'],
+.ll-stepper__input--tick-down-a {
+  animation: ll-step-down-a 0.18s cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
+}

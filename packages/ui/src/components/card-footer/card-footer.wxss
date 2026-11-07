@@ -1,0 +1,21 @@
+/* ll-card-footer */
+/* @ll-import tokens */
+.ll-card-footer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 48rpx; /* px-6 */
+}
+.ll-card-footer--ruled {
+  padding-top: 48rpx; /* [.border-t]:pt-6 */
+}
+
+/* ink overlay — card-rule recipe at the footer's real width (edge: top). */
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

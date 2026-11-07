@@ -1,0 +1,17 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-avatar": "../avatar/avatar",
+    "ll-avatar-image": "../avatar-image/avatar-image",
+    "ll-avatar-fallback": "../avatar-fallback/avatar-fallback",
+    "ll-avatar-badge": "../avatar-badge/avatar-badge",
+    "ll-avatar-group": "../avatar-group/avatar-group",
+    "ll-avatar-group-count": "../avatar-group-count/avatar-group-count",
+    "ll-button": "../button/button",
+    "ll-card": "../card/card",
+    "ll-card-header": "../card-header/card-header",
+    "ll-card-title": "../card-title/card-title",
+    "ll-card-description": "../card-description/card-description",
+    "ll-card-content": "../card-content/card-content"
+  }
+}

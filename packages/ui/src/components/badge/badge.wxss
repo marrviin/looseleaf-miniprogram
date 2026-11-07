@@ -1,0 +1,97 @@
+/* ll-badge */
+/* @ll-import tokens */
+.ll-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx; /* upstream gap-1 (4px) */
+  box-sizing: border-box;
+  flex-shrink: 0;
+  width: fit-content;
+  white-space: nowrap;
+  user-select: none;
+  /* No border-radius / background here: the pill, blot and hatch all come
+     from the ink layer drawn at the element's real size. */
+  font-family: 'Kevin Sans', sans-serif;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* variant — label ink only; fills/strokes come from the ink layer.
+   (upstream: default/secondary/destructive/outline/ghost/link cva colors) */
+.ll-badge--default,
+.ll-badge--secondary,
+.ll-badge--outline,
+.ll-badge--ghost {
+  color: var(--ll-ink); /* text-primary-foreground / secondary-foreground / foreground = --ll-ink */
+}
+.ll-badge--destructive {
+  color: var(--ll-paper); /* text-paper */
+}
+.ll-badge--link {
+  color: var(--ll-link);
+}
+.ll-badge--link-hovered {
+  color: var(--ll-link-hover); /* upstream hover:text-link-hover */
+}
+
+/* size (upstream: sm h-5 px-2 text-[13px] / default h-6 px-2.5 text-sm / lg h-7 px-3 text-base) */
+.ll-badge--sm {
+  height: 40rpx;
+  padding: 0 16rpx;
+  font-size: 23rpx; /* 13px x size-adjust .88 */
+}
+.ll-badge--default {
+  height: 48rpx;
+  padding: 0 20rpx;
+  font-size: 25rpx; /* 14px x .88 */
+}
+.ll-badge--lg {
+  height: 56rpx;
+  padding: 0 24rpx;
+  font-size: 28rpx; /* 16px x .88 */
+}
+
+/* count mode — upstream "ll-num min-w-6 px-1.5" (after size classes: same
+   specificity, later wins, like tailwind-merge resolving px-1.5 over px-2.5) */
+.ll-badge--count {
+  min-width: 48rpx; /* min-w-6 (24px) */
+  padding: 0 12rpx; /* px-1.5 (6px) */
+}
+.ll-badge__num {
+  font-variant-numeric: tabular-nums lining-nums; /* .ll-num */
+}
+
+.ll-badge__content {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+}
+/* tally mode: digits kept for accessibility, visually hidden (upstream sr-only) */
+.ll-badge__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+.ll-badge__tally {
+  display: inline-block;
+  height: 100%;
+  /* width is computed per count in badge.js (upstream tallyWidth) */
+}
+
+/* ink overlay — common/ink.js draws the recipe at the element's real size and
+   injects an SVG data-URI background plus `inset: -<pad>px` inline, keeping
+   the hand-drawn stroke overhang visible. */
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

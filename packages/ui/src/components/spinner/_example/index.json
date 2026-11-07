@@ -1,0 +1,13 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-spinner": "../spinner/spinner",
+    "ll-button": "../button/button",
+    "ll-badge": "../badge/badge",
+    "ll-card": "../card/card",
+    "ll-card-header": "../card-header/card-header",
+    "ll-card-title": "../card-title/card-title",
+    "ll-card-description": "../card-description/card-description",
+    "ll-card-content": "../card-content/card-content"
+  }
+}

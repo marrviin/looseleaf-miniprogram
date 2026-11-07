@@ -1,0 +1,10 @@
+.ll-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx; /* gap-3 */
+}
+.ll-radio-group--horizontal {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 24rpx 48rpx; /* gap-3 / gap-x-6 */
+}

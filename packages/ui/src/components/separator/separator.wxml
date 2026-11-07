@@ -1,0 +1,34 @@
+<!-- ll-separator — without a label a plain rule; with one, two rules of the
+     same variant flank the hand-font label (upstream children → label prop) -->
+<view
+  class="ll-separator ll-separator--{{orientation}} {{label ? 'll-separator--labeled' : ''}} ll-class"
+  style="{{customStyle}}"
+  aria-role="{{decorative ? 'none' : 'separator'}}"
+  aria-label="{{ariaLabel}}"
+>
+  <block wx:if="{{label}}">
+    <ll-rule
+      variant="{{variant}}"
+      orientation="{{orientation}}"
+      decorative="{{decorative}}"
+      seed="{{seed === '' ? '' : seed + ':a'}}"
+      custom-style="{{orientation === 'vertical' ? 'width:1px;flex:1' : 'height:1px;flex:1'}}"
+    />
+    <view class="ll-separator__label">{{label}}</view>
+    <ll-rule
+      variant="{{variant}}"
+      orientation="{{orientation}}"
+      decorative="{{decorative}}"
+      seed="{{seed === '' ? '' : seed + ':b'}}"
+      custom-style="{{orientation === 'vertical' ? 'width:1px;flex:1' : 'height:1px;flex:1'}}"
+    />
+  </block>
+  <ll-rule
+    wx:else
+    variant="{{variant}}"
+    orientation="{{orientation}}"
+    decorative="{{decorative}}"
+    seed="{{seed}}"
+    custom-style="width:100%;height:100%"
+  />
+</view>

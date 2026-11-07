@@ -1,0 +1,86 @@
+<!-- ll-slider demo — mirrors the upstream docs page (#/components/slider). -->
+<view class="demo">
+  <view class="demo-title">Slider</view>
+  <view class="sec-desc">Pick a number, or two, by dragging a paper knob along a hand-ruled groove. The range is one marker pass drawn full length and revealed by a CSS clip, so nothing is redrawn while you drag. Ticks, a highlighter or blue-felt range, vertical, and range sliders.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">Drag the knob, or focus it and use the arrow keys, Home, End and Page Up / Down. The marker range follows the value; nothing is redrawn while you drag.</view>
+    <view class="form-sm stack stack--tight">
+      <view class="row-baseline">
+        <text class="label">Pencil pressure</text>
+        <text class="out-xl">{{volume}}</text>
+      </view>
+      <ll-slider value="{{[volume]}}" bind:changing="onVolume" max="{{100}}" step="{{1}}" aria-label="Pencil pressure" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Range, ticks and tones</view>
+    <view class="sec-desc">Two values make a range slider. `ticks` hangs pencil marks under the groove (one per step, or a number of intervals); `tone` swaps the marker for a highlighter or blue felt.</view>
+    <view class="form-md stack">
+      <view class="stack stack--tight">
+        <view class="row-baseline">
+          <text class="label">Price</text>
+          <text class="out-xl">${{price[0]}} to ${{price[1]}}</text>
+        </view>
+        <ll-slider value="{{price}}" bind:changing="onPrice" min="{{0}}" max="{{1000}}" step="{{50}}" ticks aria-label="Price" />
+      </view>
+      <view class="stack stack--tight">
+        <text class="label">Highlighter</text>
+        <ll-slider defaultValue="{{[3]}}" min="{{0}}" max="{{5}}" step="{{1}}" ticks tone="hi" aria-label="Highlighter" />
+      </view>
+      <view class="stack stack--tight">
+        <text class="label">Felt tip</text>
+        <ll-slider defaultValue="{{[40]}}" ticks="{{4}}" tone="blue" aria-label="Felt tip" />
+      </view>
+    </view>
+
+    <view class="sub-h3">Vertical</view>
+    <view class="sec-desc">A mixing desk: `orientation="vertical"` stands the groove up; the range grows from the bottom. The last fader is disabled.</view>
+    <view class="desk">
+      <view class="band" wx:for="{{bands}}" wx:key="hz">
+        <ll-slider orientation="vertical" defaultValue="{{[item.v]}}" ticks="{{4}}" disabled="{{item.disabled}}" custom-style="flex:1;min-height:0" aria-label="{{item.hz}} Hz" />
+        <text class="band-hz">{{item.hz}}</text>
+      </view>
+    </view>
+
+    <view class="sub-h3">Brush settings</view>
+    <view class="sec-desc">Three controlled sliders in a panel, each with its own readout, and a reset that puts every knob back where it started. The values are the only state; the drawings do not change.</view>
+    <view class="form-sm stack">
+      <view class="stack stack--tight">
+        <view class="row-baseline">
+          <text class="label">Size</text>
+          <text class="out-sm">{{brush.size}}px</text>
+        </view>
+        <ll-slider value="{{[brush.size]}}" bind:changing="onBrushSize" min="{{1}}" max="{{48}}" aria-label="Size" />
+      </view>
+      <view class="stack stack--tight">
+        <view class="row-baseline">
+          <text class="label">Opacity</text>
+          <text class="out-sm">{{brush.opacity}}%</text>
+        </view>
+        <ll-slider value="{{[brush.opacity]}}" bind:changing="onBrushOpacity" min="{{0}}" max="{{100}}" aria-label="Opacity" />
+      </view>
+      <view class="stack stack--tight">
+        <view class="row-baseline">
+          <text class="label">Hardness</text>
+          <text class="out-sm">{{brush.hardness}}%</text>
+        </view>
+        <ll-slider value="{{[brush.hardness]}}" bind:changing="onBrushHardness" min="{{0}}" max="{{100}}" tone="blue" aria-label="Hardness" />
+      </view>
+      <view>
+        <ll-button variant="outline" size="sm" bind:tap="onBrushReset">Reset</ll-button>
+      </view>
+    </view>
+
+    <view class="sub-h3">Demo</view>
+    <view class="sec-desc">Official `slider-demo`: a single value from 0 to 100 at 60% width, written as a component that forwards its props (so a caller can pass `defaultValue`, `max`, `step` or `className`). The marker range is drawn once and clipped to the value; the only addition is an `aria-label`, which the knob needs.</view>
+    <view class="demo-box">
+      <ll-slider defaultValue="{{[50]}}" max="{{100}}" step="{{1}}" custom-style="width:60%" aria-label="Volume" />
+    </view>
+  </view>
+</view>

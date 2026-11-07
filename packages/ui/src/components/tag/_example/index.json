@@ -1,0 +1,13 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-tag": "../tag/tag",
+    "ll-tag-title": "../tag-title/tag-title",
+    "ll-tag-description": "../tag-description/tag-description",
+    "ll-tag-price": "../tag-price/tag-price",
+    "ll-card": "../card/card",
+    "ll-card-header": "../card-header/card-header",
+    "ll-card-title": "../card-title/card-title",
+    "ll-card-content": "../card-content/card-content"
+  }
+}

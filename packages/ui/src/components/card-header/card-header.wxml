@@ -1,0 +1,6 @@
+<!-- ll-card-header -->
+<view class="ll-card-header {{rule !== 'none' ? 'll-card-header--ruled' : ''}} ll-class" style="{{customStyle}}">
+  <view wx:if="{{rule !== 'none'}}" class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-card-header__main"><slot /></view>
+  <view class="ll-card-header__action"><slot name="action" /></view>
+</view>

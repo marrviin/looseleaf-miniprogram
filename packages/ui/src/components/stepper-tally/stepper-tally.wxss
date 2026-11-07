@@ -1,0 +1,17 @@
+/* @ll-import tokens */
+.ll-stepper-tally {
+  position: relative;
+  isolation: isolate;
+  display: inline-block;
+  height: 40rpx; /* h-5 */
+  flex-shrink: 0;
+  color: #2a2420; /* text-ink */
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

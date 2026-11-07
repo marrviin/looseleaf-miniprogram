@@ -1,0 +1,129 @@
+<!-- ll-avatar demo — mirrors the upstream docs page (#/components/avatar).
+     The demo portraits are pre-rasterized PNGs (packages/example/assets/) —
+     WeChat <image> cannot render SVG data URIs like the upstream docs. -->
+<view class="demo">
+  <view class="demo-title">Avatar</view>
+  <view class="sec-desc">A face, circled in felt tip. The picture is circled by a hand-drawn loop; without one the initials sit on a disc of marker in a stationery color chosen from the name. A status dot goes on the corner, and a group overlaps its faces and ends in a sketched "+3".</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Photo and initials</view>
+    <view class="sec-desc">A picture circled by hand, and what shows while there is none: initials on a disc of marker whose color is chosen from the name. The four sizes are `sm`, `default`, `lg` and `xl`; `AvatarBadge` puts a status dot on the corner.</view>
+    <view class="row row--items-end">
+      <ll-avatar size="sm" seed="a1">
+        <ll-avatar-image src="/assets/portrait-warm.png" alt="Ada Lovelace" />
+        <ll-avatar-fallback name="Ada Lovelace" />
+      </ll-avatar>
+      <ll-avatar seed="a2">
+        <ll-avatar-image src="/assets/portrait-sky.png" alt="Jo Okafor" />
+        <ll-avatar-fallback name="Jo Okafor" />
+        <ll-avatar-badge status="online" aria-label="online" />
+      </ll-avatar>
+      <ll-avatar size="lg" seed="a3">
+        <ll-avatar-image src="/missing-portrait.png" alt="" />
+        <ll-avatar-fallback name="Mika Kobayashi" />
+        <ll-avatar-badge status="away" aria-label="away" />
+      </ll-avatar>
+      <ll-avatar size="xl" seed="a4">
+        <ll-avatar-fallback name="Sam Reyes" />
+        <ll-avatar-badge status="busy" aria-label="busy" />
+      </ll-avatar>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Color from the name</view>
+    <view class="sec-desc">Give `AvatarFallback` a `name` and it makes the initials, picks one of eight stationery colors from the name (the same person is the same color everywhere) and lets a screen reader hear the full name instead of two letters. `ring` picks the pen of the loop, and `"none"` draws no loop for long lists.</view>
+    <view class="stack">
+      <view class="row row--wrap">
+        <ll-avatar wx:for="{{people}}" wx:key="*this" size="lg" seed="p-{{item}}">
+          <ll-avatar-fallback name="{{item}}" />
+        </ll-avatar>
+      </view>
+      <view class="row row--gap5">
+        <ll-avatar size="lg" ring="you" seed="ring-you">
+          <ll-avatar-fallback name="Ada Lovelace" />
+          <ll-avatar-badge status="online" aria-label="online" />
+        </ll-avatar>
+        <ll-avatar size="lg" ring="marker" seed="ring-marker">
+          <ll-avatar-fallback name="Ada Lovelace" />
+        </ll-avatar>
+        <ll-avatar size="lg" ring="none" seed="ring-none">
+          <ll-avatar-fallback name="Ada Lovelace" />
+        </ll-avatar>
+        <text class="note">ring: you, marker, none</text>
+      </view>
+    </view>
+
+    <view class="sub-h3">Groups</view>
+    <view class="sec-desc">`AvatarGroup` overlaps faces and a paper-colored ring cuts each one out of the last (`--ll-avatar-ring` changes the color on a different surface). `AvatarGroupCount` is the sketched disc for everyone who did not fit; it takes text or an icon (the icon is a placeholder until ll-icon lands in M2).</view>
+    <view class="stack">
+      <ll-avatar-group seed-hint="g1">
+        <ll-avatar seed="g1-1">
+          <ll-avatar-image src="/assets/portrait-warm.png" alt="Ada Lovelace" />
+          <ll-avatar-fallback name="Ada Lovelace" />
+        </ll-avatar>
+        <ll-avatar seed="g1-2">
+          <ll-avatar-fallback name="Jo Okafor" />
+        </ll-avatar>
+        <ll-avatar seed="g1-3">
+          <ll-avatar-image src="/assets/portrait-sky.png" alt="Mika Kobayashi" />
+          <ll-avatar-fallback name="Mika Kobayashi" />
+        </ll-avatar>
+        <ll-avatar seed="g1-4">
+          <ll-avatar-fallback name="Sam Reyes" />
+        </ll-avatar>
+        <ll-avatar-group-count>+3</ll-avatar-group-count>
+      </ll-avatar-group>
+      <ll-avatar-group size="lg">
+        <ll-avatar wx:for="{{group2}}" wx:key="*this" size="lg" seed="g2-{{item}}">
+          <ll-avatar-fallback name="{{item}}" />
+        </ll-avatar>
+        <ll-avatar-group-count size="lg">+</ll-avatar-group-count>
+      </ll-avatar-group>
+      <ll-avatar-group size="sm">
+        <ll-avatar wx:for="{{group3}}" wx:key="*this" size="sm" seed="g3-{{item}}">
+          <ll-avatar-fallback name="{{item}}" />
+        </ll-avatar>
+        <ll-avatar-group-count size="sm">+8</ll-avatar-group-count>
+      </ll-avatar-group>
+    </view>
+
+    <view class="sub-h3">Team card</view>
+    <view class="sec-desc">A people list in a card: face, name, role, and a presence dot. Each face is a separate small drawing (the list is short); a list of hundreds would use `ring="none"`.</view>
+    <view class="card-stage">
+      <ll-card seed="team" custom-style="width:100%;max-width:768rpx">
+        <ll-card-header>
+          <ll-card-title>On the team</ll-card-title>
+          <ll-card-description>4 people, 2 of them at their desks.</ll-card-description>
+          <view slot="action">
+            <ll-button size="sm" variant="outline">Invite</ll-button>
+          </view>
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;flex-direction:column;gap:32rpx">
+          <view class="team-row" wx:for="{{team}}" wx:key="name">
+            <ll-avatar size="lg" seed="team-{{item.name}}">
+              <ll-avatar-fallback name="{{item.name}}" />
+              <ll-avatar-badge status="{{item.status}}" aria-label="{{item.status}}" />
+            </ll-avatar>
+            <view class="team-id">
+              <text class="team-name">{{item.name}}</text>
+              <text class="team-role">{{item.role}}</text>
+            </view>
+          </view>
+          <view class="team-row team-row--pt">
+            <ll-avatar-group size="sm">
+              <ll-avatar wx:for="{{watchers}}" wx:key="*this" size="sm" seed="w-{{item}}">
+                <ll-avatar-fallback name="{{item}}" />
+              </ll-avatar>
+              <ll-avatar-group-count size="sm">+5</ll-avatar-group-count>
+            </ll-avatar-group>
+            <text class="team-role">also watching</text>
+          </view>
+        </ll-card-content>
+      </ll-card>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "ll-textarea": "../textarea/textarea",
+    "ll-input": "../input/input",
+    "ll-button": "../button/button"
+  }
+}

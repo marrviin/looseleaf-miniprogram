@@ -1,0 +1,7 @@
+<!-- ll-avatar-group-count — the dashed "+N" disc; content via slot. -->
+<view class="ll-avatar-group-count ll-avatar-group-count--{{size}} ll-class" style="{{customStyle}}">
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-avatar-group-count__content">
+    <slot />
+  </view>
+</view>

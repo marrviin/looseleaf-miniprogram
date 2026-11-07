@@ -1,0 +1,93 @@
+<!-- ll-tag demo — mirrors the upstream docs page (#/components/label-tag).
+     asChild link tags render as tappable tags (React-slot has no
+     miniprogram equivalent); the eyelet swing on hover needs a mouse. -->
+<view class="demo">
+  <view class="demo-title">Label tag</view>
+  <view class="sec-desc">A card with clipped corners, a hole with its patch and brass eyelet, and a loop of natural twine. Everything drawn is one sheet: it turns and casts one shadow.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">A hang tag</view>
+    <view class="sec-desc">A card with clipped corners, a hole with its patch and brass eyelet, and a loop of natural twine. Everything drawn is one sheet: it turns and casts one shadow.</view>
+    <view class="center-stage">
+      <ll-tag seed="sale" tilt="{{-3}}" aria-label="Sale, 12.00">
+        <ll-tag-title>Sale</ll-tag-title>
+        <ll-tag-description>while stocks last</ll-tag-description>
+        <ll-tag-price>12.00</ll-tag-price>
+      </ll-tag>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+    <view class="sub-h3">Shapes, stocks, string</view>
+    <view class="sec-desc">Price tag, arched, and a luggage tag; kraft, white and colored card; natural or colored twine; a brass eyelet, a steel one, or a bare hole.</view>
+    <view class="tag-row">
+      <ll-tag stock="paper" twine="tomato" eyelet="steel" seed="a" tilt="{{2}}">
+        <ll-tag-title>Gift</ll-tag-title>
+        <ll-tag-description>for Ada</ll-tag-description>
+      </ll-tag>
+      <ll-tag stock="sticky-yellow" shape="round" twine="grass" seed="b" tilt="{{-2}}">
+        <ll-tag-title>New</ll-tag-title>
+        <ll-tag-description>this week</ll-tag-description>
+        <ll-tag-price>4.50</ll-tag-price>
+      </ll-tag>
+      <ll-tag stock="sticky-pink" twine="grape" eyelet="none" seed="c" tilt="{{3}}">
+        <ll-tag-title>Hi!</ll-tag-title>
+        <ll-tag-description>a bare hole</ll-tag-description>
+      </ll-tag>
+      <ll-tag shape="luggage" string="{{60}}" seed="d" tilt="{{1.4}}">
+        <view class="luggage-inner">
+          <ll-tag-title>Ada Lovelace</ll-tag-title>
+          <ll-tag-description>Gate 7 - seat 14A</ll-tag-description>
+        </view>
+      </ll-tag>
+    </view>
+
+    <view class="sub-h3">Tags that link</view>
+    <view class="sec-desc">asChild makes the tag a link (or a button). It keeps its native focus and keyboard behavior and swings on its eyelet when you hover it. (asChild is a React-slot pattern; these render as plain tags — tap targets without the hover swing.)</view>
+    <view class="tag-row">
+      <ll-tag shape="round" twine="tomato" seed="Sale" custom-style="min-height:224rpx;width:224rpx">
+        <ll-tag-title>Sale</ll-tag-title>
+      </ll-tag>
+      <ll-tag shape="round" twine="grass" stock="sticky-yellow" seed="New" custom-style="min-height:224rpx;width:224rpx">
+        <ll-tag-title>New</ll-tag-title>
+      </ll-tag>
+      <ll-tag shape="round" twine="sky" stock="paper" seed="Gifts" custom-style="min-height:224rpx;width:224rpx">
+        <ll-tag-title>Gifts</ll-tag-title>
+      </ll-tag>
+    </view>
+
+    <view class="sub-h3">A shelf of price tags</view>
+    <view class="sec-desc">A real use: a product shelf on a kraft card, two tags to a row. Each tag is a labeled group with its price as text; the string hangs from the shelf edge.</view>
+    <view class="shelf-card">
+      <ll-card stock="kraft" seed="shelf">
+        <ll-card-header>
+          <ll-card-title>The stationery shelf</ll-card-title>
+        </ll-card-header>
+        <ll-card-content custom-style="display:grid;grid-template-columns:1fr 1fr;column-gap:96rpx;row-gap:64rpx;padding-top:48rpx;width:fit-content;margin:0 auto">
+          <ll-tag twine="tomato" seed="Felt tips" tilt="{{-2}}" stock="index-card" aria-label="Felt tips, 18.00">
+            <ll-tag-title custom-style="font-size:34rpx">Felt tips</ll-tag-title>
+            <ll-tag-description>twelve colors</ll-tag-description>
+            <ll-tag-price>18.00</ll-tag-price>
+          </ll-tag>
+          <ll-tag twine="sky" seed="Washi tape" tilt="{{2}}" stock="paper" aria-label="Washi tape, 3.00">
+            <ll-tag-title custom-style="font-size:34rpx">Washi tape</ll-tag-title>
+            <ll-tag-description>dots, of course</ll-tag-description>
+            <ll-tag-price>3.00</ll-tag-price>
+          </ll-tag>
+          <ll-tag twine="grass" seed="Glue stick" tilt="{{-2}}" stock="index-card" aria-label="Glue stick, 2.10">
+            <ll-tag-title custom-style="font-size:34rpx">Glue stick</ll-tag-title>
+            <ll-tag-description>acid free</ll-tag-description>
+            <ll-tag-price>2.10</ll-tag-price>
+          </ll-tag>
+          <ll-tag twine="grape" seed="Notebook" tilt="{{2}}" stock="paper" aria-label="Notebook, 6.40">
+            <ll-tag-title custom-style="font-size:34rpx">Notebook</ll-tag-title>
+            <ll-tag-description>spiral, ruled</ll-tag-description>
+            <ll-tag-price>6.40</ll-tag-price>
+          </ll-tag>
+        </ll-card-content>
+      </ll-card>
+    </view>
+  </view>
+</view>

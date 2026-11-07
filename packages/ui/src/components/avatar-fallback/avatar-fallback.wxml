@@ -1,0 +1,7 @@
+<!-- ll-avatar-fallback — the initials disc. The ink layer draws the marker
+     blob; the initials sit on top of it. -->
+<view class="ll-avatar-fallback ll-class" style="{{customStyle}}" aria-label="{{name}}">
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <text wx:if="{{name}}" class="ll-avatar-fallback__initials" aria-hidden="true">{{shown}}</text>
+  <slot wx:else />
+</view>

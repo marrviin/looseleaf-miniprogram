@@ -1,0 +1,17 @@
+<!-- ll-tag -->
+<view
+  class="ll-tag ll-tag--{{shape}} ll-class"
+  style="{{tagStyle}};{{customStyle}}"
+  aria-label="{{ariaLabel}}"
+>
+  <!-- Sheet ink: cast shadow, under-strokes, the stock face (CSS-clipped,
+       textured like upstream's .ll-face), over-strokes — see common/ink.js. -->
+  <block wx:if="{{inkFaced}}">
+    <view class="ll-ink-cast" wx:for="{{inkCasts}}" wx:key="index" style="{{item}}" />
+    <view class="ll-ink-layer" style="{{inkUnderStyle}}" />
+    <view class="ll-ink-face" wx:for="{{inkFaces}}" wx:key="index" style="{{item}}" />
+    <view class="ll-ink-layer" style="{{inkOverStyle}}" />
+  </block>
+  <view wx:else class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-tag__content"><slot /></view>
+</view>

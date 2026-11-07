@@ -1,0 +1,27 @@
+/* ll-avatar-fallback — an absolute overlay of the avatar box (upstream Radix
+   swaps image/fallback so only one is in flow; here both render, the image
+   above, so the disc must not fight the image wrapper for flex space). */
+.ll-avatar-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 0; /* isolate */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: var(--ll-avatar-fs, 25rpx);
+  font-weight: 700;
+  color: var(--ll-ink, #2a2420); /* text-ink */
+}
+.ll-avatar-fallback__initials {
+  position: relative;
+  z-index: 1; /* the initials sit on the ink disc */
+  line-height: 1;
+}
+.ll-avatar-fallback .ll-ink-layer {
+  position: absolute;
+  pointer-events: none;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}

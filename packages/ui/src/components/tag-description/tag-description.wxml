@@ -1,0 +1,2 @@
+<!-- ll-tag-description -->
+<view class="ll-tag-description ll-class" style="{{customStyle}}"><slot /></view>

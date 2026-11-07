@@ -1,0 +1,46 @@
+/* ll-avatar — the round box. Sizes per upstream data-size (24/32/40/56 px),
+   ×2 to rpx. The CUT ring (box-shadow 0 0 0 2px --ll-avatar-ring) is
+   transparent on its own and card-colored inside an ll-avatar-group, where it
+   cuts each face out of the one under it. */
+/* @ll-import tokens */
+.ll-avatar {
+  position: relative;
+  z-index: 0; /* isolate */
+  display: flex;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  user-select: none;
+  box-shadow: 0 0 0 4rpx var(--ll-avatar-ring, transparent); /* upstream CUT */
+  margin-left: var(--ll-avatar-overlap, 0); /* set by ll-avatar-group */
+  /* read by the slotted ll-avatar-badge / ll-avatar-fallback; the dot box is
+     size-2.5 (10px) upstream at default — not the svg child's size */
+  --ll-avatar-badge: 20rpx;
+  --ll-avatar-fs: 25rpx;
+}
+.ll-avatar--sm {
+  width: 48rpx;
+  height: 48rpx;
+  --ll-avatar-badge: 16rpx;
+  --ll-avatar-fs: 21rpx;
+}
+.ll-avatar--lg {
+  width: 80rpx;
+  height: 80rpx;
+  --ll-avatar-badge: 24rpx;
+  --ll-avatar-fs: 28rpx;
+}
+.ll-avatar--xl {
+  width: 112rpx;
+  height: 112rpx;
+  --ll-avatar-badge: 28rpx;
+  --ll-avatar-fs: 35rpx;
+}
+.ll-avatar .ll-ink-layer {
+  position: absolute;
+  pointer-events: none;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
