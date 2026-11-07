@@ -1,0 +1,2 @@
+<!-- ll-sheet-footer -->
+<view class="ll-sheet-footer ll-class" style="{{customStyle}}"><slot /></view>

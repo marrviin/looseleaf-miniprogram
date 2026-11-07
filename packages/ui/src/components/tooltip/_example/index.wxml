@@ -1,0 +1,79 @@
+<!-- ll-tooltip demo — mirrors the upstream docs page (#/components/tooltip).
+     Upstream opens notes on hover + keyboard focus; on touch the note opens
+     on long-press and the next tap closes it (Radix ignores touch taps for
+     tooltips, so nothing is lost). Demo opens notes via the controlled
+     `open`, one at a time. -->
+<view class="demo">
+  <view class="demo-title">Tooltip</view>
+  <view class="sec-desc">A sticky note stuck next to a control, with a felt-tip arrow pointing at it. It names an icon button or adds a hint, opens on hover and keyboard focus with a shared delay, and never hides anything a person needs to be able to read. Touch: press and hold the control to open its note; the next tap closes it (the provider's shared delay has no touch equivalent).</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Demo</view>
+    <view class="sec-desc">Official `tooltip-demo`: a Hover button with the note "Add to library". The note is a sticky with a felt-tip arrow, opened by hover and keyboard focus. Radix needs a `TooltipProvider` above every tooltip (shadcn's docs site supplies it at the root), so the example wraps its own.</view>
+    <view class="center-row">
+      <ll-tooltip open="{{tip === 0}}" seed="tooltip-demo" bind:change="onTipChange" data-i="{{0}}">
+        <ll-button slot="trigger" variant="outline">Hover</ll-button>
+        Add to library
+      </ll-tooltip>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Icon toolbar</view>
+    <view class="sec-desc">The everyday use: names for icon buttons. One provider holds the delay (a calm 300 ms), and once one note is open the next opens at once as you sweep along the row. Each button still has its own aria-label.</view>
+    <view class="center-row">
+      <view class="toolbar-row" aria-role="toolbar" aria-label="Notebook actions">
+        <ll-tooltip wx:for="{{tools}}" wx:key="label" open="{{tip === 10 + index}}" side="top" seed="tool-{{index}}" bind:change="onTipChange" data-i="{{10 + index}}">
+          <ll-button slot="trigger" variant="outline" size="icon" aria-label="{{item.label}}">
+            <ll-icon name="{{item.icon}}" />
+          </ll-button>
+          {{item.label}}
+        </ll-tooltip>
+      </view>
+    </view>
+
+    <view class="sub-h3">Sides and notes</view>
+    <view class="sec-desc">The arrow follows whichever side the note opens on (Radix flips it near the edge of the screen). Any stock makes a note: sticky pads in four colors, or a plain slip.</view>
+    <view class="center-row wrap">
+      <ll-tooltip wx:for="{{notes}}" wx:key="v" open="{{tip === 20 + index}}" side="{{item.v}}" stock="{{item.stock}}" seed="{{item.v}}" bind:change="onTipChange" data-i="{{20 + index}}">
+        <ll-button slot="trigger" variant="outline">{{item.label}}</ll-button>
+        {{item.text}}
+      </ll-tooltip>
+    </view>
+
+    <view class="sub-h3">Delays and shortcut hints</view>
+    <view class="sec-desc">A per-tooltip delayDuration overrides the provider's: instant for a quick label, patient for an explanation. A shortcut hint sits in the note in the mono font.</view>
+    <view class="center-row wrap">
+      <ll-tooltip open="{{tip === 30}}" seed="hint-search" bind:change="onTipChange" data-i="{{30}}">
+        <ll-button slot="trigger" variant="outline" size="icon" aria-label="Search">
+          <ll-icon name="search" />
+        </ll-button>
+        Instant: Search
+      </ll-tooltip>
+      <ll-tooltip open="{{tip === 31}}" seed="hint-copy" bind:change="onTipChange" data-i="{{31}}">
+        <ll-button slot="trigger" variant="outline" size="icon" aria-label="Copy">
+          <ll-icon name="copy" />
+        </ll-button>
+        <view class="hint-row">Copy<text class="kbd-hint">⌘C</text></view>
+      </ll-tooltip>
+      <ll-tooltip open="{{tip === 32}}" seed="hint-sync" custom-style="max-width:224px;" bind:change="onTipChange" data-i="{{32}}">
+        <ll-button slot="trigger" variant="outline">Sync now</ll-button>
+        Patient: sends every unsaved page to the cloud and waits for the answer.
+      </ll-tooltip>
+    </view>
+
+    <view class="sub-h3">Why is it disabled?</view>
+    <view class="sec-desc">A disabled button gets no pointer or focus events, so it cannot show a tooltip. Wrap it in a focusable span and point aria-describedby at a reason that is always in the page (the note only exists while open): keyboard, mouse and screen-reader users all learn why.</view>
+    <view class="center-row">
+      <ll-tooltip open="{{tip === 40}}" stock="sticky-pink" side="top" seed="why-disabled" bind:change="onTipChange" data-i="{{40}}">
+        <view slot="trigger" class="disabled-wrap" aria-describedby="why-disabled">
+          <ll-button disabled>Publish notebook</ll-button>
+        </view>
+        Add a title first, then you can publish.
+      </ll-tooltip>
+    </view>
+  </view>
+</view>

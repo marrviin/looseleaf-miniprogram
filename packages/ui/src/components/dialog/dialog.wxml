@@ -1,0 +1,37 @@
+<!-- ll-dialog — overlay + Paper sheet + doodled close mark. Fixed positioning
+     (not root-portal: portalled subtrees lose component wxss scope in the
+     webview). Phone: bottom sheet (flat, full-width, safe-area foot). >=sm:
+     the sheet drops onto the dimmed page with its seeded tilt. -->
+<view wx:if="{{visible}}" class="ll-dialog {{closing ? 'll-dialog--closing' : ''}}">
+  <view class="ll-dialog__overlay" catch:touchmove="noop" catch:tap="onOverlayTap" />
+  <view class="ll-dialog__frame">
+    <view class="ll-dialog__sheet" catch:tap="noop" aria-role="dialog" aria-label="{{ariaLabel}}">
+      <ll-paper
+        stock="{{stock}}"
+        edge="{{edge}}"
+        tilt="{{paperTilt}}"
+        tape="{{paperTape}}"
+        tape-kind="{{tapeKind}}"
+        fastener="{{fastener}}"
+        fastener-tone="{{fastenerTone}}"
+        shadow="{{shadow}}"
+        seed="{{seed}}"
+        custom-style="{{paperStyle}}"
+      >
+        <slot />
+        <view
+          wx:if="{{showCloseButton}}"
+          class="ll-dialog__x"
+          aria-role="button"
+          aria-label="Close"
+          bind:tap="onCloseTap"
+          bind:touchstart="onXTouchStart"
+          bind:touchend="onXTouchEnd"
+          bind:touchcancel="onXTouchEnd"
+        >
+          <view class="ll-ink-layer" style="{{inkStyle}}" />
+        </view>
+      </ll-paper>
+    </view>
+  </view>
+</view>

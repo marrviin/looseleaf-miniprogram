@@ -1,0 +1,14 @@
+/* ll-dialog-body — -mx-2 max-h-[min(60dvh,32rem)] px-2 py-1 text-[15px] */
+/* @ll-import tokens */
+.ll-dialog-body {
+  display: block;
+  max-height: 60vh; /* min(60dvh, 32rem); dvh is meaningless on a phone */
+  margin-left: -16rpx; /* -mx-2 */
+  margin-right: -16rpx;
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 26rpx; /* 15px x .88 x 2 */
+  box-sizing: border-box;
+}
+.ll-dialog-body__pad {
+  padding: 8rpx 16rpx; /* py-1 px-2 */
+}

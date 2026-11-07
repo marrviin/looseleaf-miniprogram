@@ -1,0 +1,74 @@
+/* ll-dropdown-menu — upstream menu-styles.ts SLIP + dropdown-menu.tsx.
+   Pop in: fade + zoom-in-95 + slide-in-from-side-2 (8px) over --ll-dur-pop
+   (0.18s); out: fade + zoom-out-95. */
+/* @ll-import tokens */
+
+.ll-dropdown-menu {
+  display: inline-block;
+}
+
+.ll-dropdown-menu__trigger {
+  display: inline-block;
+}
+
+/* transparent full-screen catcher under the panel (z --ll-z-popover: 1010) */
+.ll-dropdown-menu__catcher {
+  position: fixed;
+  inset: 0;
+  z-index: 1010;
+  background: transparent;
+}
+
+.ll-dropdown-menu__panel {
+  position: fixed;
+  z-index: 1011;
+  max-width: calc(100vw - 16rpx); /* max-w-[calc(100vw-1rem)] */
+  font-family: 'Kevin Sans', sans-serif;
+  color: #2a2420; /* text-popover-foreground = --ll-ink */
+  opacity: 1;
+  /* no resting transform: a scale(1) here would make this box the
+     containing block for slotted sub-menu panels */
+  animation: ll-menu-in 180ms cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
+}
+.ll-dropdown-menu__panel.is-placing {
+  opacity: 0;
+  animation: none;
+  transition: none;
+}
+.ll-dropdown-menu__panel--closing {
+  animation: ll-menu-out 150ms ease-in both;
+}
+
+@keyframes ll-menu-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes ll-menu-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* menuViewportClass: overflow-x-hidden overflow-y-auto p-1 — rows scroll
+   inside the slip so its shadow and tape are not cut (CSS overflow on a
+   plain view). While the rows fit, placement overrides this with
+   overflow:visible so a sub-menu's absolutely-positioned flyout isn't
+   clipped by the viewport box. */
+.ll-dropdown-menu__viewport {
+  display: block;
+  padding: 8rpx; /* p-1 */
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}

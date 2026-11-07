@@ -1,0 +1,43 @@
+<!-- ll-toaster — upstream sonner.tsx: toasts as slips of paper tossed onto
+     the desk. Pages drive the stack through this component's methods
+     (toast/success/error/warning/info/loading/promise/dismiss — sonner's
+     module API mapped onto selectComponent). -->
+<view
+  class="ll-toaster ll-toaster--{{position}}"
+  style="{{customStyle}}"
+  aria-role="status"
+  aria-label="Notifications alt+T"
+>
+  <view
+    wx:for="{{slips}}"
+    wx:key="id"
+    class="slipbox slipbox--{{position}} {{item.closing ? 'slipbox--closing' : ''}}"
+  >
+    <view
+      class="slip"
+      style="{{item.drag}}"
+      data-id="{{item.id}}"
+      data-idx="{{index}}"
+      catchtouchstart="onSlipTouchStart"
+      catchtouchmove="onSlipTouchMove"
+      catchtouchend="onSlipTouchEnd"
+      catchtouchcancel="onSlipTouchEnd"
+    >
+      <view class="slip__face ll-face" style="{{item.face}}" />
+      <view wx:if="{{decoration === 'tape'}}" class="slip__tape" />
+      <view wx:elif="{{decoration === 'pin'}}" class="slip__pin" />
+      <view wx:if="{{item.icon}}" class="slip__icon {{item.spinning ? 'slip__icon--spin' : ''}}">
+        <ll-icon name="{{item.icon}}" size="{{20}}" />
+      </view>
+      <view class="slip__content">
+        <view class="slip__title">{{item.title}}</view>
+        <view wx:if="{{item.description}}" class="slip__desc">{{item.description}}</view>
+      </view>
+      <view wx:if="{{item.actionLabel}}" class="slip__action" catchtap="onActionTap" data-id="{{item.id}}">{{item.actionLabel}}</view>
+      <view wx:if="{{item.cancelLabel}}" class="slip__cancel" catchtap="onCancelTap" data-id="{{item.id}}">{{item.cancelLabel}}</view>
+      <view wx:if="{{closeButton}}" class="slip__x" catchtap="onCloseTap" data-id="{{item.id}}" aria-role="button" aria-label="Close toast">
+        <ll-icon name="x" size="{{14}}" />
+      </view>
+    </view>
+  </view>
+</view>

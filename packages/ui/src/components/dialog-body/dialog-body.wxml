@@ -1,0 +1,4 @@
+<!-- ll-dialog-body -->
+<scroll-view class="ll-dialog-body ll-class" style="{{customStyle}}" scroll-y enhanced show-scrollbar="{{false}}">
+  <view class="ll-dialog-body__pad"><slot /></view>
+</scroll-view>

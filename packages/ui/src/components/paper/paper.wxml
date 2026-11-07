@@ -1,0 +1,18 @@
+<!-- ll-paper — the sheet: stock face (CSS for cut edges, the sheet ink
+     sandwich for drawn ones), seeded tilt on the visual only, optional tape
+     strips and fastener props on top, content unrotated above the sheet. -->
+<view class="ll-paper ll-class" style="{{customStyle}}">
+  <view class="ll-paper__sheet" style="{{sheetStyle}}">
+    <block wx:if="{{inkFaced}}">
+      <view class="ll-ink-cast" wx:for="{{inkCasts}}" wx:key="index" style="{{item}}" />
+      <view class="ll-ink-layer" style="{{inkUnderStyle}}" />
+      <view class="ll-ink-face" wx:for="{{inkFaces}}" wx:key="index" style="{{item}}" />
+      <view class="ll-ink-layer" style="{{inkOverStyle}}" />
+    </block>
+    <view wx:elif="{{inkStyle}}" class="ll-ink-layer" style="{{inkStyle}}" />
+    <view wx:if="{{rulesCss}}" class="ll-paper__rules" style="{{rulesCss}}" />
+  </view>
+  <view wx:for="{{tapeItems}}" wx:key="index" class="ll-paper__prop" style="{{item}}" />
+  <view wx:if="{{fastenerItem}}" class="ll-paper__prop" style="{{fastenerItem}}" />
+  <slot />
+</view>

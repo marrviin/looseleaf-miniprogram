@@ -1,0 +1,22 @@
+<!-- ll-dropdown-menu-radio-item — MENU_CHOICE_ITEM + MENU_INDICATOR:
+     the ring (pencil-mark) always; the bold dot (ink-you) wipes in when
+     chosen. -->
+<view
+  class="ll-menu-row ll-menu-choice {{disabled ? 'll-menu-row--disabled' : ''}} ll-class"
+  style="{{customStyle}}"
+  hover-class="{{disabled ? '' : 'll-menu-row--hi'}}"
+  hover-start-time="0"
+  hover-stay-time="80"
+  catchtap="onTap"
+  aria-role="menuitemradio"
+  aria-checked="{{checked ? 'true' : 'false'}}"
+  aria-disabled="{{disabled}}"
+>
+  <view class="ll-menu-indicator">
+    <ll-icon name="circle" size="{{16}}" ink="#8e887f" />
+    <view wx:if="{{checked}}" class="ll-menu-mark">
+      <ll-icon name="dot" size="{{26}}" ink="#2c4f9e" />
+    </view>
+  </view>
+  <slot />
+</view>

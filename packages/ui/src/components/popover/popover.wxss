@@ -1,0 +1,70 @@
+/* ll-popover — upstream popover.tsx: a Paper slip anchored to its trigger.
+   Pop in: fade + zoom-in-95 + slide-in-from-side-2 (8px) over
+   --ll-dur-pop (0.18s); out: fade + zoom-out-95. */
+/* @ll-import tokens */
+
+.ll-popover {
+  display: inline-block;
+}
+
+.ll-popover__trigger {
+  display: inline-block;
+}
+
+/* transparent full-screen catcher under the panel (z --ll-z-popover: 1010) */
+.ll-popover__catcher {
+  position: fixed;
+  inset: 0;
+  z-index: 1010;
+  background: transparent;
+}
+
+.ll-popover__panel {
+  position: fixed;
+  z-index: 1011;
+  max-width: calc(100vw - 16rpx); /* max-w-[calc(100vw-1rem)] */
+  font-family: 'Kevin Sans', sans-serif;
+  color: #2a2420; /* text-popover-foreground = --ll-ink */
+  opacity: 1;
+  transform: scale(1);
+  animation: ll-popover-in 180ms cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
+}
+.ll-popover__panel.is-placing {
+  opacity: 0;
+  animation: none;
+  transition: none;
+}
+.ll-popover__panel--closing {
+  animation: ll-popover-out 150ms ease-in both;
+}
+
+@keyframes ll-popover-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes ll-popover-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* the felt-tip pointer (pointerMark svg, rotated per side) */
+.ll-popover__arrow {
+  position: absolute;
+  width: 28px;
+  height: 26px;
+  pointer-events: none;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  z-index: 3;
+}

@@ -1,0 +1,4 @@
+/* ll-dropdown-menu-item — menu-styles.ts ROW (see common/style/menu-row.wxss):
+   the highlight is CSS (ll-swipe), so a plain row costs one element. */
+/* @ll-import tokens */
+/* @ll-import menu-row */

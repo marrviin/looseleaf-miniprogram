@@ -1,0 +1,47 @@
+/* menu-row — menu-styles.ts ROW, shared by dropdown-menu-item,
+   dropdown-menu-checkbox-item, dropdown-menu-radio-item and
+   dropdown-menu-sub (isolated style isolation: each component inlines this
+   chunk via its @ll-import comment; components add their own tokens import). */
+
+.ll-menu-row {
+  position: relative;
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  gap: 20rpx; /* gap-2.5 */
+  min-height: 64rpx; /* min-h-8 */
+  padding: 8rpx 20rpx; /* py-1 ps-2.5 pe-2.5 */
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 28rpx; /* text-base x .88 */
+  line-height: 48rpx; /* leading-6 */
+  color: inherit;
+}
+.ll-menu-row--inset {
+  padding-left: 72rpx; /* data-[inset]:ps-9 */
+}
+.ll-menu-row--disabled {
+  color: #5a554e; /* data-[disabled]:text-pencil-text */
+}
+
+/* data-[highlighted]:ll-swipe — the highlighter */
+.ll-menu-row--hi {
+  background-color: rgba(248, 220, 76, 0.62); /* var(--ll-hi-select) */
+  color: #2a2420; /* var(--ll-selection-text) */
+  border-radius: 6rpx 16rpx 8rpx 18rpx / 16rpx 6rpx 18rpx 8rpx;
+}
+
+/* data-[variant=destructive]:text-red */
+.ll-menu-row--destructive {
+  color: #c2412d; /* var(--ll-red) */
+}
+/* destructive + highlighted: 12% red wash + red-pencil hatch */
+.ll-menu-row--destructive.ll-menu-row--hi {
+  color: #2a2420; /* data-[variant=destructive]:data-[highlighted]:text-ink */
+  background-color: rgba(194, 65, 45, 0.12);
+  background-image: repeating-linear-gradient(
+    118deg,
+    rgba(194, 65, 45, 0.55) 0 1px,
+    transparent 1px 5px
+  );
+}

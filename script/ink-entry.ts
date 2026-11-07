@@ -17,6 +17,7 @@ import {
 import { badgeRecipe, tallyWidth } from '@/lib/ink/recipes/badge-ink';
 import { buttonRecipe } from '@/lib/ink/recipes/button-ink';
 import { checkboxRecipe } from '@/lib/ink/recipes/checkbox-ink';
+import { kbdRecipe } from '@/lib/ink/recipes/kbd-ink';
 import { radioRecipe } from '@/lib/ink/recipes/radio-group-ink';
 import { cardRuleRecipe } from '@/lib/ink/recipes/card-ink';
 import { hasFace, splitFaces, translatePath } from '@/lib/ink/paper/faces';
@@ -45,6 +46,18 @@ import {
   TALLY_H as stepperTallyH,
 } from '@/lib/ink/recipes/stepper-ink';
 import { ratingRecipe } from '@/lib/ink/recipes/rating-ink';
+import { sheetRecipe } from '@/lib/ink/recipes/paper-ink';
+import { sheetBindingRecipe } from '@/lib/ink/recipes/sheet-ink';
+import { closeMarkRecipe, pointerMark } from '@/lib/ink/recipes/overlay-ink';
+import {
+  binderClip,
+  clip,
+  pin,
+  staple,
+  tape,
+} from '@/lib/ink/paper/props';
+import { isCutEdge, edgeInset } from '@/lib/ink/paper/edges';
+import { tiltFor, sheetShadow, SHADOW_LAYERS } from '@/lib/ink/paper/shadows';
 
 export const RECIPES = {
   'avatar-badge': avatarBadgeRecipe,
@@ -54,6 +67,7 @@ export const RECIPES = {
   badge: badgeRecipe,
   button: buttonRecipe,
   checkbox: checkboxRecipe,
+  kbd: kbdRecipe,
   'radio-group': radioRecipe,
   'card-rule': cardRuleRecipe,
   'label-tag': labelTagRecipe,
@@ -70,6 +84,11 @@ export const RECIPES = {
   stepper: stepperRecipe,
   'stepper-tally': stepperTallyRecipe,
   rating: ratingRecipe,
+  // Paper sheets (torn/deckle/… edges — cut edges are pure CSS upstream and
+  // skip the recipe entirely) and the dialog close mark.
+  sheet: sheetRecipe,
+  'sheet-binding': sheetBindingRecipe,
+  'close-mark': closeMarkRecipe,
 };
 
 // tallyWidth sizes the DOM element that reserves space for badge tally marks.
@@ -100,3 +119,13 @@ export { drawSkeleton, icons, resolveIconName };
 // ll-spinner: spinnerMark draws the scribble/loops marks (reveal-masked);
 // the write variant is Stubby's three mascot frames flipped by CSS opacity.
 export { spinnerMark, drawMascot, mascotProps };
+
+// ll-paper props: tape strips and fasteners are drawn by these standalone
+// InkResult functions (not recipes) — fixed-size static SVGs rendered as
+// data-URI backgrounds. sheetShadow/tiltFor power the cut-edge CSS face
+// (box-shadow + seeded tilt); isCutEdge/edgeInset classify the edge spec.
+export { tape, clip, pin, staple, binderClip, tiltFor, sheetShadow, SHADOW_LAYERS, isCutEdge, edgeInset };
+
+// ll-popover arrow: the felt-tip pointer (points DOWN as drawn; the popover
+// rotates it per side) — same fixed-size PropSvg path as the paper props.
+export { pointerMark };

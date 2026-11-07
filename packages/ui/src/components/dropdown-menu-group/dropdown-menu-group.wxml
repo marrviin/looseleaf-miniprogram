@@ -1,0 +1,2 @@
+<!-- ll-dropdown-menu-group -->
+<view class="ll-menu-group ll-class" style="{{customStyle}}" aria-role="group"><slot /></view>

@@ -1,0 +1,12 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-popover": "../popover/popover",
+    "ll-popover-header": "../popover-header/popover-header",
+    "ll-popover-title": "../popover-title/popover-title",
+    "ll-popover-description": "../popover-description/popover-description",
+    "ll-button": "../button/button",
+    "ll-input": "../input/input",
+    "ll-icon": "../icon/icon"
+  }
+}

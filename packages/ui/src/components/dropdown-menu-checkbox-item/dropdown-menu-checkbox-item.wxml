@@ -1,0 +1,22 @@
+<!-- ll-dropdown-menu-checkbox-item — MENU_CHOICE_ITEM + MENU_INDICATOR:
+     the square (pencil-mark) always; the felt tick (ink-you) wipes in over
+     it when checked. -->
+<view
+  class="ll-menu-row ll-menu-choice {{disabled ? 'll-menu-row--disabled' : ''}} ll-class"
+  style="{{customStyle}}"
+  hover-class="{{disabled ? '' : 'll-menu-row--hi'}}"
+  hover-start-time="0"
+  hover-stay-time="80"
+  catchtap="onTap"
+  aria-role="menuitemcheckbox"
+  aria-checked="{{checked ? 'true' : 'false'}}"
+  aria-disabled="{{disabled}}"
+>
+  <view class="ll-menu-indicator">
+    <ll-icon name="square" size="{{16}}" ink="#8e887f" />
+    <view wx:if="{{checked}}" class="ll-menu-mark">
+      <ll-icon name="check" size="{{22}}" ink="#2c4f9e" custom-style="position:relative;top:-1px;" />
+    </view>
+  </view>
+  <slot />
+</view>

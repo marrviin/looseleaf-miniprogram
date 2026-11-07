@@ -1,0 +1,12 @@
+/* ll-sheet-header — flex flex-col gap-1.5 p-4; --close: pe-12 (clears the x) */
+/* @ll-import tokens */
+.ll-sheet-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx; /* gap-1.5 */
+  padding: 32rpx; /* p-4 */
+  font-family: 'Kevin Sans', sans-serif;
+}
+.ll-sheet-header--close {
+  padding-right: 96rpx; /* pe-12 */
+}

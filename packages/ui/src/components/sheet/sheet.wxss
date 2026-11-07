@@ -1,0 +1,181 @@
+/* ll-sheet — upstream SheetOverlay/Content. The page is a fixed ll-paper
+   positioned per side (inline style); the dim and animations live here.
+   z follows upstream: overlay 1000. */
+/* @ll-import tokens */
+.ll-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 1000; /* --ll-z-overlay */
+}
+
+.ll-sheet__overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 90% 80% at 50% 38%,
+    rgba(58, 44, 30, 0.16),
+    rgba(58, 44, 30, 0.23) 55%,
+    rgba(58, 44, 30, 0.34)
+  );
+  animation: ll-sheet-fade-in 0.3s ease-out both; /* --ll-dur-sheet */
+}
+
+/* the doodled x — size-8 grid place-items-center, z raised; its top/right
+   offsets come inline (it steps clear of the coils on their corner). */
+.ll-sheet__x {
+  position: absolute;
+  z-index: 8; /* --ll-z-raised */
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ll-sheet__x .ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+/* the page wrapper: fixed, flush to its edge, animated (tag selectors don't
+   match virtualHost components, so the ll-paper itself can't be targeted) */
+.ll-sheet__page {
+  position: fixed;
+  z-index: 1;
+  animation-duration: 0.3s; /* --ll-dur-sheet */
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+.ll-sheet__page--right {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 75%;
+  max-width: 384px; /* sm:max-w-sm */
+  animation-name: ll-sheet-from-right;
+}
+.ll-sheet__page--left {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 75%;
+  max-width: 384px;
+  animation-name: ll-sheet-from-left;
+}
+.ll-sheet__page--top {
+  top: 0;
+  left: 0;
+  right: 0;
+  max-height: 85vh;
+  animation-name: ll-sheet-from-top;
+}
+.ll-sheet__page--bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 85vh;
+  animation-name: ll-sheet-from-bottom;
+}
+.ll-sheet--closing .ll-sheet__overlay {
+  animation: ll-sheet-fade-out 0.3s ease-in both;
+}
+.ll-sheet--closing .ll-sheet__page--right {
+  animation-name: ll-sheet-to-right;
+  animation-timing-function: ease-in;
+}
+.ll-sheet--closing .ll-sheet__page--left {
+  animation-name: ll-sheet-to-left;
+  animation-timing-function: ease-in;
+}
+.ll-sheet--closing .ll-sheet__page--top {
+  animation-name: ll-sheet-to-top;
+  animation-timing-function: ease-in;
+}
+.ll-sheet--closing .ll-sheet__page--bottom {
+  animation-name: ll-sheet-to-bottom;
+  animation-timing-function: ease-in;
+}
+
+@keyframes ll-sheet-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes ll-sheet-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes ll-sheet-from-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes ll-sheet-from-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes ll-sheet-from-top {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes ll-sheet-from-bottom {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes ll-sheet-to-right {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes ll-sheet-to-left {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+@keyframes ll-sheet-to-top {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+@keyframes ll-sheet-to-bottom {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateY(100%);
+  }
+}

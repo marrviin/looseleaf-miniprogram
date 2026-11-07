@@ -1,0 +1,43 @@
+/* ll-kbd — Kbd: relative isolate inline-flex h-6 min-w-6 items-center
+   justify-center pr-[6.4px] pl-1 pb-[2.4px] font-hand text-sm leading-none
+   text-muted-foreground; MENU_KEYCAP context: h-5 min-w-5. */
+/* @ll-import tokens */
+
+.ll-kbd {
+  position: relative;
+  display: inline-flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  height: 48rpx; /* h-6 */
+  min-width: 48rpx; /* min-w-6 */
+  padding: 0 13rpx 5rpx 8rpx; /* pr-[6.4px] pl-1 pb-[2.4px] */
+}
+.ll-kbd--sm {
+  height: 40rpx; /* h-5 */
+  min-width: 40rpx; /* min-w-5 */
+  padding: 0 11rpx 4rpx 8rpx;
+}
+
+.ll-kbd__content {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 25rpx; /* text-sm x .88 */
+  line-height: 1;
+  color: #4a433c; /* text-muted-foreground */
+  white-space: nowrap;
+}
+
+/* ink overlay — common/ink.js draws the keycap at the element's real size */
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

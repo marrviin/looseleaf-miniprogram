@@ -1,0 +1,2 @@
+<!-- ll-dialog-footer -->
+<view class="ll-dialog-footer ll-class" style="{{customStyle}}"><slot /></view>

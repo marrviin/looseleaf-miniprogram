@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-paper": "../paper/paper",
+    "ll-sheet-binding": "../sheet-binding/sheet-binding"
+  }
+}

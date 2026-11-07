@@ -1,0 +1,40 @@
+<!-- ll-sheet — dimmed page + a fixed Paper sliding in from `side`, bound
+     along the edge facing the middle. Perf/torn pass the binding as the
+     paper edge; spiral/holes draw the strip. Never tilted (upstream
+     tilt=false); the shadow casts toward the page. -->
+<view wx:if="{{visible}}" class="ll-sheet ll-sheet--{{side}} {{closing ? 'll-sheet--closing' : ''}}">
+  <view class="ll-sheet__overlay" catch:touchmove="noop" catch:tap="onOverlayTap" />
+  <!-- wrapper carries the per-side fixed position + slide animation (tag
+       selectors don't match virtualHost components, so it can't be on the
+       ll-paper itself); the paper fills it. -->
+  <view class="ll-sheet__page ll-sheet__page--{{side}}">
+    <ll-paper
+      stock="{{stock}}"
+      edge="{{paperEdge}}"
+      tilt="{{false}}"
+      rules="{{rules}}"
+      shadow="none"
+      shadow-css="{{shadowCss}}"
+      seed="{{seed}}"
+      custom-style="{{paperStyle}}"
+      aria-role="{{ariaLabel ? 'dialog' : ''}}"
+      aria-label="{{ariaLabel}}"
+    >
+      <ll-sheet-binding wx:if="{{bound}}" edge="{{innerEdge}}" kind="{{binding}}" seed="{{seed}}" />
+      <slot />
+      <view
+        wx:if="{{showCloseButton}}"
+        class="ll-sheet__x"
+        style="{{xStyle}}"
+        aria-role="button"
+        aria-label="Close"
+        bind:tap="onCloseTap"
+        bind:touchstart="onXTouchStart"
+        bind:touchend="onXTouchEnd"
+        bind:touchcancel="onXTouchEnd"
+      >
+        <view class="ll-ink-layer" style="{{inkStyle}}" />
+      </view>
+    </ll-paper>
+  </view>
+</view>

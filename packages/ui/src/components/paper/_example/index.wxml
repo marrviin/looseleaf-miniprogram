@@ -1,0 +1,58 @@
+<!-- ll-paper demo — verification page for the sheet mechanism (upstream
+     renders Paper everywhere; its full docs page lands with the P3 sheet
+     work). Stocks (cut edges, pure CSS), drawn edges, tape, fasteners, tilt. -->
+<view class="demo">
+  <view class="demo-title">Paper</view>
+  <view class="sec-desc">The sheet every overlay is drawn on: any stock, any edge, held down by tape or a fastener, turned by a seeded tilt. Cut edges are pure CSS upstream; torn, deckle, crimp, zig and perf edges are drawn ink.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Stocks</view>
+    <view class="sec-desc">Paper, card, slip, index-card, kraft, photo — and the sticky family, whose gum strip is the darker veil at the top.</view>
+    <view class="grid2">
+      <ll-paper stock="paper" seed="s1" custom-style="height:200rpx"><view class="sheet-label">paper</view></ll-paper>
+      <ll-paper stock="card" seed="s2" custom-style="height:200rpx"><view class="sheet-label">card</view></ll-paper>
+      <ll-paper stock="slip" seed="s3" custom-style="height:200rpx"><view class="sheet-label">slip</view></ll-paper>
+      <ll-paper stock="index-card" seed="s4" custom-style="height:200rpx"><view class="sheet-label">index-card</view></ll-paper>
+      <ll-paper stock="kraft" seed="s5" custom-style="height:200rpx"><view class="sheet-label">kraft</view></ll-paper>
+      <ll-paper stock="photo" seed="s6" custom-style="height:200rpx"><view class="sheet-label">photo</view></ll-paper>
+      <ll-paper stock="sticky-yellow" seed="s7" custom-style="height:200rpx"><view class="sheet-label">sticky-yellow</view></ll-paper>
+      <ll-paper stock="sticky-pink" seed="s8" custom-style="height:200rpx"><view class="sheet-label">sticky-pink</view></ll-paper>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Edges</view>
+    <view class="sec-desc">Pad torn on top, a sheet torn all around, parchment's deckle, a receipt's zig, a napkin's crimp.</view>
+    <view class="grid2">
+      <ll-paper stock="pad" seed="e1" custom-style="height:200rpx"><view class="sheet-label">pad (torn top)</view></ll-paper>
+      <ll-paper edge="torn" seed="e2" custom-style="height:200rpx"><view class="sheet-label">torn</view></ll-paper>
+      <ll-paper stock="parchment" seed="e3" custom-style="height:200rpx"><view class="sheet-label">parchment (deckle)</view></ll-paper>
+      <ll-paper stock="receipt" seed="e4" custom-style="height:200rpx"><view class="sheet-label">receipt (zig)</view></ll-paper>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Tape and fasteners</view>
+    <view class="sec-desc">Masking, washi and kraft tape; clip, pin, staple and binder clip.</view>
+    <view class="grid2">
+      <ll-paper tape="corner" seed="t1" custom-style="height:200rpx"><view class="sheet-label">tape corner</view></ll-paper>
+      <ll-paper tape="top" tape-kind="washi-dots" seed="t2" custom-style="height:200rpx"><view class="sheet-label">washi-dots top</view></ll-paper>
+      <ll-paper tape="both" tape-kind="kraft" seed="t3" custom-style="height:200rpx"><view class="sheet-label">kraft both</view></ll-paper>
+      <ll-paper tape="top" tape-kind="clear" seed="t4" custom-style="height:200rpx"><view class="sheet-label">clear top</view></ll-paper>
+      <ll-paper fastener="clip" seed="f1" custom-style="height:260rpx"><view class="sheet-label">clip</view></ll-paper>
+      <ll-paper fastener="pin" seed="f2" custom-style="height:200rpx"><view class="sheet-label">pin</view></ll-paper>
+      <ll-paper fastener="staple" seed="f3" custom-style="height:200rpx"><view class="sheet-label">staple</view></ll-paper>
+      <ll-paper fastener="binder-clip" seed="f4" custom-style="height:280rpx"><view class="sheet-label">binder-clip</view></ll-paper>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Tilt</view>
+    <view class="sec-desc">true turns by the stock's seeded angle; a number turns by that many degrees; false lays it flat. The text never turns.</view>
+    <view class="grid2">
+      <ll-paper tilt="{{true}}" seed="tl1" custom-style="height:200rpx"><view class="sheet-label">tilt (seeded)</view></ll-paper>
+      <ll-paper tilt="{{-1.4}}" seed="tl2" custom-style="height:200rpx"><view class="sheet-label">tilt -1.4deg</view></ll-paper>
+      <ll-paper tilt="{{false}}" seed="tl3" custom-style="height:200rpx"><view class="sheet-label">flat</view></ll-paper>
+    </view>
+  </view>
+</view>

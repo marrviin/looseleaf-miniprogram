@@ -1,0 +1,14 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-sheet": "../sheet/sheet",
+    "ll-sheet-header": "../sheet-header/sheet-header",
+    "ll-sheet-title": "../sheet-title/sheet-title",
+    "ll-sheet-description": "../sheet-description/sheet-description",
+    "ll-sheet-footer": "../sheet-footer/sheet-footer",
+    "ll-sheet-binding": "../sheet-binding/sheet-binding",
+    "ll-button": "../button/button",
+    "ll-input": "../input/input",
+    "ll-icon": "../icon/icon"
+  }
+}

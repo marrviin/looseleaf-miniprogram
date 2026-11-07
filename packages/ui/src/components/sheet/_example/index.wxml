@@ -1,0 +1,174 @@
+<!-- ll-sheet demo — mirrors the upstream docs page (#/components/sheet).
+     The page is a Paper flush to its edge, bound along the edge facing the
+     middle; side sheets are physical (side=right slides from the right). -->
+<view class="demo">
+  <view class="demo-title">Sheet</view>
+  <view class="sec-desc">A notebook page that slides in from the edge of the screen. It is bound along the edge that faces the middle: spiral wire through punched holes, three binder holes, a perforated tear line, or torn out of a pad. Good for settings, filters, carts and mobile navigation.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Notebook settings</view>
+    <view class="sec-desc">The usage example: a settings page from the right, spiral-bound along its left edge, with the footer pushed to the bottom.</view>
+    <view class="center-row"><ll-button variant="outline" bind:tap="openSh" data-k="shSettings">Open settings</ll-button></view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Four sides</view>
+    <view class="sec-desc">The page is bound along whichever edge faces the middle of the screen: the coils hang on the left of a right-hand page, along the bottom of a page that comes from the top.</view>
+    <view class="center-row wrap">
+      <ll-button variant="outline" bind:tap="openShAt" data-list="sides" data-idx="{{0}}">top</ll-button>
+      <ll-button variant="outline" bind:tap="openShAt" data-list="sides" data-idx="{{1}}">right</ll-button>
+      <ll-button variant="outline" bind:tap="openShAt" data-list="sides" data-idx="{{2}}">bottom</ll-button>
+      <ll-button variant="outline" bind:tap="openShAt" data-list="sides" data-idx="{{3}}">left</ll-button>
+    </view>
+
+    <view class="sub-h3">Bindings</view>
+    <view class="sec-desc">Five ways to finish the inner edge: spiral coils, three binder holes, a perforated tear line, a torn pad edge, or nothing. Perf and torn are drawn when the page opens; the others are cheap strips.</view>
+    <view class="center-row wrap">
+      <ll-button variant="outline" bind:tap="openShAt" data-list="bindings" data-idx="{{0}}">spiral</ll-button>
+      <ll-button variant="outline" bind:tap="openShAt" data-list="bindings" data-idx="{{1}}">holes</ll-button>
+      <ll-button variant="outline" bind:tap="openShAt" data-list="bindings" data-idx="{{2}}">perf</ll-button>
+      <ll-button variant="outline" bind:tap="openShAt" data-list="bindings" data-idx="{{3}}">torn</ll-button>
+      <ll-button variant="outline" bind:tap="openShAt" data-list="bindings" data-idx="{{4}}">none</ll-button>
+    </view>
+
+    <view class="sub-h3">Edit profile</view>
+    <view class="sec-desc">The shadcn demo: a form in a side sheet with the footer pushed to the bottom.</view>
+    <view class="center-row"><ll-button variant="outline" bind:tap="openSh" data-k="shEdit">Open</ll-button></view>
+
+    <view class="sub-h3">Mobile navigation</view>
+    <view class="sec-desc">A menu page from the left with holes for a binder. The list scrolls inside the page (overflow-y-auto on the list, never on the sheet) and every link closes it.</view>
+    <view class="center-row"><ll-button variant="outline" size="icon" aria-label="Open menu" bind:tap="openSh" data-k="shNav"><ll-icon name="menu" /></ll-button></view>
+
+    <view class="sub-h3">Demo</view>
+    <view class="sec-desc">Official `sheet-demo`, same parts and layout: header, two fields on a grid that fills the height, a footer with Save and Close. The page slides in from the right, bound with a wire coil along its left edge. Escape, the x and a click outside all put it away.</view>
+    <view class="center-row"><ll-button variant="outline" bind:tap="openSh" data-k="shDemo">Open</ll-button></view>
+
+    <view class="sub-h3">Side</view>
+    <view class="sec-desc">Official `sheet-side`: four triggers in a two-column grid, one page per edge. Three fixes to the original: its inputs were controlled with no `onChange` (frozen), so they take `defaultValue`; its ids repeated four times, so each carries its side; and the field grid gets `px-4` to line up with the header.</view>
+    <view class="grid-cols2">
+      <ll-button variant="outline" bind:tap="openShAt" data-list="sideSheets" data-idx="{{0}}">top</ll-button>
+      <ll-button variant="outline" bind:tap="openShAt" data-list="sideSheets" data-idx="{{1}}">right</ll-button>
+      <ll-button variant="outline" bind:tap="openShAt" data-list="sideSheets" data-idx="{{2}}">bottom</ll-button>
+      <ll-button variant="outline" bind:tap="openShAt" data-list="sideSheets" data-idx="{{3}}">left</ll-button>
+    </view>
+  </view>
+
+  <!-- Preview: notebook settings -->
+  <ll-sheet open="{{shSettings}}" seed="settings" bind:change="onShChange" data-k="shSettings">
+    <ll-sheet-header close>
+      <ll-sheet-title>Notebook settings</ll-sheet-title>
+      <ll-sheet-description>Change how this notebook looks and who can read it.</ll-sheet-description>
+    </ll-sheet-header>
+    <ll-sheet-footer>
+      <ll-button bind:tap="closeSh" data-k="shSettings">Save changes</ll-button>
+      <ll-button variant="outline" bind:tap="closeSh" data-k="shSettings">Close</ll-button>
+    </ll-sheet-footer>
+  </ll-sheet>
+
+  <!-- 01-four-sides -->
+  <ll-sheet wx:for="{{sides}}" wx:key="side" open="{{item.open}}" side="{{item.side}}" seed="side-{{item.side}}" bind:change="onShItemChange" data-sid="{{index}}">
+    <ll-sheet-header close>
+      <ll-sheet-title>From the {{item.side}}</ll-sheet-title>
+      <ll-sheet-description>A page slides in from the {{item.side}} edge of the screen. Click outside, press Escape or tap the x to put it away.</ll-sheet-description>
+    </ll-sheet-header>
+    <ll-sheet-footer>
+      <ll-button variant="outline" bind:tap="closeShItem" data-sid="{{index}}">Close</ll-button>
+    </ll-sheet-footer>
+  </ll-sheet>
+
+  <!-- 02-bindings -->
+  <ll-sheet wx:for="{{bindings}}" wx:key="binding" open="{{item.open}}" binding="{{item.binding}}" stock="pad" rules="ruled" seed="binding-{{item.binding}}" bind:change="onShItemChange" data-sid="{{index}}">
+    <ll-sheet-header close>
+      <ll-sheet-title>Field notes</ll-sheet-title>
+      <ll-sheet-description>binding=“{{item.binding}}” on ruled pad paper.</ll-sheet-description>
+    </ll-sheet-header>
+    <view class="notes">
+      <view class="note-li">Rain from six.</view>
+      <view class="note-li">Tea, two cups, then a third.</view>
+      <view class="note-li">Started the long letter to Ada.</view>
+    </view>
+  </ll-sheet>
+
+  <!-- 03-edit-profile -->
+  <ll-sheet open="{{shEdit}}" seed="profile" bind:change="onShChange" data-k="shEdit">
+    <ll-sheet-header close>
+      <ll-sheet-title>Edit profile</ll-sheet-title>
+      <ll-sheet-description>Make changes to your profile here. Click save when you're done.</ll-sheet-description>
+    </ll-sheet-header>
+    <view class="fields">
+      <view class="field">
+        <text class="field-label">Name</text>
+        <ll-input value="Pedro Duarte" aria-label="Name" />
+      </view>
+      <view class="field">
+        <text class="field-label">Username</text>
+        <ll-input value="@peduarte" aria-label="Username" />
+      </view>
+    </view>
+    <ll-sheet-footer>
+      <ll-button bind:tap="closeSh" data-k="shEdit">Save changes</ll-button>
+      <ll-button variant="outline" bind:tap="closeSh" data-k="shEdit">Close</ll-button>
+    </ll-sheet-footer>
+  </ll-sheet>
+
+  <!-- 04-navigation -->
+  <ll-sheet open="{{shNav}}" side="left" binding="holes" stock="pad" seed="nav" bind:change="onShChange" data-k="shNav">
+    <ll-sheet-header close>
+      <ll-sheet-title>Looseleaf</ll-sheet-title>
+      <ll-sheet-description>Everything you have written, in one binder.</ll-sheet-description>
+    </ll-sheet-header>
+    <scroll-view scroll-y enhanced class="nav-list" aria-label="Main">
+      <!-- flex column lives on an inner view: scroll-view wraps its children,
+           so flex on the scroll-view itself doesn't lay them out -->
+      <view class="nav-list-inner">
+        <ll-button wx:for="{{links}}" wx:key="*this" variant="ghost" custom-style="justify-content:flex-start;width:100%" bind:tap="closeSh" data-k="shNav">{{item}}</ll-button>
+      </view>
+    </scroll-view>
+  </ll-sheet>
+
+  <!-- 50-demo -->
+  <ll-sheet open="{{shDemo}}" bind:change="onShChange" data-k="shDemo">
+    <ll-sheet-header close>
+      <ll-sheet-title>Edit profile</ll-sheet-title>
+      <ll-sheet-description>Make changes to your profile here. Click save when you're done.</ll-sheet-description>
+    </ll-sheet-header>
+    <view class="fields">
+      <view class="field">
+        <text class="field-label">Name</text>
+        <ll-input value="Pedro Duarte" aria-label="Name" />
+      </view>
+      <view class="field">
+        <text class="field-label">Username</text>
+        <ll-input value="@peduarte" aria-label="Username" />
+      </view>
+    </view>
+    <ll-sheet-footer>
+      <ll-button bind:tap="closeSh" data-k="shDemo">Save changes</ll-button>
+      <ll-button variant="outline" bind:tap="closeSh" data-k="shDemo">Close</ll-button>
+    </ll-sheet-footer>
+  </ll-sheet>
+
+  <!-- 51-side -->
+  <ll-sheet wx:for="{{sideSheets}}" wx:key="side" open="{{item.open}}" side="{{item.side}}" bind:change="onShItemChange" data-sid="{{index}}">
+    <ll-sheet-header close>
+      <ll-sheet-title>Edit profile</ll-sheet-title>
+      <ll-sheet-description>Make changes to your profile here. Click save when you're done.</ll-sheet-description>
+    </ll-sheet-header>
+    <view class="fields side-fields">
+      <view class="side-row">
+        <text class="field-label ta-end">Name</text>
+        <view class="side-field"><ll-input value="Pedro Duarte" aria-label="Name" /></view>
+      </view>
+      <view class="side-row">
+        <text class="field-label ta-end">Username</text>
+        <view class="side-field"><ll-input value="@peduarte" aria-label="Username" /></view>
+      </view>
+    </view>
+    <ll-sheet-footer>
+      <ll-button bind:tap="closeShItem" data-sid="{{index}}">Save changes</ll-button>
+    </ll-sheet-footer>
+  </ll-sheet>
+</view>

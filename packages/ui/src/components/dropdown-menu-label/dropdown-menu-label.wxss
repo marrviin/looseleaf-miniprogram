@@ -1,0 +1,14 @@
+/* ll-dropdown-menu-label — MENU_LABEL: px-2.5 py-1.5 font-type text-sm
+   tracking-wide text-ink-muted; data-[inset]:ps-9. */
+/* @ll-import tokens */
+
+.ll-menu-label {
+  padding: 12rpx 20rpx; /* py-1.5 px-2.5 */
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 23rpx; /* text-sm x .82 (font-type size-adjust) */
+  letter-spacing: 0.05em; /* tracking-wide */
+  color: #4a433c; /* text-ink-muted */
+}
+.ll-menu-label--inset {
+  padding-left: 72rpx; /* data-[inset]:ps-9 */
+}

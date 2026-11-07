@@ -1,0 +1,10 @@
+/* ll-popover-title — font-script text-[1.4rem] leading-none font-semibold.
+   1.4rem = 22.4px x .75 (script size-adjust) x 2 = 34rpx */
+/* @ll-import tokens */
+.ll-popover-title {
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 34rpx;
+  font-weight: 700;
+  line-height: 1;
+  color: inherit;
+}

@@ -1,0 +1,8 @@
+/* ll-dropdown-menu-separator — MENU_SEPARATOR: pointer-events-none my-1.5 */
+/* @ll-import tokens */
+
+.ll-menu-separator {
+  margin: 12rpx 0; /* my-1.5 */
+  width: auto;
+  pointer-events: none;
+}

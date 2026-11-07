@@ -1,0 +1,9 @@
+/* ll-popover-header — flex flex-col gap-1 text-sm */
+/* @ll-import tokens */
+.ll-popover-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx; /* gap-1 */
+  font-size: 25rpx; /* text-sm x .88 */
+  font-family: 'Kevin Sans', sans-serif;
+}

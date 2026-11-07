@@ -1,0 +1,17 @@
+/* ll-dialog-header — flex flex-col gap-2 text-center; sm:pe-8 sm:text-start */
+/* @ll-import tokens */
+.ll-dialog-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx; /* gap-2 */
+  text-align: center;
+  font-family: 'Kevin Sans', sans-serif;
+}
+@media (min-width: 640px) {
+  .ll-dialog-header {
+    text-align: start;
+  }
+  .ll-dialog-header--close {
+    padding-right: 64rpx; /* sm:pe-8 (clears the corner x) */
+  }
+}

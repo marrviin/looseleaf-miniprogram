@@ -1,0 +1,2 @@
+<!-- ll-dialog-header -->
+<view class="ll-dialog-header ll-class {{close ? 'll-dialog-header--close' : ''}}" style="{{customStyle}}"><slot /></view>

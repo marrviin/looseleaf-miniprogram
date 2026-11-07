@@ -1,0 +1,52 @@
+/* ll-paper — upstream .ll-paper: the sheet visual is an absolute underlay
+   (upstream ::before / svg[data-ink=sheet] + .ll-face), rotated by the seeded
+   tilt while the content stays put; tape and fastener props float above. */
+/* @ll-import tokens */
+/* @ll-import paper-tiles */
+.ll-paper {
+  position: relative;
+  isolation: isolate; /* keep the z-index:-1 sheet from falling behind page backgrounds (upstream isolates the ink host) */
+  overflow: visible;
+  font-family: 'Kevin Sans', sans-serif;
+}
+
+.ll-paper__sheet {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1; /* upstream --ll-z-sheet: -1 — under static slot content */
+  background-repeat: repeat, repeat, repeat, repeat, no-repeat;
+}
+
+/* tape / fastener props — sized and positioned inline; z above the sheet,
+   below nothing (content is unpositioned flow, props are decorative). */
+.ll-paper__prop {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* printed rules layer (upstream [data-slot=paper-rules]) — inside the sheet
+   view, above its face, below the slot content (the sheet view holds z:-1). */
+.ll-paper__rules {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 2rpx;
+}
+
+/* faced ink sandwich — same structure as ll-tag (see common/ink.js). */
+.ll-ink-layer,
+.ll-ink-face,
+.ll-ink-cast {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.ll-ink-layer {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-ink-cast {
+  inset: auto;
+}

@@ -1,0 +1,39 @@
+/* ll-sheet-binding — absolute 28px strip (upstream w-7 inset-y-0), z --ll-z-ink.
+   The ink layer bleeds -pad so the coils cross onto the dimmed page. */
+/* @ll-import tokens */
+.ll-sheet-binding {
+  position: absolute;
+  z-index: 1; /* --ll-z-ink */
+  pointer-events: none;
+  width: 28px;
+}
+.ll-sheet-binding--left {
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+.ll-sheet-binding--right {
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+.ll-sheet-binding--top,
+.ll-sheet-binding--bottom {
+  left: 0;
+  right: 0;
+  width: auto;
+  height: 28px;
+}
+.ll-sheet-binding--top {
+  top: 0;
+}
+.ll-sheet-binding--bottom {
+  bottom: 0;
+}
+.ll-sheet-binding .ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

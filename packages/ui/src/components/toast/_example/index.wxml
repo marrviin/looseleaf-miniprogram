@@ -1,0 +1,64 @@
+<!-- ll-toast demo — mirrors the upstream docs page (#/components/sonner).
+     Upstream mounts one <Toaster id=…> per example and calls the module
+     toast() API; here each ll-toaster is reached with selectComponent and
+     its methods carry the same names. Swipe a slip to dismiss it. -->
+<view class="demo">
+  <view class="demo-title">Sonner</view>
+  <view class="sec-desc">Toasts as slips of paper tossed onto the desk. A guest check for success, a pink sticky for errors, yellow for warnings, blue for news; stacked, swipeable, with drawn icons, action buttons, promise toasts and tape or a pin to hold them down. Built on the sonner package: you keep its `toast()` API. (The sonner stack is re-implemented on a module store; pages drive it through the ll-toaster's methods.)</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Demo</view>
+    <view class="sec-desc">Official `sonner-demo`: one button, one toast with a description and an Undo action. The slip is tossed onto the desk; Undo is a highlighted word, not a filled button. Official code mounts `Toaster` once at the app root; here the example mounts its own so it works on its own.</view>
+    <view class="center-row"><ll-button variant="outline" bind:tap="showDemo">Show Toast</ll-button></view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Types</view>
+    <view class="sec-desc">Six kinds of paper: a plain slip, a green guest check for success, a pink sticky for errors, yellow for warnings, blue for news, and a slip with a spinning loader. Each has its own drawn icon and a slightly different tilt.</view>
+    <view class="center-row wrap">
+      <ll-button variant="outline" bind:tap="showType" data-k="default">Default</ll-button>
+      <ll-button variant="outline" bind:tap="showType" data-k="success">Success</ll-button>
+      <ll-button variant="outline" bind:tap="showType" data-k="error">Error</ll-button>
+      <ll-button variant="outline" bind:tap="showType" data-k="warning">Warning</ll-button>
+      <ll-button variant="outline" bind:tap="showType" data-k="info">Info</ll-button>
+      <ll-button variant="outline" bind:tap="showType" data-k="loading">Loading</ll-button>
+    </view>
+
+    <view class="sub-h3">Promise</view>
+    <view class="sec-desc">toast.promise follows a request: one slip that starts as a loader, then turns into a success (or an error) paper when the promise settles. Pass a function for the message to use the result.</view>
+    <view class="center-row wrap">
+      <ll-button bind:tap="saveOk">Save (succeeds)</ll-button>
+      <ll-button variant="outline" bind:tap="saveFail">Save (fails)</ll-button>
+    </view>
+
+    <view class="sub-h3">Action and undo</view>
+    <view class="sec-desc">The real pattern: do the thing at once, then offer to take it back. The action is a highlighter-marked button (a Looseleaf Button also works as the label); the page updates when you press it.</view>
+    <view class="notes">
+      <view wx:for="{{notes}}" wx:key="*this" class="note-row">
+        <text class="note-text">{{item}}</text>
+        <ll-button size="xs" variant="ghost" bind:tap="removeNote" data-i="{{index}}" aria-label="Delete note">Delete</ll-button>
+      </view>
+    </view>
+    <view wx:if="{{!notes.length}}" class="sec-desc notes-empty">Nothing left. Press Undo on the slip.</view>
+
+    <view class="sub-h3">Positions, tape and pin</view>
+    <view class="sec-desc">Six places to stack toasts (slips not on the right are dropped from above instead of tossed from the corner), and two ways to hold them down: masking tape or a push-pin.</view>
+    <view class="center-row wrap">
+      <ll-button wx:for="{{positions}}" wx:key="*this" size="sm" variant="{{item === pos ? 'secondary' : 'outline'}}" bind:tap="setPos" data-p="{{item}}">{{item}}</ll-button>
+    </view>
+    <view class="center-row wrap">
+      <ll-button wx:for="{{decorations}}" wx:key="*this" size="sm" variant="{{item === deco ? 'secondary' : 'outline'}}" bind:tap="setDeco" data-d="{{item}}">{{item}}</ll-button>
+    </view>
+    <view class="center-row"><ll-button bind:tap="showPositioned">Toast</ll-button></view>
+  </view>
+</view>
+
+<!-- one ll-toaster per upstream example — each renders only its own slips -->
+<ll-toaster id="t-demo" toaster-id="toast-demo" />
+<ll-toaster id="t-types" toaster-id="toast-types" close-button />
+<ll-toaster id="t-promise" toaster-id="toast-promise" />
+<ll-toaster id="t-undo" toaster-id="toast-undo" close-button />
+<ll-toaster id="t-positions" toaster-id="toast-positions" position="{{pos}}" decoration="{{deco}}" />

@@ -1,0 +1,11 @@
+/* ll-dropdown-menu-shortcut — MENU_SHORTCUT: ms-auto flex items-center
+   gap-1 ps-4 (sits at the end of a menu row). */
+/* @ll-import tokens */
+
+.ll-menu-shortcut {
+  margin-left: auto; /* ms-auto */
+  display: flex;
+  align-items: center;
+  gap: 8rpx; /* gap-1 */
+  padding-left: 32rpx; /* ps-4 */
+}

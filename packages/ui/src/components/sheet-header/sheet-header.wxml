@@ -1,0 +1,2 @@
+<!-- ll-sheet-header -->
+<view class="ll-sheet-header ll-class {{close ? 'll-sheet-header--close' : ''}}" style="{{customStyle}}"><slot /></view>

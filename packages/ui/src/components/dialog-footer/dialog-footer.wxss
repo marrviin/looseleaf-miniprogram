@@ -1,0 +1,14 @@
+/* ll-dialog-footer — flex flex-col-reverse gap-2 sm:flex-row sm:justify-end */
+/* @ll-import tokens */
+.ll-dialog-footer {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 16rpx; /* gap-2 */
+  font-family: 'Kevin Sans', sans-serif;
+}
+@media (min-width: 640px) {
+  .ll-dialog-footer {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}

@@ -1,0 +1,9 @@
+<!-- ll-kbd — the keycap ink draws behind the key name (or drawn glyph). -->
+<view class="ll-kbd ll-kbd--{{size}} ll-class" style="{{customStyle}}">
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-kbd__content">
+    <ll-icon wx:if="{{icon}}" name="{{icon}}" size="{{14}}" />
+    <text wx:elif="{{text}}" class="ll-kbd__text">{{text}}</text>
+    <slot wx:else />
+  </view>
+</view>

@@ -1,0 +1,141 @@
+<!-- ll-dialog demo — mirrors the upstream docs page (#/components/dialog).
+     On phone widths the sheet is a bottom sheet: flat, full-width, tape
+     hidden (upstream max-sm rules) — the examples below still pass the
+     desktop props faithfully. -->
+<view class="demo">
+  <view class="demo-title">Dialog</view>
+  <view class="sec-desc">A modal window that is a sheet of paper dropped on the desk: it lands with a small tilt that settles, the page behind goes dim under a lamp, and the close button is a doodled x. Tape it, pin it, tear its edge; on a phone it becomes a sheet at the bottom of the screen.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Edit profile</view>
+    <view class="sec-desc">The classic: a form in a dialog. Washi tape across the top corners, the doodled x, and a sheet that drops onto the dimmed page.</view>
+    <view class="center-row"><ll-button variant="outline" bind:tap="openDlg" data-k="dlgEdit">Edit profile</ll-button></view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Paper, edges and props</view>
+    <view class="sec-desc">The sheet is a Paper: any stock, any edge, held down by tape, a clip or a pin. A torn edge is drawn once, when the dialog opens. (Tape strips hide on phone widths — upstream's max-sm rule; fasteners still show.)</view>
+    <view class="center-row wrap">
+      <ll-button variant="outline" bind:tap="openDlg" data-k="dlgKraft">Kraft, taped</ll-button>
+      <ll-button variant="outline" bind:tap="openDlg" data-k="dlgTorn">Torn page</ll-button>
+      <ll-button variant="outline" bind:tap="openDlg" data-k="dlgSticky">Pinned</ll-button>
+    </view>
+
+    <view class="sub-h3">Long content</view>
+    <view class="sec-desc">The sheet never scrolls (its shadow and tape would be clipped): put tall content in DialogBody, and the header and footer stay put. Very tall dialogs scroll under the lamp.</view>
+    <view class="center-row"><ll-button variant="outline" bind:tap="openDlg" data-k="dlgTerms">Terms of the notebook</ll-button></view>
+
+    <view class="sub-h3">Invite a teammate (controlled)</view>
+    <view class="sec-desc">A real flow: a controlled dialog around a form. Submitting closes it and the page answers; the field is cleared for next time. Focus returns to the trigger.</view>
+    <view class="center-col">
+      <ll-button bind:tap="openDlg" data-k="dlgInvite">Invite a teammate</ll-button>
+      <text class="invited">{{invitedText}}</text>
+    </view>
+
+    <view class="sub-h3">Share link</view>
+    <view class="sec-desc">shadcn's `dialog-close-button`, written the same way: a read-only field, a footer aligned to the start and a Close button inside DialogClose. The corner x is still there; this one is the labeled way out.</view>
+    <view class="center-row"><ll-button variant="outline" bind:tap="openDlg" data-k="dlgShare">Share</ll-button></view>
+  </view>
+
+  <!-- 01-edit-profile: tape both, washi-dots, seed edit-profile -->
+  <ll-dialog open="{{dlgEdit}}" tape="both" tape-kind="washi-dots" seed="edit-profile" bind:change="onDlgChange" data-k="dlgEdit">
+    <ll-dialog-header close>
+      <ll-dialog-title>Edit profile</ll-dialog-title>
+      <ll-dialog-description>Make changes to your profile here. Click save when you're done.</ll-dialog-description>
+    </ll-dialog-header>
+    <view class="form-grid">
+      <view class="form-row">
+        <text class="form-label">Name</text>
+        <ll-input class="form-field" value="Pedro Duarte" aria-label="Name" />
+      </view>
+      <view class="form-row">
+        <text class="form-label">Username</text>
+        <ll-input class="form-field" value="@peduarte" aria-label="Username" />
+      </view>
+    </view>
+    <ll-dialog-footer>
+      <ll-button variant="outline" bind:tap="closeDlg" data-k="dlgEdit">Cancel</ll-button>
+      <ll-button bind:tap="closeDlg" data-k="dlgEdit">Save changes</ll-button>
+    </ll-dialog-footer>
+  </ll-dialog>
+
+  <!-- 02-paper-and-props -->
+  <ll-dialog open="{{dlgKraft}}" stock="kraft" tape="top" tape-kind="clear" seed="kraft" bind:change="onDlgChange" data-k="dlgKraft">
+    <ll-dialog-header close>
+      <ll-dialog-title>Handle with care</ll-dialog-title>
+      <ll-dialog-description>Kraft stock, one strip of clear tape across the top edge.</ll-dialog-description>
+    </ll-dialog-header>
+    <ll-dialog-footer>
+      <ll-button bind:tap="closeDlg" data-k="dlgKraft">Got it</ll-button>
+    </ll-dialog-footer>
+  </ll-dialog>
+
+  <ll-dialog open="{{dlgTorn}}" stock="pad" edge="{{ { top: 'torn', bottom: 'torn' } }}" fastener="clip" seed="torn" bind:change="onDlgChange" data-k="dlgTorn">
+    <ll-dialog-header close>
+      <ll-dialog-title>Torn from a pad</ll-dialog-title>
+      <ll-dialog-description>A pad sheet torn top and bottom, held with a paper clip. The edge is drawn when the dialog opens.</ll-dialog-description>
+    </ll-dialog-header>
+    <ll-dialog-footer>
+      <ll-button bind:tap="closeDlg" data-k="dlgTorn">Got it</ll-button>
+    </ll-dialog-footer>
+  </ll-dialog>
+
+  <ll-dialog open="{{dlgSticky}}" stock="sticky-yellow" fastener="pin" tilt="{{1.4}}" seed="sticky" bind:change="onDlgChange" data-k="dlgSticky">
+    <ll-dialog-header close>
+      <ll-dialog-title>Sticky business</ll-dialog-title>
+      <ll-dialog-description>A sticky note with a push-pin through it, turned a degree and a half.</ll-dialog-description>
+    </ll-dialog-header>
+    <ll-dialog-footer>
+      <ll-button bind:tap="closeDlg" data-k="dlgSticky">Got it</ll-button>
+    </ll-dialog-footer>
+  </ll-dialog>
+
+  <!-- 03-long-content -->
+  <ll-dialog open="{{dlgTerms}}" seed="terms" bind:change="onDlgChange" data-k="dlgTerms">
+    <ll-dialog-header close>
+      <ll-dialog-title>Terms of the notebook</ll-dialog-title>
+      <ll-dialog-description>Read to the end, or at least to the margin.</ll-dialog-description>
+    </ll-dialog-header>
+    <ll-dialog-body custom-style="max-height:448rpx">
+      <view class="clause" wx:for="{{clauses}}" wx:key="index">
+        <text class="clause-n">{{index + 1}}. </text>{{item}}
+      </view>
+    </ll-dialog-body>
+    <ll-dialog-footer>
+      <ll-button variant="ghost" bind:tap="closeDlg" data-k="dlgTerms">Decline</ll-button>
+      <ll-button bind:tap="closeDlg" data-k="dlgTerms">I agree</ll-button>
+    </ll-dialog-footer>
+  </ll-dialog>
+
+  <!-- 04-invite-teammate (controlled) -->
+  <ll-dialog open="{{dlgInvite}}" tape="top" tape-kind="kraft" seed="invite" bind:change="onDlgChange" data-k="dlgInvite">
+    <ll-dialog-header close>
+      <ll-dialog-title>Invite a teammate</ll-dialog-title>
+      <ll-dialog-description>They will get a link to this notebook by email.</ll-dialog-description>
+    </ll-dialog-header>
+    <view class="invite-field">
+      <ll-input type="text" placeholder="ada@analytical.engine" value="{{inviteEmail}}" bind:input="onInviteEmail" aria-label="Email" />
+    </view>
+    <ll-dialog-footer>
+      <ll-button variant="ghost" bind:tap="closeDlg" data-k="dlgInvite">Not now</ll-button>
+      <ll-button bind:tap="onInviteSubmit">Send invite</ll-button>
+    </ll-dialog-footer>
+  </ll-dialog>
+
+  <!-- 50-close-button -->
+  <ll-dialog open="{{dlgShare}}" seed="share" bind:change="onDlgChange" data-k="dlgShare">
+    <ll-dialog-header close>
+      <ll-dialog-title>Share link</ll-dialog-title>
+      <ll-dialog-description>Anyone who has this link will be able to view this.</ll-dialog-description>
+    </ll-dialog-header>
+    <view class="share-field">
+      <ll-input value="https://kevintngo.github.io/looseleaf/docs/installation" aria-label="Link" />
+    </view>
+    <ll-dialog-footer custom-style="justify-content:flex-start">
+      <ll-button variant="secondary" bind:tap="closeDlg" data-k="dlgShare">Close</ll-button>
+    </ll-dialog-footer>
+  </ll-dialog>
+</view>

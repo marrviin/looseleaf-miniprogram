@@ -1,0 +1,4 @@
+<!-- ll-sheet-binding — coil/hole strip on the sheet's inner edge. -->
+<view class="ll-sheet-binding ll-sheet-binding--{{edge}}" style="{{customStyle}}">
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+</view>

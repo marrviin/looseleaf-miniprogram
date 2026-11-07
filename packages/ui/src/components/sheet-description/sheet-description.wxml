@@ -1,0 +1,2 @@
+<!-- ll-sheet-description -->
+<view class="ll-sheet-description ll-class" style="{{customStyle}}"><slot /></view>

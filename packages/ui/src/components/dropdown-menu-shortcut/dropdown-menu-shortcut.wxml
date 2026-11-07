@@ -1,0 +1,5 @@
+<!-- ll-dropdown-menu-shortcut — each parsed key becomes a keycap; "⌘"
+     draws the command glyph. -->
+<view class="ll-menu-shortcut ll-class" style="{{customStyle}}">
+  <ll-kbd wx:for="{{keys}}" wx:key="index" size="sm" text="{{item.text}}" icon="{{item.icon}}" />
+</view>

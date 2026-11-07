@@ -1,0 +1,40 @@
+/* ll-dropdown-menu-checkbox-item — MENU_CHOICE_ITEM (ROW ps-9, shared
+   chunk) with the indicator span (start-2.5, size-4, centered) and
+   MENU_MARK (the checked icon, wiped in over ll-dur-sheet 0.3s). */
+/* @ll-import tokens */
+/* @ll-import menu-row */
+
+.ll-menu-choice {
+  padding-left: 72rpx; /* ps-9 */
+}
+
+/* MENU_INDICATOR: absolute start-2.5 top-1/2 size-4 -translate-y-1/2 */
+.ll-menu-indicator {
+  position: absolute;
+  left: 20rpx;
+  top: 50%;
+  width: 32rpx;
+  height: 32rpx;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+/* MENU_MARK: the written-on tick, ll-wipe reveal */
+.ll-menu-mark {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  animation: ll-menu-wipe 300ms ease-out both;
+}
+
+@keyframes ll-menu-wipe {
+  from {
+    clip-path: inset(-10% 100% -10% -4%);
+  }
+  to {
+    clip-path: inset(-10% -4% -10% -4%);
+  }
+}

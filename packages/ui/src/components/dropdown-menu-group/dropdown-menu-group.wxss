@@ -1,0 +1,6 @@
+/* ll-dropdown-menu-group */
+/* @ll-import tokens */
+
+.ll-menu-group {
+  display: block;
+}

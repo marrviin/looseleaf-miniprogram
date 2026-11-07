@@ -1,0 +1,38 @@
+<!-- ll-tooltip — upstream tooltip.tsx: a sticky note next to a control with
+     a felt-tip arrow (Radix places it, the arrow turns to face the trigger).
+     Opens on long-press of the trigger (hover has no touch equivalent) or
+     via the controlled `open`; a tap anywhere else closes it. -->
+<view class="ll-tooltip">
+  <view class="ll-tooltip__trigger" bindlongpress="onTriggerLongPress">
+    <slot name="trigger" />
+  </view>
+
+  <block wx:if="{{visible}}">
+    <!-- transparent outside-catcher: the next tap closes the note (Radix's
+         dismiss-on-pointer-down-outside); no dim, the page stays live -->
+    <view class="ll-tooltip__catcher" catch:touchmove="noop" catch:tap="onOutsideTap" />
+    <view
+      class="ll-tooltip__panel {{closing ? 'll-tooltip__panel--closing' : ''}} {{placed ? '' : 'is-placing'}}"
+      style="{{panelStyle}}{{customStyle}}"
+      catch:tap="noop"
+      aria-role="tooltip"
+      aria-label="{{ariaLabel}}"
+    >
+      <ll-paper
+        stock="{{stock}}"
+        edge="{{edge}}"
+        tilt="{{tilt}}"
+        rules="none"
+        seed="{{seed}}"
+        custom-style="display:block;box-sizing:border-box;"
+      >
+        <view class="ll-tooltip__content"><slot /></view>
+      </ll-paper>
+      <view
+        wx:if="{{arrow}}"
+        class="ll-tooltip__arrow"
+        style="{{arrowStyle}}background-image:url('{{arrowUri}}');"
+      />
+    </view>
+  </block>
+</view>

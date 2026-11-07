@@ -1,0 +1,13 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-dialog": "../dialog/dialog",
+    "ll-dialog-header": "../dialog-header/dialog-header",
+    "ll-dialog-title": "../dialog-title/dialog-title",
+    "ll-dialog-description": "../dialog-description/dialog-description",
+    "ll-dialog-body": "../dialog-body/dialog-body",
+    "ll-dialog-footer": "../dialog-footer/dialog-footer",
+    "ll-button": "../button/button",
+    "ll-input": "../input/input"
+  }
+}

@@ -1,0 +1,217 @@
+<!-- ll-dropdown-menu demo — mirrors the upstream docs page
+     (#/components/dropdown-menu). The trigger buttons live in each menu's
+     trigger slot; page methods only set the controlled `open` state and
+     handle row selections (automation can't tap into virtualHost
+     components, and the trigger tap bubble handles real users). -->
+<view class="demo">
+  <view class="demo-title">Dropdown Menu</view>
+  <view class="sec-desc">A menu written on a slip of paper that drops from a button. The row under the pointer or the keyboard wears the highlighter, a ticked row is a pencil box with a felt-tip tick over it, shortcuts are drawn keycaps, and a destructive row hatches in red pencil instead. Sub-menus, typeahead and focus handling are Radix's.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Account menu</view>
+    <view class="sec-desc">The shadcn demo on a slip: a typewriter label, rows with drawn icons and keycaps, a disabled row, a sub-menu, and a destructive row last.</view>
+    <view class="center-row">
+      <ll-dropdown-menu open="{{acct}}" width="{{240}}" align="start" seed="account" aria-label="My account" bind:change="onMenuChange" data-k="acct">
+        <ll-button slot="trigger" variant="outline">Open</ll-button>
+        <ll-dropdown-menu-label>My account</ll-dropdown-menu-label>
+        <ll-dropdown-menu-group>
+          <ll-dropdown-menu-item bind:select="onAcctPick" data-name="Profile">
+            <ll-icon name="user" size="{{16}}" /> Profile
+            <ll-dropdown-menu-shortcut text="⇧⌘P" />
+          </ll-dropdown-menu-item>
+          <ll-dropdown-menu-item bind:select="onAcctPick" data-name="Billing">
+            <ll-icon name="credit-card" size="{{16}}" /> Billing
+            <ll-dropdown-menu-shortcut text="⌘B" />
+          </ll-dropdown-menu-item>
+          <ll-dropdown-menu-item bind:select="onAcctPick" data-name="Settings">
+            <ll-icon name="settings" size="{{16}}" /> Settings
+            <ll-dropdown-menu-shortcut text="⌘," />
+          </ll-dropdown-menu-item>
+          <ll-dropdown-menu-item disabled>
+            <ll-icon name="user-plus" size="{{16}}" /> Invite users
+          </ll-dropdown-menu-item>
+        </ll-dropdown-menu-group>
+        <ll-dropdown-menu-separator />
+        <ll-dropdown-menu-sub label="Team" icon="users" width="{{160}}" open="{{subOpen}}" bind:change="onMenuChange" data-k="subOpen">
+          <ll-dropdown-menu-item bind:select="onAcctPick" data-name="Email">
+            <ll-icon name="mail" size="{{16}}" /> Email
+          </ll-dropdown-menu-item>
+          <ll-dropdown-menu-item bind:select="onAcctPick" data-name="Message">
+            <ll-icon name="message-square" size="{{16}}" /> Message
+          </ll-dropdown-menu-item>
+          <ll-dropdown-menu-separator />
+          <ll-dropdown-menu-item bind:select="onAcctPick" data-name="More">
+            <ll-icon name="plus" size="{{16}}" /> More…
+          </ll-dropdown-menu-item>
+        </ll-dropdown-menu-sub>
+        <ll-dropdown-menu-separator />
+        <ll-dropdown-menu-item variant="destructive" bind:select="onAcctPick" data-name="Log out">
+          <ll-icon name="log-out" size="{{16}}" /> Log out
+          <ll-dropdown-menu-shortcut text="⇧⌘Q" />
+        </ll-dropdown-menu-item>
+      </ll-dropdown-menu>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Ticks and dots</view>
+    <view class="sec-desc">Checkbox rows are a pencil box with a felt tick written over it; radio rows are a ring with a bold dot. Both are controlled here, and the rows keep the menu open so you can tick several.</view>
+    <view class="stack-12 center-col">
+      <ll-dropdown-menu open="{{ticksOpen}}" width="{{224}}" seed="view" aria-label="View" bind:change="onMenuChange" data-k="ticksOpen">
+        <ll-button slot="trigger" variant="outline"><ll-icon name="sliders-horizontal" size="{{16}}" /> View</ll-button>
+        <ll-dropdown-menu-label>Appearance</ll-dropdown-menu-label>
+        <ll-dropdown-menu-checkbox-item checked="{{ticks.status}}" bind:change="onTickStatus">Status bar</ll-dropdown-menu-checkbox-item>
+        <ll-dropdown-menu-checkbox-item checked="{{ticks.activity}}" disabled>Activity bar</ll-dropdown-menu-checkbox-item>
+        <ll-dropdown-menu-checkbox-item checked="{{ticks.panel}}" bind:change="onTickPanel">Panel</ll-dropdown-menu-checkbox-item>
+        <ll-dropdown-menu-separator />
+        <ll-dropdown-menu-label>Panel position</ll-dropdown-menu-label>
+        <ll-dropdown-menu-radio-group value="{{ticks.position}}" bind:change="onTickPosition">
+          <ll-dropdown-menu-radio-item value="top" checked="{{ticks.position === 'top'}}">Top</ll-dropdown-menu-radio-item>
+          <ll-dropdown-menu-radio-item value="bottom" checked="{{ticks.position === 'bottom'}}">Bottom</ll-dropdown-menu-radio-item>
+          <ll-dropdown-menu-radio-item value="right" checked="{{ticks.position === 'right'}}">Right</ll-dropdown-menu-radio-item>
+        </ll-dropdown-menu-radio-group>
+      </ll-dropdown-menu>
+      <text class="state-line">{{ticksLine}}</text>
+    </view>
+
+    <view class="sub-h3">Other paper</view>
+    <view class="sec-desc">The slip is a Paper, so it can be cut from any stock and held down with tape. A sticky note with a taped corner for quick actions; the destructive row hatches when you reach it.</view>
+    <view class="center-row">
+      <ll-dropdown-menu open="{{slipsOpen}}" width="{{224}}" stock="sticky-yellow" tape="corner" tilt="{{0.8}}" seed="quick" align="start" aria-label="Quick actions" bind:change="onMenuChange" data-k="slipsOpen">
+        <ll-button slot="trigger" variant="secondary"><ll-icon name="sparkles" size="{{16}}" /> Quick actions</ll-button>
+        <ll-dropdown-menu-item bind:select="onQuickPick" data-name="Rename">
+          <ll-icon name="pencil" size="{{16}}" /> Rename
+          <ll-dropdown-menu-shortcut text="F2" />
+        </ll-dropdown-menu-item>
+        <ll-dropdown-menu-item bind:select="onQuickPick" data-name="Duplicate">
+          <ll-icon name="copy" size="{{16}}" /> Duplicate
+          <ll-dropdown-menu-shortcut text="⌘D" />
+        </ll-dropdown-menu-item>
+        <ll-dropdown-menu-item bind:select="onQuickPick" data-name="Share">
+          <ll-icon name="share" size="{{16}}" /> Share
+        </ll-dropdown-menu-item>
+        <ll-dropdown-menu-separator />
+        <ll-dropdown-menu-item variant="destructive" bind:select="onQuickPick" data-name="Delete">
+          <ll-icon name="trash" size="{{16}}" /> Delete
+          <ll-dropdown-menu-shortcut text="⌫" />
+        </ll-dropdown-menu-item>
+      </ll-dropdown-menu>
+    </view>
+
+    <view class="sub-h3">Row actions</view>
+    <view class="sec-desc">A real use: a list of notebooks, each row with an ellipsis button that opens its own menu. Choosing Rename or Move to trash changes the list, so you can see the handlers run.</view>
+    <view class="center-row">
+      <ll-card class="rows-card" seed="rows">
+        <ll-card-header>
+          <ll-card-title>Notebooks</ll-card-title>
+          <ll-card-description>{{rowsLast || "Open a row's menu with its ellipsis."}}</ll-card-description>
+        </ll-card-header>
+        <ll-card-content>
+          <view class="stack-4">
+            <view class="rows-row" wx:for="{{notebooks}}" wx:key="*this">
+              <text class="rows-name">{{item}}</text>
+              <ll-dropdown-menu open="{{rowMenu === index}}" width="{{192}}" align="end" aria-label="Actions for {{item}}" bind:change="onRowMenuChange" data-i="{{index}}">
+                <ll-button slot="trigger" variant="ghost" size="icon-sm" aria-label="Actions for {{item}}"><ll-icon name="ellipsis" size="{{16}}" /></ll-button>
+                <ll-dropdown-menu-label>{{item}}</ll-dropdown-menu-label>
+                <ll-dropdown-menu-item bind:select="onRowOpen" data-i="{{index}}">
+                  <ll-icon name="folder-open" size="{{16}}" /> Open
+                </ll-dropdown-menu-item>
+                <ll-dropdown-menu-item bind:select="onRowRename" data-i="{{index}}">
+                  <ll-icon name="pencil" size="{{16}}" /> Rename
+                </ll-dropdown-menu-item>
+                <ll-dropdown-menu-separator />
+                <ll-dropdown-menu-item variant="destructive" bind:select="onRowTrash" data-i="{{index}}">
+                  <ll-icon name="trash" size="{{16}}" /> Move to trash
+                </ll-dropdown-menu-item>
+              </ll-dropdown-menu>
+            </view>
+          </view>
+        </ll-card-content>
+      </ll-card>
+    </view>
+
+    <view class="sub-h3">Checkboxes</view>
+    <view class="sec-desc">shadcn's `dropdown-menu-checkboxes`: three controlled rows, the middle one disabled. The state is a boolean (or "indeterminate") that you own; the menu stays open while you tick.</view>
+    <view class="center-row">
+      <ll-dropdown-menu open="{{cbsOpen}}" width="{{224}}" aria-label="Checkboxes" bind:change="onMenuChange" data-k="cbsOpen">
+        <ll-button slot="trigger" variant="outline">Open</ll-button>
+        <ll-dropdown-menu-label>Appearance</ll-dropdown-menu-label>
+        <ll-dropdown-menu-separator />
+        <ll-dropdown-menu-checkbox-item checked="{{cbs.statusBar}}" bind:change="onCbStatus">Status Bar</ll-dropdown-menu-checkbox-item>
+        <ll-dropdown-menu-checkbox-item checked="{{cbs.activityBar}}" disabled>Activity Bar</ll-dropdown-menu-checkbox-item>
+        <ll-dropdown-menu-checkbox-item checked="{{cbs.panel}}" bind:change="onCbPanel">Panel</ll-dropdown-menu-checkbox-item>
+      </ll-dropdown-menu>
+    </view>
+
+    <view class="sub-h3">Radio group</view>
+    <view class="sec-desc">shadcn's `dropdown-menu-radio-group`: one value for the whole group, `value` and `onValueChange` as in Radix. The chosen row carries the drawn dot.</view>
+    <view class="center-row">
+      <ll-dropdown-menu open="{{radioOpen}}" width="{{224}}" aria-label="Radio group" bind:change="onMenuChange" data-k="radioOpen">
+        <ll-button slot="trigger" variant="outline">Open</ll-button>
+        <ll-dropdown-menu-label>Panel Position</ll-dropdown-menu-label>
+        <ll-dropdown-menu-separator />
+        <ll-dropdown-menu-radio-group value="{{radioValue}}" bind:change="onRadioChange">
+          <ll-dropdown-menu-radio-item value="top" checked="{{radioValue === 'top'}}">Top</ll-dropdown-menu-radio-item>
+          <ll-dropdown-menu-radio-item value="bottom" checked="{{radioValue === 'bottom'}}">Bottom</ll-dropdown-menu-radio-item>
+          <ll-dropdown-menu-radio-item value="right" checked="{{radioValue === 'right'}}">Right</ll-dropdown-menu-radio-item>
+        </ll-dropdown-menu-radio-group>
+      </ll-dropdown-menu>
+    </view>
+
+    <view class="sub-h3">Dialog</view>
+    <view class="sec-desc">shadcn's `dropdown-menu-dialog`: the dialogs live beside the menu, not inside it, and `onSelect` flips their open state. (The Field family isn't ported yet, so the form rows are label + field on a grid; the menu keeps the page interactive while it closes.)</view>
+    <view class="center-row">
+      <ll-dropdown-menu open="{{dlgMenuOpen}}" width="{{160}}" align="end" aria-label="File Actions" bind:change="onMenuChange" data-k="dlgMenuOpen">
+        <ll-button slot="trigger" variant="outline" size="icon-sm" aria-label="Open menu"><ll-icon name="ellipsis" size="{{16}}" /></ll-button>
+        <ll-dropdown-menu-label>File Actions</ll-dropdown-menu-label>
+        <ll-dropdown-menu-group>
+          <ll-dropdown-menu-item bind:select="onMenuNewFile">New File...</ll-dropdown-menu-item>
+          <ll-dropdown-menu-item bind:select="onMenuShareFile">Share...</ll-dropdown-menu-item>
+          <ll-dropdown-menu-item disabled>Download</ll-dropdown-menu-item>
+        </ll-dropdown-menu-group>
+      </ll-dropdown-menu>
+    </view>
+  </view>
+
+  <!-- 52's dialogs live beside the menu, not inside it -->
+  <ll-dialog open="{{dlgNew}}" bind:change="onDlgChange" data-k="dlgNew">
+    <ll-dialog-header close>
+      <ll-dialog-title>Create New File</ll-dialog-title>
+      <ll-dialog-description>Provide a name for your new file. Click create when you're done.</ll-dialog-description>
+    </ll-dialog-header>
+    <view class="stack-16 dlg-form">
+      <view class="stack-8">
+        <text class="form-label">File Name</text>
+        <ll-input value="" placeholder="document.txt" aria-label="File Name" />
+      </view>
+    </view>
+    <ll-dialog-footer>
+      <ll-button variant="outline" bind:tap="closeDlg" data-k="dlgNew">Cancel</ll-button>
+      <ll-button bind:tap="closeDlg" data-k="dlgNew">Create</ll-button>
+    </ll-dialog-footer>
+  </ll-dialog>
+
+  <ll-dialog open="{{dlgShare}}" bind:change="onDlgChange" data-k="dlgShare">
+    <ll-dialog-header close>
+      <ll-dialog-title>Share File</ll-dialog-title>
+      <ll-dialog-description>Anyone with the link will be able to view this file.</ll-dialog-description>
+    </ll-dialog-header>
+    <view class="stack-16 dlg-form">
+      <view class="stack-8">
+        <text class="form-label">Email Address</text>
+        <ll-input value="" placeholder="ada@looseleaf.example" aria-label="Email Address" />
+      </view>
+      <view class="stack-8">
+        <text class="form-label">Message (Optional)</text>
+        <ll-textarea value="" placeholder="Check out this file" aria-label="Message" />
+      </view>
+    </view>
+    <ll-dialog-footer>
+      <ll-button variant="outline" bind:tap="closeDlg" data-k="dlgShare">Cancel</ll-button>
+      <ll-button bind:tap="closeDlg" data-k="dlgShare">Send Invite</ll-button>
+    </ll-dialog-footer>
+  </ll-dialog>
+</view>

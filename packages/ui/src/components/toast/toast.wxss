@@ -1,0 +1,272 @@
+/* ll-toaster — upstream sonner.tsx wraps sonner's Toaster and styles each
+   toast as a slip of paper (the SLIP class list): a plain slip for
+   default/loading, a green guest check for success, pink/yellow/blue
+   stickies for error/warning/info — each with its own tilt, dropped onto
+   the desk (or tossed, when the stack sits on the right). The stack/timer/
+   promise logic lives in toast.js; this file carries the visuals.
+   Deviations (touch): the stack always renders expanded (no hover-to-
+   expand); timers pause while a slip is held, and slips swipe away. */
+/* @ll-import tokens */
+/* @ll-import paper-tiles */
+
+/* ---- the stack ------------------------------------------------------- */
+
+.ll-toaster {
+  position: fixed;
+  z-index: 1100; /* --ll-z-toast */
+  display: flex;
+  flex-direction: column;
+  gap: 28rpx; /* sonner gap: 14px */
+  width: 720rpx; /* --width: min(360px, calc(100vw - 32px)) */
+  max-width: calc(100vw - 64rpx);
+  pointer-events: none; /* the stack never blocks the page; slips opt in */
+}
+
+/* sonner offset: 32px (64rpx); bottom stacks clear the home indicator */
+.ll-toaster--bottom-right {
+  right: 64rpx;
+  bottom: calc(64rpx + env(safe-area-inset-bottom));
+  align-items: flex-end;
+}
+.ll-toaster--bottom-left {
+  left: 64rpx;
+  bottom: calc(64rpx + env(safe-area-inset-bottom));
+  align-items: flex-start;
+}
+.ll-toaster--bottom-center {
+  left: 0;
+  right: 0;
+  bottom: calc(64rpx + env(safe-area-inset-bottom));
+  margin: 0 auto;
+  align-items: center;
+}
+.ll-toaster--top-right {
+  right: 64rpx;
+  top: 64rpx;
+  align-items: flex-end;
+}
+.ll-toaster--top-left {
+  left: 64rpx;
+  top: 64rpx;
+  align-items: flex-start;
+}
+.ll-toaster--top-center {
+  left: 0;
+  right: 0;
+  top: 64rpx;
+  margin: 0 auto;
+  align-items: center;
+}
+
+/* ---- enter / exit (upstream ll-toss / ll-drop / data-x-position) ----- */
+
+.slipbox {
+  width: 100%;
+  pointer-events: auto;
+}
+.slipbox--top-right,
+.slipbox--bottom-right {
+  animation: ll-toss 440ms cubic-bezier(0.2, 0.9, 0.25, 1.12) backwards;
+}
+.slipbox--top-left,
+.slipbox--top-center,
+.slipbox--bottom-left,
+.slipbox--bottom-center {
+  animation: ll-drop 340ms cubic-bezier(0.2, 0.9, 0.25, 1.12) backwards;
+}
+.ll-toaster .slipbox--closing {
+  animation: ll-slip-away 200ms ease-in both;
+  pointer-events: none;
+}
+
+@keyframes ll-toss {
+  0% {
+    opacity: 0;
+    transform: translate(46px, 34px) rotate(14deg) scale(0.92);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-2px, -2px) rotate(-1.5deg) scale(1.01);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes ll-drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-26px) rotate(-2.4deg) scale(1.05);
+  }
+  62% {
+    opacity: 1;
+    transform: translateY(2px) rotate(0.35deg) scale(0.995);
+  }
+  82% {
+    transform: translateY(-1px) rotate(-0.1deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes ll-slip-away {
+  to {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* ---- the slip --------------------------------------------------------- */
+
+.slip {
+  position: relative;
+  isolation: isolate; /* the tilted sheet stays behind this slip's content */
+  display: flex;
+  align-items: center;
+  gap: 24rpx; /* gap-3 */
+  width: 100%;
+  padding: 32rpx; /* p-4 */
+  box-sizing: border-box;
+  font-family: 'Kevin Sans', sans-serif;
+  color: #2a2420; /* text-foreground */
+}
+
+/* the sheet: faceStyle (from toast.js) carries color/tooth/paper-light/
+   shadow + the type tilt; rotated behind upright content like .ll-paper.
+   class="ll-face" picks up the paper texture vars from paper-tiles. */
+.slip__face {
+  position: absolute;
+  inset: 0;
+  z-index: -1; /* --ll-z-sheet */
+  border-radius: 2rpx;
+  background-repeat: repeat, repeat, repeat, no-repeat;
+}
+
+.slip__content {
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx; /* gap-0.5 */
+  flex: 1;
+  min-width: 0;
+}
+.slip__title {
+  font-size: 26rpx; /* 15px x size-adjust .88 */
+  line-height: 1.35; /* leading-snug */
+  font-weight: 700;
+}
+.slip__desc {
+  font-size: 25rpx; /* 14px x .88 */
+  line-height: 1.35;
+  color: #4a433c; /* text-muted-foreground */
+}
+
+.slip__icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40rpx; /* size-5 */
+  height: 40rpx;
+  flex-shrink: 0;
+}
+.slip__icon--spin {
+  animation: ll-spin 1s linear infinite;
+}
+@keyframes ll-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* actionButton — ll-swipe: a highlighter-marked word, not a filled button */
+.slip__action {
+  flex-shrink: 0;
+  min-height: 48rpx; /* min-h-6 */
+  padding: 4rpx 20rpx; /* py-0.5 px-2.5 */
+  font-size: 25rpx; /* text-sm x .88 */
+  font-weight: 700;
+  white-space: nowrap;
+  background-color: rgba(248, 220, 76, 0.62); /* --ll-hi-select */
+  color: #2a2420; /* --ll-selection-text */
+  border-radius: 6rpx 16rpx 8rpx 18rpx / 16rpx 6rpx 18rpx 8rpx;
+}
+
+/* cancelButton — underlined with a wavy pencil line */
+.slip__cancel {
+  flex-shrink: 0;
+  min-height: 48rpx;
+  padding: 4rpx 16rpx; /* px-2 py-0.5 */
+  font-size: 25rpx;
+  white-space: nowrap;
+  color: #4a433c; /* text-ink-muted */
+  text-decoration: underline wavy;
+  text-underline-offset: 8rpx; /* underline-offset-4 */
+}
+
+/* closeButton — a small doodled x in the corner */
+.slip__x {
+  position: absolute;
+  top: 12rpx; /* top-1.5 */
+  right: 12rpx; /* end-1.5 */
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 48rpx; /* size-6 */
+  height: 48rpx;
+}
+
+/* ---- fasteners (decoration tape / pin; drawn in CSS upstream) --------- */
+
+.slip__tape {
+  position: absolute;
+  top: -24rpx; /* -top-3 */
+  left: 50%;
+  width: 112rpx; /* w-14 */
+  height: 36rpx; /* h-4.5 */
+  margin-left: -56rpx;
+  z-index: 3;
+  transform: rotate(-3deg);
+  background-image: linear-gradient(
+      to bottom,
+      var(--ll-tape-edge) 0 2rpx,
+      transparent 2rpx calc(100% - 2rpx),
+      var(--ll-tape-edge) calc(100% - 2rpx)
+    ),
+    linear-gradient(
+      90deg,
+      transparent 29%,
+      var(--ll-tape-edge) 29% 30%,
+      transparent 30% 69%,
+      var(--ll-tape-edge) 69% 70%,
+      transparent 70%
+    ),
+    linear-gradient(rgba(220, 200, 163, 0.7), rgba(220, 200, 163, 0.7)); /* kraft 70% */
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    96% 20%,
+    100% 40%,
+    96% 60%,
+    100% 80%,
+    96% 100%,
+    0 100%,
+    4% 80%,
+    0 60%,
+    4% 40%,
+    0 20%
+  );
+}
+
+.slip__pin {
+  position: absolute;
+  top: -16rpx; /* -top-2 */
+  left: 50%;
+  width: 28rpx; /* size-3.5 */
+  height: 28rpx;
+  margin-left: -14rpx;
+  z-index: 3;
+  border-radius: 50%;
+  background-color: #e8483a; /* tomato */
+  background-image: radial-gradient(circle at 34% 30%, #fffdf6 0 13%, transparent 15%),
+    radial-gradient(circle at 66% 70%, rgba(58, 44, 30, 0.32), transparent 60%);
+  box-shadow: 0 4rpx 4rpx rgba(58, 44, 30, 0.35);
+}

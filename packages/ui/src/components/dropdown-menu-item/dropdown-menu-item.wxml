@@ -1,0 +1,12 @@
+<!-- ll-dropdown-menu-item — a row: icon slot content, label text, an
+     ll-dropdown-menu-shortcut at the end. Touch wears the highlighter. -->
+<view
+  class="ll-menu-row {{inset ? 'll-menu-row--inset' : ''}} {{variant === 'destructive' ? 'll-menu-row--destructive' : ''}} {{disabled ? 'll-menu-row--disabled' : ''}} ll-class"
+  style="{{customStyle}}"
+  hover-class="{{disabled ? '' : 'll-menu-row--hi'}}"
+  hover-start-time="0"
+  hover-stay-time="80"
+  catchtap="onTap"
+  aria-role="menuitem"
+  aria-disabled="{{disabled}}"
+><slot /></view>

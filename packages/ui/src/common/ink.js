@@ -66,6 +66,7 @@ function svgDataUri(part, { w, h, pad }) {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${-pad} ${-pad} ${w + pad * 2} ${h + pad * 2}">${resolvePaint(part)}</svg>`;
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 }
+export { svgDataUri };
 
 // --- sheet faces ------------------------------------------------------------
 // Sheet-kind recipes (label-tag, ...) leave <!--ll-face:...--> marks in their
@@ -125,13 +126,27 @@ function castCss(spec, { w, h, pad }) {
   return css;
 }
 
+/** Sheet recipes (paper-ink's drawSheet) put `<defs>` (the outline path the
+    contact shadow and rim strokes `<use>`) on one side of the face mark —
+    splitting at the mark would break those references in the isolated
+    fragment SVGs. Hoist every defs block into each fragment instead. */
+function hoistDefs(part) {
+  const defs = [];
+  const s = part.replace(/<defs>[\s\S]*?<\/defs>/g, (m) => {
+    defs.push(m);
+    return '';
+  });
+  return { s, defs: defs.join('') };
+}
+
 /** Split one layer part into under-strokes / faces+casts / over-strokes.
     Returns null when the part carries no face mark (plain SVG path). */
 function splitLayer(part, frame) {
   if (!hasFace(part)) return null;
+  const hoisted = hoistDefs(part);
   const out = { before: '', after: '', faces: [], casts: [] };
   let seenFace = false;
-  for (const piece of splitFaces(part)) {
+  for (const piece of splitFaces(hoisted.s)) {
     if (typeof piece === 'string') {
       if (seenFace) out.after += piece;
       else out.before += piece;
@@ -145,6 +160,8 @@ function splitLayer(part, frame) {
       out.faces.push(faceCss(piece, frame.pad));
     }
   }
+  if (out.before) out.before = hoisted.defs + out.before;
+  if (out.after) out.after = hoisted.defs + out.after;
   return out;
 }
 
@@ -231,6 +248,9 @@ export function attachInk() {
     lifetimes: {
       attached() {
         this.__inkPressed = false;
+        // Slot content (page-owned) re-fires attached each time the owner's
+        // wx:if renders it — reset the give-up counter so it measures again.
+        this.__inkRetries = 0;
         this.__measureInk();
       },
     },
@@ -266,9 +286,15 @@ export function attachInk() {
           .select(selector)
           .boundingClientRect((rect) => {
             if (!rect || !rect.width || !rect.height) {
-              // Not laid out yet (e.g. wx:if branch just mounted) — retry next frame.
+              // Not laid out yet — retry until it is. Detached slot content
+              // (a closed sheet's buttons) reports null forever, and freshly
+              // mounted content inside a fixed sheet can report 0x0 for a few
+              // seconds while the simulator settles. Retry fast for the first
+              // second, then slower, then at 1s out to ~4 minutes so a
+              // component that becomes visible late still gets its ink.
               if (this.__inkRetries === undefined) this.__inkRetries = 0;
-              if (this.__inkRetries++ < 20) setTimeout(() => this.__measureInk(), 50);
+              const n = ++this.__inkRetries;
+              if (n < 300) setTimeout(() => this.__measureInk(), n <= 20 ? 50 : n <= 60 ? 250 : 1000);
               return;
             }
             this.__inkRetries = 0;

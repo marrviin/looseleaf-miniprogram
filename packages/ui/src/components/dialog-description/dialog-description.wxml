@@ -1,0 +1,2 @@
+<!-- ll-dialog-description -->
+<view class="ll-dialog-description ll-class" style="{{customStyle}}"><slot /></view>

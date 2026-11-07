@@ -1,0 +1,2 @@
+<!-- ll-popover-title -->
+<view class="ll-popover-title ll-class" style="{{customStyle}}"><slot /></view>

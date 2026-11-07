@@ -1,0 +1,97 @@
+<!-- ll-popover demo — mirrors the upstream docs page (#/components/popover).
+     Radix's popper is simplified: clamp to the viewport, flip when clipped.
+     Automation can't tap inside virtualHost components — the demo opens
+     popovers via page methods (same code path as the trigger tap). -->
+<view class="demo">
+  <view class="demo-title">Popover</view>
+  <view class="sec-desc">An anchored layer of paper: a slip of stock pinned or taped next to its trigger, with a felt-tip arrow if you want one, that flips at the edge of the screen. For a modal, see Dialog.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Demo</view>
+    <view class="sec-desc">Official `popover-demo` with the same markup: a plain heading and paragraph, four label and input rows on a grid. The slip is a CSS sheet. Two small changes: the field ids are prefixed so they cannot clash with another example on the page, and the content is named for screen readers (a popover is a dialog).</view>
+    <view class="center-row">
+      <ll-popover open="{{popDemo}}" seed="popover-demo" width="{{320}}" aria-label="Dimensions">
+        <ll-button slot="trigger" variant="outline">Open popover</ll-button>
+        <view class="stack-16">
+          <view class="stack-8">
+            <view class="plain-title">Dimensions</view>
+            <view class="plain-desc">Set the dimensions for the layer.</view>
+          </view>
+          <view class="stack-8">
+            <view class="field-row" wx:for="{{demoRows}}" wx:key="label">
+              <text class="form-label">{{item.label}}</text>
+              <ll-input class="form-field" value="{{item.value}}" aria-label="{{item.label}}" />
+            </view>
+          </view>
+        </view>
+      </ll-popover>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Dimensions</view>
+    <view class="sec-desc">The shadcn demo on a slip with a push-pin through its top edge. A CSS sheet: it costs no SVG.</view>
+    <view class="center-row">
+      <ll-popover open="{{popDims}}" pin seed="dimensions" width="{{320}}" aria-label="Dimensions">
+        <ll-button slot="trigger" variant="outline">Open popover</ll-button>
+        <view class="stack-16">
+          <ll-popover-header>
+            <ll-popover-title>Dimensions</ll-popover-title>
+            <ll-popover-description>Set the dimensions for the layer.</ll-popover-description>
+          </ll-popover-header>
+          <view class="stack-8">
+            <view class="field-row" wx:for="{{dimRows}}" wx:key="label">
+              <text class="form-label">{{item.label}}</text>
+              <ll-input class="form-field" value="{{item.value}}" aria-label="{{item.label}}" />
+            </view>
+          </view>
+        </view>
+      </ll-popover>
+    </view>
+
+    <view class="sub-h3">Arrow and sides</view>
+    <view class="sec-desc">A felt-tip arrow points at the trigger, whichever side the popover opens on (Radix flips it near the edge of the screen). The arrow's height is added to sideOffset for you.</view>
+    <view class="center-row wrap">
+      <ll-popover wx:for="{{sides}}" wx:key="v" open="{{popSide === item.v}}" side="{{item.v}}" side-offset="{{4}}" arrow stock="sticky-yellow" seed="arrow-{{item.v}}" width="{{224}}" aria-label="Margin note">
+        <ll-button slot="trigger" variant="outline">{{item.label}}</ll-button>
+        <ll-popover-header>
+          <ll-popover-title>Margin note</ll-popover-title>
+          <ll-popover-description>Opened on the {{item.v}} side of its trigger.</ll-popover-description>
+        </ll-popover-header>
+      </ll-popover>
+    </view>
+
+    <view class="sub-h3">Stocks and fasteners</view>
+    <view class="sec-desc">Any stock, held down by a pin of any color or by tape. A torn edge is drawn when the popover opens (the only case where it costs SVG).</view>
+    <view class="center-row wrap">
+      <ll-popover wx:for="{{notes}}" wx:key="label" open="{{popNote === index}}" seed="{{item.title}}" width="{{240}}" stock="{{item.stock}}" edge="{{item.edge}}" tilt="{{item.tilt}}" tape="{{item.tape}}" pin="{{item.pin}}" aria-label="{{item.title}}">
+        <ll-button slot="trigger" variant="outline">{{item.label}}</ll-button>
+        <ll-popover-header>
+          <ll-popover-title>{{item.title}}</ll-popover-title>
+          <ll-popover-description>{{item.body}}</ll-popover-description>
+        </ll-popover-header>
+      </ll-popover>
+    </view>
+
+    <view class="sub-h3">Share link (composed)</view>
+    <view class="sec-desc">A real use: a share popover with a read-only link and a copy button that confirms. Focus goes to the field, the link is selected on focus, Escape returns you to the trigger. (Clipboard copy uses wx.setClipboardData; the field is marked read-only.)</view>
+    <view class="center-row">
+      <ll-popover open="{{popShare}}" arrow tape="top" seed="share" align="start" width="{{320}}" aria-label="Share this notebook">
+        <ll-button slot="trigger"><ll-icon name="copy" size="{{14}}" /> Share</ll-button>
+        <ll-popover-header>
+          <ll-popover-title>Share this notebook</ll-popover-title>
+          <ll-popover-description>Anyone with the link can read it.</ll-popover-description>
+        </ll-popover-header>
+        <view class="stack-8 share-grid">
+          <view class="share-row">
+            <ll-input class="share-field" value="{{shareLink}}" read-only aria-label="Link" />
+            <ll-button variant="secondary" bind:tap="copyLink">{{copied ? 'Copied' : 'Copy'}}</ll-button>
+          </view>
+        </view>
+      </ll-popover>
+    </view>
+  </view>
+</view>

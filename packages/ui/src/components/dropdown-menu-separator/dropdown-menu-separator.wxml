@@ -1,0 +1,4 @@
+<!-- ll-dropdown-menu-separator — a pencil rule between groups -->
+<view class="ll-menu-separator ll-class" style="{{customStyle}}">
+  <ll-separator decorative />
+</view>

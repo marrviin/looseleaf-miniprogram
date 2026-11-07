@@ -1,0 +1,10 @@
+/* ll-sheet-title — font-script text-[1.7rem] leading-none font-semibold
+   (same metrics as ll-dialog-title) */
+/* @ll-import tokens */
+.ll-sheet-title {
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 41rpx;
+  font-weight: 700;
+  line-height: 1;
+  color: inherit;
+}

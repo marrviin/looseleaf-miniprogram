@@ -1,0 +1,8 @@
+/* ll-popover-description — text-sm text-muted-foreground */
+/* @ll-import tokens */
+.ll-popover-description {
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 25rpx; /* 14px x .88 x 2 */
+  line-height: 1.4;
+  color: var(--muted-foreground, #4a433c);
+}

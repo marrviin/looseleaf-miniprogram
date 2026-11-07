@@ -1,0 +1,40 @@
+.demo {
+  padding: 32rpx;
+  background: var(--ll-desk, #a8c8bb);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+.sec {
+  margin-top: 40rpx;
+}
+.sec-h2 {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin-bottom: 12rpx;
+}
+.sec-desc {
+  font-size: 24rpx;
+  color: #37503f;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+.grid2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40rpx 32rpx;
+}
+.grid2 > ll-paper {
+  width: calc(50% - 16rpx);
+}
+.sheet-label {
+  padding: 24rpx;
+  font-size: 24rpx;
+  color: #6b6257;
+  font-family: 'Kevin Sans', sans-serif;
+}

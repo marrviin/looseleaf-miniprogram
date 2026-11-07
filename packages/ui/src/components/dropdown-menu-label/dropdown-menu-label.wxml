@@ -1,0 +1,2 @@
+<!-- ll-dropdown-menu-label -->
+<view class="ll-menu-label {{inset ? 'll-menu-label--inset' : ''}} ll-class" style="{{customStyle}}"><slot /></view>

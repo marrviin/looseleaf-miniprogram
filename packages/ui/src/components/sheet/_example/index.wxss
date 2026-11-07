@@ -1,0 +1,101 @@
+.demo {
+  padding: 32rpx;
+  background: var(--ll-desk, #a8c8bb);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+.sec {
+  margin-top: 40rpx;
+}
+.sec-h2 {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin-bottom: 12rpx;
+}
+.sub-h3 {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #2a2420;
+  margin-top: 24rpx;
+  margin-bottom: 8rpx;
+}
+.sec-desc {
+  font-size: 24rpx;
+  color: #37503f;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+.center-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-bottom: 8rpx;
+}
+.grid-cols2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16rpx;
+}
+/* 03/50 fields — stacked label + input like upstream's grid gap-6 px-4 */
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 48rpx;
+  padding: 0 32rpx;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+.field-label {
+  font-size: 26rpx;
+  color: #2a2420;
+  font-family: 'Kevin Sans', sans-serif;
+}
+.ta-end {
+  text-align: end;
+}
+/* 51-side: grid-cols-4 label + col-span-3 input */
+.side-fields {
+  gap: 32rpx;
+  padding: 32rpx;
+}
+.side-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+.side-row .field-label {
+  width: 25%;
+}
+.side-field {
+  flex: 1;
+  min-width: 0;
+}
+/* 02-bindings note list — upstream ul -mt-0.5 space-y-0 px-6 text-base/7 */
+.notes {
+  padding: 0 48rpx;
+  font-size: 30rpx;
+  line-height: 1.75;
+  color: #2a2420;
+  font-family: 'Kevin Sans', sans-serif;
+}
+/* 04-navigation list — min-h-0 flex-1 overflow-y-auto px-4 py-3, gap-1 */
+.nav-list {
+  flex: 1;
+  min-height: 0;
+  padding: 24rpx 32rpx;
+  box-sizing: border-box;
+}
+.nav-list-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
