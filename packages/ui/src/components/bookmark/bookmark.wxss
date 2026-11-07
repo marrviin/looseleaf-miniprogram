@@ -1,0 +1,49 @@
+/* ll-bookmark — upstream: relative isolate inline-block h-12 w-8 shrink-0
+   cursor-pointer align-top after:-inset-1.5 (hit area). The class rides
+   ll-class onto the button. */
+/* @ll-import tokens */
+
+.ll-bookmark {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 56rpx !important; /* w-8 — UA forces its own width */
+  height: 84rpx; /* h-12 */
+  margin: 0 !important; /* UA sets margin-left/right: auto */
+  padding: 0;
+  vertical-align: top;
+  /* Fill + outline are painted by the baked ink layer. */
+  border: none;
+  background: transparent;
+  line-height: 0;
+}
+/* after:-inset-1.5 — widen the hit area; also kills the native UA ring */
+.ll-bookmark::after {
+  content: '';
+  position: absolute;
+  inset: -11rpx; /* -inset-1.5 */
+  border: none;
+}
+
+/* the ribbon ink: drawn at the bookmark box (recipe pad 6 via inkStyle).
+   inset:0 sizes the layer to the host so __measureInk gets a real box
+   before inkStyle swaps in the recipe's inset:-<pad>px. The wrapper
+   carries the seeded tilt. */
+.ll-bookmark-rot {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.ll-bookmark-ink {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+/* data-[state=on]: the settled ribbon wears the drop-sticker shadow
+   (upstream filters the svg; here the whole layer shows only the ribbon
+   when on, so a filter on the layer matches). */
+.ll-bookmark-ink--on {
+  filter: drop-shadow(0 1px 0.6px rgba(58, 44, 30, 0.26)) drop-shadow(0 3px 3px rgba(58, 44, 30, 0.14));
+}

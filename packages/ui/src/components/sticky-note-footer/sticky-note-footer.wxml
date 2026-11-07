@@ -1,0 +1,2 @@
+<!-- ll-sticky-note-footer -->
+<view class="ll-sticky-note-footer" style="{{customStyle}}"><slot /></view>

@@ -1,0 +1,10 @@
+<!-- ll-squiggle — the ink runtime measures the host box and draws the
+     squiggle recipe into the .ll-ink-layer background. Horizontal is a
+     full-width line (h-4 w-full); vertical stands down the box (w-4). -->
+<view
+  class="ll-squiggle ll-class {{orientation === 'vertical' ? 'll-squiggle--v' : 'll-squiggle--h'}} {{animate ? 'll-squiggle--animate' : ''}}"
+  aria-role="{{decorative === true || decorative === 'true' ? 'none' : 'separator'}}"
+  style="{{customStyle}}"
+>
+  <view wx:if="{{show}}" class="ll-ink-layer" style="{{inkStyle}}" />
+</view>

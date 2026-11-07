@@ -1,0 +1,7 @@
+/* ll-navigation-menu-item */
+/* @ll-import tokens */
+.ll-navigation-menu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+}

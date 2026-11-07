@@ -1,0 +1,11 @@
+/* ll-pagination-next */
+/* @ll-import tokens */
+/* upstream className="gap-1 px-2.5 sm:pe-2.5" */
+.ll-pagination-next__btn {
+  gap: 8rpx; /* gap-1 */
+  padding: 0 20rpx; /* px-2.5 */
+}
+/* upstream hidden sm:block — at phone width only the chevron shows */
+.ll-pagination-next__label {
+  display: none;
+}

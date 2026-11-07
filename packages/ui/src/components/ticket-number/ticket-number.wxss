@@ -1,0 +1,8 @@
+/* ll-ticket-number — ll-num text-sm tracking-widest, color-mix(in srgb,
+   var(--ll-red) 60%, var(--ll-ink)) = #853528 */
+.ll-ticket-number {
+  font-variant-numeric: tabular-nums lining-nums; /* .ll-num */
+  font-size: 23rpx; /* text-sm 14px x .82 */
+  letter-spacing: 0.1em; /* tracking-widest */
+  color: #853528;
+}

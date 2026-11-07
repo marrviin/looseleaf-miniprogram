@@ -1,0 +1,332 @@
+<!-- ll-item demo — mirrors the upstream docs page (#/components/item):
+     intro, then the Examples entries with the page's own copy, in filename
+     order. Installation/Usage/API reference/Accessibility/Related are
+     intentionally omitted. Doodles stand in where the upstream examples use
+     them (ll-doodle is not ported yet); rain-cloud→cloud,
+     light-bulb→sparkle. -->
+<view class="demo">
+  <view class="demo-title">Item</view>
+  <view class="sec-desc">A row for lists of things: an icon or photo, a title with a line of description, some actions. Rows sit on ruled paper, a link row lights up under a highlighter swipe, and none of it carries ink of its own, so a list of hundreds costs nothing.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Variants and sizes</view>
+    <view class="sec-desc">Bare, outlined in ruled pencil, and washed in paper-shade. The small size trims the padding. None of these rows draws an svg: the pencil is CSS.</view>
+    <view class="stack">
+      <ll-item>
+        <ll-item-media variant="icon"><ll-icon name="bell" size="{{16}}" /></ll-item-media>
+        <ll-item-content>
+          <ll-item-title>Notifications</ll-item-title>
+          <ll-item-description>Choose what lands in your inbox.</ll-item-description>
+        </ll-item-content>
+        <ll-item-actions><ll-button variant="outline" size="sm">Edit</ll-button></ll-item-actions>
+      </ll-item>
+      <ll-item variant="outline">
+        <ll-item-media variant="icon"><ll-icon name="user" size="{{16}}" /></ll-item-media>
+        <ll-item-content>
+          <ll-item-title>Profile</ll-item-title>
+          <ll-item-description>Your name, your face, your pencil case.</ll-item-description>
+        </ll-item-content>
+        <ll-item-actions><ll-button variant="outline" size="sm">Open</ll-button></ll-item-actions>
+      </ll-item>
+      <ll-item variant="muted">
+        <ll-item-media variant="icon"><ll-icon name="settings" size="{{16}}" /></ll-item-media>
+        <ll-item-content>
+          <ll-item-title>Preferences</ll-item-title>
+          <ll-item-description>Density, motion and the color of the desk.</ll-item-description>
+        </ll-item-content>
+        <ll-item-actions><ll-button variant="outline" size="sm">Change</ll-button></ll-item-actions>
+      </ll-item>
+      <ll-item variant="outline" size="sm">
+        <ll-item-content>
+          <ll-item-title>Small</ll-item-title>
+        </ll-item-content>
+        <ll-item-actions><ll-button variant="ghost" size="sm">Undo</ll-button></ll-item-actions>
+      </ll-item>
+    </view>
+
+    <view class="sub-h3">A ruled list of links</view>
+    <view class="sec-desc">ruled puts a blue pencil line under every row, so the rules always match the rows. Link rows (asChild) light up under a highlighter swipe when you point at them, and take the focus ring from the keyboard.</view>
+    <view class="stack-gap-lg">
+      <ll-item-group ruled>
+        <ll-item link wx:for="{{pages}}" wx:key="title">
+          <ll-item-media variant="icon"><ll-icon name="{{item.icon}}" size="{{16}}" /></ll-item-media>
+          <ll-item-content>
+            <ll-item-title>{{item.title}}</ll-item-title>
+            <ll-item-description>{{item.desc}}</ll-item-description>
+          </ll-item-content>
+          <ll-icon name="chevron-right" size="{{16}}" />
+        </ll-item>
+      </ll-item-group>
+      <ll-item-group>
+        <ll-item size="sm">
+          <ll-item-content>
+            <ll-item-title>Before the separator</ll-item-title>
+          </ll-item-content>
+        </ll-item>
+        <ll-item-separator variant="dashed" />
+        <ll-item size="sm">
+          <ll-item-content>
+            <ll-item-title>After it</ll-item-title>
+          </ll-item-content>
+        </ll-item>
+      </ll-item-group>
+    </view>
+
+    <view class="sub-h3">An inbox</view>
+    <view class="sec-desc">Rows doing real work in a card: photographs that lie a little crooked, a status badge in the title, actions on the right, and a header and footer on the row that needs them.</view>
+    <view class="center">
+      <ll-card custom-style="width:100%;max-width:640rpx;margin:0 auto" seed="inbox">
+        <ll-card-header>
+          <ll-card-title>Inbox</ll-card-title>
+          <ll-card-description>Three letters, one of them new.</ll-card-description>
+          <ll-badge slot="action" tally count="{{3}}" variant="outline" />
+        </ll-card-header>
+        <ll-card-content>
+          <ll-item-group ruled>
+            <ll-item wx:for="{{messages}}" wx:key="subject">
+              <ll-item-media variant="image">
+                <ll-empty-media variant="default" doodle="{{item.doodle}}" size="{{36}}" />
+              </ll-item-media>
+              <ll-item-content>
+                <ll-item-title>
+                  {{item.subject}}
+                  <ll-badge wx:if="{{item.fresh}}" size="sm">New</ll-badge>
+                </ll-item-title>
+                <ll-item-description><text class="inbox-from">{{item.from}}</text> · {{item.preview}}</ll-item-description>
+              </ll-item-content>
+              <ll-item-actions><ll-button variant="ghost" size="sm">Open</ll-button></ll-item-actions>
+            </ll-item>
+            <ll-item variant="muted" custom-style="margin-top:16rpx">
+              <ll-item-header>
+                <ll-item-title>Tip</ll-item-title>
+              </ll-item-header>
+              <ll-item-content>
+                <ll-item-description>Press a letter and it opens; press it again and it closes.</ll-item-description>
+              </ll-item-content>
+              <ll-item-footer>
+                <view class="inbox-foot">Keep going</view>
+                <ll-kbd text="J" />
+              </ll-item-footer>
+            </ll-item>
+          </ll-item-group>
+        </ll-card-content>
+      </ll-card>
+    </view>
+
+    <view class="sub-h3">Basic and link</view>
+    <view class="sec-desc">shadcn's `item-demo`: an outlined row with a title, a description and a button, and a small row made a link with `asChild`, a verified badge in front and a chevron behind. The pencil outline is CSS, so a long list costs no svg.</view>
+    <view class="stack">
+      <ll-item variant="outline">
+        <ll-item-content>
+          <ll-item-title>Basic Item</ll-item-title>
+          <ll-item-description>A simple item with title and description.</ll-item-description>
+        </ll-item-content>
+        <ll-item-actions><ll-button variant="outline" size="sm">Action</ll-button></ll-item-actions>
+      </ll-item>
+      <ll-item variant="outline" size="sm" link>
+        <ll-item-media><ll-icon name="badge-check" size="{{20}}" /></ll-item-media>
+        <ll-item-content>
+          <ll-item-title>Your profile has been verified.</ll-item-title>
+        </ll-item-content>
+        <ll-item-actions><ll-icon name="chevron-right" size="{{16}}" /></ll-item-actions>
+      </ll-item>
+    </view>
+
+    <view class="sub-h3">Sizes</view>
+    <view class="sec-desc">shadcn's `item-size` (its source is the same two rows as the demo): `default` gives a row 16 px of padding, `sm` trims it. Here the same content is set at both sizes, one under the other, so the difference is easy to see.</view>
+    <view class="stack">
+      <ll-item variant="outline">
+        <ll-item-content>
+          <ll-item-title>Basic Item</ll-item-title>
+          <ll-item-description>A simple item with title and description.</ll-item-description>
+        </ll-item-content>
+        <ll-item-actions><ll-button variant="outline" size="sm">Action</ll-button></ll-item-actions>
+      </ll-item>
+      <ll-item variant="outline" size="sm">
+        <ll-item-content>
+          <ll-item-title>Small Item</ll-item-title>
+          <ll-item-description>The same row with less air around it.</ll-item-description>
+        </ll-item-content>
+        <ll-item-actions><ll-button variant="outline" size="sm">Action</ll-button></ll-item-actions>
+      </ll-item>
+      <ll-item variant="outline" size="sm" link>
+        <ll-item-media><ll-icon name="badge-check" size="{{20}}" /></ll-item-media>
+        <ll-item-content>
+          <ll-item-title>Your profile has been verified.</ll-item-title>
+        </ll-item-content>
+        <ll-item-actions><ll-icon name="chevron-right" size="{{16}}" /></ll-item-actions>
+      </ll-item>
+    </view>
+
+    <view class="sub-h3">Variants</view>
+    <view class="sec-desc">shadcn's `item-variant`: `default` is bare, `outline` has a ruled pencil line round it, `muted` is a wash of paper-shade. The same three words as upstream.</view>
+    <view class="stack">
+      <ll-item>
+        <ll-item-content>
+          <ll-item-title>Default Variant</ll-item-title>
+          <ll-item-description>Standard styling with subtle background and borders.</ll-item-description>
+        </ll-item-content>
+        <ll-item-actions><ll-button variant="outline" size="sm">Open</ll-button></ll-item-actions>
+      </ll-item>
+      <ll-item variant="outline">
+        <ll-item-content>
+          <ll-item-title>Outline Variant</ll-item-title>
+          <ll-item-description>Outlined style with clear borders and transparent background.</ll-item-description>
+        </ll-item-content>
+        <ll-item-actions><ll-button variant="outline" size="sm">Open</ll-button></ll-item-actions>
+      </ll-item>
+      <ll-item variant="muted">
+        <ll-item-content>
+          <ll-item-title>Muted Variant</ll-item-title>
+          <ll-item-description>Subdued appearance with muted colors for secondary content.</ll-item-description>
+        </ll-item-content>
+        <ll-item-actions><ll-button variant="outline" size="sm">Open</ll-button></ll-item-actions>
+      </ll-item>
+    </view>
+
+    <view class="sub-h3">Icon</view>
+    <view class="sec-desc">shadcn's `item-icon`: `ItemMedia variant="icon"` sets a glyph in a square of its own at the start of the row.</view>
+    <view class="stack">
+      <ll-item variant="outline">
+        <ll-item-media variant="icon"><ll-icon name="lock" size="{{16}}" /></ll-item-media>
+        <ll-item-content>
+          <ll-item-title>Security Alert</ll-item-title>
+          <ll-item-description>New login detected from unknown device.</ll-item-description>
+        </ll-item-content>
+        <ll-item-actions><ll-button size="sm" variant="outline">Review</ll-button></ll-item-actions>
+      </ll-item>
+    </view>
+
+    <view class="sub-h3">Image</view>
+    <view class="sec-desc">shadcn's `item-image`: a list of tracks, each a link row with a small picture (`variant="image"`), a title with the album in muted type, the artist below and the running time at the far end. The pictures are doodles, pasted in a little crooked; the original's `role="listitem"` is not needed, the group already makes each link one.</view>
+    <view class="stack">
+      <ll-item-group custom-style="gap:16rpx">
+        <ll-item variant="outline" link wx:for="{{music}}" wx:key="title">
+          <ll-item-media variant="image">
+            <ll-empty-media variant="default" doodle="{{item.doodle}}" size="{{36}}" />
+          </ll-item-media>
+          <ll-item-content>
+            <ll-item-title custom-style="display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:1">{{item.title}} - <text class="muted">{{item.album}}</text></ll-item-title>
+            <ll-item-description>{{item.artist}}</ll-item-description>
+          </ll-item-content>
+          <ll-item-content custom-style="flex:none;text-align:center">
+            <ll-item-description>{{item.duration}}</ll-item-description>
+          </ll-item-content>
+        </ll-item>
+      </ll-item-group>
+    </view>
+
+    <view class="sub-h3">Avatar</view>
+    <view class="sec-desc">shadcn's `item-avatar`: a single face with a round invite button, and a stack of faces (the first two hide below `sm`) beside an invite text button. Faces are initials on marker; the photographs of the original are left out.</view>
+    <view class="stack">
+      <ll-item variant="outline">
+        <ll-item-media>
+          <ll-avatar custom-style="width:80rpx;height:80rpx"><ll-avatar-fallback name="Evil Rabbit">ER</ll-avatar-fallback></ll-avatar>
+        </ll-item-media>
+        <ll-item-content>
+          <ll-item-title>Evil Rabbit</ll-item-title>
+          <ll-item-description>Last seen 5 months ago</ll-item-description>
+        </ll-item-content>
+        <ll-item-actions>
+          <ll-button size="icon-sm" variant="outline" shape="pill" aria-label="Invite"><ll-icon name="plus" size="{{16}}" /></ll-button>
+        </ll-item-actions>
+      </ll-item>
+      <ll-item variant="outline">
+        <ll-item-media>
+          <view class="avatar-stack">
+            <ll-avatar custom-style="width:40rpx;height:40rpx"><ll-avatar-fallback name="CN" custom-style="font-size:20rpx">CN</ll-avatar-fallback></ll-avatar>
+            <ll-avatar custom-style="width:40rpx;height:40rpx"><ll-avatar-fallback name="LR" custom-style="font-size:20rpx">LR</ll-avatar-fallback></ll-avatar>
+            <ll-avatar custom-style="width:40rpx;height:40rpx"><ll-avatar-fallback name="ER" custom-style="font-size:20rpx">ER</ll-avatar-fallback></ll-avatar>
+          </view>
+        </ll-item-media>
+        <ll-item-content>
+          <ll-item-title>No Team Members</ll-item-title>
+          <ll-item-description>Invite your team to collaborate on this project.</ll-item-description>
+        </ll-item-content>
+        <ll-item-actions><ll-button size="sm" variant="outline">Invite</ll-button></ll-item-actions>
+      </ll-item>
+    </view>
+
+    <view class="sub-h3">Group with separators</view>
+    <view class="sec-desc">shadcn's `item-group`: ItemGroup makes the rows a list and ItemSeparator draws the pencil line between them (the last row has none). Nothing here is an svg per row.</view>
+    <view class="stack">
+      <ll-item-group>
+        <block wx:for="{{people}}" wx:key="username" wx:for-item="person" wx:for-index="pidx">
+          <ll-item>
+            <ll-item-media>
+              <ll-avatar><ll-avatar-fallback name="{{person.username}}">{{person.initial}}</ll-avatar-fallback></ll-avatar>
+            </ll-item-media>
+            <ll-item-content custom-style="gap:8rpx">
+              <ll-item-title>{{person.username}}</ll-item-title>
+              <ll-item-description>{{person.email}}</ll-item-description>
+            </ll-item-content>
+            <ll-item-actions>
+              <ll-button variant="ghost" size="icon" shape="pill" aria-label="Add {{person.username}}"><ll-icon name="plus" size="{{16}}" /></ll-button>
+            </ll-item-actions>
+          </ll-item>
+          <ll-item-separator wx:if="{{pidx < people.length - 1}}" />
+        </block>
+      </ll-item-group>
+    </view>
+
+    <view class="sub-h3">Header</view>
+    <view class="sec-desc">shadcn's `item-header`: ItemHeader takes the first, full-width line of a row, so a picture sits above the words. Three cards in a grid; the photographs of the original are doodles here.</view>
+    <view class="stack">
+      <ll-item-group custom-style="display:grid;grid-template-columns:repeat(3,1fr);gap:24rpx">
+        <ll-item variant="outline" wx:for="{{models}}" wx:key="name">
+          <ll-item-header>
+            <view class="model-pic">
+              <ll-empty-media variant="default" doodle="{{item.doodle}}" size="{{64}}" />
+            </view>
+          </ll-item-header>
+          <ll-item-content>
+            <ll-item-title>{{item.name}}</ll-item-title>
+            <ll-item-description>{{item.description}}</ll-item-description>
+          </ll-item-content>
+        </ll-item>
+      </ll-item-group>
+    </view>
+
+    <view class="sub-h3">In a dropdown</view>
+    <view class="sec-desc">shadcn's `item-dropdown`: each menu row is an Item (`className="p-0"` on the menu item, `p-2` on the Item), so a menu can show a face, a name and a line of detail. Arrow keys and typeahead still belong to the menu.</view>
+    <view class="center">
+      <ll-dropdown-menu width="{{288}}" align="end" open="{{ddOpen}}" bind:change="onDdChange" aria-label="Toggle menu">
+        <view slot="trigger">
+          <ll-button variant="outline" size="sm" custom-style="width:fit-content">Select <ll-icon name="chevron-down" size="{{14}}" /></ll-button>
+        </view>
+        <ll-dropdown-menu-item custom-style="padding:0" wx:for="{{people}}" wx:key="username" data-name="{{item.username}}" bind:select="onPick">
+          <ll-item size="sm" custom-style="width:100%;padding:16rpx">
+            <ll-item-media>
+              <ll-avatar custom-style="width:64rpx;height:64rpx"><ll-avatar-fallback name="{{item.username}}">{{item.initial}}</ll-avatar-fallback></ll-avatar>
+            </ll-item-media>
+            <ll-item-content custom-style="gap:4rpx">
+              <ll-item-title>{{item.username}}</ll-item-title>
+              <ll-item-description>{{item.email}}</ll-item-description>
+            </ll-item-content>
+          </ll-item>
+        </ll-dropdown-menu-item>
+      </ll-dropdown-menu>
+    </view>
+
+    <view class="sub-h3">Links</view>
+    <view class="sec-desc">shadcn's `item-link`: `asChild` turns the row into a link. The row gets the highlighter swipe on hover and a focus outline; an external link carries `target="_blank"` and `rel`.</view>
+    <view class="stack">
+      <ll-item link>
+        <ll-item-content>
+          <ll-item-title>Visit our documentation</ll-item-title>
+          <ll-item-description>Learn how to get started with our components.</ll-item-description>
+        </ll-item-content>
+        <ll-item-actions><ll-icon name="chevron-right" size="{{16}}" /></ll-item-actions>
+      </ll-item>
+      <ll-item variant="outline" link>
+        <ll-item-content>
+          <ll-item-title>External resource</ll-item-title>
+          <ll-item-description>Opens in a new tab with security attributes.</ll-item-description>
+        </ll-item-content>
+        <ll-item-actions><ll-icon name="globe" size="{{16}}" /></ll-item-actions>
+      </ll-item>
+    </view>
+  </view>
+</view>

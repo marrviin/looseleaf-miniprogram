@@ -1,0 +1,13 @@
+<!-- ll-button-group-text — a printed cell; the ink is the button-group-text
+     recipe (paper-shade wash under an ink box). -->
+<view
+  class="ll-button-group-text ll-class"
+  style="{{customStyle}}"
+  aria-label="{{ariaLabel}}"
+  bindtouchstart="__inkTouchStart"
+  bindtouchend="__inkTouchEnd"
+  bindtouchcancel="__inkTouchEnd"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}};{{trimStyle}}" />
+  <view class="ll-button-group-text__content"><slot /></view>
+</view>

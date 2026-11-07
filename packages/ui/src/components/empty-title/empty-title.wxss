@@ -1,0 +1,10 @@
+/* ll-empty-title — font-script text-[1.65rem] leading-none font-semibold.
+   1.65rem = 26.4px x .75 (script size-adjust) x 2 = 39.6 → 40rpx */
+/* @ll-import tokens */
+.ll-empty-title {
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 40rpx;
+  font-weight: 700;
+  line-height: 1;
+  color: inherit;
+}

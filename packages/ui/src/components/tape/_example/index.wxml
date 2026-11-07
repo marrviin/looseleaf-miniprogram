@@ -1,0 +1,60 @@
+<!-- ll-tape demo — mirrors the upstream docs page (#/components/tape). -->
+<view class="demo">
+  <view class="demo-title">Tape</view>
+  <view class="sec-desc">A strip of masking, washi, kraft or cellophane tape, drawn: translucent, with slit lines along its edges, crinkles and torn or pinked ends. Stick it across a corner, use it as a label, or let Paper place it for you.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Kinds</view>
+    <view class="sec-desc">Crepe masking tape, four printed washi patterns, gummed kraft and nearly invisible cellophane. Every strip has slit lines along its edges and crinkles where it was pressed down.</view>
+    <view class="kind-grid">
+      <view class="kind-cell" wx:for="{{kinds}}" wx:key="*this">
+        <ll-tape kind="{{item}}" length="{{110}}" height="{{26}}" seed="{{item}}" />
+        <view class="kind-name">{{item}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Holding a card</view>
+    <view class="sec-desc">Tape is placed with className, like any element: absolute, a little outside the sheet, turned. The strip's own angle is seeded and never more than a few degrees.</view>
+    <view class="stack">
+      <ll-paper class="taped-card" stock="index-card" seed="taped" custom-style="width:576rpx;min-height:240rpx;margin:48rpx auto 0;padding:28rpx 48rpx 32rpx;box-sizing:border-box;">
+        <view class="prop-abs" style="top:-16rpx;left:-56rpx;">
+          <ll-tape kind="washi-stripes" angle="{{-36}}" seed="l" />
+        </view>
+        <view class="prop-abs" style="top:-16rpx;right:-56rpx;">
+          <ll-tape kind="washi-zigzag" angle="{{34}}" seed="r" />
+        </view>
+        <view class="taped-title">Taped at an angle</view>
+        <view class="taped-body">Two strips of washi, no pins.</view>
+      </ll-paper>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Ends and sizes</view>
+    <view class="sec-desc">Tear it, pink it, cut it straight. Any length and width; the middle stretches, the ends keep their teeth.</view>
+    <view class="stack">
+      <view class="strip-cell" wx:for="{{strips}}" wx:key="label">
+        <ll-tape kind="{{item.kind}}" ends="{{item.ends}}" length="{{item.length}}" height="{{item.height}}" color="{{item.color}}" seed="{{item.label}}" />
+        <view class="kind-name">{{item.label}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">A label on tape</view>
+    <view class="sec-desc">Write on it: put the tape behind a line of text. The strip is decoration, so the label is real text a screen reader reads.</view>
+    <view class="stack row--wrap" style="flex-direction:row;flex-wrap:wrap;gap:64rpx;">
+      <view class="label-wrap" wx:for="{{labels}}" wx:key="text">
+        <view class="prop-abs" style="inset:0;">
+          <ll-tape kind="{{item.kind}}" length="{{132}}" height="{{32}}" seed="{{item.text}}" />
+        </view>
+        <view class="label-text">{{item.text}}</view>
+      </view>
+    </view>
+  </view>
+</view>

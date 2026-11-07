@@ -1,0 +1,16 @@
+/* ll-typing-indicator — a fixed 56×24 (dots) / 80×24 (squiggle) box, inline;
+   the drawing is one SVG data URI on the art layer, bleeding -pad px so the
+   pencil's tilt and stroke overhang stay visible. All motion is SMIL inside
+   the SVG (CSS can't reach a background image). */
+/* @ll-import tokens */
+.ll-typing-indicator {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+.ll-typing-indicator__art {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

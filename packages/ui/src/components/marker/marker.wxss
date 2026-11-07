@@ -1,0 +1,20 @@
+/* ll-marker — upstream markerVariants: flex row, min-h-4, gap-2, hand font,
+   small muted print; `border` pads for the line under the words. */
+/* @ll-import tokens */
+.ll-marker {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16rpx; /* gap-2 */
+  width: 100%;
+  min-height: 32rpx; /* min-h-4 */
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 25rpx; /* text-sm 14px x0.88 */
+  line-height: 1.4;
+  color: #4a433c; /* --muted-foreground */
+  text-align: left;
+}
+
+.ll-marker--border {
+  padding-bottom: 24rpx; /* pb-3 */
+}

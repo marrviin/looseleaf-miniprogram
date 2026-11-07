@@ -1,0 +1,8 @@
+<!-- ll-item-media — the icon well draws its ruled box as a ::before mask
+     (--ll-it-m set inline); photos lean ±1deg/0.8deg by row parity. -->
+<view
+  class="ll-item-media ll-item-media--{{v}} {{hasDesc ? 'll-item-media--desc' : ''}} {{v === 'image' ? (idx % 2 === 0 ? 'll-item-media--odd' : 'll-item-media--even') : ''}} ll-class"
+  style="{{rootStyle}};{{customStyle}}"
+>
+  <slot />
+</view>

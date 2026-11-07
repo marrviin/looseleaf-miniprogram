@@ -1,0 +1,13 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-sticky-note": "../sticky-note/sticky-note",
+    "ll-sticky-note-title": "../sticky-note-title/sticky-note-title",
+    "ll-sticky-note-content": "../sticky-note-content/sticky-note-content",
+    "ll-sticky-note-footer": "../sticky-note-footer/sticky-note-footer",
+    "ll-card": "../card/card",
+    "ll-card-header": "../card-header/card-header",
+    "ll-card-title": "../card-title/card-title",
+    "ll-card-content": "../card-content/card-content"
+  }
+}

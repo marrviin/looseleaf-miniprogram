@@ -1,0 +1,46 @@
+/* ll-empty-media — mb-2 flex shrink-0 items-center justify-center. */
+/* @ll-import tokens */
+.ll-empty-media {
+  margin-bottom: 16rpx; /* mb-2 */
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+}
+.ll-empty-media--icon {
+  position: relative;
+}
+
+/* the 44px slip of paper the icon sits on (upstream size-11, icon 24px) */
+.ll-empty-media__tile {
+  position: relative;
+  display: flex;
+  width: 88rpx; /* size-11 */
+  height: 88rpx;
+  align-items: center;
+  justify-content: center;
+}
+.ll-empty-media__tile ll-icon {
+  position: relative;
+  z-index: 1; /* the icon rides above the ink layer (badge's __content pattern) */
+}
+
+/* Stubby / doodle: box is the drawing's own size, background bleeds -pad px */
+.ll-empty-media__art {
+  flex-shrink: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+}
+
+/* ink overlay — common/ink.js draws the recipe at the element's real size and
+   injects an SVG data-URI background plus `inset: -<pad>px` inline, keeping
+   the hand-drawn stroke overhang visible. */
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

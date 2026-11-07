@@ -1,0 +1,11 @@
+/* ll-index-card-header — upstream IndexCardHeader: h-[49px] shrink-0
+   items-end justify-between gap-3 pb-1.5 (title sits above the red rule). */
+.ll-index-card-header {
+  display: flex;
+  height: 98rpx; /* h-[49px] */
+  flex-shrink: 0;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24rpx; /* gap-3 */
+  padding-bottom: 12rpx; /* pb-1.5 */
+}

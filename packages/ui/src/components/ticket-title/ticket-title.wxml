@@ -1,0 +1,2 @@
+<!-- ll-ticket-title -->
+<view class="ll-ticket-title" style="{{customStyle}}"><slot /></view>

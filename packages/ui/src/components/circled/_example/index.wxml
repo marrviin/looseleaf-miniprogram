@@ -1,0 +1,54 @@
+<!-- ll-circled demo — mirrors the upstream docs page (#/components/circled). -->
+<view class="demo">
+  <view class="demo-title">Circled</view>
+  <view class="sec-desc">A hand loop around real words: a circle, a box or a pair of brackets, drawn once over the whole phrase.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">A loop around a word. It overshoots where it started, like a hand that did not quite stop.</view>
+    <view class="stack">
+      <view class="para">We agreed to ship the first draft before <ll-circled text="Friday" tone="red" custom-style="margin:0 16rpx" />, so please reply today with the numbers.</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Shapes and pens</view>
+    <view class="sec-desc">A circle, a box and a pair of brackets; ink, blue, red and a brush pen.</view>
+    <view class="stack loose">
+      <view class="para loose">A <ll-circled text="circle" custom-style="margin:0 12rpx" />, a <ll-circled text="box" shape="box" custom-style="margin:0 12rpx" />, and <ll-circled text="a pair of brackets" shape="brackets" custom-style="margin:0 16rpx" /> around a phrase.</view>
+      <view class="pens-row">
+        <view><ll-circled text="blue felt" tone="blue" /></view>
+        <view><ll-circled text="red felt" tone="red" /></view>
+        <view><ll-circled text="pencil" tone="pencil" /></view>
+        <view><ll-circled text="brush pen" tone="red" weight="brush" /></view>
+      </view>
+    </view>
+
+    <view class="sub-h3">The answer key</view>
+    <view class="sec-desc">Mark the right answer, written on with the pen. The circle is decoration: the answer is also given in words.</view>
+    <view class="stack">
+      <view class="quiz-script">Which of these is a fine-liner?</view>
+      <view class="quiz-list">
+        <view>a) A chisel-tip marker</view>
+        <view><ll-circled text="b) A 0.4 mm felt pen" animate show="{{showAnswer}}" tone="red" /></view>
+        <view>c) A stick of graphite</view>
+      </view>
+      <ll-button variant="outline" size="sm" custom-style="align-self:flex-start" bind:tap="onToggleAnswer">{{showAnswer ? 'Hide the answer (b)' : 'Show the answer'}}</ll-button>
+    </view>
+
+    <view class="sub-h3">A word in a title, and bleed</view>
+    <view class="sec-desc">The loop hugs one line of writing: a short word in a display title keeps clear of the lines above and below. bleed sets how far it stands off.</view>
+    <view class="stack">
+      <view class="title-script">Good to see <ll-circled text="you" tone="blue" /> again</view>
+      <view class="sec-desc" style="margin-bottom:0">Sign in with your email and the password you keep in your head.</view>
+      <view class="bleed-row">
+        <view><ll-circled text="bleed 0" bleed="0" /></view>
+        <view><ll-circled text="bleed 2, the default" /></view>
+        <view><ll-circled text="bleed 7" bleed="7" tone="red" /></view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-marker": "../marker/marker",
+    "ll-marker-content": "../marker-content/marker-content",
+    "ll-marker-icon": "../marker-icon/marker-icon",
+    "ll-icon": "../icon/icon"
+  }
+}

@@ -1,0 +1,60 @@
+/* ll-navigation-menu-link */
+/* @ll-import tokens */
+
+/* — InPanel row (upstream InPanel link: flex flex-col gap-1 p-2 font-hand
+     text-base; data-[active]:ll-swipe) — */
+.ll-navigation-menu-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx; /* gap-1 */
+  padding: 16rpx; /* p-2 */
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 28rpx; /* text-base x .88 */
+  color: inherit;
+  border-radius: 6rpx 16rpx 8rpx 18rpx / 16rpx 6rpx 18rpx 8rpx;
+  transition: all 160ms ease;
+}
+.ll-navigation-menu-row--active {
+  background-color: var(--ll-hi-select);
+  color: var(--ll-selection-text);
+  border-radius: 6rpx 16rpx 8rpx 18rpx / 16rpx 6rpx 18rpx 8rpx;
+}
+
+/* — Strip tab (same NavTab styles as the trigger; styleIsolation keeps the
+     chunks per-component, so the tab base is repeated here) — */
+.ll-navigation-menu-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx; /* gap-1 */
+  height: 72rpx; /* h-9 */
+  padding: 16rpx 32rpx; /* px-4 py-2 */
+  font-size: 30rpx; /* text-[15px] */
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--ll-foreground, #1c1917);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  z-index: 0;
+  isolation: isolate;
+  transition: transform var(--ll-dur-hover, 160ms) var(--ll-ease-settle, ease), color var(--ll-dur-hover, 160ms) var(--ll-ease-settle, ease);
+}
+.ll-navigation-menu-tab--open {
+  transform: translateY(-4rpx); /* -translate-y-0.5 (selected lift) */
+}
+.ll-navigation-menu-tab__content {
+  position: relative;
+  z-index: 1;
+}
+/* ink overlay — see navigation-menu-trigger.wxss */
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

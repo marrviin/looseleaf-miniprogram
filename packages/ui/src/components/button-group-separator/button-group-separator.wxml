@@ -1,0 +1,11 @@
+<!-- ll-button-group-separator — a real ll-separator stretched to the group;
+     m-0, cross-axis auto so the group's items-stretch sizes it. -->
+<view class="ll-button-group-separator ll-class" style="{{customStyle}}">
+  <ll-separator
+    variant="{{v}}"
+    orientation="{{o}}"
+    decorative="{{decorative}}"
+    aria-label="{{ariaLabel}}"
+    custom-style="margin:0;{{o === 'vertical' ? 'height:auto' : 'width:auto'}}"
+  />
+</view>

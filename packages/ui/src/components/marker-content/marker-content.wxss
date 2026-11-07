@@ -1,0 +1,24 @@
+/* ll-marker-content — upstream MarkerContent classes. */
+/* @ll-import tokens */
+.ll-marker-content {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+/* group-data-[variant=separator]: flex-none, centered, script, text-xl. */
+.ll-marker-content--separator {
+  flex: none;
+  text-align: center;
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 35rpx; /* text-xl 20px x0.88 */
+  line-height: 1; /* leading-none */
+}
+
+/* group-data-[tone=new]: ll-swipe — highlighter swipe behind bold words. */
+.ll-marker-content--new {
+  padding: 0 16rpx; /* px-2 */
+  font-weight: 700;
+  background-color: rgba(248, 220, 76, 0.62); /* --ll-hi-select */
+  color: #2a2420; /* --ll-selection-text */
+  border-radius: 3px 8px 4px 9px / 8px 3px 9px 4px;
+}

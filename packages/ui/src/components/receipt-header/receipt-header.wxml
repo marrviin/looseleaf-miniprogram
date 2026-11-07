@@ -1,0 +1,2 @@
+<!-- ll-receipt-header -->
+<view class="ll-receipt-header" style="{{customStyle}}"><slot /></view>

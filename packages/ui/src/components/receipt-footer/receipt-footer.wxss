@@ -1,0 +1,8 @@
+/* ll-receipt-footer — text-center text-xs text-muted-foreground */
+/* @ll-import tokens */
+
+.ll-receipt-footer {
+  font-size: 18rpx; /* text-xs 11px x .82 */
+  text-align: center;
+  color: var(--muted-foreground);
+}

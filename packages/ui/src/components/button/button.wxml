@@ -15,7 +15,7 @@
   bindtouchend="__inkTouchEnd"
   bindtouchcancel="__inkTouchEnd"
 >
-  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-ink-layer" style="{{inkStyle}};{{trimStyle}}" />
   <view class="ll-button__content"><slot /></view>
 </button>
 <button
@@ -24,6 +24,6 @@
   style="{{customStyle}}"
   disabled
 >
-  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-ink-layer" style="{{inkStyle}};{{trimStyle}}" />
   <view class="ll-button__content"><slot /></view>
 </button>

@@ -1,0 +1,29 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-item": "../item/item",
+    "ll-item-group": "../item-group/item-group",
+    "ll-item-media": "../item-media/item-media",
+    "ll-item-content": "../item-content/item-content",
+    "ll-item-title": "../item-title/item-title",
+    "ll-item-description": "../item-description/item-description",
+    "ll-item-actions": "../item-actions/item-actions",
+    "ll-item-header": "../item-header/item-header",
+    "ll-item-footer": "../item-footer/item-footer",
+    "ll-item-separator": "../item-separator/item-separator",
+    "ll-button": "../button/button",
+    "ll-icon": "../icon/icon",
+    "ll-badge": "../badge/badge",
+    "ll-card": "../card/card",
+    "ll-card-header": "../card-header/card-header",
+    "ll-card-title": "../card-title/card-title",
+    "ll-card-description": "../card-description/card-description",
+    "ll-card-content": "../card-content/card-content",
+    "ll-avatar": "../avatar/avatar",
+    "ll-avatar-fallback": "../avatar-fallback/avatar-fallback",
+    "ll-kbd": "../kbd/kbd",
+    "ll-empty-media": "../empty-media/empty-media",
+    "ll-dropdown-menu": "../dropdown-menu/dropdown-menu",
+    "ll-dropdown-menu-item": "../dropdown-menu-item/dropdown-menu-item"
+  }
+}

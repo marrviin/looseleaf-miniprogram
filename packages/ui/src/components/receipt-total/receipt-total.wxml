@@ -1,0 +1,9 @@
+<!-- ll-receipt-total — label left, the amount (slot) right; when circled
+     the ink layer overhangs the amount box (recipe pad 14). -->
+<view class="ll-receipt-total" style="{{customStyle}}">
+  <text class="ll-receipt-total-label">{{label}}</text>
+  <view class="ll-receipt-total-amount">
+    <view wx:if="{{circledOn}}" class="ll-receipt-total-ink" style="{{inkStyle}}" />
+    <slot />
+  </view>
+</view>

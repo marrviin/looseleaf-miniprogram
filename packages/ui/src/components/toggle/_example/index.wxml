@@ -1,0 +1,88 @@
+<!-- ll-toggle demo — mirrors the upstream docs page (#/components/toggle). -->
+<view class="demo">
+  <view class="demo-title">Toggle</view>
+  <view class="sec-desc">A two-state button that stays down: a whisper of pencil box at rest, and a highlighter body that snaps into register when it is on. Same Radix behavior and variants as shadcn.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Variants</view>
+    <view class="sec-desc">Default is a whisper of pencil that becomes a highlighted, boxed button when it is on. Outline keeps its ink box the whole time. Icon-only toggles need an aria-label.</view>
+    <view class="stack stack--loose">
+      <view class="row row--wrap">
+        <ll-toggle aria-label="Show hidden pages"><ll-icon name="eye" size="{{16}}" /></ll-toggle>
+        <ll-toggle pressed aria-label="Show hidden pages, on"><ll-icon name="eye" size="{{16}}" /></ll-toggle>
+        <ll-toggle><ll-icon name="bell" size="{{16}}" /><text>Watch</text></ll-toggle>
+        <ll-toggle pressed><ll-icon name="bell" size="{{16}}" /><text>Watching</text></ll-toggle>
+      </view>
+      <view class="row row--wrap">
+        <ll-toggle variant="outline" aria-label="Show hidden pages"><ll-icon name="eye" size="{{16}}" /></ll-toggle>
+        <ll-toggle variant="outline" pressed aria-label="Show hidden pages, on"><ll-icon name="eye" size="{{16}}" /></ll-toggle>
+        <ll-toggle variant="outline"><ll-icon name="bell" size="{{16}}" /><text>Watch</text></ll-toggle>
+        <ll-toggle variant="outline" pressed><ll-icon name="bell" size="{{16}}" /><text>Watching</text></ll-toggle>
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Sizes, tones and disabled</view>
+    <view class="sec-desc">Three heights, the terracotta marker for a louder switch, and disabled toggles: a dashed pencil box, and a pale wash if it is on.</view>
+    <view class="stack stack--loose">
+      <view class="row row--wrap">
+        <ll-toggle variant="outline" size="sm" pressed aria-label="List, small"><ll-icon name="list" size="{{16}}" /></ll-toggle>
+        <ll-toggle variant="outline" pressed aria-label="List"><ll-icon name="list" size="{{16}}" /></ll-toggle>
+        <ll-toggle variant="outline" size="lg" pressed aria-label="List, large"><ll-icon name="list" size="{{16}}" /></ll-toggle>
+        <ll-toggle variant="outline" size="lg" tone="marker" pressed><ll-icon name="pencil" size="{{16}}" /><text>Draw</text></ll-toggle>
+      </view>
+      <view class="row row--wrap">
+        <ll-toggle disabled><ll-icon name="eye-off" size="{{16}}" /><text>Hidden</text></ll-toggle>
+        <ll-toggle disabled pressed><ll-icon name="eye-off" size="{{16}}" /><text>Hidden</text></ll-toggle>
+        <ll-toggle variant="outline" disabled><text>Locked</text></ll-toggle>
+        <ll-toggle variant="outline" disabled pressed><text>Locked</text></ll-toggle>
+      </view>
+    </view>
+
+    <view class="sub-h3">A follow button</view>
+    <view class="sec-desc">A controlled toggle: the state lives in your component, the label says what pressing does, and a status line says what happened, so nothing depends on the highlighter.</view>
+    <view class="card">
+      <view class="card-title">Field notes</view>
+      <view class="card-desc">Sketches, half-thoughts and pressed flowers, twice a month.</view>
+      <view class="row row--wrap card-body">
+        <ll-toggle variant="outline" pressed="{{following}}" bind:change="onFollow" aria-label="Follow Field notes">
+          <ll-icon name="bell" size="{{16}}" /><text>{{following ? 'Following' : 'Follow'}}</text>
+        </ll-toggle>
+        <ll-toggle pressed="{{muted}}" disabled="{{!following}}" bind:change="onMute" aria-label="Mute new posts">
+          <ll-icon name="eye-off" size="{{16}}" /><text>Mute</text>
+        </ll-toggle>
+      </view>
+      <view class="card-status">{{status}}</view>
+    </view>
+
+    <view class="sub-h3">Demo</view>
+    <view class="sec-desc">Official `toggle-demo`: a small outline toggle with a bookmark and a word. shadcn fills the bookmark blue when it is on; this one keeps its highlighter body and writes the bookmark in blue felt tip, because a drawn line has no fill to change. Space or Enter toggles it.</view>
+    <ll-toggle size="sm" variant="outline" pressed="{{bookmarked}}" bind:change="onBookmark" aria-label="Toggle bookmark" custom-style="{{bookmarked ? 'color:var(--ll-ink-you);' : ''}}">
+      <ll-icon name="bookmark" size="{{16}}" /><text>Bookmark</text>
+    </ll-toggle>
+
+    <view class="sub-h3">Disabled</view>
+    <view class="sec-desc">Official `toggle-disabled`: an icon-only toggle with `disabled`. It is drawn as a dashed pencil-gray box and takes no pointer or keyboard. (The original's label says "italic" on an underline; this one says what it shows.)</view>
+    <ll-toggle disabled aria-label="Toggle underline"><ll-icon name="underline" size="{{16}}" /></ll-toggle>
+
+    <view class="sub-h3">Large</view>
+    <view class="sec-desc">Official `toggle-lg`: `size="lg"`, 40 px tall (36 in compact density, 32 in calm), for touch-first toolbars.</view>
+    <ll-toggle size="lg" aria-label="Toggle italic"><ll-icon name="italic" size="{{16}}" /></ll-toggle>
+
+    <view class="sub-h3">Outline</view>
+    <view class="sec-desc">Official `toggle-outline`: `variant="outline"` keeps a felt-tip box around the toggle whether it is on or off; the default variant is only a whisper of pencil until it is pressed.</view>
+    <ll-toggle variant="outline" aria-label="Toggle italic"><ll-icon name="italic" size="{{16}}" /></ll-toggle>
+
+    <view class="sub-h3">Small</view>
+    <view class="sec-desc">Official `toggle-sm`: `size="sm"`, 32 px tall, for dense toolbars.</view>
+    <ll-toggle size="sm" aria-label="Toggle italic"><ll-icon name="italic" size="{{16}}" /></ll-toggle>
+
+    <view class="sub-h3">With text</view>
+    <view class="sec-desc">Official `toggle-with-text`: an icon and a word. With a visible word the toggle needs no `aria-label`, and the highlighter body stretches to fit both.</view>
+    <ll-toggle><ll-icon name="italic" size="{{16}}" /><text>Italic</text></ll-toggle>
+  </view>
+</view>

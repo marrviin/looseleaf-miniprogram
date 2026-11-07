@@ -1,0 +1,14 @@
+/* ll-button-group — flex w-fit items-stretch (row) / flex-col (vertical);
+   nested groups get a gap (upstream has-[button-group]:gap-2) */
+/* @ll-import tokens */
+.ll-button-group {
+  display: flex;
+  width: fit-content;
+  align-items: stretch;
+}
+.ll-button-group--vertical {
+  flex-direction: column;
+}
+.ll-button-group--nested {
+  gap: 16rpx; /* gap-2 */
+}

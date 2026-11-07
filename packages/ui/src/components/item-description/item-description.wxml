@@ -1,0 +1,4 @@
+<!-- ll-item-description -->
+<view class="ll-item-description ll-class" style="{{customStyle}}">
+  <slot />
+</view>

@@ -1,0 +1,9 @@
+/* ll-item-content */
+/* @ll-import tokens */
+.ll-item-content {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 8rpx; /* gap-1 */
+}

@@ -1,0 +1,4 @@
+/* ll-index-card-content — upstream IndexCardContent: flex-1. */
+.ll-index-card-content {
+  flex: 1;
+}

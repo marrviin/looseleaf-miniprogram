@@ -1,0 +1,4 @@
+<!-- ll-item-header -->
+<view class="ll-item-header ll-class" style="{{customStyle}}">
+  <slot />
+</view>

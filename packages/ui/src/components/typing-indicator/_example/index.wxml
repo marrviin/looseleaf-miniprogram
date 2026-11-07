@@ -1,0 +1,42 @@
+<!-- ll-typing-indicator demo — mirrors the upstream docs page
+     (#/components/typing-indicator). 02/03 need Bubble/Message (not ported
+     yet); the active toggle from 02 is shown in a plain box instead. -->
+<view class="demo">
+  <view class="demo-title">Typing indicator</view>
+  <view class="sec-desc">The little animation that says someone is writing: three felt dots popping in one after another with Stubby's pencil hopping back to start again, or a cursive scrawl revealed left to right. Blue felt (`pen="you"`) is the person on the other end.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Three dots and a scrawl</view>
+    <view class="sec-desc">The pencil writes the dots one after another, walks back and starts again. The second variant scrawls a line of cursive instead.</view>
+    <view class="figures">
+      <view class="figure">
+        <ll-typing-indicator seed="dots" />
+        <view class="fig-cap">dots</view>
+      </view>
+      <view class="figure">
+        <ll-typing-indicator variant="squiggle" seed="scrawl" />
+        <view class="fig-cap">scrawl</view>
+      </view>
+      <view class="figure">
+        <ll-typing-indicator pen="you" pencil="{{false}}" seed="you" />
+        <view class="fig-cap">blue felt, no pencil</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Active toggle</view>
+    <view class="sec-desc">Upstream puts the indicator inside a chat Bubble (and a Message row with an avatar) — those are not ported yet, so the box here is plain. What matters is the toggle: the region stays mounted and exposed (upstream hides it with sr-only, never display:none) and `active` flips, so assistive tech hears the label change.</view>
+    <view class="col col-4">
+      <view class="plain-box">
+        <ll-typing-indicator active="{{typing}}" label="Stubby is typing" seed="ti" />
+      </view>
+      <view>
+        <ll-button variant="ghost" size="sm" bind:tap="onToggle">{{typing ? 'Stop typing' : 'Start typing'}}</ll-button>
+      </view>
+    </view>
+  </view>
+</view>

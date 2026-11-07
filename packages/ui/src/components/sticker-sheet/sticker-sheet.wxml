@@ -1,0 +1,59 @@
+<!-- ll-sticker-sheet — the backing paper (ll-paper stock) carries a print
+     layer (dashed cut border + registration marks), the optional sheen, the
+     title row and the kiss-cut grid. Each cell: the cut outline (kiss svg)
+     under a button holding the sticker face; tapping peels it off (the art
+     flies out, the outline stays), tapping the outline sticks it back;
+     dragging past DRAG_OFF peels too. -->
+<ll-paper
+  ll-class="ll-sticker-sheet ll-sticker-sheet--{{disabled ? 'disabled' : ''}}"
+  stock="{{stock}}"
+  tilt="{{tilt}}"
+  seed="{{seed}}"
+  custom-style="{{customStyle}}"
+  aria-role="group"
+  aria-label="{{title || label}}"
+>
+  <view wx:if="{{tintOn}}" class="ll-sticker-sheet-tint" />
+  <view class="ll-sticker-sheet-print" style="{{inkStyle}}" aria-hidden="{{true}}" />
+  <view wx:if="{{sheenOn}}" class="ll-sticker-sheet-sheen" aria-hidden="{{true}}" />
+  <view wx:if="{{title}}" class="ll-sticker-sheet-head">
+    <view class="ll-sticker-sheet-title">{{title}}</view>
+    <view class="ll-sticker-sheet-count">{{left}} left</view>
+  </view>
+  <view class="ll-sticker-sheet-grid" style="grid-template-columns:repeat({{cols}}, {{cell}}px)">
+    <view
+      wx:for="{{cells}}"
+      wx:key="id"
+      class="ll-sticker-sheet-slot {{item.peeled ? 'll-sticker-sheet-slot--peeled' : ''}} {{item.warm ? 'll-sticker-sheet-slot--warm' : ''}}"
+      style="width:{{cell}}px;height:{{cell}}px"
+      data-idx="{{index}}"
+      catchtouchstart="__onDown"
+      catchtouchmove="__onMove"
+      catchtouchend="__onUp"
+      catchtouchcancel="__onUp"
+    >
+      <image
+        wx:if="{{item.face}}"
+        class="ll-sticker-sheet-cut"
+        src="{{item.cutUri}}"
+        style="left:{{item.artLeft}}px;top:{{item.artTop}}px;width:{{item.artW}}px;height:{{item.artH}}px"
+      />
+      <button
+        wx:if="{{item.face}}"
+        class="ll-sticker-sheet-item"
+        aria-label="{{item.peeled ? (restorable ? 'Put ' + item.label + ' sticker back' : item.label + ' sticker, peeled') : 'Peel ' + item.label + ' sticker'}}"
+        aria-disabled="{{item.peeled && !restorable ? 'true' : ''}}"
+        disabled="{{disabled}}"
+        data-idx="{{index}}"
+        bindtap="__onTap"
+      >
+        <view class="ll-sticker-sheet-art" style="left:{{item.artLeft}}px;top:{{item.artTop}}px;width:{{item.artW}}px;height:{{item.artH}}px">
+          <view class="ll-sticker-sheet-held" style="{{item.dragStyle}}">
+            <image class="ll-sticker-sheet-llimg ll-sticker-sheet-face" src="{{item.faceUri}}" style="width:{{item.artW}}px;height:{{item.artH}}px" />
+            <image wx:if="{{item.flapUri}}" class="ll-sticker-sheet-llimg ll-sticker-sheet-flap" src="{{item.flapUri}}" style="width:{{item.artW}}px;height:{{item.artH}}px" />
+          </view>
+        </view>
+      </button>
+    </view>
+  </view>
+</ll-paper>

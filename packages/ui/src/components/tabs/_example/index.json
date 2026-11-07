@@ -1,0 +1,18 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-tabs": "../tabs/tabs",
+    "ll-tabs-list": "../tabs-list/tabs-list",
+    "ll-tabs-trigger": "../tabs-trigger/tabs-trigger",
+    "ll-tabs-content": "../tabs-content/tabs-content",
+    "ll-card": "../card/card",
+    "ll-card-header": "../card-header/card-header",
+    "ll-card-title": "../card-title/card-title",
+    "ll-card-description": "../card-description/card-description",
+    "ll-card-content": "../card-content/card-content",
+    "ll-card-footer": "../card-footer/card-footer",
+    "ll-input": "../input/input",
+    "ll-button": "../button/button",
+    "ll-icon": "../icon/icon"
+  }
+}

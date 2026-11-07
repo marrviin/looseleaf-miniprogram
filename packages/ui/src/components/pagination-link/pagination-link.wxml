@@ -1,0 +1,9 @@
+<!-- ll-pagination-link — the link chrome is ll-button's ink -->
+<ll-button
+  variant="{{isActive ? 'secondary' : 'ghost'}}"
+  size="{{size}}"
+  disabled="{{disabled}}"
+  aria-label="{{ariaLabel}}"
+  custom-style="{{customStyle}}"
+  bind:tap="onTap"
+><slot /></ll-button>

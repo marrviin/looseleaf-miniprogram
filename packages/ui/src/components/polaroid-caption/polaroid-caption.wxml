@@ -1,0 +1,1 @@
+<view class="ll-polaroid-caption ll-class" style="{{customStyle}}"><slot /></view>

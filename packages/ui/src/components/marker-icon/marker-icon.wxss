@@ -1,0 +1,13 @@
+/* ll-marker-icon — upstream MarkerIcon span: size-4 shrink-0. */
+.ll-marker-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px; /* size-4 */
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.ll-marker-icon--new {
+  color: #c2412d; /* --ll-red */
+}

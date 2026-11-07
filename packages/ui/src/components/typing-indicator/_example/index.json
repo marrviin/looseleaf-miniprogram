@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-typing-indicator": "../typing-indicator/typing-indicator",
+    "ll-button": "../button/button"
+  }
+}

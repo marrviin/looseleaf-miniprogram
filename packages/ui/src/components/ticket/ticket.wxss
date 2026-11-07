@@ -1,0 +1,44 @@
+/* ll-ticket — upstream: relative isolate flex min-h-28 w-full max-w-lg
+   items-stretch text-ink; data-stub=start reverses the row. */
+/* @ll-import tokens */
+
+.ll-ticket {
+  position: relative;
+  isolation: isolate; /* keep the z-index:-1 rotator above page backgrounds */
+  display: flex;
+  align-items: stretch;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 901rpx; /* max-w-lg */
+  min-height: 197rpx; /* min-h-28 */
+  color: var(--ll-ink); /* text-ink */
+}
+.ll-ticket--start {
+  flex-direction: row-reverse; /* stub === 'start' */
+}
+
+/* the ink rotates, the content does not (upstream svg[data-ink=sheet]);
+   z:-1 keeps the sandwich under the slot content (as ll-paper's sheet) */
+.ll-ticket-rot {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* faced ink sandwich — same structure as ll-tag (see common/ink.js). */
+.ll-ink-layer,
+.ll-ink-face,
+.ll-ink-cast {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.ll-ink-layer {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-ink-cast {
+  /* sized/positioned inline; inset:0 doesn't apply */
+  inset: auto;
+}

@@ -1,0 +1,22 @@
+/* ll-breadcrumb-page */
+/* @ll-import tokens */
+.ll-breadcrumb-page {
+  position: relative;
+  isolation: isolate;
+  display: inline-block;
+  padding: 0 4rpx 8rpx; /* upstream px-0.5 pb-1 */
+  font-weight: 700;
+  color: var(--foreground); /* text-foreground */
+}
+.ll-breadcrumb-page__content {
+  position: relative;
+  z-index: 1;
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

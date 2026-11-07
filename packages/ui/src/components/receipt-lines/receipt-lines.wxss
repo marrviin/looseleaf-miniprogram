@@ -1,0 +1,12 @@
+/* ll-receipt-lines — flex flex-col gap-1 border-y border-dashed
+   border-pencil-mark py-2.5 */
+.ll-receipt-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 7rpx; /* gap-1 */
+  box-sizing: border-box;
+  width: 100%;
+  padding: 18rpx 0; /* py-2.5 */
+  border-top: 1px dashed var(--ll-pencil-mark);
+  border-bottom: 1px dashed var(--ll-pencil-mark);
+}

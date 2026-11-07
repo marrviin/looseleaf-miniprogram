@@ -1,0 +1,10 @@
+<!-- ll-button-group — role=group row/column; the children draw everything,
+     the group trims their seam edges via trimStyle clip-paths. -->
+<view
+  class="ll-button-group ll-button-group--{{o}} {{nested ? 'll-button-group--nested' : ''}} ll-class"
+  style="{{customStyle}}"
+  aria-role="group"
+  aria-label="{{ariaLabel}}"
+>
+  <slot />
+</view>

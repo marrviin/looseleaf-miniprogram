@@ -1,0 +1,76 @@
+<!-- ll-napkin demo — mirrors the upstream docs page
+     (#/components/napkin). -->
+<view class="demo">
+  <view class="demo-title">Napkin</view>
+  <view class="sec-desc">A paper napkin to write on: tissue with a pinked edge and a pressed border, folded so it has creases, optionally ringed by a coffee cup. Notes on it are set in the script font, as if in marker.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">A napkin</view>
+    <view class="sec-desc">Folded in four, so it has a crease each way. The edge is pinked and the border pressed into the tissue.</view>
+    <view class="notes-row">
+      <ll-napkin seed="specials" tape="top">
+        <ll-napkin-title>Specials</ll-napkin-title>
+        <ll-napkin-content>soup of the day, a very small pie, and something with pears</ll-napkin-content>
+        <ll-napkin-footer>until six</ll-napkin-footer>
+      </ll-napkin>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+    <view class="sub-h3">Quarter, half, flat</view>
+    <view class="sec-desc">Folded in four, in half with a coffee ring, and unfolded.</view>
+    <view class="notes-row notes-row--loose">
+      <ll-napkin fold="quarter" seed="q" custom-style="width:366rpx;max-width:100%">
+        <ll-napkin-title>Quarter</ll-napkin-title>
+        <ll-napkin-content>a crease each way</ll-napkin-content>
+      </ll-napkin>
+      <ll-napkin fold="half" stain seed="h" custom-style="width:366rpx;max-width:100%">
+        <ll-napkin-title>Half</ll-napkin-title>
+        <ll-napkin-content>and a cup stood here</ll-napkin-content>
+      </ll-napkin>
+      <ll-napkin fold="none" seed="f" custom-style="width:366rpx;max-width:100%">
+        <ll-napkin-title>Flat</ll-napkin-title>
+        <ll-napkin-content>never folded</ll-napkin-content>
+      </ll-napkin>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Ideas on a napkin</view>
+    <view class="sec-desc">Doodles and stickers go on a napkin as on any paper; here a star and a sticker beside the note.</view>
+    <view class="notes-row">
+      <ll-napkin fold="half" stain seed="idea" tilt="{{-1.5}}" custom-style="width:563rpx;min-height:451rpx">
+        <ll-doodle name="star" size="{{56}}" label="star" custom-style="position:absolute;top:21rpx;right:42rpx;z-index:10" />
+        <ll-napkin-title>The idea</ll-napkin-title>
+        <ll-napkin-content>a shop where everything is made of paper, even the till</ll-napkin-content>
+        <ll-napkin-footer>(tell nobody)</ll-napkin-footer>
+        <ll-sticker name="done" size="{{64}}" rotate="{{10}}" label="Done" custom-style="position:absolute;right:-28rpx;bottom:-28rpx;z-index:10" />
+      </ll-napkin>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">A note for the table</view>
+    <view class="sec-desc">A real use: a guest writes a note on the napkin and pins it to the board. The napkin holds a form; its script font is only for what is written.</view>
+    <view class="notes-row">
+      <ll-napkin seed="table" aria-label="Note for the kitchen" custom-style="width:563rpx;min-height:507rpx;gap:21rpx">
+        <ll-napkin-title>{{sent ? 'Sent!' : 'For the kitchen'}}</ll-napkin-title>
+        <ll-napkin-content wx:if="{{sent}}">{{note || '(nothing, but thank you)'}}</ll-napkin-content>
+        <block wx:else>
+          <ll-textarea
+            aria-label="Your note"
+            placeholder="allergies, birthdays, the very small pie..."
+            value="{{note}}"
+            bindinput="onNote"
+            custom-style="min-height:169rpx"
+          />
+          <ll-napkin-footer>
+            <ll-button size="sm" bindtap="onSend">Send it</ll-button>
+          </ll-napkin-footer>
+        </block>
+      </ll-napkin>
+    </view>
+  </view>
+</view>

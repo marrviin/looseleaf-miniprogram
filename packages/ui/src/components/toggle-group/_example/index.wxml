@@ -1,0 +1,176 @@
+<!-- ll-toggle-group demo — mirrors the upstream docs page (#/components/toggle-group).
+     Omitted: 05 "In a field" (Field family not ported yet). -->
+<view class="demo">
+  <view class="demo-title">Toggle Group</view>
+  <view class="sec-desc">A row of toggles that belong together: pick one (alignment) or several (bold, italic, underline). Joined outline items share one hand-drawn box with a pencil seam between them; the highlighter body marks what is on.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Pick one</view>
+    <view class="sec-desc">type=single: one item is on, clicking it again clears it. Joined outline items share one box; the seam between two items is a short pencil stroke at the edge they share.</view>
+    <view class="stack stack--loose">
+      <ll-toggle-group type="single" variant="outline" value="{{align}}" bind:change="onAlign" aria-label="Text alignment">
+        <ll-toggle value="left"><text>Left</text></ll-toggle>
+        <ll-toggle value="center"><text>Center</text></ll-toggle>
+        <ll-toggle value="right"><text>Right</text></ll-toggle>
+      </ll-toggle-group>
+      <view class="sample sample--dashed" style="text-align:{{align}};">Aligned {{align}}, the way the page would be.</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Pick several</view>
+    <view class="sec-desc">type=multiple: any of the items can be on at once, and each one knows its own state. Icon items need names; hand-lettered items are just text in the script font. The sample line follows the group.</view>
+    <view class="stack stack--loose">
+      <view class="row row--wrap">
+        <ll-toggle-group type="multiple" variant="outline" value="{{styles}}" bind:change="onStyles" aria-label="Text style">
+          <ll-toggle value="bold" aria-label="Bold"><ll-icon name="bold" size="{{16}}" /></ll-toggle>
+          <ll-toggle value="italic" aria-label="Italic"><ll-icon name="italic" size="{{16}}" /></ll-toggle>
+          <ll-toggle value="underline" aria-label="Underline"><ll-icon name="underline" size="{{16}}" /></ll-toggle>
+        </ll-toggle-group>
+        <ll-toggle-group type="multiple" variant="outline" tone="marker" value="{{styles}}" bind:change="onStyles" aria-label="Text style, hand-lettered">
+          <ll-toggle value="bold" aria-label="Bold"><text class="script">B</text></ll-toggle>
+          <ll-toggle value="italic" aria-label="Italic"><text class="script script--italic">I</text></ll-toggle>
+          <ll-toggle value="underline" aria-label="Underline"><text class="script script--underline">U</text></ll-toggle>
+        </ll-toggle-group>
+      </view>
+      <view class="sample {{bold ? 'sample--bold' : ''}} {{italic ? 'sample--italic' : ''}} {{underline ? 'sample--underline' : ''}}">The quick brown fox, written down.</view>
+    </view>
+
+    <view class="sub-h3">Joined, separate, vertical</view>
+    <view class="sec-desc">Outline items that touch share one box. Give them spacing and each keeps its own. Borderless items only whisper their seams. Vertical groups stack and use the up and down arrows.</view>
+    <view class="grid-cases">
+      <view class="case">
+        <ll-toggle-group type="single" variant="outline" value="menu" bind:change="noop" aria-label="Joined outline">
+          <ll-toggle value="list" aria-label="List"><ll-icon name="list" size="{{16}}" /></ll-toggle>
+          <ll-toggle value="menu" aria-label="Menu"><ll-icon name="menu" size="{{16}}" /></ll-toggle>
+          <ll-toggle value="search" aria-label="Search"><ll-icon name="search" size="{{16}}" /></ll-toggle>
+        </ll-toggle-group>
+        <text class="case-label">joined</text>
+      </view>
+      <view class="case">
+        <ll-toggle-group type="single" variant="outline" spacing="{{2}}" value="menu" bind:change="noop" aria-label="Separate outline">
+          <ll-toggle value="list" aria-label="List"><ll-icon name="list" size="{{16}}" /></ll-toggle>
+          <ll-toggle value="menu" aria-label="Menu"><ll-icon name="menu" size="{{16}}" /></ll-toggle>
+          <ll-toggle value="search" aria-label="Search"><ll-icon name="search" size="{{16}}" /></ll-toggle>
+        </ll-toggle-group>
+        <text class="case-label">spacing 2</text>
+      </view>
+      <view class="case">
+        <ll-toggle-group type="single" value="menu" bind:change="noop" aria-label="Borderless">
+          <ll-toggle value="list" aria-label="List"><ll-icon name="list" size="{{16}}" /></ll-toggle>
+          <ll-toggle value="menu" aria-label="Menu"><ll-icon name="menu" size="{{16}}" /></ll-toggle>
+          <ll-toggle value="search" aria-label="Search"><ll-icon name="search" size="{{16}}" /></ll-toggle>
+        </ll-toggle-group>
+        <text class="case-label">borderless</text>
+      </view>
+      <view class="case">
+        <ll-toggle-group type="single" variant="outline" tone="marker" size="sm" value="menu" bind:change="noop" aria-label="Marker, small">
+          <ll-toggle value="list" aria-label="List"><ll-icon name="list" size="{{16}}" /></ll-toggle>
+          <ll-toggle value="menu" aria-label="Menu"><ll-icon name="menu" size="{{16}}" /></ll-toggle>
+          <ll-toggle value="search" aria-label="Search"><ll-icon name="search" size="{{16}}" /></ll-toggle>
+        </ll-toggle-group>
+        <text class="case-label">marker, sm</text>
+      </view>
+      <view class="case">
+        <ll-toggle-group type="single" variant="outline" orientation="vertical" value="menu" bind:change="noop" aria-label="Vertical">
+          <ll-toggle value="list" aria-label="List"><ll-icon name="list" size="{{16}}" /></ll-toggle>
+          <ll-toggle value="menu" aria-label="Menu"><ll-icon name="menu" size="{{16}}" /></ll-toggle>
+          <ll-toggle value="search" aria-label="Search"><ll-icon name="search" size="{{16}}" /></ll-toggle>
+        </ll-toggle-group>
+        <text class="case-label">vertical</text>
+      </view>
+      <view class="case">
+        <ll-toggle-group type="single" variant="outline" disabled value="menu" aria-label="Disabled">
+          <ll-toggle value="list" aria-label="List"><ll-icon name="list" size="{{16}}" /></ll-toggle>
+          <ll-toggle value="menu" aria-label="Menu"><ll-icon name="menu" size="{{16}}" /></ll-toggle>
+          <ll-toggle value="search" aria-label="Search"><ll-icon name="search" size="{{16}}" /></ll-toggle>
+        </ll-toggle-group>
+        <text class="case-label">disabled</text>
+      </view>
+    </view>
+
+    <view class="sub-h3">A view switcher</view>
+    <view class="sec-desc">The group in a card header, driving what the card shows. Every item has a name; the current view is also written out in the description.</view>
+    <view class="card">
+      <view class="card-head">
+        <view class="stack stack--tight">
+          <view class="card-title">Sketchbook</view>
+          <view class="card-desc">Showing {{view === 'grid' ? 'a grid' : view === 'menu' ? 'compact rows' : 'a list'}} of four pages.</view>
+        </view>
+        <ll-toggle-group type="single" variant="outline" size="sm" value="{{view}}" bind:change="onView" aria-label="View">
+          <ll-toggle value="list" aria-label="List"><ll-icon name="list" size="{{16}}" /></ll-toggle>
+          <ll-toggle value="grid" aria-label="Grid"><ll-icon name="layout-grid" size="{{16}}" /></ll-toggle>
+          <ll-toggle value="menu" aria-label="Compact"><ll-icon name="menu" size="{{16}}" /></ll-toggle>
+        </ll-toggle-group>
+      </view>
+      <view class="card-body {{view === 'grid' ? 'card-body--grid' : ''}}">
+        <view wx:for="{{sketches}}" wx:key="*this" class="{{view === 'grid' ? 'cell' : 'line'}}">
+          <view wx:if="{{view === 'grid'}}" class="slip">{{item}}</view>
+          <block wx:else>
+            <text class="num">{{index + 1}}</text>
+            <text>{{item}}</text>
+          </block>
+        </view>
+      </view>
+    </view>
+
+    <view class="sub-h3">Demo</view>
+    <view class="sec-desc">Official `toggle-group-demo`: three outline toggles, any number of them on (`type="multiple"`). Joined outline items share one felt-tip box with a drawn seam between them. One label differs from the original, which calls the underline "strikethrough".</view>
+    <ll-toggle-group variant="outline" type="multiple" aria-label="Text formatting">
+      <ll-toggle value="bold" aria-label="Toggle bold"><ll-icon name="bold" size="{{16}}" /></ll-toggle>
+      <ll-toggle value="italic" aria-label="Toggle italic"><ll-icon name="italic" size="{{16}}" /></ll-toggle>
+      <ll-toggle value="underline" aria-label="Toggle underline"><ll-icon name="underline" size="{{16}}" /></ll-toggle>
+    </ll-toggle-group>
+
+    <view class="sub-h3">Disabled</view>
+    <view class="sec-desc">Official `toggle-group-disabled`: `disabled` on the group disables every item. The items are drawn as dashed pencil gray, and none of them can be focused or toggled.</view>
+    <ll-toggle-group type="multiple" disabled aria-label="Text formatting">
+      <ll-toggle value="bold" aria-label="Toggle bold"><ll-icon name="bold" size="{{16}}" /></ll-toggle>
+      <ll-toggle value="italic" aria-label="Toggle italic"><ll-icon name="italic" size="{{16}}" /></ll-toggle>
+      <ll-toggle value="underline" aria-label="Toggle underline"><ll-icon name="underline" size="{{16}}" /></ll-toggle>
+    </ll-toggle-group>
+
+    <view class="sub-h3">Large</view>
+    <view class="sec-desc">Official `toggle-group-lg`: `size="lg"` on the group sizes every item. The default variant has no box, so the items are only seams and a highlighter body when on.</view>
+    <ll-toggle-group type="multiple" size="lg" aria-label="Text formatting">
+      <ll-toggle value="bold" aria-label="Toggle bold"><ll-icon name="bold" size="{{16}}" /></ll-toggle>
+      <ll-toggle value="italic" aria-label="Toggle italic"><ll-icon name="italic" size="{{16}}" /></ll-toggle>
+      <ll-toggle value="underline" aria-label="Toggle underline"><ll-icon name="underline" size="{{16}}" /></ll-toggle>
+    </ll-toggle-group>
+
+    <view class="sub-h3">Outline</view>
+    <view class="sec-desc">Official `toggle-group-outline`: `variant="outline"` with `type="multiple"`. The group draws one box around all its items, so the three read as a single control.</view>
+    <ll-toggle-group type="multiple" variant="outline" aria-label="Text formatting">
+      <ll-toggle value="bold" aria-label="Toggle bold"><ll-icon name="bold" size="{{16}}" /></ll-toggle>
+      <ll-toggle value="italic" aria-label="Toggle italic"><ll-icon name="italic" size="{{16}}" /></ll-toggle>
+      <ll-toggle value="underline" aria-label="Toggle underline"><ll-icon name="underline" size="{{16}}" /></ll-toggle>
+    </ll-toggle-group>
+
+    <view class="sub-h3">Small</view>
+    <view class="sec-desc">Official `toggle-group-sm`: `size="sm"` with `type="single"`, so turning one on turns the others off. Arrow keys move between items and the group is one tab stop.</view>
+    <ll-toggle-group type="single" size="sm" aria-label="Text formatting">
+      <ll-toggle value="bold" aria-label="Toggle bold"><ll-icon name="bold" size="{{16}}" /></ll-toggle>
+      <ll-toggle value="italic" aria-label="Toggle italic"><ll-icon name="italic" size="{{16}}" /></ll-toggle>
+      <ll-toggle value="underline" aria-label="Toggle underline"><ll-icon name="underline" size="{{16}}" /></ll-toggle>
+    </ll-toggle-group>
+
+    <view class="sub-h3">Single</view>
+    <view class="sec-desc">Official `toggle-group-single`: `type="single"`, at most one item on; pressing the one that is on turns it off again, so the group can also hold nothing.</view>
+    <ll-toggle-group type="single" aria-label="Text formatting">
+      <ll-toggle value="bold" aria-label="Toggle bold"><ll-icon name="bold" size="{{16}}" /></ll-toggle>
+      <ll-toggle value="italic" aria-label="Toggle italic"><ll-icon name="italic" size="{{16}}" /></ll-toggle>
+      <ll-toggle value="underline" aria-label="Toggle underline"><ll-icon name="underline" size="{{16}}" /></ll-toggle>
+    </ll-toggle-group>
+
+    <view class="sub-h3">Spacing</view>
+    <view class="sec-desc">Official `toggle-group-spacing`: `spacing={2}` pulls the items apart, so each keeps a box of its own. shadcn fills the icon with a color when an item is on; here each item keeps its highlighter body and writes its icon in that color instead (a drawn line has no fill to change).</view>
+    <ll-toggle-group type="multiple" variant="outline" spacing="{{2}}" size="sm" aria-label="Reactions">
+      <ll-toggle value="star" aria-label="Toggle star"><ll-icon name="star" size="{{16}}" /><text>Star</text></ll-toggle>
+      <ll-toggle value="heart" aria-label="Toggle heart"><ll-icon name="heart" size="{{16}}" /><text>Heart</text></ll-toggle>
+      <ll-toggle value="bookmark" aria-label="Toggle bookmark"><ll-icon name="bookmark" size="{{16}}" /><text>Bookmark</text></ll-toggle>
+    </ll-toggle-group>
+  </view>
+</view>

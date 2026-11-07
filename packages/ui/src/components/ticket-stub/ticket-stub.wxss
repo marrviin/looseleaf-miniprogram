@@ -1,0 +1,15 @@
+/* ll-ticket-stub — flex shrink-0 flex-col items-center justify-center
+   gap-1 px-2 py-3 text-center font-type break-words; width = stubWidth. */
+.ll-ticket-stub {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7rpx; /* gap-1 */
+  box-sizing: border-box;
+  padding: 21rpx 14rpx; /* py-3 px-2 */
+  text-align: center;
+  font-family: 'Kevin Sans', sans-serif; /* font-type */
+  word-break: break-word;
+}

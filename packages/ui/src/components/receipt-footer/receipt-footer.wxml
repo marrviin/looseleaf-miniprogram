@@ -1,0 +1,2 @@
+<!-- ll-receipt-footer -->
+<view class="ll-receipt-footer" style="{{customStyle}}"><slot /></view>

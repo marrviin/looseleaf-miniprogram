@@ -1,0 +1,16 @@
+/* ll-polaroid-caption — upstream PolaroidCaption: min-h-12, centered,
+   script 1.65rem semibold, balanced wrapping. */
+.ll-polaroid-caption {
+  display: flex;
+  min-height: 96rpx; /* min-h-12 */
+  align-items: center;
+  justify-content: center;
+  padding: 0 8rpx; /* px-1 */
+  text-align: center;
+  overflow-wrap: break-word;
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 46rpx; /* 1.65rem x0.88 */
+  line-height: 1.05;
+  font-weight: 600;
+  color: #2a2420;
+}

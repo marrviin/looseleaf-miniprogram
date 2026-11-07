@@ -1,0 +1,8 @@
+<!-- ll-accordion-item -->
+<view class="ll-accordion-item {{open ? 'll-accordion-item--open' : ''}} ll-class" style="{{customStyle}}">
+  <slot />
+  <!-- the foot rule (accordion-rule recipe at the item's width) -->
+  <view class="ll-accordion-item__rule" aria-hidden="true">
+    <view class="ll-ink-layer" style="{{inkStyle}}" />
+  </view>
+</view>

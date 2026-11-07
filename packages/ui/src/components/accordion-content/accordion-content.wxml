@@ -1,0 +1,11 @@
+<!-- ll-accordion-content -->
+<view wx:if="{{open}}" class="ll-accordion-content ll-class" style="{{customStyle}}" aria-role="region">
+  <view class="ll-accordion-content__outer">
+    <view class="ll-accordion-content__inner {{bracket !== 'none' ? 'll-accordion-content__inner--bracketed' : ''}}">
+      <view wx:if="{{bracket !== 'none'}}" class="ll-accordion-content__bracket" aria-hidden="true">
+        <view class="ll-ink-layer" style="{{inkStyle}}" />
+      </view>
+      <slot />
+    </view>
+  </view>
+</view>

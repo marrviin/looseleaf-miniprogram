@@ -1,0 +1,13 @@
+<!-- ll-item — a flex row; the outline (variant=outline) and the ruled
+     group's blue rule are ::before/::after CSS masks (--ll-it-m/--ll-it-r
+     set inline by item.js). -->
+<view
+  class="ll-item ll-item--{{v}} ll-item--{{sz}} {{ruled ? 'll-item--ruled' : ''}} {{link ? 'll-item--link' : ''}} {{swiped ? 'll-item--swiped' : ''}} ll-class"
+  style="{{rootStyle}};{{customStyle}}"
+  aria-role="{{inGroup ? 'listitem' : ''}}"
+  bind:touchstart="onTouchStart"
+  bind:touchend="onTouchEnd"
+  bind:touchcancel="onTouchEnd"
+>
+  <slot />
+</view>

@@ -1,0 +1,93 @@
+/* ll-skeleton — upstream skeletonCss(): a paper-shade wash, a pencil outline
+   drawn from four edge-tile masks (top/right/bottom/left) and a 40px hatch
+   mask, each boiling between three frames (steps(1,end), 1.08s per lap,
+   delayed by the instance's phase). Tiles arrive as inline CSS custom
+   properties (--ll-sk-*) set by skeleton.js; sizes are EDGE_TH=5, HATCH=40. */
+/* @ll-import tokens */
+.ll-skeleton {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  animation-delay: calc(var(--ll-sk-phase, 0) * -0.36s);
+  box-sizing: border-box;
+}
+
+.ll-skeleton__outline,
+.ll-skeleton__hatch {
+  position: absolute;
+  pointer-events: none;
+  animation: ll-sk-outline 1.08s steps(1, end) infinite;
+  animation-delay: inherit;
+}
+.ll-skeleton__outline {
+  inset: -2px; /* -EDGE_TH/2 */
+  z-index: -1;
+  background: var(--ll-pencil, #6b6660);
+  opacity: 0.78;
+  mask-image:
+    var(--ll-sk-eh0), var(--ll-sk-eh0), var(--ll-sk-ev0), var(--ll-sk-ev0);
+  -webkit-mask-image:
+    var(--ll-sk-eh0), var(--ll-sk-eh0), var(--ll-sk-ev0), var(--ll-sk-ev0);
+  mask-size: calc(100% - 4px) 5px, calc(100% - 4px) 5px, 5px calc(100% - 4px), 5px calc(100% - 4px);
+  -webkit-mask-size: calc(100% - 4px) 5px, calc(100% - 4px) 5px, 5px calc(100% - 4px), 5px calc(100% - 4px);
+  mask-position: 2px 0, 2px 100%, 0 2px, 100% 2px;
+  -webkit-mask-position: 2px 0, 2px 100%, 0 2px, 100% 2px;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+}
+.ll-skeleton__hatch {
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--ll-pencil-mark, #8e887f);
+  opacity: 0.4;
+  mask-image: var(--ll-sk-ha0);
+  -webkit-mask-image: var(--ll-sk-ha0);
+  mask-size: 40px 40px;
+  -webkit-mask-size: 40px 40px;
+  animation-name: ll-sk-hatch;
+}
+.ll-skeleton__outline--round {
+  inset: -3px;
+  mask-image: var(--ll-sk-ci0);
+  -webkit-mask-image: var(--ll-sk-ci0);
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+  mask-position: center;
+  -webkit-mask-position: center;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+  animation-name: ll-sk-circle;
+}
+
+/* boil: three frames, then back to the first (frameRule upstream) */
+@keyframes ll-sk-hatch {
+  0% { mask-image: var(--ll-sk-ha0); -webkit-mask-image: var(--ll-sk-ha0); }
+  33.33% { mask-image: var(--ll-sk-ha1); -webkit-mask-image: var(--ll-sk-ha1); }
+  66.67% { mask-image: var(--ll-sk-ha2); -webkit-mask-image: var(--ll-sk-ha2); }
+  100% { mask-image: var(--ll-sk-ha0); -webkit-mask-image: var(--ll-sk-ha0); }
+}
+@keyframes ll-sk-outline {
+  0% {
+    mask-image: var(--ll-sk-eh0), var(--ll-sk-eh0), var(--ll-sk-ev0), var(--ll-sk-ev0);
+    -webkit-mask-image: var(--ll-sk-eh0), var(--ll-sk-eh0), var(--ll-sk-ev0), var(--ll-sk-ev0);
+  }
+  33.33% {
+    mask-image: var(--ll-sk-eh1), var(--ll-sk-eh1), var(--ll-sk-ev1), var(--ll-sk-ev1);
+    -webkit-mask-image: var(--ll-sk-eh1), var(--ll-sk-eh1), var(--ll-sk-ev1), var(--ll-sk-ev1);
+  }
+  66.67% {
+    mask-image: var(--ll-sk-eh2), var(--ll-sk-eh2), var(--ll-sk-ev2), var(--ll-sk-ev2);
+    -webkit-mask-image: var(--ll-sk-eh2), var(--ll-sk-eh2), var(--ll-sk-ev2), var(--ll-sk-ev2);
+  }
+  100% {
+    mask-image: var(--ll-sk-eh0), var(--ll-sk-eh0), var(--ll-sk-ev0), var(--ll-sk-ev0);
+    -webkit-mask-image: var(--ll-sk-eh0), var(--ll-sk-eh0), var(--ll-sk-ev0), var(--ll-sk-ev0);
+  }
+}
+@keyframes ll-sk-circle {
+  0% { mask-image: var(--ll-sk-ci0); -webkit-mask-image: var(--ll-sk-ci0); }
+  33.33% { mask-image: var(--ll-sk-ci1); -webkit-mask-image: var(--ll-sk-ci1); }
+  66.67% { mask-image: var(--ll-sk-ci2); -webkit-mask-image: var(--ll-sk-ci2); }
+  100% { mask-image: var(--ll-sk-ci0); -webkit-mask-image: var(--ll-sk-ci0); }
+}

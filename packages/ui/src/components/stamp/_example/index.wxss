@@ -1,0 +1,61 @@
+.demo {
+  padding: 32rpx;
+  background: var(--ll-paper, #f8f5ee);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+.sec {
+  margin-top: 40rpx;
+}
+.sec-h2 {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin-bottom: 12rpx;
+}
+.sub-h3 {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin: 28rpx 0 6rpx;
+}
+.sec-desc {
+  font-size: 24rpx;
+  color: #8a857c;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+.stamp-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 64rpx; /* gap-8 */
+  padding: 24rpx 0 32rpx;
+}
+.doc-stage {
+  display: flex;
+  justify-content: center;
+  padding: 24rpx 0 32rpx;
+}
+.doc-title {
+  font-size: 55rpx; /* text-3xl 30px x .88 */
+  font-weight: 700;
+  font-family: 'Kevin Sans', sans-serif;
+}
+.doc-rows {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 48rpx; /* gap-x-6 */
+  row-gap: 8rpx; /* gap-y-1 */
+  margin-top: 24rpx;
+  font-size: 28rpx;
+  font-family: 'Kevin Sans', sans-serif;
+}
+.doc-k {
+  color: #6b6459;
+}

@@ -1,0 +1,60 @@
+/* ll-strike — upstream: relative isolate <s> with decoration-1 line-through
+   in the pen color; once the ink is drawn the native line is removed
+   (data-[ink-ready]:no-underline). Shared mark layout: mini program styles
+   are isolated, so each mark component carries the base block. */
+.ll-mark {
+  position: relative;
+  isolation: isolate;
+  display: inline;
+}
+.ll-mark__w {
+  display: inline;
+}
+.ll-mark__ink {
+  position: absolute;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+/* upstream MARK_WIPE: the stroke draws left→right. */
+@keyframes ll-mark-wipe {
+  from {
+    -webkit-clip-path: inset(-10% 100% -10% -4%);
+    clip-path: inset(-10% 100% -10% -4%);
+  }
+  to {
+    -webkit-clip-path: inset(-10% 0% -10% -4%);
+    clip-path: inset(-10% 0% -10% -4%);
+  }
+}
+
+/* Native line-through fallback, shown until the drawn ink replaces it. */
+.ll-strike--fallback,
+.ll-strike--fallback .ll-mark__w {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+.ll-strike--ink {
+  text-decoration-color: var(--ll-ink, #2a2420);
+}
+.ll-strike--blue {
+  text-decoration-color: var(--ll-ink-you, #2c4f9e);
+}
+.ll-strike--red {
+  text-decoration-color: var(--ll-red, #c2412d);
+}
+.ll-strike--green {
+  text-decoration-color: var(--ll-green, #3b7a4b);
+}
+.ll-strike--pencil {
+  text-decoration-color: var(--ll-pencil-mark, #8e887f);
+}
+.ll-strike--marker {
+  text-decoration-color: var(--ll-marker, #df6b3c);
+}
+.ll-strike--orange {
+  text-decoration-color: var(--ll-tangerine, #f59a2f);
+}
+.ll-strike--ink-on .ll-mark__w {
+  text-decoration: none;
+}

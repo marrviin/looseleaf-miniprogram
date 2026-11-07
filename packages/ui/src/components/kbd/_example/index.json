@@ -1,0 +1,16 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-kbd": "../kbd/kbd",
+    "ll-card": "../card/card",
+    "ll-card-header": "../card-header/card-header",
+    "ll-card-title": "../card-title/card-title",
+    "ll-card-description": "../card-description/card-description",
+    "ll-card-content": "../card-content/card-content",
+    "ll-input": "../input/input",
+    "ll-separator": "../separator/separator",
+    "ll-button": "../button/button",
+    "ll-button-group": "../button-group/button-group",
+    "ll-tooltip": "../tooltip/tooltip"
+  }
+}

@@ -1,0 +1,14 @@
+<!-- ll-item-separator — pencil/horizontal is the CSS-mask line (--ll-it-r
+     set inline); any other variant falls back to a real ll-separator. -->
+<view wx:if="{{plain}}" class="ll-item-separator ll-class" style="{{rootStyle}};{{customStyle}}" aria-role="{{decorative ? 'none' : 'separator'}}" aria-label="{{ariaLabel}}">
+  <view class="ll-item-separator__line" />
+</view>
+<view wx:else class="ll-item-separator ll-item-separator--fallback ll-class" style="{{customStyle}}">
+  <ll-separator
+    variant="{{v}}"
+    orientation="{{orientation}}"
+    decorative="{{decorative}}"
+    aria-label="{{ariaLabel}}"
+    custom-style="margin:0;{{orientation === 'horizontal' ? 'width:100%;flex-shrink:0' : ''}}"
+  />
+</view>

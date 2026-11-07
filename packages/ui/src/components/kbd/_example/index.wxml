@@ -1,0 +1,139 @@
+<!-- ll-kbd demo — mirrors the upstream docs page (#/components/kbd).
+     Keyboard events have no miniprogram equivalent: "press the keys" caps
+     sink on touch instead (press and hold). ll-input-group lands with D6 —
+     the search box composes a plain input + inline keycaps for now. -->
+<view class="demo">
+  <view class="demo-title">Kbd</view>
+  <view class="sec-desc">A keyboard key, drawn in pencil as a little keycap with a shaded thickness that presses flat under your finger. Used inline, in groups, in tooltips and in menus.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Keys and shortcuts</view>
+    <view class="sec-desc">Single keys inline, and KbdGroup for a combination. Each key is its own drawing, so no two caps are the same.</view>
+    <view class="sentence"><text>Press</text><ll-kbd text="Esc" /><text>to close,</text><ll-kbd text="Tab" /><text>to move on, or</text><ll-kbd text="Enter" /><text>to go.</text></view>
+    <view class="kbd-rows">
+      <view class="kbd-group">
+        <ll-kbd text="Ctrl" /><text class="plus">+</text><ll-kbd text="K" />
+      </view>
+      <view class="kbd-group">
+        <ll-kbd text="Ctrl" /><text class="plus">+</text><ll-kbd text="Shift" /><text class="plus">+</text><ll-kbd text="P" />
+      </view>
+      <view class="kbd-group">
+        <ll-kbd text="Alt" /><text class="plus">+</text><ll-kbd text="F4" />
+      </view>
+      <ll-kbd text="Space" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+    <view class="sub-h3">Press the keys</view>
+    <view class="sec-desc">data-pressed shows a key as held. Type on your keyboard: the caps you press sink onto their base (or press and hold one with the pointer).</view>
+    <view class="press-row" aria-label="Keys you are holding">
+      <view
+        wx:for="{{keys}}"
+        wx:key="label"
+        class="press-key"
+        data-id="{{item.id}}"
+        bindtouchstart="onKeyTouchStart"
+        bindtouchend="onKeyTouchEnd"
+        bindtouchcancel="onKeyTouchEnd"
+      >
+        <ll-kbd id="{{item.id}}" text="{{item.label}}" custom-style="min-width:72rpx" />
+      </view>
+    </view>
+    <view class="hint">Press and hold a key: the cap sinks onto its base.</view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">A shortcut sheet</view>
+    <view class="sec-desc">Kbd next to the things it triggers: a search field that says how to reach it, and a cheat sheet in a card. The muted keys stay quiet; the words next to them do the talking.</view>
+    <view class="sheet">
+      <ll-card seed="shortcuts">
+        <ll-card-header>
+          <ll-card-title>Keyboard shortcuts</ll-card-title>
+          <ll-card-description>Everything you can do without lifting a hand.</ll-card-description>
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;flex-direction:column;gap:32rpx">
+          <view class="search-pos">
+            <ll-input placeholder="Search shortcuts" aria-label="Search shortcuts" custom-style="padding-right:112rpx" />
+            <view class="search-kbd"><ll-kbd text="/" /></view>
+          </view>
+          <view class="sheet-list">
+            <block wx:for="{{shortcuts}}" wx:key="what">
+              <ll-separator wx:if="{{index > 0}}" variant="dashed" custom-style="margin:16rpx 0" />
+              <view class="sheet-row">
+                <text class="sheet-what">{{item.what}}</text>
+                <view class="kbd-group">
+                  <block wx:for="{{item.keys}}" wx:for-item="k" wx:for-index="j" wx:key="*this">
+                    <text wx:if="{{j > 0}}" class="plus">+</text>
+                    <ll-kbd text="{{k}}" />
+                  </block>
+                </view>
+              </view>
+            </block>
+          </view>
+        </ll-card-content>
+      </ll-card>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Modifier keys</view>
+    <view class="sec-desc">shadcn's `kbd-demo`: a KbdGroup of the four Mac modifiers, and a Ctrl + B written with a plain `+` between two keys. Each cap is drawn on its own, so no two are quite alike.</view>
+    <view class="center-col">
+      <view class="kbd-group">
+        <ll-kbd text="⌘" /><ll-kbd text="⇧" /><ll-kbd text="⌥" /><ll-kbd text="⌃" />
+      </view>
+      <view class="kbd-group">
+        <ll-kbd text="Ctrl" /><text class="plus">+</text><ll-kbd text="B" />
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">In a tooltip</view>
+    <view class="sec-desc">shadcn's `kbd-tooltip`: hover or focus a button to see its shortcut written on the tip. Inside a tooltip the keycaps take the tip's own ink. Radix wants a `TooltipProvider` above every tooltip (shadcn's docs site has one at the root), so the example brings its own.</view>
+    <view class="center-row">
+      <ll-button-group>
+        <ll-tooltip id="tt-save">
+          <ll-button slot="trigger" size="sm" variant="outline">Save</ll-button>
+          Save Changes {{' '}}<ll-kbd text="S" />
+        </ll-tooltip>
+        <ll-tooltip>
+          <ll-button slot="trigger" size="sm" variant="outline">Print</ll-button>
+          Print Document {{' '}}
+          <view class="kbd-group"><ll-kbd text="Ctrl" /><ll-kbd text="P" /></view>
+        </ll-tooltip>
+      </ll-button-group>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">In an input group</view>
+    <view class="sec-desc">shadcn's `kbd-input-group`: a search box with the shortcut that focuses it written at the end. Two keycaps in one inline-end addon. (ll-input-group lands with D6; this composes a plain input for now.)</view>
+    <view class="center-row">
+      <view class="search-pos search-pos--wide">
+        <ll-input placeholder="Search..." aria-label="Search" custom-style="padding-right:120rpx" />
+        <view class="search-kbd search-kbd--two"><ll-kbd text="⌘" /><ll-kbd text="K" /></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">In a button</view>
+    <view class="sec-desc">shadcn's `kbd-button`: a keycap at the end of a button's label. The button takes a little less padding on that side (`pe-2`) so the cap sits close to the edge.</view>
+    <view class="center-row">
+      <ll-button variant="outline" size="sm" custom-style="padding-right:16rpx">Accept <ll-kbd text="⏎" custom-style="margin-left:8rpx" /></ll-button>
+      <ll-button variant="outline" size="sm" custom-style="padding-right:16rpx">Cancel <ll-kbd text="Esc" custom-style="margin-left:8rpx" /></ll-button>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Group in a sentence</view>
+    <view class="sec-desc">shadcn's `kbd-group`: a KbdGroup sits inline in running text. Each Kbd here holds a whole chord ("Ctrl + B") as one cap; compare with the separate keys in the first example.</view>
+    <view class="center-col">
+      <view class="sentence"><text>Use</text><view class="kbd-group"><ll-kbd text="Ctrl + B" /><ll-kbd text="Ctrl + K" /></view><text>to open the command palette</text></view>
+    </view>
+  </view>
+</view>

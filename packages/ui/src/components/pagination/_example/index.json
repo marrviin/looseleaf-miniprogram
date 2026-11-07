@@ -1,0 +1,13 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-pagination": "../pagination/pagination",
+    "ll-pagination-content": "../pagination-content/pagination-content",
+    "ll-pagination-item": "../pagination-item/pagination-item",
+    "ll-pagination-link": "../pagination-link/pagination-link",
+    "ll-pagination-previous": "../pagination-previous/pagination-previous",
+    "ll-pagination-next": "../pagination-next/pagination-next",
+    "ll-pagination-ellipsis": "../pagination-ellipsis/pagination-ellipsis",
+    "ll-icon": "../icon/icon"
+  }
+}

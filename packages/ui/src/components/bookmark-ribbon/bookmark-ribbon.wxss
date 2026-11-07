@@ -1,0 +1,28 @@
+/* ll-bookmark-ribbon — upstream: pointer-events-none relative isolate
+   inline-block h-14 w-8 shrink-0, svg carries the drop-sticker shadow. */
+/* @ll-import tokens */
+
+.ll-bookmark-ribbon {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 56rpx; /* w-8 */
+  height: 99rpx; /* h-14 */
+  vertical-align: top;
+  pointer-events: none;
+}
+/* the ribbon ink, with the worn-sticker shadow upstream puts on the svg;
+   the wrapper carries the seeded tilt */
+.ll-bookmark-rot {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.ll-bookmark-ink {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  filter: drop-shadow(0 1px 0.6px rgba(58, 44, 30, 0.26)) drop-shadow(0 3px 3px rgba(58, 44, 30, 0.14));
+}

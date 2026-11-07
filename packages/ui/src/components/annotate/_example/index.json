@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-annotate": "../annotate/annotate",
+    "ll-button": "../button/button",
+    "ll-paper": "../paper/paper"
+  }
+}

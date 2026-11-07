@@ -1,0 +1,72 @@
+/* ll-empty demo — shared demo base + empty-specific bits. */
+.demo {
+  padding: 32rpx;
+  background: var(--ll-paper, #f8f5ee);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+.sec {
+  margin-top: 40rpx;
+}
+.sec-h2 {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin-bottom: 12rpx;
+}
+.sub-h3 {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin: 28rpx 0 6rpx;
+}
+.sec-desc {
+  font-size: 24rpx;
+  color: #8a857c;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+.stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32rpx;
+}
+
+/* 01: the two actions side by side (upstream flex gap-2) */
+.btn-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+/* 02: stacked full-width states */
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+/* 04: the six names (upstream ul grid gap-2 text-sm) */
+.people {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  font-size: 25rpx;
+  color: var(--ink, #2a2420);
+}
+
+/* 50: two-column grid — below upstream's md breakpoint it is a single
+   column with gap-8, which is what a phone shows (virtualHost hosts can't
+   be tag-selected, so the children keep their own flex width) */
+.grid-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 64rpx;
+  width: 100%;
+}

@@ -1,0 +1,12 @@
+/* ll-navigation-menu-list */
+/* @ll-import tokens */
+.ll-navigation-menu-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap; /* phone adaptation: the strip wraps (upstream is desktop) */
+  flex: 1;
+  position: relative;
+  padding: 8rpx; /* upstream: the baseline line sits 8px above the bottom */
+  z-index: 1; /* the strip + its open panels paint over the root's slip (0) */
+}

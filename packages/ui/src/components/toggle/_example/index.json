@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "ll-toggle": "../toggle/toggle",
+    "ll-icon": "../icon/icon"
+  }
+}

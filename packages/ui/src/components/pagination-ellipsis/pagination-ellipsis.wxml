@@ -1,0 +1,5 @@
+<!-- ll-pagination-ellipsis -->
+<view class="ll-pagination-ellipsis ll-class" style="{{customStyle}}">
+  <ll-icon name="ellipsis" size="{{16}}" />
+  <text class="ll-pagination-ellipsis__sr">More pages</text>
+</view>

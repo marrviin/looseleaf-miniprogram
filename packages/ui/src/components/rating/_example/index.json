@@ -1,14 +1,14 @@
 {
   "component": true,
   "usingComponents": {
-    "ll-rating": "@looseleaf/ui/components/rating/rating",
-    "ll-button": "@looseleaf/ui/components/button/button",
-    "ll-textarea": "@looseleaf/ui/components/textarea/textarea",
-    "ll-card": "@looseleaf/ui/components/card/card",
-    "ll-card-header": "@looseleaf/ui/components/card-header/card-header",
-    "ll-card-title": "@looseleaf/ui/components/card-title/card-title",
-    "ll-card-description": "@looseleaf/ui/components/card-description/card-description",
-    "ll-card-content": "@looseleaf/ui/components/card-content/card-content",
-    "ll-card-footer": "@looseleaf/ui/components/card-footer/card-footer"
+    "ll-rating": "looseleaf-miniprogram/components/rating/rating",
+    "ll-button": "looseleaf-miniprogram/components/button/button",
+    "ll-textarea": "looseleaf-miniprogram/components/textarea/textarea",
+    "ll-card": "looseleaf-miniprogram/components/card/card",
+    "ll-card-header": "looseleaf-miniprogram/components/card-header/card-header",
+    "ll-card-title": "looseleaf-miniprogram/components/card-title/card-title",
+    "ll-card-description": "looseleaf-miniprogram/components/card-description/card-description",
+    "ll-card-content": "looseleaf-miniprogram/components/card-content/card-content",
+    "ll-card-footer": "looseleaf-miniprogram/components/card-footer/card-footer"
   }
 }

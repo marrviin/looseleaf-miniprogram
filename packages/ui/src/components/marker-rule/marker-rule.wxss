@@ -1,0 +1,26 @@
+/* ll-marker-rule — upstream MarkerRule span: relative isolate block h-4
+   flex-1; the full side is absolute across the host's bottom. */
+/* @ll-import tokens */
+.ll-marker-rule {
+  position: relative;
+  display: block;
+  flex: 1;
+  min-width: 0;
+  height: 16px; /* h-4 */
+  isolation: isolate;
+}
+
+.ll-marker-rule--full {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  flex: none;
+}
+
+.ll-ink-layer {
+  position: absolute;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

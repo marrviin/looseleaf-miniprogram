@@ -1,0 +1,64 @@
+<!-- ll-annotate — renders the matching mark component for `type` with the
+     routed color (highlight tones vs pens) and the fine→light / brush→heavy
+     highlighter weight mapping. -->
+<view class="ll-annotate" style="{{customStyle}}">
+  <ll-highlight
+    wx:if="{{type === 'highlight'}}"
+    text="{{text}}"
+    tone="{{hlTone || 'yellow'}}"
+    weight="{{hlWeight}}"
+    show="{{show}}"
+    animate="{{animate}}"
+    seed="{{seed}}"
+  />
+  <ll-underline
+    wx:elif="{{type === 'underline'}}"
+    text="{{text}}"
+    kind="{{kind}}"
+    tone="{{pen || 'ink'}}"
+    weight="{{weight}}"
+    show="{{show}}"
+    animate="{{animate}}"
+    seed="{{seed}}"
+  />
+  <ll-circled
+    wx:elif="{{type === 'circle' || type === 'box' || type === 'brackets'}}"
+    text="{{text}}"
+    shape="{{shape}}"
+    tone="{{pen || 'ink'}}"
+    weight="{{weight}}"
+    show="{{show}}"
+    animate="{{animate}}"
+    seed="{{seed}}"
+  />
+  <ll-strike
+    wx:elif="{{type === 'strike-through'}}"
+    text="{{text}}"
+    kind="single"
+    tone="{{pen || 'ink'}}"
+    weight="{{weight}}"
+    show="{{show}}"
+    animate="{{animate}}"
+    seed="{{seed}}"
+  />
+  <ll-strike
+    wx:elif="{{type === 'crossed-off'}}"
+    text="{{text}}"
+    kind="cross"
+    tone="{{pen || 'ink'}}"
+    weight="{{weight}}"
+    show="{{show}}"
+    animate="{{animate}}"
+    seed="{{seed}}"
+  />
+  <ll-scribble
+    wx:elif="{{type === 'scribble'}}"
+    text="{{text}}"
+    tone="{{pen || 'ink'}}"
+    weight="{{weight}}"
+    show="{{show}}"
+    animate="{{animate}}"
+    seed="{{seed}}"
+  />
+  <text wx:else>{{text}}</text>
+</view>

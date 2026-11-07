@@ -1,0 +1,51 @@
+.demo {
+  padding: 32rpx;
+  background: var(--ll-paper, #f8f5ee);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+.sec { margin-top: 40rpx; }
+.sec-h2 {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin-bottom: 12rpx;
+}
+.sub-h3 {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin: 28rpx 0 6rpx;
+}
+.sec-desc {
+  font-size: 24rpx;
+  color: #8a857c;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+.center { display: flex; justify-content: center; }
+/* layout: "stack" examples — gap-6 max-w-md (48rpx / 672rpx) */
+.stack { display: flex; flex-direction: column; gap: 48rpx; max-width: 672rpx; }
+.stack-gap-lg { display: flex; flex-direction: column; gap: 64rpx; max-width: 672rpx; }
+/* inbox: bold sender line + footer note */
+.inbox-from { font-weight: 700; }
+.inbox-foot { font-size: 25rpx; color: #8a857c; }
+/* image example: muted album inside the title */
+.muted { color: #8a857c; }
+/* avatar stack: -space-x-1 + background ring */
+.avatar-stack { display: flex; }
+.avatar-stack ll-avatar { margin-left: -8rpx; }
+.avatar-stack ll-avatar:first-child { margin-left: 0; }
+/* header example: aspect-square picture area */
+.model-pic {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

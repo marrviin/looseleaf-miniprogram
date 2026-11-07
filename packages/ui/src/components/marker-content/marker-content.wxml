@@ -1,0 +1,6 @@
+<!-- ll-marker-content — the words; separator writes them script/centered,
+     new puts the highlighter swipe behind them. -->
+<view
+  class="ll-marker-content {{variant === 'separator' ? 'll-marker-content--separator' : ''}} {{tone === 'new' ? 'll-marker-content--new' : ''}}"
+  style="{{customStyle}}"
+><slot /></view>

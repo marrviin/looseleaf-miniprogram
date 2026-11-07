@@ -1,0 +1,14 @@
+/* ll-item-description — line-clamp-2 text-sm muted */
+/* @ll-import tokens */
+.ll-item-description {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 25rpx; /* text-sm × 0.88 */
+  font-weight: 400;
+  line-height: 1.5; /* leading-normal */
+  color: var(--muted-foreground, #4a433c);
+  text-overflow: ellipsis;
+}

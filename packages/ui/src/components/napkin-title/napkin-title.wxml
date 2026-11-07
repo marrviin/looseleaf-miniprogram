@@ -1,0 +1,2 @@
+<!-- ll-napkin-title -->
+<view class="ll-napkin-title" style="{{customStyle}}"><slot /></view>

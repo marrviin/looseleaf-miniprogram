@@ -1,0 +1,21 @@
+/* ll-breadcrumb-ellipsis */
+/* @ll-import tokens */
+.ll-breadcrumb-ellipsis {
+  display: flex;
+  width: 72rpx; /* upstream size-9 (36px) */
+  height: 72rpx;
+  align-items: center;
+  justify-content: center;
+}
+.ll-breadcrumb-ellipsis--sm {
+  width: 48rpx; /* upstream size-6 (24px) */
+  height: 48rpx;
+}
+.ll-breadcrumb-ellipsis__sr {
+  /* upstream sr-only */
+  position: absolute;
+  width: 2rpx;
+  height: 2rpx;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}

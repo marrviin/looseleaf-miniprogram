@@ -1,0 +1,16 @@
+/* ll-stamp — upstream: pointer-events-none shrink-0 overflow-visible svg.
+   No drop shadow: ink sits on the page, not on it. */
+.ll-stamp {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.ll-stamp__art {
+  position: absolute;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

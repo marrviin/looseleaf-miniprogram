@@ -1,0 +1,12 @@
+/* ll-receipt-header — flex flex-col items-center gap-0.5 text-center.
+   Upstream's [&>:first-child]:text-base font-bold styles the consumer's
+   slot children, which component wxss cannot reach (page-owned nodes) —
+   the demo applies .ll-receipt-header-headline to the headline instead. */
+.ll-receipt-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rpx; /* gap-0.5 */
+  text-align: center;
+}
+

@@ -1,4 +1,5 @@
 import { createComponent } from '../../common/component';
+import { BUTTON_GROUP_CHILD_RELATION, buttonGroupChildBehavior } from '../../common/button-group-child';
 import { props } from './props';
 
 /** Upstream `Input` — the drawn pencil box (input recipe → drawFieldFrame:
@@ -11,7 +12,12 @@ createComponent({
     styleIsolation: 'isolated',
     virtualHost: true,
   },
+  // Inside an ll-button-group: report position, receive the seam clip-path.
+  behaviors: [buttonGroupChildBehavior('.ll-input')],
   properties: props,
+  relations: {
+    '../button-group/button-group': BUTTON_GROUP_CHILD_RELATION,
+  },
   data: {
     llInkRecipe: 'input',
     llInkSelector: '.ll-input',

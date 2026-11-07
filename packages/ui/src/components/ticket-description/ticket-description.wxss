@@ -1,0 +1,4 @@
+/* ll-ticket-description — text-sm */
+.ll-ticket-description {
+  font-size: 23rpx; /* text-sm 14px x .82 */
+}

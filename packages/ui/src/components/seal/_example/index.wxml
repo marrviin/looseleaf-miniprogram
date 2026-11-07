@@ -1,0 +1,92 @@
+<!-- ll-seal demo — mirrors the upstream docs page (#/components/seal). -->
+<view class="demo">
+  <view class="demo-title">Seal</view>
+  <view class="sec-desc">Rosettes, scalloped seals, medals, ringed seals with rim lettering and wax seals, drawn like the stickers without the white edge. Use one as a verified mark beside a name, an award on a card, or the stamp of approval on a certificate.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Seals</view>
+    <view class="sec-desc">A scalloped seal, a starburst, a rosette with a ribbon hanging from it, a medal, a shield, a plate and a tag: one generator, eight shapes, any stationery color.</view>
+    <view class="seal-row">
+      <ll-seal variant="scallop" text="Best" sub="seller" tone="grass" />
+      <ll-seal variant="starburst" text="New" tone="lemon" />
+      <ll-seal variant="rosette" text="Pick" tone="tangerine" ribbon="sky" />
+    </view>
+    <view class="seal-row">
+      <ll-seal variant="medal" text="Top" tone="lemon" />
+      <ll-seal variant="shield" text="Pro" sub="plan" tone="teal" />
+      <ll-seal variant="plate" text="Gold" tone="lemon" />
+      <ll-seal variant="tag" text="Sale" tone="tangerine" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+    <view class="sub-h3">Marks, rings and wax</view>
+    <view class="sec-desc">A hand-drawn check or star takes the place of the words (it survives at 16 px where letters do not). A ringed seal carries lettering round its rim. Wax takes an initial, a check or a star.</view>
+    <view class="seal-row">
+      <ll-seal mark="check" tone="sky" />
+      <ll-seal variant="rosette" mark="check" tone="grass" ribbon="lemon" />
+      <ll-seal variant="starburst" mark="star" tone="tangerine" />
+    </view>
+    <view class="seal-row">
+      <ll-seal variant="ring" text="Verified" tone="sky" ring="Official seal" size="{{128}}" />
+      <ll-seal variant="ring" mark="check" tone="grass" ring="Checked by hand" size="{{128}}" />
+    </view>
+    <view class="seal-row">
+      <ll-seal variant="wax" text="L" tone="red" />
+      <ll-seal variant="wax" mark="check" tone="grape" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Verified, awarded, sealed</view>
+    <view class="sec-desc">In ordinary UI: a verified mark beside a name at 20 px, a best-seller seal pinned to a card corner, and a certificate with a rosette, a ringed seal and a wax seal.</view>
+    <view class="cert-grid">
+      <view class="cert-col">
+        <ll-card custom-style="gap:24rpx;padding:32rpx">
+          <view class="who">
+            <ll-avatar>
+              <ll-avatar-fallback>MC</ll-avatar-fallback>
+            </ll-avatar>
+            <view class="who-text">
+              <view class="who-name">
+                <text>Maya Chen</text>
+                <ll-seal mark="check" tone="sky" size="{{20}}" label="Verified" shadow="{{false}}" />
+              </view>
+              <view class="who-role">Illustrator, Lisbon</view>
+            </view>
+          </view>
+        </ll-card>
+        <view class="card-pos">
+          <ll-seal
+            class="best-pin"
+            variant="rosette"
+            text="Best"
+            tone="lemon"
+            ribbon="tomato"
+            size="{{72}}"
+            tilt="{{8}}"
+            custom-style="position:absolute;top:-40rpx;right:-24rpx;z-index:2"
+          />
+          <ll-card>
+            <ll-card-header>
+              <ll-card-title>Twelve felt tips</ll-card-title>
+              <ll-card-description>Assorted, water based, no bleed.</ll-card-description>
+            </ll-card-header>
+            <ll-card-content>$ 14.00</ll-card-content>
+          </ll-card>
+        </view>
+      </view>
+      <ll-card custom-style="position:relative;display:flex;flex-direction:column;align-items:center;gap:16rpx;padding:48rpx;text-align:center">
+        <text class="cert-eyebrow">Certificate of</text>
+        <text class="cert-title">Good Handwriting</text>
+        <text class="cert-body">Awarded to Maya Chen for lettering that stays on the line, mostly.</text>
+        <view class="cert-seals">
+          <ll-seal variant="ring" text="Signed" tone="sky" ring="Official seal" size="{{112}}" label="Official seal" />
+          <ll-seal variant="wax" text="M" tone="red" size="{{84}}" tilt="{{-6}}" label="Wax seal" />
+        </view>
+      </ll-card>
+    </view>
+  </view>
+</view>

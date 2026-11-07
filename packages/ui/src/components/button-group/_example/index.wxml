@@ -1,0 +1,220 @@
+<!-- ll-button-group demo — mirrors the upstream docs page
+     (#/components/button-group): intro, then the Examples entries with the
+     page's own copy. Two upstream examples are omitted: "A select, a field
+     and a send button" (54) needs Select and "A message composer" (56) needs
+     InputGroup — neither is ported yet. Icon substitutions where the glyph
+     is missing from the ~80-icon set: arrow-left/right → chevron-left/right,
+     mail-check → mail, calendar-plus → calendar, list-filter → filter,
+     volume-off → mic. Installation/Usage/API/A11y/Related omitted. -->
+<view class="demo">
+  <view class="demo-title">Button Group</view>
+  <view class="sec-desc">Buttons, fields and printed cells joined into one row (or column) that share their seams: the edge two neighbors have in common is drawn once, by the one before, or by a pencil separator you put between them.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">A row of buttons</view>
+    <view class="sec-desc">Outline buttons side by side share their seams: the edge between two of them is drawn once. Icon buttons, and a column, work the same way.</view>
+    <view class="wrap-row">
+      <ll-button-group aria-label="Range">
+        <ll-button variant="outline">Years</ll-button>
+        <ll-button variant="outline">Months</ll-button>
+        <ll-button variant="outline">Days</ll-button>
+      </ll-button-group>
+      <ll-button-group aria-label="Page">
+        <ll-button variant="outline" size="icon" aria-label="Previous"><ll-icon name="chevron-left" size="{{16}}" /></ll-button>
+        <ll-button variant="outline" size="icon" aria-label="Search"><ll-icon name="search" size="{{16}}" /></ll-button>
+        <ll-button variant="outline" size="icon" aria-label="Next"><ll-icon name="chevron-right" size="{{16}}" /></ll-button>
+      </ll-button-group>
+      <ll-button-group orientation="vertical" aria-label="Zoom">
+        <ll-button variant="outline" size="icon" aria-label="Zoom in"><ll-icon name="plus" size="{{16}}" /></ll-button>
+        <ll-button variant="outline" size="icon" aria-label="Zoom out"><ll-icon name="minus" size="{{16}}" /></ll-button>
+      </ll-button-group>
+    </view>
+
+    <view class="sub-h3">Cells, fields and separators</view>
+    <view class="sec-desc">A printed cell, an input and a button in one row; two highlighter buttons split by a pencil line; a split button. Filled buttons want a separator, since two markers touching would just be one big blot.</view>
+    <view class="stack-col">
+      <ll-button-group custom-style="width:100%" aria-label="Website">
+        <ll-button-group-text>https://</ll-button-group-text>
+        <ll-input placeholder="example.com" aria-label="Host" />
+        <ll-button>Go</ll-button>
+      </ll-button-group>
+      <ll-button-group aria-label="Clipboard">
+        <ll-button variant="secondary"><ll-icon name="copy" size="{{16}}" /> Copy</ll-button>
+        <ll-button-group-separator />
+        <ll-button variant="secondary">Paste</ll-button>
+      </ll-button-group>
+      <ll-button-group aria-label="Save options">
+        <ll-button>Save</ll-button>
+        <ll-button-group-separator />
+        <ll-button size="icon" aria-label="More save options"><ll-icon name="chevron-down" size="{{16}}" /></ll-button>
+      </ll-button-group>
+      <ll-button-group aria-label="Weight">
+        <ll-button variant="outline" size="icon" aria-label="Less"><ll-icon name="minus" size="{{16}}" /></ll-button>
+        <ll-button-group-text custom-style="min-width:112rpx;justify-content:center">250</ll-button-group-text>
+        <ll-button variant="outline" size="icon" aria-label="More"><ll-icon name="plus" size="{{16}}" /></ll-button>
+        <ll-button-group-text>grams</ll-button-group-text>
+      </ll-button-group>
+    </view>
+
+    <view class="sub-h3">A sourdough order</view>
+    <view class="sec-desc">The group doing a job: a quantity stepper whose number is a printed cell, a size chooser that is a row of buttons, and a primary action to finish. The status line says what the stepper did.</view>
+    <view class="center">
+      <ll-card custom-style="width:100%;max-width:512rpx;margin:0 auto" seed="order">
+        <ll-card-header>
+          <ll-card-title>Sourdough</ll-card-title>
+          <ll-card-description>Baked this morning, gone by noon.</ll-card-description>
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;flex-direction:column;gap:16rpx">
+          <ll-button-group aria-label="Size">
+            <ll-button wx:for="{{sizes}}" wx:key="*this" variant="{{orderSize === item ? 'secondary' : 'outline'}}" aria-pressed="{{orderSize === item}}" data-size="{{item}}" bind:tap="onSize">{{item}}</ll-button>
+          </ll-button-group>
+          <view class="qty-row">
+            <ll-button-group aria-label="Quantity">
+              <ll-button variant="outline" size="icon" aria-label="One fewer" disabled="{{qty <= 1}}" data-dir="-1" bind:tap="onQty"><ll-icon name="minus" size="{{16}}" /></ll-button>
+              <ll-button-group-text custom-style="min-width:96rpx;justify-content:center">{{qty}}</ll-button-group-text>
+              <ll-button variant="outline" size="icon" aria-label="One more" disabled="{{qty >= 6}}" data-dir="1" bind:tap="onQty"><ll-icon name="plus" size="{{16}}" /></ll-button>
+            </ll-button-group>
+            <text class="status-line">{{qty}} × {{orderSizeLower}}</text>
+          </view>
+        </ll-card-content>
+        <ll-card-footer custom-style="border-top:1rpx solid #e4dfd3">
+          <ll-button custom-style="width:100%">Add {{qty}} to the basket</ll-button>
+        </ll-card-footer>
+      </ll-card>
+    </view>
+
+    <view class="sub-h3">A mail toolbar (groups in a group)</view>
+    <view class="sec-desc">The shadcn demo: a ButtonGroup of ButtonGroups. A back button, two text buttons, and a Snooze button joined to a menu trigger whose slip has groups, a destructive row and a sub-menu with a radio choice. Groups put a gap between them; each keeps its own seams.</view>
+    <view class="center">
+      <ll-button-group aria-label="Message actions">
+        <ll-button-group>
+          <ll-button variant="outline" size="icon" aria-label="Go back"><ll-icon name="chevron-left" size="{{16}}" /></ll-button>
+        </ll-button-group>
+        <ll-button-group>
+          <ll-button variant="outline">Archive</ll-button>
+          <ll-button variant="outline">Report</ll-button>
+        </ll-button-group>
+        <ll-button-group>
+          <ll-button variant="outline">Snooze</ll-button>
+          <ll-dropdown-menu open="{{mailOpen}}" width="{{224}}" align="end" seed="mail-more" bind:change="onMenuChange" data-k="mailOpen" aria-label="More options">
+            <view slot="trigger">
+              <ll-button variant="outline" size="icon" aria-label="More options"><ll-icon name="ellipsis" size="{{16}}" /></ll-button>
+            </view>
+            <ll-dropdown-menu-group>
+              <ll-dropdown-menu-item><ll-icon name="mail" size="{{16}}" /> Mark as read</ll-dropdown-menu-item>
+              <ll-dropdown-menu-item><ll-icon name="archive" size="{{16}}" /> Archive</ll-dropdown-menu-item>
+            </ll-dropdown-menu-group>
+            <ll-dropdown-menu-separator />
+            <ll-dropdown-menu-group>
+              <ll-dropdown-menu-item><ll-icon name="clock" size="{{16}}" /> Snooze</ll-dropdown-menu-item>
+              <ll-dropdown-menu-item><ll-icon name="calendar" size="{{16}}" /> Add to calendar</ll-dropdown-menu-item>
+              <ll-dropdown-menu-item><ll-icon name="filter" size="{{16}}" /> Add to list</ll-dropdown-menu-item>
+              <ll-dropdown-menu-sub label="Label as..." icon="tag" width="{{160}}" open="{{mailSubOpen}}" bind:change="onMenuChange" data-k="mailSubOpen">
+                <ll-dropdown-menu-radio-group value="{{mailLabel}}" bind:change="onMailLabel">
+                  <ll-dropdown-menu-radio-item value="personal" checked="{{mailLabel === 'personal'}}">Personal</ll-dropdown-menu-radio-item>
+                  <ll-dropdown-menu-radio-item value="work" checked="{{mailLabel === 'work'}}">Work</ll-dropdown-menu-radio-item>
+                  <ll-dropdown-menu-radio-item value="other" checked="{{mailLabel === 'other'}}">Other</ll-dropdown-menu-radio-item>
+                </ll-dropdown-menu-radio-group>
+              </ll-dropdown-menu-sub>
+            </ll-dropdown-menu-group>
+            <ll-dropdown-menu-separator />
+            <ll-dropdown-menu-group>
+              <ll-dropdown-menu-item variant="destructive"><ll-icon name="trash" size="{{16}}" /> Trash</ll-dropdown-menu-item>
+            </ll-dropdown-menu-group>
+          </ll-dropdown-menu>
+        </ll-button-group>
+      </ll-button-group>
+    </view>
+
+    <view class="sub-h3">Nested: pages and arrows</view>
+    <view class="sec-desc">Two groups inside one: five numbered buttons and a previous/next pair. The page you are on is a highlighter button (`aria-current="page"`), the arrows stop at the ends, and the status line says where you are.</view>
+    <view class="stack-col-start">
+      <ll-button-group aria-label="Pagination">
+        <ll-button-group>
+          <ll-button wx:for="{{pages}}" wx:key="*this" variant="{{page === item ? 'secondary' : 'outline'}}" size="sm" aria-current="{{page === item ? 'page' : ''}}" aria-label="Page {{item}}" data-page="{{item}}" bind:tap="onPage">{{item}}</ll-button>
+        </ll-button-group>
+        <ll-button-group>
+          <ll-button variant="outline" size="icon-sm" aria-label="Previous page" disabled="{{page === 1}}" data-dir="-1" bind:tap="onPage"><ll-icon name="chevron-left" size="{{14}}" /></ll-button>
+          <ll-button variant="outline" size="icon-sm" aria-label="Next page" disabled="{{page === pages.length}}" data-dir="1" bind:tap="onPage"><ll-icon name="chevron-right" size="{{14}}" /></ll-button>
+        </ll-button-group>
+      </ll-button-group>
+      <text class="status-line" aria-role="status">Page {{page}} of {{pages.length}}</text>
+    </view>
+
+    <view class="sub-h3">Sizes</view>
+    <view class="sec-desc">A group takes the size of its buttons: give every child the same `size` and the same height, and use the matching square size (`icon-sm`, `icon`, `icon-lg`) for the icon button at the end. Extra small is ours.</view>
+    <view class="stack-col-start">
+      <ll-button-group aria-label="Extra small">
+        <ll-button variant="outline" size="xs">Extra small</ll-button>
+        <ll-button variant="outline" size="xs">Button</ll-button>
+        <ll-button variant="outline" size="xs">Group</ll-button>
+        <ll-button variant="outline" size="icon-xs" aria-label="Add"><ll-icon name="plus" size="{{14}}" /></ll-button>
+      </ll-button-group>
+      <ll-button-group aria-label="Small">
+        <ll-button variant="outline" size="sm">Small</ll-button>
+        <ll-button variant="outline" size="sm">Button</ll-button>
+        <ll-button variant="outline" size="sm">Group</ll-button>
+        <ll-button variant="outline" size="icon-sm" aria-label="Add"><ll-icon name="plus" size="{{14}}" /></ll-button>
+      </ll-button-group>
+      <ll-button-group aria-label="Default">
+        <ll-button variant="outline">Default</ll-button>
+        <ll-button variant="outline">Button</ll-button>
+        <ll-button variant="outline">Group</ll-button>
+        <ll-button variant="outline" size="icon" aria-label="Add"><ll-icon name="plus" size="{{16}}" /></ll-button>
+      </ll-button-group>
+      <ll-button-group aria-label="Large">
+        <ll-button variant="outline" size="lg">Large</ll-button>
+        <ll-button variant="outline" size="lg">Button</ll-button>
+        <ll-button variant="outline" size="lg">Group</ll-button>
+        <ll-button variant="outline" size="icon-lg" aria-label="Add"><ll-icon name="plus" size="{{20}}" /></ll-button>
+      </ll-button-group>
+    </view>
+
+    <view class="sub-h3">A button with a menu (Follow)</view>
+    <view class="sec-desc">A split button the way social apps use it: the main action toggles (Follow / Following, with `aria-pressed`) and the chevron opens every other thing you can do with the conversation. The menu's last row is the destructive one.</view>
+    <view class="center">
+      <ll-button-group aria-label="Conversation">
+        <ll-button variant="outline" aria-pressed="{{following}}" data-follow="1" bind:tap="onFollow">{{following ? 'Following' : 'Follow'}}</ll-button>
+        <ll-dropdown-menu open="{{followOpen}}" width="{{224}}" align="end" seed="follow-menu" bind:change="onMenuChange" data-k="followOpen" aria-label="More conversation actions">
+          <view slot="trigger">
+            <ll-button variant="outline" size="icon" aria-label="More conversation actions"><ll-icon name="chevron-down" size="{{16}}" /></ll-button>
+          </view>
+          <ll-dropdown-menu-group>
+            <ll-dropdown-menu-item><ll-icon name="mic" size="{{16}}" /> Mute conversation</ll-dropdown-menu-item>
+            <ll-dropdown-menu-item><ll-icon name="check" size="{{16}}" /> Mark as read</ll-dropdown-menu-item>
+            <ll-dropdown-menu-item><ll-icon name="flag" size="{{16}}" /> Report conversation</ll-dropdown-menu-item>
+            <ll-dropdown-menu-item><ll-icon name="ban" size="{{16}}" /> Block user</ll-dropdown-menu-item>
+            <ll-dropdown-menu-item><ll-icon name="share" size="{{16}}" /> Share conversation</ll-dropdown-menu-item>
+            <ll-dropdown-menu-item><ll-icon name="copy" size="{{16}}" /> Copy conversation</ll-dropdown-menu-item>
+          </ll-dropdown-menu-group>
+          <ll-dropdown-menu-separator />
+          <ll-dropdown-menu-group>
+            <ll-dropdown-menu-item variant="destructive"><ll-icon name="trash" size="{{16}}" /> Delete conversation</ll-dropdown-menu-item>
+          </ll-dropdown-menu-group>
+        </ll-dropdown-menu>
+      </ll-button-group>
+    </view>
+
+    <view class="sub-h3">A button that opens a popover</view>
+    <view class="sec-desc">The chevron half of a split button can open anything, not only a menu: here a slip with a text area and a few lines of explanation. The popover is named with aria-label (Radix gives it role=dialog), and focus goes back to the chevron when it closes.</view>
+    <view class="center">
+      <ll-button-group aria-label="Copilot">
+        <ll-button variant="outline"><ll-icon name="bot" size="{{16}}" /> Copilot</ll-button>
+        <ll-popover open="{{copilotOpen}}" align="end" width="{{320}}" seed="copilot" aria-label="Agent tasks" bind:change="onMenuChange" data-k="copilotOpen">
+          <view slot="trigger">
+            <ll-button variant="outline" size="icon" aria-label="Open the task popover"><ll-icon name="chevron-down" size="{{16}}" /></ll-button>
+          </view>
+          <view class="pop-head">Agent tasks</view>
+          <ll-separator />
+          <view class="pop-body">
+            <ll-textarea placeholder="Describe your task in natural language." aria-label="Task" custom-style="margin-bottom:16rpx" />
+            <view class="pop-strong">Start a new task with Copilot</view>
+            <view class="pop-desc">Describe your task in natural language. Copilot will work in the background and open a pull request for your review.</view>
+          </view>
+        </ll-popover>
+      </ll-button-group>
+    </view>
+  </view>
+</view>

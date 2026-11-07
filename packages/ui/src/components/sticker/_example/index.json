@@ -1,0 +1,14 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-sticker": "../sticker/sticker",
+    "ll-index-card": "../index-card/index-card",
+    "ll-index-card-header": "../index-card-header/index-card-header",
+    "ll-index-card-title": "../index-card-title/index-card-title",
+    "ll-index-card-content": "../index-card-content/index-card-content",
+    "ll-tabs": "../tabs/tabs",
+    "ll-tabs-list": "../tabs-list/tabs-list",
+    "ll-tabs-trigger": "../tabs-trigger/tabs-trigger",
+    "ll-tabs-content": "../tabs-content/tabs-content"
+  }
+}

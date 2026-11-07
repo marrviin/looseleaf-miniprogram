@@ -1,0 +1,187 @@
+<!-- ll-navigation-menu demo — mirrors the upstream docs page (#/components/navigation-menu).
+     Adapted: panel widths sized to phone (upstream md/lg widths are desktop);
+     50-demo's List/Simple items omitted (hidden md:block upstream); the
+     featured card drops the Mascot (not ported). -->
+<view class="demo">
+  <view class="demo-title">Navigation Menu</view>
+  <view class="sec-desc">A site's top navigation strip. A trigger opens its panel over a shared slip of paper under the strip; the felt-tip underline glides under the open item. One strip can mix triggers, plain links and an active page.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Getting started</view>
+    <view class="sec-desc">The shadcn demo on an index strip: a featured card beside three rows, a two-column panel of components, and a plain tab. Move from Getting started to Components: the slip resizes, the panels slide inside it and the felt-tip underline glides along.</view>
+    <view class="stack stack--loose">
+      <ll-navigation-menu aria-label="Main" bind:change="onNav">
+        <ll-navigation-menu-list>
+          <ll-navigation-menu-item>
+            <ll-navigation-menu-trigger seed="gs">Getting started</ll-navigation-menu-trigger>
+            <ll-navigation-menu-content>
+              <view class="nav-grid nav-grid--gs">
+                <view class="feature">
+                  <ll-navigation-menu-link>
+                    <view class="feature__title script">Looseleaf</view>
+                    <view class="feature__desc">Beautifully designed components, drawn by hand.</view>
+                  </ll-navigation-menu-link>
+                </view>
+                <view class="nav-grid__rows">
+                  <ll-navigation-menu-link>
+                    <view><text class="bold">Introduction</text></view>
+                    <view class="muted">Re-usable components built with Radix UI and Tailwind CSS.</view>
+                  </ll-navigation-menu-link>
+                  <ll-navigation-menu-link>
+                    <view><text class="bold">Installation</text></view>
+                    <view class="muted">How to install dependencies and structure your app.</view>
+                  </ll-navigation-menu-link>
+                  <ll-navigation-menu-link>
+                    <view><text class="bold">Typography</text></view>
+                    <view class="muted">Styles for headings, paragraphs, lists and more.</view>
+                  </ll-navigation-menu-link>
+                </view>
+              </view>
+            </ll-navigation-menu-content>
+          </ll-navigation-menu-item>
+          <ll-navigation-menu-item>
+            <ll-navigation-menu-trigger seed="cm">Components</ll-navigation-menu-trigger>
+            <ll-navigation-menu-content>
+              <view class="nav-grid nav-grid--two">
+                <ll-navigation-menu-link wx:for="{{components}}" wx:key="index">
+                  <view><text class="bold">{{item[0]}}</text></view>
+                  <view class="muted">{{item[1]}}</view>
+                </ll-navigation-menu-link>
+              </view>
+            </ll-navigation-menu-content>
+          </ll-navigation-menu-item>
+          <ll-navigation-menu-item>
+            <ll-navigation-menu-link seed="docs">Docs</ll-navigation-menu-link>
+          </ll-navigation-menu-item>
+          <ll-navigation-menu-indicator />
+        </ll-navigation-menu-list>
+      </ll-navigation-menu>
+    </view>
+
+    <view class="sub-h3">Links only</view>
+    <view class="sec-desc">No panels: a strip of links. In the strip a link is a tab like the triggers, and the current page (active) is filled with highlighter with aria-current.</view>
+    <view class="stack stack--loose">
+      <ll-navigation-menu aria-label="Sections">
+        <ll-navigation-menu-list>
+          <ll-navigation-menu-item wx:for="{{pages}}" wx:key="*this">
+            <ll-navigation-menu-link active="{{page === item}}" data-page="{{item}}" bind:tap="onPage">{{item}}</ll-navigation-menu-link>
+          </ll-navigation-menu-item>
+        </ll-navigation-menu-list>
+      </ll-navigation-menu>
+      <view class="muted" aria-live="polite">You are on {{page}}.</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">A slip under each tab</view>
+    <view class="sec-desc">viewport=false: there is no shared slip, so each panel is a slip of its own set down under its tab, at the size of its contents. Good for short menus of a few links.</view>
+    <view class="stack stack--loose">
+      <ll-navigation-menu viewport="{{false}}" aria-label="Company">
+        <ll-navigation-menu-list>
+          <ll-navigation-menu-item wx:for="{{items}}" wx:key="index" wx:for-item="grp">
+            <ll-navigation-menu-trigger seed="{{grp[0]}}">{{grp[0]}}</ll-navigation-menu-trigger>
+            <ll-navigation-menu-content>
+              <view class="nav-grid nav-grid--links">
+                <view class="nav-grid__cell" wx:for="{{grp[1]}}" wx:for-item="link" wx:key="*this">
+                  <ll-navigation-menu-link>
+                    <view class="row-with-icon"><ll-icon name="chevron-right" size="{{14}}" /> {{link}}</view>
+                  </ll-navigation-menu-link>
+                </view>
+              </view>
+            </ll-navigation-menu-content>
+          </ll-navigation-menu-item>
+        </ll-navigation-menu-list>
+      </ll-navigation-menu>
+    </view>
+
+    <view class="sub-h3">Site header (composed)</view>
+    <view class="sec-desc">A real use: the logo, the strip and the account buttons in one header on a sheet of paper. The panels open over the page below; the sign-in button is a normal Button.</view>
+    <view class="stack stack--loose">
+      <ll-paper stock="paper" seed="header" custom-style="width:100%;">
+        <view class="header">
+          <view class="header__logo script"><ll-icon name="book-open" size="{{22}}" /> Looseleaf</view>
+          <ll-navigation-menu aria-label="Main" custom-style="max-width:none;flex:none;">
+            <ll-navigation-menu-list>
+              <ll-navigation-menu-item>
+                <ll-navigation-menu-trigger seed="h1">Product</ll-navigation-menu-trigger>
+                <ll-navigation-menu-content>
+                  <view class="nav-grid nav-grid--header">
+                    <ll-navigation-menu-link wx:for="{{[['Notebooks','Write things down.'],['Stickers','Mark them up.'],['Templates','Start from a page.']]}}" wx:key="index">
+                      <view><text class="bold">{{item[0]}}</text></view>
+                      <view class="muted">{{item[1]}}</view>
+                    </ll-navigation-menu-link>
+                  </view>
+                </ll-navigation-menu-content>
+              </ll-navigation-menu-item>
+              <ll-navigation-menu-item>
+                <ll-navigation-menu-link seed="h2">Pricing</ll-navigation-menu-link>
+              </ll-navigation-menu-item>
+              <ll-navigation-menu-item>
+                <ll-navigation-menu-link seed="h3" active>Blog</ll-navigation-menu-link>
+              </ll-navigation-menu-item>
+              <ll-navigation-menu-indicator />
+            </ll-navigation-menu-list>
+          </ll-navigation-menu>
+          <view class="header__actions">
+            <ll-button variant="ghost" size="sm">Sign in</ll-button>
+            <ll-button size="sm">Get started</ll-button>
+          </view>
+        </view>
+      </ll-paper>
+    </view>
+
+    <view class="sub-h3">Six items (as written)</view>
+    <view class="sec-desc">shadcn's `navigation-menu-demo` line for line: `viewport={isMobile}` (a phone is mobile, so the shared slip is on), `flex-wrap` on the list, and a ListItem helper. Omitted: the List and Simple items (hidden below md upstream, no room on a phone).</view>
+    <view class="stack stack--loose">
+      <ll-navigation-menu aria-label="Main">
+        <ll-navigation-menu-list custom-style="flex-wrap:wrap;">
+          <ll-navigation-menu-item>
+            <ll-navigation-menu-trigger>Home</ll-navigation-menu-trigger>
+            <ll-navigation-menu-content>
+              <view class="nav-grid nav-grid--gs">
+                <view class="feature">
+                  <ll-navigation-menu-link>
+                    <view class="feature__head">Looseleaf</view>
+                    <view class="feature__desc">Beautifully designed components built with Tailwind CSS.</view>
+                  </ll-navigation-menu-link>
+                </view>
+                <view class="nav-grid__rows">
+                  <ll-navigation-menu-link>
+                    <view><text class="bold">Introduction</text></view>
+                    <view class="muted">Re-usable components built using Radix UI and Tailwind CSS.</view>
+                  </ll-navigation-menu-link>
+                  <ll-navigation-menu-link>
+                    <view><text class="bold">Installation</text></view>
+                    <view class="muted">How to install dependencies and structure your app.</view>
+                  </ll-navigation-menu-link>
+                  <ll-navigation-menu-link>
+                    <view><text class="bold">Typography</text></view>
+                    <view class="muted">Styles for headings, paragraphs, lists...etc</view>
+                  </ll-navigation-menu-link>
+                </view>
+              </view>
+            </ll-navigation-menu-content>
+          </ll-navigation-menu-item>
+          <ll-navigation-menu-item>
+            <ll-navigation-menu-trigger>Components</ll-navigation-menu-trigger>
+            <ll-navigation-menu-content>
+              <view class="nav-grid nav-grid--two">
+                <ll-navigation-menu-link wx:for="{{sixComponents}}" wx:key="index">
+                  <view><text class="bold">{{item[0]}}</text></view>
+                  <view class="muted">{{item[1]}}</view>
+                </ll-navigation-menu-link>
+              </view>
+            </ll-navigation-menu-content>
+          </ll-navigation-menu-item>
+          <ll-navigation-menu-item>
+            <ll-navigation-menu-link>Docs</ll-navigation-menu-link>
+          </ll-navigation-menu-item>
+          <ll-navigation-menu-indicator />
+        </ll-navigation-menu-list>
+      </ll-navigation-menu>
+    </view>
+  </view>
+</view>

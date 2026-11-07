@@ -1,0 +1,56 @@
+/* ll-polaroid-image — upstream PolaroidImage: relative isolate aspect-square
+   w-full overflow-hidden, bg paper-shade/60, after: inset shadow (the
+   recessed window), z at the ink layer. */
+/* @ll-import tokens */
+.ll-polaroid-image {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background-color: rgba(236, 230, 218, 0.6); /* paper-shade /60 */
+  box-shadow: inset 0 2px 4px rgba(58, 44, 30, 0.26), inset 0 0 0 1px rgba(58, 44, 30, 0.12);
+}
+
+.ll-polaroid-image__scene {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+/* Upstream z-(--ll-z-ink): the stamp/develop overlay sits at the ink layer,
+   above the scene but below nothing else (window clips its content). */
+.ll-polaroid-image__date {
+  position: absolute;
+  right: 20rpx; /* end-2.5 */
+  bottom: 16rpx; /* bottom-2 */
+  pointer-events: none;
+  font-family: 'IBM Plex Mono', Menlo, monospace;
+  font-size: 19rpx; /* 11px x0.88 */
+  letter-spacing: 0.05em;
+  color: #f59a2f; /* --ll-tangerine */
+  text-shadow: 0 0 2px rgba(58, 44, 30, 0.7), 0 0 6px rgba(58, 44, 30, 0.45);
+}
+
+/* develop: bg-photo covers the print and soaks away (upstream animate-out
+   fade-out-0 delay-500 duration-(--ll-dur-soak) fill-forwards). */
+.ll-polaroid-image__develop {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-color: #fffdf6; /* --ll-photo */
+  animation: ll-polaroid-develop 0.52s ease-out 0.5s both;
+}
+
+@keyframes ll-polaroid-develop {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

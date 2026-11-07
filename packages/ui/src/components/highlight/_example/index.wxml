@@ -1,0 +1,49 @@
+<!-- ll-highlight demo — mirrors the upstream docs page (#/components/highlight). -->
+<view class="demo">
+  <view class="demo-title">Highlight</view>
+  <view class="sec-desc">A swipe of highlighter behind the words, drawn once per line at whatever width the text lands on.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">A swipe behind a phrase. Select the text, copy it: it is still just words.</view>
+    <view class="stack">
+      <view class="para">Most of what I remember from a book is in the margins. The good bits get <ll-highlight text="a swipe of yellow" /> so I can find them on the next read.</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Tones and weights</view>
+    <view class="sec-desc">Yellow is the highlighter. Pink, green, blue, orange, lilac and teal are the stationery accents held as translucent markers.</view>
+    <view class="stack">
+      <view class="para"><ll-highlight text="yellow" />, <ll-highlight text="pink" tone="pink" />, <ll-highlight text="green" tone="green" />, <ll-highlight text="blue" tone="blue" />, <ll-highlight text="orange" tone="orange" />, <ll-highlight text="lilac" tone="lilac" /> and <ll-highlight text="teal" tone="teal" />.</view>
+      <view class="para">A <ll-highlight text="light hand" weight="light" />, a <ll-highlight text="regular one" />, and a <ll-highlight text="heavy chisel tip" weight="heavy" />.</view>
+      <view class="para">Or run it <ll-highlight text="under the line" cover="under" tone="green" /> and <ll-highlight text="let the words breathe" cover="under" tone="pink" />.</view>
+    </view>
+
+    <view class="sub-h3">Wraps, and draws on</view>
+    <view class="sec-desc">A phrase that runs onto three lines gets three swipes, one per line, that start and stop where the words do. Press replay to watch it being drawn.</view>
+    <view class="stack">
+      <view class="para">If you only remember one thing from this page, remember <ll-highlight text="that the margin is where the reading happens, and the page is only where it starts" animate show="{{hlOn}}" tone="pink" />. Everything else is decoration.</view>
+      <ll-button variant="outline" size="sm" custom-style="align-self:flex-start" bind:tap="onReplay">Replay</ll-button>
+    </view>
+
+    <view class="sub-h3">Reading notes</view>
+    <view class="sec-desc">Highlights inside a card: the swipe sits on the paper, behind the words, and the card's tilt never touches the text.</view>
+    <view class="stack">
+      <ll-card tape="top" seed="notes">
+        <ll-card-header>
+          <ll-card-title custom-style="font-size:42rpx">Notes on Walden, ch. 2</ll-card-title>
+          <ll-card-description>Read on the train, 14 March</ll-card-description>
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;flex-direction:column;gap:24rpx">
+          <view class="para">"I went to the woods because I wished to live deliberately," and then, a page later, <ll-highlight text="to front only the essential facts of life" />.</view>
+          <view class="para">The part I keep coming back to is <ll-highlight text="simplicity, simplicity, simplicity" tone="green" />: he says it three times, as if the first two were not enough.</view>
+          <view class="para"><ll-highlight text="Ask Sam what she thinks about the pond." tone="pink" weight="light" /></view>
+        </ll-card-content>
+      </ll-card>
+    </view>
+  </view>
+</view>

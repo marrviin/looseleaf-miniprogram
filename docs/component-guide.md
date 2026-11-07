@@ -17,6 +17,15 @@ button 移植轮次(2026-11)沉淀的经验与规范,后续组件(M2 批次等)�
 
 **改了 recipe 记得 `npm run build:ink`**;`build.mjs` 只做拼装,不会重烘引擎。
 
+### tokens 不烘焙进组件(体积规范)
+
+主包上限 2MB(错误码 80051)。tokens.wxss(~5KB)若像早先那样内联进每个组件,112 个组件就是 ~560KB 重复。现行规则:
+
+- `build.mjs` **忽略**组件 wxss 里的 `/* @ll-import tokens */`(源码里保留这行作为"此组件依赖 tokens"的标记,构建时是 no-op);只有 `ink/*` 块仍会被内联。
+- dist 只带一份 `common/style/tokens.wxss`;**使用方必须在 app.wxss 里 `@import` 一次**(见 packages/example/app.wxss)。tokens 定义在 `page` 上,CSS 自定义属性沿节点树继承进组件,`styleIsolation` 不影响继承。
+- 使用方建议在 project.config.json 开 `"ignoreUploadUnusedFiles": true`,上传时按依赖图裁掉没用到的组件。
+- 同理,新增大型共享样式块(如 paper-tiles 的 base64 纹理,121KB)时**不要**随手内联——先想想它在多少个组件里重复。
+
 ## 二、样式保真清单(逐条对照,缺一不可)
 
 - **颜色映射要看上游源码**,别猜:`text-primary-foreground` 实际解析为 `--ll-ink`(深墨色)而非 paper;destructive 才是 paper。上游 `src/components/ui/<name>.tsx` 的 cva + `src/styles/looseleaf.css` 的 token 定义是唯一事实。

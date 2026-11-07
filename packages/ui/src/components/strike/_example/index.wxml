@@ -1,0 +1,51 @@
+<!-- ll-strike demo — mirrors the upstream docs page (#/components/strike). -->
+<view class="demo">
+  <view class="demo-title">Strike</view>
+  <view class="sec-desc">A red pencil through real words: one line, two lines, or a cross-out. The text stays readable and real underneath, so a price that was 49 can still be copied and read by a screen reader.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">Red pencil through the old plan. The line tilts a little and pokes out past both ends.</view>
+    <view class="stack">
+      <view class="para">We meet on <ll-strike text="Thursday at nine" /> Friday at ten, in the room with the good chairs.</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Kinds and pens</view>
+    <view class="sec-desc">A single line, a double line, a cross-out over the whole phrase, and other pens.</view>
+    <view class="stack">
+      <view class="para"><ll-strike text="single" />, <ll-strike text="double" kind="double" />, and <ll-strike text="a cross-out over the whole phrase" kind="cross" />.</view>
+      <view class="para"><ll-strike text="ink felt" tone="ink" />, <ll-strike text="blue felt" tone="blue" />, <ll-strike text="a brush pen" weight="brush" />, <ll-strike text="a fine-liner" weight="fine" />.</view>
+    </view>
+
+    <view class="sub-h3">A price that dropped</view>
+    <view class="sec-desc">The old price stays in the text (and in the accessibility tree as {{'<s>'}}), so nothing is lost to a screen reader; the card says what changed.</view>
+    <view class="stack">
+      <ll-card stock="index-card" tilt seed="price">
+        <ll-card-header>
+          <ll-card-title custom-style="font-size:42rpx;font-family:var(--font-script, cursive)">Field notebook</ll-card-title>
+          <ll-card-description>Dot grid, stitched spine</ll-card-description>
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;flex-direction:column;gap:8rpx">
+          <view class="price"><ll-strike text="$24" weight="brush" custom-style="color:var(--ll-ink-muted,#4a433c)" />{{' '}}<text class="price-new">$16</text></view>
+          <view class="price-note">Was $24. Now $16 until Sunday.</view>
+        </ll-card-content>
+      </ll-card>
+    </view>
+
+    <view class="sub-h3">A to-do list</view>
+    <view class="sec-desc">Tick a box and the task is struck through in red pencil, drawn on as you tick it.</view>
+    <view class="stack">
+      <view class="todos">
+        <view class="todo" wx:for="{{tasks}}" wx:key="*this">
+          <ll-checkbox ariaLabel="{{item}}" checked="{{done[item]}}" data-task="{{item}}" bind:change="onToggle" />
+          <ll-strike ll-class="todo-text {{done[item] ? 'todo-done' : ''}}" text="{{item}}" animate show="{{done[item]}}" />
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

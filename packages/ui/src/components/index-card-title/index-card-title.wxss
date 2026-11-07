@@ -1,0 +1,13 @@
+/* ll-index-card-title — upstream IndexCardTitle: truncate, script 1.65rem
+   bold, leading-none, with the pe/me trick flattened. */
+.ll-index-card-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 46rpx; /* 1.65rem 26.4px x0.88 */
+  line-height: 1;
+  font-weight: 700;
+  color: #2a2420;
+}

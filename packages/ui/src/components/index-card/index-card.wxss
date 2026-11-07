@@ -1,0 +1,15 @@
+/* ll-index-card — upstream IndexCard: min-h-56 (224px), max-w-md, px-5 +
+   pb-[25px], body text 17px on a 30px line (on the card, via the paper's
+   custom style). The decor ink layer bleeds -pad px past the box. */
+.ll-index-card {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.ll-index-card__decor {
+  position: absolute;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

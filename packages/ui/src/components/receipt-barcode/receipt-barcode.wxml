@@ -1,0 +1,6 @@
+<!-- ll-receipt-barcode — the bars stretch to the full width; the number
+     sits under them in wide-tracked tabular figures. -->
+<view class="ll-receipt-barcode" style="{{customStyle}}">
+  <image class="ll-receipt-barcode-bars" src="{{uri}}" style="height:{{barH}}rpx" mode="scaleToFill" aria-role="img" aria-label="Barcode {{value}}" />
+  <view class="ll-receipt-barcode-caption">{{value}}</view>
+</view>

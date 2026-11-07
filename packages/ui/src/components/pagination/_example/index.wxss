@@ -1,0 +1,57 @@
+.demo {
+  padding: 32rpx;
+  background: var(--ll-paper, #f8f5ee);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+.sec { margin-top: 40rpx; }
+.sec-h2 {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin-bottom: 12rpx;
+}
+.sub-h3 {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin: 28rpx 0 6rpx;
+}
+.sec-desc {
+  font-size: 24rpx;
+  color: #8a857c;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+.center { display: flex; justify-content: center; }
+.grid-gap { margin-top: 32rpx; flex-direction: column; align-items: center; gap: 32rpx; }
+.grid-gap-lg { margin-top: 32rpx; flex-direction: column; align-items: center; gap: 48rpx; }
+.live {
+  font-size: 24rpx;
+  color: #8a857c;
+}
+.script-line {
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 35rpx; /* text-xl x .88 */
+  padding: 0 24rpx;
+}
+.ll-num { font-variant-numeric: tabular-nums; }
+/* Table footer stand-in (ll-table lands with its own port) */
+.tf { max-width: 576rpx; margin: 0 auto; }
+.tf-table { margin-bottom: 32rpx; }
+.tf-head, .tf-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 8rpx;
+  font-size: 26rpx;
+  color: #2a2420;
+}
+.tf-head { color: #8a857c; font-weight: 700; border-bottom: 2rpx solid #d8d2c4; }
+.tf-row { border-bottom: 1rpx solid #e4dfd3; }
+.tf-end { text-align: right; }
+.tf-footer { display: flex; align-items: center; justify-content: space-between; gap: 24rpx; }

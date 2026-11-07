@@ -1,0 +1,120 @@
+<!-- ll-pagination demo — mirrors the upstream docs page (#/components/pagination):
+     intro, then the Examples entries (Demo, Default, Controlled with gaps,
+     Simple pager, Table footer) with the page's own copy. Installation/Usage/
+     API reference/Accessibility/Related are intentionally omitted. -->
+<view class="demo">
+  <view class="demo-title">Pagination</view>
+  <view class="sec-desc">Page links as drawn buttons: each number is a Button around your own link, the page you are on is a block of highlighter, the arrows and the ellipsis are hand-drawn. It is just links, so it works with any router, or with plain hrefs and no JavaScript at all.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Demo</view>
+    <view class="sec-desc">Official `pagination-demo`, part for part. The current page is a block of highlighter; the others wear it when pointed at.</view>
+    <view class="center">
+      <ll-pagination>
+        <ll-pagination-content>
+          <ll-pagination-item><ll-pagination-previous /></ll-pagination-item>
+          <ll-pagination-item><ll-pagination-link>1</ll-pagination-link></ll-pagination-item>
+          <ll-pagination-item><ll-pagination-link is-active>2</ll-pagination-link></ll-pagination-item>
+          <ll-pagination-item><ll-pagination-link>3</ll-pagination-link></ll-pagination-item>
+          <ll-pagination-item><ll-pagination-ellipsis /></ll-pagination-item>
+          <ll-pagination-item><ll-pagination-next /></ll-pagination-item>
+        </ll-pagination-content>
+      </ll-pagination>
+    </view>
+
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">The shadcn demo: Previous, three numbers with the second current, an ellipsis, Next. The current page is a block of highlighter; point at another and it wears the wash.</view>
+    <view class="center">
+      <ll-pagination>
+        <ll-pagination-content>
+          <ll-pagination-item><ll-pagination-previous /></ll-pagination-item>
+          <ll-pagination-item><ll-pagination-link>1</ll-pagination-link></ll-pagination-item>
+          <ll-pagination-item><ll-pagination-link is-active>2</ll-pagination-link></ll-pagination-item>
+          <ll-pagination-item><ll-pagination-link>3</ll-pagination-link></ll-pagination-item>
+          <ll-pagination-item><ll-pagination-ellipsis /></ll-pagination-item>
+          <ll-pagination-item><ll-pagination-next /></ll-pagination-item>
+        </ll-pagination-content>
+      </ll-pagination>
+    </view>
+
+    <view class="sub-h3">Controlled, with gaps</view>
+    <view class="sec-desc">Nine pages with the classic windowing: the first and last always show, the current page has a neighbor on each side, the rest fold into ellipses. Previous is inert on page 1 and Next on page 9; the links have real hrefs, so open in a new tab works.</view>
+    <view class="center grid-gap">
+      <ll-pagination>
+        <ll-pagination-content>
+          <ll-pagination-item><ll-pagination-previous disabled="{{page === 1}}" bind:tap="goPrev" /></ll-pagination-item>
+          <block wx:for="{{items}}" wx:key="index">
+            <ll-pagination-item>
+              <ll-pagination-link wx:if="{{item.kind === 'page'}}" is-active="{{item.p === page}}" aria-label="Page {{item.p}}" data-page="{{item.p}}" bind:tap="go">{{item.p}}</ll-pagination-link>
+              <ll-pagination-ellipsis wx:else />
+            </ll-pagination-item>
+          </block>
+          <ll-pagination-item><ll-pagination-next disabled="{{page === last}}" bind:tap="goNext" /></ll-pagination-item>
+        </ll-pagination-content>
+      </ll-pagination>
+      <view class="live">Page {{page}} of {{last}}</view>
+    </view>
+
+    <view class="sub-h3">Simple pager</view>
+    <view class="sec-desc">Previous, a line of text, Next: for a feed or a list you page through. Sizes are Button sizes; here the arrows are square icon buttons with a label of their own, and a load-more link uses the large size.</view>
+    <view class="center grid-gap-lg">
+      <ll-pagination>
+        <ll-pagination-content>
+          <ll-pagination-item>
+            <ll-pagination-link size="icon-sm" aria-label="Go to previous page" disabled="{{simplePage === 1}}" data-page="{{simplePage - 1}}" bind:tap="goSimple"><ll-icon name="chevron-left" /></ll-pagination-link>
+          </ll-pagination-item>
+          <ll-pagination-item>
+            <text class="script-line">page {{simplePage}} of {{simpleTotal}}</text>
+          </ll-pagination-item>
+          <ll-pagination-item>
+            <ll-pagination-link size="icon-sm" aria-label="Go to next page" disabled="{{simplePage === simpleTotal}}" data-page="{{simplePage + 1}}" bind:tap="goSimple"><ll-icon name="chevron-right" /></ll-pagination-link>
+          </ll-pagination-item>
+        </ll-pagination-content>
+      </ll-pagination>
+      <ll-pagination>
+        <ll-pagination-content>
+          <ll-pagination-item><ll-pagination-previous size="sm" disabled="{{simplePage === 1}}" bind:tap="goSimplePrev" /></ll-pagination-item>
+          <ll-pagination-item><ll-pagination-next size="sm" disabled="{{simplePage === simpleTotal}}" bind:tap="goSimpleNext" /></ll-pagination-item>
+        </ll-pagination-content>
+      </ll-pagination>
+      <ll-pagination>
+        <ll-pagination-content>
+          <ll-pagination-item><ll-pagination-link size="lg" custom-style="padding-left:64rpx;padding-right:64rpx;">Load more notes</ll-pagination-link></ll-pagination-item>
+        </ll-pagination-content>
+      </ll-pagination>
+    </view>
+
+    <view class="sub-h3">Table footer (composed)</view>
+    <view class="sec-desc">A real use: twenty-three notebooks, five to a page. The range under the table and the current number follow the page. (The ll-table component lands with its own port; the rows are a plain stand-in.)</view>
+    <view class="tf">
+      <view class="tf-table">
+        <view class="tf-head">
+          <view>Notebook</view>
+          <view class="tf-end">Pages</view>
+        </view>
+        <view class="tf-row" wx:for="{{tRows}}" wx:key="name">
+          <view>{{item.name}}</view>
+          <view class="tf-end ll-num">{{item.pages}}</view>
+        </view>
+      </view>
+      <view class="tf-footer">
+        <view class="live">{{tFrom}}–{{tFrom + tShown - 1}} of {{tTotal}}</view>
+        <ll-pagination custom-style="margin-left:0;width:auto;">
+          <ll-pagination-content>
+            <ll-pagination-item>
+              <ll-pagination-link aria-label="Go to previous page" disabled="{{tPage === 1}}" data-page="{{tPage - 1}}" bind:tap="goTable"><ll-icon name="chevron-left" /></ll-pagination-link>
+            </ll-pagination-item>
+            <ll-pagination-item wx:for="{{[1,2,3,4,5]}}" wx:for-item="n" wx:key="*this">
+              <ll-pagination-link is-active="{{n === tPage}}" aria-label="Page {{n}}" data-page="{{n}}" bind:tap="goTable">{{n}}</ll-pagination-link>
+            </ll-pagination-item>
+            <ll-pagination-item>
+              <ll-pagination-link aria-label="Go to next page" disabled="{{tPage === tPages}}" data-page="{{tPage + 1}}" bind:tap="goTable"><ll-icon name="chevron-right" /></ll-pagination-link>
+            </ll-pagination-item>
+          </ll-pagination-content>
+        </ll-pagination>
+      </view>
+    </view>
+  </view>
+</view>

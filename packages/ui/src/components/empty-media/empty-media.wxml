@@ -1,0 +1,16 @@
+<!-- ll-empty-media — icon variant: a 44px slip of paper (ink) with the slot
+     content (the icon) on it; pose/doodle draw into a padded art layer;
+     default variant is bare for anything (avatar, a group of them…). -->
+<view
+  class="ll-empty-media ll-empty-media--{{isIcon ? 'icon' : 'default'}} ll-class"
+  style="{{customStyle}}"
+>
+  <view wx:if="{{isIcon}}" class="ll-empty-media__tile">
+    <view wx:if="{{inkStyle}}" class="ll-ink-layer" style="{{inkStyle}}" />
+    <slot />
+  </view>
+  <block wx:else>
+    <view wx:if="{{artStyle}}" class="ll-empty-media__art" style="{{artStyle}}" aria-hidden="true" />
+    <slot />
+  </block>
+</view>

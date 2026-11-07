@@ -1,0 +1,8 @@
+<!-- ll-receipt-line — name (qty prefix) left, price right; both numbers
+     share the .ll-num tabular figures. -->
+<view class="ll-receipt-line" style="{{customStyle}}">
+  <view class="ll-receipt-line-name">
+    <text wx:if="{{qty !== null && qty !== ''}}" class="ll-receipt-line-qty">{{qty}} x </text><slot />
+  </view>
+  <view class="ll-receipt-line-price">{{price}}</view>
+</view>

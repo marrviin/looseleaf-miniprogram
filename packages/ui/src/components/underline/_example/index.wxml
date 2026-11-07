@@ -1,0 +1,48 @@
+<!-- ll-underline demo — mirrors the upstream docs page (#/components/underline). -->
+<view class="demo">
+  <view class="demo-title">Underline</view>
+  <view class="sec-desc">A pen line under real words: single, double, wavy or scribbled, in felt, pencil or marker. It follows the phrase line by line when it wraps, and can draw itself on as it scrolls into view.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">A felt-tip line under a phrase. It rises a little to the right, starts a hair early and runs past the last letter.</view>
+    <view class="stack">
+      <view class="para">Underline the parts you will need again, like <ll-underline text="the date of the meeting" />, and leave the rest for the next pass.</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Kinds and pens</view>
+    <view class="sec-desc">Single, double, wavy and scribbled lines; felt, blue felt, red felt, pencil and marker; fine, regular and brush.</view>
+    <view class="stack">
+      <view class="para"><ll-underline text="single" />, <ll-underline text="double" kind="double" />, <ll-underline text="wavy" kind="wavy" tone="blue" />, and a <ll-underline text="quick scribble" kind="scribble" tone="red" />.</view>
+      <view class="para"><ll-underline text="blue felt" tone="blue" />, <ll-underline text="red felt" tone="red" />, <ll-underline text="green felt" tone="green" />, <ll-underline text="soft pencil" tone="pencil" /> and <ll-underline text="marker" tone="marker" />.</view>
+      <view class="para"><ll-underline text="fine-liner" weight="fine" />, <ll-underline text="felt tip" />, <ll-underline text="brush pen" weight="brush" tone="blue" />.</view>
+    </view>
+
+    <view class="sub-h3">Wraps, and draws on</view>
+    <view class="sec-desc">An underline that wraps onto several lines is one pull per line. Press replay to watch it being drawn.</view>
+    <view class="stack">
+      <view class="para">A book is a conversation with someone who cannot answer back, so <ll-underline text="talk back in the margin, argue with the author, and write down where you stopped believing them" animate show="{{ulOn}}" kind="wavy" tone="blue" />, then close it.</view>
+      <ll-button variant="outline" size="sm" custom-style="align-self:flex-start" bind:tap="onReplay">Replay</ll-button>
+    </view>
+
+    <view class="sub-h3">Under a headline</view>
+    <view class="sec-desc">A double brush line under a title, a wavy pencil line under a caption: the pen grows with the type.</view>
+    <view class="stack">
+      <ll-card tilt seed="headline">
+        <ll-card-header>
+          <ll-card-title custom-style="font-size:68rpx;line-height:1.2;font-family:var(--font-script, cursive)">
+            <ll-underline text="Spring reading list" kind="double" weight="brush" tone="blue" />
+          </ll-card-title>
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;flex-direction:column;gap:16rpx">
+          <view class="para">Three books for the <ll-underline text="slow weeks" kind="wavy" tone="pencil" />: a novel, a field guide and something with pictures.</view>
+        </ll-card-content>
+      </ll-card>
+    </view>
+  </view>
+</view>

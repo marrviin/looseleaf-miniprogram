@@ -1,0 +1,7 @@
+/* ll-breadcrumb-item */
+/* @ll-import tokens */
+.ll-breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 12rpx; /* upstream gap-1.5 */
+}

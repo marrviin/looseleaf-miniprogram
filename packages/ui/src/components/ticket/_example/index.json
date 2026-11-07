@@ -1,0 +1,13 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-ticket": "../ticket/ticket",
+    "ll-ticket-body": "../ticket-body/ticket-body",
+    "ll-ticket-stub": "../ticket-stub/ticket-stub",
+    "ll-ticket-title": "../ticket-title/ticket-title",
+    "ll-ticket-description": "../ticket-description/ticket-description",
+    "ll-ticket-number": "../ticket-number/ticket-number",
+    "ll-tape": "../tape/tape",
+    "ll-button": "../button/button"
+  }
+}

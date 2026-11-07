@@ -1,0 +1,5 @@
+<!-- ll-breadcrumb-ellipsis -->
+<view class="ll-breadcrumb-ellipsis {{size === 'sm' ? 'll-breadcrumb-ellipsis--sm' : ''}} ll-class" style="{{customStyle}}" aria-hidden="true">
+  <ll-icon name="ellipsis" size="{{16}}" />
+  <text class="ll-breadcrumb-ellipsis__sr">More</text>
+</view>

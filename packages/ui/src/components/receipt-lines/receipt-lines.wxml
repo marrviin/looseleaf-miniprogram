@@ -1,0 +1,2 @@
+<!-- ll-receipt-lines -->
+<view class="ll-receipt-lines" style="{{customStyle}}"><slot /></view>

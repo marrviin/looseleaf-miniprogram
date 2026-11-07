@@ -1,0 +1,17 @@
+<!-- ll-polaroid — the white instant frame (photo stock): window + caption
+     on it, tilted like a photograph. -->
+<view class="ll-polaroid ll-class" style="{{customStyle}}">
+  <ll-paper
+    stock="photo"
+    rules="none"
+    tape="{{tape}}"
+    tape-kind="{{tapeKind}}"
+    fastener="{{fastener}}"
+    fastener-tone="{{fastenerTone}}"
+    tilt="{{tilt}}"
+    seed="{{seed}}"
+    custom-style="width:512rpx;display:flex;flex-direction:column;gap:20rpx;padding:28rpx 28rpx 24rpx;box-sizing:border-box;font-family:'Kevin Sans',sans-serif;color:#2a2420;"
+  >
+    <slot />
+  </ll-paper>
+</view>

@@ -1,0 +1,16 @@
+/* ll-doodle — upstream .ll-doodle[data-ink=doodle]: pointer-events-none
+   shrink-0 overflow-visible svg. */
+.ll-doodle {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.ll-doodle__art {
+  position: absolute;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

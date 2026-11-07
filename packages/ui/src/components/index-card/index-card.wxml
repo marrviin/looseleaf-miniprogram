@@ -1,0 +1,19 @@
+<!-- ll-index-card — the Paper (index-card stock, index rules) tilted under
+     a quarter of a degree; the decor drawing (hole, flag, pile) is measured
+     on the card box and paints above the sheet, below the slot content. -->
+<view class="ll-index-card ll-class" style="{{customStyle}}">
+  <ll-paper
+    stock="index-card"
+    rules="index"
+    tape="{{tape}}"
+    tape-kind="{{tapeKind}}"
+    fastener="{{fastener}}"
+    fastener-tone="{{fastenerTone}}"
+    tilt="{{tiltDeg}}"
+    seed="{{seed}}"
+    custom-style="width:100%;max-width:896rpx;min-height:448rpx;display:flex;flex-direction:column;padding:0 40rpx 50rpx;box-sizing:border-box;font-family:'Kevin Sans',sans-serif;font-size:30rpx;line-height:60rpx;color:#2a2420;"
+  >
+    <view wx:if="{{decorOn}}" class="ll-index-card__decor" style="{{inkStyle}}"></view>
+    <slot />
+  </ll-paper>
+</view>

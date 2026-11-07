@@ -1,0 +1,30 @@
+/* ll-navigation-menu */
+/* @ll-import tokens */
+.ll-navigation-menu {
+  position: relative;
+  display: flex;
+  max-width: 100%;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+/* the shared viewport slip: dropped from under the strip, sized to the open
+   panel (upstream NavigationMenuViewport: absolute start-0 top-full mt-2,
+   z-popover, Paper stock=slip tilt=0.3 rules=none, shadow lift).
+   Stacking: the root is the elevated layer (WeChat can't portal the panel
+   out of the strip), the list sits above the slip so the open panel paints
+   over its paper. */
+.ll-navigation-menu--open {
+  z-index: 1010; /* --ll-z-popover: only the open menu rises over the page */
+}
+.ll-navigation-menu--vp {
+  isolation: isolate;
+}
+.ll-navigation-menu__slip {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: 16rpx; /* mt-2 */
+  z-index: 0;
+}

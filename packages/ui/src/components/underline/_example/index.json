@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-underline": "../underline/underline",
+    "ll-button": "../button/button",
+    "ll-card": "../card/card",
+    "ll-card-header": "../card-header/card-header",
+    "ll-card-title": "../card-title/card-title",
+    "ll-card-content": "../card-content/card-content"
+  }
+}

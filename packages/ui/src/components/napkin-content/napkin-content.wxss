@@ -1,0 +1,7 @@
+/* ll-napkin-content — flex-1 text-[1.5rem] leading-[1.15] */
+.ll-napkin-content {
+  flex: 1;
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 42rpx; /* 1.5rem 24px x .88 */
+  line-height: 1.15;
+}

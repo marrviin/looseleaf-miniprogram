@@ -1,0 +1,45 @@
+<!-- ll-stamp demo — mirrors the upstream docs page (#/components/stamp). -->
+<view class="demo">
+  <view class="demo-title">Stamp</view>
+  <view class="sec-desc">A rubber stamp: solid ink pressed through a worn pad, double-rule border, typewriter capitals, a slight tilt and sometimes the ghost of a first impression. For APPROVED, PAID, DRAFT and friends.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Presets</view>
+    <view class="sec-desc">Ink pressed through a worn pad: about 86 percent of it survives, patches are missed, the border wobbles and the whole stamp tilts a few degrees.</view>
+    <view class="stamp-row">
+      <ll-stamp name="stamp-approved" />
+      <ll-stamp name="stamp-draft" />
+      <ll-stamp name="stamp-paid" />
+      <ll-stamp name="stamp-urgent" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+    <view class="sub-h3">Shapes and inks</view>
+    <view class="sec-desc">A box, a ring with rim text, a twelve-point seal, and big diagonal letters. Pad inks are red, blue felt, green or ink, never a stationery accent.</view>
+    <view class="stamp-row">
+      <ll-stamp text="Received" sub="Mar 14 2026" ink="ink-you" h="{{72}}" />
+      <ll-stamp text="Members" shape="round" ring="MEMBERS - EST 2026 -" ink="ink-you" size="{{96}}" />
+      <ll-stamp text="New" shape="burst" sub="issue" ink="ink" size="{{96}}" />
+      <ll-stamp text="Void" shape="void" ink="red" w="{{160}}" h="{{64}}" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">On a document</view>
+    <view class="sec-desc">Stamps go on top of real content and never block it: the svg ignores the pointer and keeps its own name for screen readers.</view>
+    <view class="doc-stage">
+      <ll-paper stock="slip" tilt="{{false}}" custom-style="position:relative;width:100%;max-width:672rpx;padding:48rpx;color:var(--ll-ink)">
+        <view class="doc-title">Invoice 2026-031</view>
+        <view class="doc-rows">
+          <text class="doc-k">To</text><text class="doc-v">The Paper Club</text>
+          <text class="doc-k">For</text><text class="doc-v">Twelve notebooks, felt tips</text>
+          <text class="doc-k">Total</text><text class="doc-v">$ 148.00</text>
+        </view>
+        <ll-stamp name="stamp-paid" custom-style="position:absolute;right:32rpx;bottom:24rpx" />
+      </ll-paper>
+    </view>
+  </view>
+</view>

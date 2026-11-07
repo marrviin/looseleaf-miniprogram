@@ -1,0 +1,12 @@
+<!-- ll-typing-indicator — the box stays mounted even when paused (upstream
+     keeps the region exposed and hides the drawing, never display:none, so
+     assistive tech can announce the label). -->
+<view
+  class="ll-typing-indicator ll-class"
+  style="{{boxStyle}}{{customStyle}}"
+  aria-role="status"
+  aria-live="polite"
+  aria-label="{{label}}"
+>
+  <view wx:if="{{artStyle}}" class="ll-typing-indicator__art" style="{{artStyle}}" />
+</view>

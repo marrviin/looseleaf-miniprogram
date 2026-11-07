@@ -1,0 +1,18 @@
+/* ll-pagination-ellipsis */
+/* @ll-import tokens */
+.ll-pagination-ellipsis {
+  display: flex;
+  width: 72rpx; /* upstream size-9 (36px) */
+  height: 72rpx;
+  align-items: center;
+  justify-content: center;
+  color: var(--ll-ink-soft); /* text-ink-soft */
+}
+.ll-pagination-ellipsis__sr {
+  /* upstream sr-only */
+  position: absolute;
+  width: 2rpx;
+  height: 2rpx;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}

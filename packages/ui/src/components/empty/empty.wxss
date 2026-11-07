@@ -1,0 +1,31 @@
+/* ll-empty — flex col items-center justify-center gap-6 p-6 text-center
+   (upstream adds flex-1 min-w-0 inside flex parents). */
+/* @ll-import tokens */
+.ll-empty {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 48rpx; /* gap-6 */
+  box-sizing: border-box;
+  padding: 48rpx; /* p-6 */
+  text-align: center;
+}
+.ll-empty--framed {
+  border: 1px solid transparent; /* [.border]:border-transparent — the ink draws the frame */
+}
+
+/* ink overlay — common/ink.js draws the recipe at the element's real size and
+   injects an SVG data-URI background plus `inset: -<pad>px` inline, keeping
+   the hand-drawn stroke overhang visible. */
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

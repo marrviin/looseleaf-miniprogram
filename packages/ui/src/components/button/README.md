@@ -7,7 +7,7 @@
 ```json
 {
   "usingComponents": {
-    "ll-button": "@looseleaf/ui/components/button/button"
+    "ll-button": "looseleaf-miniprogram/components/button/button"
   }
 }
 ```

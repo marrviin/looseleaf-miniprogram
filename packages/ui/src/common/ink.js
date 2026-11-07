@@ -30,6 +30,7 @@ import {
   tileOffsets,
   farShadow,
 } from './ink-engine';
+import { onHandFontReady } from './hand-font';
 import TOKENS from './tokens';
 
 const KNOBS = { wobble: 1, misreg: 1, bleed: 1, width: 1 };
@@ -165,14 +166,116 @@ function splitLayer(part, frame) {
   return out;
 }
 
+
+/** Upstream hides ink groups with a CSS rule keyed on data-hide-on
+    (looseleaf.css "svg[data-ink] [data-hide-on~=…]"). The miniprogram ink
+    layer is a stacked background-image, so there is no CSS to do it —
+    strip the matching groups out of the SVG part text instead (balanced
+    <g> scan; recipes emit well-formed nesting). */
+function stripHideOn(part, token) {
+  if (!part || part.indexOf('data-hide-on') === -1) return part;
+  let out = '';
+  let depth = 0;
+  let hideDepth = -1;
+  let last = 0;
+  let m;
+  const re = /<(\/?)g\b[^>]*?(\/?)>/g;
+  while ((m = re.exec(part))) {
+    if (m[1] === '/') {
+      // closing tag
+      depth--;
+      if (hideDepth !== -1) {
+        // inside a hidden group: drop text + the tag; its own close ends the span
+        if (depth === hideDepth) hideDepth = -1;
+      } else {
+        out += part.slice(last, m.index) + m[0];
+      }
+    } else if (m[2] === '/') {
+      // self-closing group
+      if (hideDepth === -1) {
+        const hide = /data-hide-on="([^"]*)"/.exec(m[0]);
+        if (hide && hide[1].split(/\s+/).includes(token)) {
+          out += part.slice(last, m.index);
+        } else {
+          out += part.slice(last, m.index) + m[0];
+        }
+      }
+    } else {
+      if (hideDepth === -1) {
+        const hide = /data-hide-on="([^"]*)"/.exec(m[0]);
+        if (hide && hide[1].split(/\s+/).includes(token)) {
+          out += part.slice(last, m.index);
+          hideDepth = depth; // the close that brings depth back here ends the hidden span
+        } else {
+          out += part.slice(last, m.index) + m[0];
+        }
+      }
+      depth++;
+    }
+    last = re.lastIndex;
+  }
+  out += part.slice(last);
+  return out;
+}
+
+/** Variant of stripHideOn for recipes that emit named parts (`ink.part('seam', …)`
+    → <g data-part="seam">). Upstream hides parts with plain CSS (e.g. the first
+    toggle-group item hides its seam: [data-part=seam]:hidden); a background-image
+    ink layer has no CSS, so named groups are cut out of the SVG text instead. */
+function stripDataPart(part, names) {
+  if (!part || !names || !names.length || part.indexOf('data-part') === -1) return part;
+  let out = '';
+  let depth = 0;
+  let hideDepth = -1;
+  let last = 0;
+  let m;
+  const re = /<(\/?)g\b[^>]*?(\/?)>/g;
+  while ((m = re.exec(part))) {
+    if (m[1] === '/') {
+      depth--;
+      if (hideDepth !== -1) {
+        if (depth === hideDepth) hideDepth = -1;
+      } else {
+        out += part.slice(last, m.index) + m[0];
+      }
+    } else if (m[2] === '/') {
+      if (hideDepth === -1) {
+        const hit = /data-part="([^"]*)"/.exec(m[0]);
+        if (hit && names.includes(hit[1])) {
+          out += part.slice(last, m.index);
+        } else {
+          out += part.slice(last, m.index) + m[0];
+        }
+      }
+    } else {
+      if (hideDepth === -1) {
+        const hit = /data-part="([^"]*)"/.exec(m[0]);
+        if (hit && names.includes(hit[1])) {
+          out += part.slice(last, m.index);
+          hideDepth = depth;
+        } else {
+          out += part.slice(last, m.index) + m[0];
+        }
+      }
+      depth++;
+    }
+    last = re.lastIndex;
+  }
+  out += part.slice(last);
+  return out;
+}
+
 /** Render (or fetch from cache) the rest+pressed+focus layers for one ink spec.
  *  Exported for ll-switch, which draws the sliding thumb with the separate
  *  switch-thumb recipe inside the same component (upstream nests a
- *  SwitchThumb part with its own recipe in the same DOM). */
-export function renderLayers(recipeId, box, params, seed) {
+ *  SwitchThumb part with its own recipe in the same DOM).
+ *  `opts.stripParts`: names of `<g data-part>` groups to cut from every layer
+ *  (toggle-group's first item hides its seam — see stripDataPart). */
+export function renderLayers(recipeId, box, params, seed, opts) {
   const recipe = RECIPES[recipeId];
   if (!recipe) return null;
-  const key = [recipeId, `${box.w}x${box.h}`, JSON.stringify(params), seed].join('|');
+  const strip = opts && opts.stripParts;
+  const key = [recipeId, `${box.w}x${box.h}`, JSON.stringify(params), seed, strip ? strip.join(',') : ''].join('|');
   let entry = cache.get(key);
   if (!entry) {
     if (cache.size >= CACHE_MAX) cache.clear();
@@ -187,12 +290,23 @@ export function renderLayers(recipeId, box, params, seed) {
     // checked/indeterminate: on-state layers (checkbox etc.) — recipes that
     // don't define them just leave parts undefined. invalid: field-frame
     // recipes draw it instead of rest (see __applyInkLayer's fallback).
-    for (const layer of ['rest', 'pressed', 'focus', 'hover', 'checked', 'indeterminate', 'invalid']) {
-      const part = frame.parts[layer];
-      if (!part) continue;
+    for (const layer of ['rest', 'pressed', 'focus', 'hover', 'checked', 'indeterminate', 'invalid', 'open']) {
+      const rawPart = frame.parts[layer];
+      if (!rawPart) continue;
+      const part = strip ? stripDataPart(rawPart, strip) : rawPart;
       const split = splitLayer(part, frame);
       if (!split) {
         entry.uris[layer] = svgDataUri(part, frame);
+        // Recipes mark groups hideOn:'checked'/'open' (upstream hides them via
+        // CSS when the host is checked/open); the stacked layer needs the
+        // stripped rest to draw under the on-state layer. Same for
+        // indeterminate.
+        if (layer === 'rest') {
+          for (const token of ['checked', 'indeterminate', 'open']) {
+            const stripped = stripHideOn(part, token);
+            if (stripped !== part) entry.uris[`rest-${token}`] = svgDataUri(stripped, frame);
+          }
+        }
       } else {
         entry.uris[layer] = {
           before: split.before ? svgDataUri(split.before, frame) : '',
@@ -237,6 +351,9 @@ export function attachInk() {
     data: {
       inkStyle: '',
       inkPressed: false,
+      // Open state (navigation-menu trigger/tab): stacks the recipe's `open`
+      // layer over rest (the rest pencil sketch hides for it, hideOn open).
+      open: false,
       // Faced (sheet) recipes: cast shadows, under/over stroke layers and the
       // CSS face views between them — see __applyFaced.
       inkFaced: false,
@@ -252,10 +369,21 @@ export function attachInk() {
         // wx:if renders it — reset the give-up counter so it measures again.
         this.__inkRetries = 0;
         this.__measureInk();
+        // The first measurement races the hand font: until Kevin Sans lands,
+        // labels lay out with the fallback font, so text-bearing boxes are
+        // measured at the wrong width and the ink draws inset. Re-measure
+        // once the font settles (no-op when it was already cached).
+        onHandFontReady(() => {
+          if (this.__inkDetached) return;
+          setTimeout(() => this.__measureInk(), 50);
+        });
+      },
+      detached() {
+        this.__inkDetached = true;
       },
     },
     observers: {
-      'seed, variant, size, shape, disabled, focusVisible, hovered, pressed'() {
+      'seed, variant, size, shape, disabled, focusVisible, hovered, pressed, open'() {
         // Size changes the box; the others change the params/layer.
         this.__measureInk();
       },
@@ -319,7 +447,7 @@ export function attachInk() {
           ...(typeof this.__inkParams === 'function' ? this.__inkParams() : this.__inkParams),
         };
         this.__inkSeed = seed;
-        this.__inkEntry = renderLayers(recipeId, bucketBox(this.__inkBox.w, this.__inkBox.h), params, seed);
+        this.__inkEntry = renderLayers(recipeId, bucketBox(this.__inkBox.w, this.__inkBox.h), params, seed, this.__inkStrip ? { stripParts: this.__inkStrip } : undefined);
         this.__applyInkLayer();
       },
       /** Compose the ink layer: layers stack like upstream's one-SVG model.
@@ -349,11 +477,21 @@ export function attachInk() {
         if (hovered && entry.uris.hover) stack.push(entry.uris.hover);
         // On-state layers stack over rest like upstream's one-SVG model
         // (checked shows its fill + reveal mark over the box; rest stays).
+        // open comes before checked (a tab is one or the other).
+        if (d.open && entry.uris.open) stack.push(entry.uris.open);
         if (d.indeterminate && entry.uris.indeterminate) stack.push(entry.uris.indeterminate);
         else if (d.checked && entry.uris.checked) stack.push(entry.uris.checked);
         // Field-frame recipes (input, textarea) draw invalid INSTEAD of rest
         // — the red frame replaces the pencil box, never stacks over it.
-        stack.push(entry.uris.rest ?? entry.uris.invalid);
+        const restUri =
+          d.open && entry.uris['rest-open']
+            ? entry.uris['rest-open']
+            : d.indeterminate && entry.uris['rest-indeterminate']
+              ? entry.uris['rest-indeterminate']
+              : d.checked && entry.uris['rest-checked']
+                ? entry.uris['rest-checked']
+                : (entry.uris.rest ?? entry.uris.invalid);
+        stack.push(restUri);
         if (!stack.length) return;
         if (entry.faced) {
           this.__applyFaced(entry, stack, { focusVisible: d.focusVisible, pressed, hovered });
@@ -396,6 +534,10 @@ export function attachInk() {
             variant: d.variant ?? 'default',
             size: d.size ?? 'default',
             shape: d.shape && d.shape !== 'default' ? d.shape : undefined,
+            disabled: true,
+            // Component-specific extras (tabs variant/orientation, ...), so a
+            // disabled layer draws with the same recipe params as rest.
+            ...(typeof this.__inkParams === 'function' ? this.__inkParams() : this.__inkParams),
             disabled: true,
           };
           const frame = runRecipe(RECIPES[recipeId], {

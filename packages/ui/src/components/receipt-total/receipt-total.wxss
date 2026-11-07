@@ -1,0 +1,33 @@
+/* ll-receipt-total — flex flex-wrap items-baseline justify-between gap-x-3
+   text-base font-bold; dd ll-num relative isolate ms-auto px-1 */
+/* @ll-import tokens */
+
+.ll-receipt-total {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  column-gap: 21rpx; /* gap-x-3 */
+  font-size: 26rpx; /* text-base 16px x .82 */
+  font-weight: 700;
+}
+
+.ll-receipt-total-amount {
+  position: relative;
+  isolation: isolate; /* the ink layer z-index stays within the amount */
+  margin-left: auto; /* ms-auto */
+  padding: 0 7rpx; /* px-1 */
+  font-variant-numeric: tabular-nums lining-nums; /* .ll-num */
+}
+
+/* Pre-inkStyle box: real size so attachInk can measure; inkStyle swaps in
+   inset:-14px (the recipe pad) and the loop background. */
+.ll-receipt-total-ink {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+

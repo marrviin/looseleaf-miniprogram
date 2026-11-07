@@ -1,0 +1,45 @@
+<!-- ll-annotate demo — mirrors the upstream docs page (#/components/annotate).
+     The playground drops the docs callout margin notes and tally (not yet
+     ported); the paragraph marks are the same. -->
+<view class="demo">
+  <view class="demo-title">Annotate</view>
+  <view class="sec-desc">One component for every mark, in the spirit of RoughNotation: put a highlight, an underline, a circle, a box, brackets, a strike, a cross-out or a scribble on real words, and draw it on when it scrolls into view.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Playground: a reader's page</view>
+    <view class="sec-desc">One paragraph annotated the way a reader does it: a circle, a highlighter, a red underline, a struck phrase and a wavy line. Switch each on and off, or replay the whole page being marked up.</view>
+    <view class="stack">
+      <view class="toggles">
+        <ll-button
+          wx:for="{{marks}}"
+          wx:key="*this"
+          size="sm"
+          variant="{{on[item] ? 'default' : 'outline'}}"
+          data-key="{{item}}"
+          bind:tap="onToggle"
+        >{{labels[item]}}</ll-button>
+        <ll-button size="sm" variant="ghost" bind:tap="onReplay">Replay</ll-button>
+      </view>
+      <ll-paper stock="paper" rules="ruled" seed="reader" custom-style="padding:64rpx 48rpx 48rpx 96rpx">
+        <view class="notes-meta">Reading notes / Tuesday</view>
+        <view class="notes-title">On owning books</view>
+        <view class="notes-body">Most of what I remember from a book is in the <ll-annotate type="circle" color="red" show="{{on.circle}}" animate text="margins" />: an arrow, a question mark, a small argument with a dead author. The good bits get <ll-annotate type="highlight" show="{{on.highlight}}" animate text="a swipe of yellow" /> so I can find them on the next read, and the parts I do not believe get a <ll-annotate type="underline" color="red" show="{{on.underline}}" animate text="red pencil" />. By the <ll-annotate type="highlight" color="green" show="{{on.highlight}}" animate text="third reading" /> the book is more mine than the <ll-annotate type="strike-through" show="{{on.strike}}" animate text="writer's" />, which is the <ll-annotate type="underline" kind="wavy" color="blue" show="{{on.wavy}}" animate text="whole point of owning one" />.</view>
+        <view class="notes-foot">* the whole shelf, eventually</view>
+      </ll-paper>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Every type</view>
+    <view class="sec-desc">The eight marks side by side. Each is a real component underneath (Highlight, Underline, Circled, Strike, Scribble) with the same props.</view>
+    <view class="type-grid">
+      <view class="type-cell" wx:for="{{types}}" wx:key="type">
+        <text class="type-name">{{item.type}}</text>
+        <ll-annotate type="{{item.type}}" color="{{item.type === 'highlight' ? 'yellow' : 'red'}}" text="{{item.word}}" />
+      </view>
+    </view>
+  </view>
+</view>

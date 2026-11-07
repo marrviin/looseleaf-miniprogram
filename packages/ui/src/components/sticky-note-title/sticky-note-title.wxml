@@ -1,0 +1,2 @@
+<!-- ll-sticky-note-title -->
+<view class="ll-sticky-note-title" style="{{customStyle}}"><slot /></view>

@@ -1,0 +1,9 @@
+<!-- ll-breadcrumb-link -->
+<view
+  class="ll-breadcrumb-link {{swiped ? 'll-breadcrumb-link--swiped' : ''}} ll-class"
+  style="{{customStyle}}"
+  bind:touchstart="onTouchStart"
+  bind:touchend="onTouchEnd"
+  bind:touchcancel="onTouchEnd"
+  bind:tap="onTap"
+><slot /></view>

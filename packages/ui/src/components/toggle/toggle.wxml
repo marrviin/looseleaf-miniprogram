@@ -1,0 +1,29 @@
+<!-- ll-toggle — aria-pressed two-state button; the ink layer draws the box,
+     the seam (joined group items) and the highlighter body when on. -->
+<button
+  wx:if="{{!disabled}}"
+  class="ll-toggle ll-toggle--{{v}} ll-toggle--{{esz}} {{joined ? 'll-toggle--joined' : ''}} {{(pressed || inkPressed) ? 'll-toggle--sink' : ''}} ll-class"
+  style="{{customStyle}}"
+  hover-class="none"
+  hover-stay-time="80"
+  aria-role="button"
+  aria-label="{{ariaLabel}}"
+  catchtap="onTap"
+  bindtouchstart="__inkTouchStart"
+  bindtouchend="__inkTouchEnd"
+  bindtouchcancel="__inkTouchEnd"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-toggle__content"><slot /></view>
+</button>
+<button
+  wx:else
+  class="ll-toggle ll-toggle--{{v}} ll-toggle--{{esz}} {{joined ? 'll-toggle--joined' : ''}} ll-toggle--disabled ll-class"
+  style="{{customStyle}}"
+  disabled
+  aria-role="button"
+  aria-label="{{ariaLabel}}"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-toggle__content"><slot /></view>
+</button>

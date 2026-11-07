@@ -1,0 +1,22 @@
+<!-- ll-navigation-menu-trigger — a NavTab (role=trigger): the strip button
+     with the rotating chevron; ink draws sketch at rest, wash + grown outline
+     when open. -->
+<button
+  class="ll-navigation-menu-tab {{open ? 'll-navigation-menu-tab--open' : ''}} {{disabled ? 'll-navigation-menu-tab--disabled' : ''}} ll-class"
+  style="{{customStyle}}"
+  hover-class="none"
+  hover-stay-time="80"
+  disabled="{{disabled}}"
+  aria-role="button"
+  aria-label="{{ariaLabel}}"
+  catchtap="onTap"
+  bindtouchstart="__inkTouchStart"
+  bindtouchend="__inkTouchEnd"
+  bindtouchcancel="__inkTouchEnd"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-navigation-menu-tab__content"><slot /></view>
+  <view class="ll-navigation-menu-tab__chevron {{open ? 'll-navigation-menu-tab__chevron--open' : ''}}">
+    <ll-icon name="chevron-down" size="{{16}}" />
+  </view>
+</button>

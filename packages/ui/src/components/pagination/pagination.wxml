@@ -1,0 +1,4 @@
+<!-- ll-pagination -->
+<view class="ll-pagination ll-class" style="{{customStyle}}" aria-role="navigation" aria-label="{{ariaLabel}}">
+  <slot />
+</view>

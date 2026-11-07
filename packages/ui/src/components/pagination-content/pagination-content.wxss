@@ -1,0 +1,8 @@
+/* ll-pagination-content */
+/* @ll-import tokens */
+.ll-pagination-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12rpx; /* upstream gap-1.5 (6px) */
+}

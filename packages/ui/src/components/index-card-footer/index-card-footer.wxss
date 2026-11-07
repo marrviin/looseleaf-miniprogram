@@ -1,0 +1,12 @@
+/* ll-index-card-footer — upstream IndexCardFooter: mt-auto items-center
+   justify-between gap-3, text-sm on the 30px line, muted. */
+.ll-index-card-footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24rpx; /* gap-3 */
+  font-size: 25rpx; /* text-sm x0.88 */
+  line-height: 60rpx; /* leading-[30px] — sits on the printed lines */
+  color: #4a433c; /* --muted-foreground */
+}

@@ -111,5 +111,5 @@ looseleaf-miniprogram/
 
 ## 9. 命名
 
-- npm 包名:`@looseleaf/ui`(Scoped,避免占名冲突)
+- npm 包名:`looseleaf-miniprogram`(用户决定 2026-11-07:改用非 scoped 名,替换原计划的 @looseleaf/ui)
 - 组件前缀:`ll-`(如 `ll-button`)

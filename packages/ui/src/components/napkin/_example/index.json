@@ -1,0 +1,13 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-napkin": "../napkin/napkin",
+    "ll-napkin-title": "../napkin-title/napkin-title",
+    "ll-napkin-content": "../napkin-content/napkin-content",
+    "ll-napkin-footer": "../napkin-footer/napkin-footer",
+    "ll-textarea": "../textarea/textarea",
+    "ll-button": "../button/button",
+    "ll-doodle": "../doodle/doodle",
+    "ll-sticker": "../sticker/sticker"
+  }
+}

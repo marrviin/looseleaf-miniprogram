@@ -48,5 +48,11 @@ export const props = {
     type: String,
     value: '',
   },
+  /** Seam trim inside a button-group: a ready clip-path string the group
+      hands over. Empty = no trim. */
+  trimStyle: {
+    type: String,
+    value: '',
+  },
   customStyle: String,
 };

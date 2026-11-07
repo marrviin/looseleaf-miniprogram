@@ -1,0 +1,5 @@
+/* ll-tabs-content */
+/* @ll-import tokens */
+.ll-tabs-content {
+  flex: 1;
+}

@@ -1,0 +1,177 @@
+/* ll-sticker-sheet — upstream: w-fit max-w-full p-4 pt-4 on the paper,
+   disabled: opacity-70. The tint/sheen sit between the sheet face and the
+   cells. Cell art is positioned in px (upstream px drawing space). */
+.ll-sticker-sheet {
+  position: relative;
+  box-sizing: border-box;
+  width: fit-content;
+  max-width: 100%;
+  padding: 28rpx; /* p-4 pt-4 */
+}
+
+.ll-sticker-sheet--disabled {
+  opacity: 0.7;
+}
+
+/* glassine tint — upstream --ll-stock: color-mix(sky 13%, paper),
+   precomputed; z-index -1 paints it over the paper's own sheet face
+   (ll-paper isolates its stacking context). */
+.ll-sticker-sheet-tint {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: #e1ebed;
+}
+
+/* print layer — upstream: pointer-events-none absolute inset-1.5 isolate;
+   inkStyle swaps in inset:-10px (the recipe pad) + the print background. */
+.ll-sticker-sheet-print {
+  position: absolute;
+  inset: 11rpx; /* inset-1.5 */
+  pointer-events: none;
+  isolation: isolate;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+/* sheen — upstream linear-gradient(112deg, transparent 30%,
+   color-mix(--ll-photo 42%, transparent) 43%, transparent 56%), precomputed */
+.ll-sticker-sheet-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    112deg,
+    rgba(255, 253, 246, 0) 30%,
+    rgba(255, 253, 246, 0.42) 43%,
+    rgba(255, 253, 246, 0) 56%
+  );
+}
+
+/* title row — relative mb-2 flex h-6 items-baseline justify-between gap-3
+   px-1.5; title font-type text-sm text-pencil-text, count text-xs ll-num */
+.ll-sticker-sheet-head {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 21rpx; /* gap-3 */
+  box-sizing: border-box;
+  width: 100%;
+  height: 42rpx; /* h-6 */
+  margin-bottom: 14rpx; /* mb-2 */
+  padding: 0 11rpx; /* px-1.5 */
+}
+
+.ll-sticker-sheet-title {
+  overflow: hidden;
+  font-family: 'Kevin Sans', sans-serif; /* font-type */
+  font-size: 23rpx; /* text-sm x .82 */
+  color: var(--ll-pencil-text, #8e887f);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ll-sticker-sheet-count {
+  flex-shrink: 0;
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 18rpx; /* text-xs x .82 */
+  color: var(--ll-pencil-text, #8e887f);
+  font-variant-numeric: tabular-nums lining-nums; /* .ll-num */
+}
+
+/* grid — relative grid justify-center gap-1 p-2 */
+.ll-sticker-sheet-grid {
+  position: relative;
+  display: grid;
+  justify-content: center;
+  gap: 7rpx; /* gap-1 */
+  padding: 14rpx; /* p-2 */
+}
+
+/* cell — relative shrink-0, sized inline (cell px) */
+.ll-sticker-sheet-slot {
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* the kiss-cut outline — under the button, stays when peeled */
+.ll-sticker-sheet-cut {
+  position: absolute;
+  pointer-events: none;
+}
+
+/* the button fills the cell; upstream not-focus-visible:outline-none etc.
+   (the slot focus ring recipe is keyboard-only and skipped here) */
+.ll-sticker-sheet-item {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0;
+  border: none;
+  background: transparent;
+  touch-action: manipulation;
+}
+
+.ll-sticker-sheet-item::after {
+  border: none;
+}
+
+/* art — the sticker face; peeled flies out and fades (upstream
+   translate-x-4 -translate-y-6 -rotate-12 scale-110 opacity-0) */
+.ll-sticker-sheet-art {
+  position: absolute;
+  pointer-events: none;
+  transition:
+    transform 0.45s cubic-bezier(0.2, 0.8, 0.3, 1),
+    opacity 0.3s ease;
+}
+
+.ll-sticker-sheet-slot--peeled .ll-sticker-sheet-art {
+  transform: translate(16px, -24px) rotate(-12deg) scale(1.1);
+  opacity: 0;
+}
+
+/* held — drag carry (inline transform) + the hover warm lean (upstream
+   group-hover:-rotate-2 scale-1.04); px drawing space */
+.ll-sticker-sheet-held {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.2s ease;
+}
+
+.ll-sticker-sheet-slot--warm .ll-sticker-sheet-held {
+  transform: rotate(-2deg) scale(1.04);
+}
+
+.ll-sticker-sheet-llimg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 0.6px rgba(58, 44, 30, 0.26))
+    drop-shadow(0 3px 3px rgba(58, 44, 30, 0.14)); /* ll-drop-sticker */
+}
+
+/* face/flap crossfade — flap = corner curl, shows warm or peeled */
+.ll-sticker-sheet-face {
+  transition: opacity 0.18s ease;
+}
+
+.ll-sticker-sheet-flap {
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.ll-sticker-sheet-slot--warm .ll-sticker-sheet-face,
+.ll-sticker-sheet-slot--peeled .ll-sticker-sheet-face {
+  opacity: 0;
+}
+
+.ll-sticker-sheet-slot--warm .ll-sticker-sheet-flap,
+.ll-sticker-sheet-slot--peeled .ll-sticker-sheet-flap {
+  opacity: 1;
+}

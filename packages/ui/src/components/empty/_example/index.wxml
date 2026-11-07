@@ -1,0 +1,201 @@
+<!-- ll-empty demo — mirrors the upstream docs page (#/components/empty).
+     Docs order: the hero example (01-icon) is the Preview, the rest run
+     under Examples. 53-input-group is skipped until ll-input-group is
+     ported; 03's drag-and-drop has no touch equivalent, so the file list is
+     fed by the button alone. -->
+<view class="demo">
+  <view class="demo-title">Empty</view>
+  <view class="sec-desc">What a page says when there is nothing on it yet: media, a title in the script font, a line of explanation and an action. The media can be an icon on a slip of paper, Stubby the pencil stub in one of his poses, or a doodle; `framed` draws the sketched, dashed placeholder frame.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Icon tile</view>
+    <view class="sec-desc">The upstream layout: media, title, description and an action. `variant="icon"` puts the icon on a little slip of paper with a hatched shadow; the title is in the script font. (The 24px icon is passed explicitly — the tile cannot size a child component from outside.)</view>
+    <view class="stage">
+      <ll-empty seed="no-projects">
+        <ll-empty-header>
+          <ll-empty-media variant="icon">
+            <ll-icon name="folder-plus" size="{{24}}" />
+          </ll-empty-media>
+          <ll-empty-title>No projects yet</ll-empty-title>
+          <ll-empty-description>You have not created any projects yet. Get started by creating your first project.</ll-empty-description>
+        </ll-empty-header>
+        <ll-empty-content>
+          <view class="btn-row">
+            <ll-button>Create project</ll-button>
+            <ll-button variant="outline">Import project</ll-button>
+          </view>
+          <ll-button variant="link" size="sm" custom-style="color:var(--muted-foreground,#4a433c);">
+            Learn more
+            <ll-icon name="arrow-up-right" size="{{14}}" />
+          </ll-button>
+        </ll-empty-content>
+      </ll-empty>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Stubby</view>
+    <view class="sec-desc">`pose` asks for Stubby, the pencil stub who does the drawing: `search` for no results, `sleep` for a quiet day, `unplug` for offline, and the rest of the poses as they are drawn (see the props). Media is decorative, so the title carries the meaning. (Upstream's three columns are the `md` breakpoint; a phone stacks them.)</view>
+    <view class="stack">
+      <ll-empty wx:for="{{states}}" wx:key="pose" seed="{{item.pose}}" custom-style="justify-content:flex-start;padding:32rpx;">
+        <ll-empty-header>
+          <ll-empty-media pose="{{item.pose}}" size="{{112}}" />
+          <ll-empty-title>{{item.title}}</ll-empty-title>
+          <ll-empty-description>{{item.text}}</ll-empty-description>
+        </ll-empty-header>
+        <ll-empty-content wx:if="{{item.action}}">
+          <ll-button size="sm">{{item.action}}</ll-button>
+        </ll-empty-content>
+      </ll-empty>
+    </view>
+
+    <view class="sub-h3">Placeholder frame</view>
+    <view class="sec-desc">`framed` asks for the sketched dashed frame, with a tick at each corner where the hand marked out the rectangle first. It replaces the CSS border. Upstream makes this a working drop target (drag files over it and it lights up); touch has no drag-over, so here the button feeds the file list.</view>
+    <view class="stage">
+      <ll-paper stock="paper" tape="top" tape-kind="washi-dots" seed="drop" custom-style="width:100%;max-width:896rpx;padding:40rpx;">
+        <ll-empty seed="dropzone" framed>
+          <ll-empty-header>
+            <ll-empty-media doodle="paper-plane" size="{{88}}" />
+            <ll-empty-title>{{files.length ? 'Ready to send' : 'Drop files here'}}</ll-empty-title>
+            <ll-empty-description>{{files.length ? files[0] + ', ' + files[1] : 'or choose them from your computer. PNG, JPG or PDF, up to 10 MB.'}}</ll-empty-description>
+          </ll-empty-header>
+          <ll-empty-content>
+            <ll-button bind:tap="onChooseFiles">
+              <ll-icon name="upload" size="{{16}}" />
+              {{files.length ? 'Choose others' : 'Choose files'}}
+            </ll-button>
+          </ll-empty-content>
+        </ll-empty>
+      </ll-paper>
+    </view>
+
+    <view class="sub-h3">Search with no results</view>
+    <view class="sec-desc">A real use: a filterable list that turns into an empty state when nothing matches, with an action that puts the list back. Type something that is not a name.</view>
+    <view class="stage">
+      <ll-card seed="contacts" custom-style="width:100%;max-width:896rpx;">
+        <ll-card-header>
+          <ll-card-title>Contacts</ll-card-title>
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;flex-direction:column;gap:32rpx;">
+          <ll-input value="{{query}}" placeholder="Search by name" aria-label="Search contacts" bind:input="onQueryInput" />
+          <block wx:if="{{shown.length}}">
+            <view class="people" aria-label="Contacts">
+              <view class="person" wx:for="{{shown}}" wx:key="*this">{{item}}</view>
+            </view>
+          </block>
+          <ll-empty wx:else custom-style="padding:16rpx;">
+            <ll-empty-header>
+              <ll-empty-media pose="shrug" size="{{104}}" />
+              <ll-empty-title>No contacts found</ll-empty-title>
+              <ll-empty-description>Nobody is called “{{query}}”. Check the spelling, or start again.</ll-empty-description>
+            </ll-empty-header>
+            <ll-empty-content>
+              <ll-button size="sm" variant="outline" bind:tap="onClearQuery">Show everyone</ll-button>
+            </ll-empty-content>
+          </ll-empty>
+        </ll-card-content>
+      </ll-card>
+    </view>
+
+    <view class="sub-h3">Four icons</view>
+    <view class="sec-desc">shadcn's `empty-icon`: four bare empty states in a two-column grid, each an icon tile, a title and one line. No action, so the page just says what it is missing.</view>
+    <view class="stage">
+      <view class="grid-2">
+        <ll-empty wx:for="{{bare}}" wx:key="icon" custom-style="flex:none;">
+          <ll-empty-header>
+            <ll-empty-media variant="icon">
+              <ll-icon name="{{item.icon}}" size="{{24}}" />
+            </ll-empty-media>
+            <ll-empty-title>{{item.title}}</ll-empty-title>
+            <ll-empty-description>{{item.text}}</ll-empty-description>
+          </ll-empty-header>
+        </ll-empty>
+      </view>
+    </view>
+
+    <view class="sub-h3">Avatar</view>
+    <view class="sec-desc">shadcn's `empty-avatar`: `variant="default"` leaves the media bare, so any element can stand there. A face here (initials on marker; the photo of the original is left out so the page needs no network).</view>
+    <view class="stage">
+      <ll-empty>
+        <ll-empty-header>
+          <ll-empty-media variant="default">
+            <ll-avatar size="lg" seed="offline-lr">
+              <ll-avatar-fallback name="LR" />
+            </ll-avatar>
+          </ll-empty-media>
+          <ll-empty-title>User Offline</ll-empty-title>
+          <ll-empty-description>This user is currently offline. You can leave a message to notify them or try again later.</ll-empty-description>
+        </ll-empty-header>
+        <ll-empty-content>
+          <ll-button size="sm">Leave Message</ll-button>
+        </ll-empty-content>
+      </ll-empty>
+    </view>
+
+    <view class="sub-h3">Avatar group</view>
+    <view class="sec-desc">shadcn's `empty-avatar-group`: three overlapping faces in the media slot, and an invite button.</view>
+    <view class="stage">
+      <ll-empty>
+        <ll-empty-header>
+          <ll-empty-media variant="default">
+            <ll-avatar-group>
+              <ll-avatar seed="cn"><ll-avatar-fallback name="CN" /></ll-avatar>
+              <ll-avatar seed="lr"><ll-avatar-fallback name="LR" /></ll-avatar>
+              <ll-avatar seed="er"><ll-avatar-fallback name="ER" /></ll-avatar>
+            </ll-avatar-group>
+          </ll-empty-media>
+          <ll-empty-title>No Team Members</ll-empty-title>
+          <ll-empty-description>Invite your team to collaborate on this project.</ll-empty-description>
+        </ll-empty-header>
+        <ll-empty-content>
+          <ll-button size="sm">
+            <ll-icon name="plus" size="{{16}}" />
+            Invite Members
+          </ll-button>
+        </ll-empty-content>
+      </ll-empty>
+    </view>
+
+    <!-- 53-input-group: skipped until ll-input-group is ported. -->
+
+    <view class="sub-h3">Outline</view>
+    <view class="sec-desc">shadcn's `empty-outline`: `border border-dashed` on the root. Here the border is the sketched placeholder frame: a dashed line drawn round the space, as if the thing were to be pasted in.</view>
+    <view class="stage">
+      <ll-empty framed custom-style="width:100%;max-width:1120rpx;">
+        <ll-empty-header>
+          <ll-empty-media variant="icon">
+            <ll-icon name="cloud" size="{{24}}" />
+          </ll-empty-media>
+          <ll-empty-title>Cloud Storage Empty</ll-empty-title>
+          <ll-empty-description>Upload files to your cloud storage to access them anywhere.</ll-empty-description>
+        </ll-empty-header>
+        <ll-empty-content>
+          <ll-button variant="outline" size="sm">Upload Files</ll-button>
+        </ll-empty-content>
+      </ll-empty>
+    </view>
+
+    <view class="sub-h3">Background</view>
+    <view class="sec-desc">shadcn's `empty-background`: a soft wash that fades from the muted tone into the paper. Any background utility goes on the root; it is a plain class, nothing is redrawn.</view>
+    <view class="stage">
+      <ll-empty custom-style="width:100%;max-width:896rpx;flex:none;height:640rpx;background:linear-gradient(to bottom, rgba(236,230,218,0.6) 30%, rgba(236,230,218,0));">
+        <ll-empty-header>
+          <ll-empty-media variant="icon">
+            <ll-icon name="bell" size="{{24}}" />
+          </ll-empty-media>
+          <ll-empty-title>No Notifications</ll-empty-title>
+          <ll-empty-description>You're all caught up. New notifications will appear here.</ll-empty-description>
+        </ll-empty-header>
+        <ll-empty-content>
+          <ll-button variant="outline" size="sm">
+            <ll-icon name="rotate-cw" size="{{16}}" />
+            Refresh
+          </ll-button>
+        </ll-empty-content>
+      </ll-empty>
+    </view>
+  </view>
+</view>

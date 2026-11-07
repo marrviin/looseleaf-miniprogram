@@ -1,0 +1,38 @@
+/* ll-bracket — upstream: relative isolate outline-none, ps-7 (padding-left
+   28px) on the start side, pe-7 on the end side. 28px × 0.88 × 2 = 50rpx. */
+.ll-bracket {
+  position: relative;
+  isolation: isolate;
+  outline: none;
+}
+.ll-bracket--start {
+  padding-left: 50rpx;
+}
+.ll-bracket--end {
+  padding-right: 50rpx;
+}
+.ll-ink-layer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+/* upstream MARK_REVEAL animates the stroke itself (SVG dash); the port
+   approximates the draw-on with a fade+rise of the whole layer. */
+.ll-bracket--animate .ll-ink-layer {
+  animation: ll-bracket-draw 0.6s ease-out both;
+}
+@keyframes ll-bracket-draw {
+  from {
+    opacity: 0;
+    transform: translateY(6rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

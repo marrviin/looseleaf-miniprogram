@@ -1,0 +1,14 @@
+/* ll-ticket-body — flex min-w-0 flex-1 flex-col justify-center gap-1
+   px-6 py-4 font-type break-words */
+.ll-ticket-body {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: 7rpx; /* gap-1 */
+  box-sizing: border-box;
+  padding: 28rpx 42rpx; /* py-4 px-6 */
+  font-family: 'Kevin Sans', sans-serif; /* font-type */
+  word-break: break-word;
+}

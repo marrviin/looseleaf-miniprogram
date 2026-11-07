@@ -1,0 +1,99 @@
+.demo {
+  padding: 32rpx;
+  background: var(--ll-paper, #f8f5ee);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+.sec {
+  margin-top: 40rpx;
+}
+.sec-h2 {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin-bottom: 12rpx;
+}
+.sub-h3 {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin: 28rpx 0 6rpx;
+}
+.sec-desc {
+  font-size: 24rpx;
+  color: #8a857c;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 40rpx; /* gap-5 */
+}
+.row--wrap {
+  flex-wrap: wrap;
+}
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx;
+  padding: 8rpx 0;
+}
+
+.size-fig {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+}
+.fig-cap {
+  font-size: 25rpx;
+  color: #8a857c;
+  text-align: center;
+}
+
+/* 03: the slip of paper (upstream .ll-paper.ll-stock-slip.ll-sheet-slip with
+   a seeded tilt of -0.6deg via ll-tilt-2). */
+.slip {
+  position: relative;
+  background-color: #fbf8f1; /* --ll-slip */
+  border-radius: 2rpx;
+  padding: 48rpx;
+  transform: rotate(-0.6deg);
+  box-shadow:
+    0 1px 1px rgba(58, 44, 30, 0.22),
+    0 8px 8px rgba(58, 44, 30, 0.14);
+}
+.prop-abs {
+  position: absolute;
+  pointer-events: none;
+}
+.slip-title {
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 55rpx; /* text-3xl 30px x0.88 */
+  color: #2a2420;
+}
+.slip-body {
+  margin-top: 16rpx;
+  font-size: 26rpx;
+  color: #8a857c;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32rpx;
+}
+.gallery-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+  width: 24%;
+  margin-bottom: 16rpx;
+}

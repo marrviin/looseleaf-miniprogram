@@ -1,0 +1,114 @@
+<!-- ll-skeleton demo — mirrors the upstream docs page (#/components/skeleton).
+     Docs order: the hero example (01-shapes) is the Preview. Sizes that
+     upstream sets with one-line classes come in as inline styles here. -->
+<view class="demo">
+  <view class="demo-title">Skeleton</view>
+  <view class="sec-desc">A pale pencil hatch inside a rough outline that redraws itself slowly — the room where content has not arrived yet. The shape is whatever the styles say; hundreds of these cost about what one does, because the drawing is CSS masks from a few shared tiles.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Shapes</view>
+    <view class="sec-desc">Whatever shape the styles say: text lines, a circle for an avatar, a picture, a row of buttons. Watch one for a few seconds: the outline and the hatch are redrawn three times over, slowly.</view>
+    <view class="col col-6">
+      <view class="row row-gap">
+        <ll-skeleton round custom-style="width:96rpx;height:96rpx;" />
+        <view class="col col-2">
+          <ll-skeleton custom-style="width:500rpx;height:32rpx;" />
+          <ll-skeleton custom-style="width:400rpx;height:32rpx;" />
+        </view>
+      </view>
+      <ll-skeleton custom-style="width:100%;height:288rpx;" />
+      <view class="col col-2">
+        <ll-skeleton custom-style="width:100%;height:24rpx;" />
+        <ll-skeleton custom-style="width:92%;height:24rpx;" />
+        <ll-skeleton custom-style="width:64%;height:24rpx;" />
+      </view>
+      <view class="row row-gap">
+        <ll-skeleton custom-style="width:192rpx;height:72rpx;" />
+        <ll-skeleton custom-style="width:160rpx;height:72rpx;" />
+        <ll-skeleton round custom-style="width:72rpx;height:72rpx;" />
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">A card that has not arrived</view>
+    <view class="sec-desc">The skeleton of a profile card placed inside the real Card, so the page does not jump when the words come in. (Upstream's two columns are the `sm` breakpoint; a phone stacks them.)</view>
+    <view class="col col-6">
+      <ll-card seed="sk-0">
+        <ll-card-header custom-style="display:flex;flex-direction:row;align-items:center;gap:24rpx;">
+          <ll-skeleton round custom-style="width:96rpx;height:96rpx;flex-shrink:0;" />
+          <view class="col col-2" style="flex:1;">
+            <ll-skeleton custom-style="width:75%;height:32rpx;" />
+            <ll-skeleton custom-style="width:50%;height:24rpx;" />
+          </view>
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;flex-direction:column;gap:16rpx;">
+          <ll-skeleton custom-style="width:100%;height:24rpx;" />
+          <ll-skeleton custom-style="width:100%;height:24rpx;" />
+          <ll-skeleton custom-style="width:66%;height:24rpx;" />
+        </ll-card-content>
+      </ll-card>
+      <ll-card seed="sk-1">
+        <ll-card-header custom-style="display:flex;flex-direction:row;align-items:center;gap:24rpx;">
+          <ll-skeleton round custom-style="width:96rpx;height:96rpx;flex-shrink:0;" />
+          <view class="col col-2" style="flex:1;">
+            <ll-skeleton custom-style="width:75%;height:32rpx;" />
+            <ll-skeleton custom-style="width:50%;height:24rpx;" />
+          </view>
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;flex-direction:column;gap:16rpx;">
+          <ll-skeleton custom-style="width:100%;height:24rpx;" />
+          <ll-skeleton custom-style="width:100%;height:24rpx;" />
+          <ll-skeleton custom-style="width:66%;height:24rpx;" />
+        </ll-card-content>
+      </ll-card>
+    </view>
+
+    <view class="sub-h3">From loading to loaded</view>
+    <view class="sec-desc">The skeleton and the content occupy the same room, so nothing moves when the swap happens. The region says it is busy while it waits; press Reload to see it again.</view>
+    <view class="stage">
+      <ll-card seed="loaded" custom-style="width:100%;max-width:768rpx;">
+        <ll-card-header>
+          <ll-card-title>Recent pages</ll-card-title>
+          <ll-card-description>{{loading ? 'Finding your pages...' : 'Two pages, newest first.'}}</ll-card-description>
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;flex-direction:column;gap:32rpx;">
+          <view class="loaded-row" wx:for="{{notes}}" wx:key="title" wx:for-item="note">
+            <block wx:if="{{loading}}">
+              <ll-skeleton custom-style="width:40%;height:32rpx;" />
+              <ll-skeleton custom-style="width:100%;height:28rpx;" />
+            </block>
+            <block wx:else>
+              <view class="loaded-title">{{note.title}}</view>
+              <view class="loaded-body">{{note.body}}</view>
+            </block>
+          </view>
+        </ll-card-content>
+        <ll-card-footer custom-style="border-top:1px solid rgba(58,44,30,0.12);">
+          <ll-button variant="outline" size="sm" bind:tap="onReload">Reload</ll-button>
+        </ll-card-footer>
+      </ll-card>
+    </view>
+
+    <view class="sub-h3">Demo</view>
+    <view class="sec-desc">Official `skeleton-demo`: an avatar circle beside two lines of text, shaped only by styles. Each placeholder is a pale pencil hatch inside a rough outline that redraws itself slowly (three frames, each starting at its own phase); reduced motion holds it still upstream — a phone has no such toggle.</view>
+    <view class="row row-gap row-center">
+      <ll-skeleton round custom-style="width:96rpx;height:96rpx;" />
+      <view class="col col-2">
+        <ll-skeleton custom-style="width:500rpx;height:32rpx;" />
+        <ll-skeleton custom-style="width:400rpx;height:32rpx;" />
+      </view>
+    </view>
+
+    <view class="sub-h3">Card</view>
+    <view class="sec-desc">Official `skeleton-card`: a picture-sized block over two lines of text. The same one-line styles, no props.</view>
+    <view class="col col-2" style="width:500rpx;">
+      <ll-skeleton custom-style="width:500rpx;height:250rpx;border-radius:24rpx;" />
+      <ll-skeleton custom-style="width:500rpx;height:32rpx;" />
+      <ll-skeleton custom-style="width:400rpx;height:32rpx;" />
+    </view>
+  </view>
+</view>

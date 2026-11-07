@@ -1,0 +1,12 @@
+<!-- ll-seal — intrinsic art at its own size; the art layer bleeds -pad px
+     past the box (upstream overflow-visible svg). aria: img + label unless
+     decorative; an unknown variant falls back to scallop. -->
+<view
+  class="ll-seal {{shadowed ? 'll-seal--shadow' : ''}} ll-class"
+  style="width:{{px}}px;height:{{px}}px;{{customStyle}}"
+  aria-role="{{ariaRole}}"
+  aria-label="{{ariaLabel}}"
+  aria-hidden="{{ariaHidden}}"
+>
+  <view wx:if="{{has}}" class="ll-seal__art" style="{{artStyle}}"></view>
+</view>

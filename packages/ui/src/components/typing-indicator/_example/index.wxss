@@ -1,0 +1,68 @@
+/* ll-typing-indicator demo — shared demo base + indicator-specific bits. */
+.demo {
+  padding: 32rpx;
+  background: var(--ll-paper, #f8f5ee);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+.sec {
+  margin-top: 40rpx;
+}
+.sec-h2 {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin-bottom: 12rpx;
+}
+.sub-h3 {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin: 28rpx 0 6rpx;
+}
+.sec-desc {
+  font-size: 24rpx;
+  color: #8a857c;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+}
+.col-4 {
+  gap: 32rpx; /* gap-4 */
+  align-items: flex-start;
+}
+
+/* 01: three figures in a row (upstream flex-wrap gap-x-12 gap-y-6) */
+.figures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48rpx 96rpx;
+}
+.figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24rpx; /* gap-3 */
+}
+.fig-cap {
+  font-size: 25rpx;
+  color: var(--muted-foreground, #4a433c);
+}
+
+/* 02 adapted: a plain box where the chat Bubble would be */
+.plain-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24rpx 32rpx;
+  border-radius: 24rpx;
+  background: var(--muted, #ece6da);
+}

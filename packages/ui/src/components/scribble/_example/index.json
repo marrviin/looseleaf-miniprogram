@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-scribble": "../scribble/scribble",
+    "ll-strike": "../strike/strike",
+    "ll-highlight": "../highlight/highlight",
+    "ll-paper": "../paper/paper"
+  }
+}

@@ -1,0 +1,26 @@
+<!-- ll-sticky-note — ll-paper with a sticky stock; the tick-box decor is a
+     slot child measured on the paper box (the box top-right, its felt tick
+     in the checked layer), the press target floats over it top-right. -->
+<ll-paper
+  ll-class="ll-sticky-note"
+  stock="sticky-{{colorName}}"
+  tilt="{{tilt}}"
+  tape="{{tape}}"
+  tape-kind="{{tapeKind}}"
+  fastener="{{fastener}}"
+  fastener-tone="{{fastenerTone}}"
+  seed="{{seed}}"
+  aria-label="{{ariaLabel}}"
+  custom-style="{{customStyle}}"
+>
+  <view wx:if="{{tickable}}" class="ll-sticky-note-decor" style="{{inkStyle}}" />
+  <view
+    wx:if="{{tickable}}"
+    class="ll-sticky-note__check"
+    bindtap="toggleDone"
+    aria-role="checkbox"
+    aria-checked="{{checked ? 'true' : 'false'}}"
+    aria-label="{{doneLabel}}"
+  ></view>
+  <slot />
+</ll-paper>

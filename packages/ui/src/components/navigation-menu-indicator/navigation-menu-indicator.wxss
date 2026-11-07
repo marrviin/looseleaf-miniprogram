@@ -1,0 +1,24 @@
+/* ll-navigation-menu-indicator */
+/* @ll-import tokens */
+/* Upstream: top-full z-[1] block h-2, transition transform/width dur-sheet. */
+.ll-navigation-menu-indicator {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  height: 16rpx; /* h-2 */
+  width: 0;
+  z-index: 1;
+  transition: left var(--ll-dur-sheet, 240ms) var(--ll-ease-settle, ease), width var(--ll-dur-sheet, 240ms) var(--ll-ease-settle, ease);
+}
+.ll-navigation-menu-indicator--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.ll-navigation-menu-indicator__mark {
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* stretch the mark to the trigger's width (PropSvg preserveAspectRatio none) */
+  background-size: 100% 100%;
+}

@@ -1,0 +1,62 @@
+/* ll-underline — upstream: relative isolate <span> with decoration-1
+   underline-offset-[0.2em] in the pen color; once the ink is drawn the
+   native underline is removed (data-[ink-ready]:no-underline). Shared mark
+   layout: mini program styles are isolated, so each mark component carries
+   the base block. */
+.ll-mark {
+  position: relative;
+  isolation: isolate;
+  display: inline;
+}
+.ll-mark__w {
+  display: inline;
+}
+.ll-mark__ink {
+  position: absolute;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+/* upstream MARK_WIPE: the line draws left→right. */
+@keyframes ll-mark-wipe {
+  from {
+    -webkit-clip-path: inset(-10% 100% -10% -4%);
+    clip-path: inset(-10% 100% -10% -4%);
+  }
+  to {
+    -webkit-clip-path: inset(-10% 0% -10% -4%);
+    clip-path: inset(-10% 0% -10% -4%);
+  }
+}
+
+/* Native underline fallback, shown until the drawn ink replaces it. */
+.ll-underline--fallback,
+.ll-underline--fallback .ll-mark__w {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+.ll-underline--ink {
+  text-decoration-color: var(--ll-ink, #2a2420);
+}
+.ll-underline--blue {
+  text-decoration-color: var(--ll-ink-you, #2c4f9e);
+}
+.ll-underline--red {
+  text-decoration-color: var(--ll-red, #c2412d);
+}
+.ll-underline--green {
+  text-decoration-color: var(--ll-green, #3b7a4b);
+}
+.ll-underline--pencil {
+  text-decoration-color: var(--ll-pencil-mark, #8e887f);
+}
+.ll-underline--marker {
+  text-decoration-color: var(--ll-marker, #df6b3c);
+}
+.ll-underline--orange {
+  text-decoration-color: var(--ll-tangerine, #f59a2f);
+}
+.ll-underline--ink-on .ll-mark__w {
+  text-decoration: none;
+}

@@ -1,0 +1,18 @@
+/* ll-tape — upstream .ll-tape: pointer-events-none relative block shrink-0,
+   z at the prop layer (above sheet faces), rotated and drop-shadowed. */
+/* @ll-import tokens */
+.ll-tape {
+  position: relative;
+  z-index: 3; /* --ll-z-prop */
+  display: block;
+  flex-shrink: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 0.6px 0.8px rgba(58, 44, 30, 0.18));
+}
+
+.ll-tape__art {
+  position: absolute;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

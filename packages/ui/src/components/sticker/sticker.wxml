@@ -1,0 +1,13 @@
+<!-- ll-sticker — ink art at its own size; the art layer bleeds -pad px past
+     the box (upstream overflow-visible svg). The tilt rides the root (a
+     quote-free binding — see component-guide WXML notes). Unknown names
+     draw nothing. -->
+<view
+  class="ll-sticker ll-class {{shadow ? 'll-sticker--shadow' : ''}}"
+  style="{{has ? 'width:' + wpx + 'px;height:' + hpx + 'px;' : 'display:none'}}transform:rotate({{deg}}deg);{{customStyle}}"
+  aria-role="{{label ? 'img' : ''}}"
+  aria-label="{{label}}"
+  aria-hidden="{{!label}}"
+>
+  <view wx:if="{{has}}" class="ll-sticker__art" style="{{artStyle}}" />
+</view>

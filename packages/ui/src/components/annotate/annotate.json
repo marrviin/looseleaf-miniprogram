@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-highlight": "../highlight/highlight",
+    "ll-underline": "../underline/underline",
+    "ll-circled": "../circled/circled",
+    "ll-strike": "../strike/strike",
+    "ll-scribble": "../scribble/scribble"
+  }
+}

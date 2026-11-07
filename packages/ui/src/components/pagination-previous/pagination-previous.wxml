@@ -1,0 +1,13 @@
+<!-- ll-pagination-previous -->
+<ll-button
+  variant="ghost"
+  size="{{size}}"
+  disabled="{{disabled}}"
+  aria-label="{{ariaLabel}}"
+  ll-class="ll-pagination-previous__btn"
+  custom-style="{{customStyle}}"
+  bind:tap="onTap"
+>
+  <ll-icon name="chevron-left" size="{{16}}" />
+  <text class="ll-pagination-previous__label">Previous</text>
+</ll-button>

@@ -1,0 +1,74 @@
+<!-- ll-polaroid demo — mirrors the upstream docs page
+     (#/components/polaroid). -->
+<view class="demo">
+  <view class="demo-title">Polaroid</view>
+  <view class="sec-desc">An instant photograph: a white frame with the thick foot, a recessed square window and a caption in script. Put a real image in the window, or let it draw a little scene in marker and felt tip. Tape it, pin it, clip it, pile it up.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">A polaroid</view>
+    <view class="sec-desc">The frame, the recessed window, the caption in the foot. Here the window holds a drawn scene; a real photograph goes in the same place.</view>
+    <view class="stack" style="align-items:center;">
+      <ll-polaroid tape="top" seed="august">
+        <ll-polaroid-image scene="hills" label="Hills, a tree and a sun" seed="hills" />
+        <ll-polaroid-caption>august, finally</ll-polaroid-caption>
+      </ll-polaroid>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Four scenes, four ways to hold it up</view>
+    <view class="sec-desc">Hills, sea, a house and a night sky, drawn in marker and felt tip. Taped, pinned, clipped and washi-taped; the sea has a date stamp.</view>
+    <view class="scene-grid">
+      <ll-polaroid tape="top" seed="p1" custom-style="width:448rpx;">
+        <ll-polaroid-image scene="hills" seed="s1" />
+        <ll-polaroid-caption>august, finally</ll-polaroid-caption>
+      </ll-polaroid>
+      <ll-polaroid fastener="pin" seed="p2" custom-style="width:448rpx;">
+        <ll-polaroid-image scene="sea" date="'25 8 09" seed="s2" />
+        <ll-polaroid-caption>the ferry home</ll-polaroid-caption>
+      </ll-polaroid>
+      <ll-polaroid fastener="clip" seed="p3" custom-style="width:448rpx;">
+        <ll-polaroid-image scene="house" seed="s3" />
+        <ll-polaroid-caption>gran's house</ll-polaroid-caption>
+      </ll-polaroid>
+      <ll-polaroid tape="both" tape-kind="washi-dots" seed="p4" custom-style="width:448rpx;">
+        <ll-polaroid-image scene="night" date="'25 9 24" seed="s4" />
+        <ll-polaroid-caption>last night, 11pm</ll-polaroid-caption>
+      </ll-polaroid>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Developing</view>
+    <view class="sec-desc">`develop` starts the picture milky and clears it. Press the button and it happens again; with reduced motion the picture is just there.</view>
+    <view class="stack" style="align-items:center;">
+      <ll-polaroid wx:if="{{deving}}" seed="dev" tape="top">
+        <ll-polaroid-image scene="sea" develop seed="dev-img" />
+        <ll-polaroid-caption>wait for it</ll-polaroid-caption>
+      </ll-polaroid>
+      <ll-button variant="secondary" bind:tap="again">Take another</ll-button>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">A photo wall</view>
+    <view class="sec-desc">A real composition: photographs at different tilts, overlapping a little. The window takes anything: here every picture is a drawn scene, in an app it would be an img. (Upstream sticks a Sticker on the third one — ll-sticker lands in a later batch.)</view>
+    <view class="wall">
+      <ll-polaroid tape="top" tilt="{{-3}}" seed="w1" custom-style="width:448rpx;margin-right:-32rpx;">
+        <ll-polaroid-image scene="house" seed="w1i" label="A yellow house" />
+        <ll-polaroid-caption>home</ll-polaroid-caption>
+      </ll-polaroid>
+      <ll-polaroid fastener="pin" tilt="{{2.5}}" seed="w2" custom-style="width:448rpx;margin-top:64rpx;">
+        <ll-polaroid-image scene="sea" date="'25 8 09" seed="w2i" label="A sailboat at sunset" />
+        <ll-polaroid-caption>the ferry</ll-polaroid-caption>
+      </ll-polaroid>
+      <ll-polaroid tape="corner" tilt="{{-1.5}}" seed="w3" custom-style="width:448rpx;margin-left:-32rpx;">
+        <ll-polaroid-image scene="night" seed="w3i" label="Roofs under a moon" />
+        <ll-polaroid-caption>11pm</ll-polaroid-caption>
+      </ll-polaroid>
+    </view>
+  </view>
+</view>

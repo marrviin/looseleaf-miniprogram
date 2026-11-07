@@ -1,4 +1,5 @@
 import { createComponent } from '../../common/component';
+import { BUTTON_GROUP_CHILD_RELATION, buttonGroupChildBehavior } from '../../common/button-group-child';
 import { ensureHandFont } from '../../common/hand-font';
 import { props } from './props';
 
@@ -14,7 +15,12 @@ createComponent({
     // buttons shrink-wrap their content instead of stretching full-width.
     virtualHost: true,
   },
+  // Inside an ll-button-group: report position, receive the seam clip-path.
+  behaviors: [buttonGroupChildBehavior('.ll-button')],
   properties: props,
+  relations: {
+    '../button-group/button-group': BUTTON_GROUP_CHILD_RELATION,
+  },
   data: {
     llInkRecipe: 'button',
   },

@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-sticker-sheet": "../sticker-sheet/sticker-sheet"
+  }
+}

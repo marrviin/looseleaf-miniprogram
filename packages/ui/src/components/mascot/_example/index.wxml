@@ -1,0 +1,56 @@
+<!-- ll-mascot demo — mirrors the upstream docs page (#/components/mascot). -->
+<view class="demo">
+  <view class="demo-title">Mascot</view>
+  <view class="sec-desc">Stubby, the pencil stub who does the drawing. He waves in welcomes, thinks in empty search results, sleeps when nothing is happening. An original character drawn as a die-cut sticker: a chubby pencil stub with a face and nothing else (no arms, no legs, no clothes). His mood is his face, a small lean of the body and one doodle floating beside him.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Poses</view>
+    <view class="sec-desc">Stubby, an original pencil stub drawn as a die-cut sticker: one bold body with a face and nothing else. A pose is a different face, a lean and a doodle.</view>
+    <view class="row row--wrap" style="align-items:flex-end;">
+      <view class="fig" wx:for="{{shown}}" wx:key="*this">
+        <ll-mascot pose="{{item}}" aria-label="Stubby, {{item}}" />
+        <view class="fig-cap">{{item}}</view>
+      </view>
+    </view>
+    <view wx:if="{{!more}}" class="more-btn" bind:tap="more">Show every pose</view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Sizes are redrawn</view>
+    <view class="sec-desc">Under 28 px he is a face on a silhouette (two dots and a smile), 32 and 48 px add the blush, the wood and the graphite tip, 96 px is the master, 160 px adds a shine and a ferrule line.</view>
+    <view class="row" style="align-items:flex-end;">
+      <view class="fig" wx:for="{{sizes}}" wx:for-item="s" wx:key="*this">
+        <ll-mascot pose="idle" size="{{s}}" />
+        <view class="fig-cap">{{s}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">An empty state</view>
+    <view class="sec-desc">Where Stubby earns his keep: an empty search, a quiet inbox. The words carry the meaning, so he stays decorative.</view>
+    <view class="stack">
+      <view class="empty-row">
+        <ll-mascot pose="think" size="{{96}}" />
+        <view class="empty-copy">
+          <view class="empty-title">No results for "pencil case"</view>
+          <view class="empty-body">Try a shorter word, or check the spelling. Stubby is thinking about it.</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">A flip book</view>
+    <view class="sec-desc">The write pose is three frames (the lean deepens, the scribble grows): stack the frames and switch their opacity with steps() to animate him. Here each frame stands still, side by side.</view>
+    <view class="row" style="align-items:flex-end;">
+      <view class="fig" wx:for="{{[1, 2, 3]}}" wx:for-item="f" wx:key="*this">
+        <ll-mascot pose="write" frame="{{f}}" size="{{96}}" />
+        <view class="fig-cap">write-{{f}}</view>
+      </view>
+    </view>
+  </view>
+</view>

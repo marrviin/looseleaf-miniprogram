@@ -1,0 +1,1 @@
+<view class="ll-index-card-footer ll-class" style="{{customStyle}}"><slot /></view>

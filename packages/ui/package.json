@@ -1,5 +1,5 @@
 {
-  "name": "@looseleaf/ui",
+  "name": "looseleaf-miniprogram",
   "version": "0.0.1",
   "description": "Looseleaf, drawn by hand — hand-drawn UI components for WeChat Mini Program, ported from looseleaf.",
   "keywords": [
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/panmenglin/looseleaf-miniprogram.git",
+    "url": "git+https://github.com/marrviin/looseleaf-miniprogram.git",
     "directory": "packages/ui"
   }
 }

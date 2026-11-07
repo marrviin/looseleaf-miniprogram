@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-circled": "../circled/circled",
+    "ll-button": "../button/button"
+  }
+}

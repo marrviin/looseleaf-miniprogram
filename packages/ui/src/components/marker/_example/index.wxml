@@ -1,0 +1,69 @@
+<!-- ll-marker demo — mirrors the upstream docs page (#/components/marker).
+     Bubbles are placeholder views until ll-bubble lands. -->
+<view class="demo">
+  <view class="demo-title">Marker</view>
+  <view class="sec-desc">The pencil line between two days of a conversation, the red one where you stopped reading, and the quiet note that someone joined. A separator, a border or a plain line of small print.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Day separators</view>
+    <view class="sec-desc">A ruled pencil line on each side of the day, written in the script font. The lines run level and stop just short of the words.</view>
+    <view class="stack">
+      <ll-marker variant="separator" seed="wed">
+        <ll-marker-content variant="separator">Wednesday</ll-marker-content>
+      </ll-marker>
+      <view class="bubble">Did the tags make it into the build?</view>
+      <view class="bubble bubble--end">They did. Filter row is next.</view>
+      <ll-marker variant="separator" seed="today" custom-style="margin-top:12rpx;">
+        <ll-marker-content variant="separator">Today</ll-marker-content>
+      </ll-marker>
+      <view class="bubble">Morning! The filter row is in.</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Where you stopped reading</view>
+    <view class="sec-desc">tone="new" pulls the lines in red pencil and lays a highlighter swipe under the words, with a red asterisk in the margin. As a button it jumps to the first unread message (upstream asChild — here the marker itself is tappable).</view>
+    <view class="stack">
+      <view class="bubble">I also drew the chips a little smaller, like you asked.</view>
+      <ll-marker wx:if="{{!read}}" variant="separator" tone="new" seed="new" bind:tap="markRead" aria-role="button" aria-label="Mark as read: 2 new messages">
+        <ll-marker-icon tone="new">
+          <ll-icon name="asterisk" size="{{16}}" ink="#c2412d" />
+        </ll-marker-icon>
+        <ll-marker-content variant="separator" tone="new">New messages</ll-marker-content>
+      </ll-marker>
+      <ll-marker wx:else variant="separator" seed="read">
+        <ll-marker-content variant="separator">Read</ll-marker-content>
+      </ll-marker>
+      <view class="bubble">One more thing: the count at the top.</view>
+      <view class="bubble">It says 12 but the list has 11.</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Borders and events</view>
+    <view class="sec-desc">A border marker heads a section with one line under it (pencil or a red wavy one). The default variant is small print with an icon: someone joined, a call started.</view>
+    <view class="stack stack--loose">
+      <ll-marker variant="border" seed="b1">
+        <ll-marker-content custom-style="font-size:26rpx;">Thursday, 12 March</ll-marker-content>
+      </ll-marker>
+      <ll-marker>
+        <ll-marker-icon>
+          <ll-icon name="user-plus" size="{{16}}" />
+        </ll-marker-icon>
+        <ll-marker-content>Lin joined the conversation</ll-marker-content>
+      </ll-marker>
+      <ll-marker>
+        <ll-marker-icon>
+          <ll-icon name="video" size="{{16}}" />
+        </ll-marker-icon>
+        <ll-marker-content>Ada started a call</ll-marker-content>
+      </ll-marker>
+      <ll-marker variant="border" tone="new" rule="wavy" seed="b2">
+        <ll-marker-content variant="border" tone="new" custom-style="font-size:26rpx;">3 unread</ll-marker-content>
+      </ll-marker>
+    </view>
+  </view>
+</view>

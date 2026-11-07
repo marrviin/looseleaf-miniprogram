@@ -1,0 +1,6 @@
+/* ll-item-group — flex flex-col */
+/* @ll-import tokens */
+.ll-item-group {
+  display: flex;
+  flex-direction: column;
+}

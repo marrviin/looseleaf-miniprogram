@@ -1,0 +1,4 @@
+<!-- ll-navigation-menu-item — the LI wrapper naming one trigger/content pair. -->
+<view class="ll-navigation-menu-item ll-class" style="{{customStyle}}">
+  <slot />
+</view>

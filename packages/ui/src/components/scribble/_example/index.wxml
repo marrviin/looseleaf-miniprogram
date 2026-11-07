@@ -1,0 +1,37 @@
+<!-- ll-scribble demo — mirrors the upstream docs page (#/components/scribble). -->
+<view class="demo">
+  <view class="demo-title">Scribble</view>
+  <view class="sec-desc">A word scribbled out in ink. The strokes lean, vary in pitch and spill past the letters.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">A word scribbled out in ink. The strokes lean, vary in pitch and spill past the letters.</view>
+    <view class="stack">
+      <view class="para">Dear <ll-scribble text="Mr. Whitcombe" /> Sam, thank you for the tomatoes; they were <ll-scribble text="acceptable" weight="fine" /> wonderful.</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Pens</view>
+    <view class="sec-desc">Ink brush, a fine liner that leaves the words readable, red felt, blue felt and soft pencil: one change of mind each.</view>
+    <view class="stack">
+      <view class="row"><text class="pen">Ink brush</text><view class="para">Meet on <ll-scribble text="Tuesday" /> Thursday.</view></view>
+      <view class="row"><text class="pen">Fine liner</text><view class="para">The password is <ll-scribble text="hunter2" weight="fine" />, still readable.</view></view>
+      <view class="row"><text class="pen">Red felt</text><view class="para">Total <ll-scribble text="14.10" tone="red" /> 12.00.</view></view>
+      <view class="row"><text class="pen">Blue felt</text><view class="para">Call <ll-scribble text="Ada" tone="blue" /> Jo about the tomatoes.</view></view>
+      <view class="row"><text class="pen">Soft pencil</text><view class="para">Pick up <ll-scribble text="milk" tone="pencil" /> oat milk.</view></view>
+    </view>
+
+    <view class="sub-h3">An edited draft</view>
+    <view class="sec-desc">Scribbles, strikes and a highlight on the same page: an editor's pass over a paragraph.</view>
+    <view class="stack">
+      <ll-paper stock="paper" tilt seed="draft" custom-style="padding:56rpx">
+        <view class="draft-script">Draft 3</view>
+        <view class="draft-body">The garden was <ll-scribble text="very extremely" weight="fine" /> overgrown, and the gate, which had been <ll-strike text="painted green" /> left open for years, no longer <ll-scribble text="closed properly at all" tone="red" /> closed. <ll-highlight text="Keep this line." tone="green" /></view>
+      </ll-paper>
+    </view>
+  </view>
+</view>

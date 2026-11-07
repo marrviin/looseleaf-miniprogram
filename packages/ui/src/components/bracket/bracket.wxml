@@ -1,0 +1,7 @@
+<!-- ll-bracket — the ink runtime measures the host box and draws the
+     bracket recipe into the .ll-ink-layer background, down the start or
+     end side; the content flows through the slot (upstream ps-7/pe-7). -->
+<view class="ll-bracket ll-class {{side === 'end' ? 'll-bracket--end' : 'll-bracket--start'}} {{animate ? 'll-bracket--animate' : ''}}" style="{{customStyle}}">
+  <view wx:if="{{show}}" class="ll-ink-layer" style="{{inkStyle}}" />
+  <slot />
+</view>

@@ -1,0 +1,2 @@
+<!-- ll-receipt-divider -->
+<view class="ll-receipt-divider" aria-role="separator" style="{{customStyle}}" />

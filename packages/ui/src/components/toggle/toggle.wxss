@@ -1,0 +1,83 @@
+/* ll-toggle */
+/* @ll-import tokens */
+.ll-toggle {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx; /* upstream gap-2 (8px) */
+  box-sizing: border-box;
+  margin: 0 !important; /* UA sets margin-left/right: auto, which scatters flex siblings */
+  padding: 0;
+  /* Reset the native <button> UA styles: fixed width and overflow:hidden
+     would stretch the toggle and clip the ink layer's stroke overhang. */
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  overflow: visible;
+  line-height: 1;
+  border-radius: 12rpx;
+  /* Fill + outline are painted by the baked ink layer (ink/toggle chunk). */
+  background: transparent;
+  color: var(--ll-ink);
+  font-family: 'Kevin Sans', sans-serif;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.ll-toggle::after {
+  border: none;
+}
+
+/* size (upstream: h-9 min-w-9 px-2 = 36px / 36px / 8px) */
+.ll-toggle--default {
+  height: 72rpx;
+  min-width: 72rpx;
+  padding: 0 16rpx;
+  font-size: 28rpx; /* upstream 16px x size-adjust .88 */
+}
+.ll-toggle--sm {
+  height: 64rpx;
+  min-width: 64rpx;
+  padding: 0 12rpx; /* upstream px-1.5 (6px) */
+  font-size: 26rpx; /* upstream 15px x size-adjust .88 */
+}
+.ll-toggle--lg {
+  height: 80rpx;
+  min-width: 80rpx;
+  padding: 0 20rpx; /* upstream px-2.5 (10px) */
+  font-size: 30rpx; /* upstream 17px x size-adjust .88 */
+}
+
+/* inside a toggle-group: items drop the min-width and use px-3 */
+.ll-toggle--joined {
+  min-width: 0;
+  padding: 0 24rpx; /* upstream px-3 (12px) */
+}
+
+/* states */
+.ll-toggle--disabled {
+  color: var(--ll-pencil-text);
+}
+.ll-toggle--sink {
+  transform: translateY(2rpx); /* --ll-press-sink; upstream data-pressed keeps the sink while on */
+}
+
+/* keep label above the ink overlay */
+.ll-toggle__content {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ink overlay — common/ink.js draws the recipe at the element's real size and
+   injects an SVG data-URI background plus `inset: -<pad>px` inline. */
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

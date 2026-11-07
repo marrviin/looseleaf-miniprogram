@@ -1,0 +1,19 @@
+<!-- ll-napkin — ll-paper with the napkin stock and no printed rules; the
+     fold creases (+ coffee ring) are a decor layer measured on the paper
+     box, drawn under the slot content. -->
+<ll-paper
+  ll-class="ll-napkin"
+  stock="napkin"
+  rules="none"
+  tilt="{{tilt}}"
+  tape="{{tape}}"
+  tape-kind="{{tapeKind}}"
+  fastener="{{fastener}}"
+  fastener-tone="{{fastenerTone}}"
+  seed="{{seed}}"
+  aria-label="{{ariaLabel}}"
+  custom-style="{{customStyle}}"
+>
+  <view wx:if="{{decorOn}}" class="ll-napkin-decor" style="{{inkStyle}}" />
+  <slot />
+</ll-paper>

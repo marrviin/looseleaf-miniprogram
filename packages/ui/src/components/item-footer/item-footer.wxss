@@ -1,0 +1,9 @@
+/* ll-item-footer — flex basis-full items-center justify-between gap-2 */
+/* @ll-import tokens */
+.ll-item-footer {
+  display: flex;
+  flex-basis: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx; /* gap-2 */
+}

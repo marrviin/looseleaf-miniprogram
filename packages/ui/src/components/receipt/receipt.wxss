@@ -1,0 +1,18 @@
+/* ll-receipt — upstream: mx-auto flex w-72 flex-col gap-3 px-5 py-8
+   font-type text-[13px] leading-5 text-ink. The class rides ll-class onto
+   the ll-paper root. */
+/* @ll-import tokens */
+
+.ll-receipt {
+  display: flex;
+  flex-direction: column;
+  gap: 21rpx; /* gap-3 */
+  box-sizing: border-box;
+  width: 507rpx; /* w-72 */
+  margin: 0 auto; /* mx-auto */
+  padding: 56rpx 35rpx; /* py-8 px-5 */
+  color: var(--ll-ink); /* text-ink */
+  font-family: 'Kevin Sans', sans-serif; /* font-type */
+  font-size: 21rpx; /* 13px x .82 */
+  line-height: 1.54; /* leading-5 */
+}

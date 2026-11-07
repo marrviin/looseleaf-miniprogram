@@ -1,0 +1,49 @@
+/* ll-ribbon — everything drawn (band fill, tails, folds, hover underline)
+   is one ink layer rendered at the element's real size; the box only lays
+   out the label (inline-flex, centered, never wraps). */
+/* @ll-import tokens */
+
+.ll-ribbon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx; /* gap-1.5 */
+  flex-shrink: 0;
+  color: var(--ll-ink); /* text-ink */
+  font-family: 'Kevin Sans', sans-serif;
+  font-weight: 700; /* font-bold */
+  white-space: nowrap;
+  transition: translate 0.2s ease-out;
+}
+.ll-ribbon--sm {
+  font-size: 25rpx; /* 14px x .88 */
+}
+.ll-ribbon--default {
+  font-size: 28rpx; /* 16px x .88 */
+}
+.ll-ribbon--lg {
+  font-size: 35rpx; /* 20px x .88 */
+}
+.ll-ribbon--interactive {
+  cursor: pointer;
+}
+
+.ll-ribbon__content {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+/* ink overlay — the ribbon recipe (band + tails), inset by -12px so the
+   stroke overhang and the tails' outside corners stay visible. */
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

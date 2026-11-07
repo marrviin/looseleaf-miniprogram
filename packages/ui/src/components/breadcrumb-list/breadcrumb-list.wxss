@@ -1,0 +1,13 @@
+/* ll-breadcrumb-list */
+/* @ll-import tokens */
+.ll-breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12rpx; /* upstream gap-1.5 (6px); sm:gap-2 only past 640px */
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 28rpx; /* upstream text-base (16px) x size-adjust .88 */
+  line-height: 48rpx; /* leading-6 */
+  overflow-wrap: break-word; /* break-words */
+  color: var(--muted-foreground); /* text-muted-foreground */
+}

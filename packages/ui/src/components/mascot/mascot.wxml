@@ -1,0 +1,13 @@
+<!-- ll-mascot — Stubby as a die-cut sticker; the box is the sticker size
+     (white border included), the art layer bleeds -pad px past it (upstream
+     overflow-visible svg). aria: role img + label when labeled, hidden
+     otherwise; an unknown pose draws nothing. -->
+<view
+  class="ll-mascot {{shadowed ? 'll-mascot--shadow' : ''}} ll-class"
+  style="width:{{px}}px;height:{{px}}px;{{customStyle}}"
+  aria-role="{{label ? 'img' : 'none'}}"
+  aria-label="{{label}}"
+  aria-hidden="{{label ? 'false' : 'true'}}"
+>
+  <view wx:if="{{has}}" class="ll-mascot__art" style="{{artStyle}}"></view>
+</view>

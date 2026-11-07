@@ -1,0 +1,6 @@
+/* ll-ticket-title — text-2xl leading-none (font-type inherits from the
+   body/stub; the Type face's 0.82 size-adjust is applied by hand) */
+.ll-ticket-title {
+  font-size: 39rpx; /* text-2xl 24px x .82 */
+  line-height: 1;
+}

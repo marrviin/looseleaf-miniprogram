@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-index-card": "../index-card/index-card",
+    "ll-index-card-header": "../index-card-header/index-card-header",
+    "ll-index-card-title": "../index-card-title/index-card-title",
+    "ll-index-card-content": "../index-card-content/index-card-content",
+    "ll-index-card-footer": "../index-card-footer/index-card-footer",
+    "ll-button": "../button/button"
+  }
+}

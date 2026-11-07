@@ -35,6 +35,13 @@ export const props = {
     type: String,
     value: 'll-button--hover',
   },
+  /** Seam trim inside a button-group: a ready clip-path string the group
+      hands over (clips this button's ink start/end edge so neighbors share
+      one stroke). Empty = no trim. */
+  trimStyle: {
+    type: String,
+    value: '',
+  },
   customStyle: String,
 };
 

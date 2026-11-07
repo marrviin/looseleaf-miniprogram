@@ -1,0 +1,4 @@
+<!-- ll-item-group -->
+<view class="ll-item-group ll-class" style="{{customStyle}}" aria-role="list">
+  <slot />
+</view>

@@ -1,9 +1,7 @@
-/* ll-card — a sheet of paper on the card stock.
-   Cut-edge cards draw no sheet ink upstream: the face is CSS — stock color,
-   three texture tiles (common/style/paper-tiles.wxss) and the paper-light
-   gradient, plus the sheet shadow. */
+/* ll-card — upstream Card adds only layout on top of Paper: flex-col gap-6
+   py-6 with text-card-foreground. The sheet (colors, textures, shadows,
+   edges, tape, fasteners) is ll-paper's absolute underlay. */
 /* @ll-import tokens */
-/* @ll-import paper-tiles */
 .ll-card {
   position: relative;
   display: flex;
@@ -13,39 +11,4 @@
   box-sizing: border-box;
   color: var(--ll-ink); /* text-card-foreground */
   font-family: 'Kevin Sans', sans-serif;
-  border-radius: 2rpx; /* --ll-sheet-radius: 1px */
-  box-shadow: 0 1px 1.5px rgba(58, 44, 30, 0.2), 0 6px 11px -5px rgba(58, 44, 30, 0.24); /* --ll-shadow-card */
-  background-repeat: repeat, repeat, repeat, no-repeat;
-}
-
-/* stocks — cold tooth: fibre + relief + cloud; fine tooth: fibre + slip + cloud.
-   Colors: --ll-card #fbf6e9, --ll-paper #f8f5ee, --ll-slip #fbf8f1
-   (index-card shares the card color upstream). */
-.ll-card--card {
-  background-color: #fbf6e9;
-  background-image: var(--ll-tex-fibre), var(--ll-tex-relief), var(--ll-tex-cloud),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0) 42%, rgba(58, 44, 30, 0.035));
-  background-size: 480rpx 480rpx, 384rpx 384rpx, 1440rpx 1440rpx, 100% 100%;
-}
-.ll-card--paper {
-  background-color: #f8f5ee;
-  background-image: var(--ll-tex-fibre), var(--ll-tex-relief), var(--ll-tex-cloud),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0) 42%, rgba(58, 44, 30, 0.035));
-  background-size: 480rpx 480rpx, 384rpx 384rpx, 1440rpx 1440rpx, 100% 100%;
-}
-.ll-card--slip,
-.ll-card--index-card {
-  background-color: #fbf8f1;
-  background-image: var(--ll-tex-fibre), var(--ll-tex-slip), var(--ll-tex-cloud),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0) 42%, rgba(58, 44, 30, 0.035));
-  background-size: 480rpx 480rpx, 256rpx 256rpx, 1440rpx 1440rpx, 100% 100%;
-}
-.ll-card--index-card {
-  background-color: #fbf6e9;
-}
-.ll-card--kraft {
-  background-color: #dcc8a3; /* --ll-kraft */
-  background-image: var(--ll-tex-fibre), var(--ll-tex-kraft), var(--ll-tex-cloud),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0) 42%, rgba(58, 44, 30, 0.035));
-  background-size: 480rpx 480rpx, 384rpx 192rpx, 1440rpx 1440rpx, 100% 100%;
 }

@@ -1,0 +1,7 @@
+/* ll-breadcrumb-separator */
+/* @ll-import tokens */
+.ll-breadcrumb-separator {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ll-pencil-mark); /* text-pencil-mark */
+}

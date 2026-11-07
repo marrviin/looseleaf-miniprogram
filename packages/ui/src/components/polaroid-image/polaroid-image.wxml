@@ -1,0 +1,14 @@
+<!-- ll-polaroid-image — the recessed square window. The scene ink fills it
+     (measured on the window box); a real <image> comes in through the slot;
+     the date stamp sits in the foot; `develop` soaks the print away. -->
+<view
+  class="ll-polaroid-image ll-class"
+  style="{{customStyle}}"
+  aria-role="{{scene && label ? 'img' : 'none'}}"
+  aria-label="{{scene && label ? label : ''}}"
+>
+  <view wx:if="{{inkStyle}}" class="ll-polaroid-image__scene" style="{{inkStyle}}"></view>
+  <slot />
+  <view wx:if="{{date}}" class="ll-polaroid-image__date" aria-hidden="true">{{date}}</view>
+  <view wx:if="{{developing}}" class="ll-polaroid-image__develop" aria-hidden="true"></view>
+</view>

@@ -1,0 +1,55 @@
+<!-- ll-bracket demo — mirrors the upstream docs page (#/components/bracket).
+     The grouping-list example swaps the (not yet ported) callout for a plain
+     hand note; revisit when ll-callout lands. -->
+<view class="demo">
+  <view class="demo-title">Bracket</view>
+  <view class="sec-desc">A hand-drawn bracket down one side of a stretch of content — square, curly or round — grouping it like a margin note.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">A square bracket down the start side of two paragraphs.</view>
+    <view class="stack">
+      <ll-bracket custom-style="max-width:768rpx">
+        <view class="para">These two paragraphs are one idea, and the bracket says so.</view>
+        <view class="para" style="margin-top:16rpx">You could nod and keep reading, or you could underline them and come back next week.</view>
+      </ll-bracket>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Kinds and sides</view>
+    <view class="sec-desc">Square, curly and round; on the start side and the end side; in ink, blue and red.</view>
+    <view class="grid2">
+      <ll-bracket kind="square" custom-style="width:384rpx">
+        <view class="para">Square: for quoting a stretch of a page.</view>
+      </ll-bracket>
+      <ll-bracket kind="curly" tone="blue" side="end" custom-style="width:384rpx">
+        <view class="para">Curly: for lumping things together, from the end side.</view>
+      </ll-bracket>
+      <ll-bracket kind="round" tone="red" custom-style="width:384rpx">
+        <view class="para">Round: for an aside.</view>
+      </ll-bracket>
+      <ll-bracket kind="square" weight="brush" tone="ink" side="end" custom-style="width:384rpx">
+        <view class="para">A brush pen makes it a statement.</view>
+      </ll-bracket>
+    </view>
+
+    <view class="sub-h3">Grouping list items</view>
+    <view class="sec-desc">A curly brace across three items with a note on the other side: the list is still a list.</view>
+    <view class="stack">
+      <view class="group-row">
+        <ll-bracket kind="curly" side="end" tone="blue" custom-style="padding-right:64rpx">
+          <view class="list">
+            <view>Flour</view>
+            <view>Butter</view>
+            <view>Sugar</view>
+          </view>
+        </ll-bracket>
+        <view class="note">the base</view>
+      </view>
+    </view>
+  </view>
+</view>

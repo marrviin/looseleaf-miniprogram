@@ -1,0 +1,15 @@
+<!-- ll-navigation-menu-content — the open panel. Viewport mode: absolutely
+     placed over the root's shared slip (which is sized from this panel).
+     No-viewport mode: own slip Paper dropped under the item. -->
+<view
+  wx:if="{{open}}"
+  class="ll-navigation-menu-content {{inVp ? '' : 'll-navigation-menu-content--own'}} ll-class"
+  style="{{inVp ? 'left:' + posLeft + 'px;top:' + posTop + 'px;' : ''}}{{customStyle}}"
+>
+  <view wx:if="{{!inVp}}" class="ll-navigation-menu-content__paper">
+    <ll-paper stock="slip" tilt="{{0.3}}" rules="none" shadow="lift" custom-style="position:absolute;inset:0;" />
+  </view>
+  <view class="ll-navigation-menu-content__inner">
+    <slot />
+  </view>
+</view>

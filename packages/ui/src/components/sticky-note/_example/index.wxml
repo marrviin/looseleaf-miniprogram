@@ -1,0 +1,87 @@
+<!-- ll-sticky-note demo — mirrors the upstream docs page
+     (#/components/sticky-note). Paper's `curl` is not ported; the curled
+     note renders flat for now. -->
+<view class="demo">
+  <view class="demo-title">Sticky note</view>
+  <view class="sec-desc">A square of colored paper with a gum band, turned a little more than a page. Five pads, any size, written in marker. It can curl a corner, hang from a pin or a strip of tape, and grow a tick box that is ticked with a felt pen.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Five pads</view>
+    <view class="sec-desc">Yellow, green, orange, pink and blue, each turned by its own seeded angle. The first word says what the note is.</view>
+    <view class="notes-row">
+      <ll-sticky-note wx:for="{{pads}}" wx:key="title" color="{{item.color}}" seed="{{item.title}}">
+        <ll-sticky-note-title>{{item.title}}</ll-sticky-note-title>
+        <ll-sticky-note-content>{{item.body}}</ll-sticky-note-content>
+      </ll-sticky-note>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+    <view class="sub-h3">Curled, pinned, taped</view>
+    <view class="sec-desc">`curl` lifts the bottom-right corner; `fastener` and `tape` hold a note up. Any size works: the text wraps and the sheet follows. (ll-paper's curl is not ported yet — the first note renders flat.)</view>
+    <view class="notes-row notes-row--loose">
+      <ll-sticky-note fastener="pin" fastener-tone="tomato" seed="a">
+        <ll-sticky-note-title>pinned</ll-sticky-note-title>
+        <ll-sticky-note-content>a curl, and a tomato pin</ll-sticky-note-content>
+      </ll-sticky-note>
+      <ll-sticky-note color="blue" tape="top" tape-kind="masking" seed="b" custom-style="width:448rpx">
+        <ll-sticky-note-title>taped</ll-sticky-note-title>
+        <ll-sticky-note-content>a strip of masking tape across the top</ll-sticky-note-content>
+        <ll-sticky-note-footer>from Ada</ll-sticky-note-footer>
+      </ll-sticky-note>
+      <ll-sticky-note color="green" seed="c" custom-style="height:224rpx;width:256rpx;min-height:0">
+        <ll-sticky-note-content>small</ll-sticky-note-content>
+      </ll-sticky-note>
+      <ll-sticky-note color="pink" seed="d" custom-style="width:576rpx;min-height:224rpx">
+        <ll-sticky-note-content>a wide one, because notes can be any size you cut them to</ll-sticky-note-content>
+      </ll-sticky-note>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Done</view>
+    <view class="sec-desc">Pass `done` and the note gets a pencil tick box. Add `onDoneChange` and the box can be pressed: the tick is written with a felt pen and the text struck through. A note that loads done just shows it.</view>
+    <view class="notes-row notes-row--loose">
+      <ll-sticky-note color="green" done="{{liveDone}}" binddonchange="onLiveDone" seed="live">
+        <ll-sticky-note-title>post the parcel</ll-sticky-note-title>
+        <ll-sticky-note-content done="{{liveDone}}">before the office shuts. Press the box.</ll-sticky-note-content>
+      </ll-sticky-note>
+      <ll-sticky-note color="yellow" done="{{true}}" seed="loaded">
+        <ll-sticky-note-title>ink pens</ll-sticky-note-title>
+        <ll-sticky-note-content done="{{true}}">two fine, one brush</ll-sticky-note-content>
+      </ll-sticky-note>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">A team board</view>
+    <view class="sec-desc">A real board: notes you tick off as the week goes, laid on a card. Each note is a labeled group with its own checkbox; the tick is written when you press it.</view>
+    <view class="board">
+      <ll-card stock="kraft" seed="board" custom-style="gap:32rpx">
+        <ll-card-header>
+          <ll-card-title>This week</ll-card-title>
+        </ll-card-header>
+        <ll-card-content custom-style="display:grid;grid-template-columns:1fr 1fr;gap:48rpx">
+          <view wx:for="{{board}}" wx:key="id" class="board-cell" aria-label="{{item.title}}: {{item.body}}">
+            <ll-sticky-note
+              id="note-{{item.id}}"
+              color="{{item.color}}"
+              done="{{item.done}}"
+              data-id="{{item.id}}"
+              binddonchange="onBoardDone"
+              done-label="{{item.title}}: done"
+              seed="{{item.id}}"
+              custom-style="width:100%;max-width:320rpx;margin:0 auto"
+            >
+              <ll-sticky-note-title>{{item.title}}</ll-sticky-note-title>
+              <ll-sticky-note-content done="{{item.done}}">{{item.body}}</ll-sticky-note-content>
+              <ll-sticky-note-footer>{{item.who}}</ll-sticky-note-footer>
+            </ll-sticky-note>
+          </view>
+        </ll-card-content>
+      </ll-card>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,24 @@
+/* ll-receipt-line — flex items-baseline gap-2; dt min-w-0 flex-1
+   wrap-anywhere; dd ll-num shrink-0 text-end */
+.ll-receipt-line {
+  display: flex;
+  align-items: baseline;
+  gap: 14rpx; /* gap-2 */
+  width: 100%;
+}
+
+.ll-receipt-line-name {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere; /* wrap-anywhere */
+}
+
+.ll-receipt-line-qty {
+  font-variant-numeric: tabular-nums lining-nums; /* .ll-num */
+}
+
+.ll-receipt-line-price {
+  flex-shrink: 0;
+  text-align: right;
+  font-variant-numeric: tabular-nums lining-nums; /* .ll-num */
+}

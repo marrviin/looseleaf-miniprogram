@@ -1,0 +1,11 @@
+<!-- ll-stamp — ink art at its own size; the art layer bleeds -pad px past
+     the box (upstream overflow-visible svg). Unknown text/name draws
+     nothing. aria: role img named by the text unless overridden. -->
+<view
+  class="ll-stamp ll-class"
+  style="{{has ? 'width:' + wpx + 'px;height:' + hpx + 'px;' : 'display:none'}}{{customStyle}}"
+  aria-role="img"
+  aria-label="{{label || text || name}}"
+>
+  <view wx:if="{{has}}" class="ll-stamp__art" style="{{artStyle}}"></view>
+</view>

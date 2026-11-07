@@ -90,3 +90,44 @@
   font-size: 25rpx;
   color: #8a857c;
 }
+
+/* guest book: max-w-sm (384px) column, "No. 0042" in muted small text */
+.stack-sm {
+  max-width: 768rpx;
+  margin: 0 auto 24rpx;
+}
+.gb-no {
+  font-size: 25rpx; /* text-sm × 0.88 */
+  color: #8a857c;
+}
+
+/* article card: max-w-md (448px) column, relaxed body copy */
+.stack-md {
+  max-width: 896rpx;
+  margin: 0 auto 24rpx;
+}
+.article-p {
+  font-size: 26rpx; /* text-[15px] × 0.88 */
+  line-height: 1.625; /* leading-relaxed */
+}
+
+/* on every stock: grid gap-7 p-2, two columns like the docs page (sm+) */
+.stocks-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 56rpx; /* gap-7 */
+  padding: 16rpx; /* p-2 */
+}
+.stock-note {
+  font-size: 25rpx; /* text-sm × 0.88 */
+}
+
+/* pinned, clipped, stapled: grid gap-x-9 gap-y-14 p-6 pt-12 */
+.fastener-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 72rpx; /* gap-x-9 */
+  row-gap: 112rpx; /* gap-y-14 */
+  padding: 96rpx 48rpx 48rpx; /* pt-12 p-6 */
+}
+

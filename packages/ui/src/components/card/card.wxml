@@ -1,4 +1,23 @@
-<!-- ll-card -->
-<view class="ll-card ll-card--{{stock}} ll-class" style="{{paperStyle}};{{customStyle}}">
+<!-- ll-card — upstream Card is literally `Paper` with stock="card" and
+     rules="none" plus shadcn's flex-col gap-6 py-6. The port composes
+     ll-paper: the sheet (stock face, edges, printed rules, tape, fasteners,
+     seeded tilt) is its absolute z-index:-1 underlay, and the card content
+     flows through ll-paper's own slot above it. The layout class rides the
+     external ll-class onto the paper root. -->
+<ll-paper
+  ll-class="ll-card"
+  stock="{{stock}}"
+  rules="{{rules}}"
+  edge="{{edge}}"
+  tilt="{{tilt}}"
+  tape="{{tape}}"
+  tape-kind="{{tapeKind}}"
+  fastener="{{fastener}}"
+  fastener-tone="{{fastenerTone}}"
+  shadow="{{shadow}}"
+  shadow-css="{{shadowCss}}"
+  seed="{{seed}}"
+  custom-style="{{customStyle}}"
+>
   <slot />
-</view>
+</ll-paper>

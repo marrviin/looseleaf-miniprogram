@@ -1,0 +1,10 @@
+<!-- ll-tape — decorative strip; the box is length × height, the art layer
+     bleeds -pad px past it so the torn/pinked teeth stay visible (upstream
+     PropSvg overflow-visible). aria-hidden: decoration only. -->
+<view
+  class="ll-tape ll-class"
+  style="width:{{w}}px;height:{{h}}px;transform:rotate({{deg}}deg);{{customStyle}}"
+  aria-hidden="true"
+>
+  <view class="ll-tape__art" style="{{artStyle}}"></view>
+</view>

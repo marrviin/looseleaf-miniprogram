@@ -1,0 +1,4 @@
+<!-- ll-breadcrumb-list -->
+<view class="ll-breadcrumb-list ll-class" style="{{customStyle}}">
+  <slot />
+</view>

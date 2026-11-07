@@ -1,0 +1,8 @@
+/* ll-sticky-note-content — flex-1; checked notes strike through. */
+.ll-sticky-note-content {
+  flex: 1;
+}
+.ll-sticky-note-content--done {
+  text-decoration: line-through;
+  text-decoration-thickness: 2rpx; /* decoration-1 */
+}

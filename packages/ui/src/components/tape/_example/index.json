@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-tape": "../tape/tape",
+    "ll-paper": "../paper/paper"
+  }
+}

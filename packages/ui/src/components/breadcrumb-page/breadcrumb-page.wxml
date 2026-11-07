@@ -1,0 +1,5 @@
+<!-- ll-breadcrumb-page -->
+<view class="ll-breadcrumb-page ll-class" style="{{customStyle}}" aria-role="link" aria-disabled="true" aria-current="page" aria-label="{{ariaLabel}}">
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-breadcrumb-page__content"><slot /></view>
+</view>

@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-polaroid": "../polaroid/polaroid",
+    "ll-polaroid-image": "../polaroid-image/polaroid-image",
+    "ll-polaroid-caption": "../polaroid-caption/polaroid-caption",
+    "ll-button": "../button/button"
+  }
+}

@@ -1,0 +1,5 @@
+<!-- ll-breadcrumb-separator -->
+<view class="ll-breadcrumb-separator ll-class" style="{{customStyle}}" aria-hidden="true">
+  <ll-icon wx:if="{{icon}}" name="{{icon}}" size="{{iconSize}}" />
+  <slot wx:else />
+</view>

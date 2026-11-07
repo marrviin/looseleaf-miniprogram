@@ -1,0 +1,28 @@
+<!-- ll-marker — the row; the rules are aria-hidden drawings (their own
+     components, measured per box), the slot holds ll-marker-icon /
+     ll-marker-content. -->
+<view
+  class="ll-marker ll-marker--{{variant}} {{tone === 'new' ? 'll-marker--new' : ''}} ll-class"
+  style="{{customStyle}}"
+>
+  <ll-marker-rule
+    wx:if="{{variant === 'separator'}}"
+    side="start"
+    tone="{{tone}}"
+    seed="{{seed}}|start"
+  />
+  <slot />
+  <ll-marker-rule
+    wx:if="{{variant === 'separator'}}"
+    side="end"
+    tone="{{tone}}"
+    seed="{{seed}}|end"
+  />
+  <ll-marker-rule
+    wx:if="{{variant === 'border'}}"
+    side="full"
+    tone="{{tone}}"
+    wavy="{{rule === 'wavy'}}"
+    seed="{{seed}}|full"
+  />
+</view>

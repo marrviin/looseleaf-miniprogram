@@ -1,0 +1,8 @@
+<!-- ll-skeleton — a shaded block; the outline and hatch are two absolutely
+     positioned mask layers boiling between three pencil-tile frames
+     (upstream draws them with ::before/::after; the mini program gets two
+     real views so the masks can be styled per instance). -->
+<view class="ll-skeleton ll-class" style="{{rootStyle}}">
+  <view class="ll-skeleton__outline {{round ? 'll-skeleton__outline--round' : ''}}" />
+  <view class="ll-skeleton__hatch" />
+</view>

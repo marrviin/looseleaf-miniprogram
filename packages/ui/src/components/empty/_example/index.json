@@ -1,0 +1,22 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-empty": "../empty/empty",
+    "ll-empty-header": "../empty-header/empty-header",
+    "ll-empty-media": "../empty-media/empty-media",
+    "ll-empty-title": "../empty-title/empty-title",
+    "ll-empty-description": "../empty-description/empty-description",
+    "ll-empty-content": "../empty-content/empty-content",
+    "ll-button": "../button/button",
+    "ll-icon": "../icon/icon",
+    "ll-paper": "../paper/paper",
+    "ll-card": "../card/card",
+    "ll-card-header": "../card-header/card-header",
+    "ll-card-title": "../card-title/card-title",
+    "ll-card-content": "../card-content/card-content",
+    "ll-input": "../input/input",
+    "ll-avatar": "../avatar/avatar",
+    "ll-avatar-fallback": "../avatar-fallback/avatar-fallback",
+    "ll-avatar-group": "../avatar-group/avatar-group"
+  }
+}

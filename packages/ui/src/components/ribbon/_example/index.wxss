@@ -1,0 +1,82 @@
+.demo {
+  padding: 32rpx;
+  background: var(--ll-paper, #f8f5ee);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+.sec {
+  margin-top: 40rpx;
+}
+.sec-h2 {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin-bottom: 12rpx;
+}
+.sub-h3 {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin: 28rpx 0 6rpx;
+}
+.sec-desc {
+  font-size: 24rpx;
+  color: #8a857c;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+.center-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40rpx; /* gap-5 */
+  padding: 24rpx 0 48rpx;
+}
+.ribbon-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 32rpx; /* gap-4 */
+  padding: 12rpx 0 24rpx;
+}
+.tap-note {
+  font-size: 24rpx;
+  color: #8a857c;
+  text-align: center;
+  padding-bottom: 12rpx;
+}
+.cards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 64rpx; /* gap-8 */
+  padding: 24rpx 8rpx 32rpx;
+}
+.card-pos {
+  position: relative;
+}
+.flag-pin {
+  pointer-events: none;
+}
+.link-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24rpx; /* gap-3 */
+}
+.body-text {
+  font-size: 28rpx;
+  color: #2a2420;
+  line-height: 1.6;
+  max-width: 560rpx;
+}
+.price {
+  font-size: 35rpx; /* text-xl 20px x .88 */
+  font-weight: 700;
+  font-family: 'Kevin Sans', sans-serif;
+}

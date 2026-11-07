@@ -1,0 +1,46 @@
+/* ll-sticky-note — upstream: flex min-h-40 w-44 flex-col gap-1 px-4 pt-6
+   pb-4 font-script text-[1.35rem] leading-[1.15] text-ink break-words;
+   tickable notes get pt-8 for the tick box. The class rides ll-class onto
+   the ll-paper root. */
+/* @ll-import tokens */
+
+.ll-sticky-note {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx; /* gap-1 */
+  box-sizing: border-box;
+  width: 352rpx; /* w-44 */
+  min-height: 320rpx; /* min-h-40 */
+  padding: 48rpx 32rpx 32rpx; /* px-4 pt-6 pb-4 */
+  color: var(--ll-ink); /* text-ink */
+  font-family: 'Kevin Sans', sans-serif; /* font-script */
+  font-size: 38rpx; /* 1.35rem 21.6px x .88 */
+  line-height: 1.15;
+  word-break: break-word;
+}
+.ll-sticky-note--tickable {
+  padding-top: 64rpx; /* pt-8 */
+}
+
+/* tick-box decor ink: drawn on the paper box (recipe pad 6 via inkStyle).
+   inset:0 sizes the layer to the paper root so __measureInk gets a real
+   box before inkStyle swaps in the recipe's inset:-<pad>px. */
+.ll-sticky-note-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+/* press target over the drawn box (upstream end-[3.5px] top-[2.5px] size-8) */
+.ll-sticky-note__check {
+  position: absolute;
+  top: 5rpx;
+  right: 7rpx;
+  width: 64rpx; /* size-8 */
+  height: 64rpx;
+  border-radius: 50%;
+  z-index: 2;
+}

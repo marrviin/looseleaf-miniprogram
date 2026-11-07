@@ -1,0 +1,7 @@
+/* ll-napkin-title — text-[2rem] leading-none font-bold */
+.ll-napkin-title {
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 56rpx; /* 2rem 32px x .88 */
+  line-height: 1;
+  font-weight: 700;
+}

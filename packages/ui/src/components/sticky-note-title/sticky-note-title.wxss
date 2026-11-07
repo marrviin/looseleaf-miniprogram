@@ -1,0 +1,7 @@
+/* ll-sticky-note-title — text-[1.7rem] leading-none font-bold */
+.ll-sticky-note-title {
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 48rpx; /* 1.7rem 27.2px x .88 */
+  line-height: 1;
+  font-weight: 700;
+}

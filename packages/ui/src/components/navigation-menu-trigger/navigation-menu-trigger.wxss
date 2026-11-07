@@ -1,0 +1,56 @@
+/* ll-navigation-menu-trigger */
+/* @ll-import tokens */
+/* Upstream tab: h-9 px-4 py-2 gap-1 font-hand text-[15px] font-bold
+   whitespace-nowrap; open/selected lifts -translate-y-0.5; disabled paints
+   pencil-text. */
+.ll-navigation-menu-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx; /* gap-1 */
+  height: 72rpx; /* h-9 */
+  padding: 16rpx 32rpx; /* px-4 py-2 */
+  font-size: 30rpx; /* text-[15px] */
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--ll-foreground, #1c1917);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  z-index: 0;
+  isolation: isolate;
+  transition: transform var(--ll-dur-hover, 160ms) var(--ll-ease-settle, ease), color var(--ll-dur-hover, 160ms) var(--ll-ease-settle, ease);
+}
+.ll-navigation-menu-tab--open {
+  transform: translateY(-4rpx); /* -translate-y-0.5 */
+}
+.ll-navigation-menu-tab--disabled {
+  color: var(--ll-pencil-text, #a8a29e);
+}
+/* ink overlay — common/ink.js draws the recipe at the element's real size and
+   injects an SVG data-URI background plus `inset: -<pad>px` inline. */
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-navigation-menu-tab__content {
+  position: relative;
+  z-index: 1;
+}
+.ll-navigation-menu-tab__chevron {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  top: 2rpx; /* relative top-px */
+  transition: transform var(--ll-dur-sheet, 240ms) var(--ll-ease-settle, ease);
+}
+.ll-navigation-menu-tab__chevron--open {
+  transform: rotate(180deg);
+}

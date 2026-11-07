@@ -7,7 +7,7 @@
   bindtouchend="__inkTouchEnd"
   bindtouchcancel="__inkTouchEnd"
 >
-  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-ink-layer" style="{{inkStyle}};{{trimStyle}}" />
   <input
     class="ll-input__control {{disabled ? 'll-input__control--disabled' : ''}}"
     value="{{value}}"

@@ -1,0 +1,201 @@
+<!-- ll-breadcrumb demo — mirrors the upstream docs page (#/components/breadcrumb):
+     intro, then the Examples entries with the page's own copy. Installation/
+     Usage/API reference/Accessibility/Related are intentionally omitted. -->
+<view class="demo">
+  <view class="demo-title">Breadcrumb</view>
+  <view class="sec-desc">The path to the page you are on, written in a notebook: names between pencil slashes, links that wear the highlighter when pointed at, and the current page underlined twice in blue felt. Swap the slash for a chevron or any node, and fold the middle of a long path into a dropdown.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Demo</view>
+    <view class="sec-desc">A crumb that opens a menu: the middle name is a button with a little chevron, and its menu lists the sibling pages.</view>
+    <view class="center">
+      <ll-breadcrumb>
+        <ll-breadcrumb-list>
+          <ll-breadcrumb-item><ll-breadcrumb-link>Home</ll-breadcrumb-link></ll-breadcrumb-item>
+          <ll-breadcrumb-separator />
+          <ll-breadcrumb-item>
+            <view class="crumb-trigger" aria-label="Toggle menu">Components <ll-icon name="chevron-down" size="{{14}}" /></view>
+          </ll-breadcrumb-item>
+          <ll-breadcrumb-separator />
+          <ll-breadcrumb-item><ll-breadcrumb-page seed="dropdown">Breadcrumb</ll-breadcrumb-page></ll-breadcrumb-item>
+        </ll-breadcrumb-list>
+      </ll-breadcrumb>
+    </view>
+
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">Home, Components, and the page you are on. Point at Components: links wear the highlighter. The current page is bold and underlined twice in blue felt.</view>
+    <view class="center">
+      <ll-breadcrumb>
+        <ll-breadcrumb-list>
+          <ll-breadcrumb-item><ll-breadcrumb-link>Home</ll-breadcrumb-link></ll-breadcrumb-item>
+          <ll-breadcrumb-separator />
+          <ll-breadcrumb-item><ll-breadcrumb-link>Components</ll-breadcrumb-link></ll-breadcrumb-item>
+          <ll-breadcrumb-separator />
+          <ll-breadcrumb-item><ll-breadcrumb-page seed="default">Breadcrumb</ll-breadcrumb-page></ll-breadcrumb-item>
+        </ll-breadcrumb-list>
+      </ll-breadcrumb>
+    </view>
+
+    <view class="sub-h3">Folded path with a menu</view>
+    <view class="sec-desc">The middle of a long path folded into an ellipsis that opens a dropdown of the hidden crumbs (the ellipsis is the trigger, so it is a real button with a name).</view>
+    <view class="center">
+      <ll-breadcrumb>
+        <ll-breadcrumb-list>
+          <ll-breadcrumb-item><ll-breadcrumb-link>Home</ll-breadcrumb-link></ll-breadcrumb-item>
+          <ll-breadcrumb-separator />
+          <ll-breadcrumb-item>
+            <ll-dropdown-menu open="{{menuOpen}}" width="{{192}}" align="start" bind:change="onMenuChange" aria-label="Toggle menu">
+              <view slot="trigger" class="crumb-trigger"><ll-breadcrumb-ellipsis size="sm" /></view>
+              <ll-dropdown-menu-item>Documentation</ll-dropdown-menu-item>
+              <ll-dropdown-menu-item>Themes</ll-dropdown-menu-item>
+              <ll-dropdown-menu-item>GitHub</ll-dropdown-menu-item>
+            </ll-dropdown-menu>
+          </ll-breadcrumb-item>
+          <ll-breadcrumb-separator />
+          <ll-breadcrumb-item><ll-breadcrumb-link>Components</ll-breadcrumb-link></ll-breadcrumb-item>
+          <ll-breadcrumb-separator />
+          <ll-breadcrumb-item><ll-breadcrumb-page seed="folded">Breadcrumb</ll-breadcrumb-page></ll-breadcrumb-item>
+        </ll-breadcrumb-list>
+      </ll-breadcrumb>
+    </view>
+
+    <view class="sub-h3">Separators</view>
+    <view class="sec-desc">A pencil slash is the default. Children replace it: a drawn chevron, an arrow, a dot.</view>
+    <view class="grid-gap">
+      <ll-breadcrumb>
+        <ll-breadcrumb-list>
+          <ll-breadcrumb-item><ll-breadcrumb-link>Home</ll-breadcrumb-link></ll-breadcrumb-item>
+          <ll-breadcrumb-separator />
+          <ll-breadcrumb-item><ll-breadcrumb-page seed="s-slash">Breadcrumb</ll-breadcrumb-page></ll-breadcrumb-item>
+        </ll-breadcrumb-list>
+      </ll-breadcrumb>
+      <ll-breadcrumb>
+        <ll-breadcrumb-list>
+          <ll-breadcrumb-item><ll-breadcrumb-link>Home</ll-breadcrumb-link></ll-breadcrumb-item>
+          <ll-breadcrumb-separator icon="chevron-right" />
+          <ll-breadcrumb-item><ll-breadcrumb-page seed="s-chevron">Breadcrumb</ll-breadcrumb-page></ll-breadcrumb-item>
+        </ll-breadcrumb-list>
+      </ll-breadcrumb>
+      <ll-breadcrumb>
+        <ll-breadcrumb-list>
+          <ll-breadcrumb-item><ll-breadcrumb-link>Home</ll-breadcrumb-link></ll-breadcrumb-item>
+          <ll-breadcrumb-separator icon="arrow-right" />
+          <ll-breadcrumb-item><ll-breadcrumb-page seed="s-arrow">Breadcrumb</ll-breadcrumb-page></ll-breadcrumb-item>
+        </ll-breadcrumb-list>
+      </ll-breadcrumb>
+      <ll-breadcrumb>
+        <ll-breadcrumb-list>
+          <ll-breadcrumb-item><ll-breadcrumb-link>Home</ll-breadcrumb-link></ll-breadcrumb-item>
+          <ll-breadcrumb-separator icon="dot" icon-size="{{20}}" />
+          <ll-breadcrumb-item><ll-breadcrumb-page seed="s-dot">Breadcrumb</ll-breadcrumb-page></ll-breadcrumb-item>
+        </ll-breadcrumb-list>
+      </ll-breadcrumb>
+    </view>
+
+    <view class="sub-h3">File path (composed)</view>
+    <view class="sec-desc">A real use: the crumbs are the folders you have opened. Click one to go back up; when the path is longer than four names the middle folds into an ellipsis whose menu takes you there too.</view>
+    <view class="center">
+      <view class="path-paper">
+        <ll-breadcrumb>
+          <ll-breadcrumb-list>
+            <block wx:for="{{shown}}" wx:key="name">
+              <ll-breadcrumb-item>
+                <ll-breadcrumb-page wx:if="{{item.last}}" seed="p-{{item.at}}">{{item.name}}</ll-breadcrumb-page>
+                <ll-breadcrumb-link wx:else data-at="{{item.at}}" bind:tap="goUp">{{item.name}}</ll-breadcrumb-link>
+              </ll-breadcrumb-item>
+              <ll-breadcrumb-separator wx:if="{{!item.last}}" />
+              <ll-breadcrumb-item wx:if="{{index === 0 && hidden.length}}">
+                <ll-dropdown-menu open="{{foldersOpen}}" width="{{220}}" align="start" bind:change="onFoldersChange" aria-label="Show hidden folders">
+                  <view slot="trigger" class="crumb-trigger"><ll-breadcrumb-ellipsis size="sm" /></view>
+                  <ll-dropdown-menu-item wx:for="{{hidden}}" wx:for-item="h" wx:key="*this" data-name="{{h}}">
+                    <ll-icon name="folder" size="{{16}}" /> {{h}}
+                  </ll-dropdown-menu-item>
+                </ll-dropdown-menu>
+              </ll-breadcrumb-item>
+            </block>
+          </ll-breadcrumb-list>
+        </ll-breadcrumb>
+        <view class="folder-list">
+          <view class="folder-row" wx:for="{{folders}}" wx:key="*this" data-name="{{item}}" bind:tap="openFolder">
+            <ll-icon name="folder" size="{{16}}" /> {{item}}
+          </view>
+          <view wx:if="{{!folders.length}}" class="folder-empty">This folder is empty. Go back up with the path above.</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="sub-h3">Collapsed, with no menu</view>
+    <view class="sec-desc">The shadcn demo of BreadcrumbEllipsis: three pencil dots stand in for the middle of a long path. On its own it is only decoration, hidden from screen readers; wrapped in a link or button it needs an aria-label, and then it can lead to the full list.</view>
+    <view class="grid-gap-lg">
+      <ll-breadcrumb aria-label="Breadcrumb, collapsed">
+        <ll-breadcrumb-list>
+          <ll-breadcrumb-item><ll-breadcrumb-link>Home</ll-breadcrumb-link></ll-breadcrumb-item>
+          <ll-breadcrumb-separator />
+          <ll-breadcrumb-item><ll-breadcrumb-ellipsis /></ll-breadcrumb-item>
+          <ll-breadcrumb-separator />
+          <ll-breadcrumb-item><ll-breadcrumb-link>Components</ll-breadcrumb-link></ll-breadcrumb-item>
+          <ll-breadcrumb-separator />
+          <ll-breadcrumb-item><ll-breadcrumb-page seed="collapsed">Breadcrumb</ll-breadcrumb-page></ll-breadcrumb-item>
+        </ll-breadcrumb-list>
+      </ll-breadcrumb>
+      <ll-breadcrumb aria-label="Breadcrumb, collapsed with a link">
+        <ll-breadcrumb-list>
+          <ll-breadcrumb-item><ll-breadcrumb-link>Home</ll-breadcrumb-link></ll-breadcrumb-item>
+          <ll-breadcrumb-separator />
+          <ll-breadcrumb-item>
+            <ll-breadcrumb-link aria-label="Show the full path"><ll-breadcrumb-ellipsis size="sm" /></ll-breadcrumb-link>
+          </ll-breadcrumb-item>
+          <ll-breadcrumb-separator />
+          <ll-breadcrumb-item><ll-breadcrumb-page seed="collapsed-link">Breadcrumb</ll-breadcrumb-page></ll-breadcrumb-item>
+        </ll-breadcrumb-list>
+      </ll-breadcrumb>
+    </view>
+
+    <view class="sub-h3">With your router's Link</view>
+    <view class="sec-desc">BreadcrumbLink asChild hands the highlighter, spacing and focus ring to whatever element you give it. Here that is a Link that changes the path without loading a page (a stand-in for next/link, React Router or TanStack Router); the trail is built from the path.</view>
+    <view class="grid-gap-lg">
+      <ll-breadcrumb>
+        <ll-breadcrumb-list>
+          <block wx:for="{{routeTrail}}" wx:key="href">
+            <ll-breadcrumb-item>
+              <ll-breadcrumb-page wx:if="{{index === routeTrail.length - 1}}" seed="{{item.href}}">{{item.title}}</ll-breadcrumb-page>
+              <ll-breadcrumb-link wx:else>{{item.title}}</ll-breadcrumb-link>
+            </ll-breadcrumb-item>
+            <ll-breadcrumb-separator wx:if="{{index < routeTrail.length - 1}}" />
+          </block>
+        </ll-breadcrumb-list>
+      </ll-breadcrumb>
+      <view class="row">
+        <ll-button size="sm" variant="outline" data-route="/docs/components/button" bind:tap="goRoute">Open Button</ll-button>
+        <ll-button size="sm" variant="outline" data-route="/docs/components/card" bind:tap="goRoute">Open Card</ll-button>
+        <ll-button size="sm" variant="outline" data-route="/docs/components/calendar" bind:tap="goRoute">Open Calendar</ll-button>
+      </view>
+      <view class="mono" aria-role="status">path: {{route}}</view>
+    </view>
+
+    <view class="sub-h3">Responsive: menu or drawer</view>
+    <view class="sec-desc">A deep path keeps its first and last two crumbs and folds the rest. The fold opens a dropdown on a wide screen and a drawer on a phone, from one component. (The ll-drawer component lands with its own port; the fold is a dropdown here.)</view>
+    <view class="center">
+      <ll-breadcrumb>
+        <ll-breadcrumb-list>
+          <ll-breadcrumb-item><ll-breadcrumb-link>Home</ll-breadcrumb-link></ll-breadcrumb-item>
+          <ll-breadcrumb-separator />
+          <ll-breadcrumb-item>
+            <ll-dropdown-menu open="{{respOpen}}" width="{{224}}" align="start" bind:change="onRespChange" aria-label="Toggle menu">
+              <view slot="trigger" class="crumb-trigger"><ll-breadcrumb-ellipsis size="sm" /></view>
+              <ll-dropdown-menu-item>Documentation</ll-dropdown-menu-item>
+              <ll-dropdown-menu-item>Build your application</ll-dropdown-menu-item>
+              <ll-dropdown-menu-item>Data fetching</ll-dropdown-menu-item>
+            </ll-dropdown-menu>
+          </ll-breadcrumb-item>
+          <ll-breadcrumb-separator />
+          <ll-breadcrumb-item><ll-breadcrumb-link>Data fetching</ll-breadcrumb-link></ll-breadcrumb-item>
+          <ll-breadcrumb-separator />
+          <ll-breadcrumb-item><ll-breadcrumb-page seed="responsive">Caching and revalidating</ll-breadcrumb-page></ll-breadcrumb-item>
+        </ll-breadcrumb-list>
+      </ll-breadcrumb>
+    </view>
+  </view>
+</view>

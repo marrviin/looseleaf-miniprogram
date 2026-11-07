@@ -1,0 +1,14 @@
+/* ll-breadcrumb-link */
+/* @ll-import tokens */
+.ll-breadcrumb-link {
+  display: inline-flex;
+  margin: 0 -8rpx; /* upstream -mx-1 */
+  padding: 0 8rpx; /* px-1 */
+  transition: color 160ms ease; /* transition-colors */
+}
+/* upstream ll-swipe (hover/focus) */
+.ll-breadcrumb-link--swiped {
+  background-color: var(--ll-hi-select);
+  color: var(--ll-selection-text);
+  border-radius: 3px 8px 4px 9px / 8px 3px 9px 4px;
+}

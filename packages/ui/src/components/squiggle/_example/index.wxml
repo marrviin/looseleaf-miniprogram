@@ -1,0 +1,48 @@
+<!-- ll-squiggle demo — mirrors the upstream docs page (#/components/squiggle). -->
+<view class="demo">
+  <view class="demo-title">Squiggle</view>
+  <view class="sec-desc">A hand-drawn line across the width — wave, zig-zag, loops, scallops, dashes or dots — between paragraphs or sections.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">A wavy line across the width, between two paragraphs.</view>
+    <view class="stack">
+      <view class="para">The morning was slow and gray and smelled of toast.</view>
+      <ll-squiggle custom-style="margin:12rpx 0" />
+      <view class="para">By noon the whole street had come out to look at the sky.</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Six kinds, and vertical</view>
+    <view class="sec-desc">Wave, zig-zag, loops, scallops, dashes and dots; then the same patterns standing up.</view>
+    <view class="stack">
+      <view class="kind-row" wx:for="{{kindRows}}" wx:key="name">
+        <text class="kind-name">{{item.name}}</text>
+        <ll-squiggle kind="{{item.name}}" tone="{{item.tone}}" />
+      </view>
+      <view class="vertical-strip">
+        <ll-squiggle wx:for="{{kinds}}" wx:key="*this" kind="{{item}}" orientation="vertical" tone="pencil" />
+      </view>
+    </view>
+
+    <view class="sub-h3">Between sections of a card</view>
+    <view class="sec-desc">A real separator (decorative=false) that draws itself on when the card scrolls into view.</view>
+    <view class="stack">
+      <ll-card tilt seed="weekend">
+        <ll-card-header>
+          <ll-card-title custom-style="font-size:44rpx;font-family:var(--font-script, cursive)">Weekend</ll-card-title>
+          <ll-card-description>Two plans and a maybe</ll-card-description>
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;flex-direction:column;gap:24rpx">
+          <view class="para">Saturday: the market, then the long way home.</view>
+          <ll-squiggle kind="scallops" tone="blue" decorative="{{false}}" animate />
+          <view class="para">Sunday: nothing, carefully.</view>
+        </ll-card-content>
+      </ll-card>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,4 @@
+<!-- ll-item-footer -->
+<view class="ll-item-footer ll-class" style="{{customStyle}}">
+  <slot />
+</view>

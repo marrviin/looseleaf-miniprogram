@@ -1,0 +1,16 @@
+/* ll-asterisk — upstream: inline span, the svg is inline-block
+   size-[0.8em] align-[0.4em] (raised like a superscript), overflow
+   visible so the stroke overhang shows (the data URI viewBox is padded). */
+.ll-asterisk {
+  display: inline;
+}
+.ll-asterisk__glyph {
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
+  vertical-align: 0.4em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  pointer-events: none;
+  overflow: visible;
+}

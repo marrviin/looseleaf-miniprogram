@@ -1,0 +1,10 @@
+<!-- ll-ribbon -->
+<view
+  class="ll-ribbon ll-ribbon--{{size}} {{interactive ? 'll-ribbon--interactive' : ''}} ll-class"
+  style="{{ribbonStyle}};{{customStyle}}"
+  aria-label="{{ariaLabel}}"
+  bindtap="onTap"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-ribbon__content"><slot /></view>
+</view>

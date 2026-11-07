@@ -1,0 +1,14 @@
+<!-- ll-ticket — the faced sheet sandwich (casts, under-strokes, stock
+     face, over-strokes) inside a tilt wrapper; the content stays put. -->
+<view class="ll-ticket ll-class {{stubName === 'start' ? 'll-ticket--start' : ''}}" style="{{customStyle}}" aria-role="group" aria-label="{{ariaLabel}}">
+  <view class="ll-ticket-rot" style="transform:rotate({{deg}}deg);">
+    <block wx:if="{{inkFaced}}">
+      <view class="ll-ink-cast" wx:for="{{inkCasts}}" wx:key="index" style="{{item}}" />
+      <view class="ll-ink-layer" style="{{inkUnderStyle}}" />
+      <view class="ll-ink-face" wx:for="{{inkFaces}}" wx:key="index" style="{{item}}" />
+      <view class="ll-ink-layer" style="{{inkOverStyle}}" />
+    </block>
+    <view wx:else class="ll-ink-layer" style="{{inkStyle}}" />
+  </view>
+  <slot />
+</view>

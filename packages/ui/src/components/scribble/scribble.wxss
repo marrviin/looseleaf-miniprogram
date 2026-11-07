@@ -1,0 +1,41 @@
+/* ll-scribble — upstream: relative isolate <span> with line-through
+   decoration-2 decoration-ink; once the ink is drawn the native line is
+   removed (data-[ink-ready]:no-underline). Shared mark layout: mini program
+   styles are isolated, so each mark component carries the base block. */
+.ll-mark {
+  position: relative;
+  isolation: isolate;
+  display: inline;
+}
+.ll-mark__w {
+  display: inline;
+}
+.ll-mark__ink {
+  position: absolute;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+/* upstream MARK_WIPE: the scribble draws left→right. */
+@keyframes ll-mark-wipe {
+  from {
+    -webkit-clip-path: inset(-10% 100% -10% -4%);
+    clip-path: inset(-10% 100% -10% -4%);
+  }
+  to {
+    -webkit-clip-path: inset(-10% 0% -10% -4%);
+    clip-path: inset(-10% 0% -10% -4%);
+  }
+}
+
+/* Native line-through fallback (always ink, whatever the pen), shown until
+   the drawn ink replaces it. */
+.ll-scribble--fallback,
+.ll-scribble--fallback .ll-mark__w {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--ll-ink, #2a2420);
+}
+.ll-scribble--ink-on .ll-mark__w {
+  text-decoration: none;
+}

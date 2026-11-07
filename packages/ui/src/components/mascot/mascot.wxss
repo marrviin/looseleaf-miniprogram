@@ -1,0 +1,21 @@
+/* ll-mascot — upstream .ll-mascot[data-ink=mascot]: pointer-events-none
+   shrink-0 overflow-visible svg, with .ll-drop-sticker when shadowed. */
+.ll-mascot {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.ll-mascot--shadow {
+  filter: drop-shadow(0 1px 0.6px rgba(58, 44, 30, 0.26))
+    drop-shadow(0 3px 3px rgba(58, 44, 30, 0.14));
+}
+
+.ll-mascot__art {
+  position: absolute;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

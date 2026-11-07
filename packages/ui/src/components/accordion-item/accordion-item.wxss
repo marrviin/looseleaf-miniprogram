@@ -1,0 +1,27 @@
+/* ll-accordion-item */
+/* @ll-import tokens */
+.ll-accordion-item {
+  position: relative;
+  padding-bottom: 16rpx; /* pb-2 */
+}
+/* last:[&>[data-slot=accordion-rule]]:hidden */
+.ll-accordion-item:last-child .ll-accordion-item__rule {
+  display: none;
+}
+/* pointer-events-none absolute inset-x-0 bottom-0 h-2 (8px) */
+.ll-accordion-item__rule {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 16rpx;
+  pointer-events: none;
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

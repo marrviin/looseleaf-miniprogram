@@ -1,0 +1,48 @@
+/* ll-accordion-trigger */
+/* @ll-import tokens */
+.ll-accordion-trigger {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex: 1;
+  align-items: flex-start; /* items-start */
+  justify-content: space-between; /* justify-between */
+  gap: 32rpx; /* gap-4 */
+  margin: 0 -16rpx; /* -mx-2 */
+  padding: 28rpx 16rpx; /* py-3.5 px-2 */
+  box-sizing: border-box;
+  text-align: start;
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 28rpx; /* text-base x .88 */
+  font-weight: 700;
+  color: var(--foreground);
+  transition: color 160ms ease;
+}
+.ll-accordion-trigger--disabled {
+  pointer-events: none;
+  color: var(--ll-pencil-text);
+}
+.ll-accordion-trigger__content {
+  position: relative;
+  z-index: 1;
+}
+.ll-accordion-trigger__chevron {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+  flex-shrink: 0;
+  margin-top: 8rpx; /* mt-1 */
+  transition: transform 240ms ease; /* duration-(--ll-dur-sheet) ease-settle */
+}
+/* [data-state=open]>[data-chevron]]:rotate-180 */
+.ll-accordion-trigger__chevron--open {
+  transform: rotate(180deg);
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

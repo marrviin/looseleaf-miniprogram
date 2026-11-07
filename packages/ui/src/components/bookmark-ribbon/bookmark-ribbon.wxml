@@ -1,0 +1,8 @@
+<!-- ll-bookmark-ribbon — the decorative ribbon (aria-hidden). The tilt
+     rides a wrapper view (a WXML style binding holding the data URI's
+     quotes breaks when followed by literal text). -->
+<view class="ll-bookmark-ribbon ll-class" style="{{customStyle}}" aria-hidden="true">
+  <view class="ll-bookmark-rot" style="transform:rotate({{deg}}deg);">
+    <view class="ll-bookmark-ink" style="{{inkStyle}}" />
+  </view>
+</view>

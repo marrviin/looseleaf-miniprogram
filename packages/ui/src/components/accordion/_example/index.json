@@ -1,0 +1,17 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-accordion": "../accordion/accordion",
+    "ll-accordion-item": "../accordion-item/accordion-item",
+    "ll-accordion-trigger": "../accordion-trigger/accordion-trigger",
+    "ll-accordion-content": "../accordion-content/accordion-content",
+    "ll-card": "../card/card",
+    "ll-card-header": "../card-header/card-header",
+    "ll-card-title": "../card-title/card-title",
+    "ll-card-description": "../card-description/card-description",
+    "ll-card-content": "../card-content/card-content",
+    "ll-card-footer": "../card-footer/card-footer",
+    "ll-input": "../input/input",
+    "ll-button": "../button/button"
+  }
+}

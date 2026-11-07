@@ -1,0 +1,8 @@
+/* ll-button-group-separator — relative self-stretch (upstream), the wrapper
+   flexes so the inner ll-separator can fill it */
+/* @ll-import tokens */
+.ll-button-group-separator {
+  position: relative;
+  display: flex;
+  align-self: stretch;
+}

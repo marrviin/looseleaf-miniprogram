@@ -1,0 +1,61 @@
+/* ll-item-media — upstream itemMediaVariants + the icon well's ruled box
+   (itemCss: [data-slot=item-media][data-variant=icon]). The photo leans by
+   row parity — the parent Item hands over the sibling index; the shift down
+   when the row carries a description combines with the lean. */
+/* @ll-import tokens */
+.ll-item-media {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx; /* gap-2 */
+  transform: translateY(var(--ty, 0)) rotate(var(--rot, 0deg));
+}
+
+/* row carries a description: drop the media to its own first line */
+.ll-item-media--desc {
+  --ty: 4rpx; /* translate-y-0.5 */
+  align-self: flex-start;
+}
+
+/* variant=icon: a 36px well */
+.ll-item-media--icon {
+  position: relative;
+  isolation: isolate;
+  width: 72rpx; /* size-9 */
+  height: 72rpx;
+  background-color: rgba(236, 230, 218, 0.75); /* paper-shade 75% */
+}
+.ll-item-media--icon::before {
+  content: '';
+  position: absolute;
+  inset: -2.5px; /* -EDGE_TH/2 */
+  z-index: -1;
+  pointer-events: none;
+  background: var(--ll-pencil);
+  opacity: 0.8;
+  -webkit-mask-image: var(--ll-it-eh), var(--ll-it-eh), var(--ll-it-ev), var(--ll-it-ev);
+  mask-image: var(--ll-it-eh), var(--ll-it-eh), var(--ll-it-ev), var(--ll-it-ev);
+  -webkit-mask-size: calc(100% - 4px) 5px, calc(100% - 4px) 5px, 5px calc(100% - 4px), 5px calc(100% - 4px);
+  mask-size: calc(100% - 4px) 5px, calc(100% - 4px) 5px, 5px calc(100% - 4px), 5px calc(100% - 4px);
+  -webkit-mask-position: 2px 0, 2px 100%, 0 2px, 100% 2px;
+  mask-position: 2px 0, 2px 100%, 0 2px, 100% 2px;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* variant=image: a 40px photograph, white border, a degree crooked */
+.ll-item-media--image {
+  width: 80rpx; /* size-10 */
+  height: 80rpx;
+  overflow: hidden;
+  background-color: var(--ll-photo);
+  padding: 4rpx; /* p-0.5 */
+  box-shadow: 0 1px 1.5px rgba(58, 44, 30, 0.16); /* shadow-hair */
+}
+.ll-item-media--odd {
+  --rot: -1deg;
+}
+.ll-item-media--even {
+  --rot: 0.8deg;
+}

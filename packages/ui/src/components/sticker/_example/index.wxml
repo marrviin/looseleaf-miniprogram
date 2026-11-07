@@ -1,0 +1,66 @@
+<!-- ll-sticker demo — mirrors the upstream docs page (#/components/sticker). -->
+<view class="demo">
+  <view class="demo-title">Sticker</view>
+  <view class="sec-desc">Die-cut vinyl: a white border, a cut line, a soft shadow and a small seeded tilt. Badges like Done and Sale are generated; the rest are drawn.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">Die-cut vinyl: a white border, a cut line, a soft shadow and a small seeded tilt. Badges like Done and Sale are generated; the rest are drawn.</view>
+    <view class="sticker-row">
+      <ll-sticker wx:for="{{defaults}}" wx:key="*this" name="{{item}}" label="{{item}}" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+    <view class="sub-h3">Peeled corner</view>
+    <view class="sec-desc">`peel` folds the lower-right corner over along a line perpendicular to the diagonal, whatever the silhouette. A number is the fold in px.</view>
+    <view class="sticker-row sticker-row--loose">
+      <view class="sticker-cell" wx:for="{{peels}}" wx:key="name">
+        <ll-sticker name="{{item.name}}" peel="{{index === 0 ? true : (index === 1 ? 22 : (index === 2 ? true : 16))}}" rotate="{{index === 2 ? -5 : (index === 3 ? 4 : 'auto')}}" label="{{item.name}}" />
+        <view class="sticker-caption">{{item.label}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Slapped on a card</view>
+    <view class="sec-desc">A sticker on an index card. Size it small and it switches to its 64 px redraw.</view>
+    <view class="row">
+      <view class="card-wrap">
+        <ll-sticker name="done" size="{{64}}" rotate="{{9}}" label="Done" custom-style="position:absolute;top:-35rpx;right:-28rpx;z-index:10" />
+        <ll-index-card seed="order-4471" custom-style="max-width:676rpx">
+          <ll-index-card-header>
+            <ll-index-card-title>Order 4471</ll-index-card-title>
+          </ll-index-card-header>
+          <ll-index-card-content>
+            <view class="card-copy">Two notebooks, a pack of felt tips and one very small pencil.</view>
+            <view class="track-wrap">
+              <ll-sticker name="cursor-click" size="{{40}}" rotate="{{-6}}" label="Cursor click" custom-style="position:absolute;top:-7rpx;left:0;z-index:10" />
+              <view class="track-label">Track parcel</view>
+            </view>
+          </ll-index-card-content>
+        </ll-index-card>
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Every sticker drawn so far</view>
+    <view class="sec-desc">One shelf per batch, and it grows by itself as new batches land. Only the open shelf is on the page, so a gallery of nearly ninety stickers stays light.</view>
+    <ll-tabs default-value="statusPointers" custom-style="width:100%">
+      <ll-tabs-list custom-style="width:100%">
+        <ll-tabs-trigger wx:for="{{shelves}}" wx:key="key" value="{{item.key}}" custom-style="padding:0 14rpx">{{item.label}}</ll-tabs-trigger>
+      </ll-tabs-list>
+      <ll-tabs-content wx:for="{{shelves}}" wx:key="key" value="{{item.key}}">
+        <view class="shelf" aria-label="{{item.label}} stickers">
+          <view class="shelf-cell" wx:for="{{item.names}}" wx:for-item="name" wx:key="*this">
+            <ll-sticker name="{{name}}" size="{{80}}" />
+            <view class="shelf-name">{{name}}</view>
+          </view>
+        </view>
+      </ll-tabs-content>
+    </ll-tabs>
+  </view>
+</view>

@@ -1,0 +1,8 @@
+/* ll-empty-description — text-sm/relaxed text-muted-foreground. */
+/* @ll-import tokens */
+.ll-empty-description {
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 25rpx; /* 14px x size-adjust .88 */
+  line-height: 1.625; /* relaxed */
+  color: var(--muted-foreground, #4a433c);
+}

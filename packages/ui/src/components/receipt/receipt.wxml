@@ -1,0 +1,17 @@
+<!-- ll-receipt — ll-paper with the receipt stock; both ends share `ends`. -->
+<ll-paper
+  ll-class="ll-receipt"
+  stock="receipt"
+  rules="none"
+  edge="{{edgeSpec}}"
+  tilt="{{tilt}}"
+  tape="{{tape}}"
+  tape-kind="{{tapeKind}}"
+  fastener="{{fastener}}"
+  fastener-tone="{{fastenerTone}}"
+  seed="{{seed}}"
+  aria-label="{{ariaLabel}}"
+  custom-style="{{customStyle}}"
+>
+  <slot />
+</ll-paper>

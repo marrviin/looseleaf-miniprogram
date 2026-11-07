@@ -1,0 +1,4 @@
+<!-- ll-tabs-list -->
+<view class="ll-tabs-list ll-tabs-list--{{variant}} ll-tabs-list--{{orientation}} ll-class" style="{{customStyle}}" aria-role="tablist">
+  <slot />
+</view>

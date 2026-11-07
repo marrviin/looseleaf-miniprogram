@@ -1,0 +1,12 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-bookmark": "../bookmark/bookmark",
+    "ll-bookmark-ribbon": "../bookmark-ribbon/bookmark-ribbon",
+    "ll-paper": "../paper/paper",
+    "ll-card": "../card/card",
+    "ll-card-header": "../card-header/card-header",
+    "ll-card-title": "../card-title/card-title",
+    "ll-card-description": "../card-description/card-description"
+  }
+}

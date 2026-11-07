@@ -1,0 +1,8 @@
+<!-- ll-strike — the text is rendered as inline word spans so the mark
+     behavior can measure line boxes; the strokes are absolute z-index:1
+     layers in front of the words. Until the ink is ready (and in the
+     fallback path) the host shows the browser-style line-through. -->
+<view class="ll-mark ll-strike ll-class {{show && !markReady ? 'll-strike--fallback ll-strike--' + tone : 'll-strike--ink-on'}}" style="{{customStyle}}">
+  <text class="ll-mark__w" wx:for="{{markWords}}" wx:key="index">{{item}}</text>
+  <view wx:for="{{markInk}}" wx:key="index" class="ll-mark__ink" style="{{item}}" />
+</view>

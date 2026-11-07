@@ -1,0 +1,15 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-breadcrumb": "../breadcrumb/breadcrumb",
+    "ll-breadcrumb-list": "../breadcrumb-list/breadcrumb-list",
+    "ll-breadcrumb-item": "../breadcrumb-item/breadcrumb-item",
+    "ll-breadcrumb-link": "../breadcrumb-link/breadcrumb-link",
+    "ll-breadcrumb-page": "../breadcrumb-page/breadcrumb-page",
+    "ll-breadcrumb-separator": "../breadcrumb-separator/breadcrumb-separator",
+    "ll-breadcrumb-ellipsis": "../breadcrumb-ellipsis/breadcrumb-ellipsis",
+    "ll-dropdown-menu": "../dropdown-menu/dropdown-menu",
+    "ll-dropdown-menu-item": "../dropdown-menu-item/dropdown-menu-item",
+    "ll-icon": "../icon/icon"
+  }
+}

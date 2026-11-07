@@ -1,0 +1,2 @@
+<!-- ll-ticket-stub — role="note", sized by width (the ticket's stubWidth) -->
+<view class="ll-ticket-stub" style="width:{{width * 2}}rpx;{{customStyle}}" aria-role="note"><slot /></view>

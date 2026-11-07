@@ -85,20 +85,22 @@ export function rulesStyle(kindName) {
   } else if (kind === 'graph') {
     const fine = rgba('check-rule', 0.46);
     const bold = rgba('check-rule', 0.72);
-    layer(`linear-gradient(to right, ${bold} 1px, transparent 1px)`, '64px 64px');
-    layer(`linear-gradient(to bottom, ${bold} 1px, transparent 1px)`, '64px 64px');
-    layer(`linear-gradient(to right, ${fine} 1px, transparent 1px)`, '16px 16px');
-    layer(`linear-gradient(to bottom, ${fine} 1px, transparent 1px)`, '16px 16px');
+    layer(`linear-gradient(to right, ${bold} 1px, transparent 1px)`, '64px 64px', '0 0', 'repeat');
+    layer(`linear-gradient(to bottom, ${bold} 1px, transparent 1px)`, '64px 64px', '0 0', 'repeat');
+    layer(`linear-gradient(to right, ${fine} 1px, transparent 1px)`, '16px 16px', '0 0', 'repeat');
+    layer(`linear-gradient(to bottom, ${fine} 1px, transparent 1px)`, '16px 16px', '0 0', 'repeat');
   } else if (kind === 'dots') {
     layer(
       `radial-gradient(circle at center, ${rgba('pencil', 0.7)} 0 1.05px, transparent 1.5px)`,
       '100px 100px',
       '10px 10px',
+      'repeat',
     );
     layer(
       `radial-gradient(circle at center, ${rgba('pencil-mark', 0.9)} 0 .8px, transparent 1.15px)`,
       '20px 20px',
       '10px 10px',
+      'repeat',
     );
   } else {
     // ledger

@@ -1,0 +1,22 @@
+/* ll-toggle-group */
+/* @ll-import tokens */
+.ll-toggle-group {
+  position: relative;
+  display: flex;
+  width: fit-content;
+  align-items: center;
+}
+.ll-toggle-group--vertical {
+  flex-direction: column;
+  align-items: stretch; /* upstream data-[orientation=vertical]:items-stretch */
+}
+
+/* the shared joined box — drawn by the ink layer (ink/toggle-group chunk) */
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

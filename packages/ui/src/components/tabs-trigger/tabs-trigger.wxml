@@ -1,0 +1,11 @@
+<!-- ll-tabs-trigger -->
+<view
+  class="ll-tabs-trigger ll-tabs-trigger--{{tabOrientation}} {{checked ? 'll-tabs-trigger--active' : ''}} {{disabled ? 'll-tabs-trigger--disabled' : ''}} ll-class"
+  style="{{customStyle}}"
+  aria-role="tab"
+  aria-label="{{ariaLabel}}"
+  bind:tap="onTap"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-tabs-trigger__content"><slot /></view>
+</view>

@@ -1,0 +1,6 @@
+<!-- ll-empty — centered column; `framed` draws the sketched dashed
+     placeholder frame (with corner ticks) behind the content. -->
+<view class="ll-empty {{framed ? 'll-empty--framed' : ''}} ll-class" style="{{customStyle}}">
+  <view wx:if="{{framed}}" class="ll-ink-layer" style="{{inkStyle}}" />
+  <slot />
+</view>

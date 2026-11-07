@@ -1,0 +1,32 @@
+/* ll-item-separator — my-0 h-px w-full; the pencil line is a centered
+   repeat-x mask of the rule tile (itemCss: [data-slot=item-separator]) */
+/* @ll-import tokens */
+.ll-item-separator {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  width: 100%;
+  height: 1px;
+  flex-shrink: 0;
+}
+.ll-item-separator--fallback {
+  height: auto;
+}
+.ll-item-separator__line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 5px; /* EDGE_TH */
+  margin-top: -2.5px;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--ll-pencil);
+  opacity: 0.75;
+  -webkit-mask-image: var(--ll-it-r);
+  mask-image: var(--ll-it-r); /* single-URL var + repeat-x */
+  -webkit-mask-size: 96px 5px;
+  mask-size: 96px 5px;
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+}

@@ -1,0 +1,25 @@
+/* ll-navigation-menu-content */
+/* @ll-import tokens */
+.ll-navigation-menu-content {
+  position: absolute;
+  z-index: 1011; /* over the shared slip (1010) */
+  padding: 16rpx 20rpx 16rpx 16rpx; /* p-2 pe-2.5 */
+  width: max-content; /* md:w-auto */
+}
+/* No-viewport mode: the panel draws its own slip, dropped under the item
+   (upstream: absolute! top-full mt-2 z-popover, ll-paper ll-stock-slip
+   ll-tooth-fine ll-sheet-slip, shadow lift). */
+.ll-navigation-menu-content--own {
+  left: 0;
+  top: 100%;
+  margin-top: 16rpx; /* mt-2 */
+  z-index: 1010; /* --ll-z-popover */
+}
+.ll-navigation-menu-content__paper {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+.ll-navigation-menu-content__inner {
+  position: relative;
+}

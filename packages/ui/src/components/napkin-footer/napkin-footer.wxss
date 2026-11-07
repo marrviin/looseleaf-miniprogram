@@ -1,0 +1,6 @@
+/* ll-napkin-footer — mt-auto text-sm text-ink-soft */
+.ll-napkin-footer {
+  margin-top: auto;
+  font-size: 25rpx; /* text-sm 14px x .88 */
+  color: var(--ll-ink-soft, #6b6459);
+}

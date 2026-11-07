@@ -1,0 +1,5 @@
+/* ll-annotate — a plain dispatcher: the marks carry their own styles. The
+   wrapper stays inline so the mark flows inside a sentence. */
+.ll-annotate {
+  display: inline;
+}

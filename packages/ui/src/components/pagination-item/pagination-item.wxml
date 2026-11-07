@@ -1,0 +1,4 @@
+<!-- ll-pagination-item -->
+<view class="ll-pagination-item ll-class" style="{{customStyle}}">
+  <slot />
+</view>

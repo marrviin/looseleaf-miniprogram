@@ -1,10 +1,11 @@
 <!-- ll-card demo — mirrors the upstream docs page (#/components/card).
-     Guest book (needs the check stock), Article card / On every stock /
-     Pinned, clipped, stapled land with the P3 paper work; Create project's
-     Select lands with the select port (the field is a placeholder there). -->
+     All docs-page examples are in: Settings (Preview), Stat cards, Guest
+     book, Article card, On every stock, Pinned/clipped/stapled, Login,
+     Create project. Create project's Select lands with the select port
+     (the field is a placeholder there). -->
 <view class="demo">
   <view class="demo-title">Card</view>
-  <view class="sec-desc">A card is a sheet of paper: header, title, description, action, content and footer with shadcn's spacing, on any stock and edge. Dividers are drawn pencil rules, and a card can be taped, pinned or clipped to the desk. (This port carries the card/paper/slip/index-card stocks; the other stocks, edges, tape and fasteners land with the P3 sheet work.)</view>
+  <view class="sec-desc">A card is a sheet of paper: header, title, description, action, content and footer with shadcn's spacing, on any stock and edge. Dividers are drawn pencil rules, and a card can be taped, pinned or clipped to the desk.</view>
 
   <view class="sec">
     <view class="sec-h2">Preview</view>
@@ -62,6 +63,76 @@
         </ll-card-header>
         <ll-card-content>
           <text class="stat-trend" style="color:#4a433c">steady</text>
+        </ll-card-content>
+      </ll-card>
+    </view>
+
+    <view class="sub-h3">Guest book</view>
+    <view class="sec-desc">A form on a guest check: green ledger paper, a perforated top, a dashed footer. The fields are ordinary labeled inputs; the sheet only changes the paper they are written on.</view>
+    <view class="stack-sm">
+      <ll-card stock="check" seed="guest">
+        <ll-card-header rule="dashed">
+          <ll-card-title>Sign the guest book</ll-card-title>
+          <ll-card-description>Name, and one line for the wall.</ll-card-description>
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;flex-direction:column;gap:32rpx">
+          <view class="field">
+            <text class="label">Name</text>
+            <ll-input placeholder="Ada" value="{{guestName}}" bind:input="onGuestName" aria-label="Name" />
+          </view>
+          <view class="field">
+            <text class="label">A line for the wall</text>
+            <ll-input placeholder="Lovely evening." value="{{guestLine}}" bind:input="onGuestLine" aria-label="A line for the wall" />
+          </view>
+        </ll-card-content>
+        <ll-card-footer rule="dashed" custom-style="justify-content:space-between;align-items:center;gap:16rpx">
+          <text class="gb-no">No. 0042</text>
+          <ll-button size="sm" bind:tap="onSign">Sign</ll-button>
+        </ll-card-footer>
+      </ll-card>
+      <text class="status" aria-live="polite">{{guestStatus}}</text>
+    </view>
+
+    <view class="sub-h3">Article card</view>
+    <view class="sec-desc">A card taped at the corners with a torn bottom edge, for something you would pin above your desk.</view>
+    <view class="stack-md">
+      <ll-card tape="both" tape-kind="washi-dots" edge="{{articleEdge}}" seed="article" custom-style="padding-bottom:64rpx">
+        <ll-card-header>
+          <ll-card-description>Notebook - 4 min read</ll-card-description>
+          <ll-card-title custom-style="font-size:52rpx">Why the margin is the best part</ll-card-title>
+        </ll-card-header>
+        <ll-card-content>
+          <text class="article-p">Most of what I remember from a book is in the margins: an arrow, a question mark, a small argument with a dead author.</text>
+        </ll-card-content>
+        <ll-card-footer custom-style="justify-content:flex-start">
+          <ll-button variant="link" size="sm" custom-style="margin-left:-24rpx">Keep reading</ll-button>
+        </ll-card-footer>
+      </ll-card>
+    </view>
+
+    <view class="sub-h3">On every stock</view>
+    <view class="sec-desc">A card is a sheet of paper, so it takes any stock, edge and printed rules: graph paper, a dot grid, kraft, an index card with a torn top.</view>
+    <view class="stocks-grid">
+      <ll-card wx:for="{{stocks}}" wx:key="title" stock="{{item.stock}}" rules="{{item.rules}}" edge="{{item.edge}}" seed="{{item.title}}" custom-style="gap:16rpx;padding:40rpx 0">
+        <ll-card-header>
+          <ll-card-title>{{item.title}}</ll-card-title>
+          <ll-card-description>{{item.stock}}</ll-card-description>
+        </ll-card-header>
+        <ll-card-content>
+          <text class="stock-note">pencil, ink and a little tea</text>
+        </ll-card-content>
+      </ll-card>
+    </view>
+
+    <view class="sub-h3">Pinned, clipped, stapled</view>
+    <view class="sec-desc">The `fastener` slot holds a card down. Calm density hides every prop, so a dense dashboard keeps its plain sheets.</view>
+    <view class="fastener-grid">
+      <ll-card wx:for="{{fasteners}}" wx:key="*this" fastener="{{item}}" seed="{{item}}" custom-style="gap:16rpx;padding:96rpx 0 48rpx">
+        <ll-card-header>
+          <ll-card-title>{{item}}</ll-card-title>
+        </ll-card-header>
+        <ll-card-content>
+          <text class="stock-note">held with a {{item === 'binder-clip' ? 'binder clip' : item}}</text>
         </ll-card-content>
       </ll-card>
     </view>

@@ -1,0 +1,12 @@
+<!-- ll-asterisk — the words come first (slot), the glyph follows inline,
+     raised like a superscript. aria: named via label, hidden otherwise. -->
+<view
+  class="ll-asterisk ll-class"
+  style="{{customStyle}}"
+  aria-role="{{label ? 'img' : 'none'}}"
+  aria-label="{{label}}"
+  aria-hidden="{{label ? 'false' : 'true'}}"
+>
+  <slot />
+  <view class="ll-asterisk__glyph" style="{{glyphStyle}}" />
+</view>

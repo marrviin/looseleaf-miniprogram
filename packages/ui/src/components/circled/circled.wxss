@@ -1,0 +1,39 @@
+/* ll-circled — upstream: relative isolate <span> with outline-1
+   outline-offset-2 outline-pencil-mark; once the ink is drawn the outline
+   is removed. Shared mark layout: mini program styles are isolated, so
+   each mark component carries the base block. */
+.ll-mark {
+  position: relative;
+  isolation: isolate;
+  display: inline;
+}
+.ll-mark__w {
+  display: inline;
+}
+.ll-mark__ink {
+  position: absolute;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+/* upstream MARK_REVEAL animates the stroke itself (SVG dash); the port
+   approximates the draw-on with the shared clip-path wipe. */
+@keyframes ll-mark-wipe {
+  from {
+    -webkit-clip-path: inset(-10% 100% -10% -4%);
+    clip-path: inset(-10% 100% -10% -4%);
+  }
+  to {
+    -webkit-clip-path: inset(-10% 0% -10% -4%);
+    clip-path: inset(-10% 0% -10% -4%);
+  }
+}
+
+/* Outline fallback, shown until the drawn ink replaces it. */
+.ll-circled--fallback {
+  outline: 1px solid var(--ll-pencil-mark, #8e887f);
+  outline-offset: 2px;
+}
+.ll-circled--ink-on {
+  outline: none;
+}

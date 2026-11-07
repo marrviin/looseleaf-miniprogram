@@ -1,0 +1,2 @@
+<!-- ll-sticky-note-content — struck through when the note is done. -->
+<view class="ll-sticky-note-content {{done ? 'll-sticky-note-content--done' : ''}}" style="{{customStyle}}"><slot /></view>

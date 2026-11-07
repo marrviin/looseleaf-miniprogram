@@ -1,0 +1,18 @@
+<!-- ll-accordion-trigger -->
+<view
+  class="ll-accordion-trigger {{rowDisabled ? 'll-accordion-trigger--disabled' : ''}} ll-class"
+  style="{{customStyle}}"
+  aria-role="button"
+  aria-expanded="{{open}}"
+  aria-label="{{ariaLabel}}"
+  bind:tap="onTap"
+  bind:touchstart="onTouchStart"
+  bind:touchend="onTouchEnd"
+  bind:touchcancel="onTouchEnd"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-accordion-trigger__content"><slot /></view>
+  <view class="ll-accordion-trigger__chevron {{open ? 'll-accordion-trigger__chevron--open' : ''}}">
+    <ll-icon name="chevron-down" size="{{16}}" />
+  </view>
+</view>

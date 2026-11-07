@@ -1,0 +1,171 @@
+<!-- ll-tabs demo — mirrors the upstream docs page (#/components/tabs):
+     intro, then the Examples entries with the page's own copy. Installation/
+     Usage/API reference/Accessibility/Related are intentionally omitted. -->
+<view class="demo">
+  <view class="demo-title">Tabs</view>
+  <view class="sec-desc">Index-divider tabs: the active one is lifted and filled with highlighter, and the pencil baseline breaks under it. Also a hairline `line` style with a blue felt underline, and vertical binder tabs. Radix behavior and roving focus are untouched.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Demo</view>
+    <view class="sec-desc">Official `tabs-demo`: Account and Password tabs, each holding a Card with a small form. The tabs are index dividers standing on a pencil baseline; the active one is lifted and filled with highlighter.</view>
+    <view class="max-w-sm">
+      <ll-tabs value="{{tab}}" bind:change="onTabChange">
+        <ll-tabs-list>
+          <ll-tabs-trigger value="account">Account</ll-tabs-trigger>
+          <ll-tabs-trigger value="password">Password</ll-tabs-trigger>
+        </ll-tabs-list>
+        <ll-tabs-content value="account">
+          <ll-card>
+            <ll-card-header>
+              <ll-card-title>Account</ll-card-title>
+              <ll-card-description>Make changes to your account here. Click save when you're done.</ll-card-description>
+            </ll-card-header>
+            <ll-card-content>
+              <view class="field">
+                <view class="field-label">Name</view>
+                <ll-input value="Pedro Duarte" aria-label="Name" />
+              </view>
+              <view class="field">
+                <view class="field-label">Username</view>
+                <ll-input value="@peduarte" aria-label="Username" />
+              </view>
+            </ll-card-content>
+            <ll-card-footer><ll-button>Save changes</ll-button></ll-card-footer>
+          </ll-card>
+        </ll-tabs-content>
+        <ll-tabs-content value="password">
+          <ll-card>
+            <ll-card-header>
+              <ll-card-title>Password</ll-card-title>
+              <ll-card-description>Change your password here. After saving, you'll be logged out.</ll-card-description>
+            </ll-card-header>
+            <ll-card-content>
+              <view class="field">
+                <view class="field-label">Current password</view>
+                <ll-input password aria-label="Current password" />
+              </view>
+              <view class="field">
+                <view class="field-label">New password</view>
+                <ll-input password aria-label="New password" />
+              </view>
+            </ll-card-content>
+            <ll-card-footer><ll-button>Save password</ll-button></ll-card-footer>
+          </ll-card>
+        </ll-tabs-content>
+      </ll-tabs>
+    </view>
+
+    <view class="sub-h3">Account and password</view>
+    <view class="sec-desc">Index-divider tabs: the active one is lifted and filled with highlighter, and the pencil baseline breaks under it.</view>
+    <view class="max-w-sm">
+      <ll-tabs default-value="account">
+        <ll-tabs-list>
+          <ll-tabs-trigger value="account">Account</ll-tabs-trigger>
+          <ll-tabs-trigger value="password">Password</ll-tabs-trigger>
+        </ll-tabs-list>
+        <ll-tabs-content value="account">
+          <ll-card>
+            <ll-card-header>
+              <ll-card-title>Account</ll-card-title>
+              <ll-card-description>Make changes to your account here. Click save when you are done.</ll-card-description>
+            </ll-card-header>
+            <ll-card-content>
+              <view class="field">
+                <view class="field-label">Name</view>
+                <ll-input value="Ada Lovelace" aria-label="Name" />
+              </view>
+              <view class="field">
+                <view class="field-label">Username</view>
+                <ll-input value="@ada" aria-label="Username" />
+              </view>
+            </ll-card-content>
+            <ll-card-footer><ll-button>Save changes</ll-button></ll-card-footer>
+          </ll-card>
+        </ll-tabs-content>
+        <ll-tabs-content value="password">
+          <ll-card>
+            <ll-card-header>
+              <ll-card-title>Password</ll-card-title>
+              <ll-card-description>Change your password here. After saving, you will be logged out.</ll-card-description>
+            </ll-card-header>
+            <ll-card-content>
+              <view class="field">
+                <view class="field-label">Current password</view>
+                <ll-input password aria-label="Current password" />
+              </view>
+              <view class="field">
+                <view class="field-label">New password</view>
+                <ll-input password aria-label="New password" />
+              </view>
+            </ll-card-content>
+            <ll-card-footer><ll-button>Save password</ll-button></ll-card-footer>
+          </ll-card>
+        </ll-tabs-content>
+      </ll-tabs>
+    </view>
+
+    <view class="sub-h3">Line tabs with icons</view>
+    <view class="sec-desc">`variant="line"` is a hairline with the active tab underlined in blue felt, wiped in from the reading side. Icons sit at 16 px in the same weight as the label; a disabled tab is skipped by the arrow keys.</view>
+    <view class="max-w-md">
+      <ll-tabs default-value="profile">
+        <ll-tabs-list variant="line">
+          <ll-tabs-trigger value="profile"><ll-icon name="user" /> Profile</ll-tabs-trigger>
+          <ll-tabs-trigger value="settings"><ll-icon name="settings" /> Settings</ll-tabs-trigger>
+          <ll-tabs-trigger value="alerts" disabled><ll-icon name="bell" /> Alerts</ll-tabs-trigger>
+          <ll-tabs-trigger value="search"><ll-icon name="search" /> Search</ll-tabs-trigger>
+        </ll-tabs-list>
+        <ll-tabs-content value="profile"><view class="panel-note">Your name, your photo and the sentence people see first.</view></ll-tabs-content>
+        <ll-tabs-content value="settings"><view class="panel-note">Language, density and how much the ink moves.</view></ll-tabs-content>
+        <ll-tabs-content value="search"><view class="panel-note">Find a page, a note or a person.</view></ll-tabs-content>
+      </ll-tabs>
+    </view>
+
+    <view class="sub-h3">Binder tabs</view>
+    <view class="sec-desc">`orientation="vertical"`: tabs down a spine like binder dividers, the active one filled and open towards its page.</view>
+    <view class="max-w-lg">
+      <ll-tabs default-value="notifications" orientation="vertical">
+        <ll-tabs-list custom-style="width:320rpx;">
+          <ll-tabs-trigger value="general">General</ll-tabs-trigger>
+          <ll-tabs-trigger value="notifications">Notifications</ll-tabs-trigger>
+          <ll-tabs-trigger value="billing">Billing</ll-tabs-trigger>
+          <ll-tabs-trigger value="danger">Danger zone</ll-tabs-trigger>
+        </ll-tabs-list>
+        <ll-tabs-content value="general" custom-style="padding-left:24rpx;padding-top:8rpx;">
+          <view class="script-h3">General</view>
+          <view class="panel-note">Name the notebook and choose who can see it.</view>
+        </ll-tabs-content>
+        <ll-tabs-content value="notifications" custom-style="padding-left:24rpx;padding-top:8rpx;">
+          <view class="script-h3">Notifications</view>
+          <view class="panel-note">Choose what lands in your inbox, and when.</view>
+        </ll-tabs-content>
+        <ll-tabs-content value="billing" custom-style="padding-left:24rpx;padding-top:8rpx;">
+          <view class="script-h3">Billing</view>
+          <view class="panel-note">Your plan, your invoices and the card on file.</view>
+        </ll-tabs-content>
+        <ll-tabs-content value="danger" custom-style="padding-left:24rpx;padding-top:8rpx;">
+          <view class="script-h3">Danger zone</view>
+          <view class="panel-note">Archive or delete the notebook. There is no undo.</view>
+        </ll-tabs-content>
+      </ll-tabs>
+    </view>
+
+    <view class="sub-h3">Controlled, manual activation</view>
+    <view class="sec-desc">`value` and `onValueChange` drive the tabs from outside; `activationMode="manual"` suits panels that are slow to load.</view>
+    <view class="max-w-sm grid-gap">
+      <ll-tabs value="{{day}}" bind:change="onDayChange">
+        <ll-tabs-list>
+          <ll-tabs-trigger wx:for="{{days}}" wx:key="*this" value="{{item}}">{{item}}</ll-tabs-trigger>
+        </ll-tabs-list>
+        <ll-tabs-content wx:for="{{days}}" wx:key="*this" value="{{item}}">
+          <view class="panel-note">Nothing planned on {{item}}. A good day for a very small plan.</view>
+        </ll-tabs-content>
+      </ll-tabs>
+      <view class="row">
+        <ll-button variant="outline" size="sm" disabled="{{day === 'Mon'}}" data-dir="-1" bind:tap="goDay">Earlier</ll-button>
+        <ll-button variant="outline" size="sm" disabled="{{day === 'Fri'}}" data-dir="1" bind:tap="goDay">Later</ll-button>
+      </view>
+    </view>
+  </view>
+</view>

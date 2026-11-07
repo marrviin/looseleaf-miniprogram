@@ -1,0 +1,56 @@
+<!-- ll-asterisk demo — mirrors the upstream docs page (#/components/asterisk).
+     Upstream's href footnote link has no miniprogram anchor equivalent; the
+     footnote example keeps the named glyph and the note text. -->
+<view class="demo">
+  <view class="demo-title">Asterisk</view>
+  <view class="sec-desc">A hand-drawn footnote glyph after the words — asterisk, star, dagger or double dagger — raised like a superscript.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">A red-pencil asterisk after a word, raised like a superscript.</view>
+    <view class="stack">
+      <view class="para">Free shipping<ll-asterisk /></view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Marks and pens</view>
+    <view class="sec-desc">Asterisk, star, dagger and double dagger; red, ink, blue and pencil. Text inside comes first and the mark follows it.</view>
+    <view class="stack">
+      <view class="row">
+        <view class="para">asterisk<ll-asterisk /></view>
+        <view class="para">star<ll-asterisk mark="star" /></view>
+        <view class="para">dagger<ll-asterisk mark="dagger" /></view>
+        <view class="para">double dagger<ll-asterisk mark="double-dagger" /></view>
+      </view>
+      <view class="row">
+        <view class="para">red<ll-asterisk tone="red" /></view>
+        <view class="para">ink<ll-asterisk tone="ink" /></view>
+        <view class="para">blue<ll-asterisk tone="blue" /></view>
+        <view class="para">pencil<ll-asterisk tone="pencil" /></view>
+      </view>
+    </view>
+
+    <view class="sub-h3">A price with a footnote</view>
+    <view class="sec-desc">The mark follows the price, sized to the type it sits on, and names itself for a screen reader.</view>
+    <view class="stack">
+      <ll-card stock="index-card" tilt seed="studio">
+        <ll-card-header>
+          <ll-card-title custom-style="font-size:44rpx;font-family:var(--font-script, cursive)">Studio plan</ll-card-title>
+          <ll-card-description>Everything, for one desk</ll-card-description>
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;flex-direction:column;gap:16rpx">
+          <view class="price">
+            <text>$16</text>
+            <ll-asterisk label="Footnote 1" />
+            <text class="per">per month</text>
+          </view>
+          <view class="footnote">* Introductory price for the first twelve months.</view>
+        </ll-card-content>
+      </ll-card>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,13 @@
+<!-- ll-pagination-next -->
+<ll-button
+  variant="ghost"
+  size="{{size}}"
+  disabled="{{disabled}}"
+  aria-label="{{ariaLabel}}"
+  ll-class="ll-pagination-next__btn"
+  custom-style="{{customStyle}}"
+  bind:tap="onTap"
+>
+  <text class="ll-pagination-next__label">Next</text>
+  <ll-icon name="chevron-right" size="{{16}}" />
+</ll-button>

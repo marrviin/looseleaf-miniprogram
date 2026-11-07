@@ -1,0 +1,28 @@
+/* ll-highlight — upstream: relative isolate <mark>; the ink supplies all
+   color (the host is transparent once ink-ready). Shared mark layout lives
+   in each component (mini program styles are isolated, no shared sheet). */
+.ll-mark {
+  position: relative;
+  isolation: isolate;
+  display: inline;
+}
+.ll-mark__w {
+  display: inline;
+}
+.ll-mark__ink {
+  position: absolute;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+/* upstream MARK_WIPE: the swipe draws left→right (idle inset(-10% 100% -10% -4%)). */
+@keyframes ll-mark-wipe {
+  from {
+    -webkit-clip-path: inset(-10% 100% -10% -4%);
+    clip-path: inset(-10% 100% -10% -4%);
+  }
+  to {
+    -webkit-clip-path: inset(-10% 0% -10% -4%);
+    clip-path: inset(-10% 0% -10% -4%);
+  }
+}

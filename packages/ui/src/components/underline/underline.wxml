@@ -1,0 +1,8 @@
+<!-- ll-underline — the text is rendered as inline word spans so the mark
+     behavior can measure line boxes; the per-line pulls are absolute
+     z-index:-1 layers under the words. Until the ink is ready the host
+     shows the browser-style underline in the pen color. -->
+<view class="ll-mark ll-underline ll-class {{show && !markReady ? 'll-underline--fallback ll-underline--' + tone : 'll-underline--ink-on'}}" style="{{customStyle}}">
+  <text class="ll-mark__w" wx:for="{{markWords}}" wx:key="index">{{item}}</text>
+  <view wx:for="{{markInk}}" wx:key="index" class="ll-mark__ink" style="{{item}}" />
+</view>

@@ -1,0 +1,27 @@
+<!-- ll-navigation-menu-link — strip tab (ink blobFill when active) or
+     in-panel row (ll-swipe when active). -->
+<view
+  wx:if="{{inPanel}}"
+  class="ll-navigation-menu-row {{active ? 'll-navigation-menu-row--active' : ''}} ll-class"
+  style="{{customStyle}}"
+  aria-role="link"
+  aria-label="{{ariaLabel}}"
+  catchtap="onTap"
+>
+  <slot />
+</view>
+<view
+  wx:else
+  class="ll-navigation-menu-tab {{active ? 'll-navigation-menu-tab--open' : ''}} ll-class"
+  style="{{customStyle}}"
+  hover-class="none"
+  hover-stay-time="80"
+  aria-role="link"
+  aria-label="{{ariaLabel}}"
+  bindtouchstart="__inkTouchStart"
+  bindtouchend="__inkTouchEnd"
+  bindtouchcancel="__inkTouchEnd"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-navigation-menu-tab__content"><slot /></view>
+</view>

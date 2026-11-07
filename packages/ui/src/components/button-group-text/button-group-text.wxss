@@ -1,0 +1,29 @@
+/* ll-button-group-text — relative isolate flex min-h-9 items-center gap-2
+   px-4, hand font text-base (upstream ButtonGroupText shared classes) */
+/* @ll-import tokens */
+.ll-button-group-text {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  min-height: 72rpx; /* min-h-9 */
+  align-items: center;
+  gap: 16rpx; /* gap-2 */
+  padding: 0 32rpx; /* px-4 */
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 28rpx; /* text-base × 0.88 */
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-button-group-text__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}

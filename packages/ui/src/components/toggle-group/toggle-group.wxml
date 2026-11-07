@@ -1,0 +1,11 @@
+<!-- ll-toggle-group — one tab-stop row/column of toggles; joined outline
+     groups draw the shared box here, items draw their seams and bodies. -->
+<view
+  class="ll-toggle-group ll-toggle-group--{{o}} ll-class"
+  style="{{customStyle}};gap:{{spacing * 8}}rpx"
+  aria-role="group"
+  aria-label="{{ariaLabel}}"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <slot />
+</view>

@@ -1,0 +1,3 @@
+<view class="ll-empty-header ll-class" style="{{customStyle}}">
+  <slot />
+</view>

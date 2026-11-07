@@ -1,5 +1,9 @@
 /* Global example styles + font loading snippet.
- * Components carry their own tokens; this file only sets the demo stage. */
+ * Looseleaf tokens ship once in the npm package and are imported here —
+ * CSS custom properties defined on `page` inherit into every component.
+ * (Components' wxss must not re-declare them; see docs/component-guide.md.) */
+@import 'miniprogram_npm/looseleaf-miniprogram/common/style/tokens.wxss';
+
 page {
   background: #f8f5ee;
   font-family:

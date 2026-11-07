@@ -1,0 +1,18 @@
+<!-- ll-bookmark — the toggle. The ink layer draws ghost/ribbon/wash; a
+     wrapper view carries the bookmark's seeded tilt (the tilt style must
+     not be concatenated onto {{inkStyle}} — a WXML binding whose value
+     holds the data URI's quotes breaks when followed by literal text). -->
+<button
+  class="ll-bookmark ll-class"
+  style="{{customStyle}}"
+  hover-class="none"
+  aria-role="button"
+  aria-label="{{label}}"
+  aria-disabled="{{disabled}}"
+  disabled="{{disabled}}"
+  catchtap="onTap"
+>
+  <view class="ll-bookmark-rot" style="transform:rotate({{deg}}deg);">
+    <view class="ll-bookmark-ink {{pressed ? 'll-bookmark-ink--on' : ''}}" style="{{inkStyle}}" />
+  </view>
+</button>

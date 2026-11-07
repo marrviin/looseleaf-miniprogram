@@ -1,0 +1,6 @@
+<!-- ll-marker-rule — the aria-hidden line drawing; the box is h-4, flex-1
+     beside the words or absolute across the bottom; the ink layer bleeds
+     -pad px past it. -->
+<view class="ll-marker-rule {{side === 'full' ? 'll-marker-rule--full' : ''}}">
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+</view>

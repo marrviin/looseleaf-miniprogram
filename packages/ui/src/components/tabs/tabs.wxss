@@ -1,0 +1,10 @@
+/* ll-tabs */
+/* @ll-import tokens */
+.ll-tabs {
+  display: flex;
+  flex-direction: row; /* vertical tabs lay list and panel side by side */
+  gap: 24rpx; /* upstream gap-3 */
+}
+.ll-tabs--horizontal {
+  flex-direction: column; /* data-[orientation=horizontal]:flex-col */
+}

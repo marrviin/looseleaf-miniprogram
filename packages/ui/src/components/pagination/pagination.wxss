@@ -1,0 +1,7 @@
+/* ll-pagination */
+/* @ll-import tokens */
+.ll-pagination {
+  display: flex;
+  width: 100%;
+  justify-content: center; /* upstream mx-auto justify-center */
+}

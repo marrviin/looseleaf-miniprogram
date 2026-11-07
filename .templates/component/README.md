@@ -7,7 +7,7 @@
 ```json
 {
   "usingComponents": {
-    "ll-__NAME__": "@looseleaf/ui/components/__NAME__/__NAME__"
+    "ll-__NAME__": "looseleaf-miniprogram/components/__NAME__/__NAME__"
   }
 }
 ```

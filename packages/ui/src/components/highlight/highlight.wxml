@@ -1,0 +1,7 @@
+<!-- ll-highlight — the text is rendered as inline word spans so the mark
+     behavior can measure line boxes; the per-line swipes are absolute
+     z-index:-1 layers behind the words. -->
+<view class="ll-mark ll-highlight ll-class" style="{{customStyle}}">
+  <text class="ll-mark__w" wx:for="{{markWords}}" wx:key="index">{{item}}</text>
+  <view wx:for="{{markInk}}" wx:key="index" class="ll-mark__ink" style="{{item}}" />
+</view>

@@ -1,0 +1,9 @@
+<!-- ll-navigation-menu-indicator — the felt-tip underline under the open
+     item; the list positions it (left/width in px). -->
+<view
+  class="ll-navigation-menu-indicator {{visible ? '' : 'll-navigation-menu-indicator--hidden'}} ll-class"
+  style="{{visible ? 'left:' + left + 'px;width:' + width + 'px;' : ''}}{{customStyle}}"
+  aria-hidden="true"
+>
+  <view wx:if="{{uri}}" class="ll-navigation-menu-indicator__mark" style="background-image:url('{{uri}}');" />
+</view>

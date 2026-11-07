@@ -1,0 +1,115 @@
+<!-- ll-receipt demo — mirrors the upstream docs page (#/components/receipt). -->
+<view class="demo">
+  <view class="demo-title">Receipt</view>
+  <view class="sec-desc">A till roll: pinked at both ends, typed, the lines a description list. The total is bigger; nothing else is.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">A receipt</view>
+    <view class="sec-desc">Pinked at both ends, typed, the lines a description list. The total is bigger; nothing else is.</view>
+    <view class="row">
+      <ll-receipt seed="till" aria-label="Receipt from Looseleaf Cafe">
+        <ll-receipt-header>
+          <view class="receipt-headline">Looseleaf Cafe</view>
+          <view>12 rue de l'Eau</view>
+          <view>25 sep 2026 14:02</view>
+        </ll-receipt-header>
+        <ll-receipt-lines>
+          <ll-receipt-line qty="{{1}}" price="4.50">oat latte</ll-receipt-line>
+          <ll-receipt-line qty="{{1}}" price="3.40">flat white</ll-receipt-line>
+          <ll-receipt-line qty="{{2}}" price="6.20">almond croissant</ll-receipt-line>
+        </ll-receipt-lines>
+        <ll-receipt-total>14.10</ll-receipt-total>
+        <ll-receipt-footer>thank you - come again</ll-receipt-footer>
+      </ll-receipt>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+    <view class="sub-h3">Circled, barcoded, clipped</view>
+    <view class="sec-desc">The total circled in red felt tip, a barcode whose bars come from the number under it, and a paper clip to keep it with the invoice.</view>
+    <view class="row">
+      <ll-receipt fastener="clip" fastener-tone="sky" seed="checked" aria-label="Receipt from The Stationer">
+        <ll-receipt-header>
+          <view class="receipt-headline">The Stationer</view>
+          <view>25 sep 2026 09:41</view>
+        </ll-receipt-header>
+        <ll-receipt-lines>
+          <ll-receipt-line qty="{{3}}" price="9.00">washi tape</ll-receipt-line>
+          <ll-receipt-line price="2.10">glue stick</ll-receipt-line>
+          <ll-receipt-line qty="{{12}}" price="18.00">felt tips</ll-receipt-line>
+        </ll-receipt-lines>
+        <ll-receipt-total circled="{{true}}">29.10</ll-receipt-total>
+        <ll-receipt-barcode value="0042 1187 0925" />
+        <ll-receipt-footer>keep for your records</ll-receipt-footer>
+      </ll-receipt>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Four ways to cut it</view>
+    <view class="sec-desc">`ends` is the cut of both ends: the tear bar's sawtooth, a perforation, a hand tear, or a plain guillotine.</view>
+    <view class="ends-grid">
+      <ll-receipt ends="zig" seed="zig" custom-style="width:310rpx" aria-label="Receipt, zig ends">
+        <ll-receipt-header><view class="receipt-headline">zig</view></ll-receipt-header>
+        <ll-receipt-lines>
+          <ll-receipt-line price="2.20">tea</ll-receipt-line>
+        </ll-receipt-lines>
+        <ll-receipt-total>2.20</ll-receipt-total>
+      </ll-receipt>
+      <ll-receipt ends="perf" seed="perf" custom-style="width:310rpx" aria-label="Receipt, perf ends">
+        <ll-receipt-header><view class="receipt-headline">perf</view></ll-receipt-header>
+        <ll-receipt-lines>
+          <ll-receipt-line price="2.20">tea</ll-receipt-line>
+        </ll-receipt-lines>
+        <ll-receipt-total>2.20</ll-receipt-total>
+      </ll-receipt>
+      <ll-receipt ends="torn" seed="torn" custom-style="width:310rpx" aria-label="Receipt, torn ends">
+        <ll-receipt-header><view class="receipt-headline">torn</view></ll-receipt-header>
+        <ll-receipt-lines>
+          <ll-receipt-line price="2.20">tea</ll-receipt-line>
+        </ll-receipt-lines>
+        <ll-receipt-total>2.20</ll-receipt-total>
+      </ll-receipt>
+      <ll-receipt ends="cut" seed="cut" custom-style="width:310rpx" aria-label="Receipt, cut ends">
+        <ll-receipt-header><view class="receipt-headline">cut</view></ll-receipt-header>
+        <ll-receipt-lines>
+          <ll-receipt-line price="2.20">tea</ll-receipt-line>
+        </ll-receipt-lines>
+        <ll-receipt-total>2.20</ll-receipt-total>
+      </ll-receipt>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">An order summary</view>
+    <view class="sec-desc">A real checkout: quantities you can change, a total that follows, and the barcode of the order number. The receipt is ordinary DOM; only the ink is drawn.</view>
+    <view class="order-row">
+      <ll-receipt seed="order" aria-label="Your order" aria-live="polite">
+        <ll-receipt-header>
+          <view class="receipt-headline">Your order</view>
+          <view>no. 0042</view>
+        </ll-receipt-header>
+        <ll-receipt-lines>
+          <ll-receipt-line wx:for="{{orderLines}}" wx:key="name" qty="{{item.qty}}" price="{{item.price}}">{{item.name}}</ll-receipt-line>
+        </ll-receipt-lines>
+        <ll-receipt-total circled="{{orderCircled}}">{{orderTotal}}</ll-receipt-total>
+        <ll-receipt-divider />
+        <ll-receipt-barcode value="0042 1187" />
+        <ll-receipt-footer>circled when it is over ten</ll-receipt-footer>
+      </ll-receipt>
+      <view class="steppers">
+        <view wx:for="{{menu}}" wx:key="name" wx:for-index="idx" class="stepper">
+          <ll-button size="icon-sm" variant="outline" aria-label="One less {{item.name}}" disabled="{{!qty[idx]}}" data-idx="{{idx}}" bindtap="onLess">
+            <ll-icon name="minus" size="{{16}}" />
+          </ll-button>
+          <view class="stepper-name">{{item.name}}</view>
+          <ll-button size="icon-sm" aria-label="One more {{item.name}}" data-idx="{{idx}}" bindtap="onMore">
+            <ll-icon name="plus" size="{{16}}" />
+          </ll-button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

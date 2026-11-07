@@ -1,0 +1,8 @@
+/* ll-sticky-note-footer — mt-auto pt-2 font-hand text-sm text-ink-soft */
+.ll-sticky-note-footer {
+  margin-top: auto;
+  padding-top: 16rpx; /* pt-2 */
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 25rpx; /* text-sm 14px x .88 */
+  color: var(--ll-ink-soft, #6b6459);
+}

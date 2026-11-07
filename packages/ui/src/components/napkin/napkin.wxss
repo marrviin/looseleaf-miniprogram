@@ -1,0 +1,25 @@
+/* ll-napkin — upstream: flex min-h-56 w-72 flex-col gap-2 p-9 text-ink.
+   The class rides ll-class onto the ll-paper root. */
+/* @ll-import tokens */
+
+.ll-napkin {
+  display: flex;
+  flex-direction: column;
+  gap: 14rpx; /* gap-2 */
+  box-sizing: border-box;
+  width: 507rpx; /* w-72 */
+  min-height: 394rpx; /* min-h-56 */
+  padding: 63rpx; /* p-9 */
+  color: var(--ll-ink); /* text-ink */
+}
+
+/* fold-crease decor ink: drawn on the paper box (recipe pad 4 via inkStyle).
+   inset:0 sizes the layer to the paper root so __measureInk gets a real
+   box before inkStyle swaps in the recipe's inset:-<pad>px. */
+.ll-napkin-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

@@ -1,0 +1,4 @@
+<!-- ll-accordion -->
+<view class="ll-accordion ll-class" style="{{customStyle}}">
+  <slot />
+</view>

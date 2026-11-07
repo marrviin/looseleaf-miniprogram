@@ -1,0 +1,20 @@
+/* ll-tabs-list */
+/* @ll-import tokens */
+.ll-tabs-list {
+  display: inline-flex;
+  width: fit-content;
+  align-items: flex-end; /* items-end */
+  justify-content: center;
+  height: 80rpx; /* aria-[orientation=horizontal]:h-10 */
+  gap: 8rpx; /* gap-1 */
+  color: var(--muted-foreground); /* text-muted-foreground */
+}
+.ll-tabs-list--line {
+  /* same gap; only the trigger drawing differs */
+}
+/* vertical: a column of binder tabs (aria-[orientation=vertical]) */
+.ll-tabs-list--vertical {
+  height: fit-content;
+  flex-direction: column;
+  align-items: stretch;
+}

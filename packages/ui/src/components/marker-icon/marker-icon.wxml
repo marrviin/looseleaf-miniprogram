@@ -1,0 +1,6 @@
+<!-- ll-marker-icon — 16px aria-hidden slot (put an ll-icon inside). -->
+<view
+  class="ll-marker-icon {{tone === 'new' ? 'll-marker-icon--new' : ''}}"
+  style="{{customStyle}}"
+  aria-hidden="true"
+><slot /></view>

@@ -5,4 +5,7 @@ dist/
 packages/example/pages/*
 !packages/example/pages/.gitkeep
 packages/example/miniprogram_npm/
+packages/example/project.config.json
+.content-forge/
 .tmp/
+.tmp-shots/

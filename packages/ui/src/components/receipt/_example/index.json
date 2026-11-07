@@ -1,0 +1,15 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-receipt": "../receipt/receipt",
+    "ll-receipt-header": "../receipt-header/receipt-header",
+    "ll-receipt-lines": "../receipt-lines/receipt-lines",
+    "ll-receipt-line": "../receipt-line/receipt-line",
+    "ll-receipt-total": "../receipt-total/receipt-total",
+    "ll-receipt-divider": "../receipt-divider/receipt-divider",
+    "ll-receipt-barcode": "../receipt-barcode/receipt-barcode",
+    "ll-receipt-footer": "../receipt-footer/receipt-footer",
+    "ll-button": "../button/button",
+    "ll-icon": "../icon/icon"
+  }
+}
