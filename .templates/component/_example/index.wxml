@@ -1,0 +1,6 @@
+<!-- ll-__NAME__ demo -->
+<view class="demo">
+  <view class="demo-title">__PASCAL__</view>
+  <!-- TODO: showcase each variant, mirroring the upstream looseleaf docs demo -->
+  <ll-__NAME__>__PASCAL__</ll-__NAME__>
+</view>

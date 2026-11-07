@@ -1,0 +1,176 @@
+<!-- ll-button demo — mirrors the upstream docs page (#/components/button):
+     intro, Preview/Variants, then every Examples entry (Sizes, States,
+     As a link, Loading composed, With icon, Icon buttons, Loading spinner,
+     Size pairs) with the page's own copy. Installation/Usage/API reference/
+     Accessibility/Related are intentionally omitted. -->
+<view class="demo">
+  <view class="demo-title">Button</view>
+  <view class="sec-desc">The thing you press. A marker-filled primary, a highlighter secondary, an inked outline, a whisper-box ghost, a solid red destructive and a hand-underlined link, in every shadcn size.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Variants</view>
+    <view class="sec-desc">Six ways to hold a pen: marker, red pencil, ink, highlighter, pencil whisper and blue felt.</view>
+    <view class="row">
+      <ll-button>Save changes</ll-button>
+      <ll-button variant="destructive">Delete</ll-button>
+      <ll-button variant="outline">Outline</ll-button>
+    </view>
+    <view class="row">
+      <ll-button variant="secondary">Secondary</ll-button>
+      <ll-button variant="ghost">Ghost</ll-button>
+      <ll-button variant="link" seed="2">Read more</ll-button>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Sizes</view>
+    <view class="sec-desc">The shadcn heights (24, 32, 36, 40) and the square icon buttons. Icon buttons need an aria-label.</view>
+    <view class="row">
+      <ll-button size="xs">Extra small</ll-button>
+      <ll-button size="sm">Small</ll-button>
+      <ll-button>Default</ll-button>
+      <ll-button size="lg">Large</ll-button>
+    </view>
+    <view class="row">
+      <ll-button size="icon-xs" aria-label="Add">+</ll-button>
+      <ll-button size="icon-sm" variant="outline" aria-label="Add">+</ll-button>
+      <ll-button size="icon" variant="secondary" aria-label="Add">+</ll-button>
+      <ll-button size="icon-lg" variant="ghost" aria-label="Add">+</ll-button>
+    </view>
+
+    <view class="sub-h3">States</view>
+    <view class="sec-desc">Rest, hover, pressed, keyboard focus and disabled, forced with props (hovered, pressed, focus-visible) so they can be compared side by side. Press and hold any button yourself: the drawing sinks and fills.</view>
+    <view class="state-group">
+      <view class="state-label">rest</view>
+      <view class="row">
+        <ll-button>default</ll-button>
+        <ll-button variant="destructive">destructive</ll-button>
+        <ll-button variant="outline">outline</ll-button>
+        <ll-button variant="secondary">secondary</ll-button>
+        <ll-button variant="ghost">ghost</ll-button>
+        <ll-button variant="link">link</ll-button>
+      </view>
+    </view>
+    <view class="state-group">
+      <view class="state-label">hover</view>
+      <view class="row">
+        <ll-button hovered>default</ll-button>
+        <ll-button hovered variant="destructive">destructive</ll-button>
+        <ll-button hovered variant="outline">outline</ll-button>
+        <ll-button hovered variant="secondary">secondary</ll-button>
+        <ll-button hovered variant="ghost">ghost</ll-button>
+        <ll-button hovered variant="link">link</ll-button>
+      </view>
+    </view>
+    <view class="state-group">
+      <view class="state-label">pressed</view>
+      <view class="row">
+        <ll-button pressed>default</ll-button>
+        <ll-button pressed variant="destructive">destructive</ll-button>
+        <ll-button pressed variant="outline">outline</ll-button>
+        <ll-button pressed variant="secondary">secondary</ll-button>
+        <ll-button pressed variant="ghost">ghost</ll-button>
+        <ll-button pressed variant="link">link</ll-button>
+      </view>
+    </view>
+    <view class="state-group">
+      <view class="state-label">focus</view>
+      <view class="row">
+        <ll-button focusVisible>default</ll-button>
+        <ll-button focusVisible variant="destructive">destructive</ll-button>
+        <ll-button focusVisible variant="outline">outline</ll-button>
+        <ll-button focusVisible variant="secondary">secondary</ll-button>
+        <ll-button focusVisible variant="ghost">ghost</ll-button>
+        <ll-button focusVisible variant="link">link</ll-button>
+      </view>
+    </view>
+    <view class="state-group">
+      <view class="state-label">disabled</view>
+      <view class="row">
+        <ll-button disabled>default</ll-button>
+        <ll-button disabled variant="destructive">destructive</ll-button>
+        <ll-button disabled variant="outline">outline</ll-button>
+        <ll-button disabled variant="secondary">secondary</ll-button>
+        <ll-button disabled variant="ghost">ghost</ll-button>
+        <ll-button disabled variant="link">link</ll-button>
+      </view>
+    </view>
+
+    <view class="sub-h3">As a link</view>
+    <view class="sec-desc">asChild is a React-slot pattern with no miniprogram equivalent; the link variant draws the hand underline instead. A disabled link is announced as disabled and cannot be followed.</view>
+    <view class="row">
+      <ll-button variant="link">Open the notebook</ll-button>
+      <ll-button variant="link" seed="5">Read the docs</ll-button>
+      <ll-button variant="secondary" disabled>Coming soon</ll-button>
+    </view>
+
+    <view class="sub-h3">Loading composed</view>
+    <view class="sec-desc">A real save button: pressing it disables it while the request runs, says what is happening, and confirms. The label is text; nothing here needs an icon.</view>
+    <view class="row">
+      <ll-button
+        variant="{{phase === 'saved' ? 'secondary' : 'default'}}"
+        disabled="{{phase === 'saving'}}"
+        bind:tap="save"
+      >{{phase === 'idle' ? 'Save changes' : phase === 'saving' ? 'Saving...' : 'Saved, thanks'}}</ll-button>
+      <ll-button variant="ghost" disabled="{{phase !== 'idle'}}">Cancel</ll-button>
+      <text class="status">{{phase === 'saving' ? 'Writing it down...' : phase === 'saved' ? 'All changes kept.' : ''}}</text>
+    </view>
+
+    <view class="sub-h3">With icon</view>
+    <view class="sec-desc">Icons sit before or after the label. Button tightens its padding when it sees one, sizes the pencilled icon to 16 px (12 px in xs) and keeps the drawing behind both. (The ll-icon component lands in the M2 batch; text glyphs stand in for now.)</view>
+    <view class="row">
+      <ll-button>+ New note</ll-button>
+      <ll-button variant="outline">Search</ll-button>
+      <ll-button variant="secondary">Next →</ll-button>
+    </view>
+    <view class="row">
+      <ll-button variant="outline" size="lg">Discard</ll-button>
+      <ll-button variant="ghost" size="sm">Copy link</ll-button>
+      <ll-button variant="outline" size="xs">Edit</ll-button>
+      <ll-button variant="link">Read more ↗</ll-button>
+    </view>
+
+    <view class="sub-h3">Icon buttons</view>
+    <view class="sec-desc">Square buttons for one glyph, in the four icon sizes. Give each an aria-label; the drawing is decorative. The last one is a real toggle that swaps its icon.</view>
+    <view class="row">
+      <ll-button size="icon-xs" variant="outline" aria-label="Close">×</ll-button>
+      <ll-button size="icon-sm" variant="secondary" aria-label="Notifications">+</ll-button>
+      <ll-button size="icon" aria-label="Add">+</ll-button>
+      <ll-button size="icon-lg" variant="outline" aria-label="Settings">+</ll-button>
+      <ll-button size="icon" variant="ghost" aria-label="Delete">×</ll-button>
+      <ll-button size="icon" variant="outline" aria-label="{{shown ? 'Hide password' : 'Show password'}}" bind:tap="toggleShown">{{shown ? '○' : '●'}}</ll-button>
+    </view>
+
+    <view class="sub-h3">Loading spinner</view>
+    <view class="sec-desc">The shadcn pattern: a Spinner in front of the label inside a disabled button. The first and last are the static state (disabled buttons are dashed). Press the second to watch a request go through: it is aria-disabled while it works instead of disabled, so keyboard focus stays on it. (The ll-spinner component lands in M2.)</view>
+    <view class="row">
+      <ll-button size="sm" variant="outline" disabled>Submit</ll-button>
+      <ll-button bind:tap="send">{{sending ? 'Sending' : 'Send the letter'}}</ll-button>
+      <ll-button variant="secondary" disabled>Please wait</ll-button>
+    </view>
+
+    <view class="sub-h3">Size pairs</view>
+    <view class="sec-desc">Each height comes with its square twin: sm and icon-sm (32 px), default and icon (36 px), lg and icon-lg (40 px), and our extra xs pair at 24 px. Put them side by side and the labels and glyphs line up on one baseline.</view>
+    <view class="row row-pairs">
+      <view class="pair">
+        <ll-button variant="outline" size="xs">Extra small</ll-button>
+        <ll-button variant="outline" size="icon-xs" aria-label="Send, extra small">↗</ll-button>
+      </view>
+      <view class="pair">
+        <ll-button variant="outline" size="sm">Small</ll-button>
+        <ll-button variant="outline" size="icon-sm" aria-label="Send, small">↗</ll-button>
+      </view>
+      <view class="pair">
+        <ll-button variant="outline">Default</ll-button>
+        <ll-button variant="outline" size="icon" aria-label="Send, default">↗</ll-button>
+      </view>
+      <view class="pair">
+        <ll-button variant="outline" size="lg">Large</ll-button>
+        <ll-button variant="outline" size="icon-lg" aria-label="Send, large">↗</ll-button>
+      </view>
+    </view>
+  </view>
+</view>

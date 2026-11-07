@@ -1,0 +1,7 @@
+.demo {
+  padding: 32rpx;
+}
+.demo-title {
+  font-weight: bold;
+  margin-bottom: 16rpx;
+}

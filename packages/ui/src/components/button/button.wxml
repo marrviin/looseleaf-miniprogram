@@ -1,0 +1,29 @@
+<!-- ll-button -->
+<button
+  wx:if="{{!disabled && !loading}}"
+  class="ll-button ll-button--{{variant}} ll-button--{{size}} ll-button--{{shape}} {{(inkPressed || pressed) ? 'll-button--pressed' : ''}} ll-class"
+  style="{{customStyle}}"
+  hover-class="none"
+  hover-stay-time="80"
+  aria-label="{{ariaLabel}}"
+  open-type="{{openType}}"
+  catchtap="onTap"
+  bindgetuserinfo="onGetUserInfo"
+  bindcontact="onContact"
+  binderror="onError"
+  bindtouchstart="__inkTouchStart"
+  bindtouchend="__inkTouchEnd"
+  bindtouchcancel="__inkTouchEnd"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-button__content"><slot /></view>
+</button>
+<button
+  wx:else
+  class="ll-button ll-button--{{variant}} ll-button--{{size}} ll-button--{{shape}} ll-button--disabled ll-class"
+  style="{{customStyle}}"
+  disabled
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-button__content"><slot /></view>
+</button>

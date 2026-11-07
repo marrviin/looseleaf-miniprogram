@@ -1,0 +1,119 @@
+/* ll-button */
+/* @ll-import tokens */
+.ll-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx; /* upstream gap-2 (8px) */
+  box-sizing: border-box;
+  margin: 0 !important; /* UA sets margin-left/right: auto, which scatters flex siblings */
+  padding: 0;
+  /* Reset the native <button> UA styles: fixed width (~184px, UA !important)
+     and overflow: hidden would stretch the button and clip the ink layer's
+     hand-drawn stroke overhang (the stroke lives outside the button box). */
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  overflow: visible;
+  line-height: 1;
+  border-radius: 12rpx;
+  /* Fill + outline are painted by the baked ink layer (ink/button chunk). */
+  background: transparent;
+  color: var(--ll-ink); /* upstream text-primary-foreground = --ll-ink */
+  font-family: 'Kevin Sans', sans-serif;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.ll-button::after {
+  border: none;
+}
+
+/* variant — only label ink differs; fills/strokes come from the ink layer */
+.ll-button--destructive {
+  color: var(--ll-paper); /* upstream text-paper */
+}
+.ll-button--link {
+  color: var(--ll-link);
+}
+
+/* size (upstream: h-9 px-4 = 72rpx / 32rpx) */
+.ll-button--default {
+  height: 72rpx;
+  padding: 0 32rpx;
+  font-size: 28rpx; /* upstream 16px x size-adjust .88 */
+}
+.ll-button--xs {
+  height: 48rpx;
+  gap: 8rpx; /* upstream gap-1 (4px) */
+  padding: 0 16rpx;
+  font-size: 25rpx; /* upstream 14px x size-adjust .88 */
+}
+.ll-button--sm {
+  height: 64rpx;
+  gap: 12rpx; /* upstream gap-1.5 (6px) */
+  padding: 0 24rpx;
+  font-size: 26rpx; /* upstream 15px x size-adjust .88 */
+}
+.ll-button--lg {
+  height: 80rpx;
+  padding: 0 48rpx;
+  font-size: 30rpx; /* upstream 17px x size-adjust .88 */
+}
+.ll-button--icon {
+  width: 72rpx !important; /* beat the base width:auto !important (UA width reset) */
+  height: 72rpx;
+  padding: 0;
+}
+.ll-button--icon-xs {
+  width: 48rpx !important; /* beat the base width:auto !important (UA width reset) */
+  height: 48rpx;
+  padding: 0;
+  font-size: 25rpx; /* upstream 14px x size-adjust .88 */
+}
+.ll-button--icon-sm {
+  width: 64rpx !important; /* beat the base width:auto !important (UA width reset) */
+  height: 64rpx;
+  padding: 0;
+  font-size: 26rpx; /* upstream 15px x size-adjust .88 */
+}
+.ll-button--icon-lg {
+  width: 80rpx !important; /* beat the base width:auto !important (UA width reset) */
+  height: 80rpx;
+  padding: 0;
+  font-size: 30rpx; /* upstream 17px x size-adjust .88 */
+}
+
+/* shape */
+.ll-button--pill {
+  border-radius: 999rpx;
+}
+
+/* states */
+.ll-button--disabled {
+  color: var(--ll-pencil-text);
+}
+.ll-button--pressed {
+  transform: translateY(2rpx); /* --ll-press-sink */
+}
+
+/* keep label above the ink overlay */
+.ll-button__content {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ink overlay — common/ink.js draws the recipe at the element's real size and
+   injects an SVG data-URI background plus `inset: -<pad>px` inline, so the
+   hand-drawn stroke overhang stays visible and strokes render 1:1 at any
+   button width. */
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

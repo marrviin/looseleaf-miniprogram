@@ -1,0 +1,16 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "looseleaf-mp-example",
+  "appid": "wx8f3c31131e2cc10d",
+  "compileType": "miniprogram",
+  "libVersion": "3.7.0",
+  "setting": {
+    "es6": true,
+    "postcss": true,
+    "minified": true
+  },
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  }
+}

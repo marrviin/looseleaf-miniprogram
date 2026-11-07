@@ -1,0 +1,11 @@
+/* Global example styles + font loading snippet.
+ * Components carry their own tokens; this file only sets the demo stage. */
+page {
+  background: #f8f5ee;
+  font-family:
+    'Kevin Sans',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Helvetica Neue',
+    sans-serif;
+}

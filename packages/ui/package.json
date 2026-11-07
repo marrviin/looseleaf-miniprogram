@@ -1,0 +1,25 @@
+{
+  "name": "@looseleaf/ui",
+  "version": "0.0.1",
+  "description": "Looseleaf, drawn by hand — hand-drawn UI components for WeChat Mini Program, ported from looseleaf.",
+  "keywords": [
+    "weapp",
+    "miniprogram",
+    "components",
+    "hand-drawn",
+    "looseleaf"
+  ],
+  "license": "MIT",
+  "miniprogram": "dist",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node ../../script/build.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/panmenglin/looseleaf-miniprogram.git",
+    "directory": "packages/ui"
+  }
+}

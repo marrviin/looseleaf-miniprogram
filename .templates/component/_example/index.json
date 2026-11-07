@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-__NAME__": "../__NAME__/__NAME__"
+  }
+}

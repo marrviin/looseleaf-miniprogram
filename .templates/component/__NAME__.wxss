@@ -1,0 +1,5 @@
+/* ll-__NAME__ */
+/* Common tokens/ink styles are inlined here by script/build.mjs. */
+.ll-__NAME__ {
+  /* TODO */
+}

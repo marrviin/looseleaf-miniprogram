@@ -1,0 +1,4 @@
+<!-- ll-__NAME__ -->
+<view class="ll-__NAME__ {{customStyle ? '' : ''}}" style="{{customStyle}}">
+  <slot />
+</view>

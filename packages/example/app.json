@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/button/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "Looseleaf MP",
+    "navigationBarBackgroundColor": "#f8f5ee",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f8f5ee"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

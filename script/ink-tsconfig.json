@@ -1,0 +1,7 @@
+{
+  "//": "Used only by `npm run bake:ink` (TSX_TSCONFIG_PATH) so tsx can resolve the upstream looseleaf `@/` imports. Adjust upstreamRoot when moving this repo.",
+  "compilerOptions": {
+    "baseUrl": "../../looseleaf",
+    "paths": { "@/*": ["src/*"] }
+  }
+}
