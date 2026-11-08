@@ -58,6 +58,7 @@ createComponent({
     /** ll-tabs root syncs value + orientation. */
     __onGroup(ctx) {
       const checked = ctx.value === this.data.value && ctx.value !== '';
+      const orientationChanged = ctx.orientation !== this.data.tabOrientation;
       this.__inkParams = () => ({
         variant: this.data.tabVariant,
         orientation: ctx.orientation,
@@ -65,6 +66,14 @@ createComponent({
         disabled: this.data.disabled,
       });
       this.setData({ checked, tabOrientation: ctx.orientation });
+      // Fast path: ink for this box is already rendered — a checked flip only
+      // restacks the cached layer URIs, so apply synchronously. The slow path
+      // below (60ms timer + async measure) delayed the highlight by ~100ms
+      // after the page swap, which read as a blink on the custom tab bar.
+      if (this.__inkEntry && !orientationChanged) {
+        this.__applyInkLayer();
+        return;
+      }
       setTimeout(() => this.__measureInk(), 60);
     },
     /** ll-tabs-list syncs the drawing variant + baseline flag. */
