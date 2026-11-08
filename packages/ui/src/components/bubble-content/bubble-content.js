@@ -16,7 +16,7 @@ function stripTailGroup(styleStr) {
   let svg;
   try {
     svg = decodeURIComponent(styleStr.slice(payloadStart, end));
-  } catch (e) {
+  } catch {
     return styleStr;
   }
   const mark = svg.indexOf('<g data-part="tail">');

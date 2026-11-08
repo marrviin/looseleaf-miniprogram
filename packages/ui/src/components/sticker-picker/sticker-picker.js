@@ -202,7 +202,7 @@ createComponent({
           ? [{
               key: 'found',
               label: words.length ? `${found.length} found` : seen.get(d.category) || '',
-              cells: found.map((e, i) => this.__cell(e, `found:${e.name}`)).filter(Boolean),
+              cells: found.map((e, _i) => this.__cell(e, `found:${e.name}`)).filter(Boolean),
             }]
           : [];
         emptyText = d.query.trim()
@@ -214,13 +214,13 @@ createComponent({
           .map((n) => byName.get(n))
           .filter(Boolean);
         if (recent.length) {
-          all.push({ key: 'recent', label: 'Recent', cells: recent.map((e, i) => this.__cell(e, `recent:${e.name}`)).filter(Boolean) });
+          all.push({ key: 'recent', label: 'Recent', cells: recent.map((e, _i) => this.__cell(e, `recent:${e.name}`)).filter(Boolean) });
         }
         for (const [key, label] of seen) {
           all.push({
             key,
             label,
-            cells: entries.filter((e) => e.category === key).map((e, i) => this.__cell(e, `${key}:${e.name}`)).filter(Boolean),
+            cells: entries.filter((e) => e.category === key).map((e, _i) => this.__cell(e, `${key}:${e.name}`)).filter(Boolean),
           });
         }
       }

@@ -3,10 +3,6 @@ import { sealArt } from '../../common/ink-engine';
 import { svgDataUri, hashSeed } from '../../common/ink';
 import { props, validators } from './props';
 
-/** Upstream .ll-drop-sticker, flattened (--ll-shade #3a2c1e). */
-const DROP_STICKER =
-  'drop-shadow(0 1px 0.6px rgba(58,44,30,0.26)) drop-shadow(0 3px 3px rgba(58,44,30,0.14))';
-
 /** Upstream autoTilt — a seed-derived swing. */
 const autoTilt = (seed) => ((hashSeed(seed) % 640) - 320) / 100;
 

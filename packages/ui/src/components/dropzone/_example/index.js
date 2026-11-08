@@ -27,7 +27,7 @@ Page({
     const n = (e.detail.rejections || []).length;
     this.setData({ footer1: `${n} file${n === 1 ? '' : 's'} turned away.` });
   },
-  onReject2(e) {
+  onReject2(_e) {
     /* rejections render themselves under the zone */
   },
   onRemove2(e) {

@@ -18,7 +18,7 @@ createComponent({
     },
   },
   observers: {
-    ends(e) {
+    ends(_e) {
       this.__update();
     },
   },

@@ -4,10 +4,8 @@ import { spinnerMark, drawMascot, mascotProps } from '../../common/ink-engine';
 import { resolvePaint } from '../../common/ink';
 
 const WRITE_FRAMES = ['write-1', 'write-2', 'write-3'];
-// Upstream: scribble lap = var(--ll-dur-draw)*2 = 0.6s*2; write lap =
-// var(--ll-dur-boil)*2.25 = 0.48s*2.25 (motion defaults to 1).
+// Upstream: scribble lap = var(--ll-dur-draw)*2 = 0.6s*2 (motion defaults to 1).
 const DRAW_LAP = 1.2;
-const WRITE_LAP = 1.08;
 
 /** The scribble/loops animation lives INSIDE the data-URI SVG: upstream
     animates the mask's reveal path from CSS ([data-part=reveal], dasharray

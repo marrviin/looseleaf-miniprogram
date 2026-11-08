@@ -16,7 +16,7 @@ createComponent({
         this.__parent = parent;
         if (parent.__pageLinked) parent.__pageLinked(this);
       },
-      unlinked(parent) {
+      unlinked(_parent) {
         this.__parent = null;
       },
     },

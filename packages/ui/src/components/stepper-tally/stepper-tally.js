@@ -1,6 +1,5 @@
 import { createComponent } from '../../common/component';
-import { renderLayers, hashSeed } from '../../common/ink';
-import { bucketBox, stepperTallyWidth, stepperTallyH } from '../../common/ink-engine';
+import { stepperTallyWidth, stepperTallyH } from '../../common/ink-engine';
 import { props } from './props';
 
 /** Upstream `StepperTally` — the value as tally marks (four strokes and a

@@ -31,7 +31,7 @@ Page({
       ['Tooltip', 'A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.'],
     ],
   },
-  onNav(e) {
+  onNav(_e) {
     // The root announces open/close (e.detail.value); nothing to do here.
   },
   onPage(e) {

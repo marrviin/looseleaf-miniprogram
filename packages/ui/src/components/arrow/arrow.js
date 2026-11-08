@@ -37,7 +37,7 @@ createComponent({
   },
   observers: {
     'direction, curve, head, tone, weight, bend, pointAt, gap'(...args) {
-      const [direction, curve, head, tone, weight, bend, pointAt, gap] = args;
+      const [direction, curve, head, tone, weight, bend, pointAt, _gap] = args;
       const aimed = !!pointAt;
       this.__aimed = aimed;
       this.__inkParams = aimed

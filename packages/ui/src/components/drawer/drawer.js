@@ -12,7 +12,7 @@ const FLICK_V = 0.5; // px/ms
 function sys() {
   try {
     return wx.getSystemInfoSync();
-  } catch (e) {
+  } catch {
     return {};
   }
 }

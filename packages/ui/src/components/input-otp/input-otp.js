@@ -97,7 +97,7 @@ createComponent({
           .split('')
           .filter((c) => re.test(c))
           .join('');
-      } catch (e) {
+      } catch {
         return stripped;
       }
     },

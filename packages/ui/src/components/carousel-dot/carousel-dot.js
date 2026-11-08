@@ -15,7 +15,7 @@ createComponent({
     checked: false,
   },
   observers: {
-    'selected, slash, index, seed'(selected, slash, index, seed) {
+    'selected, slash, index, seed'(selected, slash, _index, _seed) {
       this.__inkParams = { slash, pitch: 24 };
       this.setData({ checked: selected });
       setTimeout(() => this.__measureInk && this.__measureInk(), 0);

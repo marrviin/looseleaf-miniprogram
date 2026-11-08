@@ -54,5 +54,9 @@ export default [
         navigator: 'readonly',
       },
     },
+    rules: {
+      // minified upstream bundle — mangled names, dead exports are upstream's
+      'no-unused-vars': 'off',
+    },
   },
 ];

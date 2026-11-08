@@ -14,7 +14,7 @@ function isMobileNow() {
   try {
     const info = wx.getWindowInfo ? wx.getWindowInfo() : wx.getSystemInfoSync();
     return (info.windowWidth || 375) < 768;
-  } catch (e) {
+  } catch {
     return true;
   }
 }
@@ -80,7 +80,7 @@ createComponent({
       const stored = (() => {
         try {
           return wx.getStorageSync(SIDEBAR_KEY);
-        } catch (e) {
+        } catch {
           return '';
         }
       })();
@@ -115,7 +115,7 @@ createComponent({
       if (persist) {
         try {
           wx.setStorageSync(SIDEBAR_KEY, v);
-        } catch (e) {
+        } catch {
           /* storage full — state still applies for the session */
         }
       }

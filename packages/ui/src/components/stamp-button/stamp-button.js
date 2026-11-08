@@ -1,6 +1,6 @@
 import { createComponent } from '../../common/component';
 import { ensureHandFont } from '../../common/hand-font';
-import { badgesStamps, STAMP_KNOB } from '../../common/ink-engine';
+import { badgesStamps } from '../../common/ink-engine';
 import { props, validators } from './props';
 
 // Button labels are set in the upstream hand font (Kevin Sans); loading is

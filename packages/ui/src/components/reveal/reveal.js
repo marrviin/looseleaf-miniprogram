@@ -127,7 +127,6 @@ createComponent({
     },
     /** Replay (upstream remounts with a new key): hide, then let it arrive. */
     restart() {
-      const st = this._st;
       this.setData({ armed: false, visible: true, stateClass: '' });
       setTimeout(() => this.__arm(), 60);
     },

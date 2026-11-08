@@ -5,10 +5,6 @@ import { svgDataUri } from '../../common/ink';
 
 const FRAMES = mascotProps.frames || {};
 
-/** Upstream .ll-drop-sticker, flattened (--ll-shade #3a2c1e). */
-const DROP_STICKER =
-  'drop-shadow(0 1px 0.6px rgba(58,44,30,0.26)) drop-shadow(0 3px 3px rgba(58,44,30,0.14))';
-
 /** Upstream `Mascot` — drawMascot on the pose map (die-cut: white sticker
     border included, so `size` is the height of the whole sticker). One SVG
     per (pose, frame, size, tier, seed), drawn not scaled. */

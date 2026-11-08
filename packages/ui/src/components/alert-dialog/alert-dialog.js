@@ -11,7 +11,7 @@ const EXIT_MS = 300;
 function isPhone() {
   try {
     return (wx.getSystemInfoSync().windowWidth || 375) < 640;
-  } catch (e) {
+  } catch {
     return true;
   }
 }

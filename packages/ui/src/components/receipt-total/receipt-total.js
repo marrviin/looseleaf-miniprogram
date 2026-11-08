@@ -1,5 +1,5 @@
 import { createComponent } from '../../common/component';
-import { props, validators } from './props';
+import { props } from './props';
 
 /** Upstream `ReceiptTotal` — the bold line; `circled` draws a felt-tip loop
     around the amount (recipe receipt-circle, pad 14 — the ink layer overhangs
