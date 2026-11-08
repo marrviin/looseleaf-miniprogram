@@ -6,6 +6,10 @@ English | [简体中文](./README.md)
 
 Every component is drawn by a "pen" at runtime: slightly tilted borders, wobbly underlines, stickers and tape — like sketching your UI on loose-leaf paper. This is a WeChat Mini Program port of [looseleaf](https://github.com/kevintngo/looseleaf), with all components under the `ll-` prefix, implemented as native mini program components, tree-shakable by design and ready to use.
 
+<p align="center">
+  <img src="docs/img/hero.jpg" alt="Looseleaf Miniprogram — component catalog / Button / Ticket / Highlight, real device screenshots" width="830">
+</p>
+
 ## Components
 
 Of the **104 components** in the upstream [looseleaf](https://github.com/kevintngo/looseleaf) docs site, **100 have been ported**; 4 are skipped due to mini program platform limits — per-component status lives in [docs/components.en.md](./docs/components.en.md).

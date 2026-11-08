@@ -18,5 +18,6 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm build
-      # TODO(M1): bake ink + tokens, then miniprogram-ci packNpm check
       # TODO(M2): miniprogram-automator e2e against packages/example
+      - name: npm package publish-readiness check
+        run: node script/check-npm-package.mjs
