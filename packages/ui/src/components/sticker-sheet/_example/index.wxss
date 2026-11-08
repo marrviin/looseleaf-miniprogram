@@ -45,3 +45,10 @@
   font-size: 22rpx;
   color: #8a857c;
 }
+
+/* 03 — sheet to board: the board under the sheet */
+.board-said {
+  font-size: 25rpx;
+  color: #4a433c;
+  margin-top: 12rpx;
+}

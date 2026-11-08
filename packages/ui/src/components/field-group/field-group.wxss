@@ -1,0 +1,10 @@
+/* ll-field-group — flex w-full flex-col gap-7 */
+.ll-field-group {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 56rpx; /* gap-7 */
+}
+.ll-field-group--tight {
+  gap: 24rpx; /* data-slot=checkbox-group:gap-3 */
+}

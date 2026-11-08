@@ -1,0 +1,9 @@
+<!-- ll-reveal — the arrival wrapper: its root plays one of the five
+     keyframes when it comes into view; nib wraps the slotted content in a
+     component-owned view so the wipe can clip it, and rides the marker tip
+     along the bottom edge. -->
+<view class="ll-reveal anim-{{effect}} {{armed ? 'is-armed' : ''}} {{stateClass}} {{nibbed ? 'is-nib' : ''}} {{from === 'end' ? 'is-from-end' : ''}} ll-class" style="--ll-reveal-delay:{{delay}}s;{{customStyle}}">
+  <view wx:if="{{nibbed}}" class="ll-reveal__content"><slot></slot></view>
+  <slot wx:else></slot>
+  <view wx:if="{{nibbed}}" class="ll-reveal__nib" style="{{nibStyle}}" aria-hidden="{{true}}"></view>
+</view>

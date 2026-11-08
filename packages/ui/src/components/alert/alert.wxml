@@ -1,0 +1,20 @@
+<!-- ll-alert — drawn tone box, or a sticky note for variant="note" -->
+<view
+  wx:if="{{!isNote}}"
+  class="ll-alert is-{{variant}}"
+  style="{{customStyle}}"
+  aria-role="alert"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-alert__grid"><slot /></view>
+</view>
+<ll-paper
+  wx:else
+  class="ll-alert is-note"
+  stock="sticky-yellow"
+  tape="corner"
+  seed="{{paperSeed}}"
+  custom-style="{{customStyle}}"
+>
+  <view class="ll-alert__grid is-note"><slot /></view>
+</ll-paper>

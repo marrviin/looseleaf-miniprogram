@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-dropzone-item": "../dropzone-item/dropzone-item"
+  }
+}

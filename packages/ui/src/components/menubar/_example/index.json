@@ -1,0 +1,18 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-menubar": "../menubar/menubar",
+    "ll-menubar-menu": "../menubar-menu/menubar-menu",
+    "ll-dropdown-menu-item": "../dropdown-menu-item/dropdown-menu-item",
+    "ll-dropdown-menu-sub": "../dropdown-menu-sub/dropdown-menu-sub",
+    "ll-dropdown-menu-label": "../dropdown-menu-label/dropdown-menu-label",
+    "ll-dropdown-menu-separator": "../dropdown-menu-separator/dropdown-menu-separator",
+    "ll-dropdown-menu-shortcut": "../dropdown-menu-shortcut/dropdown-menu-shortcut",
+    "ll-dropdown-menu-checkbox-item": "../dropdown-menu-checkbox-item/dropdown-menu-checkbox-item",
+    "ll-dropdown-menu-radio-group": "../dropdown-menu-radio-group/dropdown-menu-radio-group",
+    "ll-dropdown-menu-radio-item": "../dropdown-menu-radio-item/dropdown-menu-radio-item",
+    "ll-paper": "../paper/paper",
+    "ll-icon": "../icon/icon",
+    "ll-button": "../button/button"
+  }
+}

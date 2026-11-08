@@ -1,0 +1,32 @@
+/* ll-menubar — upstream Menubar root: relative isolate flex h-10 items-center
+   gap-1 px-2; the menubar recipe draws the strip (paper-shade wash, felt
+   outline, ruler ticks) on the bar's box. */
+/* @ll-import tokens */
+.ll-menubar {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  height: 80rpx; /* h-10 */
+  padding: 0 16rpx; /* px-2 */
+}
+.ll-menubar__row {
+  position: relative;
+  z-index: 1; /* the titles paint over the strip */
+  display: flex;
+  align-items: center;
+  gap: 8rpx; /* gap-1 */
+  flex: 1;
+  min-width: 0;
+}
+
+/* ink overlay — common/ink.js draws the recipe at the element's real size
+   and injects an SVG data-URI background plus `inset: -<pad>px` inline. */
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

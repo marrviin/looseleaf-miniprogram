@@ -1,0 +1,7 @@
+<!-- ll-table-cell — <td>, the hand-pulled pencil rule hanging under it. -->
+<view class="ll-table-cell ll-class" style="{{cellStyle}}{{customStyle ? ';' + customStyle : ''}}">
+  <view class="ll-cell-rule {{ruleCls}}">
+    <view class="ll-cell-rule__tile" />
+  </view>
+  <slot />
+</view>

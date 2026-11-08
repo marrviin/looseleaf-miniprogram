@@ -1,0 +1,35 @@
+<!-- ll-handwritten demo — mirrors the upstream docs page
+     (#/components/handwritten): the same words typeset and written, the
+     strengths, and a sticky note. Code, links and forms stay outside —
+     the miniprogram component writes plain text only. -->
+<view class="demo">
+  <view class="demo-title">Handwritten</view>
+  <view class="sec-desc">Text that looks written, not typeset: every word sits a hair off the baseline and a touch lighter, by a seeded amount. The words stay real text.</view>
+
+  <view class="sec">
+    <view class="sub-h3">Typeset, written</view>
+    <view class="sec-desc">The same words, the same size — first typeset, then written.</view>
+    <view class="stack-8">
+      <view class="para">Most of what I remember from a book is in the margins: an arrow, a question mark, a small argument with a dead author.</view>
+      <ll-handwritten custom-style="font-size:17px;line-height:1.7;" text="Most of what I remember from a book is in the margins: an arrow, a question mark, a small argument with a dead author." />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Strength</view>
+    <view class="sec-desc">0.5, 1 and 2 — a careful hand, the default, a hurried one in a bus in the rain.</view>
+    <view class="stack-8 para">
+      <ll-handwritten strength="{{0.5}}" text="strength 0.5: barely there, a careful hand." />
+      <ll-handwritten strength="{{1}}" text="strength 1: the default hand, every word a hair off." />
+      <ll-handwritten strength="{{2}}" text="strength 2: a hurried hand, in a bus, in the rain." />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">A sticky note</view>
+    <view class="sec-desc">Handwritten inside a sticky note: the sheet turns a little, the words only jitter.</view>
+    <ll-paper stock="sticky-yellow" tilt seed="sticky" custom-style="width:448rpx;padding:40rpx;box-sizing:border-box;">
+      <ll-handwritten class="note-script" text="call mum before six, and bring the good umbrella!" />
+    </ll-paper>
+  </view>
+</view>

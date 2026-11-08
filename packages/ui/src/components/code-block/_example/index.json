@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "ll-code-block": "../code-block/code-block",
+    "ll-message": "../message/message",
+    "ll-message-content": "../message-content/message-content",
+    "ll-message-header": "../message-header/message-header",
+    "ll-mascot": "../mascot/mascot",
+    "ll-bubble": "../bubble/bubble",
+    "ll-bubble-content": "../bubble-content/bubble-content"
+  }
+}

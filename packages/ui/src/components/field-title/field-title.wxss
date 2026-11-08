@@ -1,0 +1,16 @@
+/* ll-field-title — flex w-fit items-center gap-2 font-hand text-[15px]
+   bold, leading-snug */
+.ll-field-title {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 16rpx; /* gap-2 */
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 26rpx; /* text-[15px] x .88 */
+  line-height: 1.375; /* leading-snug */
+  font-weight: 700;
+  color: #2a2420;
+}
+.ll-field-title--disabled {
+  color: #5a554e; /* group-data-[disabled]/field:text-pencil-text */
+}

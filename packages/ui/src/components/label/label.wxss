@@ -1,0 +1,27 @@
+/* @ll-import tokens */
+.ll-label {
+  display: flex;
+  align-items: center;
+  gap: 8rpx; /* gap-1 */
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 26rpx; /* text-[15px] ×0.88 */
+  line-height: 1; /* leading-none */
+  font-weight: 700;
+  color: #2a2420; /* text-foreground (--ll-ink) */
+}
+.ll-label--disabled {
+  color: #5a554e; /* group-data-[disabled]:text-pencil-text */
+}
+.ll-label__content {
+  display: flex;
+  align-items: center;
+}
+/* the drawn star: 0.8em of the 15px label = 12px, nudged down a hair */
+.ll-label__required {
+  flex-shrink: 0;
+  width: 24rpx;
+  height: 24rpx;
+  margin-top: 2rpx; /* mt-px */
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

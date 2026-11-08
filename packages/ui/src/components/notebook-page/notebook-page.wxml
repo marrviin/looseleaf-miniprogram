@@ -1,0 +1,9 @@
+<!-- ll-notebook-page — shown or hidden by the notebook's value; a page
+     turned to unfolds from the dog-ear (clip-path wipe). -->
+<view
+  class="ll-notebook-page {{unfold ? 'is-unfold' : ''}} ll-class"
+  style="{{customStyle}}"
+  hidden="{{!active}}"
+>
+  <slot />
+</view>

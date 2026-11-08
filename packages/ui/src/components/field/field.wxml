@@ -1,0 +1,5 @@
+<!-- ll-field — a labeled control row: label, control, help, in the
+     chosen orientation. The label turns red when invalid. -->
+<view class="ll-field ll-field--{{orientation}} {{invalid ? 'll-field--invalid' : ''}} ll-class" style="{{customStyle}}">
+  <slot />
+</view>

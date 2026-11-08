@@ -1,0 +1,12 @@
+/* ll-typography-inline-code */
+/* @ll-import tokens */
+.ll-typography-inline-code {
+  display: inline;
+  font-family: ui-monospace, Menlo, Consolas, monospace; /* font-mono */
+  font-size: 0.85em;
+  font-weight: 500;
+  color: var(--ll-ink, #2a2420);
+  background: var(--muted, #ece7dc);
+  padding: 0.15rem 0.35rem;
+  border-radius: 2px 6px 3px 5px / 5px 2px 6px 3px;
+}

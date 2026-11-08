@@ -1,0 +1,14 @@
+<!-- ll-table — display:table root in the -m-3/p-3 scroll container. -->
+<scroll-view
+  class="ll-table-container ll-container-class"
+  style="{{containerStyle}}"
+  scroll-x="{{true}}"
+  scroll-y="{{sticky}}"
+  scroll-top="{{scrollTop}}"
+  enhanced="{{true}}"
+  show-scrollbar="{{false}}"
+>
+  <view class="ll-table ll-class" style="{{customStyle}}">
+    <slot />
+  </view>
+</scroll-view>

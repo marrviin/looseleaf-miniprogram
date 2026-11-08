@@ -1,0 +1,16 @@
+/* ll-quote demo */
+.demo {
+  padding: 32rpx;
+  background: var(--ll-paper, #f8f5ee);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title { font-weight: bold; font-size: 40rpx; margin-bottom: 8rpx; }
+.sec { margin-top: 40rpx; }
+.sub-h3 { font-size: 30rpx; font-weight: 700; color: #2a2420; margin: 20rpx 0 12rpx; }
+.qt-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 36rpx;
+  align-items: flex-start;
+}

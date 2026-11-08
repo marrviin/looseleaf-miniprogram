@@ -1,0 +1,7 @@
+<!-- ll-label — the bold hand-font words that go with a field. Clicking a
+     native <label for> hands the tap to the control; the drawn star after
+     the text is decorative (upstream aria-hidden). -->
+<label class="ll-label {{disabled ? 'll-label--disabled' : ''}} ll-class" style="{{customStyle}}" for="{{for}}">
+  <view class="ll-label__content"><slot /></view>
+  <view wx:if="{{required}}" class="ll-label__required" style="{{starStyle}}" />
+</label>

@@ -1,0 +1,22 @@
+<!-- ll-folder-content -->
+<view class="ll-folder-content ll-class" style="{{customStyle}}" hidden="{{!active}}">
+  <ll-paper
+    class="ll-folder-content__paper"
+    stock="{{stockName}}"
+    rules="none"
+    tilt="{{false}}"
+    seed="{{seed}}"
+    tape="{{tape}}"
+    fastener="{{fastener}}"
+    fastener-tone="{{fastenerTone}}"
+    custom-style="width:100%;box-sizing:border-box;min-height:160px;padding:32px 24px 24px;"
+  >
+    <view
+      wx:if="{{creaseOn}}"
+      class="ll-folder-content__decor"
+      style="{{inkStyle}}"
+      aria-hidden="{{true}}"
+    ></view>
+    <slot />
+  </ll-paper>
+</view>

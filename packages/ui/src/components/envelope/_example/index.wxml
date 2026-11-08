@@ -1,0 +1,103 @@
+<!-- ll-envelope demo — mirrors the upstream docs page (#/components/envelope):
+     intro, then the Examples entries with the page's own copy.
+     Installation/Usage/API reference/Accessibility/Related are
+     intentionally omitted. -->
+<view class="demo">
+  <view class="demo-title">Envelope</view>
+  <view class="sec-desc">Press it: the flap stands up behind and the letter slides out. Each stamp is perforated; each has a postmark over it.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">An envelope</view>
+    <view class="sec-desc">The default kraft envelope with a tomato stamp. Tap it: the flap is up and the letter comes out from behind the front.</view>
+    <view class="env-wrap">
+      <ll-envelope id="env-post" seed="post">
+        <ll-envelope-front>
+          <ll-envelope-sender><view>The Stationer</view><view>High Street</view></ll-envelope-sender>
+          <ll-envelope-address>
+            <view>Ada Lovelace</view>
+            <view>12 rue de l'Eau</view>
+            <view>Paris</view>
+          </ll-envelope-address>
+          <ll-envelope-trigger aria-label="Read the letter from The Stationer" />
+        </ll-envelope-front>
+        <ll-envelope-letter>
+          <view class="script-h3">Dear Ada,</view>
+          <view class="panel-note">The flap is up and the letter comes out from behind the front.</view>
+        </ll-envelope-letter>
+      </ll-envelope>
+      <view class="row" aria-live="polite"><view wx:if="{{said}}" class="said">{{said}}</view></view>
+    </view>
+
+    <view class="sub-h3">Manila, white, airmail</view>
+    <view class="sec-desc">Kraft (the default), white paper with a sky-blue stamp, and an airmail envelope with its striped border. Each stamp is perforated; each has a postmark over it.</view>
+    <view class="env-grid">
+      <view class="env-cell">
+        <ll-envelope id="env-a" seed="a" tilt="-1" custom-style="max-width:208px;">
+          <ll-envelope-front>
+            <ll-envelope-address custom-style="font-size:15px;">
+              <view>The Stationer</view>
+              <view>High Street</view>
+            </ll-envelope-address>
+            <ll-envelope-trigger aria-label="Open the letter from Ada" />
+          </ll-envelope-front>
+          <ll-envelope-letter><view class="panel-note">hello</view></ll-envelope-letter>
+        </ll-envelope>
+      </view>
+      <view class="env-cell">
+        <ll-envelope id="env-b" seed="b" stock="paper" stamp="sky" tilt="0.8" custom-style="max-width:208px;">
+          <ll-envelope-front>
+            <ll-envelope-address custom-style="font-size:15px;">
+              <view>Marguerite</view>
+              <view>Lyon</view>
+            </ll-envelope-address>
+            <ll-envelope-trigger aria-label="Open the letter for Marguerite" />
+          </ll-envelope-front>
+          <ll-envelope-letter><view class="panel-note">hello</view></ll-envelope-letter>
+        </ll-envelope>
+      </view>
+      <view class="env-cell">
+        <ll-envelope id="env-c" seed="c" stock="paper" airmail stamp="tangerine" tilt="-0.6" custom-style="max-width:208px;">
+          <ll-envelope-front custom-style="padding-left:15%;padding-bottom:13%;">
+            <ll-envelope-address custom-style="font-size:15px;">
+              <view>Ms. A. Lovelace</view>
+              <view>Par avion</view>
+            </ll-envelope-address>
+            <ll-envelope-trigger aria-label="Open the airmail letter" />
+          </ll-envelope-front>
+          <ll-envelope-letter><view class="panel-note">hello</view></ll-envelope-letter>
+        </ll-envelope>
+      </view>
+    </view>
+
+    <view class="sub-h3">An inbox</view>
+    <view class="sec-desc">A real use: messages that arrive as envelopes. Opening one marks it read; only one is open at a time. State lives in your app; the envelope only shows it.</view>
+    <view class="env-inbox">
+      <block wx:for="{{mail}}" wx:key="id">
+        <ll-envelope
+          id="env-{{item.id}}"
+          seed="{{item.id}}"
+          stamp="{{item.stamp}}"
+          open="{{openId === item.id}}"
+          bind:openchange="onEnvelope"
+          data-id="{{item.id}}"
+        >
+          <ll-envelope-front>
+            <ll-envelope-sender>{{item.from}}</ll-envelope-sender>
+            <ll-envelope-address custom-style="font-size:15px;">
+              <view>{{item.to}}</view>
+              <view>{{item.read ? 'read' : 'unread'}}</view>
+            </ll-envelope-address>
+            <ll-envelope-trigger aria-label="{{item.read ? 'Reopen' : 'Open'}} the letter from {{item.from}}" />
+          </ll-envelope-front>
+          <ll-envelope-letter>
+            <view class="script-h3">Dear you,</view>
+            <view class="panel-note">{{item.line}}</view>
+          </ll-envelope-letter>
+        </ll-envelope>
+      </block>
+      <view class="row" aria-live="polite"><view wx:if="{{inboxSaid}}" class="said">{{inboxSaid}}</view></view>
+    </view>
+  </view>
+</view>

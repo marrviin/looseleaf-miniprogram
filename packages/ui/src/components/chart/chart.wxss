@@ -1,0 +1,209 @@
+/* ll-chart — the drawn sheet. The stage is a measured box; the ink engine
+   renders the whole chart into one SVG data-URI behind it, and the axis /
+   value labels are real DOM text positioned by layoutChart. Cursors and
+   the tooltip slip sit above the ink; legend buttons toggle series. */
+:host {
+  display: block;
+}
+.ll-chart {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 440rpx;
+  font-family: 'Kevin Sans', sans-serif;
+  color: #2a2420;
+}
+.ll-chart--gauge {
+  height: 260rpx;
+}
+.ll-chart--cal {
+  height: 180rpx;
+}
+.ll-chart--spark {
+  height: 80rpx;
+}
+
+.ll-chart__stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  isolation: isolate;
+}
+.ll-chart__ink {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  pointer-events: none;
+}
+.ll-chart__cursor-ink {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  pointer-events: none;
+}
+.ll-chart__cursors {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.ll-chart__cursors--behind {
+  z-index: -1;
+}
+.ll-chart__cursors--above {
+  z-index: 10;
+}
+.ll-chart__cursor {
+  position: absolute;
+  display: block;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.ll-chart__labels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+.ll-chart__label {
+  position: absolute;
+  white-space: nowrap;
+  line-height: 1.1;
+  font-weight: 600;
+  color: #2a2420;
+}
+.ll-chart__label.is-muted {
+  color: #8a857c;
+  font-weight: 500;
+}
+.ll-chart__label.is-pen {
+  color: #5b74e8;
+}
+.ll-chart__label--ref,
+.ll-chart__label--note {
+  font-style: italic;
+}
+.ll-chart__label--cat,
+.ll-chart__label--value {
+  font-weight: 700;
+}
+
+.ll-chart__center {
+  position: absolute;
+  z-index: 5;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  line-height: 1;
+  pointer-events: none;
+}
+.ll-chart__center-value {
+  font-size: 56rpx;
+  font-weight: 700;
+  color: #2a2420;
+  font-variant-numeric: tabular-nums;
+}
+.ll-chart__center-label {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: #8a857c;
+}
+
+/* the tooltip slip — a small index card pinned near the anchor */
+.ll-chart__tip {
+  position: absolute;
+  z-index: 20;
+  transform: translate(-50%, calc(-100% - 20rpx));
+  min-width: 180rpx;
+  max-width: 420rpx;
+  padding: 14rpx 20rpx;
+  background: #fffdf6;
+  border: 2rpx solid #d8d2c4;
+  border-radius: 10rpx 14rpx 12rpx 10rpx;
+  box-shadow: 3rpx 5rpx 0 rgba(42, 36, 32, 0.12);
+  pointer-events: none;
+}
+.ll-chart__tip.is-below {
+  transform: translate(-50%, 20rpx);
+}
+.ll-chart__tip-head {
+  font-size: 22rpx;
+  font-weight: 700;
+  color: #8a857c;
+  margin-bottom: 6rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ll-chart__tip-row {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  font-size: 24rpx;
+  line-height: 1.5;
+}
+.ll-chart__tip-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 4rpx;
+  border: 2rpx solid rgba(42, 36, 32, 0.55);
+  flex-shrink: 0;
+}
+.ll-chart__tip-name {
+  color: #4a433c;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.ll-chart__tip-val {
+  margin-left: auto;
+  font-weight: 700;
+  color: #2a2420;
+  font-variant-numeric: tabular-nums;
+  padding-left: 16rpx;
+}
+
+/* legend — swatch buttons that toggle series off */
+.ll-chart__legend {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rpx 28rpx;
+  justify-content: center;
+  margin-top: 12rpx;
+  flex-shrink: 0;
+  z-index: 3;
+}
+.ll-chart__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10rpx;
+  padding: 4rpx 6rpx;
+}
+.ll-chart__legend-item.is-off {
+  opacity: 0.4;
+}
+.ll-chart__legend-item.is-off .ll-chart__legend-name {
+  text-decoration: line-through;
+}
+.ll-chart__swatch {
+  position: relative;
+  width: 28rpx;
+  height: 28rpx;
+}
+.ll-chart__swatch--line {
+  width: 44rpx;
+}
+.ll-chart__swatch-ink {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-chart__legend-name {
+  font-size: 24rpx;
+  color: #4a433c;
+}

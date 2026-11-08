@@ -1,0 +1,2 @@
+<!-- ll-folder-tabs — the strip of tabs along the folder's top edge -->
+<view class="ll-folder-tabs ll-class" style="{{customStyle}}"><slot /></view>

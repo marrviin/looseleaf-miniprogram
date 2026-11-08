@@ -1,0 +1,40 @@
+/* ll-envelope — the back sheet and the spacer it opens against */
+/* @ll-import tokens */
+.ll-envelope {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 384px;
+  font-family: 'Kevin Sans', 'PingFang SC', sans-serif;
+  color: var(--ll-ink);
+}
+.ll-envelope__spacer {
+  width: 100%;
+  transition: padding-top 0.3s ease;
+}
+.ll-envelope__body {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  aspect-ratio: 8 / 5;
+}
+.ll-envelope__sheet {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+/* faced ink sandwich (see paper.wxss) */
+.ll-ink-face,
+.ll-ink-cast,
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.ll-ink-layer {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-ink-cast {
+  inset: auto;
+}

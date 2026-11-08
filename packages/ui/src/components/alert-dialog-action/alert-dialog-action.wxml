@@ -1,0 +1,8 @@
+<!-- ll-alert-dialog-action — a Button; its tap bubbles as alert-action. -->
+<ll-button
+  variant="{{variant}}"
+  size="{{size}}"
+  disabled="{{disabled}}"
+  aria-label="{{ariaLabel}}"
+  bind:tap="onTap"
+><slot /></ll-button>

@@ -1,0 +1,7 @@
+/* ll-command-separator — pointer-events-none -mx-1 my-1 w-auto. */
+.ll-command-separator {
+  width: auto;
+  height: 1px;
+  margin: 8rpx -8rpx; /* my-1 -mx-1 */
+  pointer-events: none;
+}

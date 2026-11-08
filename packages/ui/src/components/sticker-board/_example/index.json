@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-sticker-board": "../sticker-board/sticker-board",
+    "ll-sticker-picker": "../sticker-picker/sticker-picker",
+    "ll-sticker": "../sticker/sticker",
+    "ll-button": "../button/button",
+    "ll-icon": "../icon/icon",
+    "ll-paper": "../paper/paper"
+  }
+}

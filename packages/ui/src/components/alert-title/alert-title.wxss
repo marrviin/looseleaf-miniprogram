@@ -1,0 +1,10 @@
+/* ll-alert-title */
+/* @ll-import tokens */
+.ll-alert-title {
+  grid-column: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-height: 16px;
+  font-weight: 700;
+}

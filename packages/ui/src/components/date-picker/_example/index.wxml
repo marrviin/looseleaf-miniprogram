@@ -1,0 +1,130 @@
+<!-- ll-date-picker demo — mirrors the upstream docs page
+     (#/components/date-picker). Fixed dates everywhere (today is
+     2026-09-15), like the upstream pages. The hidden-input form submit of
+     example 05 is folded: the summary reads the page state. -->
+<view class="demo">
+  <view class="demo-title">Date Picker</view>
+  <view class="sec-desc">A date field with a calendar on a slip: type a date (Sep 17, 2026, 9/17/26, 2026-09-17, tomorrow) or open the calendar and circle one; presets sit in a row beside it; the range version takes two months when the screen allows and closes when you have chosen both ends. Dates cross the boundary as YYYY-MM-DD strings.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Type it or pick it</view>
+    <view class="sec-desc">Type a date any way you would write it and press done (or leave the field), or open the calendar and circle a day. Days before the 3rd are hatched out, so typing one turns the box red. Try "tomorrow", "2026-09-20", or a nonsense like "someday".</view>
+    <view class="col">
+      <ll-label for="due-date">Due date</ll-label>
+      <ll-date-picker
+        id="due-date"
+        value="{{due}}"
+        min="2026-09-03"
+        today="2026-09-15"
+        default-month="2026-09"
+        aria-label="Due date"
+        bindchange="onDue"
+      />
+      <view class="said-line" aria-live="polite">{{dueSaid}}</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">With presets</view>
+    <view class="sec-desc">A row of shortcuts in the slip. Presets can be keywords — today, tomorrow, in-a-week, next-month — so "in a week" is worked out when you choose it, not when the page was drawn.</view>
+    <view class="col">
+      <ll-label for="remind">Remind me</ll-label>
+      <ll-date-picker
+        id="remind"
+        value="{{remind}}"
+        placeholder="Pick a day"
+        today="2026-09-15"
+        presets="{{[{ label: 'Today', value: 'today' }, { label: 'Tomorrow', value: 'tomorrow' }, { label: 'In a week', value: 'in-a-week' }, { label: 'Next month', value: 'next-month' }]}}"
+        bindchange="onRemind"
+      />
+      <view class="said-line" aria-live="polite">{{remind ? 'Reminder on ' + remind + '.' : 'No reminder yet.'}}</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">A date range</view>
+    <view class="sec-desc">Two ends in one field. Type "Sep 9, 2026 to Sep 24, 2026" or open the slip: each week of the range gets one highlighter swipe, and the slip puts itself away when the second end is chosen (one month at a time on a phone).</view>
+    <view class="col">
+      <ll-label for="stay">Dates</ll-label>
+      <ll-date-picker
+        id="stay"
+        mode="range"
+        value="{{stay}}"
+        today="2026-09-15"
+        default-month="2026-09"
+        presets="{{stayPresets}}"
+        bindchange="onStay"
+      />
+      <view class="said-line" aria-live="polite">{{staySaid}}</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">As a button</view>
+    <view class="sec-desc">typeable="{{false}}" makes the whole field a button that shows the date, like a Select. Below it: invalid, disabled, and a dropdown caption for far-away dates such as birthdays.</view>
+    <view class="col col--stack">
+      <view class="col">
+        <ll-label for="born">Date of birth</ll-label>
+        <ll-date-picker
+          id="born"
+          typeable="{{false}}"
+          value="{{born}}"
+          placeholder="Pick your birthday"
+          max="2026-09-15"
+          caption-layout="dropdown"
+          start-month="1930-01"
+          end-month="2026-09"
+          default-month="1990-06"
+          today="2026-09-15"
+          bindchange="onBorn"
+        />
+        <view class="said-line" aria-live="polite">{{born ? 'Born ' + born + '.' : 'No birthday picked.'}}</view>
+      </view>
+      <view class="col">
+        <ll-label for="ship">Ship by</ll-label>
+        <ll-date-picker id="ship" typeable="{{false}}" invalid default-value="2026-09-30" />
+      </view>
+      <view class="col">
+        <ll-label for="closed">Closed on</ll-label>
+        <ll-date-picker id="closed" typeable="{{false}}" disabled default-value="2026-12-25" />
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Reserve a table</view>
+    <view class="sec-desc">In a real form: Mondays are closed, so they are hatched and refused when typed, and the summary reads what would be submitted.</view>
+    <view class="center-stage">
+      <ll-card seed="reserve" tape="corner" custom-style="width:100%;max-width:600rpx">
+        <ll-card-header>
+          <ll-card-title>Reserve a table</ll-card-title>
+          <ll-card-description>We are closed on Mondays.</ll-card-description>
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;flex-direction:column;gap:28rpx">
+          <view class="col">
+            <ll-label for="res-date">Day</ll-label>
+            <ll-date-picker
+              id="res-date"
+              value="{{res}}"
+              min="2026-09-15"
+              disabled-dates="{{[{ dayOfWeek: [1] }]}}"
+              today="2026-09-15"
+              default-month="2026-09"
+              bindchange="onRes"
+            />
+          </view>
+          <view class="col">
+            <ll-label for="res-time">Time</ll-label>
+            <ll-native-select id="res-time" options="{{times}}" value="{{time}}" bindchange="onTime" />
+          </view>
+        </ll-card-content>
+        <ll-card-footer custom-style="justify-content:space-between;gap:24rpx">
+          <view class="said-line" aria-live="polite">{{sent || 'Nothing sent yet.'}}</view>
+          <ll-button bind:tap="onReserve">Reserve</ll-button>
+        </ll-card-footer>
+      </ll-card>
+    </view>
+  </view>
+</view>

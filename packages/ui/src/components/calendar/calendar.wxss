@@ -1,0 +1,162 @@
+.ll-cal {
+  display: block;
+  min-width: 0;
+  --ll-cal-cell: 80rpx; /* [--cell:2.5rem] */
+  --ll-cal-wn: 64rpx; /* [--wn:2rem] */
+}
+.ll-cal__bare {
+  padding: 24rpx; /* p-3 */
+}
+.ll-cal__months {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40rpx; /* gap-5 */
+}
+.ll-cal__month {
+  display: flex;
+  flex-direction: column;
+}
+
+/* caption row: prev | caption | next */
+.ll-cal__head {
+  display: flex;
+  align-items: center;
+  height: var(--ll-cal-cell);
+  position: relative;
+  z-index: 8;
+}
+.ll-cal__cap {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20rpx; /* gap-2.5 */
+}
+.ll-cal__caplabel {
+  font-family: 'Kevin Sans', 'PingFang SC', sans-serif; /* font-script */
+  font-size: 46rpx; /* text-[1.65rem] */
+  font-weight: 600;
+  line-height: 1;
+  color: #2a2420;
+  white-space: nowrap;
+}
+
+/* the ruled grid; ink layer (z 0) under the rows (z 1) */
+.ll-cal__table {
+  position: relative;
+  isolation: isolate;
+}
+.ll-cal__gridink {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-cal__thead,
+.ll-cal__week {
+  position: relative;
+  z-index: 1;
+  display: flex;
+}
+.ll-cal__thead {
+  height: 56rpx; /* CALENDAR_HEAD 28px */
+}
+.ll-cal__wd {
+  width: var(--ll-cal-cell);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'IBM Plex Mono', monospace; /* font-type */
+  font-size: 22rpx; /* text-[0.78rem] */
+  color: #5a554e;
+}
+.ll-cal__week {
+  height: var(--ll-cal-cell);
+}
+.ll-cal__wn {
+  width: var(--ll-cal-wn);
+  padding-right: 16rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 22rpx;
+  color: #5a554e;
+}
+.ll-cal__td {
+  position: relative;
+  width: var(--ll-cal-cell);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2a2420;
+}
+
+/* the one-row highlighter swipe (td::before, inset 6px 0) */
+.ll-cal__band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 12rpx;
+  bottom: 12rpx;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.ll-cal__btn {
+  position: relative;
+  isolation: isolate;
+  width: calc(100% - 12rpx);
+  height: calc(100% - 12rpx);
+  margin: 6rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Kevin Sans', 'PingFang SC', sans-serif; /* font-script */
+  font-size: 36rpx; /* text-[1.3rem] */
+  font-weight: 600;
+  line-height: 1;
+}
+.ll-cal__btn--range {
+  font-weight: 700;
+}
+.ll-cal__btn--out {
+  color: #5a554e; /* data-outside:text-pencil-text */
+  font-weight: 400;
+}
+.ll-cal__btn--dis {
+  color: #5a554e;
+}
+.ll-cal__num {
+  position: relative;
+  z-index: 1;
+}
+
+/* selected/today/disabled layers inside the button (upstream ::before /
+   ::after with tile masks); geometry comes from the inline style */
+.ll-cal__layer {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+.ll-cal__today {
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  bottom: 11%;
+  height: 22%;
+  pointer-events: none;
+}
+
+.ll-cal__footer {
+  margin-top: 16rpx;
+  text-align: center;
+  font-family: 'Kevin Sans', 'PingFang SC', sans-serif;
+  font-size: 24rpx;
+  color: #4a433c;
+}

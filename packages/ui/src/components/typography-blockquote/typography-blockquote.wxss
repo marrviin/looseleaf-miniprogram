@@ -1,0 +1,23 @@
+/* ll-typography-blockquote */
+/* @ll-import tokens */
+.ll-typography-blockquote {
+  position: relative;
+  margin-top: 24px;
+  padding-left: 20px;
+}
+.ll-typography-blockquote__bar {
+  position: absolute;
+  left: 0;
+  top: 2px;
+  bottom: 2px;
+  width: 8px;
+  background: var(--ll-marker, #6b6459);
+  opacity: 0.8;
+  pointer-events: none;
+}
+.ll-typography-blockquote__text {
+  font-family: 'Kevin Sans Script', 'Kevin Sans', 'Bradley Hand', cursive;
+  font-size: 24px;
+  line-height: 1.35;
+  color: var(--ll-ink-soft, #4a433c);
+}

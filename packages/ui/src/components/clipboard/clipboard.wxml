@@ -1,0 +1,26 @@
+<!-- ll-clipboard — the board (ink layer behind), one sheet of paper
+     (ll-paper, tucked up under the clip like upstream ClipboardPaper),
+     the metal clip prop on top. -->
+<view
+  class="ll-clipboard ll-class"
+  style="{{customStyle}}"
+  aria-role="img"
+  aria-label="{{ariaLabel}}"
+>
+  <view class="ll-clipboard__board" aria-hidden="true">
+    <view class="ll-ink-cast" wx:for="{{inkCasts}}" wx:key="index" style="{{item}}" />
+    <view class="ll-ink-layer" style="{{inkUnderStyle}}" />
+    <view class="ll-ink-face" wx:for="{{inkFaces}}" wx:key="index" style="{{item}}" />
+    <view class="ll-ink-layer" style="{{inkOverStyle}}" />
+  </view>
+  <ll-paper
+    stock="{{stock}}"
+    rules="{{rules}}"
+    tilt="{{tilt}}"
+    seed="{{seed}}"
+    custom-style="width:100%;box-sizing:border-box;margin-top:-24px;min-height:256px;padding:72px 20px 20px 56px;"
+  >
+    <slot />
+  </ll-paper>
+  <view class="ll-clipboard__clip" style="{{clipStyle}}" aria-hidden="true" />
+</view>

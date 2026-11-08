@@ -1,0 +1,14 @@
+/* ll-aspect-ratio — percentage-padding ratio box */
+.ll-aspect-ratio {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+.ll-aspect-ratio__spacer {
+  width: 100%;
+}
+.ll-aspect-ratio__body {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}

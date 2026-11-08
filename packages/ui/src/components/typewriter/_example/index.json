@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-typewriter": "looseleaf-miniprogram/components/typewriter/typewriter",
+    "ll-button": "looseleaf-miniprogram/components/button/button",
+    "ll-paper": "looseleaf-miniprogram/components/paper/paper"
+  }
+}

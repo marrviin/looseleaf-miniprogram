@@ -1,0 +1,13 @@
+/* ll-attachment-group */
+/* @ll-import tokens */
+.ll-attachment-group {
+  display: flex;
+  min-width: 0;
+  width: 100%;
+}
+.ll-attachment-group__row {
+  display: flex;
+  gap: 12px;
+  padding: 16px 12px 12px;
+  width: max-content;
+}

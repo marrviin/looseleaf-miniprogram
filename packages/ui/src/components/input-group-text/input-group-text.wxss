@@ -1,0 +1,11 @@
+/* ll-input-group-text — muted addon text. */
+/* @ll-import tokens */
+
+.ll-ig-text {
+  display: flex;
+  align-items: center;
+  gap: 16rpx; /* gap-2 */
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 26rpx; /* text-[15px] x .88 */
+  color: #8a857c; /* text-muted-foreground */
+}

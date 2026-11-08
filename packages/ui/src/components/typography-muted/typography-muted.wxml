@@ -1,0 +1,2 @@
+<!-- ll-typography-muted -->
+<view class="ll-typography-muted" style="{{customStyle}}"><slot /></view>

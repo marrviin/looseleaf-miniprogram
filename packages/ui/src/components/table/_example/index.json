@@ -1,0 +1,31 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-table": "../table/table",
+    "ll-table-header": "../table-header/table-header",
+    "ll-table-body": "../table-body/table-body",
+    "ll-table-footer": "../table-footer/table-footer",
+    "ll-table-row": "../table-row/table-row",
+    "ll-table-head": "../table-head/table-head",
+    "ll-table-cell": "../table-cell/table-cell",
+    "ll-table-caption": "../table-caption/table-caption",
+    "ll-card": "../card/card",
+    "ll-card-content": "../card-content/card-content",
+    "ll-card-header": "../card-header/card-header",
+    "ll-card-title": "../card-title/card-title",
+    "ll-card-description": "../card-description/card-description",
+    "ll-card-footer": "../card-footer/card-footer",
+    "ll-avatar": "../avatar/avatar",
+    "ll-avatar-fallback": "../avatar-fallback/avatar-fallback",
+    "ll-avatar-badge": "../avatar-badge/avatar-badge",
+    "ll-button": "../button/button",
+    "ll-checkbox": "../checkbox/checkbox",
+    "ll-icon": "../icon/icon",
+    "ll-input": "../input/input",
+    "ll-dropdown-menu": "../dropdown-menu/dropdown-menu",
+    "ll-dropdown-menu-label": "../dropdown-menu-label/dropdown-menu-label",
+    "ll-dropdown-menu-item": "../dropdown-menu-item/dropdown-menu-item",
+    "ll-dropdown-menu-separator": "../dropdown-menu-separator/dropdown-menu-separator",
+    "ll-dropdown-menu-checkbox-item": "../dropdown-menu-checkbox-item/dropdown-menu-checkbox-item"
+  }
+}

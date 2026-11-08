@@ -1,0 +1,2 @@
+<!-- ll-folder -->
+<view class="ll-folder ll-class" style="{{customStyle}}"><slot /></view>

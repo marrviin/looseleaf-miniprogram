@@ -1,0 +1,99 @@
+<!-- ll-date-picker — trigger: the select field frame (select recipe, the
+     invalid layer replaces rest) around a real input and a ghost calendar
+     button; typeable={false} makes the whole field the button. Slip: the
+     preset row over the ll-calendar, popper-placed. -->
+<view
+  class="ll-dp {{typeable ? '' : 'll-dp--btn'}} {{disabled ? 'll-dp--disabled' : ''}} ll-class"
+  style="{{customStyle}}"
+  catchtap="{{typeable ? 'noop' : 'onTriggerTap'}}"
+  bindtouchstart="__inkTouchStart"
+  bindtouchend="__inkTouchEnd"
+  bindtouchcancel="__inkTouchEnd"
+  aria-role="{{typeable ? 'group' : 'button'}}"
+  aria-disabled="{{disabled || readOnly}}"
+  aria-label="{{typeable ? '' : (shown || ph)}}"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <block wx:if="{{typeable}}">
+    <input
+      class="ll-dp__control"
+      value="{{shown}}"
+      placeholder="{{ph}}"
+      placeholder-class="ll-dp__placeholder"
+      disabled="{{disabled || readOnly}}"
+      maxlength="-1"
+      aria-label="{{ariaLabel || ph}}"
+      aria-invalid="{{bad || invalid}}"
+      bindinput="onInput"
+      bindfocus="onFocus"
+      bindblur="onBlur"
+      bindconfirm="onConfirm"
+    />
+    <view
+      class="ll-dp__calbtn"
+      hover-class="ll-dp__calbtn--hi"
+      hover-start-time="0"
+      hover-stay-time="80"
+      catchtap="onTriggerTap"
+      aria-role="button"
+      aria-label="{{calLabel}}"
+      aria-expanded="{{visible}}"
+    >
+      <ll-icon name="calendar" size="{{16}}" ink="{{disabled || readOnly ? '#5a554e' : '#4a423b'}}" />
+    </view>
+  </block>
+  <block wx:else>
+    <text class="ll-dp__value {{hasValue ? '' : 'll-dp__value--ph'}}">{{shown || ph}}</text>
+    <view class="ll-dp__calico">
+      <ll-icon name="calendar" size="{{16}}" ink="{{disabled || readOnly ? '#5a554e' : '#8a857c'}}" />
+    </view>
+  </block>
+</view>
+
+<block wx:if="{{visible}}">
+  <view class="ll-dp__catcher" catch:touchmove="noop" catch:tap="onOutsideTap" />
+  <view
+    class="ll-dp__panel {{closing ? 'll-dp__panel--closing' : ''}} {{placed ? '' : 'is-placing'}}"
+    style="{{panelStyle}}"
+    catchtap="noop"
+    aria-role="dialog"
+    aria-label="{{calLabel}}"
+  >
+    <ll-paper
+      stock="slip"
+      rules="none"
+      seed="{{seed}}"
+      custom-style="position:relative;display:block;width:100%;box-sizing:border-box;"
+    >
+      <view wx:if="{{presets.length}}" class="ll-dp__presets" aria-role="group" aria-label="Presets">
+        <ll-button
+          wx:for="{{presets}}"
+          wx:key="label"
+          variant="ghost"
+          size="sm"
+          custom-style="justify-content:flex-start;flex:none"
+          data-i="{{index}}"
+          bind:tap="onPresetTap"
+        >{{item.label}}</ll-button>
+      </view>
+      <view class="ll-dp__calwrap">
+        <ll-calendar
+          mode="{{mode}}"
+          value="{{value}}"
+          today="{{today}}"
+          default-month="{{defaultMonth}}"
+          disabled="{{calDisabled}}"
+          number-of-months="{{calMonths}}"
+          show-week-number="{{showWeekNumber}}"
+          caption-layout="{{captionLayout}}"
+          week-starts-on="{{weekStartsOn}}"
+          start-month="{{startMonth}}"
+          end-month="{{endMonth}}"
+          ruled
+          seed="{{seed}}"
+          bindchange="onCalChange"
+        />
+      </view>
+    </ll-paper>
+  </view>
+</block>

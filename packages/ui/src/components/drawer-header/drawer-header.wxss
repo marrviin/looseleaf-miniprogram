@@ -1,0 +1,18 @@
+/* ll-drawer-header — flex flex-col gap-0.5 p-4; bottom drawers pt-6 and
+   centered (upstream group-data direction rules). */
+/* @ll-import tokens */
+.ll-drawer-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx; /* gap-0.5 */
+  padding: 32rpx; /* p-4 */
+  font-family: 'Kevin Sans', sans-serif;
+}
+.ll-drawer-header--centered {
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .ll-drawer-header {
+    gap: 12rpx; /* md:gap-1.5 */
+  }
+}

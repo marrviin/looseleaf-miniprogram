@@ -1,0 +1,2 @@
+<!-- ll-drawer-description -->
+<view class="ll-drawer-description ll-class" style="{{customStyle}}"><slot /></view>

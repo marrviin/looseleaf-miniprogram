@@ -1,0 +1,33 @@
+<!-- ll-flip-card — a 3D turn between two paper faces. The faces are the
+     named slots front/back (each on its own sheet); with trigger on, the
+     whole card is the tap target and carries the pencil corner-arrow hint. -->
+<view
+  class="ll-flip-card {{flippedNow ? 'is-flipped' : ''}} {{touched ? 'is-touched' : ''}} {{axis === 'x' ? 'is-x' : ''}} ll-class"
+  style="{{customStyle}}"
+>
+  <view class="ll-flip-card__inner">
+    <view class="ll-flip-card__face ll-flip-card__face--front" aria-hidden="{{flippedNow}}">
+      <ll-paper stock="{{frontStock}}" edge="cut" tilt="{{false}}" custom-style="width:100%;height:100%">
+        <view class="ll-flip-card__body">
+          <slot name="front"></slot>
+        </view>
+      </ll-paper>
+    </view>
+    <view class="ll-flip-card__face ll-flip-card__face--back" aria-hidden="{{!flippedNow}}">
+      <ll-paper stock="{{backStock}}" edge="cut" tilt="{{false}}" custom-style="width:100%;height:100%">
+        <view class="ll-flip-card__body">
+          <slot name="back"></slot>
+        </view>
+      </ll-paper>
+    </view>
+  </view>
+  <view
+    wx:if="{{trigger}}"
+    class="ll-flip-card__trigger"
+    style="{{hintStyle}}"
+    bind:tap="onToggle"
+    aria-role="button"
+    aria-label="{{label}}"
+    aria-checked="{{flippedNow}}"
+  ></view>
+</view>

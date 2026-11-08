@@ -1,0 +1,156 @@
+.demo {
+  padding: 32rpx;
+  background: var(--ll-paper, #f8f5ee);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+.sec {
+  margin-top: 40rpx;
+}
+.sec-h2 {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin-bottom: 12rpx;
+}
+.sub-h3 {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin: 28rpx 0 6rpx;
+}
+.sec-desc {
+  font-size: 24rpx;
+  color: #8a857c;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx;
+  padding: 16rpx 0;
+}
+/* w-full max-w-2xl = 42rem = 672px */
+.w2xl {
+  max-width: 1344rpx;
+}
+.ll-num {
+  font-variant-numeric: tabular-nums;
+}
+.card-note {
+  margin-top: 24rpx;
+  font-size: 24rpx;
+  color: #8a857c;
+}
+
+/* 04: person cell — face + name/email column (upstream flex gap-3,
+   grid leading-tight; text-sm = 14px = 25rpx) */
+.person {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+.person-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+.person-name {
+  font-weight: 700;
+}
+.person-email {
+  font-size: 24rpx;
+  color: var(--muted-foreground, #4a433c);
+}
+.card-foot-note {
+  font-size: 24rpx;
+  color: var(--muted-foreground, #4a433c);
+}
+
+/* 02: the bare sort button inside a TableHead (upstream <button> with
+   hover:ll-swipe; no hover here) */
+.sortbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4rpx;
+  margin: 0 -16rpx;
+  padding: 8rpx 16rpx;
+}
+.sortbtn.end {
+  flex-direction: row;
+}
+/* 02: status tones (text-green / text-muted-foreground / text-red; a
+   chosen row writes its status in ink) */
+.tone-green {
+  color: var(--ll-green, #3b7a4b);
+}
+.tone-muted {
+  color: var(--muted-foreground, #4a433c);
+}
+.tone-red {
+  color: var(--ll-red, #c2412d);
+}
+.tone-ink {
+  color: var(--ll-ink, #2a2420);
+}
+/* 02/51: the bar under the table — N of M chosen · page X of Y + pagers */
+.tfoot-bar {
+  margin-top: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32rpx;
+  font-size: 24rpx;
+}
+.muted {
+  color: var(--muted-foreground, #4a433c);
+}
+.pagers {
+  display: flex;
+  gap: 16rpx;
+  flex-shrink: 0;
+}
+
+/* 51: toolbar (input + Columns menu), text transforms, empty state */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  padding: 32rpx 0;
+}
+.toolbar ll-input {
+  flex: 1;
+}
+.cap {
+  text-transform: capitalize;
+}
+.low {
+  text-transform: lowercase;
+}
+.medium {
+  font-weight: 500;
+}
+.end {
+  text-align: right;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+/* upstream h-24 text-center inside the table; div-tables have no colspan,
+   so the empty line sits under the table */
+.noresults {
+  height: 96rpx;
+  line-height: 96rpx;
+  text-align: center;
+  color: var(--muted-foreground, #4a433c);
+}

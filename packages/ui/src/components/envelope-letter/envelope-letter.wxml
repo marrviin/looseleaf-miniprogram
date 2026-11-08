@@ -1,0 +1,13 @@
+<!-- ll-envelope-letter -->
+<view class="ll-envelope-letter ll-class {{open ? 'is-open' : ''}}" style="{{customStyle}}">
+  <ll-paper
+    class="ll-envelope-letter__paper"
+    stock="{{stock}}"
+    rules="{{rules}}"
+    tilt="{{false}}"
+    seed="{{seed}}"
+    custom-style="width:100%;height:100%;box-sizing:border-box;padding:20px;"
+  >
+    <slot />
+  </ll-paper>
+</view>

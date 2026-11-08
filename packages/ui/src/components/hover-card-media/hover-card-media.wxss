@@ -1,0 +1,38 @@
+/* ll-hover-card-media — h-28 w-full rounded-md bg-paper-shade/60 p-2;
+   the drawn pencil box sits behind the art. */
+/* @ll-import tokens */
+.ll-hover-card-media {
+  width: 100%;
+}
+
+/* the photo window (upstream h-28 = 112px, p-2 = 8px) */
+.ll-hover-card-media__frame {
+  position: relative;
+  isolation: isolate;
+  box-sizing: border-box;
+  height: 224rpx; /* h-28 */
+  padding: 16rpx; /* p-2 */
+  border-radius: 8rpx; /* rounded-md */
+  background-color: rgba(236, 230, 218, 0.6); /* bg-paper-shade/60 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ll-hover-card-media__art {
+  position: relative;
+  z-index: 1; /* the art rides above the ink layer */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ink overlay — common/ink.js draws the recipe at the element's real size
+   and injects an SVG data-URI background plus `inset: -<pad>px` inline. */
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

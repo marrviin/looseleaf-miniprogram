@@ -1,0 +1,8 @@
+<!-- ll-attachment-progress — track ink + the bar revealed through a
+     clipping window (width = pct of the track) -->
+<view class="ll-attachment-progress {{indeterminate ? 'is-indeterminate' : ''}}" style="{{customStyle}}">
+  <view class="ll-attachment-progress__track" style="{{trackUri ? 'background-image:url(' + trackUri + ');' : ''}}"></view>
+  <view class="ll-attachment-progress__window" style="width:{{pct}}%;">
+    <view class="ll-attachment-progress__bar" style="width:{{barW}}px;{{barUri ? 'background-image:url(' + barUri + ');' : ''}}"></view>
+  </view>
+</view>

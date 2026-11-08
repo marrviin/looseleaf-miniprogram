@@ -1,0 +1,51 @@
+<!-- ll-alert-dialog — the dim + the question sheet. No corner x (Radix
+     alertdialog), the dim tap doesn't dismiss; the bubbling
+     alert-action/alert-cancel events from the slot's answer buttons close
+     it. tone="danger" adds the hazard tape across the top corners (hidden
+     on phones, upstream max-sm). Fixed positioning (not root-portal:
+     portalled subtrees lose component wxss scope in the webview). -->
+<view wx:if="{{visible}}" class="ll-alert-dialog {{closing ? 'll-alert-dialog--closing' : ''}} {{size === 'sm' ? 'll-alert-dialog--sm' : ''}}">
+  <view class="ll-alert-dialog__overlay" catch:touchmove="noop" catch:tap="onOverlayTap" />
+  <view class="ll-alert-dialog__frame">
+    <view
+      class="ll-alert-dialog__sheet"
+      catch:tap="noop"
+      bind:alert-action="onAction"
+      bind:alert-cancel="onCancel"
+      aria-role="alertdialog"
+      aria-label="{{ariaLabel}}"
+    >
+      <ll-tape
+        wx:if="{{tone === 'danger' && !phone}}"
+        kind="washi-stripes"
+        color="tomato"
+        length="{{68}}"
+        height="{{20}}"
+        angle="{{-38}}"
+        seed="{{seed}}:hz-a"
+        custom-style="position:absolute;top:-16rpx;left:-56rpx;z-index:3;"
+      />
+      <ll-tape
+        wx:if="{{tone === 'danger' && !phone}}"
+        kind="washi-stripes"
+        color="tomato"
+        length="{{68}}"
+        height="{{20}}"
+        angle="{{36}}"
+        seed="{{seed}}:hz-b"
+        custom-style="position:absolute;top:-16rpx;right:-56rpx;z-index:3;"
+      />
+      <ll-paper
+        stock="{{stock}}"
+        edge="{{edge}}"
+        tilt="{{paperTilt}}"
+        rules="none"
+        shadow="{{shadow}}"
+        seed="{{seed}}"
+        custom-style="{{paperStyle}}"
+      >
+        <slot />
+      </ll-paper>
+    </view>
+  </view>
+</view>

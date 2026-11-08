@@ -1,0 +1,2 @@
+<!-- ll-typography-h1 — heading with the pencil rule -->
+<view class="ll-typography-h1 {{rule ? '' : 'no-rule'}}" style="{{customStyle}}"><slot /></view>

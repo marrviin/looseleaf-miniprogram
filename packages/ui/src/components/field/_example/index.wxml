@@ -1,0 +1,455 @@
+<!-- ll-field demo — mirrors the upstream docs page (#/components/field).
+     Upstream wires label↔control with htmlFor/id and group data attributes;
+     here the page owns all control state and passes controlled props
+     (checked/value/invalid), and choice-card taps come back as `tap`
+     events on ll-field-label. -->
+<view class="demo">
+  <view class="demo-title">Field</view>
+  <view class="sec-desc">The words around a control: a label, a help line, an error, a legend over a set of them. Nothing is drawn but the controls; Field is layout and words.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">A set of labeled controls: a legend in the script font, fields that stack label, control and help, and the gaps between them. Nothing is drawn but the controls; Field is layout and words.</view>
+    <view class="stack">
+      <view class="max-md">
+        <ll-field-set>
+          <ll-field-legend>Your notebook</ll-field-legend>
+          <ll-field-description>Everything is saved as you write, in pencil.</ll-field-description>
+          <ll-field-group>
+            <ll-field>
+              <ll-field-label for="nb-name">Name</ll-field-label>
+              <ll-input placeholder="Field notes" aria-label="Name" />
+              <ll-field-description>Shows on the spine. You can change it later.</ll-field-description>
+            </ll-field>
+            <ll-field>
+              <ll-field-label for="nb-about">About</ll-field-label>
+              <ll-textarea placeholder="What is it for?" aria-label="About" />
+            </ll-field>
+          </ll-field-group>
+        </ll-field-set>
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Orientations</view>
+    <view class="sec-desc">`vertical` (label above), `horizontal` (label beside a switch or checkbox, with FieldContent holding the words) and `responsive` (vertical until its FieldGroup is md wide — container queries don't exist here, so it stays stacked).</view>
+    <view class="stack">
+      <ll-field-group custom-style="max-width:596rpx">
+        <ll-field orientation="horizontal">
+          <ll-field-content>
+            <ll-field-label for="o-sync">Sync to the cloud</ll-field-label>
+            <ll-field-description>Keeps every page on all your devices.</ll-field-description>
+          </ll-field-content>
+          <ll-switch checked="{{syncOn}}" data-key="syncOn" bind:change="onSwitch" aria-label="Sync to the cloud" />
+        </ll-field>
+        <ll-field-separator />
+        <ll-field orientation="horizontal">
+          <ll-checkbox checked="{{termsOn}}" data-key="termsOn" bind:change="onCheck" aria-label="Accept the terms" />
+          <ll-field-content>
+            <ll-field-label for="o-terms">Accept the terms</ll-field-label>
+            <ll-field-description>You agree to the small print and the big print.</ll-field-description>
+          </ll-field-content>
+        </ll-field>
+        <ll-field-separator label="responsive" />
+        <ll-field orientation="responsive">
+          <ll-field-content>
+            <ll-field-title>Display name</ll-field-title>
+            <ll-field-description>Stacks on narrow boxes, sits in a row on wide ones.</ll-field-description>
+          </ll-field-content>
+          <ll-input placeholder="Ada" aria-label="Display name" custom-style="max-width:448rpx" />
+        </ll-field>
+      </ll-field-group>
+    </view>
+
+    <view class="sub-h3">Choice cards</view>
+    <view class="sec-desc">A FieldLabel around a whole Field becomes a hand-drawn card; when the radio or checkbox inside it is checked the card gets a highlighter wash and a felt box. Click anywhere on a card.</view>
+    <view class="stack">
+      <ll-field-group custom-style="max-width:768rpx">
+        <ll-field-set>
+          <ll-field-legend variant="label">Plan</ll-field-legend>
+          <ll-radio-group value="{{plan}}" data-key="plan" bind:change="onPick" aria-label="Plan" custom-style="display:flex;flex-direction:column;gap:24rpx">
+            <ll-field-label card checked="{{plan === 'starter'}}" data-plan="starter" bind:tap="onPlanCard" custom-style="padding:32rpx">
+              <ll-field orientation="horizontal">
+                <ll-field-content>
+                  <ll-field-title>Starter</ll-field-title>
+                  <ll-field-description>One notebook, one pen, no rush.</ll-field-description>
+                </ll-field-content>
+                <ll-radio value="starter" aria-label="Starter" />
+              </ll-field>
+            </ll-field-label>
+            <ll-field-label card checked="{{plan === 'studio'}}" data-plan="studio" bind:tap="onPlanCard" custom-style="padding:32rpx">
+              <ll-field orientation="horizontal">
+                <ll-field-content>
+                  <ll-field-title>Studio</ll-field-title>
+                  <ll-field-description>Ten notebooks and the good highlighters.</ll-field-description>
+                </ll-field-content>
+                <ll-radio value="studio" aria-label="Studio" />
+              </ll-field>
+            </ll-field-label>
+            <ll-field-label card checked="{{plan === 'workshop'}}" data-plan="workshop" bind:tap="onPlanCard" custom-style="padding:32rpx">
+              <ll-field orientation="horizontal">
+                <ll-field-content>
+                  <ll-field-title>Workshop</ll-field-title>
+                  <ll-field-description>A whole desk. Washi tape included.</ll-field-description>
+                </ll-field-content>
+                <ll-radio value="workshop" aria-label="Workshop" />
+              </ll-field>
+            </ll-field-label>
+          </ll-radio-group>
+        </ll-field-set>
+        <ll-field-label card checked="{{newsOn}}" bind:tap="onNewsCard" custom-style="padding:32rpx">
+          <ll-field orientation="horizontal">
+            <ll-checkbox checked="{{newsOn}}" aria-label="Field notes newsletter" />
+            <ll-field-content>
+              <ll-field-title>Field notes newsletter</ll-field-title>
+              <ll-field-description>Twice a month, always in pencil.</ll-field-description>
+            </ll-field-content>
+          </ll-field>
+        </ll-field-label>
+      </ll-field-group>
+    </view>
+
+    <view class="sub-h3">Errors and validation</view>
+    <view class="sec-desc">`FieldError` takes children or an `errors` array: one message is text, several are a list, duplicates collapse. It is announced as an alert and wears a wavy red pencil underline; `data-invalid` on the Field turns the label red, `aria-invalid` on the control draws its box red.</view>
+    <view class="stack">
+      <ll-field-group custom-style="max-width:768rpx">
+        <ll-field invalid="{{emailErrs.length > 0}}">
+          <ll-field-label for="er-email" invalid="{{emailErrs.length > 0}}">Email</ll-field-label>
+          <ll-input value="{{email}}" invalid="{{emailErrs.length > 0}}" bindinput="onEmail" aria-label="Email" />
+          <ll-field-error id="errEmail" errors="{{emailErrs}}" />
+        </ll-field>
+        <ll-field invalid="{{passErrs.length > 0}}">
+          <ll-field-label for="er-pass" invalid="{{passErrs.length > 0}}">Password</ll-field-label>
+          <ll-input value="{{pass}}" password invalid="{{passErrs.length > 0}}" bindinput="onPass" aria-label="Password" />
+          <ll-field-description>Eight characters and a number.</ll-field-description>
+          <ll-field-error errors="{{passErrs}}" />
+        </ll-field>
+        <ll-field-separator label="then" />
+        <ll-field orientation="horizontal">
+          <ll-button bind:tap="onSubmit">Create account</ll-button>
+          <ll-button variant="outline" bind:tap="onHideErrors">Hide errors</ll-button>
+        </ll-field>
+      </ll-field-group>
+    </view>
+
+    <view class="sub-h3">Checkout form</view>
+    <view class="sec-desc">shadcn's `field-demo`, the big one: two FieldSets with legends, a three-column row of Month, Year and CVV, a checkbox row, a comment box and a pair of buttons, all separated by a FieldSeparator.</view>
+    <view class="stack">
+      <view class="max-md">
+        <ll-field-group>
+          <ll-field-set>
+            <ll-field-legend>Payment Method</ll-field-legend>
+            <ll-field-description>All transactions are secure and encrypted</ll-field-description>
+            <ll-field-group>
+              <ll-field>
+                <ll-field-label for="co-name">Name on Card</ll-field-label>
+                <ll-input placeholder="Evil Rabbit" aria-label="Name on Card" />
+              </ll-field>
+              <ll-field>
+                <ll-field-label for="co-number">Card Number</ll-field-label>
+                <ll-input placeholder="1234 5678 9012 3456" aria-label="Card Number" />
+                <ll-field-description>Enter your 16-digit card number</ll-field-description>
+              </ll-field>
+              <view class="grid3">
+                <ll-field>
+                  <ll-field-label for="co-month">Month</ll-field-label>
+                  <ll-select options="{{months}}" value="{{payMonth}}" placeholder="MM" aria-label="Month" custom-style="width:100%" data-key="payMonth" bind:change="onPick" />
+                </ll-field>
+                <ll-field>
+                  <ll-field-label for="co-year">Year</ll-field-label>
+                  <ll-select options="{{years}}" value="{{payYear}}" placeholder="YYYY" aria-label="Year" custom-style="width:100%" data-key="payYear" bind:change="onPick" />
+                </ll-field>
+                <ll-field>
+                  <ll-field-label for="co-cvv">CVV</ll-field-label>
+                  <ll-input placeholder="123" aria-label="CVV" />
+                </ll-field>
+              </view>
+            </ll-field-group>
+          </ll-field-set>
+          <ll-field-separator />
+          <ll-field-set>
+            <ll-field-legend>Billing Address</ll-field-legend>
+            <ll-field-description>The billing address associated with your payment method</ll-field-description>
+            <ll-field-group>
+              <ll-field orientation="horizontal">
+                <ll-checkbox checked="{{sameShipping}}" data-key="sameShipping" bind:change="onCheck" aria-label="Same as shipping address" />
+                <ll-field-label for="co-same" custom-style="font-weight:400;flex:1">Same as shipping address</ll-field-label>
+              </ll-field>
+            </ll-field-group>
+          </ll-field-set>
+          <ll-field-set>
+            <ll-field-group>
+              <ll-field>
+                <ll-field-label for="co-comments">Comments</ll-field-label>
+                <ll-textarea placeholder="Add any additional comments" aria-label="Comments" />
+              </ll-field>
+            </ll-field-group>
+          </ll-field-set>
+          <ll-field orientation="horizontal">
+            <ll-button bind:tap="noop">Submit</ll-button>
+            <ll-button variant="outline" bind:tap="noop">Cancel</ll-button>
+          </ll-field>
+        </ll-field-group>
+      </view>
+    </view>
+
+    <view class="sub-h3">Input</view>
+    <view class="sec-desc">shadcn's `field-input`: a description can sit under the control (Username) or between the label and the control (Password); the order in the JSX is the order on the page.</view>
+    <view class="stack">
+      <view class="max-md">
+        <ll-field-set>
+          <ll-field-group>
+            <ll-field>
+              <ll-field-label for="fi-user">Username</ll-field-label>
+              <ll-input placeholder="Max Leiter" aria-label="Username" />
+              <ll-field-description>Choose a unique username for your account.</ll-field-description>
+            </ll-field>
+            <ll-field>
+              <ll-field-label for="fi-pass">Password</ll-field-label>
+              <ll-field-description>Must be at least 8 characters long.</ll-field-description>
+              <ll-input password placeholder="••••••••" aria-label="Password" />
+            </ll-field>
+          </ll-field-group>
+        </ll-field-set>
+      </view>
+    </view>
+
+    <view class="sub-h3">Textarea</view>
+    <view class="sec-desc">shadcn's `field-textarea`: a labeled ruled box with a hint underneath. `rows` sets the height, as on a plain textarea.</view>
+    <view class="stack">
+      <view class="max-md">
+        <ll-field-set>
+          <ll-field-group>
+            <ll-field>
+              <ll-field-label for="ft-feedback">Feedback</ll-field-label>
+              <ll-textarea placeholder="Your feedback helps us improve..." aria-label="Feedback" custom-style="min-height:300rpx" />
+              <ll-field-description>Share your thoughts about our service.</ll-field-description>
+            </ll-field>
+          </ll-field-group>
+        </ll-field-set>
+      </view>
+    </view>
+
+    <view class="sub-h3">Fieldset</view>
+    <view class="sec-desc">shadcn's `field-fieldset`: a real `fieldset` element with a legend and a line of help, a full-width field and a two-column row of City and Postal Code.</view>
+    <view class="stack">
+      <view class="max-md">
+        <ll-field-set>
+          <ll-field-legend>Address Information</ll-field-legend>
+          <ll-field-description>We need your address to deliver your order.</ll-field-description>
+          <ll-field-group>
+            <ll-field>
+              <ll-field-label for="fa-street">Street Address</ll-field-label>
+              <ll-input placeholder="123 Main St" aria-label="Street Address" />
+            </ll-field>
+            <view class="grid2">
+              <ll-field>
+                <ll-field-label for="fa-city">City</ll-field-label>
+                <ll-input placeholder="New York" aria-label="City" />
+              </ll-field>
+              <ll-field>
+                <ll-field-label for="fa-zip">Postal Code</ll-field-label>
+                <ll-input placeholder="90502" aria-label="Postal Code" />
+              </ll-field>
+            </view>
+          </ll-field-group>
+        </ll-field-set>
+      </view>
+    </view>
+
+    <view class="sub-h3">Radio</view>
+    <view class="sec-desc">shadcn's `field-radio`: a RadioGroup inside a FieldSet, each option a horizontal Field with the button first and its label after it.</view>
+    <view class="stack">
+      <view class="max-md">
+        <ll-field-set>
+          <ll-field-legend variant="label">Subscription Plan</ll-field-legend>
+          <ll-field-description>Yearly and lifetime plans offer significant savings.</ll-field-description>
+          <ll-radio-group value="{{plan54}}" data-key="plan54" bind:change="onPick" aria-label="Subscription Plan" custom-style="display:flex;flex-direction:column;gap:32rpx">
+            <ll-field orientation="horizontal">
+              <ll-radio value="monthly" aria-label="Monthly" />
+              <ll-field-label for="plan-monthly" custom-style="font-weight:400;flex:1">Monthly ($9.99/month)</ll-field-label>
+            </ll-field>
+            <ll-field orientation="horizontal">
+              <ll-radio value="yearly" aria-label="Yearly" />
+              <ll-field-label for="plan-yearly" custom-style="font-weight:400;flex:1">Yearly ($99.99/year)</ll-field-label>
+            </ll-field>
+            <ll-field orientation="horizontal">
+              <ll-radio value="lifetime" aria-label="Lifetime" />
+              <ll-field-label for="plan-lifetime" custom-style="font-weight:400;flex:1">Lifetime ($299.99)</ll-field-label>
+            </ll-field>
+          </ll-radio-group>
+        </ll-field-set>
+      </view>
+    </view>
+
+    <view class="sub-h3">Checkbox</view>
+    <view class="sec-desc">shadcn's `field-checkbox`: a legend styled as a label over a tight group of boxes, then, below a separator, one box whose label and description share a FieldContent column.</view>
+    <view class="stack">
+      <ll-field-group custom-style="max-width:768rpx">
+        <ll-field-set>
+          <ll-field-legend variant="label">Show these items on the desktop</ll-field-legend>
+          <ll-field-description>Select the items you want to show on the desktop.</ll-field-description>
+          <ll-field-group tight>
+            <ll-field orientation="horizontal">
+              <ll-checkbox checked="{{hardDisks}}" data-key="hardDisks" bind:change="onCheck" aria-label="Hard disks" />
+              <ll-field-label custom-style="font-weight:400;flex:1">Hard disks</ll-field-label>
+            </ll-field>
+            <ll-field orientation="horizontal">
+              <ll-checkbox checked="{{externalDisks}}" data-key="externalDisks" bind:change="onCheck" aria-label="External disks" />
+              <ll-field-label custom-style="font-weight:400;flex:1">External disks</ll-field-label>
+            </ll-field>
+            <ll-field orientation="horizontal">
+              <ll-checkbox checked="{{cdsDvds}}" data-key="cdsDvds" bind:change="onCheck" aria-label="CDs, DVDs, and iPods" />
+              <ll-field-label custom-style="font-weight:400;flex:1">CDs, DVDs, and iPods</ll-field-label>
+            </ll-field>
+            <ll-field orientation="horizontal">
+              <ll-checkbox checked="{{connectedServers}}" data-key="connectedServers" bind:change="onCheck" aria-label="Connected servers" />
+              <ll-field-label custom-style="font-weight:400;flex:1">Connected servers</ll-field-label>
+            </ll-field>
+          </ll-field-group>
+        </ll-field-set>
+        <ll-field-separator />
+        <ll-field orientation="horizontal">
+          <ll-checkbox checked="{{syncFolders}}" data-key="syncFolders" bind:change="onCheck" aria-label="Sync Desktop and Documents folders" />
+          <ll-field-content>
+            <ll-field-label>Sync Desktop & Documents folders</ll-field-label>
+            <ll-field-description>Your Desktop & Documents folders are being synced with iCloud Drive. You can access them from other devices.</ll-field-description>
+          </ll-field-content>
+        </ll-field>
+      </ll-field-group>
+    </view>
+
+    <view class="sub-h3">Switch</view>
+    <view class="sec-desc">shadcn's `field-switch`: label and description in a FieldContent column, the switch at the far end of a horizontal Field. Click the words or the switch.</view>
+    <view class="stack">
+      <ll-field orientation="horizontal" custom-style="max-width:768rpx">
+        <ll-field-content>
+          <ll-field-label for="fs-2fa">Multi-factor authentication</ll-field-label>
+          <ll-field-description>Enable multi-factor authentication. If you do not have a two-factor device, you can use a one-time code sent to your email.</ll-field-description>
+        </ll-field-content>
+        <ll-switch checked="{{twofaOn}}" data-key="twofaOn" bind:change="onSwitch" aria-label="Multi-factor authentication" />
+      </ll-field>
+    </view>
+
+    <view class="sub-h3">Slider</view>
+    <view class="sec-desc">shadcn's `field-slider`: a range slider has no single control to label, so FieldTitle names it (and `aria-label` goes on the slider). The description reads the two values out.</view>
+    <view class="stack">
+      <ll-field custom-style="max-width:768rpx">
+        <ll-field-title>Price Range</ll-field-title>
+        <ll-field-description>Set your budget range (${{price[0]}} - ${{price[1]}}).</ll-field-description>
+        <ll-slider value="{{price}}" bind:change="onPrice" max="{{1000}}" min="{{0}}" step="{{10}}" aria-label="Price Range" custom-style="margin-top:16rpx;width:100%" />
+      </ll-field>
+    </view>
+
+    <view class="sub-h3">Select</view>
+    <view class="sec-desc">shadcn's `field-select`: a Select under a label with a hint. The label points at the trigger (`htmlFor` and `id`, which the original leaves out), so a click on the word opens the list.</view>
+    <view class="stack">
+      <ll-field custom-style="max-width:768rpx">
+        <ll-field-label for="fs-dept">Department</ll-field-label>
+        <ll-select options="{{departments}}" value="{{dept}}" placeholder="Choose department" aria-label="Department" custom-style="width:100%" data-key="dept" bind:change="onPick" />
+        <ll-field-description>Select your department or area of work.</ll-field-description>
+      </ll-field>
+    </view>
+
+    <view class="sub-h3">Choice card</view>
+    <view class="sec-desc">shadcn's `field-choice-card`: a FieldLabel wrapped around a whole Field makes the row one big target. Here each card is a small hand-drawn slip, and the checked one gets the highlighter wash.</view>
+    <view class="stack">
+      <ll-field-group custom-style="max-width:768rpx">
+        <ll-field-set>
+          <ll-field-legend variant="label">Compute Environment</ll-field-legend>
+          <ll-field-description>Select the compute environment for your cluster.</ll-field-description>
+          <ll-radio-group value="{{compute}}" data-key="compute" bind:change="onPick" aria-label="Compute Environment" custom-style="display:flex;flex-direction:column;gap:32rpx">
+            <ll-field-label card checked="{{compute === 'kubernetes'}}" data-value="kubernetes" bind:tap="onComputeCard" custom-style="padding:32rpx">
+              <ll-field orientation="horizontal">
+                <ll-field-content>
+                  <ll-field-title>Kubernetes</ll-field-title>
+                  <ll-field-description>Run GPU workloads on a K8s configured cluster.</ll-field-description>
+                </ll-field-content>
+                <ll-radio value="kubernetes" aria-label="Kubernetes" />
+              </ll-field>
+            </ll-field-label>
+            <ll-field-label card checked="{{compute === 'vm'}}" data-value="vm" bind:tap="onComputeCard" custom-style="padding:32rpx">
+              <ll-field orientation="horizontal">
+                <ll-field-content>
+                  <ll-field-title>Virtual Machine</ll-field-title>
+                  <ll-field-description>Access a VM configured cluster to run GPU workloads.</ll-field-description>
+                </ll-field-content>
+                <ll-radio value="vm" aria-label="Virtual Machine" />
+              </ll-field>
+            </ll-field-label>
+          </ll-radio-group>
+        </ll-field-set>
+      </ll-field-group>
+    </view>
+
+    <view class="sub-h3">Field group</view>
+    <view class="sec-desc">shadcn's `field-group`: FieldGroups stack fields and FieldSets, and the tight gap variant sits between boxes. The first box is checked and disabled; the second set has a link in its help line.</view>
+    <view class="stack">
+      <ll-field-group custom-style="max-width:768rpx">
+        <ll-field-set>
+          <ll-field-legend variant="label">Responses</ll-field-legend>
+          <ll-field-description>Get notified when ChatGPT responds to requests that take time, like research or image generation.</ll-field-description>
+          <ll-field-group tight>
+            <ll-field orientation="horizontal">
+              <ll-checkbox checked disabled aria-label="Push notifications" />
+              <ll-field-label disabled custom-style="font-weight:400;flex:1">Push notifications</ll-field-label>
+            </ll-field>
+          </ll-field-group>
+        </ll-field-set>
+        <ll-field-separator />
+        <ll-field-set>
+          <ll-field-legend variant="label">Tasks</ll-field-legend>
+          <ll-field-description>Get notified when tasks you've created have updates. Manage tasks</ll-field-description>
+          <ll-field-group tight>
+            <ll-field orientation="horizontal">
+              <ll-checkbox checked="{{pushTasks}}" data-key="pushTasks" bind:change="onCheck" aria-label="Push notifications for tasks" />
+              <ll-field-label custom-style="font-weight:400;flex:1">Push notifications</ll-field-label>
+            </ll-field>
+            <ll-field orientation="horizontal">
+              <ll-checkbox checked="{{emailTasks}}" data-key="emailTasks" bind:change="onCheck" aria-label="Email notifications for tasks" />
+              <ll-field-label custom-style="font-weight:400;flex:1">Email notifications</ll-field-label>
+            </ll-field>
+          </ll-field-group>
+        </ll-field-set>
+      </ll-field-group>
+    </view>
+
+    <view class="sub-h3">Responsive layout</view>
+    <view class="sec-desc">shadcn's `field-responsive`: `orientation="responsive"` stacks label above control on a narrow container and puts them side by side once the FieldGroup is wide enough. It answers to the container, not the viewport — container queries don't exist here, so it stays stacked.</view>
+    <view class="stack">
+      <view class="max-md">
+        <ll-field-set>
+          <ll-field-legend>Profile</ll-field-legend>
+          <ll-field-description>Fill in your profile information.</ll-field-description>
+          <ll-field-separator />
+          <ll-field-group>
+            <ll-field orientation="responsive">
+              <ll-field-content>
+                <ll-field-label for="fr-name">Name</ll-field-label>
+                <ll-field-description>Provide your full name for identification</ll-field-description>
+              </ll-field-content>
+              <ll-input placeholder="Evil Rabbit" aria-label="Name" />
+            </ll-field>
+            <ll-field-separator />
+            <ll-field orientation="responsive">
+              <ll-field-content>
+                <ll-field-label for="fr-message">Message</ll-field-label>
+                <ll-field-description>You can write your message here. Keep it short, preferably under 100 characters.</ll-field-description>
+              </ll-field-content>
+              <ll-textarea placeholder="Hello, world!" aria-label="Message" custom-style="min-height:200rpx;max-width:600rpx" />
+            </ll-field>
+            <ll-field-separator />
+            <ll-field orientation="responsive">
+              <ll-button bind:tap="noop">Submit</ll-button>
+              <ll-button variant="outline" bind:tap="noop">Cancel</ll-button>
+            </ll-field>
+          </ll-field-group>
+        </ll-field-set>
+      </view>
+    </view>
+  </view>
+</view>

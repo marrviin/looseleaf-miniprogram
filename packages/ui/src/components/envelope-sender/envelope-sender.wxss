@@ -1,0 +1,13 @@
+/* ll-envelope-sender — the small return address, top-left of the face */
+/* @ll-import tokens */
+.ll-envelope-sender {
+  position: absolute;
+  left: 5%;
+  top: 7%;
+  box-sizing: border-box;
+  max-width: 40%;
+  font-size: 12px;
+  line-height: 1.25;
+  overflow-wrap: break-word;
+  color: var(--ll-ink-soft, #6f6a60);
+}

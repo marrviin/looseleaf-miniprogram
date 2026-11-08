@@ -1,0 +1,4 @@
+<!-- ll-message-scroller-content -->
+<view class="ll-message-scroller-content ll-class" style="{{customStyle}}" aria-role="log" aria-live="polite">
+  <slot />
+</view>

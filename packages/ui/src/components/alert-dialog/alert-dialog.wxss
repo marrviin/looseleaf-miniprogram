@@ -1,0 +1,130 @@
+/* ll-alert-dialog — upstream AlertDialogOverlay/Content. Same lamp-lit dim
+   and drop as ll-dialog, but the sheet is `grid gap-4 p-6 max-w-lg` and
+   size="sm" narrows it to max-w-xs. z follows upstream: overlay 1000. */
+/* @ll-import tokens */
+.ll-alert-dialog {
+  position: fixed;
+  inset: 0;
+  z-index: 1000; /* --ll-z-overlay */
+}
+
+.ll-alert-dialog__overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 90% 80% at 50% 38%,
+    rgba(58, 44, 30, 0.16),
+    rgba(58, 44, 30, 0.23) 55%,
+    rgba(58, 44, 30, 0.34)
+  );
+  animation: ll-alert-fade-in 0.15s ease-out both;
+}
+
+.ll-alert-dialog__frame {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  padding: 32rpx; /* p-4 */
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.ll-alert-dialog__sheet {
+  pointer-events: auto;
+  position: relative; /* anchors the hazard tape strips */
+  margin: auto; /* m-auto */
+  width: 100%;
+  max-width: 512px; /* max-w-lg */
+  animation: ll-alert-sheet-drop 0.3s var(--ll-ease-dialog, cubic-bezier(0.3, 0.75, 0.4, 1)) both;
+}
+
+/* size="sm": the narrow centered sheet */
+.ll-alert-dialog--sm .ll-alert-dialog__sheet {
+  max-width: 320px; /* max-w-xs */
+}
+
+/* phones (upstream max-sm): bottom sheet — full width, flat, bottom-anchored */
+@media (max-width: 639.9px) {
+  .ll-alert-dialog__frame {
+    padding: 0;
+  }
+  .ll-alert-dialog__sheet {
+    max-width: none;
+    margin-bottom: 0;
+    animation-name: ll-alert-slide-up;
+    animation-duration: 0.15s;
+  }
+  .ll-alert-dialog--sm .ll-alert-dialog__sheet {
+    max-width: none;
+  }
+}
+
+/* exits: fade (zoom from sm, slide to bottom on phones) */
+.ll-alert-dialog--closing .ll-alert-dialog__overlay {
+  animation: ll-alert-fade-out 0.15s ease-in both;
+}
+.ll-alert-dialog--closing .ll-alert-dialog__sheet {
+  animation: ll-alert-fade-zoom-out 0.15s ease-in both;
+}
+@media (max-width: 639.9px) {
+  .ll-alert-dialog--closing .ll-alert-dialog__sheet {
+    animation-name: ll-alert-slide-down;
+  }
+}
+
+@keyframes ll-alert-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes ll-alert-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes ll-alert-sheet-drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-14px) rotate(-1.2deg) scale(1.02);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(1px) rotate(0.15deg) scale(0.998);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes ll-alert-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(64px); /* slide-in-from-bottom-16 */
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes ll-alert-fade-zoom-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95); /* zoom-out-95 */
+  }
+}
+@keyframes ll-alert-slide-down {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(32px); /* slide-out-to-bottom-8 */
+  }
+}

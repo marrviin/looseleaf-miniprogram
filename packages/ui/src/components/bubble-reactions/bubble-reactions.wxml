@@ -1,0 +1,5 @@
+<!-- ll-bubble-reactions -->
+<view class="ll-bubble-reactions ll-class is-{{side}} is-a-{{align}}" style="{{customStyle}}">
+  <view class="ll-ink-layer" style="{{inkStyle}}"></view>
+  <slot />
+</view>

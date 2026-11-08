@@ -83,7 +83,7 @@ page {
   --ll-misreg-md: 4.6;
   --ll-misreg-lg: 6;
   --ll-misreg-k: 1;
-  --ll-jitter-k: 0;
+  --ll-jitter-k: 1;
   --ll-tilt-max: 2deg;
   --ll-tilt-turn: 0.6deg;
   --ll-hover-tilt: -0.9deg;

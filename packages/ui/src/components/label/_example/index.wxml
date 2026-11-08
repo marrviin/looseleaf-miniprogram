@@ -1,0 +1,63 @@
+<!-- ll-label demo — mirrors the upstream docs page (#/components/label).
+     Upstream associates label ↔ control via htmlFor/id and peer selectors;
+     here the dim state is a controlled `disabled` prop (no peer selectors
+     in WeChat) and `for` binds only native form controls. -->
+<view class="demo">
+  <view class="demo-title">Label</view>
+  <view class="sec-desc">The words that go with a field, in the bold hand font, with an optional red pencil star for required fields. It fades with a disabled control and hands its click to it.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">Click the words and the field takes focus.</view>
+    <view class="stack">
+      <view class="grid-sm">
+        <ll-label for="nick">Nickname</ll-label>
+        <ll-input placeholder="What do they call you?" aria-label="Nickname" />
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Required</view>
+    <view class="sec-desc">The star is drawn, not typed, and it is decorative: required on the control is what a screen reader hears.</view>
+    <view class="stack">
+      <view class="grid-sm">
+        <ll-label for="req-name" required>Full name</ll-label>
+        <ll-input placeholder="Ada Lovelace" aria-label="Full name" />
+      </view>
+      <view class="grid-sm">
+        <ll-label for="req-note">Note<text class="opt">(optional)</text></ll-label>
+        <ll-textarea aria-label="Note" />
+      </view>
+    </view>
+
+    <view class="sub-h3">Dimmed with a disabled control</view>
+    <view class="sec-desc">A label after a peer control fades to graphite when the control is disabled: checkbox as a peer, a drawn Input marked peer, or a group with data-disabled.</view>
+    <view class="stack gap5">
+      <view class="row2">
+        <ll-checkbox disabled aria-label="Sync over cellular" />
+        <ll-label disabled>Sync over cellular (off by admin)</ll-label>
+      </view>
+      <view class="grid-sm">
+        <ll-label disabled>Account email</ll-label>
+        <ll-input disabled value="locked@example.com" aria-label="Account email" />
+      </view>
+      <view class="grid-sm">
+        <ll-label disabled>Whole group is disabled</ll-label>
+        <ll-input disabled placeholder="Nothing to type here" aria-label="grouped" />
+      </view>
+    </view>
+
+    <view class="sub-h3">Accept terms</view>
+    <view class="sec-desc">shadcn's `label-demo`: a Label next to a Checkbox, joined by `htmlFor` and `id`. Click the words and the box ticks itself; the row is the hit area.</view>
+    <view class="stack">
+      <view class="row2">
+        <ll-checkbox checked="{{termsOn}}" bind:change="onTerms" aria-label="Accept terms and conditions" />
+        <ll-label>Accept terms and conditions</ll-label>
+      </view>
+    </view>
+  </view>
+</view>

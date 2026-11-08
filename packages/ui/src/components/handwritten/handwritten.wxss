@@ -1,0 +1,18 @@
+/* ll-handwritten */
+/* @ll-import tokens */
+.ll-handwritten {
+  display: block;
+  color: inherit;
+  font-family: inherit;
+}
+/* The word span: inline text, a hair off the baseline and a touch
+   lighter — both scaled by the global --ll-jitter-k (calm/reduced motion
+   writes it plain). --jr is kept for stylesheets of your own; a rotated
+   word of its own layer was clipped at its advance by WebKit, so the ink
+   lightening rides on color-mix, not opacity. */
+.ll-hw__w {
+  display: inline;
+  position: relative;
+  top: calc(var(--jy, 0px) * var(--ll-jitter-k, 1));
+  color: color-mix(in srgb, currentColor calc((1 - (1 - var(--jo, 1)) * var(--ll-jitter-k, 1)) * 100%), transparent);
+}

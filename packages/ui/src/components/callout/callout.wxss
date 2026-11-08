@@ -1,0 +1,50 @@
+/* ll-callout */
+/* @ll-import tokens */
+.ll-callout {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.is-dir-left {
+  flex-direction: row-reverse;
+}
+.is-dir-right {
+  flex-direction: row;
+}
+.is-dir-down {
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.is-dir-up {
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 2px;
+}
+.is-dir-down-right {
+  flex-direction: row;
+  align-items: flex-start;
+}
+.is-dir-down-left {
+  flex-direction: row-reverse;
+  align-items: flex-start;
+}
+.is-dir-up-right {
+  flex-direction: row;
+  align-items: flex-end;
+}
+.is-dir-up-left {
+  flex-direction: row-reverse;
+  align-items: flex-end;
+}
+/* The note: script ink in the "you" blue, a phrase long at most. */
+.ll-callout__text {
+  max-width: 16ch;
+  font-size: 22px;
+  line-height: 1.05;
+  color: var(--ll-ink-you, #2c4f9e);
+}
+.is-vertical .ll-callout__text {
+  max-width: 22ch;
+  text-align: center;
+}

@@ -1,0 +1,5 @@
+<!-- ll-command-loading — loops spinner + your words. -->
+<view class="ll-command-loading" style="{{customStyle}}">
+  <ll-spinner variant="loops" size="{{14}}" />
+  <view class="ll-command-loading__text"><slot /></view>
+</view>

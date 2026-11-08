@@ -1,0 +1,32 @@
+<!-- ll-quote demo — mirrors the upstream docs page -->
+<view class="demo">
+  <view class="demo-title">Quote</view>
+  <view class="sec-desc">A pull quote: big quotation marks drawn in the gutters, the words in the script font, the source below. Three sizes of marks — the padding grows with them — felt pens instead of marker, and a pencil rule down the edge for a long quotation.</view>
+
+  <view class="sec">
+    <view class="sub-h3">Default</view>
+    <ll-quote custom-style="max-width:420px;">
+      <ll-quote-text>The best time to write it down was when it happened; the second best is now, before the coffee gets cold.</ll-quote-text>
+      <ll-quote-attribution>Ada, in the margin of a book</ll-quote-attribution>
+    </ll-quote>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Sizes, pens and the rule</view>
+    <view class="qt-grid">
+      <ll-quote>
+        <ll-quote-text size="sm">Small and quiet.</ll-quote-text>
+      </ll-quote>
+      <ll-quote>
+        <ll-quote-text size="lg" tone="blue" weight="brush">Big and blue.</ll-quote-text>
+        <ll-quote-attribution custom-style="padding-left:76px;">Sam</ll-quote-attribution>
+      </ll-quote>
+      <ll-quote>
+        <ll-quote-text rule tone="red" custom-style="max-width:300px;">A rule down the side, in pencil, so a long quotation keeps its edge all the way down.</ll-quote-text>
+      </ll-quote>
+      <ll-quote>
+        <ll-quote-text tone="ink" weight="fine">Ink, with a fine hand.</ll-quote-text>
+      </ll-quote>
+    </view>
+  </view>
+</view>

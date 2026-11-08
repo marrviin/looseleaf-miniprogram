@@ -1,0 +1,110 @@
+<!-- ll-notebook demo — mirrors the upstream docs page
+     (#/components/notebook). Pages are ll-notebook-page descendants; the
+     corner button is ll-notebook-turn. -->
+<view class="demo">
+  <view class="demo-title">Notebook</view>
+  <view class="sec-desc">An open notebook on the desk: ruled paper with a red margin, bound with a wire spiral, binder rings or a stab-stitched spine, its holes punched, more pages peeking out underneath. The words sit on the lines.</view>
+
+  <view class="sec">
+    <view class="sub-h3">A spiral notebook</view>
+    <view class="sec-desc">Wire coils through punched holes, ruled lines with a red margin, and two more pages peeking out underneath.</view>
+    <view class="nb-center">
+      <ll-notebook seed="field-notes" custom-style="max-width:448px;min-height:384px">
+        <ll-notebook-page>
+          <ll-notebook-title>Field notes</ll-notebook-title>
+          <text class="nb-line">Tuesday. Rain on the window,</text>
+          <text class="nb-line">three cups of tea, and one</text>
+          <text class="nb-line">very small plan for a very big week.</text>
+          <text class="nb-line nb-muted nb-first">1. ink the outline</text>
+          <text class="nb-line nb-muted">2. wash the sky, then wait</text>
+          <text class="nb-line nb-muted">3. hatch the shade</text>
+        </ll-notebook-page>
+      </ll-notebook>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Four bindings</view>
+    <view class="sec-desc">A wire spiral, binder rings, a stab-stitched spine in tomato thread, and a reporter's pad bound on top. The holes are punched through and the desk shows in them.</view>
+    <view class="nb-grid">
+      <ll-notebook binding="spiral" pages="{{2}}" seed="spiral" custom-style="min-height:256px">
+        <ll-notebook-page>
+          <ll-notebook-title>Spiral</ll-notebook-title>
+          <text class="nb-line">a coil for every hole</text>
+        </ll-notebook-page>
+      </ll-notebook>
+      <ll-notebook binding="rings" pages="{{3}}" seed="rings" custom-style="min-height:256px">
+        <ll-notebook-page>
+          <ll-notebook-title>Rings</ll-notebook-title>
+          <text class="nb-line">rings on a steel strip</text>
+        </ll-notebook-page>
+      </ll-notebook>
+      <ll-notebook binding="stitched" tone="tomato" pages="{{1}}" seed="stitched" custom-style="min-height:256px">
+        <ll-notebook-page>
+          <ll-notebook-title>Stitched</ll-notebook-title>
+          <text class="nb-line">a running thread</text>
+        </ll-notebook-page>
+      </ll-notebook>
+      <ll-notebook binding="spiral" side="top" tone="sky" seed="top" custom-style="min-height:256px">
+        <ll-notebook-page>
+          <ll-notebook-title>Reporter pad</ll-notebook-title>
+          <text class="nb-line">call the printer before ten</text>
+        </ll-notebook-page>
+      </ll-notebook>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Turning pages</view>
+    <view class="sec-desc">curl folds the corner and ll-notebook-turn is the button over it. Pages are named with value; only the current one is shown, and a turned page unfolds from the dog-ear (a clip-path wipe, no 3D). Current page: {{weekPage}}.</view>
+    <view class="nb-center">
+      <ll-notebook id="nb-week" curl default-value="mon" seed="week" aria-label="The week" custom-style="max-width:448px;min-height:352px">
+        <ll-notebook-page value="mon">
+          <ll-notebook-title>Monday</ll-notebook-title>
+          <text class="nb-line">Rain on the window.</text>
+          <text class="nb-line">Tea, then the outline.</text>
+        </ll-notebook-page>
+        <ll-notebook-page value="tue">
+          <ll-notebook-title>Tuesday</ll-notebook-title>
+          <text class="nb-line">Wash the sky, wait.</text>
+          <text class="nb-line">Post the parcel by five.</text>
+        </ll-notebook-page>
+        <ll-notebook-page value="wed">
+          <ll-notebook-title>Wednesday</ll-notebook-title>
+          <text class="nb-line">Hatch the shade.</text>
+          <text class="nb-line">Nothing else. Nothing.</text>
+        </ll-notebook-page>
+        <ll-notebook-turn to="{{nextPage}}" bind:turn="onTurned" />
+      </ll-notebook>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">A packing list</view>
+    <view class="sec-desc">A real notebook page: one checkbox per ruled line (each row is exactly 28 px, so the boxes and words sit on the lines), and a sticker stuck to the corner.</view>
+    <view class="nb-center">
+      <ll-notebook binding="rings" pages="{{3}}" seed="trip" aria-label="Packing list" custom-style="max-width:448px;min-height:384px">
+        <ll-sticker name="done" size="{{64}}" rotate="{{10}}" custom-style="position:absolute;top:-16px;right:-12px;z-index:10" />
+        <ll-notebook-page>
+          <ll-notebook-title>Packing list</ll-notebook-title>
+          <view class="nb-check" wx:for="{{pack}}" wx:key="text" bind:tap="onPack" data-index="{{index}}">
+            <ll-checkbox checked="{{item.done}}" aria-label="{{item.text}}" />
+            <text class="nb-check-label">{{item.text}}</text>
+          </view>
+        </ll-notebook-page>
+      </ll-notebook>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">On the shelf</view>
+    <view class="sec-desc">The closed notebook: cloth over board, a darker spine stitched to it, an elastic band, and a paper label. Any stationery color, or black.</view>
+    <view class="nb-shelf">
+      <ll-notebook-cover wx:for="{{shelf}}" wx:key="name" tone="{{item.tone}}" band="{{item.band}}" seed="{{item.name}}" aria-label="{{item.name}} notebook">
+        <ll-notebook-cover-label>{{item.name}}</ll-notebook-cover-label>
+      </ll-notebook-cover>
+    </view>
+  </view>
+
+  <view class="sr-only" aria-live="polite">{{said}}</view>
+</view>

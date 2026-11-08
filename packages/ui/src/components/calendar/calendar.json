@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-paper": "../paper/paper",
+    "ll-button": "../button/button",
+    "ll-icon": "../icon/icon",
+    "ll-native-select": "../native-select/native-select"
+  }
+}

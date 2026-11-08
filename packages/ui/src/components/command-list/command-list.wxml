@@ -1,0 +1,8 @@
+<!-- ll-command-list — the scrolling list (max 300px): a plain view with
+     CSS overflow, like the menu viewport (scroll-view's intrinsic sizing
+     collapses inside flex sheets). -->
+<view class="ll-command-list" style="max-height:{{maxHeight}}px;{{customStyle}}">
+  <view class="ll-command-list__inner">
+    <slot />
+  </view>
+</view>

@@ -1,0 +1,29 @@
+<!-- ll-typewriter — the shown words (each with its own jitter shift),
+     the drawn caret after the last word, the invisible reserve spacer and
+     the screen-reader copy of the final text. -->
+<view class="ll-typewriter ll-class {{reserve ? 'is-reserve' : ''}} {{caretBlink ? 'is-idle' : ''}}" style="{{customStyle}}">
+  <view class="ll-typewriter__sr" aria-live="{{loop || mode === 'cycle' ? 'off' : 'polite'}}" aria-atomic="{{true}}">{{hiddenText}}</view>
+  <view wx:if="{{reserve}}" class="ll-typewriter__room" aria-hidden="{{true}}">
+    <view wx:for="{{reserveLines}}" wx:key="index" wx:for-item="line" class="ll-typewriter__line">
+      <text
+        wx:for="{{line.items}}"
+        wx:key="index"
+        wx:for-item="w"
+        class="{{w.space ? 'll-typewriter__space' : 'll-typewriter__w'}}"
+        style="{{w.space ? '' : 'top:' + w.top + 'px;opacity:' + w.opacity + ';'}}"
+      >{{w.text}}</text>
+    </view>
+  </view>
+  <view class="ll-typewriter__live {{reserve ? 'll-typewriter__live--abs' : ''}}" aria-hidden="{{true}}">
+    <view wx:for="{{lines}}" wx:key="index" wx:for-item="line" class="ll-typewriter__line">
+      <text
+        wx:for="{{line.items}}"
+        wx:key="index"
+        wx:for-item="w"
+        class="{{w.space ? 'll-typewriter__space' : 'll-typewriter__w'}}"
+        style="{{w.space ? '' : 'top:' + w.top + 'px;opacity:' + w.opacity + ';'}}"
+      >{{w.text}}</text>
+      <view wx:if="{{caretStyle && index === lines.length - 1}}" class="ll-typewriter__caret" style="{{caretStyle}}"></view>
+    </view>
+  </view>
+</view>

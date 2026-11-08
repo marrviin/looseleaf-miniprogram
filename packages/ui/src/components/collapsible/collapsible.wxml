@@ -1,0 +1,2 @@
+<!-- ll-collapsible — open state provider -->
+<view class="ll-collapsible {{open ? 'is-open' : ''}}" style="{{customStyle}}"><slot /></view>

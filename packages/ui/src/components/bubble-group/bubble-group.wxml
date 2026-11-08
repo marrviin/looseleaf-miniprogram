@@ -1,0 +1,4 @@
+<!-- ll-bubble-group -->
+<view class="ll-bubble-group ll-class" style="{{customStyle}}">
+  <slot />
+</view>

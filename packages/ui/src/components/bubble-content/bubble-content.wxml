@@ -1,0 +1,23 @@
+<!-- ll-bubble-content — the drawn body; cloud draws around the text,
+     note/sticky are a Paper -->
+<view
+  class="ll-bubble-content ll-class is-{{variant}} {{penName === 'you' ? 'is-you' : ''}}"
+  style="{{styleColor}}{{customStyle}}"
+  bind:touchstart="__inkTouchStart"
+  bind:touchend="__inkTouchEnd"
+  bind:touchcancel="__inkTouchEnd"
+>
+  <view class="ll-ink-layer" style="{{inkStyleDrawn}}" wx:if="{{isCloud}}"></view>
+  <view class="ll-bubble-content__creases" wx:if="{{isNote}}"></view>
+  <ll-paper
+    wx:if="{{isSheet}}"
+    stock="{{sheetStock}}"
+    tilt="{{paperTilt === null ? false : paperTilt}}"
+    fastener="{{paperFastener}}"
+    seed="{{paperSeed}}"
+    custom-style="width:100%;"
+  >
+    <view class="ll-bubble-content__text is-script"><slot /></view>
+  </ll-paper>
+  <view wx:else class="ll-bubble-content__text {{variant === 'ghost' ? 'is-ghost' : ''}}"><slot /></view>
+</view>

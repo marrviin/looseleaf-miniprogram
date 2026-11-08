@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "ll-signature": "../signature/signature",
+    "ll-button": "../button/button",
+    "ll-paper": "../paper/paper"
+  }
+}

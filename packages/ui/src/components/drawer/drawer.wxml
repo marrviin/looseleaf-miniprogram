@@ -1,0 +1,40 @@
+<!-- ll-drawer — the dim + the slip. The page wrapper carries the fixed
+     per-edge position (tag selectors don't match virtualHost components, so
+     the transform can't live on the ll-paper); the drag transform vaul
+     writes lands here, on the sheet and its tape together. The grab tape
+     shows only on bottom drawers (that is where the grab tab belongs). -->
+<view wx:if="{{visible}}" class="ll-drawer ll-drawer--{{direction}} {{closing ? 'll-drawer--closing' : ''}} {{dragging ? 'll-drawer--dragging' : ''}}">
+  <view class="ll-drawer__overlay" style="{{dimStyle}}" catch:touchmove="noop" catch:tap="onOverlayTap" />
+  <view
+    class="ll-drawer__page ll-drawer__page--{{direction}}"
+    style="{{pageStyle}}"
+    catch:touchstart="onPageTouchStart"
+    catch:touchmove="onPageTouchMove"
+    catch:touchend="onPageTouchEnd"
+    catch:touchcancel="onPageTouchEnd"
+    bind:drawer-close="onCloseRequest"
+    aria-role="dialog"
+    aria-label="{{ariaLabel}}"
+  >
+    <ll-paper
+      stock="{{stock}}"
+      edge="{{paperEdge}}"
+      tilt="{{false}}"
+      rules="none"
+      seed="{{seed}}"
+      custom-style="display:flex;flex-direction:column;width:100%;height:100%;box-sizing:border-box;"
+    >
+      <ll-tape
+        wx:if="{{tapeVisible}}"
+        kind="{{tapeKind}}"
+        color="{{tapeColor}}"
+        length="{{92}}"
+        height="{{22}}"
+        angle="{{-1.5}}"
+        seed="{{seed}}:grab"
+        custom-style="position:absolute;top:-24rpx;left:50%;margin-left:-46px;z-index:8;"
+      />
+      <slot />
+    </ll-paper>
+  </view>
+</view>

@@ -1,0 +1,12 @@
+/* ll-quote */
+/* @ll-import tokens */
+.ll-quote {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0;
+}

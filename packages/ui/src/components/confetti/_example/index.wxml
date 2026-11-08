@@ -1,0 +1,47 @@
+<!-- ll-confetti demo — mirrors the upstream docs page (#/components/confetti).
+     ConfettiTrigger doesn't survive as a tag: each button calls burst() on
+     the section's layer. -->
+<view class="demo">
+  <view class="demo-title">Confetti</view>
+  <view class="sec-desc">Paper pieces thrown from a point: a cone that slows like paper, sways, flips and fades. Every burst is seeded — same seed, same fall.</view>
+
+  <view class="sec">
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">Tap the button. Pieces leave it in a cone, slow down like paper, sway and fade.</view>
+    <view class="stage">
+      <ll-confetti id="cf1" />
+      <view class="stage-center">
+        <ll-button size="lg" bind:tap="onCelebrate">Celebrate</ll-button>
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Ring, streamers, one color</view>
+    <view class="sec-desc">spread 360 sends a ring; shapes and colors narrow the pieces. A Valentine's burst of pink dots and stars.</view>
+    <view class="stage stage-tall">
+      <ll-confetti id="cf2" />
+      <view class="stage-center row">
+        <ll-button variant="outline" data-burst="ring" bind:tap="onPreset">Ring</ll-button>
+        <ll-button variant="outline" data-burst="streamers" bind:tap="onPreset">Streamers</ll-button>
+        <ll-button variant="outline" data-burst="pink" bind:tap="onPreset">Pink</ll-button>
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Finishing the list</view>
+    <view class="sec-desc">A real use: confetti stays inside the card and goes off when the last task is ticked. Untick one and tick it again for another go.</view>
+    <ll-paper stock="card" tilt="{{false}}" custom-style="position:relative;width:576rpx;padding:40rpx">
+      <ll-confetti id="cf3" active="{{allDone}}" spread="{{90}}" count="{{60}}" binddone="onDone" />
+      <view class="launch-title">Launch day</view>
+      <view class="task-list">
+        <view wx:for="{{tasks}}" wx:key="name" class="task-row">
+          <ll-checkbox checked="{{item.done}}" data-idx="{{index}}" bind:change="onTask" aria-label="{{item.name}}" />
+          <text class="task-label">{{item.name}}</text>
+        </view>
+      </view>
+      <view class="launch-status" aria-role="status">{{status}}</view>
+    </ll-paper>
+  </view>
+</view>

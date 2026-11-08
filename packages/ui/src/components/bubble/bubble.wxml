@@ -1,0 +1,4 @@
+<!-- ll-bubble — the row of one message body; content carries the drawing -->
+<view class="ll-bubble ll-class {{alignNow === 'end' ? 'is-end' : ''}} {{variant === 'ghost' ? 'is-ghost' : ''}}" style="{{customStyle}}">
+  <slot />
+</view>

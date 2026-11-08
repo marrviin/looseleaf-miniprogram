@@ -1,0 +1,5 @@
+/* data-[error=true]:text-destructive — pierces the label root via
+   externalClasses, so it must out-rank .ll-label's own color */
+.ll-form-label--error {
+  color: #c2412d !important;
+}

@@ -1,0 +1,59 @@
+.demo {
+  padding: 32rpx;
+  background: var(--ll-paper, #f8f5ee);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+.sec { margin-top: 40rpx; }
+.sub-h3 {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin: 28rpx 0 6rpx;
+}
+.sec-desc {
+  font-size: 24rpx;
+  color: #8a857c;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+.center-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.dashed-box {
+  padding: 8px 12px;
+  font-size: 17px;
+  border: 1px dashed var(--ll-pencil-mark, rgba(58, 44, 30, 0.35));
+}
+.dir-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32rpx 40rpx;
+  padding: 8rpx 0;
+}
+.margin-wrap {
+  position: relative;
+  padding-right: 150px;
+}
+.margin-para {
+  font-size: 17px;
+  line-height: 28px;
+}
+.form {
+  display: grid;
+  gap: 16px;
+  max-width: 560rpx;
+}
+.form-field {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  padding-bottom: 48px;
+}

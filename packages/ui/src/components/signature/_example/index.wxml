@@ -1,0 +1,58 @@
+<!-- ll-signature demo — mirrors the upstream docs page
+     (#/components/signature): a name and its pen tail, the flourish
+     options, and the end of a letter signed in. -->
+<view class="demo">
+  <view class="demo-title">Signature</view>
+  <view class="sec-desc">A name signed in the script font with the pen's flourish under it — a swoosh that loops and flicks up past the last letter. The name is ordinary text; the flourish is a drawing.</view>
+
+  <view class="sec">
+    <view class="sub-h3">A name and its pen tail</view>
+    <view class="row-baseline">
+      <ll-signature>Ada Lovelace</ll-signature>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Flourishes, sizes and pens</view>
+    <view class="sec-desc">A swoosh, an underline, none; three sizes; blue, ink and red pens. A signature keeps its own size in a row, so names of different sizes sit on one baseline.</view>
+    <view class="group-block">
+      <view class="kicker">Flourish</view>
+      <view class="row-baseline">
+        <ll-signature flourish="swoosh">Grace Hopper</ll-signature>
+        <ll-signature flourish="underline">Grace Hopper</ll-signature>
+        <ll-signature flourish="none">Grace Hopper</ll-signature>
+      </view>
+    </view>
+    <view class="group-block">
+      <view class="kicker">Size</view>
+      <view class="row-baseline">
+        <ll-signature size="sm">Grace Hopper</ll-signature>
+        <ll-signature size="md">Grace Hopper</ll-signature>
+        <ll-signature size="lg">Grace Hopper</ll-signature>
+      </view>
+    </view>
+    <view class="group-block">
+      <view class="kicker">Pen</view>
+      <view class="row-baseline">
+        <ll-signature>Katherine J.</ll-signature>
+        <ll-signature tone="ink">Katherine J.</ll-signature>
+        <ll-signature tone="red" weight="brush">M. Curie</ll-signature>
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">The end of a letter</view>
+    <view class="sec-desc">Sign it: the name is written left to right, then the flourish follows the pen.</view>
+    <view class="stack-12">
+      <ll-paper stock="paper" rules="ruled" tilt seed="letter" custom-style="width:100%;padding:16rpx 48rpx 48rpx 112rpx;box-sizing:border-box;">
+        <view class="letter-line">Thank you for the tomatoes, the jam, and the long letter; I read it twice. Come and see the garden in June.</view>
+        <view class="letter-line">Yours, always,</view>
+        <view class="sig-slot">
+          <ll-signature wx:if="{{signed}}" animate size="sm">Sam Whitcombe</ll-signature>
+        </view>
+      </ll-paper>
+      <ll-button variant="outline" size="sm" custom-style="align-self:flex-start;" bind:tap="signAgain">Sign again</ll-button>
+    </view>
+  </view>
+</view>

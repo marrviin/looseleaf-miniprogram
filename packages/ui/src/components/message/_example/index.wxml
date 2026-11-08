@@ -1,0 +1,81 @@
+<!-- ll-message demo — mirrors the upstream docs page (#/components/message):
+     intro, then the Examples entries with the page's own copy. -->
+<view class="demo">
+  <view class="demo-title">Message</view>
+  <view class="sec-desc">The row of a chat message: an avatar, a column with a header, the bubbles and a footer, aligned to the start or the end. Also MessageText, which sets a reply word by word so streaming text soaks in like wet ink.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">A thread</view>
+    <view class="sec-desc">Two speakers. The footer of the first message rides above the avatar, so the avatar keeps standing beside the last bubble.</view>
+    <view class="ms-col">
+      <ll-message align="end">
+        <ll-message-content>
+          <ll-message-header>Ada</ll-message-header>
+          <ll-bubble variant="default">
+            <ll-bubble-content seed="thread-1">Which of these should I fix first?</ll-bubble-content>
+          </ll-bubble>
+        </ll-message-content>
+      </ll-message>
+      <ll-message>
+        <ll-message-avatar><ll-mascot pose="write" size="{{40}}" seed="thread-mascot" /></ll-message-avatar>
+        <ll-message-content>
+          <ll-message-header>Stubby</ll-message-header>
+          <ll-bubble-group>
+            <ll-bubble variant="muted">
+              <ll-bubble-content seed="thread-2">The failing test. Everything else can wait until it is green.</ll-bubble-content>
+            </ll-bubble>
+            <ll-bubble variant="muted">
+              <ll-bubble-content seed="thread-3">It is a one-line fix in filter.ts.</ll-bubble-content>
+            </ll-bubble>
+          </ll-bubble-group>
+          <ll-message-footer>edited a minute ago</ll-message-footer>
+        </ll-message-content>
+      </ll-message>
+    </view>
+
+    <view class="sub-h3">Streaming text</view>
+    <view class="sec-desc">MessageText keeps the words already on the page and soaks each new word in as it arrives: dark and blurred at first, then dry. A felt-tip caret rides after the last word.</view>
+    <view class="ms-col">
+      <ll-message>
+        <ll-message-content>
+          <ll-message-header>Stubby</ll-message-header>
+          <ll-bubble variant="muted" custom-style="max-width:100%;">
+            <ll-bubble-content seed="stream">
+              <ll-message-text text="{{streamText}}" streaming="{{streaming}}" seed="stream-words" />
+              <text wx:if="{{count === 0}}" class="dots">...</text>
+            </ll-bubble-content>
+          </ll-bubble>
+        </ll-message-content>
+      </ll-message>
+      <view class="row"><ll-button size="sm" variant="ghost" bind:tap="replay">Replay</ll-button></view>
+    </view>
+
+    <view class="sub-h3">In your own hand</view>
+    <view class="sec-desc">pen="you" sets a bubble in blue felt and the script face. MessageText keeps its words plain inline text with a baseline offset and a lighter ink, so the tall last letters of a script face (d, l, e, !) are whole.</view>
+    <view class="ms-col">
+      <ll-message align="end">
+        <ll-message-content>
+          <ll-message-header>you</ll-message-header>
+          <ll-bubble variant="tinted" pen="you">
+            <ll-bubble-content seed="hand-1">
+              <ll-message-text text="Call me when the old road is closed, and bring the good umbrella!" seed="hand-words-1" />
+            </ll-bubble-content>
+          </ll-bubble>
+        </ll-message-content>
+      </ll-message>
+      <ll-message>
+        <ll-message-avatar><ll-mascot pose="write" size="{{40}}" seed="hand-mascot" /></ll-message-avatar>
+        <ll-message-content>
+          <ll-message-header>Stubby</ll-message-header>
+          <ll-bubble variant="muted">
+            <ll-bubble-content seed="hand-2">
+              <ll-message-text text="Noted. I will call at six and read you the whole plan aloud." seed="hand-words-2" />
+            </ll-bubble-content>
+          </ll-bubble>
+        </ll-message-content>
+      </ll-message>
+    </view>
+  </view>
+</view>

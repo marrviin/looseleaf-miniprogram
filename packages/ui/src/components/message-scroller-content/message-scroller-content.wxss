@@ -1,0 +1,10 @@
+/* ll-message-scroller-content — the transcript column */
+.ll-message-scroller-content {
+  display: flex;
+  height: max-content;
+  min-height: 100%;
+  flex-direction: column;
+  gap: 20px; /* gap-5 */
+  box-sizing: border-box;
+  padding: 16px;
+}

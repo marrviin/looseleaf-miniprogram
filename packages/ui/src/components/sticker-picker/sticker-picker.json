@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-popover": "../popover/popover",
+    "ll-input": "../input/input",
+    "ll-icon": "../icon/icon",
+    "ll-mascot": "../mascot/mascot"
+  }
+}

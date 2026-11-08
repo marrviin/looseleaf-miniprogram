@@ -1,0 +1,2 @@
+<!-- ll-typography-lead -->
+<view class="ll-typography-lead" style="{{customStyle}}"><slot /></view>

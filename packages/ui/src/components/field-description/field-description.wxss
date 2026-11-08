@@ -1,0 +1,8 @@
+/* ll-field-description — text-sm leading-normal font-normal
+   text-muted-foreground */
+.ll-field-description {
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 25rpx; /* text-sm x .88 */
+  line-height: 1.5; /* leading-normal */
+  color: #4a433c; /* text-muted-foreground */
+}

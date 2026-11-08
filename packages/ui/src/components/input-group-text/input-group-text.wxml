@@ -1,0 +1,3 @@
+<!-- ll-input-group-text — plain words beside the field; part of the box,
+     not the value. -->
+<view class="ll-ig-text" style="{{customStyle}}"><slot /></view>

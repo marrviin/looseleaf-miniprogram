@@ -1,0 +1,17 @@
+/* ll-carousel-dot */
+.ll-carousel-dot {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  width: 24px;
+  height: 32px;
+  flex-shrink: 0;
+  color: var(--ll-ink, #2a2420);
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

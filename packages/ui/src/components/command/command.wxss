@@ -1,0 +1,9 @@
+/* ll-command — flex h-full w-full flex-col text-popover-foreground. */
+.ll-command {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  color: #2a2420; /* text-popover-foreground */
+}

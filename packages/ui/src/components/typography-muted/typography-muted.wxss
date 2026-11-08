@@ -1,0 +1,8 @@
+/* ll-typography-muted */
+/* @ll-import tokens */
+.ll-typography-muted {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted-foreground, #4a433c);
+  font-weight: 400;
+}

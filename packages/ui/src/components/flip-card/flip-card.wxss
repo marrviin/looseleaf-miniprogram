@@ -1,0 +1,88 @@
+/* ll-flip-card — perspective on the root, preserve-3d on the inner, hidden
+   backfaces on the two sheets. Duration = the upstream --ll-dur-sheet × 2.
+   @ll-import tokens */
+:host {
+  display: block;
+}
+.ll-flip-card {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  width: 288px;
+  height: 192px;
+  perspective: 1200px;
+  font-family: 'Kevin Sans', sans-serif;
+}
+.ll-flip-card__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.25, 1.1);
+}
+.ll-flip-card.is-flipped .ll-flip-card__inner {
+  transform: rotateY(180deg);
+}
+.ll-flip-card.is-x.is-flipped .ll-flip-card__inner {
+  transform: rotateX(180deg);
+}
+/* the card lifts off the desk as it turns (upstream ll-flip-lift-a/b —
+   two names so each flip restarts the lift) */
+.ll-flip-card.is-touched.is-flipped .ll-flip-card__inner {
+  animation: ll-flip-lift-a 0.5s cubic-bezier(0.2, 0.9, 0.25, 1.1);
+}
+.ll-flip-card.is-touched:not(.is-flipped) .ll-flip-card__inner {
+  animation: ll-flip-lift-b 0.5s cubic-bezier(0.2, 0.9, 0.25, 1.1);
+}
+.ll-flip-card__face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.ll-flip-card__face--back {
+  transform: rotateY(180deg);
+}
+.ll-flip-card.is-x .ll-flip-card__face--back {
+  transform: rotateX(180deg);
+}
+.ll-flip-card__body {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 20px 24px;
+  text-align: center;
+}
+.ll-flip-card__trigger {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+@keyframes ll-flip-lift-a {
+  0%,
+  100% {
+    translate: 0 0;
+    scale: 1;
+  }
+  42% {
+    translate: 0 -10px;
+    scale: 1.045;
+  }
+}
+@keyframes ll-flip-lift-b {
+  0%,
+  100% {
+    translate: 0 0;
+    scale: 1;
+  }
+  42% {
+    translate: 0 -10px;
+    scale: 1.045;
+  }
+}

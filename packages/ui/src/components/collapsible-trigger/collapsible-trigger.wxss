@@ -1,0 +1,5 @@
+/* ll-collapsible-trigger */
+.ll-collapsible-trigger {
+  cursor: pointer;
+  user-select: none;
+}

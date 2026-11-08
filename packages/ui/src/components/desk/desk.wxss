@@ -1,0 +1,33 @@
+/* ll-desk — upstream .ll-desk: sage bookcloth; the vignette + linen tile
+   are composed inline (deskStyle) so lamp can retune the shade; the tile
+   var is baked on .ll-desk by script/bake-paper-tiles.mjs. */
+/* @ll-import paper-tiles */
+.ll-desk {
+  position: relative;
+  isolation: isolate; /* keep the objects layer's z-index:-1 above page bg */
+  background-color: var(--ll-desk, #a8c8bb);
+  background-size: 100% 100%, 160px 160px;
+  font-family: 'Kevin Sans', sans-serif;
+}
+
+/* the objects — upstream DeskObjects: absolute inset-0, clipped, behind
+   every sheet */
+.ll-desk__objects {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* one object's resting place (upstream PLACES, baked LTR) */
+.ll-desk__object {
+  position: absolute;
+  display: flex;
+  gap: 8px;
+}
+
+.ll-desk__piece {
+  flex-shrink: 0;
+  background-repeat: no-repeat;
+}

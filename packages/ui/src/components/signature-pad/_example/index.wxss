@@ -1,0 +1,49 @@
+.demo {
+  padding: 32rpx;
+  background: var(--ll-paper, #f8f5ee);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+.sec {
+  margin-top: 40rpx;
+}
+.sub-h3 {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin: 28rpx 0 6rpx;
+}
+.sec-desc {
+  font-size: 24rpx;
+  color: #8a857c;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+.said-line {
+  font-size: 25rpx;
+  color: #4a433c;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+.agree-row {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-bottom: 28rpx;
+}
+.agree-label {
+  font-size: 26rpx;
+  color: #2a2420;
+}
+.sent-line {
+  font-size: 25rpx;
+  color: #8a857c;
+}

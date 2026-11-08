@@ -1,0 +1,78 @@
+/* ll-signature-pad — sketchpad slip + guides overlay + typed row.
+   @ll-import tokens */
+:host {
+  display: block;
+}
+.ll-signature {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  width: 100%;
+  max-width: 576px;
+  font-family: 'Kevin Sans', sans-serif;
+  color: #2a2420;
+}
+.ll-signature.is-disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* canvas — the sketchpad fills it; the guides ride above */
+.ll-signature-canvas {
+  position: relative;
+  width: 100%;
+}
+.ll-signature__pad {
+  display: block;
+  width: 100%;
+}
+.ll-signature__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.ll-signature__baseline,
+.ll-signature__img {
+  position: absolute;
+  background-repeat: no-repeat;
+}
+.ll-signature__img {
+  background-size: 100% 100%;
+}
+.ll-signature__hint {
+  position: absolute;
+  left: 12%;
+  top: calc(72% - 24px);
+  font-size: 24px;
+  line-height: 1;
+  color: var(--ll-pencil-text, #5a554e);
+}
+
+/* typed name — the input itself stays plain; the lettering shows above */
+.ll-signature__typed {
+  padding-top: 4px;
+}
+.ll-signature__input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 56rpx;
+  font-size: 24px;
+  line-height: 56rpx;
+  color: #2a2420;
+}
+
+/* clear + mode toggle */
+.ll-signature__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+/* the invalid message — red script like upstream's role=alert line */
+.ll-signature__message {
+  font-size: 20px;
+  line-height: 1;
+  color: var(--ll-red, #c2412d);
+}

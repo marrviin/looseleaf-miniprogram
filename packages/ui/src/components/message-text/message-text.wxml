@@ -1,0 +1,7 @@
+<!-- ll-message-text — the words, set by hand -->
+<view class="ll-message-text ll-class" style="{{customStyle}}">
+  <block wx:for="{{words}}" wx:key="key">
+    <text wx:if="{{item.sp}}" space="true">{{item.t}}</text>
+    <view wx:else class="ll-message-text__w {{item.soak ? 'is-soak' : ''}}" style="{{item.style}}">{{item.t}}<view wx:if="{{item.caret}}" class="ll-message-text__caret"></view></view>
+  </block>
+</view>

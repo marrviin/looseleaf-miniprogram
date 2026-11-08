@@ -1,0 +1,52 @@
+<!-- ll-arrow demo — mirrors the upstream docs page -->
+<view class="demo">
+  <view class="demo-title">Arrow</view>
+  <view class="sec-desc">A hand-drawn arrow: eight directions in two pens, then the curl and the five heads. Point it at another element and it flies to just short of the target.</view>
+
+  <view class="sec">
+    <view class="sub-h3">Directions, shafts and heads</view>
+    <view class="aw-grid">
+      <ll-arrow wx:for="{{dirs}}" wx:key="*this" direction="{{item}}" custom-style="width:64px;height:48px;" />
+      <ll-arrow wx:for="{{dirs}}" wx:key="*this" direction="{{item}}" curve="curved" tone="blue" custom-style="width:64px;height:48px;" />
+    </view>
+    <view class="aw-row">
+      <view class="aw-fig">
+        <ll-arrow direction="right" curve="curl" tone="red" custom-style="width:160px;height:48px;" />
+        <view class="aw-cap">curl</view>
+      </view>
+      <view class="aw-fig" wx:for="{{heads}}" wx:key="*this">
+        <ll-arrow direction="up-right" curve="curved" head="{{item}}" custom-style="width:80px;height:48px;" />
+        <view class="aw-cap">{{item}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Pointing at an element</view>
+    <view class="sec-desc">Give it a selector and the arrow leaves its small box and stops just short of the target, wherever the layout puts it.</view>
+    <view class="aw-point">
+      <view class="aw-aim">
+        <text class="aw-script">the important one</text>
+        <ll-arrow point-at="#aw-target" curve="curved" tone="blue" custom-style="width:24px;height:24px;" />
+      </view>
+      <view id="aw-target" class="aw-target"><ll-button>Publish</ll-button></view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">With a label</view>
+    <view class="sec-desc">Text inside an Arrow is its label: real handwritten text, placed outside the tail on the side the arrow leaves from.</view>
+    <view class="aw-label-wrap">
+      <ll-paper tilt seed="guestbook" custom-style="max-width:300px;">
+        <view class="aw-card-head">
+          <view class="aw-script is-title">Guest book</view>
+          <view class="aw-cap is-left">Sign on the line</view>
+        </view>
+        <view class="aw-line" />
+      </ll-paper>
+      <ll-arrow direction="down-left" curve="curved" tone="blue" bend="up" custom-style="width:96px;height:80px;">
+        your name
+      </ll-arrow>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,5 @@
+<!-- ll-command-shortcut — keycap(s) pushed to the end of the row. -->
+<view class="ll-command-shortcut" style="{{customStyle}}">
+  <ll-kbd wx:if="{{text}}" text="{{text}}" />
+  <slot />
+</view>

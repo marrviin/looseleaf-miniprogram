@@ -1,0 +1,16 @@
+<!-- ll-field-label — bold hand-font field label; `card` wraps a whole
+     Field in a hand-drawn choice card (tap emits `tap` so the page can
+     toggle the control inside). -->
+<label
+  class="ll-field-label {{card ? 'll-field-label--card' : ''}} {{disabled ? 'll-field-label--disabled' : ''}} {{invalid ? 'll-field-label--invalid' : ''}} ll-class"
+  style="{{customStyle}}"
+  for="{{for}}"
+  catchtap="onTap"
+  bindtouchstart="__inkTouchStart"
+  bindtouchend="__inkTouchEnd"
+  bindtouchcancel="__inkTouchEnd"
+>
+  <view wx:if="{{card}}" class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-field-label__content"><slot /></view>
+  <view wx:if="{{required}}" class="ll-field-label__required" style="{{starStyle}}" />
+</label>

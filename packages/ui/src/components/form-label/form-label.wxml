@@ -1,0 +1,10 @@
+<!-- ll-form-label — the field's words, red while the field errors -->
+<ll-label
+  class="ll-form-label {{error ? 'll-form-label--error' : ''}}"
+  for="{{for}}"
+  required="{{required}}"
+  disabled="{{disabled}}"
+  custom-style="{{customStyle}}"
+>
+  <slot />
+</ll-label>

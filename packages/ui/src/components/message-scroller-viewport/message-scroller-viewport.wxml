@@ -1,0 +1,15 @@
+<!-- ll-message-scroller-viewport — the scrolling region with edge fades -->
+<view class="ll-message-scroller-viewport" style="{{customStyle}}">
+  <scroll-view
+    class="ll-message-scroller-viewport__scroller"
+    scroll-y
+    scroll-top="{{scrollTop}}"
+    bindscroll="onScroll"
+    aria-role="region"
+    aria-label="Messages"
+  >
+    <slot />
+  </scroll-view>
+  <view class="ll-message-scroller-viewport__fade is-top" wx:if="{{fadeTop}}"></view>
+  <view class="ll-message-scroller-viewport__fade is-bottom" wx:if="{{fadeBottom}}"></view>
+</view>

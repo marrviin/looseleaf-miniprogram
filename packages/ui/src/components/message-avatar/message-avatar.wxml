@@ -1,0 +1,4 @@
+<!-- ll-message-avatar -->
+<view class="ll-message-avatar ll-class {{lifted ? 'is-lifted' : ''}}" style="{{customStyle}}">
+  <slot />
+</view>

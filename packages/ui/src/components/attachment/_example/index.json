@@ -1,0 +1,17 @@
+{
+  "usingComponents": {
+    "ll-attachment": "../attachment/attachment",
+    "ll-attachment-media": "../attachment-media/attachment-media",
+    "ll-attachment-content": "../attachment-content/attachment-content",
+    "ll-attachment-title": "../attachment-title/attachment-title",
+    "ll-attachment-description": "../attachment-description/attachment-description",
+    "ll-attachment-progress": "../attachment-progress/attachment-progress",
+    "ll-attachment-actions": "../attachment-actions/attachment-actions",
+    "ll-attachment-action": "../attachment-action/attachment-action",
+    "ll-attachment-trigger": "../attachment-trigger/attachment-trigger",
+    "ll-attachment-group": "../attachment-group/attachment-group",
+    "ll-button": "../button/button",
+    "ll-icon": "../icon/icon",
+    "ll-doodle": "../doodle/doodle"
+  }
+}

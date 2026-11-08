@@ -1,0 +1,64 @@
+<!-- ll-prompt-input — the composer on a napkin: drawn writing line behind a
+     script-face textarea, tools/hint left + send/stop right, suggestion
+     slip above the sheet when a trigger word is being typed. -->
+<view class="ll-prompt-input {{disabled ? 'll-prompt-input--disabled' : ''}}" style="{{customStyle}}">
+  <view wx:if="{{sugOpen}}" class="ll-prompt-sugs" aria-role="listbox" aria-label="Suggestions">
+    <ll-paper stock="slip" tilt="{{false}}" custom-style="padding:12rpx;max-height:480rpx;overflow-y:auto">
+      <view
+        wx:for="{{sugItems}}"
+        wx:key="index"
+        class="ll-prompt-sug"
+        data-index="{{index}}"
+        bind:tap="onSugTap"
+        aria-role="option"
+      >
+        <ll-icon wx:if="{{item.icon}}" name="{{item.icon}}" size="14" />
+        <text class="ll-prompt-sug__text">{{item.text}}</text>
+        <text wx:if="{{item.hint}}" class="ll-prompt-sug__hint">{{item.hint}}</text>
+      </view>
+    </ll-paper>
+  </view>
+
+  <ll-paper stock="{{stock}}" seed="{{seed}}" custom-style="display:flex;flex-direction:column;gap:8rpx;padding:24rpx 40rpx;min-width:0">
+    <view class="ll-prompt-attachments"><slot name="attachments" /></view>
+
+    <view class="ll-prompt-body">
+      <view class="ll-ink-layer" style="{{inkStyle}}" />
+      <textarea
+        class="ll-prompt-textarea"
+        style="{{maxHeight ? 'max-height:' + maxHeight + ';' : ''}}"
+        value="{{inner}}"
+        placeholder="{{placeholder}}"
+        placeholder-class="ll-prompt-placeholder"
+        disabled="{{disabled || locked}}"
+        maxlength="{{-1}}"
+        auto-height
+        show-confirm-bar="{{false}}"
+        confirm-type="send"
+        aria-label="{{ariaLabel || 'Message'}}"
+        bindinput="onInput"
+        bindlinechange="onLineChange"
+        bindfocus="onFocus"
+        bindblur="onBlur"
+        bindconfirm="onConfirm"
+      />
+    </view>
+
+    <view class="ll-prompt-footer">
+      <view class="ll-prompt-footer__left">
+        <view class="ll-prompt-tools" aria-role="group"><slot name="tools" /></view>
+        <text wx:if="{{hint}}" class="ll-prompt-hint">{{hint}}</text>
+      </view>
+      <ll-button
+        size="icon"
+        variant="{{busy ? 'outline' : 'default'}}"
+        disabled="{{!busy && (disabled || sendDisabled)}}"
+        aria-label="{{busy ? 'Stop generating' : 'Send message'}}"
+        bind:tap="onSubmitTap"
+      >
+        <view wx:if="{{busy}}" class="ll-prompt-btnicon"><ll-icon name="square" size="18" /></view>
+        <view wx:else class="ll-prompt-btnicon {{flying ? 'll-prompt-btnicon--fly' : ''}}"><ll-icon name="send" size="18" /></view>
+      </ll-button>
+    </view>
+  </ll-paper>
+</view>

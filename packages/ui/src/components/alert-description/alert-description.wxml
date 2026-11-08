@@ -1,0 +1,2 @@
+<!-- ll-alert-description -->
+<view class="ll-alert-description {{variant === 'destructive' ? 'is-destructive' : ''}}" style="{{customStyle}}"><slot /></view>

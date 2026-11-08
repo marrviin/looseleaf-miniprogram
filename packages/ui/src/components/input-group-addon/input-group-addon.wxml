@@ -1,0 +1,12 @@
+<!-- ll-input-group-addon — something beside or above/below the control.
+     Tapping it (outside any button) focuses the group's control; with
+     edge=top/bottom it draws the pencil rule between it and the text. -->
+<view
+  class="ll-iga ll-iga--{{align}} {{edge ? 'll-iga--edge' : ''}}"
+  style="{{customStyle}}"
+  bind:tap="onTap"
+  role="group"
+>
+  <view wx:if="{{llInkRecipe}}" class="ll-input-group-addon__rule ll-ink-layer ll-ink-layer--rule" style="{{inkStyle}}" />
+  <view class="ll-iga__inner"><slot /></view>
+</view>

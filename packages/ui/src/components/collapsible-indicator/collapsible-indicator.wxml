@@ -1,0 +1,4 @@
+<!-- ll-collapsible-indicator -->
+<view class="ll-collapsible-indicator {{open ? 'is-open' : ''}}" style="{{customStyle}}">
+  <ll-icon name="chevron-down" size="{{16}}" />
+</view>

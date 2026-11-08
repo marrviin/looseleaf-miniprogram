@@ -1,0 +1,68 @@
+/* ll-input-group-addon — upstream inputGroupAddonVariants. Padding per
+   align; the drawn rule sits at the addon's bottom/top edge. */
+/* @ll-import tokens */
+
+.ll-iga {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx; /* gap-2 */
+  box-sizing: border-box;
+  padding-top: 12rpx; /* py-1.5 */
+  padding-bottom: 12rpx;
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 26rpx; /* text-[15px] x .88 */
+  font-weight: 700;
+  color: #8a857c; /* text-muted-foreground */
+  cursor: text;
+  user-select: none;
+}
+.ll-iga--inline-start {
+  order: -1;
+  padding-left: 24rpx; /* ps-3 */
+}
+.ll-iga--inline-end {
+  order: 9;
+  padding-right: 24rpx; /* pe-3 */
+}
+.ll-iga--block-start {
+  order: -1;
+  width: 100%;
+  justify-content: flex-start;
+  padding-left: 24rpx; /* px-3 */
+  padding-right: 24rpx;
+  padding-top: 24rpx; /* pt-3 */
+  padding-bottom: 6rpx;
+}
+.ll-iga--block-end {
+  order: 9;
+  width: 100%;
+  justify-content: flex-start;
+  padding-left: 24rpx; /* px-3 */
+  padding-right: 24rpx;
+  padding-top: 6rpx;
+  padding-bottom: 24rpx; /* pb-3 */
+}
+.ll-iga__inner {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+/* the drawn rule (edge) — the ink layer covers the whole addon box; the
+   recipe draws its line at the box's bottom (or top) edge */
+.ll-input-group-addon__rule {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-iga--edge {
+  padding-top: 24rpx; /* [.border-b]:pb-3 gives the rule room */
+  padding-bottom: 24rpx;
+}

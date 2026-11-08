@@ -1,0 +1,2 @@
+<!-- ll-quote-attribution -->
+<view class="ll-quote-attribution" style="{{customStyle}}">— <slot /></view>

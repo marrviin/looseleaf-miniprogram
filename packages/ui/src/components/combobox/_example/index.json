@@ -1,0 +1,33 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-combobox": "../combobox/combobox",
+    "ll-label": "../label/label",
+    "ll-button": "../button/button",
+    "ll-card": "../card/card",
+    "ll-card-header": "../card-header/card-header",
+    "ll-card-title": "../card-title/card-title",
+    "ll-card-description": "../card-description/card-description",
+    "ll-card-content": "../card-content/card-content",
+    "ll-card-footer": "../card-footer/card-footer",
+    "ll-paper": "../paper/paper",
+    "ll-badge": "../badge/badge",
+    "ll-icon": "../icon/icon",
+    "ll-dropdown-menu": "../dropdown-menu/dropdown-menu",
+    "ll-dropdown-menu-label": "../dropdown-menu-label/dropdown-menu-label",
+    "ll-dropdown-menu-item": "../dropdown-menu-item/dropdown-menu-item",
+    "ll-dropdown-menu-separator": "../dropdown-menu-separator/dropdown-menu-separator",
+    "ll-dropdown-menu-sub": "../dropdown-menu-sub/dropdown-menu-sub",
+    "ll-popover": "../popover/popover",
+    "ll-command": "../command/command",
+    "ll-command-input": "../command-input/command-input",
+    "ll-command-list": "../command-list/command-list",
+    "ll-command-empty": "../command-empty/command-empty",
+    "ll-command-group": "../command-group/command-group",
+    "ll-command-item": "../command-item/command-item",
+    "ll-drawer": "../drawer/drawer",
+    "ll-drawer-header": "../drawer-header/drawer-header",
+    "ll-drawer-title": "../drawer-title/drawer-title",
+    "ll-drawer-description": "../drawer-description/drawer-description"
+  }
+}

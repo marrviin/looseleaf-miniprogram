@@ -1,0 +1,32 @@
+<!-- ll-stamp-surface -->
+<view class="ll-stamp-surface {{give ? 'll-stamp-surface--give' : ''}}" style="{{customStyle}}">
+  <slot />
+  <view class="ll-stamp-surface__layer" aria-hidden="true">
+    <view
+      wx:for="{{cells}}"
+      wx:key="key"
+      class="ll-stamp-surface__imp {{item.key === freshKey ? 'll-stamp-surface__imp--fresh' : ''}}"
+      style="{{item.posStyle}}"
+      aria-role="img"
+      aria-label="{{item.words}}"
+    >
+      <view class="ll-stamp-surface__pop">
+        <ll-stamp
+        name="{{item.name}}"
+        text="{{item.text}}"
+        shape="{{item.shape}}"
+        ink="{{item.ink}}"
+        sub="{{item.sub}}"
+        ring="{{item.ring}}"
+        w="{{item.w}}"
+        h="{{item.h}}"
+        size="{{item.size}}"
+        ghost="{{item.ghost}}"
+        dashed="{{item.dashed}}"
+        seed="{{item.seed}}"
+        />
+      </view>
+    </view>
+  </view>
+  <view class="ll-stamp-surface__status" aria-role="status" aria-live="polite">{{status}}</view>
+</view>

@@ -1,0 +1,35 @@
+<!-- ll-hover-card — upstream hover-card.tsx: a photo slip anchored to its
+     trigger, no arrow, no dim. Touch adaptation: opens on trigger tap
+     (openDelay applies), closes on the next tap anywhere else. -->
+<view class="ll-hover-card">
+  <view class="ll-hover-card__trigger" catchtap="onTriggerTap">
+    <slot name="trigger" />
+  </view>
+
+  <block wx:if="{{visible}}">
+    <!-- transparent outside-catcher: tap anywhere else closes (Radix's
+         dismiss-on-interact-outside); no dim, the page stays live -->
+    <view class="ll-hover-card__catcher {{closing ? 'is-closing' : ''}}" catch:touchmove="noop" catch:tap="onOutsideTap" />
+    <view
+      class="ll-hover-card__panel {{closing ? 'll-hover-card__panel--closing' : ''}} {{placed ? '' : 'is-placing'}}"
+      style="{{panelStyle}}{{customStyle}}"
+      catch:tap="noop"
+      aria-role="dialog"
+      aria-label="{{ariaLabel}}"
+      aria-modal="false"
+    >
+      <ll-paper
+        stock="{{stock}}"
+        edge="{{edge}}"
+        tilt="{{tilt}}"
+        tape="{{tape}}"
+        rules="none"
+        seed="{{seed}}"
+        shadow-css="{{liftShadow}}"
+        custom-style="position:relative;display:block;width:100%;padding:20rpx;padding-bottom:32rpx;box-sizing:border-box;"
+      >
+        <slot />
+      </ll-paper>
+    </view>
+  </block>
+</view>

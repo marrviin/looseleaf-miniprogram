@@ -1,0 +1,22 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-input-group": "../input-group/input-group",
+    "ll-input-group-addon": "../input-group-addon/input-group-addon",
+    "ll-input-group-button": "../input-group-button/input-group-button",
+    "ll-input-group-text": "../input-group-text/input-group-text",
+    "ll-input-group-input": "../input-group-input/input-group-input",
+    "ll-input-group-textarea": "../input-group-textarea/input-group-textarea",
+    "ll-label": "../label/label",
+    "ll-button": "../button/button",
+    "ll-icon": "../icon/icon",
+    "ll-tooltip": "../tooltip/tooltip",
+    "ll-popover": "../popover/popover",
+    "ll-dropdown-menu": "../dropdown-menu/dropdown-menu",
+    "ll-dropdown-menu-item": "../dropdown-menu-item/dropdown-menu-item",
+    "ll-button-group": "../button-group/button-group",
+    "ll-button-group-text": "../button-group-text/button-group-text",
+    "ll-spinner": "../spinner/spinner",
+    "ll-separator": "../separator/separator"
+  }
+}

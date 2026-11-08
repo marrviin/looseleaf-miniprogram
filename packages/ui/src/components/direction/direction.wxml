@@ -1,0 +1,2 @@
+<!-- ll-direction — dir provider; children stay in normal flow -->
+<view class="ll-direction" style="{{customStyle}}"><slot /></view>

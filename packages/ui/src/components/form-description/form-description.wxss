@@ -1,0 +1,5 @@
+.ll-form-description {
+  font-size: 24rpx; /* text-sm */
+  color: var(--ll-ink-muted, #4a433c);
+  line-height: 1.5;
+}

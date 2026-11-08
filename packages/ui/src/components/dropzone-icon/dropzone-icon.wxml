@@ -1,0 +1,7 @@
+<!-- ll-dropzone-icon — the picture on the patch (upload arrow). This
+     webview doesn't render slot fallbacks inside a virtualHost component,
+     so the default icon is drawn outright; a page wanting a different
+     picture just sets the icon prop (or skips this part entirely). -->
+<view class="ll-dropzone-icon" style="{{customStyle}}">
+  <ll-icon name="{{icon}}" size="32" weight="1.2" />
+</view>

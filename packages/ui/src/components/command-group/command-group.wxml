@@ -1,0 +1,5 @@
+<!-- ll-command-group — heading + rows; hides itself when nothing matches. -->
+<view wx:if="{{!hidden}}" class="ll-command-group" style="{{customStyle}}">
+  <view wx:if="{{heading}}" class="ll-command-group__heading">{{heading}}</view>
+  <slot />
+</view>

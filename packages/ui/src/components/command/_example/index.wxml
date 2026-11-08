@@ -1,0 +1,184 @@
+<!-- ll-command demo — mirrors the upstream docs page (#/components/command).
+     Upstream types and uses the arrow keys; on the phone you type and tap. -->
+<view class="demo">
+  <view class="demo-title">Command</view>
+  <view class="sec-desc">A command palette on a slip of paper. Type and the list is cut down (cmdk's fuzzy match); the first hit wears the highlighter, keys show as pencil keycaps, an empty search gets Stubby with his magnifier.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">The shadcn demo on a slip. Type "cal" to cut the list down; the row you are on wears the highlighter; Calculator is disabled; the last three end in a keycap.</view>
+    <view class="center-row">
+      <view class="palette-box">
+        <ll-command id="cmd1" seed="cmd-1" aria-label="Commands">
+          <ll-command-input id="cmdIn1" placeholder="Type a command or search..." />
+          <ll-command-list>
+            <ll-command-empty id="cmdEmpty1">No results found.</ll-command-empty>
+            <ll-command-group heading="Suggestions">
+              <ll-command-item id="ciCalendar" value="Calendar" bind:select="onPick">
+                <ll-icon name="calendar" size="{{16}}" />
+                <text>Calendar</text>
+              </ll-command-item>
+              <ll-command-item id="ciEmoji" value="Search Emoji" keywords="{{['emoji','smile']}}" bind:select="onPick">
+                <ll-icon name="face-slightly-smiling" size="{{16}}" />
+                <text>Search Emoji</text>
+              </ll-command-item>
+              <ll-command-item id="ciCalc" value="Calculator" disabled>
+                <ll-icon name="calculator" size="{{16}}" />
+                <text>Calculator</text>
+              </ll-command-item>
+            </ll-command-group>
+            <ll-command-separator id="cmdSep1" />
+            <ll-command-group heading="Settings">
+              <ll-command-item id="ciProfile" value="Profile" bind:select="onPick">
+                <ll-icon name="user" size="{{16}}" />
+                <text>Profile</text>
+                <ll-command-shortcut text="Ctrl P" />
+              </ll-command-item>
+              <ll-command-item id="ciBilling" value="Billing" bind:select="onPick">
+                <ll-icon name="credit-card" size="{{16}}" />
+                <text>Billing</text>
+                <ll-command-shortcut text="Ctrl B" />
+              </ll-command-item>
+              <ll-command-item id="ciSettings" value="Settings" bind:select="onPick">
+                <ll-icon name="settings" size="{{16}}" />
+                <text>Settings</text>
+                <ll-command-shortcut text="Ctrl S" />
+              </ll-command-item>
+            </ll-command-group>
+          </ll-command-list>
+        </ll-command>
+      </view>
+    </view>
+    <view class="said-line" aria-live="polite">{{said}}</view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">In a dialog, on a napkin</view>
+    <view class="sec-desc">The palette is set on a napkin over the dim; a tap outside puts it away. (Upstream opens it with Ctrl + K or the button; the phone has the button.)</view>
+    <view class="center-row">
+      <ll-button variant="outline" bind:tap="onDialogOpen" aria-label="Open command dialog">
+        <ll-icon name="search" size="{{16}}" />
+        <text>Search the notebook</text>
+        <view class="kbd-group">
+          <ll-kbd text="Ctrl" />
+          <ll-kbd text="K" />
+        </view>
+      </ll-button>
+    </view>
+    <ll-dialog
+      id="cmdDlg"
+      open="{{dlgOpen}}"
+      stock="napkin"
+      show-close-button="{{false}}"
+      aria-label="Search the notebook"
+      bind:change="onDialogChange"
+      custom-style="padding:24rpx;gap:0;"
+    >
+      <ll-command id="cmdDlgCmd" sheet="{{false}}" seed="cmd-dialog" aria-label="Search the notebook">
+        <ll-command-input id="cmdDlgIn" placeholder="Jump to a page or run a command..." />
+        <ll-command-list>
+          <ll-command-empty id="cmdDlgEmpty">Nothing on that page.</ll-command-empty>
+          <ll-command-group heading="Pages">
+            <ll-command-item id="dlgNotes" value="Field notes" bind:select="onDialogPick">
+              <ll-icon name="file-text" size="{{16}}" />
+              <text>Field notes</text>
+            </ll-command-item>
+            <ll-command-item value="Recipes" bind:select="onDialogPick">
+              <ll-icon name="book-open" size="{{16}}" />
+              <text>Recipes</text>
+            </ll-command-item>
+            <ll-command-item value="Garden log" bind:select="onDialogPick">
+              <ll-icon name="folder" size="{{16}}" />
+              <text>Garden log</text>
+            </ll-command-item>
+          </ll-command-group>
+          <ll-command-separator />
+          <ll-command-group heading="Actions">
+            <ll-command-item value="New page" bind:select="onDialogPick">
+              <ll-icon name="plus" size="{{16}}" />
+              <text>New page</text>
+              <ll-command-shortcut text="Ctrl N" />
+            </ll-command-item>
+            <ll-command-item value="Duplicate page" bind:select="onDialogPick">
+              <ll-icon name="copy" size="{{16}}" />
+              <text>Duplicate page</text>
+              <ll-command-shortcut text="Ctrl D" />
+            </ll-command-item>
+            <ll-command-item value="Empty the bin" disabled>
+              <ll-icon name="trash" size="{{16}}" />
+              <text>Empty the bin</text>
+            </ll-command-item>
+          </ll-command-group>
+        </ll-command-list>
+      </ll-command>
+    </ll-dialog>
+    <view class="said-line" aria-live="polite">{{dlgSaid}}</view>
+
+    <view class="sub-h3">Empty and loading</view>
+    <view class="sec-desc">Results that come from a server: filtering is off (shouldFilter=false), the loops show while a search is on its way, and Stubby comes out with his magnifier when the answer is nothing. Try "inv", then "zzz".</view>
+    <view class="center-row">
+      <view class="palette-box">
+        <ll-command id="cmd3" should-filter="{{false}}" seed="cmd-docs" aria-label="Search documents">
+          <ll-command-input id="cmdIn3" placeholder="Search documents..." bind:input="onQuery" />
+          <ll-command-list>
+            <ll-command-loading wx:if="{{busy}}">Searching...</ll-command-loading>
+            <ll-command-empty wx:if="{{!busy && query && results.length === 0}}" id="cmdEmpty3">No documents found.</ll-command-empty>
+            <ll-command-group wx:if="{{!busy && results.length > 0}}" heading="Documents">
+              <ll-command-item wx:for="{{results}}" wx:key="*this" value="{{item}}" bind:select="onPick">
+                <ll-icon name="file-text" size="{{16}}" />
+                <text>{{item}}</text>
+              </ll-command-item>
+            </ll-command-group>
+          </ll-command-list>
+          <view wx:if="{{!query}}" class="idle-hint">Type to search.</view>
+        </ll-command>
+      </view>
+    </view>
+
+    <view class="sub-h3">A status picker in a popover</view>
+    <view class="sec-desc">The classic use: a Command inside a Popover. The popover is the paper, the chosen status gets a tick, and picking one closes the slip.</view>
+    <view class="center-row">
+      <view class="status-row">
+        <text class="status-label">Status</text>
+        <ll-popover
+          id="statusPop"
+          open="{{statusOpen}}"
+          width="{{208}}"
+          padding="0"
+          align="start"
+          aria-label="Status"
+          bind:change="onStatusChange"
+        >
+          <view slot="trigger">
+            <ll-button variant="outline" size="sm" custom-style="width:144px;justify-content:space-between;" bind:tap="onStatusOpen" aria-label="Change status">
+              <text>{{statusLabel}}</text>
+              <ll-icon name="chevrons-up-down" size="{{14}}" />
+            </ll-button>
+          </view>
+          <ll-command id="cmd4" seed="cmd-status" aria-label="Status">
+            <ll-command-input id="cmdIn4" placeholder="Change status..." />
+            <ll-command-list>
+              <ll-command-group>
+                <ll-command-item
+                  wx:for="{{statuses}}"
+                  wx:key="value"
+                  id="st{{index}}"
+                  value="{{item.label}}"
+                  bind:select="onStatusPick"
+                >
+                  <text>{{item.label}}</text>
+                  <view wx:if="{{item.value === status}}" class="status-tick">
+                    <ll-icon name="check" size="{{16}}" />
+                  </view>
+                </ll-command-item>
+              </ll-command-group>
+            </ll-command-list>
+          </ll-command>
+        </ll-popover>
+      </view>
+    </view>
+  </view>
+</view>

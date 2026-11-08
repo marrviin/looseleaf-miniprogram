@@ -1,0 +1,43 @@
+<!-- ll-marquee demo — mirrors the upstream docs page
+     (#/components/marquee). Upstream loops arbitrary slotted MarqueeItems;
+     a mini-program slot can't be stamped N times, so the lines arrive as
+     an `items` array here and the star separator is drawn by the component.
+     The announcement bar's links become plain lines for the same reason. -->
+<view class="demo">
+  <view class="demo-title">Marquee</view>
+  <view class="sec-desc">A washi tape strip with ticker lines looping across it — point at it and it stops (on the web); the round button pauses it for good.</view>
+
+  <view class="sec">
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">The default washi stripes at 60px per second; the round button pauses it for good.</view>
+    <view class="mq-row">
+      <ll-marquee id="mq-main" label="Shop news" items="{{shopNews}}" bind:pausedchange="onPaused" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Tapes and directions</view>
+    <view class="sec-desc">Any tape from the desk: masking, striped, gingham. direction="end" runs it the other way, speed sets px per second. (washi-dots is for short, large words: its white dots are as big as small letters.)</view>
+    <view class="mq-col">
+      <ll-marquee tape="masking" speed="{{45}}" label="Masking tape ticker" controls="{{false}}" items="{{masking}}" />
+      <ll-marquee tape="washi-stripes" color="sky" direction="end" label="Striped tape ticker" items="{{striped}}" />
+      <ll-marquee tape="washi-gingham" color="tomato" speed="{{90}}" label="Gingham ticker" items="{{gingham}}" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Announcement bar</view>
+    <view class="sec-desc">A real use: the strip above a site header. Upstream puts links inside the loop; slotted links can't be stamped per copy here, so the lines stay plain.</view>
+    <view class="mq-col">
+      <ll-marquee label="Announcements" speed="{{55}}" tape="washi-stripes" color="tangerine" items="{{announcements}}" />
+      <view class="mq-nav" aria-role="navigation" aria-label="Main">
+        <text class="mq-nav-brand">Looseleaf &amp; Co.</text>
+        <text class="mq-nav-link">Shop</text>
+        <text class="mq-nav-link">Journal</text>
+        <text class="mq-nav-link">About</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="sr-only" aria-live="polite">{{said}}</view>
+</view>

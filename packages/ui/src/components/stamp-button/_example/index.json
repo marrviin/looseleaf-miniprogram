@@ -1,0 +1,12 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-stamp-button": "../stamp-button/stamp-button",
+    "ll-stamp-surface": "../stamp-surface/stamp-surface",
+    "ll-paper": "../paper/paper",
+    "ll-card": "../card/card",
+    "ll-card-content": "../card-content/card-content",
+    "ll-badge": "../badge/badge",
+    "ll-button": "../button/button"
+  }
+}

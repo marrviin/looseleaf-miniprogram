@@ -1,0 +1,80 @@
+/* ll-arrow — 80×40 for a fixed direction, 24×24 aimed */
+.ll-arrow {
+  position: relative;
+  isolation: isolate;
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  width: 80px;
+  height: 40px;
+}
+.ll-arrow.is-aimed {
+  width: 24px;
+  height: 24px;
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-arrow__label {
+  position: absolute;
+  white-space: nowrap;
+  font-family: 'Kevin Sans Script', 'Kevin Sans', 'Bradley Hand', cursive;
+  font-size: 20px;
+  line-height: 1;
+  color: var(--ll-ink-you, #2c4f9e);
+}
+/* label parked at the direction's side (upstream LABEL_SIDE) */
+.is-dir-right .ll-arrow__label {
+  right: 100%;
+  top: 50%;
+  margin-right: 8px;
+  transform: translateY(-50%);
+}
+.is-dir-left .ll-arrow__label {
+  left: 100%;
+  top: 50%;
+  margin-left: 8px;
+  transform: translateY(-50%);
+}
+.is-dir-up .ll-arrow__label {
+  top: 100%;
+  left: 50%;
+  margin-top: 4px;
+  transform: translateX(-50%);
+}
+.is-dir-down .ll-arrow__label {
+  bottom: 100%;
+  left: 50%;
+  margin-bottom: 4px;
+  transform: translateX(-50%);
+}
+.is-dir-up-right .ll-arrow__label {
+  right: 100%;
+  bottom: 0;
+  margin-right: 8px;
+}
+.is-dir-up-left .ll-arrow__label {
+  left: 100%;
+  bottom: 0;
+  margin-left: 8px;
+}
+.is-dir-down-right .ll-arrow__label {
+  right: 100%;
+  top: 0;
+  margin-right: 8px;
+}
+.is-dir-down-left .ll-arrow__label {
+  left: 100%;
+  top: 0;
+  margin-left: 8px;
+}
+.is-aimed .ll-arrow__label {
+  left: 100%;
+  top: 50%;
+  margin-left: 8px;
+  transform: translateY(-50%);
+}

@@ -1,0 +1,25 @@
+/* ll-command-item — relative flex min-h-9 items-center gap-2 px-2 py-1.5
+   font-hand text-base; data-[selected=true]:ll-swipe; disabled graphite. */
+.ll-command-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16rpx; /* gap-2 */
+  box-sizing: border-box;
+  min-height: 72rpx; /* min-h-9 */
+  padding: 12rpx 16rpx; /* py-1.5 px-2 */
+  font-family: 'Kevin Sans', sans-serif; /* font-hand */
+  font-size: 28rpx; /* text-base x .88 */
+  line-height: 1.4;
+  color: inherit;
+}
+/* data-[selected=true]:ll-swipe — the highlighter */
+.ll-command-item--hi {
+  background-color: rgba(248, 220, 76, 0.62); /* var(--ll-hi-select) */
+  color: #2a2420; /* var(--ll-selection-text) */
+  border-radius: 6rpx 16rpx 8rpx 18rpx / 16rpx 6rpx 18rpx 8rpx;
+}
+.ll-command-item--disabled {
+  color: #5a554e; /* data-[disabled]:text-pencil-text */
+  pointer-events: none;
+}

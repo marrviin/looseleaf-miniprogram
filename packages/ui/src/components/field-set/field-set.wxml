@@ -1,0 +1,2 @@
+<!-- ll-field-set — legend, help and fields under one heading. -->
+<view class="ll-field-set ll-class" style="{{customStyle}}"><slot /></view>

@@ -1,0 +1,7 @@
+<!-- ll-dropzone-rejections — why files were refused, one line each -->
+<view wx:if="{{lines.length}}" class="ll-dropzone-rejections" style="{{customStyle}}">
+  <view wx:for="{{lines}}" wx:key="index" class="ll-dropzone-rejections__line">
+    <ll-icon name="circle-alert" size="16" custom-style="margin-top:2px;flex-shrink:0;" />
+    <text>{{item}}</text>
+  </view>
+</view>

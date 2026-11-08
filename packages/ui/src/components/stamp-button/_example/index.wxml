@@ -1,0 +1,70 @@
+<!-- ll-stamp-button demo — mirrors the upstream docs page
+     (#/components/stamp-button). Upstream's StampSurface reaches its
+     buttons through React context; state cannot cross a component
+     boundary here, so the page plays match-maker: bind:stamp →
+     surface.strike(detail). -->
+<view class="demo">
+  <view class="demo-title">Stamp button</view>
+  <view class="sec-desc">A button that is a rubber stamp: a wooden knob on an inked die, in the color of the impression it will leave. Press it and APPROVED, PAID or VOID lands on the page with a thump. The stamps on a page are JSON, so they can be state.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Stamp the page</view>
+    <view class="sec-desc">Press the stamp and an impression lands on the document with a thump; the page gives a little. Press it again and a fresh strike replaces the last (Approve twice is still one APPROVED).</view>
+    <ll-stamp-surface id="surface1" bind:valuechange="onMarks1">
+      <ll-paper stock="slip" tilt="{{false}}" custom-style="display:block;padding:48rpx 48rpx 32rpx;">
+        <view class="invoice-h">Invoice 2026-031</view>
+        <view class="invoice-rows">
+          <view class="invoice-row"><view class="invoice-k">To</view><view class="invoice-v">The Paper Club</view></view>
+          <view class="invoice-row"><view class="invoice-k">For</view><view class="invoice-v">Twelve notebooks, felt tips</view></view>
+          <view class="invoice-row"><view class="invoice-k">Total</view><view class="invoice-v invoice-num">$ 148.00</view></view>
+        </view>
+        <view class="tool-row">
+          <ll-stamp-button id="sb1" stamp="stamp-approved" place-x="{{0.66}}" place-y="{{0.5}}" bind:stamp="onStamp1">Approve</ll-stamp-button>
+          <ll-stamp-button stamp="stamp-void" place-x="{{0.5}}" place-y="{{0.42}}" bind:stamp="onStamp1">Void</ll-stamp-button>
+        </view>
+      </ll-paper>
+    </ll-stamp-surface>
+    <view class="said-line" aria-live="polite">{{said1}}</view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Inks and shapes</view>
+    <view class="sec-desc">The tool takes the color of the pad it will leave: green, red, blue felt, black. Any preset from the sticker sheet works, or give the words and the shape yourself.</view>
+    <ll-stamp-surface id="surface2">
+      <ll-paper stock="paper" tilt="{{false}}" custom-style="display:block;padding:48rpx;">
+        <view class="inks-para">Received from the post office on the 14th, signed for and put on the shelf by the window. Stamp it however you like.</view>
+        <view class="tool-row tool-row--wrap">
+          <ll-stamp-button id="sb2a" stamp="stamp-paid" place-x="{{0.2}}" place-y="{{0.5}}" bind:stamp="onStamp2" />
+          <ll-stamp-button id="sb2b" stamp="stamp-received" sub="Mar 14 2026" place-x="{{0.66}}" place-y="{{0.42}}" bind:stamp="onStamp2" />
+          <ll-stamp-button id="sb2c" text="Filed" shape="rect" ink="ink" dashed w="{{140}}" h="{{52}}" place-x="{{0.5}}" place-y="{{0.6}}" bind:stamp="onStamp2" />
+          <ll-stamp-button id="sb2d" stamp="stamp-urgent" place-x="{{0.78}}" place-y="{{0.7}}" bind:stamp="onStamp2" />
+        </view>
+      </ll-paper>
+    </ll-stamp-surface>
+    <view class="said-line" aria-live="polite">{{said2}}</view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">An approval</view>
+    <view class="sec-desc">A real review step: the stamps are the state. Approving or rejecting leaves its impression on the expense report (a second decision replaces the first), the status badge follows it, and Reset clears the page.</view>
+    <ll-stamp-surface id="surface3" value="{{marks}}" bind:valuechange="onMarks3">
+      <ll-card>
+        <ll-card-content>
+          <view class="report-h">Expense report 118</view>
+          <view class="report-d">Maya Chen, felt tips and washi tape for the March workshop.</view>
+          <view class="report-row">
+            <view class="report-amount">$ 148.00</view>
+            <ll-badge variant="{{marks.length ? 'default' : 'outline'}}" aria-live="polite">{{status3}}</ll-badge>
+          </view>
+          <view class="tool-row tool-row--wrap tool-row--report">
+            <ll-stamp-button stamp="stamp-approved" id="sb3a" impression-id="decision" place-x="{{0.68}}" place-y="{{0.44}}" bind:stamp="onStamp3">Approve</ll-stamp-button>
+            <ll-stamp-button stamp="stamp-void" text="Rejected" id="sb3b" impression-id="decision" place-x="{{0.46}}" place-y="{{0.5}}" bind:stamp="onStamp3">Reject</ll-stamp-button>
+            <ll-button size="sm" variant="ghost" disabled="{{!marks.length}}" custom-style="margin-left:auto;" bind:tap="onReset">Reset</ll-button>
+          </view>
+        </ll-card-content>
+      </ll-card>
+    </ll-stamp-surface>
+  </view>
+</view>

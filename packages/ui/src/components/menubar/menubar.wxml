@@ -1,0 +1,5 @@
+<!-- ll-menubar — the paper strip; the titles are ll-menubar-menu children. -->
+<view class="ll-menubar ll-class" style="{{customStyle}}" aria-role="menubar" aria-label="{{ariaLabel}}">
+  <view wx:if="{{inkStyle}}" class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-menubar__row"><slot /></view>
+</view>

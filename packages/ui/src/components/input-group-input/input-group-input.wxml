@@ -1,0 +1,19 @@
+<!-- ll-input-group-input — the bare single-line control of the group. -->
+<input
+  class="ll-igi {{disabled ? 'll-igi--disabled' : ''}}"
+  style="{{customStyle}}"
+  value="{{value}}"
+  placeholder="{{placeholder}}"
+  placeholder-class="ll-igi__placeholder"
+  disabled="{{disabled}}"
+  type="{{type}}"
+  password="{{password}}"
+  maxlength="{{maxlength}}"
+  confirm-type="{{confirmType}}"
+  focus="{{inputFocus}}"
+  aria-label="{{ariaLabel}}"
+  bindinput="onInput"
+  bindfocus="onFocus"
+  bindblur="onBlur"
+  bindconfirm="onConfirm"
+/>

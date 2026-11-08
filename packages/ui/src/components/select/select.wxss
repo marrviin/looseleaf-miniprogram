@@ -1,0 +1,170 @@
+/* ll-select — upstream select.tsx trigger/content + Paper slip.
+   Trigger text is the blue felt you write with (--ll-input-ink); the list
+   is dark ink on a slip (text-popover-foreground). Pop in/out mirror the
+   dropdown-menu panel (fade + zoom-95, --ll-dur-pop). */
+/* @ll-import tokens */
+
+.ll-select {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex; /* w-fit */
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx; /* gap-2 */
+  box-sizing: border-box;
+  height: 72rpx; /* h-9 */
+  padding-left: 24rpx; /* ps-3 */
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 28rpx; /* text-base x .88 */
+  white-space: nowrap;
+  color: #2c4f9e; /* text-(--ll-input-ink) */
+}
+.ll-select--sm {
+  height: 64rpx; /* data-[size=sm]:h-8 */
+  font-size: 26rpx; /* text-[15px] x .88 */
+}
+.ll-select--disabled {
+  color: #5a554e; /* disabled:text-pencil-text */
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-select__inner {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  align-items: center;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+.ll-select__value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis; /* *:data-[slot=select-value]:line-clamp-1 */
+}
+.ll-select__value--placeholder {
+  color: #5a554e; /* data-[placeholder]:text-(--ll-placeholder) */
+}
+.ll-select__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64rpx; /* w-8 */
+  height: 100%;
+  flex-shrink: 0;
+  transition: transform 180ms ease; /* duration-(--ll-dur-pop) */
+}
+.ll-select__icon--open {
+  transform: rotate(180deg); /* group-data-[state=open]:rotate-180 */
+}
+
+/* the slip */
+.ll-select__catcher {
+  position: fixed;
+  inset: 0;
+  z-index: 1010; /* --ll-z-popover */
+  background: transparent;
+}
+.ll-select__panel {
+  position: fixed;
+  z-index: 1011;
+  box-sizing: border-box;
+  font-family: 'Kevin Sans', sans-serif;
+  color: #2a2420; /* text-popover-foreground = --ll-ink */
+  animation: ll-select-in 180ms cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
+}
+.ll-select__panel.is-placing {
+  opacity: 0;
+  animation: none;
+  transition: none;
+}
+.ll-select__panel--closing {
+  animation: ll-select-out 150ms ease-in both;
+}
+@keyframes ll-select-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes ll-select-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+.ll-select__viewport {
+  display: block;
+  padding: 8rpx; /* p-1 */
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* SelectLabel: font-type text-sm tracking-wide text-ink-muted */
+.ll-select__group-label {
+  padding: 12rpx 16rpx; /* py-1.5 px-2 */
+  font-size: 23rpx; /* text-sm x .82 (font-type size-adjust) */
+  letter-spacing: 0.05em; /* tracking-wide */
+  color: #4a433c; /* text-ink-muted */
+}
+
+/* SelectItem: relative flex min-h-8 w-full items-center gap-2 py-1.5 ps-2 pe-8 */
+.ll-select__item {
+  position: relative;
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  gap: 16rpx; /* gap-2 */
+  min-height: 64rpx; /* min-h-8 */
+  padding: 12rpx 64rpx 12rpx 16rpx; /* py-1.5 ps-2 pe-8 */
+  font-size: 28rpx; /* text-base x .88 */
+  line-height: 1.4;
+}
+.ll-select__item--checked {
+  font-weight: 700; /* data-[state=checked]:font-bold */
+}
+.ll-select__item--disabled {
+  color: #5a554e; /* data-[disabled]:text-pencil-text */
+}
+/* data-[highlighted]:ll-swipe — the highlighter */
+.ll-select__item--hi {
+  background-color: rgba(248, 220, 76, 0.62); /* var(--ll-hi-select) */
+  color: #2a2420; /* var(--ll-selection-text) */
+  border-radius: 6rpx 16rpx 8rpx 18rpx / 16rpx 6rpx 18rpx 8rpx;
+}
+.ll-select__item-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* the felt tick: absolute end-2 size-4 */
+.ll-select__check {
+  position: absolute;
+  right: 16rpx; /* end-2 */
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32rpx;
+  height: 32rpx;
+}

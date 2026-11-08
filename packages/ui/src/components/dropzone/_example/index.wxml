@@ -1,0 +1,117 @@
+<!-- ll-dropzone demo — mirrors the upstream docs page
+     (#/components/dropzone): the stitched zone, a page-driven upload with
+     progress, a single-file avatar, and the zone as a required form field.
+     The file dialog is wx.chooseMessageFile behind the area tap; the page
+     can also push files in through add() for tests. -->
+<view class="demo">
+  <view class="demo-title">Dropzone</view>
+  <view class="sec-desc">A stitched area that takes files — tap it to pick from a chat, and the family (area, icon, title, description, rejections, list, item) arranges itself inside.</view>
+
+  <view class="sec">
+    <view class="sub-h3">Drop or browse</view>
+    <view class="sec-desc">Images up to 2 MB, at most four. Rejected files are listed on red lines under the zone; accepted ones become ruled rows.</view>
+    <view class="stack-12">
+      <ll-dropzone id="dz1" accept="image/*" max-size="{{limit2MB}}" max-files="{{4}}" bind:fileschange="onFiles1" bind:reject="onReject1">
+        <ll-dropzone-area>
+          <ll-dropzone-icon />
+          <ll-dropzone-title>Drop images here or browse</ll-dropzone-title>
+          <ll-dropzone-description />
+        </ll-dropzone-area>
+        <ll-dropzone-rejections />
+        <ll-dropzone-list />
+      </ll-dropzone>
+      <view wx:if="{{footer1}}" class="footnote">{{footer1}}</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Attach files, with progress</view>
+    <view class="sec-desc">The page drives each row's status: a highlighter line fills, a green tick lands when it's done, and a failed row gets a red wavy rule. Remove pulls the row back out.</view>
+    <view class="stack-12">
+      <ll-card seed="dz-card2">
+        <ll-card-header>
+          <ll-card-title>Claim receipts</ll-card-title>
+          <ll-card-description>Files ride the note; the page keeps their progress.</ll-card-description>
+        </ll-card-header>
+        <ll-card-content>
+          <ll-dropzone id="dz2" accept="image/*,.pdf" max-size="{{limit3MB}}" max-files="{{5}}" bind:fileschange="onFiles2" bind:reject="onReject2">
+            <ll-dropzone-area>
+              <ll-dropzone-icon />
+              <ll-dropzone-title>Add receipts</ll-dropzone-title>
+              <ll-dropzone-description />
+            </ll-dropzone-area>
+            <ll-dropzone-rejections />
+          </ll-dropzone>
+          <view class="stack-8 rows2">
+            <ll-dropzone-list files="{{files2}}">
+              <ll-dropzone-item wx:for="{{rows2}}" wx:key="key" file="{{item}}" status="{{item.status}}" progress="{{item.progress}}" error="{{item.error}}" seed="{{item.key}}" bind:remove="onRemove2" />
+            </ll-dropzone-list>
+          </view>
+        </ll-card-content>
+        <ll-card-footer rule="pencil" custom-style="justify-content:space-between;">
+          <text class="footnote">{{footer2}}</text>
+          <ll-button size="sm" variant="ghost" disabled="{{busy2 || files2.length === 0}}">Save note</ll-button>
+        </ll-card-footer>
+      </ll-card>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">One file: a profile picture</view>
+    <view class="sec-desc">multiple=false holds a single photo. Once one is in, the area shows it as a crooked print; picking again replaces it.</view>
+    <view class="stack-12">
+      <ll-dropzone id="dz3" accept="image/png,image/jpeg" max-size="{{limit1MB}}" multiple="{{false}}" bind:fileschange="onFiles3">
+        <ll-dropzone-area>
+          <block wx:if="{{files3.length === 0}}">
+            <ll-dropzone-icon />
+            <ll-dropzone-title>Drop a photo or browse</ll-dropzone-title>
+            <ll-dropzone-description />
+          </block>
+          <block wx:else>
+            <view class="polaroid">
+              <image wx:if="{{files3[0].path}}" src="{{files3[0].path}}" mode="aspectFill" class="polaroid-img" />
+              <ll-icon wx:else name="image" size="36" />
+            </view>
+            <view class="drop3-name">{{files3[0].name}}</view>
+            <view class="sec-desc">(drop another to replace it)</view>
+          </block>
+        </ll-dropzone-area>
+      </ll-dropzone>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Required, in a form</view>
+    <view class="sec-desc">The zone is a form field: submitting with nothing attached turns it invalid and writes a red line under it.</view>
+    <view class="stack-12">
+      <ll-card seed="dz-card4" tape="corner">
+        <ll-card-header>
+          <ll-card-title>Expense claim</ll-card-title>
+          <ll-card-description>Attach at least one receipt.</ll-card-description>
+        </ll-card-header>
+        <ll-card-content>
+          <view class="field">
+            <ll-label>Your name</ll-label>
+            <ll-input placeholder="Ada Lovelace" bind:input="onWho" />
+          </view>
+          <view class="field">
+            <ll-label required>Receipts</ll-label>
+            <ll-dropzone id="dz4" accept="image/*,.pdf" max-files="{{5}}" invalid="{{touched4 && count4 === 0}}" bind:fileschange="onFiles4">
+              <ll-dropzone-area>
+                <ll-dropzone-icon />
+                <ll-dropzone-title>Attach receipts</ll-dropzone-title>
+                <ll-dropzone-description />
+              </ll-dropzone-area>
+              <ll-dropzone-rejections />
+            </ll-dropzone>
+            <text wx:if="{{touched4 && count4 === 0}}" class="claim-alert" role="alert">Please attach a receipt.</text>
+          </view>
+        </ll-card-content>
+        <ll-card-footer rule="pencil" custom-style="justify-content:space-between;">
+          <text class="footnote">{{result4 || 'Nothing sent yet.'}}</text>
+          <ll-button size="sm" bind:tap="sendClaim">Send claim</ll-button>
+        </ll-card-footer>
+      </ll-card>
+    </view>
+  </view>
+</view>

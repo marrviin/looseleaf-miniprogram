@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-carousel-dot": "looseleaf-miniprogram/components/carousel-dot/carousel-dot"
+  }
+}

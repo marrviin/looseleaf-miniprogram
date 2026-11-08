@@ -71,6 +71,12 @@ createComponent({
       optionalTypes: [Number, String],
       value: 288,
     },
+    /** The slip's padding (upstream PopoverContent classes p-4 / p-0 when
+        the content brings its own paper). */
+    padding: {
+      type: String,
+      value: '32rpx',
+    },
     // Paper props (PopoverContent forwards these to Paper).
     stock: {
       type: String,
@@ -130,6 +136,7 @@ createComponent({
     detached() {
       if (this.__placeTimer) clearTimeout(this.__placeTimer);
       if (this.__exitTimer) clearTimeout(this.__exitTimer);
+      if (this.__settleTimer) clearTimeout(this.__settleTimer);
     },
   },
   methods: {
@@ -206,7 +213,12 @@ createComponent({
             const res = pointerMark(`${d.seed || 'll-popover'}|pointer`, {});
             arrowUri = svgDataUri(res.svg, res);
           }
-          this.setData({ placed: true, panelStyle, arrowStyle, arrowUri, side });
+          // Only write `side` when it flipped: the side/align/... observer
+          // re-places, and a same-value write would loop this forever (each
+          // pass overwriting the last pass's height correction).
+          const patch = { placed: true, panelStyle, arrowStyle, arrowUri };
+          if (side !== d.side) patch.side = side;
+          this.setData(patch);
           this.__placeTimer = setTimeout(() => {
             this.createSelectorQuery()
               .select('.ll-popover__panel')

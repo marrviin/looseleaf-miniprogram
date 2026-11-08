@@ -1,0 +1,5 @@
+<!-- ll-command-empty — Stubby with his magnifier + your words. -->
+<view wx:if="{{visible}}" class="ll-command-empty" style="{{customStyle}}">
+  <ll-mascot wx:if="{{mascot}}" pose="search" size="{{64}}" />
+  <view class="ll-command-empty__text"><slot /></view>
+</view>

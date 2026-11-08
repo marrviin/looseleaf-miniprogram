@@ -1,0 +1,20 @@
+<!-- ll-aspect-ratio demo — mirrors the upstream docs page -->
+<view class="demo">
+  <view class="demo-title">Aspect Ratio</view>
+  <view class="sec-desc">The same width, four ratios: 16:9, 4:3, 1:1 and 3:4, each a small print with a white border. Change the width of the container and each box keeps its shape.</view>
+
+  <view class="sec">
+    <view class="ar-grid">
+      <view class="ar-cell" wx:for="{{ratios}}" wx:key="label">
+        <view class="ar-print {{item.turn}}">
+          <ll-aspect-ratio ratio="{{item.ratio}}" custom-style="width:100%;">
+            <view class="ar-window {{item.tint}}">
+              <ll-doodle name="{{item.doodle}}" size="{{48}}" />
+            </view>
+          </ll-aspect-ratio>
+        </view>
+        <view class="ar-label">{{item.label}}</view>
+      </view>
+    </view>
+  </view>
+</view>

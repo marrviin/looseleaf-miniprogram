@@ -1,0 +1,15 @@
+<!-- ll-folder-tab -->
+<view
+  class="ll-folder-tab{{activeClass}}{{disabled ? ' is-disabled' : ''}} ll-class"
+  style="{{customStyle}}"
+  aria-role="tab"
+  aria-label="{{ariaLabel || content}}"
+  aria-disabled="{{disabled}}"
+  bind:tap="onTap"
+>
+  <view class="ll-ink-cast" wx:for="{{inkCasts}}" wx:key="index" style="{{item.style}}"></view>
+  <view class="ll-ink-layer" style="{{inkUnderStyle}}"></view>
+  <view class="ll-ink-face" wx:for="{{inkFaces}}" wx:key="index" style="{{item}}"></view>
+  <view class="ll-ink-layer" style="{{inkOverStyle}}"></view>
+  <view class="ll-folder-tab__content">{{content}}</view>
+</view>

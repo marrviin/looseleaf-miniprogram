@@ -1,0 +1,86 @@
+<!-- ll-sketchpad — the toolbar slip (tools / colors / sizes / undo-redo-
+     clear) above the framed paper. Upstream's composition parts fold into
+     this one layout: tools row with the history buttons on the right, then
+     colors + widths; the custom flex arrangements of the docs examples
+     don't carry (tools/colors/clearLabel props stand in for them). The
+     strokes are two full-canvas SVG images — committed + live — inside the
+     paper; the touch handlers on the surface do the drawing. -->
+<view class="ll-sketchpad ll-class {{disabled ? 'is-disabled' : ''}}" style="{{customStyle}}">
+  <ll-paper wx:if="{{toolbar}}" class="ll-sketchpad__toolbar" stock="slip" edge="cut" tilt="{{false}}">
+    <view class="ll-sketchpad__row">
+      <view class="ll-sketchpad__group" aria-role="radiogroup" aria-label="Tool">
+        <view
+          wx:for="{{toolBtns}}"
+          wx:key="id"
+          class="ll-sketchpad__tool {{curTool === item.id ? 'is-on' : ''}}"
+          aria-role="radio"
+          aria-checked="{{curTool === item.id}}"
+          aria-label="{{item.label}}"
+          data-tool="{{item.id}}"
+          bind:tap="onToolTap"
+        >
+          <view class="ll-sketchpad__btn-ink" style="{{item.style}}"></view>
+          <view wx:if="{{curTool === item.id}}" class="ll-sketchpad__btn-ink" style="{{item.onStyle}}"></view>
+          <text class="ll-sketchpad__tool-label">{{item.label}}</text>
+        </view>
+      </view>
+      <view class="ll-sketchpad__actions">
+        <ll-button variant="ghost" size="sm" disabled="{{!canUndo}}" bind:tap="onUndo">Undo</ll-button>
+        <ll-button variant="ghost" size="sm" disabled="{{!canRedo}}" bind:tap="onRedo">Redo</ll-button>
+        <ll-button size="sm" disabled="{{!canClear}}" bind:tap="onClear">{{clearLabel}}</ll-button>
+      </view>
+    </view>
+    <view class="ll-sketchpad__row">
+      <view class="ll-sketchpad__group" aria-role="radiogroup" aria-label="Color">
+        <view
+          wx:for="{{colorBtns}}"
+          wx:key="id"
+          class="ll-sketchpad__dot {{curColor === item.id ? 'is-on' : ''}}"
+          aria-role="radio"
+          aria-checked="{{curColor === item.id}}"
+          aria-label="{{item.label}}"
+          data-color="{{item.id}}"
+          bind:tap="onColorTap"
+        >
+          <view class="ll-sketchpad__btn-ink" style="{{item.style}}"></view>
+          <view wx:if="{{curColor === item.id}}" class="ll-sketchpad__btn-ink" style="{{item.onStyle}}"></view>
+        </view>
+      </view>
+      <view class="ll-sketchpad__group ll-sketchpad__group--sizes" aria-role="radiogroup" aria-label="Width">
+        <view
+          wx:for="{{sizeBtns}}"
+          wx:key="id"
+          class="ll-sketchpad__dot {{curSizeName === item.id ? 'is-on' : ''}}"
+          aria-role="radio"
+          aria-checked="{{curSizeName === item.id}}"
+          aria-label="{{item.label}}"
+          data-size="{{item.id}}"
+          bind:tap="onSizeTap"
+        >
+          <view class="ll-sketchpad__btn-ink" style="{{item.style}}"></view>
+          <view wx:if="{{curSizeName === item.id}}" class="ll-sketchpad__btn-ink" style="{{item.onStyle}}"></view>
+        </view>
+      </view>
+    </view>
+  </ll-paper>
+
+  <view class="ll-sketchpad-canvas" style="{{paperStyle}}">
+    <ll-paper class="ll-sketchpad__paper" custom-style="{{paperStyle}}" stock="{{stock}}" rules="{{rules}}" edge="cut" tilt="{{false}}" shadow="{{shadow || 'stock'}}" tape="{{paperTape}}" tape-kind="{{paperTapeKind}}"></ll-paper>
+    <view
+      id="skSurface"
+      class="ll-sketchpad__surface"
+      aria-role="{{readOnly || disabled ? 'img' : 'application'}}"
+      aria-label="{{label}}{{readOnly ? '' : ', draw with a finger'}}"
+      aria-disabled="{{disabled}}"
+      bind:touchstart="onTouchStart"
+      catch:touchmove="onTouchMove"
+      bind:touchend="onTouchEnd"
+      bind:touchcancel="onTouchCancel"
+    >
+      <view class="ll-sketchpad__doc" style="{{docStyle}}"></view>
+      <view wx:if="{{liveStyle}}" class="ll-sketchpad__doc" style="{{liveStyle}}"></view>
+    </view>
+  </view>
+
+  <view class="ll-sketchpad__status" aria-role="status" aria-live="polite">{{announce}}</view>
+</view>

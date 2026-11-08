@@ -1,0 +1,10 @@
+/* ll-drawer-footer — mt-auto flex flex-col gap-2 p-4 */
+/* @ll-import tokens */
+.ll-drawer-footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx; /* gap-2 */
+  padding: 32rpx; /* p-4 */
+  font-family: 'Kevin Sans', sans-serif;
+}

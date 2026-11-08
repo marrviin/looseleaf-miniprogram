@@ -1,0 +1,16 @@
+{
+  "usingComponents": {
+    "ll-typography-h1": "../typography-h1/typography-h1",
+    "ll-typography-h2": "../typography-h2/typography-h2",
+    "ll-typography-h3": "../typography-h3/typography-h3",
+    "ll-typography-h4": "../typography-h4/typography-h4",
+    "ll-typography-p": "../typography-p/typography-p",
+    "ll-typography-lead": "../typography-lead/typography-lead",
+    "ll-typography-large": "../typography-large/typography-large",
+    "ll-typography-small": "../typography-small/typography-small",
+    "ll-typography-muted": "../typography-muted/typography-muted",
+    "ll-typography-list": "../typography-list/typography-list",
+    "ll-typography-inline-code": "../typography-inline-code/typography-inline-code",
+    "ll-typography-blockquote": "../typography-blockquote/typography-blockquote"
+  }
+}

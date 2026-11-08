@@ -1,0 +1,14 @@
+/* ll-dropzone-title */
+/* @ll-import tokens */
+.ll-dropzone-title {
+  font-family: var(--ll-font-script, var(--ll-font-hand, sans-serif));
+  font-size: 1.45rem;
+  line-height: 1.25;
+  font-weight: 600;
+  color: var(--ll-foreground, var(--ll-ink));
+}
+.ll-dropzone-title .is-you {
+  color: var(--ll-ink-you, var(--ll-accent, var(--ll-ink)));
+  text-decoration: underline wavy var(--ll-ink-you, var(--ll-accent, var(--ll-ink))) 1px;
+  text-underline-offset: 4px;
+}

@@ -1,0 +1,23 @@
+/* ll-field — upstream fieldVariants: flex w-full gap-3; vertical stacks,
+   horizontal rows (items-center). Slot children are page-owned nodes, so
+   "children w-full" / "label flex-auto" ride on the children themselves
+   (ll-input/ll-textarea are w-full; field-content is flex-1) or on
+   custom-style in the demo; the invalid red is a controlled `invalid`
+   prop on ll-field-label (state can't cross slots). */
+/* @ll-import tokens */
+
+.ll-field {
+  display: flex;
+  width: 100%;
+  gap: 24rpx; /* gap-3 */
+}
+.ll-field--vertical,
+.ll-field--responsive {
+  /* responsive: upstream is vertical until the FieldGroup is md wide
+     (container query) — container queries don't exist here, stay vertical */
+  flex-direction: column;
+}
+.ll-field--horizontal {
+  flex-direction: row;
+  align-items: center;
+}

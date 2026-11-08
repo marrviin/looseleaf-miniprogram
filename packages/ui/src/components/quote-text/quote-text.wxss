@@ -1,0 +1,27 @@
+/* ll-quote-text — script body; the marks live in the ink layer */
+/* @ll-import tokens */
+.ll-quote-text {
+  position: relative;
+  isolation: isolate;
+  width: fit-content;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-quote-text__body {
+  position: relative;
+  font-family: 'Kevin Sans Script', 'Kevin Sans', 'Bradley Hand', cursive;
+  font-size: 26px;
+  line-height: 1.3;
+  color: var(--ll-foreground, #1f1b16);
+  word-break: break-word;
+}

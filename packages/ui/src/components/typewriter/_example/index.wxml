@@ -1,0 +1,42 @@
+<!-- ll-typewriter demo — mirrors the upstream docs page
+     (#/components/typewriter). startOnView keeps its meaning: 01/02 pass
+     start-on-view false like upstream; 03's receipt prints on its own.
+     "Print another" calls restart() (upstream remounts with a new key). -->
+<view class="demo">
+  <view class="demo-title">Typewriter</view>
+  <view class="sec-desc">Text that types itself at an uneven pace — holding at the comma and the period — with a hand-drawn caret keeping its place.</view>
+
+  <view class="sec">
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">It waits until it is on screen, then types at an uneven pace, holding at the comma and the period.</view>
+    <view class="type-para">
+      <ll-typewriter text="Every screen, drawn by hand. Nothing here was made by a ruler." start-on-view="{{false}}" custom-style="font-size:30px;line-height:1.375" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">A rotating word</view>
+    <view class="sec-desc">mode="cycle" types a word, holds it, backspaces it and moves on; loop keeps it going. A block caret, and the sentence still reads once to a screen reader.</view>
+    <view class="type-cycle">
+      <text class="type-script">We make </text>
+      <view class="type-cycle-word">
+        <ll-typewriter text="{{rotating}}" mode="cycle" loop cursor="block" pause="{{1100}}" speed="{{14}}" start-on-view="{{false}}" custom-style="color:var(--ll-orange-text,#b45309);font-size:36px" />
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Printing a receipt</view>
+    <view class="sec-desc">A real use: an order confirmation types itself onto a receipt, and done brings in the button. reserve holds the height of the finished receipt, so the paper does not grow as it prints.</view>
+    <view class="col-center">
+      <ll-paper stock="receipt" tilt="{{false}}" custom-style="width:576rpx;padding:48rpx">
+        <view class="type-receipt">
+          <ll-typewriter id="receipt-tw" text="{{receipt}}" speed="{{26}}" pause="{{500}}" start-on-view="{{false}}" reserve cursor="underscore" bind:done="onDone" custom-style="font-size:16px;line-height:28px" />
+        </view>
+      </ll-paper>
+      <view class="type-foot">
+        <ll-button wx:if="{{done}}" size="sm" variant="outline" bind:tap="printAnother">Print another</ll-button>
+      </view>
+    </view>
+  </view>
+</view>

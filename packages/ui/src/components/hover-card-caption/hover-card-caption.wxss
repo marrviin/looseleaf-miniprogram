@@ -1,0 +1,13 @@
+/* ll-hover-card-caption — mt-2.5 px-1 font-script text-[1.4rem]
+   leading-tight text-foreground. */
+/* @ll-import tokens */
+.ll-hover-card-caption {
+  box-sizing: border-box;
+  margin-top: 20rpx; /* mt-2.5 */
+  padding-left: 8rpx; /* px-1 */
+  padding-right: 8rpx;
+  font-family: 'Kevin Sans', sans-serif; /* font-script */
+  font-size: 40rpx; /* text-[1.4rem] ×0.88 */
+  line-height: 1.25; /* leading-tight */
+  color: #2a2420; /* text-foreground */
+}

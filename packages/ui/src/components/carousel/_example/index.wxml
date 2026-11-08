@@ -1,0 +1,67 @@
+<!-- ll-carousel demo — mirrors the upstream docs page -->
+<view class="demo">
+  <view class="demo-title">Carousel</view>
+  <view class="sec-desc">Slides on a snapped track: swipe, click the arrows, or tap a tally stroke. Previous is dashed at the first slide, next at the last.</view>
+
+  <view class="sec">
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">The shadcn demo: five cards and two arrows.</view>
+    <view class="ca-frame">
+      <ll-carousel aria-label="Numbered cards" seed="default" custom-style="width:300px;">
+        <ll-carousel-content>
+          <ll-carousel-item wx:for="{{5}}" wx:key="index" aria-label="{{index + 1}} of 5">
+            <ll-paper stock="{{stocks[index]}}" seed="c{{index}}" custom-style="margin:0;">
+              <view class="ca-card">
+                <text class="ca-num">{{index + 1}}</text>
+              </view>
+            </ll-paper>
+          </ll-carousel-item>
+        </ll-carousel-content>
+        <ll-carousel-previous />
+        <ll-carousel-next />
+      </ll-carousel>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">The tally, several at a time</view>
+    <view class="sec-desc">CarouselDots keeps count like a tally: a stroke per slide, the fifth of each group struck across the four before it, the current one in blue felt. Tap any stroke to go there.</view>
+    <view class="ca-frame">
+      <ll-carousel seed="tally" custom-style="width:340px;" bind:select="onSelect">
+        <ll-carousel-content>
+          <ll-carousel-item wx:for="{{notes}}" wx:key="*this" custom-style="width:50%;" aria-label="{{index + 1}} of {{notes.length}}">
+            <ll-paper stock="{{tallyStocks[index]}}" seed="n{{index}}" custom-style="margin:0;">
+              <view class="ca-card is-wide">
+                <text class="ca-note">{{item}}</text>
+              </view>
+            </ll-paper>
+          </ll-carousel-item>
+        </ll-carousel-content>
+        <ll-carousel-previous />
+        <ll-carousel-next />
+        <ll-carousel-dots />
+      </ll-carousel>
+      <view class="ca-caption">Slide {{current + 1}} of {{notes.length}}</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Vertical</view>
+    <view class="sec-desc">orientation="vertical": the slides scroll up and down and the arrows sit above and below with up and down arrows.</view>
+    <view class="ca-frame">
+      <ll-carousel aria-label="Reminders" orientation="vertical" seed="vertical" custom-style="width:300px;">
+        <ll-carousel-content custom-style="height:200px;">
+          <ll-carousel-item wx:for="{{reminders}}" wx:key="*this">
+            <ll-paper seed="r{{index}}" custom-style="margin:0;">
+              <view class="ca-card is-short">
+                <text class="ca-note">{{item}}</text>
+              </view>
+            </ll-paper>
+          </ll-carousel-item>
+        </ll-carousel-content>
+        <ll-carousel-previous />
+        <ll-carousel-next />
+      </ll-carousel>
+    </view>
+  </view>
+</view>

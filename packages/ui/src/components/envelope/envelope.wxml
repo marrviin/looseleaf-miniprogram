@@ -1,0 +1,14 @@
+<!-- ll-envelope -->
+<view class="ll-envelope ll-class {{openNow ? 'is-open' : ''}}" style="{{customStyle}}">
+  <!-- grows when open so the letter has somewhere to slide into -->
+  <view class="ll-envelope__spacer" style="padding-top:{{openNow ? 31 : 0}}%;"></view>
+  <view class="ll-envelope__body" style="{{tiltStyle}}">
+    <view class="ll-envelope__sheet">
+      <view class="ll-ink-cast" wx:for="{{inkCasts}}" wx:key="index" style="{{item}}"></view>
+      <view class="ll-ink-layer" style="{{inkUnderStyle}}"></view>
+      <view class="ll-ink-face" wx:for="{{inkFaces}}" wx:key="index" style="{{item}}"></view>
+      <view class="ll-ink-layer" style="{{inkOverStyle}}"></view>
+    </view>
+    <slot />
+  </view>
+</view>

@@ -1,0 +1,98 @@
+<!-- ll-form demo — mirrors the upstream docs page (#/components/form):
+     the page owns the validation (RHF doesn't exist on this side; the
+     errors map plays FormProvider). The 50–59 react-hook-form examples are
+     the same wiring — the field demos carry them. -->
+<view class="demo">
+  <view class="demo-title">Form</view>
+  <view class="sec-desc">The page validates and hands the form an errors map; the item's label turns red pencil and the message is written under its field on a wavy red underline. Fix a field and its message goes on the next change.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">Press Save with the fields empty: both labels turn red and each message is written under its field. The name needs 2 letters; the email needs an @.</view>
+    <view class="stack-12">
+      <ll-form id="form1" errors="{{errors1}}">
+        <ll-form-item name="username">
+          <ll-form-label for="f1-name">Name</ll-form-label>
+          <ll-input id="f1-name" value="{{username}}" placeholder="Ada" invalid="{{!!errors1.username}}" data-key="username" bindinput="onForm1Field" />
+          <ll-form-description>Shown on the pages you write.</ll-form-description>
+          <ll-form-message />
+        </ll-form-item>
+        <ll-form-item name="email">
+          <ll-form-label for="f1-email">Email</ll-form-label>
+          <ll-input id="f1-email" value="{{email}}" placeholder="ada@notes.dev" invalid="{{!!errors1.email}}" data-key="email" bindinput="onForm1Field" />
+          <ll-form-message />
+        </ll-form-item>
+        <view class="form-row">
+          <ll-button bind:tap="onSave1">Save</ll-button>
+          <view class="said-line" role="status">{{saved1}}</view>
+        </view>
+      </ll-form>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Every control</view>
+    <view class="sec-desc">A select, a radio group, a slider, a switch and a checkbox go red the same way an input does — the item's hasError reaches them through the invalid prop. Save with defaults and read the messages.</view>
+    <view class="stack-12">
+      <ll-form id="form2" errors="{{errors2}}">
+        <ll-form-item name="role">
+          <ll-form-label>Role</ll-form-label>
+          <ll-select custom-style="width:100%" options="{{roleOptions}}" value="{{role}}" placeholder="Pick a role" invalid="{{!!errors2.role}}" aria-label="Role" data-key="role" bindchange="onForm2Field" />
+          <ll-form-message />
+        </ll-form-item>
+        <ll-form-item name="plan">
+          <ll-form-label>Plan</ll-form-label>
+          <ll-radio-group custom-style="gap:20rpx" aria-label="Plan" value="{{plan}}" invalid="{{!!errors2.plan}}" data-key="plan" bindchange="onForm2Field">
+            <ll-radio value="starter" label="Starter" />
+            <ll-radio value="studio" label="Studio" />
+          </ll-radio-group>
+          <ll-form-message />
+        </ll-form-item>
+        <ll-form-item name="pages">
+          <ll-form-label>Pages per day: {{pages}}</ll-form-label>
+          <ll-slider min="{{1}}" max="{{60}}" value="{{pages}}" invalid="{{!!errors2.pages}}" aria-label="Pages per day" data-key="pages" bindchanging="onForm2Field" bindchange="onForm2Field" />
+          <ll-form-message />
+        </ll-form-item>
+        <ll-form-item name="digest" custom-style="flex-direction:row;align-items:center;justify-content:space-between">
+          <view class="digest-col">
+            <ll-form-label>Weekly digest</ll-form-label>
+            <ll-form-description>Sunday, in pencil.</ll-form-description>
+          </view>
+          <ll-switch checked="{{digest}}" aria-label="Weekly digest" data-key="digest" bindchange="onForm2Field" />
+        </ll-form-item>
+        <ll-form-item name="terms">
+          <view class="terms-row">
+            <ll-checkbox checked="{{terms}}" invalid="{{!!errors2.terms}}" aria-label="I accept the small print" data-key="terms" bindchange="onForm2Field" />
+            <ll-form-label>I accept the small print</ll-form-label>
+          </view>
+          <ll-form-message />
+        </ll-form-item>
+        <view class="form-row">
+          <ll-button bind:tap="onSave2">Save</ll-button>
+          <view class="said-line" role="status">{{saved2}}</view>
+        </view>
+      </ll-form>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Server errors</view>
+    <view class="sec-desc">An error does not have to come from the schema: after a pretend request the handle "notes" comes back already taken, and the same label, box and underline appear. Change the text and it clears itself.</view>
+    <view class="stack-12">
+      <ll-form id="form3" errors="{{errors3}}">
+        <ll-form-item name="handle">
+          <ll-form-label for="f3-handle">Handle</ll-form-label>
+          <ll-input id="f3-handle" value="{{handle}}" invalid="{{!!errors3.handle}}" data-key="handle" bindinput="onForm3Field" />
+          <ll-form-description>Try "notes" (taken), then something else.</ll-form-description>
+          <ll-form-message />
+        </ll-form-item>
+        <view class="form-row">
+          <ll-button disabled="{{pending}}" bind:tap="onClaim">{{pending ? 'Checking' : 'Claim it'}}</ll-button>
+          <view class="said-line" role="status">{{done3}}</view>
+        </view>
+      </ll-form>
+    </view>
+  </view>
+</view>

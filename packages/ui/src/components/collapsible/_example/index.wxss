@@ -1,0 +1,31 @@
+/* ll-collapsible demo */
+.demo {
+  padding: 32rpx;
+  background: var(--ll-paper, #f8f5ee);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title { font-weight: bold; font-size: 40rpx; margin-bottom: 8rpx; }
+.sec { margin-top: 40rpx; }
+.sub-h3 { font-size: 30rpx; font-weight: 700; color: #2a2420; margin: 20rpx 0 6rpx; }
+.sec-desc { font-size: 24rpx; color: #8a857c; line-height: 1.6; margin-bottom: 16rpx; }
+.cl-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 4px;
+}
+.cl-heading {
+  font-family: 'Kevin Sans Script', 'Kevin Sans', 'Bradley Hand', cursive;
+  font-size: 20px;
+  font-weight: 600;
+}
+.cl-mono { font-family: Menlo, Consolas, monospace; font-size: 13px; color: #2a2420; }
+.cl-link {
+  color: #2c4f9e;
+  text-decoration: underline;
+  font-size: 14px;
+}
+.cl-body { font-size: 14px; color: #4a433c; line-height: 1.625; }
+.cl-mt { margin-top: 8px; }

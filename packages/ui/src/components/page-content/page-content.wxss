@@ -1,0 +1,8 @@
+/* ll-page-content — flex-1 flex-col gap-4 */
+/* @ll-import tokens */
+.ll-page-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 16px;
+}

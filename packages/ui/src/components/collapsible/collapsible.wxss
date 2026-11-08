@@ -1,0 +1,5 @@
+/* ll-collapsible */
+.ll-collapsible {
+  display: block;
+  min-width: 0;
+}

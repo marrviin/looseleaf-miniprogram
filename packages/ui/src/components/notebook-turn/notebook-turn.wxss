@@ -1,0 +1,11 @@
+/* ll-notebook-turn — size-[34px] absolute right-0 bottom-0, above the
+   page content (upstream --ll-z-prop). */
+/* @ll-import tokens */
+.ll-notebook-turn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  width: 34px;
+  height: 34px;
+}

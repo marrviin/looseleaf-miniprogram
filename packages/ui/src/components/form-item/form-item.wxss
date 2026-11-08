@@ -1,0 +1,6 @@
+.ll-form-item {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx; /* grid gap-2 */
+  min-width: 0;
+}

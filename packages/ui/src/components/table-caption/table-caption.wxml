@@ -1,0 +1,4 @@
+<!-- ll-table-caption — <caption> under the table. -->
+<view class="ll-table-caption ll-class" style="{{customStyle}}">
+  <slot />
+</view>

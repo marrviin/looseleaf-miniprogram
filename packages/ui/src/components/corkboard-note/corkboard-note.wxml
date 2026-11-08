@@ -1,0 +1,21 @@
+<!-- ll-corkboard-note — a pinned sheet; touch-drag to move it -->
+<view
+  class="ll-corkboard-note ll-class {{dragging ? 'is-dragging' : ''}}"
+  style="transform:translate({{tx}}px,{{ty}}px) rotate({{r}}deg);z-index:{{zi}};{{customStyle}}"
+  aria-role="group"
+  aria-roledescription="note"
+  aria-label="{{label || noteId}}"
+  aria-disabled="{{disabled}}"
+  data-id="{{noteId}}"
+  catchtouchstart="onTouchStart"
+  catchtouchmove="onTouchMove"
+  catchtouchend="onTouchEnd"
+>
+  <ll-paper wx:if="{{!bare}}" stock="{{stock}}" edge="cut" tilt="{{false}}" tape="{{pinned ? '' : 'top'}}" custom-style="width:100%;">
+    <view class="ll-corkboard-note__body"><slot /></view>
+  </ll-paper>
+  <view wx:else class="ll-corkboard-note__sheet"><slot /></view>
+  <view wx:if="{{pinned}}" class="ll-corkboard-note__pin">
+    <ll-corkboard-pin color="{{pinName}}" seed="{{noteId}}|pin" />
+  </view>
+</view>

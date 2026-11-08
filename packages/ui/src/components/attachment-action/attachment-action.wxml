@@ -1,0 +1,2 @@
+<!-- ll-attachment-action -->
+<ll-button variant="{{variant}}" size="{{size}}" custom-style="{{customStyle}}" bind:tap="onTap"><slot /></ll-button>

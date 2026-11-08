@@ -1,0 +1,41 @@
+/* ll-alert-dialog-media — mb-2 size-16 grid place-items-center isolate;
+   the drawn patch sits behind the art. */
+/* @ll-import tokens */
+.ll-alert-dialog-media {
+  margin-bottom: 16rpx; /* mb-2 */
+  display: grid;
+  place-items: center;
+}
+
+/* the 64px plate the art sits on (upstream size-16, icon size-8) */
+.ll-alert-dialog-media__patch {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 128rpx; /* size-16 */
+  height: 128rpx;
+}
+.ll-alert-dialog-media__art {
+  position: relative;
+  z-index: 1; /* the art rides above the ink layer */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ll-alert-dialog-media__art ll-icon {
+  width: 64rpx; /* *:[svg:not(...)]:size-8 */
+  height: 64rpx;
+}
+
+/* ink overlay — common/ink.js draws the recipe at the element's real size
+   and injects an SVG data-URI background plus `inset: -<pad>px` inline. */
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

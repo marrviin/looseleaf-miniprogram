@@ -1,0 +1,7 @@
+<!-- ll-dropzone-title — "Drop files here or browse", the last word
+     underlined in blue script. Children (required) replace the default;
+     this webview doesn't render slot fallbacks inside a virtualHost
+     component, so with no children the view stays empty. -->
+<view class="ll-dropzone-title" style="{{customStyle}}">
+  <slot />
+</view>

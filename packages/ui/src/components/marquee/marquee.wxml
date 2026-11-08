@@ -1,0 +1,32 @@
+<!-- ll-marquee — a washi tape strip with ticker lines looping across it.
+     Each group carries the full line-up; the groups animate in step by
+     their own width, which reads as one seamless loop. Only the first
+     group is visible to a screen reader; the copies are aria-hidden. -->
+<view
+  class="ll-marquee {{pausedNow ? 'is-paused' : ''}} {{direction === 'end' ? 'is-reverse' : ''}} ll-class"
+  style="{{customStyle}}"
+  aria-role="marquee"
+  aria-label="{{label}}"
+>
+  <view class="ll-marquee__band" style="{{bandStyle}}" aria-hidden="{{true}}"></view>
+  <view class="ll-marquee__viewport {{controls ? 'has-controls' : ''}}">
+    <view class="ll-marquee__track">
+      <view wx:for="{{copies}}" wx:key="index" class="ll-marquee__group" style="{{groupAnim}}" aria-hidden="{{index > 0}}">
+        <view wx:for="{{items}}" wx:for-item="line" wx:key="*this" class="ll-marquee__item">
+          <text class="ll-marquee__text">{{line}}</text>
+          <ll-doodle name="star" size="{{24}}" aria-hidden="{{true}}" custom-style="margin-top:-2px;opacity:.9" />
+        </view>
+      </view>
+    </view>
+  </view>
+  <view
+    wx:if="{{controls}}"
+    class="ll-marquee__control"
+    bind:tap="onToggle"
+    aria-role="button"
+    aria-label="{{pausedNow ? 'Play ticker' : 'Pause ticker'}}"
+    aria-checked="{{pausedNow}}"
+  >
+    <view class="ll-marquee__control-icon" style="{{controlStyle}}"></view>
+  </view>
+</view>

@@ -1,0 +1,71 @@
+<!-- ll-clipboard demo — mirrors the upstream docs page
+     (#/components/clipboard). The board is one drawn sheet holding one
+     sheet of real DOM paper. -->
+<view class="demo">
+  <view class="demo-title">Clipboard</view>
+  <view class="sec-desc">A board with a spring clip holding a sheet of paper. The board is one drawn sheet; the clip is drawn over the paper it holds. The sheet is real content.</view>
+
+  <view class="sec">
+    <view class="sub-h3">A clipboard</view>
+    <view class="sec-desc">Hardboard with the grain of its fiber, a chrome spring clip over the paper, and a checklist on the ruled sheet (each row is one 28 px line).</view>
+    <view class="cb-center">
+      <ll-clipboard id="cb-main" seed="pack" tilt="-1.1" custom-style="width:384px;max-width:100%">
+        <view aria-role="region" aria-label="Packing list">
+          <text class="cb-title">Packing list</text>
+          <view class="cb-row" wx:for="{{pack}}" wx:key="text" bind:tap="onPack" data-index="{{index}}">
+            <ll-checkbox checked="{{item.done}}" aria-label="{{item.text}}" />
+            <text class="cb-item">{{item.text}}</text>
+          </view>
+        </view>
+      </ll-clipboard>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Hardboard and plastic</view>
+    <view class="sec-desc">The same board in hardboard and in colored plastic. The paper stays cream, so nothing on it changes contrast.</view>
+    <view class="cb-wrap">
+      <view class="cb-tone" wx:for="{{tones}}" wx:key="tone">
+        <ll-clipboard tone="{{item.tone}}" seed="{{item.tone}}" tilt="{{item.tilt}}" custom-style="width:192px;min-height:288px">
+          <text class="cb-hand" wx:for="{{item.list}}" wx:for-item="word" wx:key="*this">{{word}}</text>
+        </ll-clipboard>
+        <view class="cb-caption">{{item.tone}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Graph paper and tape</view>
+    <view class="sec-desc">The paper is a Paper: graph rules, a strip of tape across a corner, a small extra note taped on top.</view>
+    <view class="cb-center">
+      <ll-clipboard tone="sky" seed="graph" tilt="0.8" custom-style="width:384px;max-width:100%">
+        <ll-paper stock="graph" rules="graph" tape="corner" seed="graph-p" custom-style="box-sizing:border-box;padding-left:20px">
+          <text class="cb-title">Rain, week 39</text>
+          <text class="cb-you">so much of it</text>
+        </ll-paper>
+      </ll-clipboard>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">A sign-in sheet</view>
+    <view class="sec-desc">A real form on the paper: a name, a visit, a button, and the visitors so far listed as they sign.</view>
+    <view class="cb-center">
+      <ll-clipboard tone="teal" seed="sign" tilt="-0.8" custom-style="width:384px;max-width:100%">
+        <view aria-role="form" aria-label="Visitors sign-in sheet">
+          <text class="cb-title">Visitors</text>
+          <view class="cb-visitor" wx:for="{{who}}" wx:key="*this">{{index + 1}}. {{item}}</view>
+          <view class="cb-sign">
+            <view class="cb-sign-field">
+              <view class="cb-sign-label">Your name</view>
+              <ll-input id="visitor" value="{{name}}" placeholder="Sign here" bind:input="onName" aria-label="Your name" />
+            </view>
+            <ll-button bind:tap="onSign">Sign</ll-button>
+          </view>
+        </view>
+      </ll-clipboard>
+    </view>
+  </view>
+
+  <view class="sr-only" aria-live="polite">{{said}}</view>
+</view>

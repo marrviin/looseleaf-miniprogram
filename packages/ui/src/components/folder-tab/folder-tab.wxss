@@ -1,0 +1,41 @@
+/* ll-folder-tab — a shaped tab on the folder's top edge */
+/* @ll-import tokens */
+.ll-folder-tab {
+  position: relative;
+  box-sizing: border-box;
+  height: 36px;
+  /* upstream px-6 (24px) — tightened to 16px so four tabs fit a 375px screen */
+  padding: 4px 16px 0;
+  flex-shrink: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ll-ink, #3a2c1e);
+}
+.ll-folder-tab.is-active {
+  z-index: 10;
+  padding-top: 2px;
+}
+.ll-folder-tab__content {
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
+}
+.ll-folder-tab.is-disabled {
+  color: var(--ll-ink-muted, #6f6a60);
+}
+
+/* faced ink sandwich (see paper.wxss) */
+.ll-ink-face,
+.ll-ink-cast,
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.ll-ink-layer {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-ink-cast {
+  inset: auto;
+}

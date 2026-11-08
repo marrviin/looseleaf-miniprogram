@@ -1,0 +1,9 @@
+/* ll-dropzone-icon */
+/* @ll-import tokens */
+.ll-dropzone-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  color: var(--ll-ink-soft, var(--ll-ink));
+}

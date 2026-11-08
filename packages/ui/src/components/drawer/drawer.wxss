@@ -1,0 +1,172 @@
+/* ll-drawer — upstream DrawerOverlay/Content. The dim is the lamp-lit umber
+   radial; the slip is a ll-paper flush to its edge. z follows upstream:
+   overlay 1000. The drag transform/size is inline (drawer.js); the
+   animations here only play on mount and on the exit. */
+/* @ll-import tokens */
+.ll-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 1000; /* --ll-z-overlay */
+}
+
+.ll-drawer__overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 90% 80% at 50% 38%,
+    rgba(58, 44, 30, 0.16),
+    rgba(58, 44, 30, 0.23) 55%,
+    rgba(58, 44, 30, 0.34)
+  );
+  animation: ll-drawer-fade-in 0.3s ease-out both; /* --ll-dur-sheet */
+}
+.ll-drawer--dragging .ll-drawer__overlay {
+  animation: none;
+}
+
+/* the page wrapper: fixed, flush to its edge; the drag transform and the
+   snap height are written inline by drawer.js */
+.ll-drawer__page {
+  position: fixed;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  animation-duration: 0.3s; /* --ll-dur-sheet */
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+.ll-drawer--dragging .ll-drawer__page {
+  animation: none;
+}
+.ll-drawer__page--bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 97%;
+  animation-name: ll-drawer-from-bottom;
+}
+.ll-drawer__page--top {
+  top: 0;
+  left: 0;
+  right: 0;
+  max-height: 97%;
+  animation-name: ll-drawer-from-top;
+}
+.ll-drawer__page--right {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 75%;
+  max-width: 384px; /* sm:max-w-sm */
+  animation-name: ll-drawer-from-right;
+}
+.ll-drawer__page--left {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 75%;
+  max-width: 384px;
+  animation-name: ll-drawer-from-left;
+}
+
+/* exits: the slip travels back toward its edge */
+.ll-drawer--closing .ll-drawer__overlay {
+  animation: ll-drawer-fade-out 0.15s ease-in both;
+}
+.ll-drawer--closing .ll-drawer__page {
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in;
+}
+.ll-drawer--closing .ll-drawer__page--bottom {
+  animation-name: ll-drawer-away-bottom;
+}
+.ll-drawer--closing .ll-drawer__page--top {
+  animation-name: ll-drawer-away-top;
+}
+.ll-drawer--closing .ll-drawer__page--right {
+  animation-name: ll-drawer-away-right;
+}
+.ll-drawer--closing .ll-drawer__page--left {
+  animation-name: ll-drawer-away-left;
+}
+
+@keyframes ll-drawer-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes ll-drawer-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes ll-drawer-from-bottom {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes ll-drawer-away-bottom {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+@keyframes ll-drawer-from-top {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes ll-drawer-away-top {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+@keyframes ll-drawer-from-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes ll-drawer-away-right {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes ll-drawer-from-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes ll-drawer-away-left {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}

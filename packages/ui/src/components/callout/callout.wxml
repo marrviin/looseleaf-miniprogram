@@ -1,0 +1,17 @@
+<!-- ll-callout — the note (Handwritten) with the arrow (56×40) on its
+     tail; flex direction per `direction`, so the arrow sits between the
+     words and whatever they're about. -->
+<view wx:if="{{show}}" class="ll-callout is-dir-{{direction}} {{direction === 'up' || direction === 'down' ? 'is-vertical' : ''}} ll-class" style="{{customStyle}}" role="note" aria-label="{{text}}">
+  <ll-handwritten class="ll-callout__text" text="{{text}}" seed="{{seed}}" />
+  <ll-arrow
+    wx:if="{{arrow}}"
+    direction="{{direction}}"
+    curve="{{curve}}"
+    head="{{head}}"
+    tone="{{tone}}"
+    weight="{{weight}}"
+    bend="{{bend}}"
+    seed="{{seed === '' ? '' : seed + ':arrow'}}"
+    custom-style="width:56px;height:40px;flex-shrink:0;"
+  />
+</view>

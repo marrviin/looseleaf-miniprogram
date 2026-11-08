@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-icon": "looseleaf-miniprogram/components/icon/icon"
+  }
+}

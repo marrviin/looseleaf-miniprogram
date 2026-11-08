@@ -1,0 +1,11 @@
+<!-- ll-page-title — the mark is drawn at the title's real width, behind
+     the words (isolation keeps its z-index:-1 above the page). -->
+<view
+  class="ll-page-title ll-class"
+  style="{{customStyle}}"
+  aria-role="heading"
+  aria-level="1"
+>
+  <view wx:if="{{drawn}}" class="ll-page-title__ink" style="{{inkStyle}}" aria-hidden="true" />
+  <slot />
+</view>

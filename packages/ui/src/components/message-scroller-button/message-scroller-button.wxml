@@ -1,0 +1,6 @@
+<!-- ll-message-scroller-button — the jump button -->
+<view class="ll-message-scroller-button is-{{direction}} {{active ? 'is-active' : ''}}" style="{{customStyle}}">
+  <ll-button variant="{{variant}}" size="{{size}}" aria-label="{{ariaLabel || (direction === 'end' ? 'Scroll to end' : 'Scroll to start')}}" bind:tap="onTap">
+    <ll-icon name="{{direction === 'end' ? 'arrow-down' : 'arrow-up'}}" size="{{16}}" />
+  </ll-button>
+</view>

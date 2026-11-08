@@ -1,0 +1,14 @@
+/* ll-command-list — max-h-[300px] overflow-x-hidden overflow-y-auto
+   overscroll-contain p-1. */
+.ll-command-list {
+  display: block;
+  box-sizing: border-box;
+  max-height: 300px;
+  padding: 8rpx; /* p-1 */
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.ll-command-list__inner {
+  min-height: 0;
+}

@@ -1,0 +1,121 @@
+<!-- ll-hover-card demo — mirrors the upstream docs page (#/components/hover-card).
+     Radix opens these on pointer hover; a phone has no hover, so the card
+     opens on a tap of the trigger (openDelay still applies) and the next
+     tap anywhere else puts it away. -->
+<view class="demo">
+  <view class="demo-title">Hover Card</view>
+  <view class="sec-desc">A small polaroid that appears when you rest the pointer on a link: photo stock with a thick lower margin for handwriting, a degree or two of tilt, and tape if you like. A preview for sighted pointer users, never the only home of anything. (On touch, tap the link instead.)</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Profile</view>
+    <view class="sec-desc">The shadcn demo as a polaroid: hover the link (or tap it) and a small photo with handwriting on its margin lands next to it.</view>
+    <view class="prose-row">Made by
+      <ll-hover-card id="hcProfile" seed="profile" aria-label="@looseleaf">
+        <view slot="trigger"><ll-button variant="link" custom-style="padding-left:4rpx;padding-right:4rpx;">@looseleaf</ll-button></view>
+        <ll-hover-card-media>
+          <ll-doodle name="flower" size="88" />
+        </ll-hover-card-media>
+        <ll-hover-card-caption>@looseleaf</ll-hover-card-caption>
+        <view class="card-note">shadcn/ui, drawn by hand. Joined September 2026.</view>
+      </ll-hover-card>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Taped, with a sticker</view>
+    <view class="sec-desc">The window holds any art: here a die-cut sticker, and the polaroid is taped down by a strip of washi across the top.</view>
+    <view class="prose-row">Read the notes for
+      <ll-hover-card id="hcSticker" tape="top" tilt="-1.2" seed="release" width="288" aria-label="Looseleaf 1.0">
+        <view slot="trigger"><ll-button variant="link" custom-style="padding-left:4rpx;padding-right:4rpx;">Looseleaf 1.0</ll-button></view>
+        <ll-hover-card-media>
+          <ll-sticker name="rocket" size="84" />
+        </ll-hover-card-media>
+        <ll-hover-card-caption>v1.0 is out</ll-hover-card-caption>
+        <view class="card-note">Forty-odd components, every line drawn by hand.</view>
+      </ll-hover-card>
+    </view>
+
+    <view class="sub-h3">Delays and sides</view>
+    <view class="sec-desc">openDelay and closeDelay tune how eager the card is (the default 700 / 300 ms is deliberate: a card that pops up on every pass of the pointer is noise). side and align are Radix's: left and right cards start level with their link, so none rises above the page.</view>
+    <view class="center-row wrap">
+      <ll-hover-card id="hcLeft" open-delay="{{0}}" close-delay="{{100}}" side="left" align="start" width="224" seed="Instant, left" aria-label="Instant, left">
+        <view slot="trigger"><ll-button variant="outline">Instant, left</ll-button></view>
+        <ll-hover-card-media height="192rpx">
+          <ll-doodle name="sun" size="72" />
+        </ll-hover-card-media>
+        <ll-hover-card-caption>Instant, left</ll-hover-card-caption>
+        <view class="card-note">open 0 ms, close 100 ms</view>
+      </ll-hover-card>
+      <ll-hover-card id="hcBottom" open-delay="{{700}}" close-delay="{{300}}" side="bottom" align="start" width="224" seed="Default, bottom" aria-label="Default, bottom">
+        <view slot="trigger"><ll-button variant="outline">Default, bottom</ll-button></view>
+        <ll-hover-card-media height="192rpx">
+          <ll-doodle name="mushroom" size="72" />
+        </ll-hover-card-media>
+        <ll-hover-card-caption>Default, bottom</ll-hover-card-caption>
+        <view class="card-note">open 700 ms, close 300 ms</view>
+      </ll-hover-card>
+      <ll-hover-card id="hcRight" open-delay="{{1200}}" close-delay="{{300}}" side="right" align="start" width="224" seed="Patient, right" aria-label="Patient, right">
+        <view slot="trigger"><ll-button variant="outline">Patient, right</ll-button></view>
+        <ll-hover-card-media height="192rpx">
+          <ll-doodle name="star" size="72" />
+        </ll-hover-card-media>
+        <ll-hover-card-caption>Patient, right</ll-hover-card-caption>
+        <view class="card-note">open 1200 ms, close 300 ms</view>
+      </ll-hover-card>
+    </view>
+
+    <view class="sub-h3">Mentions in prose</view>
+    <view class="sec-desc">The real use: names in a paragraph that unfold into a card. Every mention is a real link that works without the card (touch, keyboard, no JS), and the card is a bonus for the pointer.</view>
+    <view class="mentions">
+      Today's notebook was started by
+      <ll-hover-card id="hcAda" seed="ada" aria-label="Ada Lovelace">
+        <view slot="trigger"><ll-button variant="link" custom-style="height:auto;padding:0;">@ada</ll-button></view>
+        <ll-hover-card-media>
+          <ll-doodle name="star" size="80" />
+        </ll-hover-card-media>
+        <ll-hover-card-caption>Ada Lovelace</ll-hover-card-caption>
+        <view class="card-note">Wrote the first program. Notes longer than the paper they annotate.</view>
+      </ll-hover-card>,
+      <ll-hover-card id="hcGrace" tape="top" seed="grace" aria-label="Grace Hopper">
+        <view slot="trigger"><ll-button variant="link" custom-style="height:auto;padding:0;">@grace</ll-button></view>
+        <ll-hover-card-media>
+          <ll-doodle name="sun" size="80" />
+        </ll-hover-card-media>
+        <ll-hover-card-caption>Grace Hopper</ll-hover-card-caption>
+        <view class="card-note">Found the first bug, taped it in the log, kept the nanosecond wire.</view>
+      </ll-hover-card> and
+      <ll-hover-card id="hcMargaret" seed="margaret" aria-label="Margaret Hamilton">
+        <view slot="trigger"><ll-button variant="link" custom-style="height:auto;padding:0;">@margaret</ll-button></view>
+        <ll-hover-card-media>
+          <ll-doodle name="flower" size="80" />
+        </ll-hover-card-media>
+        <ll-hover-card-caption>Margaret Hamilton</ll-hover-card-caption>
+        <view class="card-note">Flew the software that flew to the Moon.</view>
+      </ll-hover-card>, and finished by nobody yet.
+    </view>
+
+    <view class="sub-h3">Plain content</view>
+    <view class="sec-desc">shadcn's hover-card-demo, written the way the original is: content with a width and ordinary children (an avatar, a name, a sentence and a date), none of the polaroid parts. The window is still a small photo-stock sheet.</view>
+    <view class="center-row">
+      <ll-hover-card id="hcPlain" width="320" seed="plain" aria-label="@nextjs">
+        <view slot="trigger"><ll-button variant="link">@nextjs</ll-button></view>
+        <view class="plain-row">
+          <ll-avatar>
+            <ll-avatar-fallback name="VC" />
+          </ll-avatar>
+          <view class="plain-body">
+            <view class="plain-name">@nextjs</view>
+            <view class="plain-text">The React Framework – created and maintained by @vercel.</view>
+            <view class="plain-meta">
+              <ll-icon name="calendar" size="16" />
+              <text>Joined December 2021</text>
+            </view>
+          </view>
+        </view>
+      </ll-hover-card>
+    </view>
+  </view>
+</view>

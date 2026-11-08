@@ -1,0 +1,4 @@
+<!-- ll-command-separator — a pencil rule between groups. -->
+<view wx:if="{{!hidden}}" class="ll-command-separator" style="{{customStyle}}">
+  <ll-rule decorative />
+</view>

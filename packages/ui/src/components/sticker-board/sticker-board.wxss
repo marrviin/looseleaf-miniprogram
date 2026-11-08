@@ -1,0 +1,97 @@
+/* ll-sticker-board — the canvas page and the toolbar. Items are absolutely
+   positioned by inline style (translate/rotate/z); the picked one gets the
+   drawn dashed frame + handles as an ink layer inset by the recipe's pad. */
+.ll-sboard {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx; /* gap-3 */
+  min-width: 0;
+}
+
+.ll-sboard__canvas {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.ll-sboard__surface {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.ll-sboard__item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  isolation: isolate;
+  /* hover growth (upstream scale 1.03) has no hover on a phone */
+}
+
+.ll-sboard__frame {
+  position: absolute;
+  z-index: -1; /* below the art, above the paper (isolate keeps it here) */
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.ll-sboard__art {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 0.6px rgba(58, 44, 30, 0.26))
+    drop-shadow(0 3px 3px rgba(58, 44, 30, 0.14)); /* ll-drop-sticker */
+}
+
+/* pointer handles (aria-hidden upstream) — invisible touch targets that sit
+   over the drawn ring and square */
+.ll-sboard__handle {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.ll-sboard__handle--turn {
+  cursor: grab;
+}
+
+.ll-sboard__handle--size {
+  transform: translate(-50%, -50%);
+  cursor: nwse-resize;
+}
+
+/* the empty board */
+.ll-sboard__empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48rpx;
+  text-align: center;
+  font-family: 'Kevin Sans Script', 'Kevin Sans', 'Bradley Hand', cursive; /* font-script */
+  font-size: 48rpx;
+  color: #8a857c; /* text-pencil-text */
+  pointer-events: none;
+}
+
+/* the toolbar — a slip Paper (slip stock, cut edge, hair shadow) with
+   groups of outline buttons; the groups only space themselves */
+.ll-sboard__tgroup {
+  display: flex;
+  align-items: center;
+  gap: 12rpx; /* gap-1.5 */
+}
+
+.ll-sboard__mirror {
+  transform: scaleX(-1);
+  line-height: 0;
+}
+
+/* disabled board: look but do not touch */
+.ll-sboard__canvas[aria-disabled] {
+  opacity: 0.7;
+}

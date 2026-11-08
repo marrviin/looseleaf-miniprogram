@@ -1,0 +1,3 @@
+/* ll-alert-dialog-action — pure composition (an ll-button); the sheet is
+   the button's own ink. */
+/* @ll-import tokens */

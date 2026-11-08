@@ -1,0 +1,55 @@
+.demo {
+  padding: 32rpx;
+  background: var(--ll-paper, #f8f5ee);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+.sec { margin-top: 40rpx; }
+.sub-h3 {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin: 28rpx 0 6rpx;
+}
+.sec-desc {
+  font-size: 24rpx;
+  color: #8a857c;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+.stack-12 { display: flex; flex-direction: column; gap: 12px; }
+.stack-8 { display: flex; flex-direction: column; gap: 8px; }
+.footnote {
+  font-size: 24rpx;
+  color: #8a857c;
+}
+.field { display: grid; gap: 8rpx; margin-bottom: 16rpx; }
+.claim-alert {
+  font-size: 26rpx;
+  color: var(--ll-red, #b3261e);
+}
+.rows2 { margin-top: 12px; }
+.polaroid {
+  display: grid;
+  place-items: center;
+  width: 112px;
+  height: 112px;
+  padding: 6px 6px 20px;
+  box-sizing: border-box;
+  transform: rotate(-2deg);
+  background: #fff;
+  border: 1px solid rgba(58, 44, 30, 0.2);
+  box-shadow: 0 1px 2px rgba(58, 44, 30, 0.35);
+}
+.polaroid-img {
+  width: 100%;
+  height: 100%;
+}
+.drop3-name {
+  font-weight: 700;
+}

@@ -1,0 +1,16 @@
+<!-- ll-input-group-textarea — the bare multi-line control of the group. -->
+<textarea
+  class="ll-igt {{disabled ? 'll-igt--disabled' : ''}}"
+  style="width:100%;box-sizing:border-box;{{customStyle}}"
+  value="{{value}}"
+  placeholder="{{placeholder}}"
+  placeholder-class="ll-igt__placeholder"
+  disabled="{{disabled}}"
+  maxlength="{{maxlength}}"
+  auto-height="{{true}}"
+  focus="{{inputFocus}}"
+  aria-label="{{ariaLabel}}"
+  bindinput="onInput"
+  bindfocus="onFocus"
+  bindblur="onBlur"
+/>

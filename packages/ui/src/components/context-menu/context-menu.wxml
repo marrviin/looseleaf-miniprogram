@@ -1,0 +1,44 @@
+<!-- ll-context-menu — upstream ContextMenu root: a long-press on the
+     trigger opens a paper slip of rows at the press point (controlled via
+     `open`; the long-press emits `change`). Rows bubble `select` to close,
+     `change` to stay open — they are the shared ll-dropdown-menu-* family. -->
+<view class="ll-context-menu">
+  <view class="ll-context-menu__trigger" bind:longpress="onTriggerLongPress">
+    <slot name="trigger" />
+  </view>
+
+  <block wx:if="{{visible}}">
+    <!-- Radix modal menu: dismiss on interact-outside. No dim (the page
+         stays readable behind the slip, as upstream). -->
+    <view class="ll-context-menu__catcher" catch:touchmove="noop" catch:tap="onOutsideTap" />
+    <view
+      class="ll-context-menu__panel {{closing ? 'll-context-menu__panel--closing' : ''}} {{placed ? '' : 'is-placing'}}"
+      style="{{panelStyle}}{{customStyle}}"
+      catch:tap="noop"
+      bind:select="onItemSelect"
+      aria-role="menu"
+      aria-label="{{ariaLabel}}"
+    >
+      <ll-paper
+        stock="{{stock}}"
+        edge="{{edge}}"
+        tilt="{{tilt}}"
+        tape="{{tape}}"
+        rules="none"
+        seed="{{seed}}"
+        shadow-css="{{liftShadow}}"
+        custom-style="position:relative;display:block;width:100%;box-sizing:border-box;"
+      >
+        <!-- a plain view with CSS overflow (NOT scroll-view: WeChat anchors
+             fixed/flyout descendants of a scroll-view to the scroll content,
+             not the viewport); placement switches it to overflow:visible
+             while the rows fit so a sub-menu's flyout isn't clipped -->
+        <view class="ll-context-menu__viewport" style="{{viewportStyle}}">
+          <view class="ll-context-menu__content">
+            <slot />
+          </view>
+        </view>
+      </ll-paper>
+    </view>
+  </block>
+</view>

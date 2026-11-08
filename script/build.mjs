@@ -171,6 +171,9 @@ const CATEGORY_OF = {
   slider: ['Forms', 'Slider'],
   stepper: ['Forms', 'Stepper'],
   switch: ['Forms', 'Switch'],
+  label: ['Forms', 'Label'],
+  select: ['Forms', 'Select'],
+  field: ['Forms', 'Field'],
   textarea: ['Forms', 'Textarea'],
   empty: ['Feedback', 'Empty'],
   progress: ['Feedback', 'Progress'],
@@ -195,6 +198,7 @@ const CATEGORY_OF = {
   'navigation-menu': ['Navigation', 'Navigation Menu'],
   avatar: ['Data display', 'Avatar'],
   badge: ['Data display', 'Badge'],
+  table: ['Data display', 'Table'],
   tag: ['Paper', 'Label tag'],
   paper: ['Paper', 'Paper'],
   'typing-indicator': ['Chat', 'Typing indicator'],
@@ -211,6 +215,16 @@ const CATEGORY_OF = {
   bookmark: ['Paper', 'Bookmark'],
   ticket: ['Paper', 'Ticket'],
   receipt: ['Paper', 'Receipt'],
+  // D10
+  alert: ['Feedback', 'Alert'],
+  'aspect-ratio': ['Layout', 'Aspect Ratio'],
+  carousel: ['Data display', 'Carousel'],
+  collapsible: ['Layout', 'Collapsible'],
+  'code-block': ['Chat', 'Code block'],
+  quote: ['Marks', 'Quote'],
+  'typography-h1': ['Typography', 'Typography'],
+  arrow: ['Marks', 'Arrow'],
+  direction: ['Layout', 'Direction'],
 };
 const titleCase = (name) =>
   name

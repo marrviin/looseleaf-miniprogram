@@ -1,0 +1,2 @@
+<!-- ll-envelope-sender -->
+<view class="ll-envelope-sender ll-class" style="{{customStyle}}"><slot /></view>

@@ -1,0 +1,7 @@
+<!-- ll-dropzone-description — small print; shows the limits the zone was
+     given, nothing when there are none. There is no slot: this webview
+     drops fallback content inside a virtualHost component, and a page
+     wanting its own line just writes plain text instead. -->
+<view wx:if="{{limits}}" class="ll-dropzone-description" style="{{customStyle}}">
+  <text>{{limits}}</text>
+</view>

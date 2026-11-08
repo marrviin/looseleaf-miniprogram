@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-native-select": "../native-select/native-select",
+    "ll-label": "../label/label",
+    "ll-input": "../input/input",
+    "ll-button": "../button/button"
+  }
+}

@@ -1,0 +1,7 @@
+<!-- ll-signature — the name (slotted, real text) with the pen's flourish
+     drawn under it; the drawing spills past the box and never takes a
+     tap. size sets the name; the flourish follows tone/weight/seed. -->
+<view class="ll-signature is-{{size}} is-tone-{{tone}} ll-class" style="{{customStyle}}">
+  <view class="ll-signature__name" style="{{nameStyle}}"><slot /></view>
+  <view wx:if="{{inkStyle}}" class="ll-signature__ink" style="{{inkStyle}}" />
+</view>

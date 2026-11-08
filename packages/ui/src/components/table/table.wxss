@@ -1,0 +1,30 @@
+/* ll-table — upstream tableSheet(): a display:table root (real column
+   alignment, like upstream's <table>) in the bleed scroll container.
+   Colors: --ll-rule/pencil-mark rows, --ll-ink-soft header double rule,
+   --ll-hi-select highlighter. The fade masks live here as inherited vars
+   (the comma lists must live in a stylesheet, like ll-item's). */
+/* @ll-import tokens */
+.ll-table-container {
+  position: relative;
+  margin: -12px;
+  width: calc(100% + 24px);
+  max-width: none;
+  padding: 12px;
+}
+
+.ll-table {
+  display: table;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  caption-side: bottom;
+  isolation: isolate;
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 26rpx; /* text-[15px] × 0.88 */
+  line-height: 1.5;
+  color: #2a2420;
+  /* --ll-fade-s / -e / -se: rule fade-outs at the table edges */
+  --ll-fade-s: linear-gradient(90deg, rgba(0, 0, 0, 0), #000 14px);
+  --ll-fade-e: linear-gradient(90deg, #000 calc(100% - 26px), rgba(0, 0, 0, 0));
+  --ll-fade-se: linear-gradient(90deg, rgba(0, 0, 0, 0), #000 14px, #000 calc(100% - 26px), rgba(0, 0, 0, 0));
+}

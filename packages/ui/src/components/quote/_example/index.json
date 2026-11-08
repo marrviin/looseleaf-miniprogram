@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "ll-quote": "../quote/quote",
+    "ll-quote-text": "../quote-text/quote-text",
+    "ll-quote-attribution": "../quote-attribution/quote-attribution"
+  }
+}

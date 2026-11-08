@@ -1,0 +1,8 @@
+/* ll-typography-lead */
+/* @ll-import tokens */
+.ll-typography-lead {
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--muted-foreground, #4a433c);
+  font-weight: 400;
+}

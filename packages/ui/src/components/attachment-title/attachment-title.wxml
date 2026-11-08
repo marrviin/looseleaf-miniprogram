@@ -1,0 +1,2 @@
+<!-- ll-attachment-title -->
+<view class="ll-attachment-title {{state === 'uploading' || state === 'processing' ? 'is-pulsing' : ''}}" style="{{customStyle}}"><slot /></view>

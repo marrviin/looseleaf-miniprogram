@@ -1,0 +1,4 @@
+<!-- ll-message-scroller-item — the root id is the scroll-into-view anchor -->
+<view class="ll-message-scroller-item ll-class" id="msi-{{messageId}}" style="{{customStyle}}">
+  <slot />
+</view>

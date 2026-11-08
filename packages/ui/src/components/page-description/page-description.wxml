@@ -1,0 +1,2 @@
+<!-- ll-page-description — muted text, at most a prose measure wide -->
+<view class="ll-page-description ll-class" style="{{customStyle}}"><slot /></view>

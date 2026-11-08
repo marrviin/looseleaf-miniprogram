@@ -1,0 +1,8 @@
+<!-- ll-table-head — <th>: script font in blue felt, the double rule
+     hanging under it. -->
+<view class="ll-table-head {{sorted ? 'll-table-head--sorted' : ''}} ll-class" style="{{cellStyle}}{{customStyle ? ';' + customStyle : ''}}">
+  <view class="ll-cell-rule {{ruleCls}}">
+    <view class="ll-cell-rule__tile" />
+  </view>
+  <slot />
+</view>

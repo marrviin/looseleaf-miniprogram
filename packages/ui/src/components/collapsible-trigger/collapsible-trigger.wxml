@@ -1,0 +1,2 @@
+<!-- ll-collapsible-trigger -->
+<view class="ll-collapsible-trigger" style="{{customStyle}}" bind:tap="onTap"><slot /></view>

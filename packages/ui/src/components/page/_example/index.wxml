@@ -1,0 +1,111 @@
+<!-- ll-page demo — mirrors the upstream docs page (#/components/page).
+     The page is a real column: header, content, footer on one sheet. -->
+<view class="demo">
+  <view class="demo-title">Page</view>
+  <view class="sec-desc">The app's main paper column: a sheet on the desk with a header, content and a footer. Three-hole punched, torn from a pad, ringed with a coffee stain — and the title is underlined by the same hand that wrote it.</view>
+
+  <view class="sec">
+    <view class="sub-h3">A page</view>
+    <view class="sec-desc">Header, content and footer on a sheet of paper. The title is underlined by hand; the column is centered and as wide as you say.</view>
+    <ll-page seed="field-notes">
+      <ll-page-header>
+        <ll-page-title>Field notes</ll-page-title>
+        <ll-page-description>A week of small observations, written where the light was good.</ll-page-description>
+      </ll-page-header>
+      <ll-page-content>
+        <text class="pg-body">Most of what I remember from a book is in the margins: an arrow, a question mark, a small argument with a dead author. The rest is weather.</text>
+        <text class="pg-body">Tuesday. Rain on the window, three cups of tea, and one very small plan for a very big week.</text>
+        <view><ll-button bind:tap="onSave">Save the page</ll-button></view>
+      </ll-page-content>
+      <ll-page-footer>
+        <text>Draft</text>
+        <text>- 3 -</text>
+      </ll-page-footer>
+    </ll-page>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Punched, ringed, stained</view>
+    <view class="sec-desc">holes punches three holes down the start edge (or two across the top); the desk shows through. reinforced adds gummed rings, stain a coffee ring.</view>
+    <view class="pg-stack">
+      <ll-page holes reinforce stain seed="binder" width="sm" custom-style="min-height:416px">
+        <ll-page-header>
+          <ll-page-title underline="double">For the binder</ll-page-title>
+          <ll-page-description>Three holes, gummed rings, one coffee.</ll-page-description>
+        </ll-page-header>
+        <ll-page-content>
+          <text class="pg-body">The rings are stuck on by hand and never quite concentric. The stain is faint on purpose.</text>
+        </ll-page-content>
+      </ll-page>
+      <ll-page holes="top" stock="graph" seed="legal" width="sm" custom-style="min-height:416px">
+        <ll-page-header>
+          <ll-page-title underline="wavy">Filed at the top</ll-page-title>
+          <ll-page-description>Two holes, a hand apart, like legal paper.</ll-page-description>
+        </ll-page-header>
+        <ll-page-content>
+          <text class="pg-body">The start padding grows with the punch, so the text never touches it.</text>
+        </ll-page-content>
+      </ll-page>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Torn from a pad</view>
+    <view class="sec-desc">torn is a shorthand for the edge. Pair it with a slip, a highlighted title and a tape strip.</view>
+    <view class="pg-stack">
+      <ll-page torn stock="slip" width="sm" tape="top" seed="pad" custom-style="min-height:320px">
+        <ll-page-header>
+          <ll-page-title underline="highlight">Order pad</ll-page-title>
+          <ll-page-description>Top edge ragged.</ll-page-description>
+        </ll-page-header>
+        <ll-page-content>
+          <text class="pg-body">2 x oat latte, one for the road.</text>
+          <text class="pg-body">1 x croissant, warm.</text>
+        </ll-page-content>
+        <ll-page-footer>
+          <text>no. 0042</text>
+        </ll-page-footer>
+      </ll-page>
+      <ll-page torn="both" width="sm" fastener="clip" seed="scrap" custom-style="min-height:320px">
+        <ll-page-header>
+          <ll-page-title underline="none">A scrap</ll-page-title>
+          <ll-page-description>Torn at both ends and clipped to something.</ll-page-description>
+        </ll-page-header>
+        <ll-page-content>
+          <text class="pg-body">Not every page has to be a whole one.</text>
+        </ll-page-content>
+      </ll-page>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">A weekly review</view>
+    <view class="sec-desc">A real page: three-hole punched, a form on it, a sticker stuck to the corner. Everything on the sheet is ordinary, accessible DOM.</view>
+    <ll-page aria-role="article" aria-label="Weekly review" holes reinforce seed="review">
+      <ll-sticker name="done" size="{{72}}" rotate="{{8}}" custom-style="position:absolute;top:-20px;right:-12px;z-index:10" />
+      <ll-page-header>
+        <ll-page-title>Weekly review</ll-page-title>
+        <ll-page-description>What got finished, what did not, and one thing to try on Monday.</ll-page-description>
+      </ll-page-header>
+      <ll-page-content>
+        <view class="pg-form">
+          <text class="pg-legend">Finished</text>
+          <view class="pg-check" wx:for="{{done}}" wx:key="*this" bind:tap="onCheck" data-index="{{index}}">
+            <ll-checkbox checked="{{item.done}}" aria-label="{{item.text}}" />
+            <text class="pg-check-label">{{item.text}}</text>
+          </view>
+        </view>
+        <view class="pg-form">
+          <text class="pg-legend">One thing for Monday</text>
+          <ll-textarea ruled placeholder="Start with the sky." aria-label="One thing for Monday" />
+        </view>
+      </ll-page-content>
+      <ll-page-footer>
+        <text>week 39</text>
+        <ll-button bind:tap="onFile">File it</ll-button>
+      </ll-page-footer>
+    </ll-page>
+  </view>
+
+  <view class="sr-only" aria-live="polite">{{said}}</view>
+</view>

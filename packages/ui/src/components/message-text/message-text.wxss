@@ -1,0 +1,44 @@
+/* ll-message-text — per-word spans, jitter baked into inline styles */
+/* @ll-import tokens */
+.ll-message-text {
+  white-space: pre-wrap;
+  font-family: 'Kevin Sans', sans-serif;
+}
+.ll-message-text__w {
+  position: relative;
+  display: inline;
+}
+/* soak: wet ink drying (upstream animate-soak) */
+.ll-message-text__w.is-soak {
+  animation: ll-message-soak 0.5s both;
+}
+@keyframes ll-message-soak {
+  0% {
+    opacity: 0.2;
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+/* the felt-tip caret riding the last word */
+.ll-message-text__caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.05em;
+  margin-left: 2px;
+  border-radius: 999px;
+  background: var(--ll-ink-you, #2c4f9e);
+  vertical-align: -0.18em;
+  animation: ll-message-caret 1s infinite;
+}
+@keyframes ll-message-caret {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}

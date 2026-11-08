@@ -1,0 +1,7 @@
+/* ll-attachment-trigger */
+/* @ll-import tokens */
+.ll-attachment-trigger {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}

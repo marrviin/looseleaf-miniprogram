@@ -1,0 +1,112 @@
+<!-- ll-folder demo — mirrors the upstream docs page (#/components/folder):
+     intro, then the Examples entries with the page's own copy.
+     Installation/Usage/API reference/Accessibility/Related are
+     intentionally omitted. -->
+<view class="demo">
+  <view class="demo-title">Folder</view>
+  <view class="sec-desc">A folder with tabs: the front tab is the folder's color and runs into the body; the others stand behind it. Radix behavior is untouched.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">A folder with tabs</view>
+    <view class="sec-desc">The default folder in manila, with a disabled tab standing behind the others.</view>
+    <view class="max-w-sm">
+      <ll-folder default-value="inbox">
+        <ll-folder-tabs aria-label="Mail">
+          <ll-folder-tab value="inbox">Inbox</ll-folder-tab>
+          <ll-folder-tab value="drafts">Drafts</ll-folder-tab>
+          <ll-folder-tab value="sent">Sent</ll-folder-tab>
+          <ll-folder-tab value="archive" disabled>Archive</ll-folder-tab>
+        </ll-folder-tabs>
+        <ll-folder-content value="inbox" seed="in">
+          <view class="script-h3">Inbox</view>
+          <view class="panel-note">Three letters are waiting: one from Ada, and a parcel notice that has been waiting longer.</view>
+        </ll-folder-content>
+        <ll-folder-content value="drafts" seed="dr">
+          <view class="script-h3">Drafts</view>
+          <view class="panel-note">Two drafts, both begun, neither finished.</view>
+        </ll-folder-content>
+        <ll-folder-content value="sent" seed="se">
+          <view class="script-h3">Sent</view>
+          <view class="panel-note">Nothing yet this week.</view>
+        </ll-folder-content>
+      </ll-folder>
+    </view>
+
+    <view class="sub-h3">Manila, yellow, white</view>
+    <view class="sec-desc">The folder is whatever its stock is: manila, a legal-pad yellow or white card. A folder with one tab is just a labeled folder.</view>
+    <view class="grid-gap">
+      <view class="max-w-xs">
+        <ll-folder stock="sticky-yellow" default-value="one">
+          <ll-folder-tabs aria-label="Recipes">
+            <ll-folder-tab id="tab-one" value="one">Recipes</ll-folder-tab>
+          </ll-folder-tabs>
+          <ll-folder-content value="one" seed="y" tape="top">
+            <view class="panel-note">A folder with one tab is just a labeled folder.</view>
+          </ll-folder-content>
+        </ll-folder>
+      </view>
+      <view class="max-w-sm">
+        <ll-folder stock="paper" default-value="c">
+          <ll-folder-tabs aria-label="Photos">
+            <ll-folder-tab value="a">Sketches</ll-folder-tab>
+            <ll-folder-tab value="b">Notes</ll-folder-tab>
+            <ll-folder-tab value="c">Photos</ll-folder-tab>
+          </ll-folder-tabs>
+          <ll-folder-content value="a" seed="a"><view class="panel-note">Sketches</view></ll-folder-content>
+          <ll-folder-content value="b" seed="b"><view class="panel-note">Notes</view></ll-folder-content>
+          <ll-folder-content value="c" seed="c"><view class="panel-note">White card, three tabs, the last one open.</view></ll-folder-content>
+        </ll-folder>
+      </view>
+    </view>
+
+    <view class="sub-h3">Controlled</view>
+    <view class="sec-desc">The open tab is your state: `value` and `bind:change`, as on Tabs. Here a button jumps to the next one.</view>
+    <view class="max-w-sm grid-gap">
+      <ll-folder value="{{month}}" bind:change="onMonthChange">
+        <ll-folder-tabs aria-label="Months">
+          <ll-folder-tab wx:for="{{months}}" wx:key="*this" value="{{item}}">{{item}}</ll-folder-tab>
+        </ll-folder-tabs>
+        <ll-folder-content wx:for="{{months}}" wx:key="*this" value="{{item}}" seed="{{item}}">
+          <view class="script-h3">{{item}}</view>
+          <view class="panel-note">Notes for {{item}}.</view>
+        </ll-folder-content>
+      </ll-folder>
+      <view class="row" aria-live="polite">
+        <ll-button variant="secondary" size="sm" bind:tap="nextMonth">Next month</ll-button>
+        <view wx:if="{{said}}" class="said">{{said}}</view>
+      </view>
+    </view>
+
+    <view class="sub-h3">Project files</view>
+    <view class="sec-desc">A real page: a project's tasks, notes and files as tabs on one folder, with a form inside the open panel. Each panel is ordinary DOM; only the open one is in the page.</view>
+    <view class="max-w-sm">
+      <ll-folder default-value="tasks">
+        <ll-folder-tabs aria-label="Project files">
+          <ll-folder-tab value="tasks">Tasks</ll-folder-tab>
+          <ll-folder-tab value="notes">Notes</ll-folder-tab>
+          <ll-folder-tab value="files">Files</ll-folder-tab>
+        </ll-folder-tabs>
+        <ll-folder-content value="tasks" seed="tasks" fastener="clip">
+          <view class="script-h3">Tasks</view>
+          <view class="task-list">
+            <view class="task-row" wx:for="{{tasks}}" wx:key="*this" bind:tap="onTask" data-index="{{index}}">
+              <ll-checkbox checked="{{item.done}}" aria-label="{{item.label}}" />
+              <view class="task-label">{{item.label}}</view>
+            </view>
+          </view>
+          <view class="row"><ll-button size="sm" bind:tap="addTask">Add a task</ll-button></view>
+        </ll-folder-content>
+        <ll-folder-content value="notes" seed="notes">
+          <view class="script-h3">Notes</view>
+          <view class="panel-note">Nothing here yet. The best notes are in the margins.</view>
+        </ll-folder-content>
+        <ll-folder-content value="files" seed="files">
+          <view class="script-h3">Files</view>
+          <view class="panel-note">outline.pdf, sky.png, shade-study.png</view>
+        </ll-folder-content>
+      </ll-folder>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,5 @@
+<!-- ll-form-item — one field row; upstream grid gap-2, the page can lay
+     it out however (rows with a trailing switch pass custom-style) -->
+<view class="ll-form-item ll-class" style="{{customStyle}}">
+  <slot />
+</view>

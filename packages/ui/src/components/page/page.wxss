@@ -1,0 +1,30 @@
+/* ll-page — upstream: mx-auto flex w-full flex-col gap-6 px-6 py-8
+   text-foreground; holes start/top grow the padding to clear the punch. */
+/* @ll-import tokens */
+.ll-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px; /* gap-6 */
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px 24px; /* py-8 px-6 */
+  color: var(--ll-ink, #2a2420);
+  font-family: 'Kevin Sans', 'PingFang SC', sans-serif;
+}
+.ll-page--holes-start {
+  padding-left: 56px; /* ps-14 */
+}
+.ll-page--holes-top {
+  padding-top: 56px; /* pt-14 */
+}
+
+/* holes/stain decor: drawn on the paper box (page-decor, pad 0).
+   inset:0 sizes the layer for measurement before inkStyle swaps in. */
+.ll-page__decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

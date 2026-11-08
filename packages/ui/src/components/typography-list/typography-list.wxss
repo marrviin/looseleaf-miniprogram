@@ -1,0 +1,28 @@
+/* ll-typography-list */
+/* @ll-import tokens */
+.ll-typography-list {
+  margin: 20px 0 20px 24px;
+  font-size: 17px;
+  line-height: 1.6;
+}
+.ll-typography-list__item {
+  position: relative;
+  margin-top: 8px;
+  padding-left: 4px;
+}
+.ll-typography-list__marker {
+  position: absolute;
+  left: -20px;
+  top: 0;
+  color: var(--ll-marker, #6b6459);
+  font-size: 19px;
+  line-height: 1.35;
+}
+.ll-typography-list.is-ordered .ll-typography-list__marker {
+  font-family: 'Kevin Sans Script', 'Kevin Sans', 'Bradley Hand', cursive;
+  font-weight: 700;
+  font-size: 20px;
+}
+.ll-typography-list__text {
+  padding-left: 2px;
+}

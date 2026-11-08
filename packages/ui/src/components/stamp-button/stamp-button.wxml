@@ -1,0 +1,26 @@
+<!-- ll-stamp-button -->
+<button
+  wx:if="{{!disabled}}"
+  class="ll-stamp-button {{pressed ? 'll-stamp-button--pressed' : ''}} ll-class"
+  style="{{customStyle}}"
+  hover-class="none"
+  hover-stay-time="80"
+  aria-label="{{ariaLabel || label}}"
+  catchtouchstart="onDown"
+  catchtouchend="onUp"
+  catchtouchcancel="onUp"
+  catchtap="onPress"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-stamp-button__label"><slot /></view>
+</button>
+<button
+  wx:else
+  class="ll-stamp-button ll-stamp-button--disabled ll-class"
+  style="{{customStyle}}"
+  disabled
+  aria-label="{{ariaLabel || label}}"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-stamp-button__label"><slot /></view>
+</button>

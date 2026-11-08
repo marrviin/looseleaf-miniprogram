@@ -1,0 +1,56 @@
+.demo {
+  padding: 32rpx;
+  background: var(--ll-paper, #f8f5ee);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+.sec {
+  margin-top: 40rpx;
+}
+.sub-h3 {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin: 28rpx 0 6rpx;
+}
+.sec-desc {
+  font-size: 24rpx;
+  color: #8a857c;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+.mq-row {
+  max-width: 672px;
+}
+.mq-col {
+  display: flex;
+  flex-direction: column;
+  gap: 40rpx;
+}
+.mq-nav {
+  display: flex;
+  align-items: center;
+  gap: 48rpx;
+  padding: 0 16rpx;
+}
+.mq-nav-brand {
+  font-size: 48rpx;
+  color: #2a2420;
+}
+.mq-nav-link {
+  font-size: 30rpx;
+  color: #2a2420;
+  text-decoration: underline;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}

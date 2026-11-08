@@ -1,0 +1,2 @@
+<!-- ll-typography-inline-code -->
+<text class="ll-typography-inline-code" style="{{customStyle}}"><slot /></text>

@@ -1,0 +1,37 @@
+<!-- ll-code-block demo — mirrors the upstream docs page -->
+<view class="demo">
+  <view class="demo-title">Code block</view>
+  <view class="sec-desc">A typed slip: pass code, a filename and a language, and the header, the copy button and the lines come with it. Keywords are typed in red, functions struck twice, strings underscored. Copy puts the text on the clipboard.</view>
+
+  <view class="sec">
+    <view class="sub-h3">A typed slip</view>
+    <ll-code-block code="{{code}}" filename="src/notes/tag-chips.tsx" line-numbers seed="default" custom-style="max-width:560px;" />
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">A diff</view>
+    <view class="sec-desc">Removed lines are struck through in red pencil, added lines are ticked in green, and the header counts them.</view>
+    <ll-code-block diff code="{{patch}}" language="ts" filename="src/notes/filter.ts" line-numbers seed="diff" custom-style="max-width:560px;" />
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Languages</view>
+    <ll-code-block code="{{css}}" filename="tag-chip.css" seed="css" custom-style="max-width:560px;" />
+    <view class="cb-gap" />
+    <ll-code-block code="{{json}}" language="json" filename="notes.json" seed="json" custom-style="max-width:560px;" />
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">In a reply</view>
+    <view class="sec-desc">A code slip inside a message: it takes the width of the column.</view>
+    <ll-message custom-style="max-width:480px;padding:16rpx 12rpx;">
+      <ll-message-content>
+        <ll-message-header>Stubby</ll-message-header>
+        <ll-bubble variant="ghost">
+          <ll-bubble-content>Here is the one-line fix:</ll-bubble-content>
+        </ll-bubble>
+        <ll-code-block diff language="ts" filename="filter.ts" seed="chat" code="{{chatPatch}}" />
+      </ll-message-content>
+    </ll-message>
+  </view>
+</view>

@@ -1,0 +1,32 @@
+<!-- ll-input-otp — a row of drawn boxes; one invisible <input> covers the
+     whole row so typing, paste and the system keyboard stay native. The
+     active slot wears the blue ring and a blinking pencil caret. -->
+<view
+  class="ll-otp {{disabled ? 'll-otp--disabled' : ''}}"
+  style="{{customStyle}}"
+  aria-label="{{ariaLabel}}"
+  role="group"
+>
+  <block wx:for="{{slots}}" wx:key="i">
+    <view class="ll-otp-slot {{item.active ? 'll-otp-slot--active' : ''}}">
+      <view class="ll-otp-slot__ink" style="{{slotStyles[index] || ''}}" />
+      <text wx:if="{{item.char}}" class="ll-otp-slot__char">{{item.char}}</text>
+      <text wx:elif="{{placeholder && !item.filled}}" class="ll-otp-slot__ph">{{placeholder}}</text>
+      <view wx:if="{{item.active}}" class="ll-otp-caret" aria-hidden="true" />
+    </view>
+    <view wx:if="{{item.sep}}" class="ll-otp-sep" role="separator" aria-hidden="true">
+      <ll-icon name="minus" size="{{20}}" />
+    </view>
+  </block>
+  <input
+    class="ll-otp-input"
+    value="{{inner}}"
+    type="{{inputType}}"
+    maxlength="{{maxLength}}"
+    disabled="{{disabled}}"
+    aria-label="{{ariaLabel}}"
+    bindinput="onInput"
+    bindfocus="onFocus"
+    bindblur="onBlur"
+  />
+</view>

@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-folder": "../folder/folder",
+    "ll-folder-tabs": "../folder-tabs/folder-tabs",
+    "ll-folder-tab": "../folder-tab/folder-tab",
+    "ll-folder-content": "../folder-content/folder-content",
+    "ll-button": "../button/button",
+    "ll-checkbox": "../checkbox/checkbox"
+  }
+}

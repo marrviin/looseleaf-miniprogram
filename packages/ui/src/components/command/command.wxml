@@ -1,0 +1,18 @@
+<!-- ll-command — the palette root: a slip of paper (sheet) or bare
+     (sheet=false inside a dialog/popover that already is paper). -->
+<view class="ll-command ll-class" style="{{customStyle}}" aria-role="command" aria-label="{{ariaLabel}}">
+  <ll-paper
+    wx:if="{{sheet}}"
+    stock="{{stock}}"
+    edge="{{edge}}"
+    tilt="{{tilt}}"
+    tape="{{tape}}"
+    rules="none"
+    shadow="lift"
+    seed="{{seed}}"
+    custom-style="display:flex;flex-direction:column;width:100%;height:100%;box-sizing:border-box;"
+  >
+    <slot />
+  </ll-paper>
+  <slot wx:else />
+</view>

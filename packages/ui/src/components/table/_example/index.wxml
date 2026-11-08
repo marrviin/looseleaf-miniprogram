@@ -1,0 +1,301 @@
+<!-- ll-table demo — mirrors the upstream docs page (#/components/table).
+     Preview = 01-invoices; Examples in upstream (alphabetical) order:
+     02 data table, 03 sticky header, 04 team billing, 50 demo, 51 data
+     table demo. The structural selectors of the upstream sheet
+     (nth-child offsets, :has, hover) are driven through component
+     relations instead — the rules are the same flat repeat-x tiles,
+     painted by CSS, no drawing per row. The `colSpan` cells of the
+     upstream footers are emulated with padded empty cells (div-tables
+     have no colspan); the 51 empty state sits under the table for the
+     same reason. -->
+<view class="demo">
+  <view class="demo-title">Table</view>
+  <view class="sec-desc">Rows and columns on a ruled page. Every rule is a pencil pull drawn once by the pen and printed by CSS (so a hundred rows cost no drawings), the header has an accountant's double rule, and a hovered or selected row is a highlighter swipe.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Invoices</view>
+    <view class="sec-desc">The whole family: a header with a double rule, rows ruled by hand in pencil, a footer with its own double rule and a caption written underneath. Touch and hold a row to see the swipe.</view>
+    <view class="stack">
+      <ll-table custom-style="max-width:1152rpx">
+        <ll-table-caption>A list of your recent invoices.</ll-table-caption>
+        <ll-table-header>
+          <ll-table-row>
+            <ll-table-head custom-style="width:224rpx">Invoice</ll-table-head>
+            <ll-table-head>Status</ll-table-head>
+            <ll-table-head>Method</ll-table-head>
+            <ll-table-head custom-style="text-align:right">Amount</ll-table-head>
+          </ll-table-row>
+        </ll-table-header>
+        <ll-table-body>
+          <ll-table-row wx:for="{{invoices01}}" wx:key="invoice">
+            <ll-table-cell custom-style="font-weight:700">{{item.invoice}}</ll-table-cell>
+            <ll-table-cell>{{item.status}}</ll-table-cell>
+            <ll-table-cell>{{item.method}}</ll-table-cell>
+            <ll-table-cell custom-style="text-align:right">
+              <view class="ll-num">{{item.amount}}</view>
+            </ll-table-cell>
+          </ll-table-row>
+        </ll-table-body>
+        <ll-table-footer>
+          <ll-table-row>
+            <ll-table-cell>Total</ll-table-cell>
+            <ll-table-cell></ll-table-cell>
+            <ll-table-cell></ll-table-cell>
+            <ll-table-cell custom-style="text-align:right">
+              <view class="ll-num">$1,750.00</view>
+            </ll-table-cell>
+          </ll-table-row>
+        </ll-table-footer>
+      </ll-table>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Data table</view>
+    <view class="sec-desc">Sorting, selection and pagination with plain state and no extra dependency. A selected row is a highlighter swipe (`selected`), the sorted column says so with `sort` and an arrow, and the header checkbox goes half-ticked when only some rows are chosen. Colored pencil text is 4.7:1 on paper but about 4:1 on the full swipe, so a chosen row writes its status in ink.</view>
+    <view class="stack">
+      <view class="w2xl">
+        <ll-table>
+          <ll-table-header>
+            <ll-table-row>
+              <ll-table-head custom-style="width:80rpx;padding-right:0">
+                <ll-checkbox checked="{{all02}}" indeterminate="{{some02}}" aria-label="Select all rows on this page" bind:change="onSelAll02" />
+              </ll-table-head>
+              <ll-table-head wx:for="{{heads02}}" wx:key="k" sort="{{item.sort}}" custom-style="padding:0;{{item.end ? 'text-align:right' : ''}}">
+                <view class="sortbtn {{item.end ? 'end' : ''}}" bindtap="onSort02" data-k="{{item.k}}">
+                  <text>{{item.label}}</text>
+                  <ll-icon name="{{item.icon}}" size="{{16}}" custom-style="{{item.dim ? 'opacity:0.45' : ''}}" />
+                </view>
+              </ll-table-head>
+            </ll-table-row>
+          </ll-table-header>
+          <ll-table-body>
+            <ll-table-row wx:for="{{rows02}}" wx:key="id" selected="{{item.sel}}">
+              <ll-table-cell custom-style="padding-right:0">
+                <ll-checkbox checked="{{item.sel}}" aria-label="Select {{item.name}}" data-id="{{item.id}}" bind:change="onSelOne02" />
+              </ll-table-cell>
+              <ll-table-cell custom-style="font-weight:700">{{item.name}}</ll-table-cell>
+              <ll-table-cell>{{item.plan}}</ll-table-cell>
+              <ll-table-cell custom-style="font-weight:700">
+                <text class="{{item.statusCls}}">{{item.status}}</text>
+              </ll-table-cell>
+              <ll-table-cell custom-style="text-align:right">
+                <view class="ll-num">{{item.amountStr}}</view>
+              </ll-table-cell>
+            </ll-table-row>
+          </ll-table-body>
+        </ll-table>
+        <view class="tfoot-bar">
+          <view class="muted">{{summary02}}</view>
+          <view class="pagers">
+            <ll-button variant="outline" size="sm" disabled="{{page02 === 0}}" aria-label="Previous page" bind:tap="onPrev02">
+              <ll-icon name="chevron-left" size="{{16}}" /> Previous
+            </ll-button>
+            <ll-button variant="outline" size="sm" disabled="{{page02 >= pages02 - 1}}" aria-label="Next page" bind:tap="onNext02">
+              Next <ll-icon name="chevron-right" size="{{16}}" />
+            </ll-button>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="sub-h3">Sticky header</view>
+    <view class="sec-desc">`sticky` pins the header row while the body scrolls under it; the container gets its height here with `container-style="max-height:576rpx"` (upstream `containerClassName="max-h-72"`). The header carries the paper color (`--ll-table-bg`) and its own double rule.</view>
+    <view class="stack">
+      <ll-card seed="sticky-table" custom-style="max-width:768rpx;margin:0 auto">
+        <ll-card-content>
+          <ll-table id="stickytable" sticky container-style="max-height:576rpx">
+            <ll-table-header>
+              <ll-table-row>
+                <ll-table-head>Day</ll-table-head>
+                <ll-table-head>Page</ll-table-head>
+                <ll-table-head custom-style="text-align:right">Words</ll-table-head>
+              </ll-table-row>
+            </ll-table-header>
+            <ll-table-body>
+              <ll-table-row wx:for="{{pages}}" wx:key="id">
+                <ll-table-cell>{{item.day}}</ll-table-cell>
+                <ll-table-cell>{{item.page}}</ll-table-cell>
+                <ll-table-cell custom-style="text-align:right">
+                  <view class="ll-num">{{item.words}}</view>
+                </ll-table-cell>
+              </ll-table-row>
+            </ll-table-body>
+          </ll-table>
+          <view class="card-note">Twenty-four pages: scroll the list, the head stays put.</view>
+        </ll-card-content>
+      </ll-card>
+    </view>
+
+    <view class="sub-h3">Team billing</view>
+    <view class="sec-desc">A real screen: a card holding a table of people with faces, roles, a presence dot and what each seat costs, a highlighted row for the person you are looking at, a row button, and a footer with the total.</view>
+    <view class="stack">
+      <ll-card seed="team-billing" custom-style="max-width:1152rpx;margin:0 auto">
+        <ll-card-header>
+          <ll-card-title>Seats</ll-card-title>
+          <ll-card-description>Everyone who can open the notebook, and what they cost this month.</ll-card-description>
+          <ll-button slot="action" size="sm" aria-label="Add a seat">
+            <ll-icon name="plus" size="{{16}}" /> Add a seat
+          </ll-button>
+        </ll-card-header>
+        <ll-card-content>
+          <ll-table>
+            <ll-table-header>
+              <ll-table-row>
+                <ll-table-head>Person</ll-table-head>
+                <ll-table-head>Role</ll-table-head>
+                <ll-table-head custom-style="text-align:right">Per month</ll-table-head>
+                <ll-table-head custom-style="width:80rpx"><text class="sr-only">Actions</text></ll-table-head>
+              </ll-table-row>
+            </ll-table-header>
+            <ll-table-body>
+              <ll-table-row wx:for="{{seats}}" wx:key="email" selected="{{index === 1}}" custom-style="height:112rpx">
+                <ll-table-cell>
+                  <view class="person">
+                    <ll-avatar>
+                      <ll-avatar-fallback name="{{item.name}}" />
+                      <ll-avatar-badge status="{{item.status}}" aria-label="{{item.status}}" />
+                    </ll-avatar>
+                    <view class="person-text">
+                      <text class="person-name">{{item.name}}</text>
+                      <text class="person-email">{{item.email}}</text>
+                    </view>
+                  </view>
+                </ll-table-cell>
+                <ll-table-cell>{{item.role}}</ll-table-cell>
+                <ll-table-cell custom-style="text-align:right">
+                  <view class="ll-num">${{item.price}}.00</view>
+                </ll-table-cell>
+                <ll-table-cell>
+                  <ll-button variant="ghost" size="icon-sm" aria-label="More for {{item.name}}">
+                    <ll-icon name="ellipsis" size="{{16}}" />
+                  </ll-button>
+                </ll-table-cell>
+              </ll-table-row>
+            </ll-table-body>
+            <ll-table-footer>
+              <ll-table-row>
+                <ll-table-cell>Total</ll-table-cell>
+                <ll-table-cell></ll-table-cell>
+                <ll-table-cell custom-style="text-align:right">
+                  <view class="ll-num">{{seatsTotal}}</view>
+                </ll-table-cell>
+                <ll-table-cell></ll-table-cell>
+              </ll-table-row>
+            </ll-table-footer>
+          </ll-table>
+        </ll-card-content>
+        <ll-card-footer custom-style="justify-content:space-between">
+          <text class="card-foot-note">Billed on the first of the month.</text>
+          <ll-button variant="link" size="sm">View invoices</ll-button>
+        </ll-card-footer>
+      </ll-card>
+    </view>
+
+    <view class="sub-h3">Demo</view>
+    <view class="sec-desc">Official `table-demo`: seven invoices with a caption, a header, a footer total and a right-aligned amount column. The ruling is pencil: a double rule under the header, a hand-pulled line under each row, the accountant's pair above the total. Row rules are painted by CSS, so a long table costs no drawing per row.</view>
+    <view class="stack">
+      <ll-table>
+        <ll-table-caption>A list of your recent invoices.</ll-table-caption>
+        <ll-table-header>
+          <ll-table-row>
+            <ll-table-head custom-style="width:200rpx">Invoice</ll-table-head>
+            <ll-table-head>Status</ll-table-head>
+            <ll-table-head>Method</ll-table-head>
+            <ll-table-head custom-style="text-align:right">Amount</ll-table-head>
+          </ll-table-row>
+        </ll-table-header>
+        <ll-table-body>
+          <ll-table-row wx:for="{{invoices50}}" wx:key="invoice">
+            <ll-table-cell>{{item.invoice}}</ll-table-cell>
+            <ll-table-cell>{{item.paymentStatus}}</ll-table-cell>
+            <ll-table-cell>{{item.paymentMethod}}</ll-table-cell>
+            <ll-table-cell custom-style="text-align:right">{{item.totalAmount}}</ll-table-cell>
+          </ll-table-row>
+        </ll-table-body>
+        <ll-table-footer>
+          <ll-table-row>
+            <ll-table-cell>Total</ll-table-cell>
+            <ll-table-cell></ll-table-cell>
+            <ll-table-cell></ll-table-cell>
+            <ll-table-cell custom-style="text-align:right">$2,500.00</ll-table-cell>
+          </ll-table-row>
+        </ll-table-footer>
+      </ll-table>
+    </view>
+
+    <view class="sub-h3">Data table demo</view>
+    <view class="sec-desc">Official `data-table-demo`, rebuilt with plain state and no TanStack: filter the emails, sort the Email column, hide columns from the Columns menu, tick rows (the header box goes half-ticked when only some of a page are), and page with Previous and Next. Chosen rows are a highlighter swipe. The original's five rows fit on one page, so this one has twelve at five a page. The bordered, rounded wrapper is left off: the table is already ruled by hand.</view>
+    <view class="stack">
+      <view class="w2xl">
+        <view class="toolbar">
+          <ll-input placeholder="Filter emails..." aria-label="Filter emails" value="{{filter51}}" bind:input="onFilter51" custom-style="max-width:480rpx" />
+          <ll-dropdown-menu open="{{colsOpen}}" width="{{160}}" align="end" aria-label="Columns" bind:change="onMenuOpen" data-k="colsOpen">
+            <ll-button slot="trigger" variant="outline" aria-label="Toggle columns">
+              Columns <ll-icon name="chevron-down" size="{{16}}" />
+            </ll-button>
+            <ll-dropdown-menu-checkbox-item wx:for="{{colKeys}}" wx:key="id" checked="{{vis51[item.id]}}" data-id="{{item.id}}" bind:change="onColToggle">
+              <text class="cap">{{item.label}}</text>
+            </ll-dropdown-menu-checkbox-item>
+          </ll-dropdown-menu>
+        </view>
+        <ll-table>
+          <ll-table-header>
+            <ll-table-row>
+              <ll-table-head custom-style="padding-right:0">
+                <ll-checkbox checked="{{all51}}" indeterminate="{{some51}}" aria-label="Select all" bind:change="onSelAll51" />
+              </ll-table-head>
+              <ll-table-head wx:if="{{vis51.status}}">Status</ll-table-head>
+              <ll-table-head wx:if="{{vis51.email}}" sort="{{sort51 === 'asc' ? 'ascending' : sort51 === 'desc' ? 'descending' : 'none'}}">
+                <ll-button variant="ghost" custom-style="margin-left:-24rpx" aria-label="Sort by email" bind:tap="onSort51">
+                  Email <ll-icon name="arrow-up-down" size="{{16}}" />
+                </ll-button>
+              </ll-table-head>
+              <ll-table-head wx:if="{{vis51.amount}}" custom-style="text-align:right">Amount</ll-table-head>
+              <ll-table-head custom-style="padding-right:0"><text class="sr-only">Actions</text></ll-table-head>
+            </ll-table-row>
+          </ll-table-header>
+          <ll-table-body>
+            <ll-table-row wx:for="{{rows51}}" wx:key="id" selected="{{item.sel}}" custom-style="{{item.z}}">
+              <ll-table-cell custom-style="padding-right:0">
+                <ll-checkbox checked="{{item.sel}}" aria-label="Select {{item.email}}" data-id="{{item.id}}" bind:change="onSelOne51" />
+              </ll-table-cell>
+              <ll-table-cell wx:if="{{vis51.status}}">
+                <view class="cap">{{item.status}}</view>
+              </ll-table-cell>
+              <ll-table-cell wx:if="{{vis51.email}}">
+                <view class="low">{{item.email}}</view>
+              </ll-table-cell>
+              <ll-table-cell wx:if="{{vis51.amount}}">
+                <view class="ll-num medium end">{{item.amountStr}}</view>
+              </ll-table-cell>
+              <ll-table-cell custom-style="padding-right:0">
+                <ll-dropdown-menu id="rowmenu" open="{{rowMenu === item.id}}" width="{{224}}" align="end" aria-label="Open menu" data-rowid="{{item.id}}" bind:change="onRowMenuChange">
+                  <ll-button slot="trigger" variant="ghost" size="icon-sm" aria-label="Open menu">
+                    <ll-icon name="ellipsis" size="{{16}}" />
+                  </ll-button>
+                  <ll-dropdown-menu-label>Actions</ll-dropdown-menu-label>
+                  <ll-dropdown-menu-item data-id="{{item.id}}" bind:select="onCopyId">Copy payment ID</ll-dropdown-menu-item>
+                  <ll-dropdown-menu-separator />
+                  <ll-dropdown-menu-item data-id="{{item.id}}" bind:select="onCloseRowMenu">View customer</ll-dropdown-menu-item>
+                  <ll-dropdown-menu-item data-id="{{item.id}}" bind:select="onCloseRowMenu">View payment details</ll-dropdown-menu-item>
+                </ll-dropdown-menu>
+              </ll-table-cell>
+            </ll-table-row>
+          </ll-table-body>
+        </ll-table>
+        <view wx:if="{{empty51}}" class="noresults">No results.</view>
+        <view class="tfoot-bar">
+          <view class="muted">{{summary51}}</view>
+          <view class="pagers">
+            <ll-button variant="outline" size="sm" disabled="{{page51 === 0}}" aria-label="Previous page" bind:tap="onPrev51">Previous</ll-button>
+            <ll-button variant="outline" size="sm" disabled="{{page51 >= pageCount51 - 1}}" aria-label="Next page" bind:tap="onNext51">Next</ll-button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

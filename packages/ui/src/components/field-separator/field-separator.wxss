@@ -1,0 +1,8 @@
+/* ll-field-separator — relative -my-2 flex h-5 items-center */
+.ll-field-separator {
+  position: relative;
+  display: flex;
+  height: 40rpx; /* h-5 */
+  align-items: center;
+  margin: -16rpx 0; /* -my-2 */
+}

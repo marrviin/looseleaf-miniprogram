@@ -1,0 +1,9 @@
+<!-- ll-notebook-turn — sits above the page content; keep buttons and
+     links out of that corner. -->
+<view
+  class="ll-notebook-turn ll-class"
+  style="{{customStyle}}"
+  aria-role="button"
+  aria-label="{{label || 'Turn the page'}}"
+  bind:tap="onTap"
+></view>

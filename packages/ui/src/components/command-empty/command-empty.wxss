@@ -1,0 +1,14 @@
+/* ll-command-empty — grid justify-items-center gap-1 px-4 py-5 text-center
+   font-script text-xl text-ink-muted. */
+.ll-command-empty {
+  display: grid;
+  justify-items: center;
+  gap: 8rpx; /* gap-1 */
+  box-sizing: border-box;
+  padding: 40rpx 32rpx; /* py-5 px-4 */
+  text-align: center;
+  font-family: 'Kevin Sans', sans-serif; /* font-script */
+  font-size: 35rpx; /* text-xl 20px x .88 */
+  line-height: 1.25; /* leading-tight */
+  color: #4a433c; /* text-ink-muted */
+}

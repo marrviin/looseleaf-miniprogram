@@ -1,0 +1,2 @@
+<!-- ll-field-group — stacks fields and field-sets. -->
+<view class="ll-field-group {{tight ? 'll-field-group--tight' : ''}} ll-class" style="{{customStyle}}"><slot /></view>

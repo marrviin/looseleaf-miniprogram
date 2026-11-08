@@ -1,0 +1,62 @@
+<!-- ll-select — trigger: a drawn field (selectRecipe, invalid layer
+     replaces rest) with the chosen label or placeholder and a chevron that
+     turns over while the slip is up. List: a slip of paper (stock slip,
+     rules none), popper-placed; rows wear the highlighter on touch, the
+     picked one is bold with a blue felt tick. -->
+<view
+  class="ll-select ll-select--{{size}} {{disabled ? 'll-select--disabled' : ''}} ll-class"
+  style="{{customStyle}}"
+  catchtap="onTriggerTap"
+  aria-role="button"
+  aria-disabled="{{disabled}}"
+  aria-label="{{ariaLabel}}"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-select__inner">
+    <text class="ll-select__value {{hasValue ? '' : 'll-select__value--placeholder'}}">{{displayLabel}}</text>
+    <view class="ll-select__icon {{open ? 'll-select__icon--open' : ''}}">
+      <ll-icon name="chevron-down" size="{{16}}" ink="{{disabled ? '#5a554e' : '#4a423b'}}" />
+    </view>
+  </view>
+</view>
+
+<block wx:if="{{visible}}">
+  <view class="ll-select__catcher" catch:touchmove="noop" catch:tap="onOutsideTap" />
+  <view
+    class="ll-select__panel {{closing ? 'll-select__panel--closing' : ''}} {{placed ? '' : 'is-placing'}}"
+    style="{{panelStyle}}"
+    catch:tap="noop"
+    aria-role="listbox"
+  >
+    <ll-paper
+      stock="slip"
+      rules="none"
+      seed="{{seed}}"
+      custom-style="position:relative;display:block;width:100%;box-sizing:border-box;"
+    >
+      <view class="ll-select__viewport" style="{{viewportStyle}}">
+        <block wx:for="{{rows}}" wx:key="key">
+          <view wx:if="{{item.type === 'label'}}" class="ll-select__group-label">{{item.label}}</view>
+          <ll-rule wx:elif="{{item.type === 'sep'}}" custom-style="width:auto;height:1px;margin:12rpx -8rpx;" />
+          <view
+            wx:else
+            class="ll-select__item {{item.value === value ? 'll-select__item--checked' : ''}} {{item.disabled ? 'll-select__item--disabled' : ''}}"
+            hover-class="{{item.disabled ? '' : 'll-select__item--hi'}}"
+            hover-start-time="0"
+            hover-stay-time="80"
+            data-value="{{item.value}}"
+            data-disabled="{{item.disabled}}"
+            catchtap="onItemTap"
+            aria-role="option"
+            aria-disabled="{{item.disabled}}"
+          >
+            <text class="ll-select__item-text">{{item.label}}</text>
+            <view wx:if="{{item.value === value}}" class="ll-select__check">
+              <ll-icon name="check" size="{{16}}" ink="#2c4f9e" />
+            </view>
+          </view>
+        </block>
+      </view>
+    </ll-paper>
+  </view>
+</block>

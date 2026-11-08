@@ -1,0 +1,11 @@
+/* ll-folder-tabs — bottom-aligned strip that rides in front of the body */
+/* @ll-import tokens */
+.ll-folder-tabs {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  box-sizing: border-box;
+  padding: 0 16px;
+}

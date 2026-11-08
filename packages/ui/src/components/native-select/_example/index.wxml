@@ -1,0 +1,57 @@
+<!-- ll-native-select demo — mirrors the upstream docs page
+     (#/components/native-select): the system picker in a hand-drawn frame.
+     The system picker is a flat list, so the groups example folds flat. -->
+<view class="demo">
+  <view class="demo-title">Native select</view>
+  <view class="sec-desc">The platform's own picker in a hand-drawn frame: its popup, its mobile wheel. The chevron is drawn; an option with an empty value reads as a placeholder. Tapping a select opens the system picker.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">A first option with an empty value reads as a placeholder — grey pencil until a country is picked.</view>
+    <view class="stack-12">
+      <ll-native-select id="nsCountry" custom-style="width:388rpx" options="{{countries}}" value="{{country}}" placeholder="Choose a country" aria-label="Country" data-key="country" bindchange="onNs" />
+      <view class="said-line" aria-live="polite">{{country === '' ? 'No country picked yet.' : 'Picked: ' + country}}</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Groups, sizes and states</view>
+    <view class="sec-desc">The system picker is a flat list, so the pen and pencil groups fold flat (headers dropped — the drawn select keeps its groups). A small size, an invalid select (red pencil box and a bang before the chevron) and a disabled one (dashed, pale).</view>
+    <view class="stack-12">
+      <ll-label for="ns-pen">With groups</ll-label>
+      <ll-native-select id="nsPen" options="{{penGroups}}" value="{{pen}}" aria-label="Pen" data-key="pen" bindchange="onNs" />
+      <ll-label for="ns-small">Small</ll-label>
+      <ll-native-select id="nsSmall" size="sm" custom-style="width:320rpx" options="{{sizes}}" value="{{size}}" aria-label="Paper size" data-key="size" bindchange="onNs" />
+      <ll-label for="ns-bad">Invalid</ll-label>
+      <ll-native-select id="nsBad" invalid="{{bad === ''}}" options="{{badOptions}}" value="{{bad}}" aria-label="Pick one" data-key="bad" bindchange="onNs" />
+      <view class="said-line said-line--bad" role="{{bad === '' ? 'alert' : ''}}">This one is required.</view>
+      <ll-label for="ns-off">Disabled</ll-label>
+      <ll-native-select id="nsOff" disabled options="{{['Locked']}}" value="Locked" aria-label="Locked" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Shipping form</view>
+    <view class="sec-desc">A real-world use: a native select next to inputs in a form. The region select follows the country and stays disabled until one is picked. Ship it clears the sheet.</view>
+    <view class="stack-12">
+      <ll-label for="ship-name">Name</ll-label>
+      <ll-input id="ship-name" value="{{shipName}}" placeholder="Ada Lovelace" data-key="shipName" bindinput="onNs" />
+      <view class="form-grid">
+        <view class="form-col">
+          <ll-label for="ship-country" required>Country</ll-label>
+          <ll-native-select id="ship-country" custom-style="width:100%" options="{{shipCountries}}" value="{{shipCountry}}" placeholder="Choose…" aria-label="Country" data-key="shipCountry" bindchange="onNs" />
+        </view>
+        <view class="form-col">
+          <ll-label for="ship-region">Region</ll-label>
+          <ll-native-select id="ship-region" custom-style="width:100%" disabled="{{!shipCountry}}" options="{{shipCountry ? regions[shipCountry] : ['Choose a country first']}}" value="{{shipRegion}}" aria-label="Region" data-key="shipRegion" bindchange="onNs" />
+        </view>
+      </view>
+      <view class="form-row">
+        <ll-button bind:tap="onShip">Ship it</ll-button>
+        <view class="said-line" role="status">{{shipSaid}}</view>
+      </view>
+    </view>
+  </view>
+</view>

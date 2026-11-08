@@ -1,0 +1,33 @@
+/* ll-dropzone-area */
+/* @ll-import tokens */
+.ll-dropzone-area {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  min-height: 160px;
+  padding: 24px;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: var(--ll-font-hand, sans-serif);
+  font-size: 16px;
+  color: var(--ll-foreground, var(--ll-ink));
+}
+.ll-dropzone-area.is-disabled {
+  color: var(--ll-pencil-text, var(--ll-ink));
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  /* below the (static) slotted content; isolation keeps it inside this
+     stacking context so it still paints over the paper behind us */
+  z-index: -1;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+}

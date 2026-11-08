@@ -1,0 +1,105 @@
+<!-- ll-attachment demo — mirrors the upstream docs page
+     (#/components/attachment): the five states, a live upload, prints on
+     the wall. There is no file dialog behind the trigger here; taps are
+     reported to the page. -->
+<view class="demo">
+  <view class="demo-title">Attachment</view>
+  <view class="sec-desc">A file on a slip of paper. Done (a clipped slip), uploading (a pencil bar), processing (the same bar, pulsing), error (red pencil and a retry) and idle (a dashed slot waiting for a file).</view>
+
+  <view class="sec">
+    <view class="sub-h3">The five states</view>
+    <view class="sec-desc">Done, uploading, processing, error and idle — the outline, the wash and the bar change with the state.</view>
+    <view class="stack-16">
+      <ll-attachment state="done" seed="done" custom-style="width:100%;">
+        <ll-attachment-media><ll-icon name="file-text" /></ll-attachment-media>
+        <ll-attachment-content>
+          <ll-attachment-title>field-notes.pdf</ll-attachment-title>
+          <ll-attachment-description>2.4 MB · pdf</ll-attachment-description>
+        </ll-attachment-content>
+        <ll-attachment-actions>
+          <ll-attachment-action aria-label="Remove field-notes.pdf"><ll-icon name="x" /></ll-attachment-action>
+        </ll-attachment-actions>
+      </ll-attachment>
+
+      <ll-attachment state="uploading" seed="uploading" custom-style="width:100%;">
+        <ll-attachment-media><ll-icon name="file-code" /></ll-attachment-media>
+        <ll-attachment-content>
+          <ll-attachment-title>tags-list.tsx</ll-attachment-title>
+          <ll-attachment-description>Uploading 42 %</ll-attachment-description>
+          <ll-attachment-progress value="{{42}}" aria-label="Upload progress" />
+        </ll-attachment-content>
+        <ll-attachment-actions>
+          <ll-attachment-action aria-label="Cancel upload"><ll-icon name="x" /></ll-attachment-action>
+        </ll-attachment-actions>
+      </ll-attachment>
+
+      <ll-attachment state="processing" seed="processing" custom-style="width:100%;">
+        <ll-attachment-media><ll-icon name="file" /></ll-attachment-media>
+        <ll-attachment-content>
+          <ll-attachment-title>recipes.csv</ll-attachment-title>
+          <ll-attachment-description>Reading the rows</ll-attachment-description>
+          <ll-attachment-progress aria-label="Processing" />
+        </ll-attachment-content>
+      </ll-attachment>
+
+      <ll-attachment state="error" seed="error" custom-style="width:100%;">
+        <ll-attachment-media><ll-icon name="archive" /></ll-attachment-media>
+        <ll-attachment-content>
+          <ll-attachment-title>holiday-photos.zip</ll-attachment-title>
+          <ll-attachment-description>Too large. Max 25 MB</ll-attachment-description>
+        </ll-attachment-content>
+        <ll-attachment-actions>
+          <ll-attachment-action aria-label="Try again"><ll-icon name="rotate-cw" /></ll-attachment-action>
+        </ll-attachment-actions>
+      </ll-attachment>
+
+      <ll-attachment state="idle" seed="idle" custom-style="width:100%;">
+        <ll-attachment-media><ll-icon name="upload" /></ll-attachment-media>
+        <ll-attachment-content>
+          <ll-attachment-title>Add a file</ll-attachment-title>
+          <ll-attachment-description>or drop it here</ll-attachment-description>
+        </ll-attachment-content>
+      </ll-attachment>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">A live upload</view>
+    <view class="sec-desc">The hatched fill is drawn once and clipped to the value, so a fast upload never redraws anything. The finished slip gets its clip and press restarts the run.</view>
+    <view class="stack-12">
+      <ll-attachment state="{{liveDone ? 'done' : 'uploading'}}" seed="live" custom-style="width:100%;">
+        <ll-attachment-media><ll-icon name="file-code" /></ll-attachment-media>
+        <ll-attachment-content>
+          <ll-attachment-title>tags-list.tsx</ll-attachment-title>
+          <ll-attachment-description>{{liveDone ? 'Uploaded' : 'Uploading ' + liveValue + ' %'}}</ll-attachment-description>
+          <ll-attachment-progress wx:if="{{!liveDone}}" value="{{liveValue}}" aria-label="Upload progress" />
+        </ll-attachment-content>
+        <ll-attachment-trigger wx:if="{{liveDone}}" bind:press="onLiveAction" aria-label="Upload again" />
+        <ll-attachment-actions>
+          <ll-attachment-action aria-label="Remove tags-list.tsx" bind:press="onLiveAction"><ll-icon name="x" /></ll-attachment-action>
+        </ll-attachment-actions>
+      </ll-attachment>
+      <ll-button variant="ghost" size="sm" custom-style="align-self:flex-start;" bind:tap="startLive">Upload again</ll-button>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Prints on the wall</view>
+    <view class="sec-desc">orientation="vertical" is a photo with a white border, taped up. A group scrolls sideways and snaps when its prints are wider than the box.</view>
+    <ll-attachment-group custom-style="max-width:100%;">
+      <ll-attachment wx:for="{{prints}}" wx:key="name" orientation="vertical" seed="{{item.name}}" data-name="{{item.name}}">
+        <ll-attachment-media variant="image" custom-style="{{item.tint}}">
+          <view class="print"><ll-doodle name="{{item.doodle}}" size="{{64}}" seed="{{item.name}}" /></view>
+        </ll-attachment-media>
+        <ll-attachment-content>
+          <ll-attachment-title>{{item.name}}</ll-attachment-title>
+          <ll-attachment-description>{{item.size}}</ll-attachment-description>
+        </ll-attachment-content>
+        <ll-attachment-trigger aria-label="Open {{item.name}}" bind:press="onPrintOpen" data-name="{{item.name}}" />
+        <ll-attachment-actions>
+          <ll-attachment-action aria-label="Remove {{item.name}}" size="icon-xs"><ll-icon name="x" /></ll-attachment-action>
+        </ll-attachment-actions>
+      </ll-attachment>
+    </ll-attachment-group>
+  </view>
+</view>

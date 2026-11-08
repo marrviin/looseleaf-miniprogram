@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-paper": "looseleaf-miniprogram/components/paper/paper"
+  }
+}

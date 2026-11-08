@@ -1,0 +1,82 @@
+<!-- ll-prompt-input demo — mirrors the upstream docs page
+     (#/components/prompt-input): the composer on a napkin. Enter = the
+     keyboard's send key (bindconfirm); there is no mod-enter on a phone.
+     The 04 attachments example stands in for the Attachment chips (that
+     component lands in D11) with plain chip views. -->
+<view class="demo">
+  <view class="demo-title">Prompt input</view>
+  <view class="sec-desc">The composer: a napkin sheet with a drawn writing line, the text in blue script, a send button on the right that flies the paper plane and turns into a stop button while a reply streams.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">The composer</view>
+    <view class="sec-desc">Type, press the send key and the paper plane flies. The box grows with the text up to eight rows. The send button is pencilled in until there is something to send.</view>
+    <view class="stack-12">
+      <ll-prompt-input id="composer" seed="composer" hint="Enter to send, Shift+Enter for a new line" bind:submit="onComposerSubmit">
+        <view slot="tools">
+          <ll-button size="icon-sm" variant="ghost" aria-label="Attach a file"><ll-icon name="paperclip" size="16" /></ll-button>
+        </view>
+      </ll-prompt-input>
+      <view class="sent" aria-label="Sent" aria-live="polite">
+        <view wx:for="{{sent}}" wx:key="index" class="sent__item">{{item}}</view>
+        <view wx:if="{{!sent.length}}" class="said-line">Nothing sent yet.</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">While a reply streams</view>
+    <view class="sec-desc">With status streaming the send button is a stop button and sending waits; you can keep typing the next message. lockWhileStreaming makes the text read-only instead.</view>
+    <view class="stack-12">
+      <view class="stream-row">
+        <ll-typing-indicator active="{{status !== 'ready'}}" label="{{status === 'submitted' ? 'Sent, waiting for a reply' : 'Stubby is writing'}}" variant="squiggle" seed="stream" />
+      </view>
+      <ll-prompt-input id="stream" seed="stream" status="{{status}}" placeholder="Ask something..." hint="{{status === 'ready' ? 'Enter to send' : 'Press stop to interrupt'}}" bind:submit="onStreamSend" bind:stop="onStreamStop" />
+      <view class="said-line" aria-live="polite">{{status === 'ready' ? 'Ready.' : status === 'submitted' ? 'Sent, waiting for a reply.' : 'Stubby is writing.'}}</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Slash commands and @mentions</view>
+    <view class="sec-desc">The composer knows no data. triggers says which characters open the slip, and you hand it the choices as suggestions; it filters by the word being typed and replaces it on tap. The list opens on load here because the text starts on "Thanks @".</view>
+    <view class="stack-12">
+      <ll-prompt-input
+        id="mentions"
+        seed="mentions"
+        value="{{mention}}"
+        triggers="{{mentionTriggers}}"
+        suggestions="{{mentionSugs}}"
+        hint="Type / for commands, @ for people"
+        bind:valuechange="onMentionValue"
+        bind:suggestionselect="onMentionPick"
+      />
+      <view class="said-line" aria-live="polite">{{mentionSaid || 'Pick a command or a person from the slip.'}}</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">With attachments</view>
+    <view class="sec-desc">Chips in the row above the text, a file button in the tools, a send that also works with no words when allowEmpty is set. Pick a file to add a chip; the remove button takes it away again.</view>
+    <view class="stack-12">
+      <ll-prompt-input id="attach" seed="attach" allow-empty="{{files.length > 0}}" placeholder="Say something about them..." bind:submit="onAttachSubmit">
+        <view slot="attachments" class="chips">
+          <ll-attachment wx:for="{{files}}" wx:key="id" size="sm" seed="{{item.name}}" custom-style="width:100%;">
+            <ll-attachment-media><ll-icon name="file-text" /></ll-attachment-media>
+            <ll-attachment-content>
+              <ll-attachment-title>{{item.name}}</ll-attachment-title>
+              <ll-attachment-description>{{item.size}}</ll-attachment-description>
+            </ll-attachment-content>
+            <ll-attachment-actions>
+              <ll-attachment-action data-id="{{item.id}}" bind:press="onRemoveFile" aria-label="Remove {{item.name}}"><ll-icon name="x" /></ll-attachment-action>
+            </ll-attachment-actions>
+          </ll-attachment>
+        </view>
+        <view slot="tools">
+          <ll-button size="icon-sm" variant="ghost" aria-label="Attach a file"><ll-icon name="paperclip" size="16" /></ll-button>
+        </view>
+      </ll-prompt-input>
+      <view class="said-line" aria-live="polite">{{attachSaid || 'One file is attached; sending clears the row.'}}</view>
+    </view>
+  </view>
+</view>

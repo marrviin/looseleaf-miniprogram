@@ -1,0 +1,8 @@
+<!-- ll-form-message — the field's error on a wavy red underline; nothing
+     while the field is fine -->
+<ll-field-error
+  class="ll-form-message"
+  errors="{{error ? [{ message: error }] : []}}"
+  seed="{{seed}}"
+  custom-style="{{customStyle}}"
+/>

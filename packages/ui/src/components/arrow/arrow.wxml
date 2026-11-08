@@ -1,0 +1,7 @@
+<!-- ll-arrow — a drawn arrow, optionally aimed at a node; label in the slot -->
+<view class="ll-arrow {{aimed ? 'is-aimed' : 'is-dir-' + direction}}" style="{{aimStyle}}{{customStyle}}">
+  <block wx:if="{{ready}}">
+    <view class="ll-ink-layer" style="{{inkStyle}}" />
+    <view class="ll-arrow__label"><slot /></view>
+  </block>
+</view>

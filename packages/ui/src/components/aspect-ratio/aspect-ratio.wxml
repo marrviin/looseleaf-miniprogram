@@ -1,0 +1,5 @@
+<!-- ll-aspect-ratio — ratio box; spacer pads the height, slot covers it -->
+<view class="ll-aspect-ratio" style="{{customStyle}}">
+  <view class="ll-aspect-ratio__spacer" style="padding-top:{{padTop}};"></view>
+  <view class="ll-aspect-ratio__body"><slot /></view>
+</view>

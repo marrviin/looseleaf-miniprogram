@@ -1,0 +1,5 @@
+/* ll-table-body — <tbody>. */
+/* @ll-import tokens */
+.ll-table-body {
+  display: table-row-group;
+}

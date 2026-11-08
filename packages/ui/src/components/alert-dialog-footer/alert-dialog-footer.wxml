@@ -1,0 +1,5 @@
+<!-- ll-alert-dialog-footer -->
+<view
+  class="ll-alert-dialog-footer {{size === 'sm' ? 'll-alert-dialog-footer--sm' : ''}} ll-class"
+  style="{{customStyle}}"
+><slot /></view>

@@ -1,0 +1,49 @@
+<!-- ll-tear-off -->
+<view
+  class="ll-tear-off {{orientation === 'vertical' ? 'll-tear-off--vertical' : ''}} {{restored ? 'll-tear-off--restored' : ''}}"
+  style="{{customStyle}}"
+>
+  <ll-paper
+    ll-class="ll-tear-off__body"
+    stock="{{bodyStock}}"
+    edge="{{bodyEdge}}"
+    tilt="{{false}}"
+    custom-style="{{bodyCustomStyle}}"
+  >
+    <slot name="body" />
+  </ll-paper>
+  <view
+    wx:if="{{!gone}}"
+    class="ll-tear-off__stub {{tornRender ? 'll-tear-off__stub--off' : ''}}"
+    style="{{dragStyle}}"
+    aria-role="button"
+    aria-label="{{stubLabel}}"
+    aria-disabled="{{disabled}}"
+    aria-hidden="{{tornRender ? true : false}}"
+    catchtouchstart="onStubDown"
+    catchtouchmove="onStubMove"
+    catchtouchend="onStubUp"
+    catchtouchcancel="onStubUp"
+  >
+    <ll-paper
+      ll-class="ll-tear-off__paper"
+      stock="{{stubStock}}"
+      edge="{{stubEdge}}"
+      tilt="{{false}}"
+      custom-style="height:100%;box-sizing:border-box;{{stubCustomStyle}}"
+    >
+      <slot name="stub" />
+    </ll-paper>
+    <view
+      class="ll-tear-off__seam {{orientation === 'vertical' ? 'll-tear-off__seam--v' : 'll-tear-off__seam--h'}}"
+      style="{{seamStyle}}"
+      aria-hidden="true"
+    />
+    <view
+      class="ll-tear-off__hint {{orientation === 'vertical' ? 'll-tear-off__hint--v' : 'll-tear-off__hint--h'}}"
+      style="{{hintStyle}}"
+      aria-hidden="true"
+    />
+  </view>
+  <view class="ll-tear-off__status" aria-role="status" aria-live="polite">{{tornRender ? tornMessage : ''}}</view>
+</view>

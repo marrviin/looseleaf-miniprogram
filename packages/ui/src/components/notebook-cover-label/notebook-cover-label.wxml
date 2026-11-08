@@ -1,0 +1,11 @@
+<!-- ll-notebook-cover-label — a small index card on the cover -->
+<ll-paper
+  ll-class="ll-notebook-cover-label"
+  stock="index-card"
+  rules="none"
+  tilt="{{tilt}}"
+  seed="{{seed}}"
+  custom-style="{{customStyle}}"
+>
+  <slot />
+</ll-paper>

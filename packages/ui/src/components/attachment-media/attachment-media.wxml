@@ -1,0 +1,5 @@
+<!-- ll-attachment-media -->
+<view class="ll-attachment-media is-{{variant}}" style="{{customStyle}}">
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <slot />
+</view>

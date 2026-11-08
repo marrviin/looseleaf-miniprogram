@@ -1,0 +1,34 @@
+/* ll-attachment-progress */
+/* @ll-import tokens */
+.ll-attachment-progress {
+  position: relative;
+  margin-top: 6px;
+  display: block;
+  height: 10px;
+  width: 100%;
+  min-width: 64px;
+}
+.ll-attachment-progress__track {
+  position: absolute;
+  inset: -6px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.ll-attachment-progress__window {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+.ll-attachment-progress__bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.ll-attachment-progress.is-indeterminate .ll-attachment-progress__window {
+  animation: ll-attachment-pulse 2s ease-in-out infinite;
+}

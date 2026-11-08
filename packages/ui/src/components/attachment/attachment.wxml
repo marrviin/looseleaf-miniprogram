@@ -1,0 +1,22 @@
+<!-- ll-attachment — slip/photo sheet behind, outline ink over it,
+     file content in the slot, props (tape / fastener clip) last: the
+     webview won't order a shadow-tree absolute prop against positioned
+     slot content by z-index, so the props ride after the slot in DOM. -->
+<view class="ll-attachment is-{{orientation}} is-{{size}} is-{{state}}" style="{{customStyle}}">
+  <view wx:if="{{state !== 'idle'}}" class="ll-attachment__sheet">
+    <ll-paper
+      stock="{{orientation === 'vertical' ? 'photo' : 'slip'}}"
+      rules="none"
+      tilt="{{orientation === 'vertical' ? '' : false}}"
+      seed="{{sheetSeed}}"
+      shadow="none"
+      custom-style="width:100%;height:100%;"
+    />
+  </view>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <slot />
+  <ll-tape wx:if="{{showTape}}" kind="masking" length="{{52}}" height="{{18}}" seed="{{tapeSeed}}" custom-style="position:absolute;top:-10px;left:50%;margin-left:-26px;" />
+  <view wx:if="{{showClip && clipStyle}}" class="ll-attachment__prop" style="{{clipStyle}}">
+    <view class="ll-attachment__prop-art" style="inset:-{{clipPad}}px;background-image:inherit;background-size:100% 100%;" />
+  </view>
+</view>

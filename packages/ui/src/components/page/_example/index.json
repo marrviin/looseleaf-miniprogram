@@ -1,0 +1,14 @@
+{
+  "usingComponents": {
+    "ll-page": "looseleaf-miniprogram/components/page/page",
+    "ll-page-header": "looseleaf-miniprogram/components/page-header/page-header",
+    "ll-page-title": "looseleaf-miniprogram/components/page-title/page-title",
+    "ll-page-description": "looseleaf-miniprogram/components/page-description/page-description",
+    "ll-page-content": "looseleaf-miniprogram/components/page-content/page-content",
+    "ll-page-footer": "looseleaf-miniprogram/components/page-footer/page-footer",
+    "ll-button": "looseleaf-miniprogram/components/button/button",
+    "ll-checkbox": "looseleaf-miniprogram/components/checkbox/checkbox",
+    "ll-textarea": "looseleaf-miniprogram/components/textarea/textarea",
+    "ll-sticker": "looseleaf-miniprogram/components/sticker/sticker"
+  }
+}

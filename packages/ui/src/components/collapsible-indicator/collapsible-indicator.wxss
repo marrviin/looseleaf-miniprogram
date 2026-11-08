@@ -1,0 +1,9 @@
+/* ll-collapsible-indicator */
+.ll-collapsible-indicator {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 300ms ease-out;
+}
+.ll-collapsible-indicator.is-open {
+  transform: rotate(180deg);
+}

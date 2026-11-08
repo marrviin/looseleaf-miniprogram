@@ -1,0 +1,319 @@
+/* ll-combobox — upstream combobox.tsx: trigger = select trigger's pencil box
+   (TRIGGER h-9 ps-3 pe-2 font-hand text-base, --ll-input-ink blue felt);
+   chips = comboboxChips (min-h-9 flex-wrap gap-1.5 px-2 py-1), chip =
+   comboboxChip (h-7 ps-5 pe-0.5 text-sm font-bold); slip rows = command
+   rows (min-h-9 py-1.5 px-4... via CommandItem) + command-input's search
+   row (h-12 px-3) + ComboboxLabel (font-type text-xs) + empty/loading. */
+/* @ll-import tokens */
+
+.ll-combobox__field {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx; /* gap-2 */
+  height: 72rpx; /* h-9 */
+  padding-left: 24rpx; /* ps-3 */
+  padding-right: 16rpx; /* pe-2 */
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 28rpx; /* text-base x .88 */
+  white-space: nowrap;
+  text-align: left;
+  color: #2c4f9e; /* text-(--ll-input-ink) */
+}
+.ll-combobox__field--disabled {
+  color: #5a554e; /* disabled:text-pencil-text */
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-combobox__value {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ll-combobox__value--placeholder {
+  color: #5a554e; /* data-[placeholder]:text-(--ll-placeholder) */
+}
+.ll-combobox__input {
+  position: relative;
+  z-index: 1;
+
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 8rpx 0; /* py-1 */
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 28rpx;
+  color: #2c4f9e;
+  caret-color: #2c4f9e; /* caret-(--ll-caret) */
+}
+.ll-combobox__placeholder {
+  color: #5a554e; /* placeholder:text-(--ll-placeholder) */
+}
+.ll-combobox__clear {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 48rpx;
+  height: 48rpx;
+}
+.ll-combobox__icon {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 48rpx;
+  height: 100%;
+  transition: transform 180ms ease;
+}
+.ll-combobox__icon--open {
+  transform: rotate(180deg);
+}
+
+/* chips field: relative isolate flex min-h-9 flex-wrap items-center gap-1.5 px-2 py-1 */
+.ll-combobox__chips {
+  height: auto;
+  min-height: 72rpx; /* min-h-9 */
+  padding: 8rpx 16rpx; /* px-2 py-1 */
+  gap: 12rpx; /* gap-1.5 */
+  flex-wrap: wrap;
+}
+.ll-combobox__chips-inner {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8rpx; /* gap-1 (calm) */
+}
+.ll-combobox__chip-input {
+  flex: 1;
+  min-width: 64rpx; /* min-w-16 */
+  height: 56rpx; /* h-7 */
+  padding: 0 8rpx; /* px-1 */
+  box-sizing: border-box;
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 28rpx;
+  color: #2c4f9e;
+  caret-color: #2c4f9e;
+}
+
+/* ComboboxChip: relative isolate inline-flex h-7 items-center gap-0.5
+   ps-5 pe-0.5 text-sm font-bold whitespace-nowrap */
+.ll-combobox__chip {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  gap: 4rpx; /* gap-0.5 */
+  height: 56rpx; /* h-7 */
+  max-width: 100%;
+  box-sizing: border-box;
+  padding-left: 40rpx; /* ps-5 — room for the pointed end */
+  padding-right: 4rpx; /* pe-0.5 */
+  font-size: 25rpx; /* text-sm x .88 */
+  font-weight: 700;
+  white-space: nowrap;
+  color: #2a2420; /* text-ink */
+}
+.ll-combobox__chip-ink {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-combobox__chip-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  z-index: 1;
+}
+.ll-combobox__chip-x {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 48rpx; /* size-6 */
+  height: 48rpx;
+  position: relative;
+  z-index: 1;
+}
+
+/* the slip (dropdown/select panel precedent) */
+.ll-combobox__catcher {
+  position: fixed;
+  inset: 0;
+  z-index: 1010; /* --ll-z-popover */
+  background: transparent;
+}
+.ll-combobox__panel {
+  position: fixed;
+  z-index: 1011;
+  box-sizing: border-box;
+  font-family: 'Kevin Sans', sans-serif;
+  color: #2a2420; /* text-popover-foreground */
+  animation: ll-combobox-in 180ms cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
+}
+.ll-combobox__panel.is-placing {
+  opacity: 0;
+  animation: none;
+  transition: none;
+}
+.ll-combobox__panel--closing {
+  animation: ll-combobox-out 150ms ease-in both;
+}
+@keyframes ll-combobox-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes ll-combobox-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+.ll-combobox__viewport {
+  display: block;
+  padding: 8rpx; /* p-1 */
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* CommandInput: relative flex h-12 items-center gap-2 px-3 */
+.ll-combobox__search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16rpx; /* gap-2 */
+  height: 96rpx; /* h-12 */
+  padding: 0 24rpx; /* px-3 */
+  flex-shrink: 0;
+}
+.ll-combobox__search-ink {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-combobox__search-input {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 28rpx;
+  color: #2a2420;
+  caret-color: #2c4f9e;
+}
+
+/* ComboboxLoading: flex items-center gap-2 px-4 py-6 */
+.ll-combobox__loading {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding: 32rpx 32rpx;
+  font-size: 25rpx; /* text-sm x .88 */
+  color: #4a433c; /* text-muted-foreground */
+}
+
+/* ComboboxLabel: px-2 py-1.5 font-type text-xs text-ink-muted */
+.ll-combobox__group-label {
+  padding: 12rpx 16rpx;
+  font-family: 'IBM Plex Mono', Menlo, monospace;
+  font-size: 20rpx; /* text-xs x .82 (font-type size-adjust) */
+  color: #4a433c;
+}
+
+/* CommandItem: relative flex min-h-9 items-center gap-2 px-4 py-1.5 pe-8 */
+.ll-combobox__item {
+  position: relative;
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  gap: 16rpx;
+  min-height: 72rpx; /* min-h-9 */
+  padding: 12rpx 64rpx 12rpx 32rpx; /* py-1.5 px-4 pe-8 */
+  font-size: 28rpx;
+  line-height: 1.4;
+}
+.ll-combobox__item--hi {
+  background-color: rgba(248, 220, 76, 0.62); /* var(--ll-hi-select) */
+  color: #2a2420; /* var(--ll-selection-text) */
+  border-radius: 6rpx 16rpx 8rpx 18rpx / 16rpx 6rpx 18rpx 8rpx;
+}
+.ll-combobox__item--disabled {
+  color: #5a554e; /* data-[disabled]:text-pencil-text */
+  pointer-events: none;
+}
+.ll-combobox__item--create {
+  color: #2c4f9e; /* text-ink-you */
+}
+.ll-combobox__item-text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* the felt tick: absolute end-2 size-4 */
+.ll-combobox__check {
+  position: absolute;
+  right: 16rpx; /* end-2 */
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32rpx;
+  height: 32rpx;
+}
+
+/* ComboboxEmpty: py-6 text-center text-sm */
+.ll-combobox__empty {
+  display: grid;
+  justify-items: center;
+  gap: 8rpx;
+  padding: 40rpx 32rpx;
+  font-size: 35rpx; /* text-xl x .88 */
+  line-height: 1.25;
+  color: #4a433c;
+}

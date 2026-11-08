@@ -1,0 +1,10 @@
+<!-- ll-dropzone-list — the accepted files, one ll-dropzone-item each.
+     files given: page-driven rows (slot children); unset: defaults. -->
+<view wx:if="{{rows.length}}" class="ll-dropzone-list" style="{{customStyle}}">
+  <block wx:if="{{pageDriven}}">
+    <slot />
+  </block>
+  <block wx:else>
+    <ll-dropzone-item wx:for="{{rows}}" wx:key="key" file="{{item}}" />
+  </block>
+</view>

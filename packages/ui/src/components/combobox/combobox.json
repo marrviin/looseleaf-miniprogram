@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-paper": "../paper/paper",
+    "ll-icon": "../icon/icon",
+    "ll-rule": "../rule/rule",
+    "ll-spinner": "../spinner/spinner",
+    "ll-mascot": "../mascot/mascot"
+  }
+}

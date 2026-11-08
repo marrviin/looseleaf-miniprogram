@@ -1,0 +1,8 @@
+<!-- ll-hover-card-media — the photo window: recipe pencil box behind, slot
+     art (a doodle, an icon…) raised above it. -->
+<view class="ll-hover-card-media ll-class" style="{{customStyle}}">
+  <view class="ll-hover-card-media__frame" style="{{height ? 'height:' + height + ';' : ''}}">
+    <view wx:if="{{inkStyle}}" class="ll-ink-layer" style="{{inkStyle}}" />
+    <view class="ll-hover-card-media__art"><slot /></view>
+  </view>
+</view>

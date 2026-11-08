@@ -1,0 +1,4 @@
+<!-- ll-table-footer — <tfoot>. -->
+<view class="ll-table-footer ll-class" style="{{customStyle}}">
+  <slot />
+</view>

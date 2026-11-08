@@ -1,0 +1,32 @@
+/* ll-collapsible-content — height fold + margin bracket */
+/* @ll-import tokens */
+.ll-collapsible-content {
+  position: relative;
+  overflow: hidden;
+  transition: height 300ms ease-out;
+  min-width: 0;
+}
+.ll-collapsible-content__clip {
+  overflow: hidden;
+}
+.ll-collapsible-content__inner {
+  position: relative;
+}
+.ll-collapsible-content__inner.has-bracket {
+  padding-left: 20px;
+}
+.ll-collapsible-content__bracket {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 14px;
+  pointer-events: none;
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

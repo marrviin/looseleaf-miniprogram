@@ -1,0 +1,21 @@
+/* ll-input-group-textarea — the bare textarea: transparent on the group's
+   box, grows with its text. */
+/* @ll-import tokens */
+
+.ll-igt {
+  flex: 1;
+  min-width: 0;
+  min-height: 48rpx; /* min-h-12 on the body row */
+  box-sizing: border-box;
+  padding: 12rpx 24rpx; /* py-3 px-3 */
+  font-size: inherit;
+  color: var(--ll-input-ink, #2c4f9e);
+  caret-color: var(--ll-caret, #2c4f9e);
+  background: transparent;
+}
+.ll-igt__placeholder {
+  color: var(--ll-placeholder, #5a554e);
+}
+.ll-igt--disabled {
+  color: #5a554e;
+}

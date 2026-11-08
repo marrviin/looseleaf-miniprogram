@@ -1,0 +1,19 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-command": "../command/command",
+    "ll-command-input": "../command-input/command-input",
+    "ll-command-list": "../command-list/command-list",
+    "ll-command-item": "../command-item/command-item",
+    "ll-command-group": "../command-group/command-group",
+    "ll-command-shortcut": "../command-shortcut/command-shortcut",
+    "ll-command-empty": "../command-empty/command-empty",
+    "ll-command-loading": "../command-loading/command-loading",
+    "ll-command-separator": "../command-separator/command-separator",
+    "ll-dialog": "../dialog/dialog",
+    "ll-button": "../button/button",
+    "ll-popover": "../popover/popover",
+    "ll-icon": "../icon/icon",
+    "ll-kbd": "../kbd/kbd"
+  }
+}

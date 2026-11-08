@@ -1,0 +1,91 @@
+/* ll-menubar-menu — MenubarTrigger: flex min-h-7 items-center px-3 py-0.5
+   font-hand text-base leading-6 font-bold; the highlighter while hovered
+   or open (data-[state=open]:ll-swipe). */
+/* @ll-import tokens */
+
+.ll-menubar-menu {
+  display: block;
+}
+
+.ll-menubar-menu__trigger {
+  display: flex;
+  align-items: center;
+  min-height: 56rpx; /* min-h-7 */
+  padding: 4rpx 24rpx 4rpx; /* py-0.5 px-3 */
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 32rpx; /* text-base ×0.88 */
+  line-height: 48rpx; /* leading-6 */
+  font-weight: 700;
+  color: #2a2420; /* text-foreground */
+  border-radius: 6rpx 16rpx 8rpx 18rpx / 16rpx 6rpx 18rpx 8rpx;
+  white-space: nowrap;
+}
+.ll-menubar-menu__trigger--hi {
+  background-color: rgba(248, 220, 76, 0.62); /* var(--ll-hi-select) */
+  color: #2a2420;
+}
+.ll-menubar-menu__trigger--disabled {
+  color: #5a554e; /* text-pencil-text */
+}
+
+/* transparent full-screen catcher under the panel (z --ll-z-popover: 1010) */
+.ll-menubar-menu__catcher {
+  position: fixed;
+  inset: 0;
+  z-index: 1010;
+  background: transparent;
+}
+
+.ll-menubar-menu__panel {
+  position: fixed;
+  z-index: 1011;
+  max-width: calc(100vw - 16rpx); /* max-w-[calc(100vw-1rem)] */
+  font-family: 'Kevin Sans', sans-serif;
+  color: #2a2420; /* text-popover-foreground = --ll-ink */
+  opacity: 1;
+  /* no resting transform: a scale(1) here would make this box the
+     containing block for slotted sub-menu panels */
+  animation: ll-menubar-in 180ms cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
+}
+.ll-menubar-menu__panel.is-placing {
+  opacity: 0;
+  animation: none;
+  transition: none;
+}
+.ll-menubar-menu__panel--closing {
+  animation: ll-menubar-out 150ms ease-in both;
+}
+
+@keyframes ll-menubar-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes ll-menubar-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* menuViewportClass: overflow-x-hidden overflow-y-auto p-1 — rows scroll
+   inside the slip so its shadow and tape are not cut (CSS overflow on a
+   plain view). While the rows fit, placement overrides this with
+   overflow:visible so a sub-menu's absolutely-positioned flyout isn't
+   clipped by the viewport box. */
+.ll-menubar-menu__viewport {
+  display: block;
+  padding: 8rpx; /* p-1 */
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}

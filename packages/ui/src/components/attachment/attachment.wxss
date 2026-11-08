@@ -1,0 +1,67 @@
+/* ll-attachment — the slip (horizontal) / taped photo (vertical) */
+/* @ll-import tokens */
+.ll-attachment {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  width: fit-content;
+  max-width: 100%;
+  min-width: 0;
+  font-family: var(--ll-font-hand, sans-serif);
+  color: var(--ll-card-foreground, var(--ll-ink));
+}
+.ll-attachment.is-horizontal {
+  min-width: 160px;
+  align-items: center;
+  column-gap: 8px;
+}
+.ll-attachment.is-vertical {
+  width: 128px;
+  flex-direction: column;
+  row-gap: 8px;
+  padding-bottom: 16px;
+}
+/* upstream pads the root via has-* selectors (px-2.5 py-2 with content,
+   p-2.5 with media); the demos always carry a media tile, so the padding
+   rides here. */
+.ll-attachment {
+  padding: 10px;
+}
+.ll-attachment.is-sm {
+  padding: 8px;
+}
+.ll-attachment.is-xs {
+  padding: 6px;
+}
+.ll-attachment__sheet {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 2px;
+}
+.ll-attachment__prop {
+  position: absolute;
+  z-index: 30;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+.ll-attachment__prop-art {
+  position: absolute;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+/* the ink layer sits over the sheet, under the content (DOM order) */
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+}

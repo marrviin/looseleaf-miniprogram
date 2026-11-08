@@ -1,0 +1,388 @@
+<!-- ll-input-group demo — mirrors the upstream docs page
+     (#/components/input-group): one drawn box around icon/text/button
+     addons and the control. The addon's click-focus and the control's
+     state painting the box run through the ancestor relation; popovers,
+     tooltips and dropdowns open via the controlled `open` props (automation
+     can't tap inside virtualHost triggers). -->
+<view class="demo">
+  <view class="demo-title">Input Group</view>
+  <view class="sec-desc">One hand-drawn field around an icon, some text, a button and the control, so a search box or a URL field is a single box instead of three. The box takes the control's focus, invalid and disabled states, and grows with a textarea. The same parts as shadcn's Input Group.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">One hand-drawn box around an icon, the field and some text. Click anywhere on an addon and the field takes focus; the focus ring goes around the whole group.</view>
+    <view class="groups">
+      <ll-input-group id="igDefault0">
+        <ll-input-group-addon><ll-icon name="search" size="{{16}}" /></ll-input-group-addon>
+        <ll-input-group-input placeholder="Search the notebook" aria-label="Search" />
+        <ll-input-group-addon align="inline-end"><ll-input-group-text>12 results</ll-input-group-text></ll-input-group-addon>
+      </ll-input-group>
+      <ll-input-group>
+        <ll-input-group-addon><ll-input-group-text>https://</ll-input-group-text></ll-input-group-addon>
+        <ll-input-group-input placeholder="field-notes" aria-label="Site name" />
+        <ll-input-group-addon align="inline-end"><ll-input-group-text>.looseleaf.dev</ll-input-group-text></ll-input-group-addon>
+      </ll-input-group>
+      <ll-input-group>
+        <ll-input-group-addon><ll-icon name="dollar-sign" size="{{16}}" /></ll-input-group-addon>
+        <ll-input-group-input placeholder="0.00" type="digit" aria-label="Amount" />
+        <ll-input-group-addon align="inline-end"><ll-input-group-text>USD</ll-input-group-text></ll-input-group-addon>
+      </ll-input-group>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Buttons and states</view>
+    <view class="sec-desc">Buttons go inside an addon (ghost, xs by default). The control's own state paints the group: aria-invalid draws the red box, disabled the dashed one, and `data-disabled` on the group disables it as a whole.</view>
+    <view class="groups">
+      <ll-input-group>
+        <ll-input-group-input value="https://looseleaf.dev/r/field-notes" disabled="{{false}}" aria-label="Share link" />
+        <ll-input-group-addon align="inline-end">
+          <ll-input-group-button size="icon-xs" aria-label="Copy link" bind:tap="onCopyLink"><ll-icon name="{{copied ? 'check' : 'copy'}}" size="{{14}}" /></ll-input-group-button>
+        </ll-input-group-addon>
+      </ll-input-group>
+      <ll-input-group>
+        <ll-input-group-addon><ll-icon name="mail" size="{{16}}" /></ll-input-group-addon>
+        <ll-input-group-input type="text" value="not-an-email" invalid aria-label="Email" />
+      </ll-input-group>
+      <ll-input-group>
+        <ll-input-group-addon><ll-icon name="lock" size="{{16}}" /></ll-input-group-addon>
+        <ll-input-group-input value="locked by your admin" disabled aria-label="Locked" />
+      </ll-input-group>
+      <ll-input-group disabled>
+        <ll-input-group-input placeholder="A group can be disabled as a whole" disabled aria-label="Disabled group" />
+        <ll-input-group-addon align="inline-end">
+          <ll-input-group-button disabled variant="secondary">Send</ll-input-group-button>
+        </ll-input-group-addon>
+      </ll-input-group>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Comment box</view>
+    <view class="sec-desc">Block addons stack above or below a textarea inside the same drawn box: a header line on top, a counter and a send button underneath. The box grows with the text and is redrawn to fit.</view>
+    <view class="groups">
+      <ll-input-group>
+        <ll-input-group-addon align="block-start">
+          <ll-icon name="message-square" size="{{16}}" />
+          <ll-input-group-text>Reply to Ada</ll-input-group-text>
+        </ll-input-group-addon>
+        <ll-input-group-textarea placeholder="Write something kind..." aria-label="Reply" maxlength="{{140}}" value="{{reply}}" bind:input="onReply" />
+        <ll-input-group-addon align="block-end">
+          <ll-input-group-text>{{reply.length}}/140</ll-input-group-text>
+          <ll-input-group-button variant="default" size="sm" custom-style="margin-left:auto" disabled="{{!reply.trim()}}" bind:tap="onSendReply"><ll-icon name="send" size="{{14}}" />Send</ll-input-group-button>
+        </ll-input-group-addon>
+      </ll-input-group>
+      <view class="said-line" aria-live="polite">{{replySaid || 'Nothing sent yet.'}}</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Subscribe form</view>
+    <view class="sec-desc">A real-world use: a labeled group in a form. The label points at the control, the marker button is part of the same box, and a bad address turns the whole group red.</view>
+    <view class="form">
+      <ll-label>Field notes, twice a month</ll-label>
+      <ll-input-group invalid="{{newsState === 'bad'}}">
+        <ll-input-group-addon><ll-icon name="mail" size="{{16}}" /></ll-input-group-addon>
+        <ll-input-group-input placeholder="you@example.com" value="{{newsEmail}}" invalid="{{newsState === 'bad'}}" aria-label="Email" data-key="newsEmail" bind:input="onField" />
+        <ll-input-group-addon align="inline-end">
+          <ll-input-group-button variant="default" bind:tap="onSubscribe">Subscribe</ll-input-group-button>
+        </ll-input-group-addon>
+      </ll-input-group>
+      <view class="said-line {{newsState === 'bad' ? 'said-line--bad' : ''}}" aria-live="polite">{{newsSaid}}</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Four groups</view>
+    <view class="sec-desc">shadcn's `input-group-demo`: a search with a result count, a URL with a prefix and a tooltip button, a prompt box with a menu and a send button, and a field with a verified badge. The badge is a drawn `badge-check` where the original has a filled circle.</view>
+    <view class="groups">
+      <ll-input-group>
+        <ll-input-group-input placeholder="Search..." aria-label="Search" />
+        <ll-input-group-addon><ll-icon name="search" size="{{16}}" /></ll-input-group-addon>
+        <ll-input-group-addon align="inline-end"><ll-input-group-text>12 results</ll-input-group-text></ll-input-group-addon>
+      </ll-input-group>
+      <ll-input-group>
+        <ll-input-group-input placeholder="example.com" aria-label="Website" />
+        <ll-input-group-addon><ll-input-group-text>https://</ll-input-group-text></ll-input-group-addon>
+        <ll-input-group-addon align="inline-end">
+          <ll-tooltip open="{{tipInfo}}" seed="ig-info" side="bottom" bind:change="onTipInfo">
+            <ll-input-group-button slot="trigger" size="icon-xs" aria-label="Info"><ll-icon name="info" size="{{14}}" /></ll-input-group-button>
+            This is content in a tooltip.
+          </ll-tooltip>
+        </ll-input-group-addon>
+      </ll-input-group>
+      <ll-input-group>
+        <ll-input-group-textarea placeholder="Ask, Search or Chat..." aria-label="Prompt" />
+        <ll-input-group-addon align="block-end">
+          <ll-input-group-button variant="outline" size="icon-xs" aria-label="Add"><ll-icon name="plus" size="{{14}}" /></ll-input-group-button>
+          <ll-dropdown-menu open="{{ddAuto}}" width="{{150}}" side="top" align="start" bind:change="onDdAutoChange">
+            <ll-input-group-button slot="trigger" bind:tap="onDdAuto">Auto</ll-input-group-button>
+            <ll-dropdown-menu-item wx:for="{{autoModes}}" wx:key="*this" data-mode="{{item}}" bind:select="onAutoPick">{{item}}</ll-dropdown-menu-item>
+          </ll-dropdown-menu>
+          <ll-input-group-text custom-style="margin-left:auto">52% used</ll-input-group-text>
+          <ll-separator orientation="vertical" custom-style="height:16rpx;width:auto;margin:0 4rpx;" />
+          <ll-input-group-button variant="default" size="icon-xs" disabled aria-label="Send"><ll-icon name="arrow-up" size="{{14}}" /></ll-input-group-button>
+        </ll-input-group-addon>
+      </ll-input-group>
+      <ll-input-group>
+        <ll-input-group-input placeholder="@shadcn" aria-label="Handle" />
+        <ll-input-group-addon align="inline-end"><ll-icon name="badge-check" size="{{16}}" label="Verified" /></ll-input-group-addon>
+      </ll-input-group>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Labels</view>
+    <view class="sec-desc">shadcn's `input-group-label`: a Label can be an addon, so the @ in front of a handle is a real label for the field, or a title above it (`block-start`) with a help button at the far end.</view>
+    <view class="groups">
+      <ll-input-group>
+        <ll-input-group-input placeholder="shadcn" aria-label="Handle" />
+        <ll-input-group-addon><ll-label>@</ll-label></ll-input-group-addon>
+      </ll-input-group>
+      <ll-input-group>
+        <ll-input-group-input placeholder="ada@looseleaf.example" aria-label="Email" />
+        <ll-input-group-addon align="block-start">
+          <ll-label>Email</ll-label>
+          <ll-tooltip open="{{tipHelp}}" seed="ig-help" bind:change="onTipHelp">
+            <ll-input-group-button slot="trigger" aria-label="Help" custom-style="margin-left:auto" size="icon-xs"><ll-icon name="info" size="{{14}}" /></ll-input-group-button>
+            We'll use this to send you notifications
+          </ll-tooltip>
+        </ll-input-group-addon>
+      </ll-input-group>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Text addons</view>
+    <view class="sec-desc">shadcn's `input-group-text`: `InputGroupText` sets plain words beside the field (a currency sign, a scheme, a domain) or under a textarea as a counter. The text is part of the box, not the value.</view>
+    <view class="groups">
+      <ll-input-group>
+        <ll-input-group-addon><ll-input-group-text>$</ll-input-group-text></ll-input-group-addon>
+        <ll-input-group-input placeholder="0.00" type="digit" aria-label="Amount" />
+        <ll-input-group-addon align="inline-end"><ll-input-group-text>USD</ll-input-group-text></ll-input-group-addon>
+      </ll-input-group>
+      <ll-input-group>
+        <ll-input-group-addon><ll-input-group-text>https://</ll-input-group-text></ll-input-group-addon>
+        <ll-input-group-input placeholder="example.com" aria-label="Domain" />
+        <ll-input-group-addon align="inline-end"><ll-input-group-text>.com</ll-input-group-text></ll-input-group-addon>
+      </ll-input-group>
+      <ll-input-group>
+        <ll-input-group-input placeholder="Enter your username" aria-label="Username" />
+        <ll-input-group-addon align="inline-end"><ll-input-group-text>@company.com</ll-input-group-text></ll-input-group-addon>
+      </ll-input-group>
+      <ll-input-group>
+        <ll-input-group-textarea placeholder="Enter your message" aria-label="Message" />
+        <ll-input-group-addon align="block-end">
+          <ll-input-group-text custom-style="font-size:22rpx">120 characters left</ll-input-group-text>
+        </ll-input-group-addon>
+      </ll-input-group>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Tooltips</view>
+    <view class="sec-desc">shadcn's `input-group-tooltip`: help buttons that explain themselves. Two sit at the end as ghost icon buttons; in the third the note opens to the left (`side="left"`), on the leading addon.</view>
+    <view class="groups">
+      <ll-input-group>
+        <ll-input-group-input placeholder="Enter password" password aria-label="Password" />
+        <ll-input-group-addon align="inline-end">
+          <ll-tooltip open="{{tipPw}}" seed="ig-pw" bind:change="onTipPw">
+            <ll-input-group-button slot="trigger" aria-label="Info" size="icon-xs"><ll-icon name="info" size="{{14}}" /></ll-input-group-button>
+            Password must be at least 8 characters
+          </ll-tooltip>
+        </ll-input-group-addon>
+      </ll-input-group>
+      <ll-input-group>
+        <ll-input-group-input placeholder="Your email address" aria-label="Email address" />
+        <ll-input-group-addon align="inline-end">
+          <ll-tooltip open="{{tipNotif}}" seed="ig-notif" bind:change="onTipNotif">
+            <ll-input-group-button slot="trigger" aria-label="Help" size="icon-xs"><ll-icon name="circle-question-mark" size="{{14}}" /></ll-input-group-button>
+            We'll use this to send you notifications
+          </ll-tooltip>
+        </ll-input-group-addon>
+      </ll-input-group>
+      <ll-input-group>
+        <ll-input-group-input placeholder="Enter API key" aria-label="API key" />
+        <ll-input-group-addon>
+          <ll-tooltip open="{{tipApi}}" seed="ig-api" side="left" bind:change="onTipApi">
+            <ll-input-group-button slot="trigger" aria-label="Help" size="icon-xs"><ll-icon name="circle-question-mark" size="{{14}}" /></ll-input-group-button>
+            Click for help with API keys
+          </ll-tooltip>
+        </ll-input-group-addon>
+      </ll-input-group>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Buttons</view>
+    <view class="sec-desc">shadcn's `input-group-button`: a copy button that turns into a tick, a popover from the button in the leading addon, a star that toggles, and a text button that ends the box. The original's `useCopyToClipboard` hook is a few lines of state here.</view>
+    <view class="groups">
+      <ll-input-group>
+        <ll-input-group-input value="https://x.com/shadcn" aria-label="Profile link" />
+        <ll-input-group-addon align="inline-end">
+          <ll-input-group-button size="icon-xs" aria-label="Copy" bind:tap="onCopyProfile"><ll-icon name="{{profileCopied ? 'check' : 'copy'}}" size="{{14}}" /></ll-input-group-button>
+        </ll-input-group-addon>
+      </ll-input-group>
+      <ll-input-group>
+        <ll-input-group-addon>
+          <ll-popover open="{{popConn}}" seed="ig-conn" width="{{260}}" bind:change="onPopConnChange">
+            <ll-input-group-button slot="trigger" variant="secondary" size="icon-xs" aria-label="Connection details"><ll-icon name="info" size="{{14}}" /></ll-input-group-button>
+            <view class="stack-8">
+              <view class="plain-title">Your connection is not secure.</view>
+              <view class="plain-desc">You should not enter any sensitive information on this site.</view>
+            </view>
+          </ll-popover>
+        </ll-input-group-addon>
+        <ll-input-group-addon custom-style="padding-left:12rpx">https://</ll-input-group-addon>
+        <ll-input-group-input aria-label="Address" />
+        <ll-input-group-addon align="inline-end">
+          <ll-input-group-button size="icon-xs" aria-label="Favorite" bind:tap="onStar"><ll-icon name="star" size="{{14}}" ink="{{fav ? '#c2412d' : ''}}" /></ll-input-group-button>
+        </ll-input-group-addon>
+      </ll-input-group>
+      <ll-input-group>
+        <ll-input-group-input placeholder="Type to search..." aria-label="Search" />
+        <ll-input-group-addon align="inline-end">
+          <ll-input-group-button variant="secondary">Search</ll-input-group-button>
+        </ll-input-group-addon>
+      </ll-input-group>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Inside a button group</view>
+    <view class="sec-desc">shadcn's `input-group-button-group`: an InputGroup as the middle of a ButtonGroup, with `https://` and `.com` as text cells on either side. The first cell is a Label (`asChild`), so it focuses the field.</view>
+    <view class="groups">
+      <ll-button-group custom-style="align-items:stretch">
+        <ll-button-group-text><ll-label>https://</ll-label></ll-button-group-text>
+        <ll-input-group>
+          <ll-input-group-input aria-label="Address" />
+          <ll-input-group-addon align="inline-end"><ll-icon name="link" size="{{16}}" /></ll-input-group-addon>
+        </ll-input-group>
+        <ll-button-group-text>.com</ll-button-group-text>
+      </ll-button-group>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Dropdowns</view>
+    <view class="sec-desc">shadcn's `input-group-dropdown`: a menu opened from a button inside the box, once as an ellipsis icon and once as a labeled `Search In...` with a chevron. The menu drops from the button; the box stays put.</view>
+    <view class="groups">
+      <ll-input-group>
+        <ll-input-group-input placeholder="Enter file name" aria-label="File name" />
+        <ll-input-group-addon align="inline-end">
+          <ll-dropdown-menu open="{{ddMore}}" width="{{180}}" align="end" bind:change="onDdMoreChange">
+            <ll-input-group-button slot="trigger" aria-label="More" size="icon-xs"><ll-icon name="ellipsis" size="{{14}}" /></ll-input-group-button>
+            <ll-dropdown-menu-item>Settings</ll-dropdown-menu-item>
+            <ll-dropdown-menu-item>Copy path</ll-dropdown-menu-item>
+            <ll-dropdown-menu-item>Open location</ll-dropdown-menu-item>
+          </ll-dropdown-menu>
+        </ll-input-group-addon>
+      </ll-input-group>
+      <ll-input-group>
+        <ll-input-group-input placeholder="Enter search query" aria-label="Search query" />
+        <ll-input-group-addon align="inline-end">
+          <ll-dropdown-menu open="{{ddIn}}" width="{{180}}" align="end" bind:change="onDdInChange">
+            <ll-input-group-button slot="trigger" custom-style="padding-right:12rpx;font-size:22rpx">Search In... <ll-icon name="chevron-down" size="{{12}}" /></ll-input-group-button>
+            <ll-dropdown-menu-item>Documentation</ll-dropdown-menu-item>
+            <ll-dropdown-menu-item>Blog Posts</ll-dropdown-menu-item>
+            <ll-dropdown-menu-item>Changelog</ll-dropdown-menu-item>
+          </ll-dropdown-menu>
+        </ll-input-group-addon>
+      </ll-input-group>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Spinners</view>
+    <view class="sec-desc">shadcn's `input-group-spinner`: `data-disabled` on the group dims the whole box while something is working, with a Spinner or a spinning icon in either addon and a word or two of status.</view>
+    <view class="groups">
+      <ll-input-group disabled>
+        <ll-input-group-input placeholder="Searching..." disabled aria-label="Searching" />
+        <ll-input-group-addon align="inline-end"><ll-spinner /></ll-input-group-addon>
+      </ll-input-group>
+      <ll-input-group disabled>
+        <ll-input-group-input placeholder="Processing..." disabled aria-label="Processing" />
+        <ll-input-group-addon><ll-spinner /></ll-input-group-addon>
+      </ll-input-group>
+      <ll-input-group disabled>
+        <ll-input-group-input placeholder="Saving changes..." disabled aria-label="Saving changes" />
+        <ll-input-group-addon align="inline-end">
+          <ll-input-group-text>Saving...</ll-input-group-text>
+          <ll-spinner />
+        </ll-input-group-addon>
+      </ll-input-group>
+      <ll-input-group disabled>
+        <ll-input-group-input placeholder="Refreshing data..." disabled aria-label="Refreshing data" />
+        <ll-input-group-addon><ll-spinner /></ll-input-group-addon>
+        <ll-input-group-addon align="inline-end">
+          <ll-input-group-text>Please wait...</ll-input-group-text>
+        </ll-input-group-addon>
+      </ll-input-group>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Textarea with header and footer</view>
+    <view class="sec-desc">shadcn's `input-group-textarea`: a code box with a file name and two icon buttons above (`block-start` plus `border-b`) and a cursor position and a Run button below. The corner-down-left glyph is not drawn yet, so Run wears a play icon.</view>
+    <view class="groups">
+      <ll-input-group>
+        <ll-input-group-textarea placeholder="console.log('Hello, world!');" custom-style="min-height:400rpx" aria-label="Code" />
+        <ll-input-group-addon align="block-end" edge="top">
+          <ll-input-group-text>Line 1, Column 1</ll-input-group-text>
+          <ll-input-group-button size="sm" custom-style="margin-left:auto" variant="default">Run <ll-icon name="play" size="{{14}}" /></ll-input-group-button>
+        </ll-input-group-addon>
+        <ll-input-group-addon align="block-start" edge="bottom">
+          <ll-input-group-text custom-style="font-family:'IBM Plex Mono',monospace;font-weight:500">
+            <ll-icon name="file-code" size="{{16}}" />
+            script.js
+          </ll-input-group-text>
+          <ll-input-group-button custom-style="margin-left:auto" size="icon-xs" aria-label="Refresh"><ll-icon name="rotate-cw" size="{{14}}" /></ll-input-group-button>
+          <ll-input-group-button variant="ghost" size="icon-xs" aria-label="Copy"><ll-icon name="copy" size="{{14}}" /></ll-input-group-button>
+        </ll-input-group-addon>
+      </ll-input-group>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Icons</view>
+    <view class="sec-desc">shadcn's `input-group-icon`: icons as addons, at the start, at the end, or two together. They are drawn glyphs, not fonts, so each one is a slightly different line.</view>
+    <view class="groups">
+      <ll-input-group>
+        <ll-input-group-input placeholder="Search..." aria-label="Search" />
+        <ll-input-group-addon><ll-icon name="search" size="{{16}}" /></ll-input-group-addon>
+      </ll-input-group>
+      <ll-input-group>
+        <ll-input-group-input placeholder="Enter your email" aria-label="Email" />
+        <ll-input-group-addon><ll-icon name="mail" size="{{16}}" /></ll-input-group-addon>
+      </ll-input-group>
+      <ll-input-group>
+        <ll-input-group-input placeholder="Card number" type="number" aria-label="Card number" />
+        <ll-input-group-addon><ll-icon name="credit-card" size="{{16}}" /></ll-input-group-addon>
+        <ll-input-group-addon align="inline-end"><ll-icon name="check" size="{{16}}" /></ll-input-group-addon>
+      </ll-input-group>
+      <ll-input-group>
+        <ll-input-group-input placeholder="Card number" type="number" aria-label="Card number, second" />
+        <ll-input-group-addon align="inline-end">
+          <ll-icon name="star" size="{{16}}" />
+          <ll-icon name="info" size="{{16}}" />
+        </ll-input-group-addon>
+      </ll-input-group>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Custom control</view>
+    <view class="sec-desc">shadcn's `input-group-custom`: any control can be the group's field if it carries `data-slot="input-group-control"`. The original uses react-textarea-autosize; this one is the group's own textarea, which grows with the text without a package.</view>
+    <view class="groups">
+      <ll-input-group>
+        <ll-input-group-textarea placeholder="Autoresize textarea..." aria-label="Autoresize textarea" />
+        <ll-input-group-addon align="block-end">
+          <ll-input-group-button size="sm" variant="default" custom-style="margin-left:auto">Submit</ll-input-group-button>
+        </ll-input-group-addon>
+      </ll-input-group>
+    </view>
+  </view>
+</view>

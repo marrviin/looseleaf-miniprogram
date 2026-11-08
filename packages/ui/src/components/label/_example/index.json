@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-label": "../label/label",
+    "ll-input": "../input/input",
+    "ll-textarea": "../textarea/textarea",
+    "ll-checkbox": "../checkbox/checkbox"
+  }
+}

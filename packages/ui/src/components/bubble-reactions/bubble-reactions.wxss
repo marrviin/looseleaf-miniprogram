@@ -1,0 +1,40 @@
+/* ll-bubble-reactions — white vinyl chip on the bubble's edge */
+/* @ll-import tokens */
+.ll-bubble-reactions {
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  width: fit-content;
+  min-height: 24px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 2px 8px;
+  box-sizing: border-box;
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 14px;
+  isolation: isolate;
+}
+.ll-bubble-reactions.is-top {
+  top: 0;
+  transform: translateY(-75%);
+}
+.ll-bubble-reactions.is-bottom {
+  bottom: 0;
+  transform: translateY(75%);
+}
+.ll-bubble-reactions.is-a-start {
+  left: 12px;
+}
+.ll-bubble-reactions.is-a-end {
+  right: 12px;
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

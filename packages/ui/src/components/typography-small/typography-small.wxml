@@ -1,0 +1,2 @@
+<!-- ll-typography-small -->
+<view class="ll-typography-small" style="{{customStyle}}"><slot /></view>

@@ -1,0 +1,14 @@
+<!-- ll-input-group — one drawn box around addons + control (slot). The
+     ink layer carries rest / invalid / disabled / focus; tapping the box
+     asks the first control to focus (upstream: clicking an addon or the
+     padding focuses the input unless the click lands on a button). -->
+<view
+  class="ll-input-group {{hasBlock ? 'll-input-group--block' : ''}} {{disabled || ctrlDisabled ? 'll-input-group--disabled' : ''}} ll-class"
+  style="{{customStyle}}"
+  bind:tap="onTap"
+  role="group"
+  aria-disabled="{{disabled || ctrlDisabled}}"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <slot />
+</view>

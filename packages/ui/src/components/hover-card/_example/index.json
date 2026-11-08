@@ -1,0 +1,14 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-hover-card": "../hover-card/hover-card",
+    "ll-hover-card-media": "../hover-card-media/hover-card-media",
+    "ll-hover-card-caption": "../hover-card-caption/hover-card-caption",
+    "ll-button": "../button/button",
+    "ll-doodle": "../doodle/doodle",
+    "ll-sticker": "../sticker/sticker",
+    "ll-avatar": "../avatar/avatar",
+    "ll-avatar-fallback": "../avatar-fallback/avatar-fallback",
+    "ll-icon": "../icon/icon"
+  }
+}

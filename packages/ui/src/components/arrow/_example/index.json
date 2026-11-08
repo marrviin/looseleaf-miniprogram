@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "ll-arrow": "../arrow/arrow",
+    "ll-button": "../button/button",
+    "ll-paper": "../paper/paper"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-marquee": "looseleaf-miniprogram/components/marquee/marquee"
+  }
+}

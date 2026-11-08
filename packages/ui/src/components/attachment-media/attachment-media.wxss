@@ -1,0 +1,53 @@
+/* ll-attachment-media — the square tile / full photo area */
+/* @ll-import tokens */
+.ll-attachment-media {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  aspect-ratio: 1;
+  color: var(--ll-ink);
+}
+.ll-attachment.is-vertical .ll-attachment-media {
+  width: 100%;
+}
+.ll-attachment.is-sm .ll-attachment-media {
+  width: 32px;
+}
+.ll-attachment.is-xs .ll-attachment-media {
+  width: 28px;
+}
+.ll-attachment.is-error .ll-attachment-media {
+  color: var(--ll-red);
+}
+.ll-attachment.is-sm .ll-attachment-media,
+.ll-attachment.is-xs .ll-attachment-media {
+  /* padding around the media rides on the root gap; keep the tile square */
+}
+.ll-attachment-media.is-image > image,
+.ll-attachment-media.is-image > .ll-photo {
+  margin: 3px;
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+  object-fit: cover;
+  border-radius: 2px;
+}
+.ll-attachment-media.is-image {
+  opacity: 0.6;
+}
+.ll-attachment.is-done .ll-attachment-media.is-image,
+.ll-attachment.is-idle .ll-attachment-media.is-image {
+  opacity: 1;
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  box-sizing: border-box;
+}

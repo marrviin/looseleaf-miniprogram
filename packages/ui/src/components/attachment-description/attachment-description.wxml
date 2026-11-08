@@ -1,0 +1,2 @@
+<!-- ll-attachment-description -->
+<view class="ll-attachment-description {{state === 'error' ? 'is-error' : ''}}" style="{{customStyle}}"><slot /></view>

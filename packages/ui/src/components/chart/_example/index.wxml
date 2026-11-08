@@ -1,0 +1,198 @@
+<!-- ll-chart demo — mirrors the upstream docs page (#/components/chart).
+     Every chart is drawn by the ink engine at its real size; the labels
+     are real text on top. Tap a drawing to light a cursor and get a slip
+     of paper naming the point. Examples 14 (dashboard), 15 (streaming)
+     and 17 (tooltip variants) fold into the sections below; grayscale
+     (18) has no web filter here, so only the patterns toggle carries. -->
+<view class="demo">
+  <view class="demo-title">Chart</view>
+  <view class="sec-desc">Bars, lines and areas colored in with a marker that misses the outline a little; pies with pencil-patterned slices; a dial with a red felt needle. Every series carries a pattern, a marker shape and a dash so the chart still reads in black and white. Tap the drawing: a highlighter lights the point and a slip of paper names it.</view>
+
+  <view class="sec">
+    <view class="sub-h3">Bar chart</view>
+    <view class="sec-desc">Numbers on top, and the best day circled by hand. Tap a column: a highlighter lights it and the slip names it.</view>
+    <view class="col">
+      <ll-card seed="bar">
+        <ll-card-header>
+          <ll-card-title>Sales this week</ll-card-title>
+          <ll-card-description>Units sold, Monday to Sunday</ll-card-description>
+        </ll-card-header>
+        <ll-card-content>
+          <ll-chart id="bar-chart" type="bar" data="{{sales}}" x-key="day" label="Units sold per day" annotations="{{[{ at: 'max', text: 'best day!', pen: 'blue' }]}}" bindactivate="onBarActivate" />
+        </ll-card-content>
+      </ll-card>
+      <view class="said-line" aria-live="polite">{{barSaid}}</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Grouped, stacked, sideways</view>
+    <view class="sec-desc">One dataset, four ways to lay it out. Each series keeps its color and its pencil pattern, so the bars stay apart in grayscale. Negative values hang below the line.</view>
+    <view class="col">
+      <view class="row" role="group" aria-label="Layout">
+        <ll-button size="sm" variant="{{mode === 'grouped' ? 'default' : 'outline'}}" data-mode="grouped" bindtap="setMode">grouped</ll-button>
+        <ll-button size="sm" variant="{{mode === 'stacked' ? 'default' : 'outline'}}" data-mode="stacked" bindtap="setMode">stacked</ll-button>
+        <ll-button size="sm" variant="{{mode === 'sideways' ? 'default' : 'outline'}}" data-mode="sideways" bindtap="setMode">sideways</ll-button>
+      </view>
+      <ll-chart
+        type="bar"
+        data="{{quarters}}"
+        x-key="quarter"
+        label="Income, costs and tax by quarter"
+        stacked="{{mode === 'stacked'}}"
+        horizontal="{{mode === 'sideways'}}"
+        style="height: 560rpx;"
+      />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Line chart</view>
+    <view class="sec-desc">A felt line per series, with a marker shape and a dash pattern for each so lines survive black-and-white print. The legend switches series off.</view>
+    <ll-chart type="line" data="{{visitors}}" x-key="month" label="Visitors by device, January to June" annotations="{{[{ at: 'max', series: 'desktop', text: 'launch', pen: 'red' }]}}" config="{{cfgDevices}}" />
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Area chart</view>
+    <view class="sec-desc">The space under the line is washed with the series color and shaded in pencil: hatching, dots, cross-hatching. Stacked areas add up; the tooltip lists every layer.</view>
+    <ll-card seed="area">
+      <ll-card-header>
+        <ll-card-title>Traffic by source</ll-card-title>
+        <ll-card-description>Visits per month, stacked</ll-card-description>
+      </ll-card-header>
+      <ll-card-content>
+        <ll-chart type="area" data="{{traffic}}" x-key="month" stacked label="Visits by source, January to June" config="{{cfgSources}}" />
+      </ll-card-content>
+    </ll-card>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Pie and donut</view>
+    <view class="sec-desc">Slices colored in with a marker, separated by felt lines, each with its own pencil pattern. The donut's hole is DOM text: it shows the total.</view>
+    <view class="pair">
+      <view class="pie-wrap">
+        <ll-chart id="pie-chart" type="pie" data="{{browsers}}" name-key="browser" value-key="visitors" label="Visitors by browser" bindactivate="onPieActivate" />
+      </view>
+      <view class="pie-wrap">
+        <ll-chart type="donut" data="{{browsers}}" name-key="browser" value-key="visitors" label="Visitors by browser, donut" center-value="925" center-label="visitors" />
+      </view>
+    </view>
+    <view class="said-line" aria-live="polite">{{pieSaid}}</view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Radar chart</view>
+    <view class="sec-desc">A pencil web with a washed and shaded shape per series. Tap a spoke: the tooltip reads every series on it.</view>
+    <ll-chart type="radar" data="{{skills}}" x-key="skill" max="{{100}}" label="Skills of Ada and Bo" config="{{cfgSkills}}" style="height: 640rpx;" />
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Radial bars and gauge</view>
+    <view class="sec-desc">Concentric arcs in pale tracks, one ring per row, and a dial with marker zones and a red felt needle. The gauge reads its value, minimum and maximum.</view>
+    <view class="pair">
+      <view class="pie-wrap">
+        <ll-chart type="radial" data="{{rings}}" name-key="name" value-key="value" label="Daily rings" center-value="78%" center-label="of goal" />
+      </view>
+      <view class="pie-wrap">
+        <ll-chart type="gauge" value="{{68}}" label="Server load" zones="{{[{ to: 40, tone: 'good' }, { to: 75, tone: 'warn' }, { to: 100, tone: 'bad' }]}}" />
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Sparklines</view>
+    <view class="sec-desc">One felt pull and a red dot at the end, a shaded area, or a row of marker bars. A sparkline is a picture with a spoken summary.</view>
+    <view class="pair">
+      <ll-card wx:for="{{tiles}}" wx:key="title" wx:for-item="t" wx:for-index="i" seed="spark{{i}}" class="tile">
+        <ll-card-header>
+          <ll-card-description>{{t.title}}</ll-card-description>
+          <ll-card-title>{{t.value}}</ll-card-title>
+        </ll-card-header>
+        <ll-card-content>
+          <ll-chart type="sparkline" data="{{t.data}}" spark-variant="{{t.variant}}" palette="{{i === 2 ? 1 : 0}}" label="{{t.title}}, last twelve days" />
+          <view class="note-line {{t.up ? 'is-up' : 'is-down'}}">{{t.note}}</view>
+        </ll-card-content>
+      </ll-card>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Heat map</view>
+    <view class="sec-desc">A half year of days, each square colored in a shade of one marker; or any grid of your own. Tap a square and the slip names it.</view>
+    <view class="col col--stack">
+      <ll-chart type="heat" data="{{pages}}" unit="pages" label="Pages written per day" />
+      <ll-chart type="heat" variant="grid" data="{{busy}}" row-key="day" col-key="hour" heat-value-key="orders" unit="orders" palette="{{0}}" label="Orders by hour" row-labels="{{heatRows}}" col-labels="{{heatCols}}" show-legend="{{false}}" style="height: 420rpx;" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Tally chart</view>
+    <view class="sec-desc">Counts as hand-tallied marks: four uprights and a slash across for every five, in the color of the row. When a row is too long for the width, each mark starts to stand for more and says so.</view>
+    <ll-chart type="tally" data="{{[{ drink: 'Tea', cups: 23 }, { drink: 'Coffee', cups: 14 }, { drink: 'Cocoa', cups: 8 }, { drink: 'Water', cups: 31 }]}}" name-key="drink" value-key="cups" label="Cups drunk today" style="height: 400rpx;" />
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Scatter and bubbles</view>
+    <view class="sec-desc">Points on two number lines, each series with its own marker shape (circle, square, triangle). Give a size key and the points grow into bubbles.</view>
+    <view class="col col--stack">
+      <ll-chart type="scatter" data="{{cloud}}" x-key="height" series="{{['cats', 'dogs']}}" label="Weight by height for cats and dogs" style="height: 520rpx;" />
+      <ll-chart type="scatter" data="{{cloud}}" x-key="height" series="{{['cats']}}" size-key="age" label="Weight by height, sized by age" style="height: 520rpx;" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Annotations and goal lines</view>
+    <view class="sec-desc">A note is a hand-drawn loop, an arrow and a line of script; a highlight marks a stretch of days with a highlighter. Add a dashed goal line.</view>
+    <view class="col">
+      <view class="row" role="group" aria-label="Annotation">
+        <ll-button size="sm" variant="{{which === 'best day' ? 'default' : 'outline'}}" data-which="best day" bindtap="setWhich">best day</ll-button>
+        <ll-button size="sm" variant="{{which === 'rainy day' ? 'default' : 'outline'}}" data-which="rainy day" bindtap="setWhich">rainy day</ll-button>
+        <ll-button size="sm" variant="{{which === 'both ends' ? 'default' : 'outline'}}" data-which="both ends" bindtap="setWhich">both ends</ll-button>
+      </view>
+      <ll-chart type="bar" data="{{sales}}" x-key="day" label="Sales per day" annotations="{{notes[which]}}" highlights="{{highlights[which]}}" references="{{[{ y: 18, label: 'goal', pen: 'red' }]}}" />
+      <ll-chart type="line" data="{{sales}}" x-key="day" label="Sales per day, as a line" annotations="{{[{ at: 'min', text: 'dip', pen: 'red', dx: -60, dy: -8 }, { at: 'max', text: 'peak', pen: 'blue', dx: 60, dy: -8 }]}}" style="height: 380rpx;" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Legend and hidden series</view>
+    <view class="sec-desc">Every legend entry is a button: switch a series off (struck through) and on again. A series keeps its color, marker and dash while it is away. Control it from outside with hidden-series.</view>
+    <view class="col">
+      <view class="row">
+        <ll-button size="sm" variant="outline" data-hidden="{{[]}}" bindtap="setHidden">all</ll-button>
+        <ll-button size="sm" variant="outline" data-hidden="{{['desktop', 'tablet']}}" bindtap="setHidden">only mobile</ll-button>
+        <ll-button size="sm" variant="outline" data-hidden="{{['mobile', 'tablet']}}" bindtap="setHidden">only desktop</ll-button>
+      </view>
+      <ll-chart type="line" data="{{visitors}}" x-key="month" label="Visitors by device" hidden-series="{{hidden}}" bindlegendchange="onHiddenChange" style="height: 520rpx;" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Empty and loading</view>
+    <view class="sec-desc">A chart with nothing to draw sketches its axes and a wandering pencil line and says so; a loading chart pulses dashed ghost bars. Neither is interactive.</view>
+    <view class="col">
+      <view class="row" role="group" aria-label="State">
+        <ll-button size="sm" variant="{{state === 'loading' ? 'default' : 'outline'}}" data-state="loading" bindtap="setState">loading</ll-button>
+        <ll-button size="sm" variant="{{state === 'empty' ? 'default' : 'outline'}}" data-state="empty" bindtap="setState">empty</ll-button>
+        <ll-button size="sm" variant="{{state === 'ready' ? 'default' : 'outline'}}" data-state="ready" bindtap="setState">ready</ll-button>
+      </view>
+      <view class="col">
+        <ll-chart type="bar" data="{{state === 'empty' ? [] : sales}}" x-key="day" series="{{['sales']}}" loading="{{state === 'loading'}}" empty-text="No orders yet" label="Orders" />
+        <ll-chart type="line" data="{{state === 'empty' ? [] : sales}}" x-key="day" series="{{['sales']}}" loading="{{state === 'loading'}}" empty-text="Nothing to plot" label="Orders, as a line" />
+        <ll-chart type="donut" data="{{state === 'empty' ? [] : sales}}" name-key="day" value-key="sales" loading="{{state === 'loading'}}" empty-text="No data" label="Orders by day" show-labels="{{false}}" />
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Color is not the only channel</view>
+    <view class="sec-desc">Every series carries a pencil pattern (hatching, dots, cross-hatching, rules, scribble) on its marks, and a marker shape and a dash pattern on its lines. Switch the patterns off to see what plain color would have left you.</view>
+    <view class="col">
+      <view class="row">
+        <ll-button size="sm" variant="{{patterns ? 'default' : 'outline'}}" aria-pressed="{{patterns}}" bindtap="togglePatterns">patterns</ll-button>
+      </view>
+      <ll-chart type="bar" data="{{[{ quarter: 'Q1', north: 120, south: 90, east: 60, west: 40 }, { quarter: 'Q2', north: 150, south: 70, east: 80, west: 55 }, { quarter: 'Q3', north: 110, south: 100, east: 95, west: 30 }, { quarter: 'Q4', north: 180, south: 120, east: 70, west: 65 }]}}" x-key="quarter" label="Sales by region, bars" show-values="{{false}}" patterns="{{patterns ? 'auto' : false}}" />
+      <ll-chart type="line" data="{{[{ quarter: 'Q1', north: 120, south: 90, east: 60, west: 40 }, { quarter: 'Q2', north: 150, south: 70, east: 80, west: 55 }, { quarter: 'Q3', north: 110, south: 100, east: 95, west: 30 }, { quarter: 'Q4', north: 180, south: 120, east: 70, west: 65 }]}}" x-key="quarter" label="Sales by region, lines" dots patterns="{{patterns ? 'auto' : false}}" style="height: 520rpx;" />
+    </view>
+  </view>
+</view>

@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-envelope": "../envelope/envelope",
+    "ll-envelope-front": "../envelope-front/envelope-front",
+    "ll-envelope-trigger": "../envelope-trigger/envelope-trigger",
+    "ll-envelope-letter": "../envelope-letter/envelope-letter",
+    "ll-envelope-address": "../envelope-address/envelope-address",
+    "ll-envelope-sender": "../envelope-sender/envelope-sender"
+  }
+}

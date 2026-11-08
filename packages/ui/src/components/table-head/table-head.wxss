@@ -1,0 +1,71 @@
+/* ll-table-head — <th>: font-script text-[19px] font-semibold (two-weight
+   family, 600 rounds up), leading-none, text-ink-you; aria-sort turns the
+   label to ink. The rule view: wrapper carries the geometry + edge fade,
+   the inner tile view the repeat-x pull (nesting = upstream's
+   mask-composite intersect). Tile/geometry vars are inherited from the
+   row's inline style. */
+/* @ll-import tokens */
+.ll-table-head {
+  position: relative;
+  display: table-cell;
+  padding: 0 24rpx; /* px-3 */
+  vertical-align: middle;
+  white-space: nowrap;
+  font-family: 'Kevin Sans', sans-serif; /* font-script (75% size-adjust) */
+  font-size: 29rpx; /* text-[19px] × 0.75 */
+  font-weight: 700;
+  line-height: 1;
+  color: var(--ll-ink-you, #2c4f9e);
+}
+
+.ll-table-head--sorted {
+  color: var(--ll-ink, #2a2420);
+}
+
+/* the hanging rule (shared structure with ll-table-cell) */
+.ll-cell-rule {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: var(--ll-rule-b, -4px);
+  height: var(--ll-tbl-h, 8px);
+  pointer-events: none;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+.ll-cell-rule--top {
+  bottom: auto;
+  top: var(--ll-rule-b, -6px);
+  transform: scaleY(-1);
+}
+.ll-cell-rule--fs {
+  -webkit-mask-image: var(--ll-fade-s);
+  mask-image: var(--ll-fade-s);
+}
+.ll-cell-rule--fe {
+  -webkit-mask-image: var(--ll-fade-e);
+  mask-image: var(--ll-fade-e);
+}
+.ll-cell-rule--fse {
+  -webkit-mask-image: var(--ll-fade-se);
+  mask-image: var(--ll-fade-se);
+}
+.ll-cell-rule--hide {
+  display: none;
+}
+.ll-cell-rule__tile {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: var(--ll-rule-color, var(--ll-pencil-mark));
+  -webkit-mask-image: var(--ll-tbl-img);
+  mask-image: var(--ll-tbl-img);
+  -webkit-mask-size: 960px var(--ll-tbl-h);
+  mask-size: 960px var(--ll-tbl-h);
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  -webkit-mask-position: calc(var(--ll-rx, 0px) + var(--ll-cx, 0px)) 0;
+  mask-position: calc(var(--ll-rx, 0px) + var(--ll-cx, 0px)) 0;
+}

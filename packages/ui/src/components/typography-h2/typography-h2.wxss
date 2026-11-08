@@ -1,0 +1,22 @@
+/* ll-typography-h2 — script heading + pencil rule */
+/* @ll-import tokens */
+.ll-typography-h2 {
+  font-family: 'Kevin Sans Script', 'Kevin Sans', 'Bradley Hand', cursive;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--ll-ink, #2a2420);
+}
+.ll-typography-h2::after {
+  content: '';
+  display: block;
+  height: 2px;
+  margin-top: 8px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.55;
+}
+.ll-typography-h2.no-rule::after {
+  display: none;
+}

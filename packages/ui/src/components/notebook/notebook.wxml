@@ -1,0 +1,19 @@
+<!-- ll-notebook — the sheet is ll-paper (ruled by default, tape/fastener
+     passthrough); the binding + page edges are a decor layer on the paper
+     box under the slot content. -->
+<ll-paper
+  ll-class="{{rootClass}}"
+  stock="{{stock}}"
+  rules="{{rulesName}}"
+  tilt="{{tilt}}"
+  tape="{{tape}}"
+  tape-kind="{{tapeKind}}"
+  fastener="{{fastener}}"
+  fastener-tone="{{fastenerTone}}"
+  seed="{{seed}}"
+  aria-label="{{ariaLabel}}"
+  custom-style="{{customStyle}}"
+>
+  <view wx:if="{{decorOn}}" class="ll-notebook__decor" style="{{inkStyle}}" aria-hidden="true" />
+  <slot />
+</ll-paper>

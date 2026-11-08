@@ -1,0 +1,28 @@
+/* ll-envelope-letter — the letter behind the front, sliding up on open */
+/* @ll-import tokens */
+.ll-envelope-letter {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  bottom: 9%;
+  z-index: 10;
+  height: 86%;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(-8%);
+  visibility: hidden;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    visibility 0s linear 0.3s;
+  pointer-events: none;
+}
+.ll-envelope-letter.is-open {
+  opacity: 1;
+  transform: translateY(-38%);
+  visibility: visible;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+  pointer-events: auto;
+}

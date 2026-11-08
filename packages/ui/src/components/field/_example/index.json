@@ -1,0 +1,24 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-field": "../field/field",
+    "ll-field-set": "../field-set/field-set",
+    "ll-field-group": "../field-group/field-group",
+    "ll-field-legend": "../field-legend/field-legend",
+    "ll-field-label": "../field-label/field-label",
+    "ll-field-title": "../field-title/field-title",
+    "ll-field-description": "../field-description/field-description",
+    "ll-field-content": "../field-content/field-content",
+    "ll-field-error": "../field-error/field-error",
+    "ll-field-separator": "../field-separator/field-separator",
+    "ll-input": "../input/input",
+    "ll-textarea": "../textarea/textarea",
+    "ll-checkbox": "../checkbox/checkbox",
+    "ll-radio-group": "../radio-group/radio-group",
+    "ll-radio": "../radio/radio",
+    "ll-switch": "../switch/switch",
+    "ll-slider": "../slider/slider",
+    "ll-select": "../select/select",
+    "ll-button": "../button/button"
+  }
+}

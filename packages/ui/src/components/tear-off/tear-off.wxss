@@ -1,0 +1,110 @@
+/* ll-tear-off */
+/* @ll-import tokens */
+.ll-tear-off {
+  position: relative;
+  display: inline-flex;
+  isolation: isolate;
+}
+.ll-tear-off--vertical {
+  flex-direction: column;
+}
+
+/* the ticket you keep */
+.ll-tear-off__body {
+  flex: 1;
+  min-width: 0;
+}
+
+/* the stub — swings off its far corner when torn */
+.ll-tear-off__stub {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  transition: transform 0.42s ease, opacity 0.42s ease;
+}
+.ll-tear-off__stub--off {
+  pointer-events: none;
+  opacity: 0;
+  transform-origin: bottom left;
+  transform: translate(24px, 40px) rotate(25.2deg);
+}
+.ll-tear-off--vertical .ll-tear-off__stub--off {
+  transform-origin: top left;
+  transform: translate(0, 58px) rotate(-25.2deg);
+}
+/* a fresh stub dropping back onto the ticket (controlled torn → false) */
+.ll-tear-off--restored .ll-tear-off__stub {
+  animation: ll-tear-drop 0.5s ease-out;
+}
+@keyframes ll-tear-drop {
+  from {
+    opacity: 0;
+    transform: translate(24px, 40px) rotate(25.2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+.ll-tear-off--vertical.ll-tear-off--restored .ll-tear-off__stub {
+  animation-name: ll-tear-drop-v;
+}
+@keyframes ll-tear-drop-v {
+  from {
+    opacity: 0;
+    transform: translate(0, 58px) rotate(-25.2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+/* the perforation print: dashes + scissors, riding the stub's seam edge */
+.ll-tear-off__seam {
+  position: absolute;
+  pointer-events: none;
+  z-index: 5;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-tear-off__seam--h {
+  top: 12px;
+  bottom: 12px;
+  left: -8px;
+  width: 16px;
+}
+.ll-tear-off__seam--v {
+  left: 12px;
+  right: 12px;
+  top: -8px;
+  height: 16px;
+}
+
+/* the curled pencil arrow that says which way to pull */
+.ll-tear-off__hint {
+  position: absolute;
+  width: 36px;
+  height: 28px;
+  pointer-events: none;
+  z-index: 5;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-tear-off__hint--h {
+  right: 4px;
+  bottom: 4px;
+}
+.ll-tear-off__hint--v {
+  left: 50%;
+  margin-left: -18px;
+  bottom: 4px;
+}
+
+.ll-tear-off__status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}

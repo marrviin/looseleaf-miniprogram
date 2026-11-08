@@ -1,0 +1,199 @@
+<!-- ll-menubar demo — mirrors the upstream docs page (#/components/menubar).
+     Radix switches menus on hover; on touch, tapping another title while
+     one is open switches (the bar keeps one open at a time). -->
+<view class="demo">
+  <view class="demo-title">Menubar</view>
+  <view class="sec-desc">A desktop-style menu bar: a strip of paper with a pencil ruler along its foot and the menu titles written on it. Touched, a title wears the highlighter; each menu opens the same slip as the dropdown.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Application menu</view>
+    <view class="sec-desc">The shadcn demo on a strip of paper: File with a sub-menu and keycaps, Edit, View with ticked rows, Profiles with a radio group. Tap another title while one is open and the menu follows.</view>
+    <view class="center-row">
+      <ll-menubar id="mbApp" seed="app" aria-label="Application">
+        <ll-menubar-menu id="mbFile" label="File" aria-label="File">
+          <ll-dropdown-menu-item bind:select="onAppPick" data-name="New tab">New tab <ll-dropdown-menu-shortcut text="⌘T" /></ll-dropdown-menu-item>
+          <ll-dropdown-menu-item bind:select="onAppPick" data-name="New window">New window <ll-dropdown-menu-shortcut text="⌘N" /></ll-dropdown-menu-item>
+          <ll-dropdown-menu-item disabled>New incognito window</ll-dropdown-menu-item>
+          <ll-dropdown-menu-separator />
+          <ll-dropdown-menu-sub id="mbShare" label="Share" open="{{shareOpen}}" bind:change="onMenuChange" data-k="shareOpen">
+            <ll-dropdown-menu-item bind:select="onAppPick" data-name="Email link">Email link</ll-dropdown-menu-item>
+            <ll-dropdown-menu-item bind:select="onAppPick" data-name="Messages">Messages</ll-dropdown-menu-item>
+            <ll-dropdown-menu-item bind:select="onAppPick" data-name="Notes">Notes</ll-dropdown-menu-item>
+          </ll-dropdown-menu-sub>
+          <ll-dropdown-menu-separator />
+          <ll-dropdown-menu-item bind:select="onAppPick" data-name="Print…">Print… <ll-dropdown-menu-shortcut text="⌘P" /></ll-dropdown-menu-item>
+        </ll-menubar-menu>
+        <ll-menubar-menu id="mbEdit" label="Edit" aria-label="Edit">
+          <ll-dropdown-menu-item bind:select="onAppPick" data-name="Undo">Undo <ll-dropdown-menu-shortcut text="⌘Z" /></ll-dropdown-menu-item>
+          <ll-dropdown-menu-item bind:select="onAppPick" data-name="Redo">Redo <ll-dropdown-menu-shortcut text="⇧⌘Z" /></ll-dropdown-menu-item>
+          <ll-dropdown-menu-separator />
+          <ll-dropdown-menu-sub id="mbFind" label="Find" open="{{findOpen}}" bind:change="onMenuChange" data-k="findOpen">
+            <ll-dropdown-menu-item bind:select="onAppPick" data-name="Search the web">Search the web</ll-dropdown-menu-item>
+            <ll-dropdown-menu-separator />
+            <ll-dropdown-menu-item bind:select="onAppPick" data-name="Find…">Find…</ll-dropdown-menu-item>
+            <ll-dropdown-menu-item bind:select="onAppPick" data-name="Find next">Find next</ll-dropdown-menu-item>
+            <ll-dropdown-menu-item bind:select="onAppPick" data-name="Find previous">Find previous</ll-dropdown-menu-item>
+          </ll-dropdown-menu-sub>
+          <ll-dropdown-menu-separator />
+          <ll-dropdown-menu-item bind:select="onAppPick" data-name="Cut">Cut</ll-dropdown-menu-item>
+          <ll-dropdown-menu-item bind:select="onAppPick" data-name="Copy">Copy</ll-dropdown-menu-item>
+          <ll-dropdown-menu-item bind:select="onAppPick" data-name="Paste">Paste</ll-dropdown-menu-item>
+        </ll-menubar-menu>
+        <ll-menubar-menu id="mbView" label="View" aria-label="View">
+          <ll-dropdown-menu-checkbox-item id="ckbBookmarks" checked="{{bookmarks}}" bind:change="onTickBookmarks">Always show bookmarks bar</ll-dropdown-menu-checkbox-item>
+          <ll-dropdown-menu-checkbox-item checked="{{urls}}" bind:change="onTickUrls">Always show full URLs</ll-dropdown-menu-checkbox-item>
+          <ll-dropdown-menu-separator />
+          <ll-dropdown-menu-item inset bind:select="onAppPick" data-name="Reload">Reload <ll-dropdown-menu-shortcut text="⌘R" /></ll-dropdown-menu-item>
+          <ll-dropdown-menu-item inset disabled>Force reload <ll-dropdown-menu-shortcut text="⇧⌘R" /></ll-dropdown-menu-item>
+          <ll-dropdown-menu-separator />
+          <ll-dropdown-menu-item inset bind:select="onAppPick" data-name="Toggle full screen">Toggle full screen</ll-dropdown-menu-item>
+        </ll-menubar-menu>
+        <ll-menubar-menu id="mbProfiles" label="Profiles" aria-label="Profiles">
+          <ll-dropdown-menu-radio-group value="{{profile}}" bind:change="onProfileChange">
+            <ll-dropdown-menu-radio-item value="andy" checked="{{profile === 'andy'}}">Andy</ll-dropdown-menu-radio-item>
+            <ll-dropdown-menu-radio-item value="benoit" checked="{{profile === 'benoit'}}">Benoit</ll-dropdown-menu-radio-item>
+            <ll-dropdown-menu-radio-item value="luis" checked="{{profile === 'luis'}}">Luis</ll-dropdown-menu-radio-item>
+          </ll-dropdown-menu-radio-group>
+          <ll-dropdown-menu-separator />
+          <ll-dropdown-menu-item inset bind:select="onAppPick" data-name="Edit…">Edit…</ll-dropdown-menu-item>
+          <ll-dropdown-menu-separator />
+          <ll-dropdown-menu-item inset bind:select="onAppPick" data-name="Add profile…">Add profile…</ll-dropdown-menu-item>
+        </ll-menubar-menu>
+      </ll-menubar>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Format menu that acts</view>
+    <view class="sec-desc">Controlled rows change the page under the bar: bold and italic are ticked rows, the paper is a radio group. Every state lives in your component; the menus just report it.</view>
+    <view class="editor-col">
+      <ll-menubar id="mbFormat" seed="editor" aria-label="Format">
+        <ll-menubar-menu id="mbText" label="Format" aria-label="Format" width="176">
+          <ll-dropdown-menu-label>Text</ll-dropdown-menu-label>
+          <ll-dropdown-menu-checkbox-item id="ckbBold" checked="{{bold}}" bind:change="onTickBold">Bold <ll-dropdown-menu-shortcut text="⌘B" /></ll-dropdown-menu-checkbox-item>
+          <ll-dropdown-menu-checkbox-item id="ckbItalic" checked="{{italic}}" bind:change="onTickItalic">Italic <ll-dropdown-menu-shortcut text="⌘I" /></ll-dropdown-menu-checkbox-item>
+        </ll-menubar-menu>
+        <ll-menubar-menu id="mbPaper" label="Paper" aria-label="Paper">
+          <ll-dropdown-menu-radio-group value="{{paper}}" bind:change="onPaperChange">
+            <ll-dropdown-menu-radio-item value="ruled" checked="{{paper === 'ruled'}}">Ruled</ll-dropdown-menu-radio-item>
+            <ll-dropdown-menu-radio-item id="radGraph" value="graph" checked="{{paper === 'graph'}}">Graph</ll-dropdown-menu-radio-item>
+            <ll-dropdown-menu-radio-item value="none" checked="{{paper === 'none'}}">Plain</ll-dropdown-menu-radio-item>
+          </ll-dropdown-menu-radio-group>
+          <ll-dropdown-menu-separator />
+          <ll-dropdown-menu-label>Shown under your writing</ll-dropdown-menu-label>
+        </ll-menubar-menu>
+      </ll-menubar>
+      <ll-paper
+        stock="{{paper === 'graph' ? 'graph' : 'paper'}}"
+        rules="{{paper}}"
+        seed="editor-page"
+        custom-style="display:block;width:100%;min-height:160px;padding:24px;box-sizing:border-box;{{paper === 'ruled' ? 'padding-top:16px;padding-left:56px;' : ''}}"
+      >
+        <view class="editor-text {{bold ? 'is-bold' : ''}} {{italic ? 'is-italic' : ''}}">Things to buy: ink, a good eraser, tape.</view>
+      </ll-paper>
+    </view>
+
+    <view class="sub-h3">App header (composed)</view>
+    <view class="sec-desc">A real use: the bar sits in an app header beside the title and an account button. Choosing a row reports what happened, and the bar stays one tab stop for keyboard users.</view>
+    <view class="center-row">
+      <ll-paper stock="paper" seed="app-header" custom-style="display:block;width:100%;max-width:608px;padding:12px 20px 16px;box-sizing:border-box;">
+        <view class="header-row">
+          <view class="header-title">
+            <ll-icon name="book-open" size="22" />
+            <text>Looseleaf</text>
+          </view>
+          <ll-menubar id="mbHeader" seed="header" aria-label="Application" custom-style="flex:1;min-width:0;">
+            <ll-menubar-menu id="mbNotebook" label="Notebook" aria-label="Notebook">
+              <ll-dropdown-menu-item id="hdrNew" bind:select="onHeaderPick" data-name="New notebook">
+                <ll-icon name="file-plus" size="{{16}}" /> New <ll-dropdown-menu-shortcut text="⌘N" />
+              </ll-dropdown-menu-item>
+              <ll-dropdown-menu-item bind:select="onHeaderPick" data-name="Opened">
+                <ll-icon name="folder-open" size="{{16}}" /> Open… <ll-dropdown-menu-shortcut text="⌘O" />
+              </ll-dropdown-menu-item>
+              <ll-dropdown-menu-separator />
+              <ll-dropdown-menu-item bind:select="onHeaderPick" data-name="Saved">
+                <ll-icon name="save" size="{{16}}" /> Save <ll-dropdown-menu-shortcut text="⌘S" />
+              </ll-dropdown-menu-item>
+              <ll-dropdown-menu-item variant="destructive" bind:select="onHeaderPick" data-name="Moved to trash">
+                <ll-icon name="trash" size="{{16}}" /> Move to trash
+              </ll-dropdown-menu-item>
+            </ll-menubar-menu>
+            <ll-menubar-menu id="mbHelp" label="Help" aria-label="Help">
+              <ll-dropdown-menu-item bind:select="onHeaderPick" data-name="Guide">
+                <ll-icon name="life-buoy" size="{{16}}" /> Guide
+              </ll-dropdown-menu-item>
+              <ll-dropdown-menu-item bind:select="onHeaderPick" data-name="Shortcuts">
+                <ll-icon name="command" size="{{16}}" /> Shortcuts <ll-dropdown-menu-shortcut text="⌘/" />
+              </ll-dropdown-menu-item>
+            </ll-menubar-menu>
+          </ll-menubar>
+          <ll-button variant="ghost" size="icon" aria-label="Account">
+            <ll-icon name="circle-user" size="20" />
+          </ll-button>
+        </view>
+        <view class="header-note" aria-live="polite">{{said}}</view>
+      </ll-paper>
+    </view>
+
+    <view class="sub-h3">Browser menu (as written)</view>
+    <view class="sec-desc">shadcn's menubar-demo, line for line: File, Edit, View and Profiles, with shortcuts, sub-menus, two ticked rows, an inset column and a radio group. Its checkboxes and radio are fixed, so they show the states without changing; the first example lets them change.</view>
+    <view class="center-row">
+      <ll-menubar id="mbBrowser" seed="browser" aria-label="Browser">
+        <ll-menubar-menu id="mbBFile" label="File" aria-label="File">
+          <ll-dropdown-menu-item bind:select="onAppPick" data-name="New Tab">New Tab <ll-dropdown-menu-shortcut text="⌘T" /></ll-dropdown-menu-item>
+          <ll-dropdown-menu-item bind:select="onAppPick" data-name="New Window">New Window <ll-dropdown-menu-shortcut text="⌘N" /></ll-dropdown-menu-item>
+          <ll-dropdown-menu-item disabled>New Incognito Window</ll-dropdown-menu-item>
+          <ll-dropdown-menu-separator />
+          <ll-dropdown-menu-sub id="mbBShare" label="Share" open="{{bShareOpen}}" bind:change="onMenuChange" data-k="bShareOpen">
+            <ll-dropdown-menu-item bind:select="onAppPick" data-name="Email link">Email link</ll-dropdown-menu-item>
+            <ll-dropdown-menu-item bind:select="onAppPick" data-name="Messages">Messages</ll-dropdown-menu-item>
+            <ll-dropdown-menu-item bind:select="onAppPick" data-name="Notes">Notes</ll-dropdown-menu-item>
+          </ll-dropdown-menu-sub>
+          <ll-dropdown-menu-separator />
+          <ll-dropdown-menu-item bind:select="onAppPick" data-name="Print...">Print... <ll-dropdown-menu-shortcut text="⌘P" /></ll-dropdown-menu-item>
+        </ll-menubar-menu>
+        <ll-menubar-menu id="mbBEdit" label="Edit" aria-label="Edit">
+          <ll-dropdown-menu-item bind:select="onAppPick" data-name="Undo">Undo <ll-dropdown-menu-shortcut text="⌘Z" /></ll-dropdown-menu-item>
+          <ll-dropdown-menu-item bind:select="onAppPick" data-name="Redo">Redo <ll-dropdown-menu-shortcut text="⇧⌘Z" /></ll-dropdown-menu-item>
+          <ll-dropdown-menu-separator />
+          <ll-dropdown-menu-sub id="mbBFind" label="Find" open="{{bFindOpen}}" bind:change="onMenuChange" data-k="bFindOpen">
+            <ll-dropdown-menu-item bind:select="onAppPick" data-name="Search the web">Search the web</ll-dropdown-menu-item>
+            <ll-dropdown-menu-separator />
+            <ll-dropdown-menu-item bind:select="onAppPick" data-name="Find...">Find...</ll-dropdown-menu-item>
+            <ll-dropdown-menu-item bind:select="onAppPick" data-name="Find Next">Find Next</ll-dropdown-menu-item>
+            <ll-dropdown-menu-item bind:select="onAppPick" data-name="Find Previous">Find Previous</ll-dropdown-menu-item>
+          </ll-dropdown-menu-sub>
+          <ll-dropdown-menu-separator />
+          <ll-dropdown-menu-item bind:select="onAppPick" data-name="Cut">Cut</ll-dropdown-menu-item>
+          <ll-dropdown-menu-item bind:select="onAppPick" data-name="Copy">Copy</ll-dropdown-menu-item>
+          <ll-dropdown-menu-item bind:select="onAppPick" data-name="Paste">Paste</ll-dropdown-menu-item>
+        </ll-menubar-menu>
+        <ll-menubar-menu id="mbBView" label="View" aria-label="View">
+          <ll-dropdown-menu-checkbox-item>Always Show Bookmarks Bar</ll-dropdown-menu-checkbox-item>
+          <ll-dropdown-menu-checkbox-item checked>Always Show Full URLs</ll-dropdown-menu-checkbox-item>
+          <ll-dropdown-menu-separator />
+          <ll-dropdown-menu-item inset bind:select="onAppPick" data-name="Reload">Reload <ll-dropdown-menu-shortcut text="⌘R" /></ll-dropdown-menu-item>
+          <ll-dropdown-menu-item inset disabled>Force Reload <ll-dropdown-menu-shortcut text="⇧⌘R" /></ll-dropdown-menu-item>
+          <ll-dropdown-menu-separator />
+          <ll-dropdown-menu-item inset bind:select="onAppPick" data-name="Toggle Fullscreen">Toggle Fullscreen</ll-dropdown-menu-item>
+          <ll-dropdown-menu-separator />
+          <ll-dropdown-menu-item inset bind:select="onAppPick" data-name="Hide Sidebar">Hide Sidebar</ll-dropdown-menu-item>
+        </ll-menubar-menu>
+        <ll-menubar-menu id="mbBProfiles" label="Profiles" aria-label="Profiles">
+          <ll-dropdown-menu-radio-group value="benoit">
+            <ll-dropdown-menu-radio-item value="andy" checked="{{false}}">Andy</ll-dropdown-menu-radio-item>
+            <ll-dropdown-menu-radio-item value="benoit" checked="{{true}}">Benoit</ll-dropdown-menu-radio-item>
+            <ll-dropdown-menu-radio-item value="Luis" checked="{{false}}">Luis</ll-dropdown-menu-radio-item>
+          </ll-dropdown-menu-radio-group>
+          <ll-dropdown-menu-separator />
+          <ll-dropdown-menu-item inset bind:select="onAppPick" data-name="Edit...">Edit...</ll-dropdown-menu-item>
+          <ll-dropdown-menu-separator />
+          <ll-dropdown-menu-item inset bind:select="onAppPick" data-name="Add Profile...">Add Profile...</ll-dropdown-menu-item>
+        </ll-menubar-menu>
+      </ll-menubar>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,14 @@
+<!-- ll-carousel-content — clipping viewport + translating track -->
+<view
+  class="ll-carousel-content is-{{orientation}}"
+  style="{{customStyle}}"
+  bind:touchstart="onTouchStart"
+  bind:touchend="onTouchEnd"
+>
+  <view
+    class="ll-carousel-content__track"
+    style="transform:translate3d({{orientation === 'vertical' ? '0px,' + offset + 'px' : offset + 'px,0px'}},0);"
+  >
+    <slot />
+  </view>
+</view>

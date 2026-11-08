@@ -1,0 +1,8 @@
+<!-- ll-corkboard -->
+<view class="ll-corkboard ll-class" style="{{customStyle}}" aria-role="group" aria-label="{{label}}">
+  <view class="ll-ink-layer" style="{{inkStyle}}"></view>
+  <view class="ll-corkboard__surface">
+    <slot />
+  </view>
+  <view class="ll-corkboard__status" aria-role="status" aria-live="polite">{{said}}</view>
+</view>

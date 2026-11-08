@@ -1,0 +1,8 @@
+<!-- ll-envelope-front -->
+<view class="ll-envelope-front ll-class" style="{{customStyle}}">
+  <view class="ll-ink-cast" wx:for="{{inkCasts}}" wx:key="index" style="{{item}}"></view>
+  <view class="ll-ink-layer" style="{{inkUnderStyle}}"></view>
+  <view class="ll-ink-face" wx:for="{{inkFaces}}" wx:key="index" style="{{item}}"></view>
+  <view class="ll-ink-layer" style="{{inkOverStyle}}"></view>
+  <slot />
+</view>

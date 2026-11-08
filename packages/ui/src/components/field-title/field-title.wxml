@@ -1,0 +1,2 @@
+<!-- ll-field-title — the bold hand words in a content column. -->
+<view class="ll-field-title {{disabled ? 'll-field-title--disabled' : ''}} ll-class" style="{{customStyle}}"><slot /></view>

@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-tear-off": "../tear-off/tear-off",
+    "ll-button": "../button/button",
+    "ll-confetti": "../confetti/confetti"
+  }
+}

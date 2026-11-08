@@ -1,0 +1,223 @@
+<!-- ll-combobox demo — mirrors the upstream docs page (#/components/combobox).
+     Upstream narrows with the arrow keys; on the phone you type and tap.
+     50 keeps its menu, 51/52 keep their by-hand Popover/Command/Drawer shells;
+     05's hidden `name` input becomes the change handler's value. -->
+<view class="demo">
+  <view class="demo-title">Combobox</view>
+  <view class="sec-desc">A field you can search. Press it and a command list opens on a slip; type to narrow it, tap to choose. It can be a single-select, an editable field, or a multi-select whose choices are hand-drawn hang-tags you can take back; it can offer to create what you typed and wait for results from a server.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Framework picker</view>
+    <view class="sec-desc">The shadcn recipe: press the field, type to narrow ("svelte" finds SvelteKit), tap to choose. The chosen row ends in a blue tick. Try a word that matches nothing to meet Stubby.</view>
+    <view class="center-row">
+      <ll-combobox
+        id="cb1"
+        class="w64"
+        items="{{frameworks}}"
+        value="{{fw}}"
+        placeholder="Select framework..."
+        searchPlaceholder="Search framework..."
+        emptyText="No framework found."
+        seed="cb-fw"
+        aria-label="Framework"
+        bind:change="onFwChange"
+      />
+    </view>
+    <view class="said-line" aria-live="polite">{{fwSaid || 'Framework: Next.js (default)'}}</view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Labels as hang-tags</view>
+    <view class="sec-desc">A multi-select whose choices are tags on a string: each a little different, a punched hole at the point, the x wearing the highlighter when you reach for it. Tap the field to type. tone=auto gives each label its own color.</view>
+    <view class="field-grid w96">
+      <ll-label>Labels</ll-label>
+      <ll-combobox
+        id="cb2"
+        multiple
+        items="{{labels}}"
+        chipTone="auto"
+        value="{{labelVals}}"
+        placeholder="Add a label..."
+        emptyText="No label like that."
+        seed="cb-tags"
+        aria-label="Labels"
+        bind:change="onLabelsChange"
+      />
+    </view>
+    <view class="said-line" aria-live="polite">{{labelsSaid}}</view>
+
+    <view class="sub-h3">Create what you typed</view>
+    <view class="sec-desc">Type a name that is not in the list and the last row offers to add it. Choosing it calls create (you add it to your list) and then chooses it. An exact match, in any case, hides the offer.</view>
+    <view class="field-grid w64">
+      <ll-label>Bread</ll-label>
+      <ll-combobox
+        id="cb3"
+        items="{{breads}}"
+        creatable
+        value="{{bread}}"
+        placeholder="Pick or add a bread..."
+        searchPlaceholder="Search or add..."
+        emptyText="No bread yet."
+        seed="cb-bread"
+        aria-label="Bread"
+        bind:change="onBreadChange"
+        bind:create="onBreadCreate"
+      />
+    </view>
+    <view class="said-line" aria-live="polite">{{breadSaid}}</view>
+
+    <view class="sub-h3">Results from a server</view>
+    <view class="sec-desc">Filtering is off (shouldFilter=false) and the search text is watched: while a request is in flight the loops show and the empty message waits. Try "gra" (two people), then "zzz".</view>
+    <view class="center-row">
+      <ll-combobox
+        id="cb4"
+        class="w64"
+        items="{{peopleResults}}"
+        shouldFilter="{{false}}"
+        loading="{{peopleLoading}}"
+        value="{{assignee}}"
+        placeholder="Assign to..."
+        searchPlaceholder="Search people..."
+        loadingText="Searching..."
+        emptyText="Nobody by that name."
+        seed="cb-people"
+        aria-label="Assignee"
+        bind:input="onPeopleInput"
+        bind:change="onAssigneeChange"
+      />
+    </view>
+    <view class="said-line" aria-live="polite">{{assigneeSaid || 'Nobody assigned yet.'}}</view>
+
+    <view class="sub-h3">An editable field in a form</view>
+    <view class="sec-desc">ComboboxInput on its own is the field: it shows the chosen country until you type, opens as you type, and puts the country back if you close without choosing. The change handler hands the code to the form.</view>
+    <view class="center-row">
+      <view class="ship-card">
+        <ll-card seed="ship" tape="top">
+          <ll-card-header>
+            <ll-card-title>Shipping</ll-card-title>
+            <ll-card-description>Where should it go?</ll-card-description>
+          </ll-card-header>
+          <ll-card-content class="field-grid">
+            <ll-label required>Country</ll-label>
+            <ll-combobox
+              id="cb5"
+              editable
+              showClear
+              items="{{countries}}"
+              value="{{country}}"
+              placeholder="Start typing a country..."
+              emptyText="No such country."
+              seed="cb-country"
+              aria-label="Country"
+              bind:change="onCountryChange"
+            />
+          </ll-card-content>
+          <ll-card-footer class="ship-footer">
+            <view class="said-line" aria-live="polite">{{sent ? 'Sent country code: ' + sent : 'Nothing sent yet.'}}</view>
+            <ll-button size="sm" bind:tap="onShip">Ship</ll-button>
+          </ll-card-footer>
+        </ll-card>
+      </view>
+    </view>
+
+    <view class="sub-h3">A filter inside a menu</view>
+    <view class="sec-desc">The shadcn recipe for "apply a label": a row's action menu has a sub-menu, and the sub-menu holds a Command, so a long list of labels can be searched. The palette puts its own slip away inside a menu, because the menu is already the paper.</view>
+    <view class="center-row">
+      <ll-paper stock="paper" seed="task-row" custom-style="width:100%;max-width:512px;">
+        <view class="task-row">
+          <view class="task-row-left">
+            <ll-badge variant="secondary">{{taskLabel}}</ll-badge>
+            <text class="task-row-text">Create a new project</text>
+          </view>
+          <ll-dropdown-menu id="ddm50" open="{{menuOpen}}" width="{{224}}" align="end" seed="task-actions" aria-label="Task actions" bind:change="onMenuChange" data-k="menuOpen">
+            <ll-button slot="trigger" variant="ghost" size="icon-sm" aria-label="Task actions">
+              <ll-icon name="ellipsis" size="{{16}}" />
+            </ll-button>
+            <ll-dropdown-menu-label>Actions</ll-dropdown-menu-label>
+            <ll-dropdown-menu-item>Assign to...</ll-dropdown-menu-item>
+            <ll-dropdown-menu-item>Set due date...</ll-dropdown-menu-item>
+            <ll-dropdown-menu-separator />
+            <ll-dropdown-menu-sub id="dmsub" label="Apply label" width="{{224}}">
+              <ll-command id="cmd50" sheet="{{false}}" aria-label="Labels">
+                <ll-command-input placeholder="Filter label..." />
+                <ll-command-list>
+                  <ll-command-empty>No label found.</ll-command-empty>
+                  <ll-command-group>
+                    <ll-command-item wx:for="{{menuLabels}}" wx:key="*this" value="{{item}}" bind:select="onMenuLabel">
+                      <text>{{item}}</text>
+                    </ll-command-item>
+                  </ll-command-group>
+                </ll-command-list>
+              </ll-command>
+            </ll-dropdown-menu-sub>
+            <ll-dropdown-menu-separator />
+            <ll-dropdown-menu-item>Delete</ll-dropdown-menu-item>
+          </ll-dropdown-menu>
+        </view>
+      </ll-paper>
+    </view>
+    <view class="said-line" aria-live="polite">Label: {{taskLabel}}</view>
+
+    <view class="sub-h3">Popover and Command, by hand</view>
+    <view class="sec-desc">The composable recipe behind the Combobox: a button with role=combobox, a Popover that opens beside it, and a Command inside it for the search and the rows. Reach for it when you want full control of the trigger.</view>
+    <view class="status-row">
+      <text class="status-label">Status</text>
+      <ll-popover
+        id="statusPop"
+        open="{{statusOpen}}"
+        width="{{208}}"
+        padding="0"
+        side="right"
+        align="start"
+        seed="status-pop"
+        aria-label="Set status"
+        bind:change="onStatusOpen"
+      >
+        <ll-button slot="trigger" variant="outline" size="sm" custom-style="width:150px;justify-content:flex-start;">
+          {{statusLabel || '+ Set status'}}
+        </ll-button>
+        <ll-command id="cmd51" sheet="{{false}}" aria-label="Set status">
+          <ll-command-input placeholder="Change status..." />
+          <ll-command-list>
+            <ll-command-empty>No results found.</ll-command-empty>
+            <ll-command-group>
+              <ll-command-item wx:for="{{statuses}}" wx:key="value" value="{{item.value}}" bind:select="onStatusPick">
+                <text>{{item.label}}</text>
+              </ll-command-item>
+            </ll-command-group>
+          </ll-command-list>
+        </ll-command>
+      </ll-popover>
+    </view>
+
+    <view class="sub-h3">Responsive: popover or drawer</view>
+    <view class="sec-desc">One list, two shells: a popover next to the button on a wide screen, a drawer from the bottom on a phone, where a small floating box is hard to hit. The phone shows the drawer.</view>
+    <view class="status-row">
+      <ll-button variant="outline" size="sm" custom-style="width:150px;justify-content:flex-start;" bind:tap="onRespOpenTap">
+        {{respLabel || '+ Set status'}}
+      </ll-button>
+      <ll-drawer open="{{respOpen}}" seed="status" bind:change="onRespOpen">
+        <ll-drawer-header>
+          <ll-drawer-title>Set status</ll-drawer-title>
+          <ll-drawer-description>Choose a status for this task.</ll-drawer-description>
+        </ll-drawer-header>
+        <view class="dashed-top">
+          <ll-command id="cmd52" sheet="{{false}}" aria-label="Set status">
+            <ll-command-input placeholder="Filter status..." />
+            <ll-command-list>
+              <ll-command-empty>No results found.</ll-command-empty>
+              <ll-command-group>
+                <ll-command-item wx:for="{{statuses}}" wx:key="value" value="{{item.value}}" bind:select="onRespPick">
+                  <text>{{item.label}}</text>
+                </ll-command-item>
+              </ll-command-group>
+            </ll-command-list>
+          </ll-command>
+        </view>
+      </ll-drawer>
+    </view>
+  </view>
+</view>

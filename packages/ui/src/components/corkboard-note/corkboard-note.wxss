@@ -1,0 +1,33 @@
+/* ll-corkboard-note — absolute in the board's surface; transform carries
+   the position (individual translate/rotate properties are too new for
+   the miniprogram webview). */
+/* @ll-import tokens */
+.ll-corkboard-note {
+  position: absolute;
+  top: 0;
+  left: 0;
+  isolation: isolate;
+  width: 176px; /* w-44 */
+  box-sizing: border-box;
+}
+.ll-corkboard-note__body {
+  padding: 24px 14px 16px; /* pt-6 px-3.5 pb-4 */
+  font-family: 'Kevin Sans', sans-serif; /* font-script */
+  font-size: 20px; /* text-xl */
+  line-height: 1.25; /* leading-tight */
+  word-break: break-word;
+}
+.ll-corkboard-note__pin {
+  position: absolute;
+  top: -10px; /* -top-2.5 */
+  left: 50%;
+  width: 24px; /* size-6 */
+  height: 24px;
+  margin-left: -12px;
+  z-index: 3; /* --ll-z-prop */
+  pointer-events: none;
+  transition: top 150ms ease;
+}
+.is-dragging .ll-corkboard-note__pin {
+  top: -16px; /* group-data-dragging:-translate-y-1.5 */
+}

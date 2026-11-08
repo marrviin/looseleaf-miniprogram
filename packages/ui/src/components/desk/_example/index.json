@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "ll-desk": "looseleaf-miniprogram/components/desk/desk",
+    "ll-paper": "looseleaf-miniprogram/components/paper/paper",
+    "ll-card": "looseleaf-miniprogram/components/card/card",
+    "ll-card-header": "looseleaf-miniprogram/components/card-header/card-header",
+    "ll-card-title": "looseleaf-miniprogram/components/card-title/card-title",
+    "ll-card-description": "looseleaf-miniprogram/components/card-description/card-description",
+    "ll-card-content": "looseleaf-miniprogram/components/card-content/card-content"
+  }
+}

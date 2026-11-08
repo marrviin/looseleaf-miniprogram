@@ -1,0 +1,25 @@
+/* ll-carousel-next — parked outside the window like upstream (-start-12) */
+.ll-carousel-next {
+  position: absolute;
+  z-index: 6;
+}
+.ll-carousel-next.is-horizontal {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.ll-carousel-next.is-vertical {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.ll-carousel-previous.is-horizontal {
+  left: -48px;
+}
+.ll-carousel-next.is-horizontal {
+  right: -48px;
+}
+.ll-carousel-previous.is-vertical {
+  top: -48px;
+}
+.ll-carousel-next.is-vertical {
+  bottom: -48px;
+}

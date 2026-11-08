@@ -1,0 +1,11 @@
+<!-- ll-collapsible-content — the folding body -->
+<view class="ll-collapsible-content {{open ? 'is-open' : ''}}" style="height:{{height}};{{customStyle}}">
+  <view class="ll-collapsible-content__clip">
+    <view class="ll-collapsible-content__inner {{bracket ? 'has-bracket' : ''}}">
+      <view class="ll-collapsible-content__bracket" wx:if="{{bracket}}">
+        <view class="ll-ink-layer" style="{{inkStyle}}"></view>
+      </view>
+      <view class="ll-collapsible-content__body"><slot /></view>
+    </view>
+  </view>
+</view>

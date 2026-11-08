@@ -1,0 +1,5 @@
+<!-- ll-quote-text — drawn quotation marks round the words -->
+<view class="ll-quote-text" style="{{padStyle}}{{customStyle}}">
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-quote-text__body"><slot /></view>
+</view>

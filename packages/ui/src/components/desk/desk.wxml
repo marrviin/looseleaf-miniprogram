@@ -1,0 +1,15 @@
+<!-- ll-desk — the sage blotter (linen + lamp vignette); the objects layer
+     lies behind the content (z:-1), aria-hidden, pointer-events none. -->
+<view
+  class="ll-desk ll-class"
+  style="{{deskStyle}}{{customStyle}}"
+  aria-role="img"
+  aria-label="{{ariaLabel}}"
+>
+  <view wx:if="{{items.length}}" class="ll-desk__objects" aria-hidden="true">
+    <view wx:for="{{items}}" wx:key="name" class="ll-desk__object" style="{{item.pos}}">
+      <view wx:for="{{item.pieces}}" wx:for-item="piece" wx:key="index" class="ll-desk__piece" style="{{piece}}" />
+    </view>
+  </view>
+  <slot />
+</view>

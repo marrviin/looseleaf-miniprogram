@@ -1,0 +1,2 @@
+<!-- ll-hover-card-caption — the pencil caption line under the photo. -->
+<view class="ll-hover-card-caption ll-class" style="{{customStyle}}"><slot /></view>

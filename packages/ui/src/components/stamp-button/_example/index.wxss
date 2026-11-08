@@ -1,0 +1,110 @@
+.demo {
+  padding: 32rpx;
+  background: var(--ll-paper, #f8f5ee);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+.sec {
+  margin-top: 40rpx;
+}
+.sec-h2 {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin-bottom: 12rpx;
+}
+.sub-h3 {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin: 28rpx 0 6rpx;
+}
+.sec-desc {
+  font-size: 24rpx;
+  color: #8a857c;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+.said-line {
+  font-size: 25rpx;
+  color: #4a433c;
+  margin-top: 12rpx;
+}
+
+/* 01 — invoice on a slip */
+.invoice-h {
+  font-family: 'Kevin Sans Script', 'Kevin Sans', 'Bradley Hand', cursive;
+  font-size: 52rpx;
+  color: #2a2420;
+}
+.invoice-rows {
+  margin-top: 20rpx;
+}
+.invoice-row {
+  display: flex;
+  gap: 28rpx;
+  margin-top: 6rpx;
+  font-size: 26rpx;
+}
+.invoice-k {
+  width: 88rpx;
+  color: #8a857c;
+}
+.invoice-v {
+  flex: 1;
+  color: #2a2420;
+}
+.invoice-num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* the tools row: above the paper's foot so the impressions have room */
+.tool-row {
+  margin-top: 180rpx;
+  display: flex;
+  align-items: flex-end;
+  gap: 28rpx;
+}
+.tool-row--wrap {
+  flex-wrap: wrap;
+}
+
+/* 02 — inks and shapes */
+.inks-para {
+  max-width: 560rpx;
+  font-size: 26rpx;
+  line-height: 1.6;
+  color: #2a2420;
+}
+
+/* 03 — the expense report */
+.report-h {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #2a2420;
+}
+.report-d {
+  font-size: 24rpx;
+  color: #8a857c;
+  margin-top: 6rpx;
+}
+.report-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20rpx;
+}
+.report-amount {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #2a2420;
+  font-variant-numeric: tabular-nums;
+}
+.tool-row--report {
+  margin-top: 120rpx;
+}

@@ -1,0 +1,3 @@
+<!-- ll-field-content — the word column (title, description) that sits
+     beside a control and takes the remaining width. -->
+<view class="ll-field-content ll-class" style="{{customStyle}}"><slot /></view>

@@ -1,0 +1,31 @@
+/* ll-corkboard — the board: ink draws the frame + cork; notes go in the
+   surface inset by the frame width (upstream CORK_FRAME = 12px). */
+/* @ll-import tokens */
+.ll-corkboard {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-height: 256px; /* min-h-64 */
+  box-sizing: border-box;
+  background: var(--ll-kraft);
+}
+.ll-ink-layer {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-corkboard__surface {
+  position: absolute;
+  inset: 12px;
+}
+/* polite status line, visually hidden like upstream's sr-only */
+.ll-corkboard__status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

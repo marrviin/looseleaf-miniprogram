@@ -1,0 +1,8 @@
+<!-- ll-drawer-close — a Button; its tap bubbles as drawer-close. -->
+<ll-button
+  variant="{{variant}}"
+  size="{{size}}"
+  disabled="{{disabled}}"
+  aria-label="{{ariaLabel}}"
+  bind:tap="onTap"
+><slot /></ll-button>

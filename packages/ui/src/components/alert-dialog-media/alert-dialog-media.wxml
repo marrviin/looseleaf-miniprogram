@@ -1,0 +1,8 @@
+<!-- ll-alert-dialog-media — the 64px plate: recipe patch behind, slot art
+     (an icon, a sticker…) raised above it. -->
+<view class="ll-alert-dialog-media ll-class" style="{{customStyle}}">
+  <view class="ll-alert-dialog-media__patch">
+    <view wx:if="{{inkStyle}}" class="ll-ink-layer" style="{{inkStyle}}" />
+    <view class="ll-alert-dialog-media__art"><slot /></view>
+  </view>
+</view>

@@ -1,0 +1,14 @@
+{
+  "usingComponents": {
+    "ll-bubble": "looseleaf-miniprogram/components/bubble/bubble",
+    "ll-bubble-group": "looseleaf-miniprogram/components/bubble-group/bubble-group",
+    "ll-bubble-content": "looseleaf-miniprogram/components/bubble-content/bubble-content",
+    "ll-bubble-reactions": "looseleaf-miniprogram/components/bubble-reactions/bubble-reactions",
+    "ll-message": "looseleaf-miniprogram/components/message/message",
+    "ll-message-avatar": "looseleaf-miniprogram/components/message-avatar/message-avatar",
+    "ll-message-content": "looseleaf-miniprogram/components/message-content/message-content",
+    "ll-message-header": "looseleaf-miniprogram/components/message-header/message-header",
+    "ll-message-footer": "looseleaf-miniprogram/components/message-footer/message-footer",
+    "ll-mascot": "looseleaf-miniprogram/components/mascot/mascot"
+  }
+}

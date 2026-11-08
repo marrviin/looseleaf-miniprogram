@@ -1,0 +1,15 @@
+/* ll-confetti — the splash layer (upstream layerFor): absolute inset-0,
+   pointer-events none, above everything in the container.
+   @ll-import tokens */
+:host {
+  display: block;
+}
+.ll-confetti {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: var(--ll-z-splash, 1200);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

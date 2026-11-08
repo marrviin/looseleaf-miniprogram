@@ -1,0 +1,13 @@
+/* ll-message-avatar — bottom of the row; lifted above a footer */
+.ll-message-avatar {
+  display: flex;
+  width: fit-content;
+  min-width: 32px; /* min-w-8 */
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-end;
+}
+.ll-message-avatar.is-lifted {
+  transform: translateY(-32px); /* group-has-footer:-translate-y-8 */
+}

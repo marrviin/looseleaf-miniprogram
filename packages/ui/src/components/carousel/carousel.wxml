@@ -1,0 +1,4 @@
+<!-- ll-carousel — snapped track state -->
+<view class="ll-carousel" style="{{customStyle}}" aria-role="region" aria-label="carousel">
+  <slot />
+</view>

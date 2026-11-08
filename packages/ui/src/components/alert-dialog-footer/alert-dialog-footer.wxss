@@ -1,0 +1,24 @@
+/* ll-alert-dialog-footer — flex flex-col-reverse gap-2; size=sm:
+   grid-cols-2 (all widths); sm+: flex-row justify-end */
+/* @ll-import tokens */
+.ll-alert-dialog-footer {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 16rpx; /* gap-2 */
+  font-family: 'Kevin Sans', sans-serif;
+}
+
+/* size="sm": the two answers in equal columns (not behind an sm: —
+   upstream applies it at every width) */
+.ll-alert-dialog-footer--sm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+}
+
+@media (min-width: 640px) {
+  .ll-alert-dialog-footer:not(.ll-alert-dialog-footer--sm) {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+}

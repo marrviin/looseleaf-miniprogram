@@ -1,0 +1,48 @@
+/* ll-aspect-ratio demo */
+.demo {
+  padding: 32rpx;
+  background: var(--ll-paper, #f8f5ee);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title { font-weight: bold; font-size: 40rpx; margin-bottom: 8rpx; }
+.sec-desc { font-size: 24rpx; color: #8a857c; line-height: 1.6; margin-bottom: 20rpx; }
+.ar-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28rpx;
+  align-items: flex-end;
+}
+.ar-cell {
+  width: 280rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+.ar-print {
+  background: #fdfcf8;
+  padding: 8px;
+  box-shadow: 0 1px 3px rgba(58, 44, 30, 0.18);
+}
+.turn-a { transform: rotate(-1deg); }
+.turn-b { transform: rotate(1deg); }
+.turn-c { transform: rotate(-0.6deg); }
+.turn-d { transform: rotate(0.8deg); }
+.ar-window {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(58, 44, 30, 0.26), inset 0 0 0 1px rgba(58, 44, 30, 0.12);
+}
+.tint-sky { background: rgba(125, 168, 220, 0.4); }
+.tint-lemon { background: rgba(233, 214, 107, 0.45); }
+.tint-bubblegum { background: rgba(240, 158, 181, 0.4); }
+.tint-grass { background: rgba(120, 180, 120, 0.4); }
+.ar-label {
+  text-align: center;
+  font-size: 24rpx;
+  color: #4a433c;
+}

@@ -1,0 +1,151 @@
+/* ll-sticker-picker — the slip body. The Popover carries the paper; these
+   are the search row, the category chips, the grid and the caption. */
+.ll-spicker {
+  display: inline-block;
+}
+
+.ll-spicker__trigger {
+  display: inline-block;
+}
+
+.ll-spicker__body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* category chips — -mx-1 mt-2 flex gap-1 overflow-x-auto px-1 pb-1 */
+.ll-spicker__cats {
+  margin: 16rpx -8rpx 0;
+  padding: 0 8rpx 8rpx;
+  white-space: nowrap;
+}
+
+.ll-spicker__cat {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48rpx;
+  padding: 0 16rpx;
+  margin-right: 8rpx;
+  font-family: 'Kevin Sans', sans-serif; /* font-hand */
+  font-size: 28rpx;
+  font-weight: 700;
+  white-space: nowrap;
+  color: #8a857c; /* text-muted-foreground */
+  transition: color 0.15s ease; /* --ll-dur-hover */
+}
+
+.ll-spicker__cat.is-on {
+  color: #2a2420; /* text-foreground */
+  /* aria-pressed:ll-swipe — the highlighter */
+  background-color: rgba(248, 220, 76, 0.62);
+  border-radius: 6rpx 16rpx 8rpx 18rpx / 16rpx 6rpx 18rpx 8rpx;
+}
+
+/* the list — mt-2 max-h-64 min-h-24 overflow-y-auto pe-1 */
+.ll-spicker__list {
+  margin-top: 16rpx;
+  min-height: 192rpx;
+  max-height: 512rpx;
+  overflow-y: auto;
+  padding-right: 8rpx;
+  box-sizing: border-box;
+}
+
+.ll-spicker__sec {
+  margin-bottom: 12rpx;
+}
+
+.ll-spicker__sec:last-child {
+  margin-bottom: 0;
+}
+
+.ll-spicker__sec-h {
+  padding: 8rpx 4rpx 4rpx;
+  font-family: 'Kevin Sans Script', 'Kevin Sans', 'Bradley Hand', cursive; /* font-script */
+  font-size: 36rpx;
+  line-height: 1;
+  color: #8a857c;
+}
+
+.ll-spicker__grid {
+  display: grid;
+  gap: 4rpx;
+}
+
+.ll-spicker__opt {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 112rpx; /* size + 12 (44px cell) */
+}
+
+.ll-spicker__art {
+  display: block;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transition: transform 0.15s ease; /* scale,rotate --ll-dur-hover */
+  filter: drop-shadow(0 1px 0.6px rgba(58, 44, 30, 0.26))
+    drop-shadow(0 3px 3px rgba(58, 44, 30, 0.14)); /* ll-drop-sticker */
+}
+
+/* data-active: peeled corner, a small turn and a grow (ll-drop-sticker) */
+.ll-spicker__opt.is-active .ll-spicker__art {
+  transform: rotate(-3deg) scale(1.1);
+}
+
+.ll-spicker__check {
+  position: absolute;
+  top: 4rpx;
+  right: 4rpx;
+  color: #2a2420;
+  line-height: 0;
+}
+
+/* empty state — grid place-items-center gap-1 py-5 */
+.ll-spicker__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+  min-height: 192rpx;
+  justify-content: center;
+  padding: 40rpx 16rpx;
+  text-align: center;
+}
+
+.ll-spicker__empty-t {
+  font-family: 'Kevin Sans Script', 'Kevin Sans', 'Bradley Hand', cursive;
+  font-size: 40rpx;
+  line-height: 1.2;
+  color: #8a857c;
+}
+
+/* caption — border-t border-dashed pt-1.5 */
+.ll-spicker__foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16rpx;
+  min-height: 48rpx;
+  margin-top: 16rpx;
+  padding-top: 12rpx;
+  border-top: 2rpx dashed rgba(58, 44, 30, 0.35); /* border-pencil-mark/60 */
+}
+
+.ll-spicker__foot-name {
+  overflow: hidden;
+  font-family: 'Kevin Sans Script', 'Kevin Sans', 'Bradley Hand', cursive;
+  font-size: 40rpx;
+  line-height: 1;
+  color: #2a2420;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ll-spicker__foot-cat {
+  flex-shrink: 0;
+  font-size: 24rpx;
+  color: #8a857c;
+}

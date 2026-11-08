@@ -1,0 +1,12 @@
+/* ll-envelope-address — hand-script address on 28px ruled underlines */
+/* @ll-import tokens */
+.ll-envelope-address {
+  box-sizing: border-box;
+  max-width: 62%;
+  font-family: 'Kevin Sans', 'PingFang SC', sans-serif;
+  font-size: 21px;
+  line-height: 28px;
+  overflow-wrap: break-word;
+  background-image: linear-gradient(to bottom, transparent calc(100% - 1px), rgba(58, 44, 30, 0.35) calc(100% - 1px));
+  background-size: 100% 28px;
+}

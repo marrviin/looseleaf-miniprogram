@@ -1,0 +1,47 @@
+<!-- ll-reveal demo — mirrors the upstream docs page
+     (#/components/reveal). Upstream replays by remounting with a new key;
+     here the Replay button calls restart(). The upstream `stagger` can't
+     port (slotted children live in the page's style scope), so 03 gives
+     each line its own ll-reveal with an incremental delay — that is the
+     documented substitute. -->
+<view class="demo">
+  <view class="demo-title">Reveal</view>
+  <view class="sec-desc">A wrapper that plays one of the theme's arrival keyframes — wipe, soak, drop, pop, toss — when its content comes into view.</view>
+
+  <view class="sec">
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">The heading is drawn on left to right as it comes into view, once, with a marker tip writing it (nib). Replay mounts it again; on a long page it waits until you scroll to it.</view>
+    <view class="rv-col">
+      <ll-reveal id="rv-main" nib custom-style="font-size:44px;line-height:1.1">Drawn by hand, on the way in.</ll-reveal>
+      <view class="sec-desc">Nothing is hidden from screen readers while it waits.</view>
+      <view><ll-button size="sm" variant="outline" bind:tap="replayMain">Replay</ll-button></view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Five arrivals</view>
+    <view class="sec-desc">wipe, soak, drop, pop and toss, each one of the theme's keyframes. They play when they are on screen; scroll away and back with once turned off.</view>
+    <view class="rv-row">
+      <ll-reveal wx:for="{{effects}}" wx:key="name" effect="{{item.name}}" once="{{false}}" delay="{{item.delay}}">
+        <ll-paper stock="{{item.stock}}" tilt="{{item.tilt}}" custom-style="width:128px;padding:16px;text-align:center">
+          <text class="rv-script">{{item.name}}</text>
+        </ll-paper>
+      </ll-reveal>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">A list that arrives line by line</view>
+    <view class="sec-desc">A real use: stagger makes direct children arrive one after another, each drying like wet ink. Slotted children can't be animated from inside the component here, so each line carries its own ll-reveal and delay.</view>
+    <view class="rv-list">
+      <ll-reveal wx:for="{{features}}" wx:key="text" effect="soak" delay="{{item.delay}}" threshold="{{0.15}}">
+        <view class="rv-line">
+          <ll-checkbox checked="{{true}}" aria-label="{{item.text}}" />
+          <text class="rv-line-text">{{item.text}}</text>
+        </view>
+      </ll-reveal>
+    </view>
+  </view>
+
+  <view class="sr-only" aria-live="polite">{{said}}</view>
+</view>

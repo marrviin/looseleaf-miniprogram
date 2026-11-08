@@ -1,0 +1,72 @@
+<!-- ll-desk demo — mirrors the upstream docs page (#/components/desk).
+     Objects lie behind the paper; pick some or take them all. -->
+<view class="demo">
+  <view class="demo-title">Desk</view>
+  <view class="sec-desc">The surface everything else lies on: sage bookcloth under a lamp, with an optional layer of objects behind your content. Paper is only paper against something darker than itself.</view>
+
+  <view class="sec">
+    <view class="sub-h3">The bare desk</view>
+    <view class="sec-desc">Sage bookcloth under a lamp. Paper lies on it with a short umber shadow and the light from the upper left.</view>
+    <ll-desk seed="bare" custom-style="min-height:288px;padding:40px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:center">
+      <ll-card seed="a" custom-style="width:320px;max-width:100%">
+        <ll-card-header>
+          <ll-card-title>On the desk</ll-card-title>
+          <ll-card-description>A card, casting a card-sized shadow.</ll-card-description>
+        </ll-card-header>
+        <ll-card-content>The blotter is a shade darker than the paper so cream glows against it.</ll-card-content>
+      </ll-card>
+      <ll-paper stock="sticky-yellow" seed="b" custom-style="width:160px;height:160px;padding:16px;box-sizing:border-box">
+        <text class="dk-script">call mum</text>
+        <text class="dk-small">before six</text>
+      </ll-paper>
+    </ll-desk>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Things on the blotter</view>
+    <view class="sec-desc">objects lays a coffee ring, a pencil, paper clips, a ruler and push-pins behind your content. Pick some or take them all.</view>
+    <ll-desk objects seed="objects" custom-style="min-height:416px;padding:64px 32px 96px">
+      <ll-paper stock="paper" seed="mid" custom-style="width:384px;max-width:100%;margin:0 auto;padding:32px;box-sizing:border-box">
+        <text class="dk-title">A tidy desk</text>
+        <text class="dk-body">Everything lying around is behind the paper, and gone in calm density.</text>
+      </ll-paper>
+    </ll-desk>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Lamp strength</view>
+    <view class="sec-desc">The vignette darkens toward the corners. lamp=0 is a flat blotter, 1 the theme's own (a whisper of shade), 2.5 a dim room.</view>
+    <view class="dk-lamps">
+      <ll-desk wx:for="{{lamps}}" wx:key="*this" lamp="{{item}}" custom-style="height:208px;display:flex;align-items:center;justify-content:center;padding:12px">
+        <ll-paper stock="slip" tilt="{{false}}" seed="lamp-{{item}}" custom-style="padding:16px 20px;text-align:center">
+          <text class="dk-script">lamp={{item}}</text>
+        </ll-paper>
+      </ll-desk>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">A morning at the desk</view>
+    <view class="sec-desc">A whole workspace: an index card taped up and two sticky notes, with the pencil and the coffee ring behind them.</view>
+    <ll-desk aria-label="Workspace" objects="{{morning}}" seed="morning" custom-style="min-height:544px;padding:48px 24px">
+      <view class="dk-morning">
+        <ll-card stock="index-card" tape="top" seed="morning-card" custom-style="width:288px">
+          <ll-card-header>
+            <ll-card-title>Reminder</ll-card-title>
+          </ll-card-header>
+          <ll-card-content>Post the parcel before the office shuts.</ll-card-content>
+        </ll-card>
+        <view class="dk-stickies">
+          <ll-paper stock="sticky-yellow" seed="s1" custom-style="width:112px;height:112px;padding:12px;box-sizing:border-box">
+            <text class="dk-script">call mum</text>
+          </ll-paper>
+          <ll-paper stock="sticky-pink" seed="s2" custom-style="width:112px;height:112px;padding:12px;box-sizing:border-box">
+            <text class="dk-script">pens!!</text>
+          </ll-paper>
+        </view>
+      </view>
+    </ll-desk>
+  </view>
+
+  <view class="sr-only" aria-live="polite">{{said}}</view>
+</view>

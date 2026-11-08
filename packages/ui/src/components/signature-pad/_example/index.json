@@ -1,0 +1,14 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-signature-pad": "looseleaf-miniprogram/components/signature-pad/signature-pad",
+    "ll-button": "looseleaf-miniprogram/components/button/button",
+    "ll-card": "looseleaf-miniprogram/components/card/card",
+    "ll-card-header": "looseleaf-miniprogram/components/card-header/card-header",
+    "ll-card-title": "looseleaf-miniprogram/components/card-title/card-title",
+    "ll-card-description": "looseleaf-miniprogram/components/card-description/card-description",
+    "ll-card-content": "looseleaf-miniprogram/components/card-content/card-content",
+    "ll-card-footer": "looseleaf-miniprogram/components/card-footer/card-footer",
+    "ll-checkbox": "looseleaf-miniprogram/components/checkbox/checkbox"
+  }
+}

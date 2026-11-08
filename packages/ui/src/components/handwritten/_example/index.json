@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "ll-handwritten": "../handwritten/handwritten",
+    "ll-paper": "../paper/paper"
+  }
+}

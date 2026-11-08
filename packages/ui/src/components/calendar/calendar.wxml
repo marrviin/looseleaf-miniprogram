@@ -1,0 +1,78 @@
+<!-- ll-calendar — the ruled month grid; day states are precomputed tile
+     masks (marker ring, highlighter band, blue today underline, hatch). -->
+<template name="cal-months">
+  <view class="ll-cal__months">
+    <view wx:for="{{months}}" wx:for-item="mo" wx:key="key" class="ll-cal__month">
+      <view class="ll-cal__head">
+        <ll-button size="icon-sm" variant="{{buttonVariant}}" disabled="{{prevDis}}" aria-label="Go to previous month" bind:tap="onPrev">
+          <ll-icon name="chevron-left" size="16" />
+        </ll-button>
+        <view class="ll-cal__cap">
+          <block wx:if="{{captionLayout === 'dropdown'}}">
+            <ll-native-select size="sm" options="{{monthOptions}}" value="{{mo.monthValue}}" aria-label="Month" bindchange="onMonthPick" />
+            <ll-native-select size="sm" options="{{yearOptions}}" value="{{mo.yearValue}}" aria-label="Year" bindchange="onYearPick" />
+          </block>
+          <text wx:else class="ll-cal__caplabel">{{mo.caption}}</text>
+        </view>
+        <ll-button size="icon-sm" variant="{{buttonVariant}}" disabled="{{nextDis}}" aria-label="Go to next month" bind:tap="onNext">
+          <ll-icon name="chevron-right" size="16" />
+        </ll-button>
+      </view>
+
+      <view class="ll-cal__table">
+        <view wx:if="{{mo.gridStyle}}" class="ll-cal__gridink" style="{{mo.gridStyle}}" />
+        <view class="ll-cal__thead">
+          <view wx:if="{{showWeekNumber}}" class="ll-cal__wn" />
+          <view wx:for="{{mo.weekdays}}" wx:key="*this" class="ll-cal__wd">{{item}}</view>
+        </view>
+        <view wx:for="{{mo.weeks}}" wx:for-item="wk" wx:key="k" class="ll-cal__week">
+          <view wx:if="{{showWeekNumber}}" class="ll-cal__wn">{{wk.wn}}</view>
+          <view wx:for="{{wk.days}}" wx:for-item="cell" wx:key="k" class="ll-cal__td">
+            <view wx:if="{{cell.bandStyle}}" class="ll-cal__band" style="{{cell.bandStyle}}" />
+            <view
+              class="ll-cal__btn {{cell.btnCls}}"
+              aria-role="button"
+              aria-label="{{cell.aria}}"
+              aria-disabled="{{cell.disabled ? 'true' : 'false'}}"
+              data-iso="{{cell.iso}}"
+              data-disabled="{{cell.disabled}}"
+              bind:tap="onDayTap"
+            >
+              <view wx:if="{{cell.washStyle}}" class="ll-cal__layer" style="{{cell.washStyle}}" />
+              <view wx:if="{{cell.hatchStyle}}" class="ll-cal__layer" style="{{cell.hatchStyle}}" />
+              <view wx:if="{{cell.ringStyle}}" class="ll-cal__layer" style="{{cell.ringStyle}}" />
+              <text class="ll-cal__num">{{cell.label}}</text>
+              <view wx:if="{{cell.todayStyle}}" class="ll-cal__today" style="{{cell.todayStyle}}" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{footer}}" class="ll-cal__footer">{{footer}}</view>
+  </view>
+</template>
+
+<view class="ll-cal ll-class" style="{{customStyle}}" aria-role="grid">
+  <ll-paper
+    wx:if="{{sheet}}"
+    stock="{{sheetStock}}"
+    tape="{{sheetTape || false}}"
+    tape-kind="masking"
+    fastener="{{sheetFastener || false}}"
+    tilt="{{sheetFastener ? 0.4 : true}}"
+    rules="none"
+    seed="{{seed}}"
+    custom-style="display:block"
+  >
+    <template
+      is="cal-months"
+      data="{{months, captionLayout, monthOptions, yearOptions, buttonVariant, prevDis, nextDis, footer, showWeekNumber}}"
+    />
+  </ll-paper>
+  <view wx:else class="ll-cal__bare">
+    <template
+      is="cal-months"
+      data="{{months, captionLayout, monthOptions, yearOptions, buttonVariant, prevDis, nextDis, footer, showWeekNumber}}"
+    />
+  </view>
+</view>

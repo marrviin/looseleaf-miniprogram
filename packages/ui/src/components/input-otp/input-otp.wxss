@@ -1,0 +1,99 @@
+/* ll-input-otp — upstream input-otp.tsx + otpCss: boxes are 40x48px with a
+   small gap; the invisible input sits over the whole row. */
+/* @ll-import tokens */
+
+.ll-otp {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 24rpx; /* gap-3 */
+  max-width: 100%;
+  font-family: 'Kevin Sans', sans-serif;
+  isolation: isolate;
+}
+.ll-otp--disabled {
+  cursor: not-allowed;
+}
+.ll-otp-slot {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 1;
+  min-width: 48rpx; /* min-w-6: groups shrink on a narrow screen */
+  width: 80rpx; /* w-10 */
+  height: 96rpx; /* h-12 */
+  box-sizing: border-box;
+  font-size: 49rpx; /* text-[1.75rem] x .88 */
+  font-weight: 600;
+  line-height: 1;
+  color: var(--ll-input-ink, #2c4f9e);
+}
+.ll-otp-slot--active {
+  z-index: 10; /* data-[active=true]:z-10 */
+}
+.ll-otp--disabled .ll-otp-slot {
+  color: #5a554e; /* disabled:text-pencil-text */
+}
+.ll-otp-slot__ink {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-otp-slot__char {
+  position: relative;
+  z-index: 1;
+}
+.ll-otp-slot__ph {
+  position: relative;
+  z-index: 1;
+  color: var(--ll-placeholder, #5a554e);
+}
+/* the blinking pencil caret (upstream: a masked ink stroke; a bar here) */
+.ll-otp-caret {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 18rpx;
+  height: 52rpx;
+  margin-left: -9rpx;
+  margin-top: -26rpx;
+  background: var(--ll-caret, #2c4f9e);
+  animation: ll-otp-blink 1.1s steps(1) infinite;
+  pointer-events: none;
+}
+@keyframes ll-otp-blink {
+  0%,
+  55% {
+    opacity: 1;
+  }
+  56%,
+  100% {
+    opacity: 0;
+  }
+}
+/* the drawn minus between groups */
+.ll-otp-sep {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #8a857c; /* text-ink-soft */
+}
+/* one real input over the whole row: typing, paste, autofill are native */
+.ll-otp-input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+}

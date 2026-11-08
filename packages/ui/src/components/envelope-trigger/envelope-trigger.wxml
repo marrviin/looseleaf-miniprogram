@@ -1,0 +1,8 @@
+<!-- ll-envelope-trigger -->
+<view
+  class="ll-envelope-trigger ll-class"
+  style="{{customStyle}}"
+  aria-role="button"
+  aria-label="{{ariaLabel}}"
+  bind:tap="onTap"
+></view>

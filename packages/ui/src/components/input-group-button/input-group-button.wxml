@@ -1,0 +1,14 @@
+<!-- ll-input-group-button — ghost xs Button for an addon. -->
+<ll-button
+  variant="{{variant}}"
+  size="{{size}}"
+  shape="{{shape}}"
+  disabled="{{disabled}}"
+  loading="{{loading}}"
+  aria-label="{{ariaLabel}}"
+  custom-style="{{customStyle}}"
+  bind:tap="onTap"
+  bind:getuserinfo="onGetUserInfo"
+  bind:contact="onContact"
+  bind:error="onError"
+><slot /></ll-button>

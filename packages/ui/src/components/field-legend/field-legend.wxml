@@ -1,0 +1,2 @@
+<!-- ll-field-legend — the fieldset heading. -->
+<view class="ll-field-legend ll-field-legend--{{variant}} ll-class" style="{{customStyle}}"><slot /></view>

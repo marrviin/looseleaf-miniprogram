@@ -1,0 +1,10 @@
+/* ll-folder — a flex column at most 42rem wide */
+/* @ll-import tokens */
+.ll-folder {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 672px;
+  font-family: 'Kevin Sans', sans-serif;
+}

@@ -1,0 +1,7 @@
+/* ll-table-footer — <tfoot>: font-bold; the row's cells flip the double
+   rule above the first row. */
+/* @ll-import tokens */
+.ll-table-footer {
+  display: table-footer-group;
+  font-weight: 700;
+}

@@ -1,0 +1,176 @@
+/* ll-reveal — the five arrival keyframes, ported from upstream
+   looseleaf.css (durations from the --ll-dur-* scale, easings verbatim).
+   State machine: is-armed is-hidden → is-armed is-visible plays once.
+   The delay arrives as the --ll-reveal-delay inline custom property.
+   @ll-import tokens */
+:host {
+  display: block;
+}
+.ll-reveal {
+  position: relative;
+  font-family: 'Kevin Sans', sans-serif;
+}
+
+/* plain: hidden until it arrives, then one animation pass.
+   The delay is a separate longhand — a var() inside the animation
+   shorthand gets the whole declaration dropped in the webview. */
+.ll-reveal.is-armed.is-hidden {
+  opacity: 0;
+}
+.ll-reveal.is-armed.is-visible.anim-wipe {
+  animation: ll-wipe 0.6s ease-out both;
+  animation-delay: var(--ll-reveal-delay, 0s);
+}
+.ll-reveal.is-armed.is-visible.anim-soak {
+  animation: ll-soak 0.52s ease-out both;
+  animation-delay: var(--ll-reveal-delay, 0s);
+}
+.ll-reveal.is-armed.is-visible.anim-drop {
+  animation: ll-drop 0.34s cubic-bezier(0.2, 0.9, 0.25, 1.12) both;
+  animation-delay: var(--ll-reveal-delay, 0s);
+}
+.ll-reveal.is-armed.is-visible.anim-pop {
+  animation: ll-pop 0.18s cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
+  animation-delay: var(--ll-reveal-delay, 0s);
+}
+.ll-reveal.is-armed.is-visible.anim-toss {
+  animation: ll-toss 0.44s cubic-bezier(0.2, 0.9, 0.25, 1.12) both;
+  animation-delay: var(--ll-reveal-delay, 0s);
+}
+
+/* nib: the content wipes while the marker tip rides the bottom edge */
+.ll-reveal.is-nib.is-armed.is-hidden .ll-reveal__content {
+  opacity: 0;
+}
+.ll-reveal.is-nib.is-armed.is-visible .ll-reveal__content {
+  animation: ll-wipe 0.6s ease-out both;
+  animation-delay: var(--ll-reveal-delay, 0s);
+}
+.ll-reveal__nib {
+  position: absolute;
+  bottom: 0;
+  left: -2%;
+  z-index: 8;
+  pointer-events: none;
+  opacity: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  transform: translate(-12%, 12%);
+}
+.is-from-end .ll-reveal__nib {
+  left: 102%;
+}
+.ll-reveal.is-nib.is-armed.is-visible .ll-reveal__nib {
+  animation: ll-reveal-nib 0.6s ease-out both;
+  animation-delay: var(--ll-reveal-delay, 0s);
+}
+.is-from-end .ll-reveal.is-nib.is-armed.is-visible .ll-reveal__nib {
+  animation-name: ll-reveal-nib-end;
+}
+/* from="end": same wipe, right→left (baked keyframes, see ll-wipe-end) */
+.ll-reveal.is-armed.is-visible.anim-wipe.is-from-end {
+  animation-name: ll-wipe-end;
+}
+.ll-reveal.is-nib.is-armed.is-visible.is-from-end .ll-reveal__content {
+  animation-name: ll-wipe-end;
+}
+
+@keyframes ll-soak {
+  from {
+    color: #15110e;
+    opacity: 0.15;
+  }
+  55% {
+    opacity: 0.9;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes ll-drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-26px) rotate(-2.4deg) scale(1.05);
+  }
+  62% {
+    opacity: 1;
+    transform: translateY(2px) rotate(0.35deg) scale(0.995);
+  }
+  82% {
+    transform: translateY(-1px) rotate(-0.1deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes ll-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) rotate(-6deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.08) rotate(1.5deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes ll-toss {
+  0% {
+    opacity: 0;
+    transform: translate(46px, 34px) rotate(14deg) scale(0.92);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(-2px, -2px) rotate(-1.5deg) scale(1.01);
+  }
+  100% {
+    transform: none;
+  }
+}
+/* No var() inside keyframes — the webview drops the whole keyframe
+   (same as color-mix), so start/end directions are two keyframes with
+   the insets baked in instead of an --ll-wipe-l/r override. */
+@keyframes ll-wipe {
+  from {
+    clip-path: inset(-10% 100% -10% -4%);
+  }
+  to {
+    clip-path: inset(-10% -4% -10% -4%);
+  }
+}
+@keyframes ll-wipe-end {
+  from {
+    clip-path: inset(-10% -4% -10% 100%);
+  }
+  to {
+    clip-path: inset(-10% -4% -10% -4%);
+  }
+}
+@keyframes ll-reveal-nib {
+  0% {
+    left: -2%;
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 102%;
+    opacity: 0;
+  }
+}
+@keyframes ll-reveal-nib-end {
+  0% {
+    left: 102%;
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: -2%;
+    opacity: 0;
+  }
+}

@@ -1,0 +1,115 @@
+<!-- ll-calendar demo — mirrors the upstream docs page
+     (#/components/calendar). Upstream example 05 (locales: Spanish /
+     Arabic, rtl, Eastern numerals) has no i18n runtime on this side and is
+     not ported. Fixed dates everywhere, like the upstream pages. -->
+<view class="demo">
+  <view class="demo-title">Calendar</view>
+  <view class="sec-desc">A ruled month grid: the chosen day circled in marker (four hands, by date), today underlined in blue felt, disabled days hatched out, range weeks swiped in one highlighter band per row with chisel ends. Dates cross the boundary as YYYY-MM-DD strings.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Planner page</view>
+    <view class="sec-desc">One chosen day, circled in marker; today underlined; the days before the 3rd hatched out. On its own sheet of card, taped at the corner. Tap a day to move the circle.</view>
+    <view class="center-stage">
+      <ll-calendar
+        id="cal1"
+        mode="single"
+        value="{{cal1}}"
+        default-month="2026-09"
+        today="2026-09-15"
+        disabled="{{[{ before: '2026-09-03' }]}}"
+        sheet
+        sheet-stock="card"
+        sheet-tape="corner"
+        seed="planner"
+        bindchange="onCal1"
+      />
+      <view class="said-line said-line--center" aria-live="polite">{{cal1Said}}</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">A range across two months</view>
+    <view class="sec-desc">Pick a first and a last day and each week gets one highlighter swipe with chisel ends; week numbers go in the margin behind a red pencil rule. The swipe re-ends itself as you move either end.</view>
+    <view class="center-stage">
+      <ll-calendar
+        id="cal2"
+        mode="range"
+        value="{{cal2}}"
+        number-of-months="{{2}}"
+        show-week-number
+        default-month="2026-09"
+        today="2026-09-15"
+        sheet
+        sheet-fastener="binder-clip"
+        seed="range"
+        bindchange="onCal2"
+      />
+      <view class="said-line said-line--center" aria-live="polite">{{cal2Said}}</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Dropdowns and limits</view>
+    <view class="sec-desc">Month and year are picker fields in pencil boxes, so jumping to a birthday takes two taps. Weekends and the past are hatched out and cannot be chosen; the arrows stop at the ends of the range.</view>
+    <view class="center-stage">
+      <ll-calendar
+        id="cal3"
+        mode="single"
+        value="{{cal3}}"
+        caption-layout="dropdown"
+        default-month="2026-09"
+        start-month="2024-01"
+        end-month="2028-12"
+        today="2026-09-15"
+        disabled="{{[{ dayOfWeek: [0, 6] }, { before: '2026-09-15' }]}}"
+        sheet
+        seed="limits"
+        footer="{{cal3Footer}}"
+        bindchange="onCal3"
+      />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Book a call</view>
+    <view class="sec-desc">A calendar on a card with time slots beside it: the chosen day drives the slots, the chosen slot drives the button. Weekends are closed, so they are hatched.</view>
+    <view class="center-stage">
+      <ll-card seed="book" tape="top" custom-style="width:100%;max-width:640rpx">
+        <ll-card-header>
+          <ll-card-title>Book a call</ll-card-title>
+          <ll-card-description>Thirty minutes, on the phone or in the studio.</ll-card-description>
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;flex-direction:column;gap:32rpx">
+          <ll-calendar
+            id="cal4"
+            mode="single"
+            value="{{cal4}}"
+            default-month="2026-09"
+            today="2026-09-15"
+            disabled="{{[{ dayOfWeek: [0, 6] }, { before: '2026-09-15' }]}}"
+            seed="book"
+            bindchange="onCal4"
+          />
+          <view class="slots" aria-label="Available times">
+            <ll-button
+              wx:for="{{slots}}"
+              wx:key="*this"
+              size="sm"
+              variant="{{slot === item ? 'default' : 'outline'}}"
+              disabled="{{!cal4}}"
+              aria-pressed="{{slot === item}}"
+              data-slot="{{item}}"
+              bind:tap="onSlot"
+            >{{item}}</ll-button>
+          </view>
+        </ll-card-content>
+        <ll-card-footer custom-style="justify-content:space-between;gap:24rpx">
+          <view class="said-line">{{cal4 && slot ? cal4 + ' at ' + slot : 'Choose a day and a time.'}}</view>
+          <ll-button disabled="{{!cal4 || !slot}}">Confirm</ll-button>
+        </ll-card-footer>
+      </ll-card>
+    </view>
+  </view>
+</view>

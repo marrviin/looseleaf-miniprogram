@@ -1,0 +1,9 @@
+/* ll-message-content — the column of one message */
+.ll-message-content {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  flex-direction: column;
+  gap: 10px; /* gap-2.5 */
+  word-break: break-word;
+}

@@ -1,0 +1,5 @@
+<!-- ll-alert-dialog-header -->
+<view
+  class="ll-alert-dialog-header {{media ? 'll-alert-dialog-header--media' : ''}} {{size === 'sm' ? 'll-alert-dialog-header--sm' : ''}} ll-class"
+  style="{{customStyle}}"
+><slot /></view>

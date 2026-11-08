@@ -1,0 +1,14 @@
+/* ll-carousel-content — overflow hidden; the track carries the slide */
+.ll-carousel-content {
+  overflow: hidden;
+  min-width: 0;
+}
+.ll-carousel-content__track {
+  display: flex;
+  flex-direction: row;
+  transition: transform 0.3s ease-out;
+}
+.ll-carousel-content.is-vertical .ll-carousel-content__track {
+  flex-direction: column;
+  height: 100%;
+}

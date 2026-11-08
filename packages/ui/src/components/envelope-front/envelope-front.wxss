@@ -1,0 +1,30 @@
+/* ll-envelope-front — the envelope's face, content set towards the bottom */
+/* @ll-import tokens */
+.ll-envelope-front {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  padding: 0 8% 8% 13%;
+}
+/* faced ink sandwich (see paper.wxss) — z:-1 inside the isolated front so
+   the in-flow address/sender paint above the kraft face */
+.ll-ink-face,
+.ll-ink-cast,
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.ll-ink-layer {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-ink-cast {
+  inset: auto;
+}

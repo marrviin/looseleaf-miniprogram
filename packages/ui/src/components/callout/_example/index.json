@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "ll-callout": "../callout/callout",
+    "ll-highlight": "../highlight/highlight",
+    "ll-paper": "../paper/paper",
+    "ll-input": "../input/input",
+    "ll-label": "../label/label",
+    "ll-button": "../button/button"
+  }
+}

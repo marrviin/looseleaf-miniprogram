@@ -1,0 +1,4 @@
+<!-- ll-message-content -->
+<view class="ll-message-content ll-class" style="{{customStyle}}">
+  <slot />
+</view>

@@ -1,0 +1,8 @@
+/* ll-typography-p */
+/* @ll-import tokens */
+.ll-typography-p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--ll-foreground, #1f1b16);
+  font-weight: 400;
+}

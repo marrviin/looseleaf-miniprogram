@@ -1,0 +1,5 @@
+/* ll-message-scroller-item */
+.ll-message-scroller-item {
+  min-width: 0;
+  flex-shrink: 0;
+}

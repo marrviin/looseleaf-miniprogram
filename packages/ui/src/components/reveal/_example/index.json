@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-reveal": "looseleaf-miniprogram/components/reveal/reveal",
+    "ll-button": "looseleaf-miniprogram/components/button/button",
+    "ll-paper": "looseleaf-miniprogram/components/paper/paper",
+    "ll-checkbox": "looseleaf-miniprogram/components/checkbox/checkbox"
+  }
+}

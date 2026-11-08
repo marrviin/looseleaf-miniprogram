@@ -1,0 +1,2 @@
+<!-- ll-attachment-trigger -->
+<view class="ll-attachment-trigger" style="{{customStyle}}" bind:tap="onTap"></view>

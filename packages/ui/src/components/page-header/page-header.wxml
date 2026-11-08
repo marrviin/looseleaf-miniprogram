@@ -1,0 +1,2 @@
+<!-- ll-page-header — a column for the title and description (gap 2) -->
+<view class="ll-page-header ll-class" style="{{customStyle}}"><slot /></view>

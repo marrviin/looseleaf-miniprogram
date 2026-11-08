@@ -1,0 +1,7 @@
+/* ll-message-group — a column of messages */
+.ll-message-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* gap-2 */
+  min-width: 0;
+}

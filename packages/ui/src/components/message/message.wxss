@@ -1,0 +1,12 @@
+/* ll-message — the row (reversed for align=end) */
+.ll-message {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  gap: 8px; /* gap-2 */
+  font-size: 15px;
+}
+.ll-message.is-end {
+  flex-direction: row-reverse;
+}

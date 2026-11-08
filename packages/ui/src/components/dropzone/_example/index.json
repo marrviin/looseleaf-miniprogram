@@ -1,0 +1,22 @@
+{
+  "usingComponents": {
+    "ll-dropzone": "../dropzone/dropzone",
+    "ll-dropzone-area": "../dropzone-area/dropzone-area",
+    "ll-dropzone-icon": "../dropzone-icon/dropzone-icon",
+    "ll-dropzone-title": "../dropzone-title/dropzone-title",
+    "ll-dropzone-description": "../dropzone-description/dropzone-description",
+    "ll-dropzone-rejections": "../dropzone-rejections/dropzone-rejections",
+    "ll-dropzone-list": "../dropzone-list/dropzone-list",
+    "ll-dropzone-item": "../dropzone-item/dropzone-item",
+    "ll-card": "../card/card",
+    "ll-card-header": "../card-header/card-header",
+    "ll-card-title": "../card-title/card-title",
+    "ll-card-description": "../card-description/card-description",
+    "ll-card-content": "../card-content/card-content",
+    "ll-card-footer": "../card-footer/card-footer",
+    "ll-button": "../button/button",
+    "ll-icon": "../icon/icon",
+    "ll-label": "../label/label",
+    "ll-input": "../input/input"
+  }
+}

@@ -1,0 +1,52 @@
+/* ll-stamp-button */
+/* @ll-import tokens */
+/* Upstream: height STAMP_KNOB + 38 = 68px, paddingTop STAMP_KNOB = 30px —
+   the label sits on the die, the knob is drawn above it by the ink layer. */
+.ll-stamp-button {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  box-sizing: border-box;
+  margin: 0 !important; /* UA sets margin-left/right: auto, which scatters flex siblings */
+  height: 136rpx; /* 68px */
+  padding: 60rpx 24rpx 0; /* paddingTop STAMP_KNOB (30px), px-6 */
+  /* Reset the native <button> UA styles: fixed width (~184px, UA !important)
+     and overflow: hidden would stretch the tool and clip the ink layer's
+     hand-drawn stroke overhang. */
+  width: auto !important;
+  min-width: 224rpx; /* min-w-28 (112px) */
+  max-width: none !important;
+  overflow: visible;
+  line-height: 1;
+  border-radius: 8rpx;
+  background: transparent;
+  color: var(--ll-ink);
+  font-family: 'Kevin Sans', sans-serif;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: transform 0.15s ease-out;
+}
+.ll-stamp-button::after {
+  border: none;
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-stamp-button--pressed {
+  transform: translateY(4rpx); /* the die sinks on the page */
+}
+.ll-stamp-button--disabled {
+  color: var(--ll-pencil-text);
+}
+.ll-stamp-button__label {
+  position: relative;
+  z-index: 1;
+  font-size: 28rpx;
+  letter-spacing: 1rpx;
+}

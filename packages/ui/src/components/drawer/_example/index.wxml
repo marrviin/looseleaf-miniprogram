@@ -1,0 +1,180 @@
+<!-- ll-drawer demo — mirrors the upstream docs page (#/components/drawer).
+     The drag is real: pull the slip, it snaps back or puts itself away
+     (25% of the edge, or a flick). Example 04's phone branch is the one a
+     375pt screen always takes; the wide-screen dialog is wired too. -->
+<view class="demo">
+  <view class="demo-title">Drawer</view>
+  <view class="sec-desc">A slip of paper you pull up from the bottom of the screen (or in from any edge), built on vaul. From the bottom it is torn off a pad along its top edge with a strip of tape as the grab tab; drag it, flick it away, or give it snap points.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Move goal</view>
+    <view class="sec-desc">The shadcn demo: a slip pulled up from the bottom, torn along its top edge and taped down by its grab tab. Drag the tape, flick it away, or press Escape.</view>
+    <view class="center-row"><ll-button variant="outline" bind:tap="openDlg" data-k="dlgGoal">Open drawer</ll-button></view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Snap points</view>
+    <view class="sec-desc">Give the slip resting heights: it stops a third, two thirds or all the way up, and remembers where it is. The list only scrolls at the top snap point so a drag never fights a scroll.</view>
+    <view class="center-row"><ll-button variant="outline" bind:tap="openDlg" data-k="dlgSnaps">To-do slip</ll-button></view>
+
+    <view class="sub-h3">Directions</view>
+    <view class="sec-desc">Pull a slip in from any edge. Only the bottom slip is torn and taped (that is where the grab tab belongs); the others are plain slips you drag toward their edge.</view>
+    <view class="center-row wrap">
+      <ll-button variant="outline" bind:tap="openDlg" data-k="dlgBottom">bottom</ll-button>
+      <ll-button variant="outline" bind:tap="openDlg" data-k="dlgTop">top</ll-button>
+      <ll-button variant="outline" bind:tap="openDlg" data-k="dlgLeft">left</ll-button>
+      <ll-button variant="outline" bind:tap="openDlg" data-k="dlgRight">right</ll-button>
+    </view>
+
+    <view class="sub-h3">Responsive dialog</view>
+    <view class="sec-desc">A dialog on wide screens and a drawer on phones, from one component. The media query is read with useSyncExternalStore, so the server renders the desktop dialog and the phone swaps in after hydration. (On this 375pt screen the phone branch always runs; the wide-screen dialog is wired below for the record.)</view>
+    <view class="center-row wrap">
+      <ll-button variant="outline" bind:tap="openDlg" data-k="dlgRd">Edit profile (drawer)</ll-button>
+      <ll-button variant="outline" bind:tap="openDlg" data-k="dlgRdDialog">Edit profile (dialog, ≥sm)</ll-button>
+    </view>
+  </view>
+
+  <!-- 01-move-goal: seed goal -->
+  <ll-drawer id="drawerGoal" open="{{dlgGoal}}" seed="goal" bind:change="onDlgChange" data-k="dlgGoal" aria-label="Move goal">
+    <view class="goal-wrap">
+      <ll-drawer-header centered>
+        <ll-drawer-title>Move goal</ll-drawer-title>
+        <ll-drawer-description>Set your daily activity goal.</ll-drawer-description>
+      </ll-drawer-header>
+      <view class="goal-body">
+        <view class="goal-row">
+          <ll-button variant="outline" size="icon" shape="pill" disabled="{{goal <= 200}}" aria-label="Decrease" bind:tap="goalStep" data-d="-10">
+            <ll-icon name="minus" />
+          </ll-button>
+          <view class="goal-mid">
+            <view class="goal-num">{{goal}}</view>
+            <view class="goal-unit">Calories/day</view>
+          </view>
+          <ll-button variant="outline" size="icon" shape="pill" disabled="{{goal >= 400}}" aria-label="Increase" bind:tap="goalStep" data-d="10">
+            <ll-icon name="plus" />
+          </ll-button>
+        </view>
+        <view class="goal-bars" aria-hidden="true">
+          <view wx:for="{{bars}}" wx:key="index" class="goal-bar" style="height:{{item}}%;" />
+        </view>
+      </view>
+      <ll-drawer-footer>
+        <ll-button>Submit</ll-button>
+        <ll-drawer-close>Cancel</ll-drawer-close>
+      </ll-drawer-footer>
+    </view>
+  </ll-drawer>
+
+  <!-- 02-snap-points: snaps 0.35 / 0.7 / 1, fade from the first -->
+  <ll-drawer
+    id="drawerSnaps"
+    open="{{dlgSnaps}}"
+    seed="snaps"
+    snap-points="{{ [0.35, 0.7, 1] }}"
+    fade-from-index="{{0}}"
+    bind:snapchange="onSnapChange"
+    bind:change="onDlgChange"
+    data-k="dlgSnaps"
+    aria-label="Today"
+  >
+    <view class="snaps-wrap">
+      <ll-drawer-header centered>
+        <ll-drawer-title>Today</ll-drawer-title>
+        <ll-drawer-description>{{snapLabel}}</ll-drawer-description>
+      </ll-drawer-header>
+      <!-- the list only scrolls at the top snap point (the drawer catches
+           the drag below it; scroll-view still scrolls over it) -->
+      <scroll-view scroll-y class="snaps-list" aria-label="To-do list">
+        <view wx:for="{{todos}}" wx:key="index" class="snaps-item">
+          <text class="snaps-n">{{index + 1}}</text>
+          <text>{{item}}</text>
+        </view>
+      </scroll-view>
+    </view>
+  </ll-drawer>
+
+  <!-- 03-directions: four slips, one per edge -->
+  <ll-drawer id="drawerdlgBottom" open="{{dlgBottom}}" direction="bottom" seed="dir-bottom" bind:change="onDlgChange" data-k="dlgBottom" aria-label="From the bottom">
+    <ll-drawer-header centered>
+      <ll-drawer-title>From the bottom</ll-drawer-title>
+      <ll-drawer-description>Drag it back toward the bottom edge to put it away.</ll-drawer-description>
+    </ll-drawer-header>
+    <ll-drawer-footer custom-style="max-width:320px;width:100%;margin:0 auto;box-sizing:border-box;">
+      <ll-drawer-close>Close</ll-drawer-close>
+    </ll-drawer-footer>
+  </ll-drawer>
+
+  <ll-drawer id="drawerdlgTop" open="{{dlgTop}}" direction="top" seed="dir-top" bind:change="onDlgChange" data-k="dlgTop" aria-label="From the top">
+    <ll-drawer-header centered>
+      <ll-drawer-title>From the top</ll-drawer-title>
+      <ll-drawer-description>Drag it back toward the top edge to put it away.</ll-drawer-description>
+    </ll-drawer-header>
+    <ll-drawer-footer custom-style="max-width:320px;width:100%;margin:0 auto;box-sizing:border-box;">
+      <ll-drawer-close>Close</ll-drawer-close>
+    </ll-drawer-footer>
+  </ll-drawer>
+
+  <ll-drawer id="drawerdlgLeft" open="{{dlgLeft}}" direction="left" seed="dir-left" bind:change="onDlgChange" data-k="dlgLeft" aria-label="From the left">
+    <ll-drawer-header>
+      <ll-drawer-title>From the left</ll-drawer-title>
+      <ll-drawer-description>Drag it back toward the left edge to put it away.</ll-drawer-description>
+    </ll-drawer-header>
+    <ll-drawer-footer>
+      <ll-drawer-close>Close</ll-drawer-close>
+    </ll-drawer-footer>
+  </ll-drawer>
+
+  <ll-drawer id="drawerdlgRight" open="{{dlgRight}}" direction="right" seed="dir-right" bind:change="onDlgChange" data-k="dlgRight" aria-label="From the right">
+    <ll-drawer-header>
+      <ll-drawer-title>From the right</ll-drawer-title>
+      <ll-drawer-description>Drag it back toward the right edge to put it away.</ll-drawer-description>
+    </ll-drawer-header>
+    <ll-drawer-footer>
+      <ll-drawer-close>Close</ll-drawer-close>
+    </ll-drawer-footer>
+  </ll-drawer>
+
+  <!-- 04-responsive-dialog, phone branch: the drawer -->
+  <ll-drawer id="drawerdlgRd" open="{{dlgRd}}" seed="rd" bind:change="onDlgChange" data-k="dlgRd" aria-label="Edit profile">
+    <ll-drawer-header centered custom-style="text-align:left;">
+      <ll-drawer-title>Edit profile</ll-drawer-title>
+      <ll-drawer-description>Make changes to your profile here. Click save when you're done.</ll-drawer-description>
+    </ll-drawer-header>
+    <view class="rd-form">
+      <view class="rd-field">
+        <ll-label for="rd-email">Email</ll-label>
+        <ll-input value="ada@analytical.engine" />
+      </view>
+      <view class="rd-field">
+        <ll-label for="rd-username">Username</ll-label>
+        <ll-input value="@ada" />
+      </view>
+      <ll-button>Save changes</ll-button>
+    </view>
+    <ll-drawer-footer custom-style="padding-top:16rpx;">
+      <ll-drawer-close>Cancel</ll-drawer-close>
+    </ll-drawer-footer>
+  </ll-drawer>
+
+  <!-- 04-responsive-dialog, wide branch (>=sm; for the record here) -->
+  <ll-dialog id="dialogdlgRdDialog" open="{{dlgRdDialog}}" tape="top" tape-kind="kraft" seed="rd" bind:change="onDlgChange" data-k="dlgRdDialog">
+    <ll-dialog-header>
+      <ll-dialog-title>Edit profile</ll-dialog-title>
+      <ll-dialog-description>Make changes to your profile here. Click save when you're done.</ll-dialog-description>
+    </ll-dialog-header>
+    <view class="rd-form">
+      <view class="rd-field">
+        <ll-label for="rd-email">Email</ll-label>
+        <ll-input value="ada@analytical.engine" />
+      </view>
+      <view class="rd-field">
+        <ll-label for="rd-username">Username</ll-label>
+        <ll-input value="@ada" />
+      </view>
+      <ll-button>Save changes</ll-button>
+    </view>
+  </ll-dialog>
+</view>

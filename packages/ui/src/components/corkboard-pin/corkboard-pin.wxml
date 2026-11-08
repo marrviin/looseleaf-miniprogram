@@ -1,0 +1,4 @@
+<!-- ll-corkboard-pin -->
+<view class="ll-corkboard-pin ll-class" style="{{customStyle}}" aria-hidden="true">
+  <view class="ll-ink-layer" style="{{inkStyle}}"></view>
+</view>

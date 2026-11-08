@@ -1,0 +1,93 @@
+<!-- ll-bubble demo — mirrors the upstream docs page (#/components/bubble):
+     intro, then the Examples entries with the page's own copy. -->
+<view class="demo">
+  <view class="demo-title">Bubble</view>
+  <view class="sec-desc">A chat bubble drawn like a person draws one: a single felt-tip stroke round a pillowy box, a solid fill (blue for what you send, gray or highlighter for the rest) and a tail on the sender's side. Also a folded note or a sticky note.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Variants</view>
+    <view class="sec-desc">Marker, highlighter, paper shade, a marker wash, paper and a line, red pencil hatching, and nothing at all. The tail sits on the sender's side.</view>
+    <view class="bb-col">
+      <block wx:for="{{variants}}" wx:key="v">
+        <ll-bubble variant="{{item.v}}" align="{{item.align}}">
+          <ll-bubble-content seed="variant-{{item.v}}">{{item.say}}</ll-bubble-content>
+        </ll-bubble>
+      </block>
+      <ll-bubble variant="ghost">
+        <ll-bubble-content>Ghost bubbles are just the words, set in the same hand.</ll-bubble-content>
+      </ll-bubble>
+    </view>
+
+    <view class="sub-h3">A conversation</view>
+    <view class="sec-desc">Bubbles inside Messages: the tail follows the sender, the earlier bubbles of a run lose theirs, a reaction chip sits on the edge, and the header and footer are hand notes.</view>
+    <view class="bb-col">
+      <ll-message>
+        <ll-message-avatar><ll-mascot pose="idle" size="{{36}}" seed="stubby" /></ll-message-avatar>
+        <ll-message-content>
+          <ll-message-header>Stubby <text class="w">9:41</text></ll-message-header>
+          <ll-bubble-group>
+            <ll-bubble variant="muted">
+              <ll-bubble-content seed="a1">I read src/notes/list.tsx first.</ll-bubble-content>
+            </ll-bubble>
+            <ll-bubble variant="muted" custom-style="margin-bottom:8px;">
+              <ll-bubble-content seed="a2">Tags become a string array on Note, with a chip row above the list. Want me to draw the chips small?</ll-bubble-content>
+              <ll-bubble-reactions align="start">+1</ll-bubble-reactions>
+            </ll-bubble>
+          </ll-bubble-group>
+        </ll-message-content>
+      </ll-message>
+      <ll-message align="end">
+        <ll-message-content>
+          <ll-message-header>you</ll-message-header>
+          <ll-bubble-group>
+            <ll-bubble variant="default">
+              <ll-bubble-content seed="u1">Yes, small. And can you put the filter row above the list?</ll-bubble-content>
+            </ll-bubble>
+            <ll-bubble variant="default">
+              <ll-bubble-content seed="u2">Thank you!</ll-bubble-content>
+            </ll-bubble>
+          </ll-bubble-group>
+          <ll-message-footer>seen</ll-message-footer>
+        </ll-message-content>
+      </ll-message>
+    </view>
+
+    <view class="sub-h3">Notes, stickies and your own hand</view>
+    <view class="sec-desc">A bubble does not have to be a cloud. A note is a slip of paper folded twice, a sticky is a sticky note, and pen="you" writes in blue felt and the script font.</view>
+    <view class="bb-grid">
+      <view class="bb-cell">
+        <ll-bubble shape="note">
+          <ll-bubble-content seed="note" paper="{{notePaper}}" custom-style="min-height:56px;">meet me by the library at four</ll-bubble-content>
+        </ll-bubble>
+      </view>
+      <view class="bb-cell">
+        <ll-bubble shape="sticky" variant="secondary">
+          <ll-bubble-content seed="sticky" paper="{{stickyPaper}}" custom-style="min-height:96px;padding-top:28px;">buy more ink!</ll-bubble-content>
+        </ll-bubble>
+      </view>
+      <view class="bb-cell">
+        <ll-bubble shape="sticky" variant="tinted" align="end">
+          <ll-bubble-content seed="sticky-2" paper="{{sticky2Paper}}" custom-style="min-height:96px;">call mum before six</ll-bubble-content>
+        </ll-bubble>
+      </view>
+      <view class="bb-cell">
+        <ll-bubble variant="outline" pen="you" align="end">
+          <ll-bubble-content seed="you">Make the chips a little smaller, please.</ll-bubble-content>
+        </ll-bubble>
+      </view>
+    </view>
+
+    <view class="sub-h3">Bubbles as buttons</view>
+    <view class="sec-desc">asChild turns a bubble into a real button: it wobbles on hover (drop-lines), draws a blue ring on keyboard focus, and can be pressed. Good for suggested replies.</view>
+    <view class="bb-col is-end">
+      <block wx:for="{{replies}}" wx:key="*this">
+        <ll-bubble variant="outline" align="end" tail="{{false}}">
+          <ll-bubble-content interactive seed="{{item}}" bind:tap="pickReply" data-reply="{{item}}">{{item}}</ll-bubble-content>
+        </ll-bubble>
+      </block>
+      <view class="row"><view class="said">{{picked ? 'You picked "' + picked + '"' : 'Pick a reply'}}</view></view>
+    </view>
+  </view>
+</view>

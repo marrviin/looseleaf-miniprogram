@@ -1,0 +1,6 @@
+<!-- ll-dropzone-area — the stitched paper patch; a tap opens the picker
+     (no drag in the webview) -->
+<view class="ll-dropzone-area {{invalid ? 'is-invalid' : ''}} {{disabled ? 'is-disabled' : ''}}" style="{{customStyle}}" bind:tap="onTap">
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <slot />
+</view>

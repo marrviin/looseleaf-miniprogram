@@ -1,0 +1,25 @@
+/* ll-message-scroller-button — centered at its edge; hidden while inert */
+.ll-message-scroller-button {
+  position: absolute;
+  left: 50%;
+  z-index: 8; /* --ll-z-raised */
+  transform: translateX(-50%) translateY(0);
+  transition: transform 200ms ease, opacity 200ms ease;
+  opacity: 1;
+}
+.ll-message-scroller-button.is-end {
+  bottom: 16px;
+}
+.ll-message-scroller-button.is-start {
+  top: 16px;
+}
+.ll-message-scroller-button:not(.is-active) {
+  opacity: 0;
+  pointer-events: none;
+}
+.ll-message-scroller-button.is-end:not(.is-active) {
+  transform: translateX(-50%) translateY(100%);
+}
+.ll-message-scroller-button.is-start:not(.is-active) {
+  transform: translateX(-50%) translateY(-100%);
+}

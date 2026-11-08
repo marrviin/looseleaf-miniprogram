@@ -1,0 +1,71 @@
+.demo {
+  padding: 32rpx;
+  background: var(--ll-paper, #f8f5ee);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+.sec {
+  margin-top: 40rpx;
+}
+.sub-h3 {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin: 28rpx 0 6rpx;
+}
+.sec-desc {
+  font-size: 24rpx;
+  color: #8a857c;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+.nb-center {
+  display: flex;
+  justify-content: center;
+}
+.nb-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 48rpx;
+}
+.nb-line {
+  display: block;
+  font-size: 17px;
+  line-height: 28px;
+  color: #2a2420;
+}
+.nb-muted {
+  color: #6f6a60;
+}
+.nb-first {
+  margin-top: 28px;
+}
+.nb-check {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 28px; /* a long item wraps on a narrow screen */
+}
+.nb-check-label {
+  font-size: 17px;
+  line-height: 28px;
+  color: #2a2420;
+}
+.nb-shelf {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24rpx;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}

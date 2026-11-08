@@ -1,0 +1,18 @@
+{
+  "usingComponents": {
+    "ll-message-scroller": "looseleaf-miniprogram/components/message-scroller/message-scroller",
+    "ll-message-scroller-viewport": "looseleaf-miniprogram/components/message-scroller-viewport/message-scroller-viewport",
+    "ll-message-scroller-item": "looseleaf-miniprogram/components/message-scroller-item/message-scroller-item",
+    "ll-message-scroller-content": "looseleaf-miniprogram/components/message-scroller-content/message-scroller-content",
+    "ll-message-scroller-button": "looseleaf-miniprogram/components/message-scroller-button/message-scroller-button",
+    "ll-message": "looseleaf-miniprogram/components/message/message",
+    "ll-message-avatar": "looseleaf-miniprogram/components/message-avatar/message-avatar",
+    "ll-message-content": "looseleaf-miniprogram/components/message-content/message-content",
+    "ll-message-header": "looseleaf-miniprogram/components/message-header/message-header",
+    "ll-bubble": "looseleaf-miniprogram/components/bubble/bubble",
+    "ll-bubble-content": "looseleaf-miniprogram/components/bubble-content/bubble-content",
+    "ll-message-text": "looseleaf-miniprogram/components/message-text/message-text",
+    "ll-mascot": "looseleaf-miniprogram/components/mascot/mascot",
+    "ll-button": "looseleaf-miniprogram/components/button/button"
+  }
+}

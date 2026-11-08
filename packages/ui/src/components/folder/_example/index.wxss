@@ -1,0 +1,68 @@
+/* ll-folder demo */
+/* @ll-import tokens */
+.demo {
+  padding: 32rpx;
+  background: var(--ll-paper, #f8f5ee);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+.sec { margin-top: 40rpx; }
+.sec-h2 {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin-bottom: 12rpx;
+}
+.sub-h3 {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin: 28rpx 0 6rpx;
+}
+.sec-desc {
+  font-size: 24rpx;
+  color: #8a857c;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+.max-w-sm { max-width: 576rpx; }
+.max-w-xs { max-width: 448rpx; }
+.grid-gap { display: flex; flex-direction: column; gap: 32rpx; }
+.row { display: flex; align-items: center; gap: 16rpx; }
+.script-h3 {
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 44rpx; /* text-2xl x .88 */
+  font-weight: 600;
+  line-height: 1;
+  color: #2a2420;
+}
+.panel-note {
+  font-size: 24rpx;
+  color: #8a857c;
+  line-height: 1.6;
+}
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+  margin: 8rpx 0 16rpx;
+}
+.task-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  min-height: 52rpx;
+}
+.task-label {
+  font-size: 26rpx;
+  color: #2a2420;
+}
+.said {
+  font-size: 24rpx;
+  color: #8a857c;
+}

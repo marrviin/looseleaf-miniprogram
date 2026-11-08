@@ -1,0 +1,21 @@
+<!-- ll-command-input — the search row: ink rule under it (blue while
+     focused), magnifier, real input, hidden polite status. -->
+<view
+  class="ll-command-input__wrapper ll-class"
+  style="{{customStyle}}"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <ll-icon name="search" size="{{18}}" />
+  <input
+    class="ll-command-input__control {{disabled ? 'll-command-input__control--disabled' : ''}}"
+    value="{{value}}"
+    placeholder="{{placeholder}}"
+    placeholder-class="ll-command-input__placeholder"
+    disabled="{{disabled}}"
+    aria-label="{{ariaLabel}}"
+    bindinput="onInput"
+    bindfocus="onFocus"
+    bindblur="onBlur"
+  />
+  <view class="ll-command-input__status" aria-role="status" aria-live="polite">{{status}}</view>
+</view>

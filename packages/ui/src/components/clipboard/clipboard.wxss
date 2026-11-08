@@ -1,0 +1,48 @@
+/* ll-clipboard — upstream Clipboard: flex column px-6 pt-14 pb-6; the
+   board ink is the root-sized layer (isolation keeps its z-index:-1 from
+   falling behind the page); the sheet tucks up under the clip. */
+/* @ll-import tokens */
+.ll-clipboard {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  padding: 56px 24px 24px;
+  font-family: 'Kevin Sans', sans-serif;
+}
+
+/* the board — a faced recipe: cast shadow, under strokes, (face views),
+   over strokes — same sandwich as ll-paper. */
+.ll-clipboard__board {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+.ll-ink-face,
+.ll-ink-cast,
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.ll-ink-layer {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-ink-cast {
+  inset: auto;
+}
+
+/* the metal clip — top 12px, centered, above paper and board */
+.ll-clipboard__clip {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 1.5px rgba(0, 0, 0, 0.25));
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

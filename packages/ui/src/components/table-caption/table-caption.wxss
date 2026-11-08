@@ -1,0 +1,10 @@
+/* ll-table-caption — mt-4 font-script text-lg text-muted-foreground;
+   caption-side: bottom (set on the ll-table root). */
+/* @ll-import tokens */
+.ll-table-caption {
+  display: table-caption;
+  margin-top: 32rpx; /* mt-4 */
+  font-family: 'Kevin Sans', sans-serif; /* font-script (75% size-adjust) */
+  font-size: 27rpx; /* text-lg × 0.75 */
+  color: var(--muted-foreground, #4a433c);
+}

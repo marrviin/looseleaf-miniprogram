@@ -1,0 +1,4 @@
+<!-- ll-message — one message row -->
+<view class="ll-message ll-class {{align === 'end' ? 'is-end' : ''}}" style="{{customStyle}}">
+  <slot />
+</view>

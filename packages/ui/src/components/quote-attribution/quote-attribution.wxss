@@ -1,0 +1,8 @@
+/* ll-quote-attribution */
+/* @ll-import tokens */
+.ll-quote-attribution {
+  padding-left: 52px; /* aligns under md quote text; sm/lg override below */
+  font-family: 'Kevin Sans', sans-serif; /* font-hand */
+  font-size: 14px;
+  color: var(--muted-foreground, #4a433c);
+}

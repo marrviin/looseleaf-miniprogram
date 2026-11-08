@@ -1,0 +1,18 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-form": "../form/form",
+    "ll-form-item": "../form-item/form-item",
+    "ll-form-label": "../form-label/form-label",
+    "ll-form-description": "../form-description/form-description",
+    "ll-form-message": "../form-message/form-message",
+    "ll-input": "../input/input",
+    "ll-select": "../select/select",
+    "ll-radio-group": "../radio-group/radio-group",
+    "ll-radio": "../radio/radio",
+    "ll-slider": "../slider/slider",
+    "ll-switch": "../switch/switch",
+    "ll-checkbox": "../checkbox/checkbox",
+    "ll-button": "../button/button"
+  }
+}

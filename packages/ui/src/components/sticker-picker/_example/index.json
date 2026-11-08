@@ -1,0 +1,12 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-sticker-picker": "../sticker-picker/sticker-picker",
+    "ll-sticker": "../sticker/sticker",
+    "ll-button": "../button/button",
+    "ll-icon": "../icon/icon",
+    "ll-card": "../card/card",
+    "ll-card-content": "../card-content/card-content",
+    "ll-textarea": "../textarea/textarea"
+  }
+}

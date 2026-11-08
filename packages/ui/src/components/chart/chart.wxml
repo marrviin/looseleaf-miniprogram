@@ -1,0 +1,49 @@
+<view class="ll-chart {{type === 'gauge' ? 'll-chart--gauge' : ''}} {{type === 'heat' && variant !== 'grid' ? 'll-chart--cal' : ''}} {{type === 'sparkline' ? 'll-chart--spark' : ''}}">
+  <view
+    class="ll-chart__stage"
+    role="img"
+    aria-label="{{ariaLabel || summary}}"
+    bind:tap="onStageTap"
+  >
+    <view class="ll-chart__ink" style="{{stageStyle}}"></view>
+    <view wx:if="{{cursorBehind.length}}" class="ll-chart__cursors ll-chart__cursors--behind">
+      <view wx:for="{{cursorBehind}}" wx:key="index" class="ll-chart__cursor" style="{{item.style}}"><view class="ll-chart__cursor-ink" style="{{item.ink}}"></view></view>
+    </view>
+    <view wx:if="{{labels.length}}" class="ll-chart__labels" aria-hidden="true">
+      <view
+        wx:for="{{labels}}"
+        wx:key="id"
+        class="ll-chart__label ll-chart__label--{{item.role}} {{item.tone === 'muted' ? 'is-muted' : ''}} {{item.tone === 'pen' ? 'is-pen' : ''}}"
+        style="{{item.style}}"
+      >{{item.text}}</view>
+    </view>
+    <view wx:if="{{cursorAbove.length}}" class="ll-chart__cursors ll-chart__cursors--above">
+      <view wx:for="{{cursorAbove}}" wx:key="index" class="ll-chart__cursor" style="{{item.style}}"><view class="ll-chart__cursor-ink" style="{{item.ink}}"></view></view>
+    </view>
+    <view wx:if="{{center}}" class="ll-chart__center" style="{{center.style}}" aria-hidden="true">
+      <view class="ll-chart__center-value">{{center.value}}</view>
+      <view wx:if="{{center.label}}" class="ll-chart__center-label">{{center.label}}</view>
+    </view>
+    <view wx:if="{{tip}}" class="ll-chart__tip {{tip.below ? 'is-below' : ''}}" style="{{tip.style}}" aria-hidden="true">
+      <view wx:if="{{tip.label}}" class="ll-chart__tip-head">{{tip.label}}</view>
+      <view wx:for="{{tip.rows}}" wx:key="name" class="ll-chart__tip-row">
+        <view class="ll-chart__tip-dot" style="background: var(--ll-{{item.dot}}, currentColor);"></view>
+        <text class="ll-chart__tip-name">{{item.name}}</text>
+        <text class="ll-chart__tip-val">{{item.value}}</text>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{legendRows.length}}" class="ll-chart__legend">
+    <view
+      wx:for="{{legendRows}}"
+      wx:key="key"
+      class="ll-chart__legend-item {{item.off ? 'is-off' : ''}}"
+      data-key="{{item.key}}"
+      bind:tap="onLegendTap"
+      aria-label="{{item.name}}"
+    >
+      <view class="ll-chart__swatch {{item.line ? 'll-chart__swatch--line' : ''}}" aria-hidden="true"><view class="ll-chart__swatch-ink" style="{{item.ink}}"></view></view>
+      <text class="ll-chart__legend-name">{{item.name}}</text>
+    </view>
+  </view>
+</view>

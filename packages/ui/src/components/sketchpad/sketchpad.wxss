@@ -1,0 +1,121 @@
+/* ll-sketchpad — toolbar slip, framed paper, composite stroke images.
+   Button boxes are fixed px (upstream min-w-16 h-52 / size-7) so the ink
+   recipes render at their true size on every device. */
+:host {
+  display: block;
+}
+.ll-sketchpad {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+  width: 100%;
+  font-family: 'Kevin Sans', sans-serif;
+  color: #2a2420;
+}
+.ll-sketchpad.is-disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* toolbar slip */
+.ll-sketchpad__toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+  padding: 12rpx 16rpx;
+}
+.ll-sketchpad__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8rpx 24rpx;
+}
+.ll-sketchpad__group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4rpx;
+}
+.ll-sketchpad__group--sizes {
+  gap: 0;
+}
+.ll-sketchpad__actions {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+/* tool buttons — the 64x52 px pen-sample ink stays centered; the label may
+   widen the button (upstream min-w-16 with nowrap) */
+.ll-sketchpad__tool {
+  position: relative;
+  isolation: isolate;
+  box-sizing: border-box;
+  min-width: 64px;
+  height: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 4px 5px;
+}
+.ll-sketchpad__tool-label {
+  position: relative;
+  z-index: 2;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.ll-sketchpad__btn-ink {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  pointer-events: none;
+}
+
+/* color swatches and size dots — 28 px, the checked layer loops on top */
+.ll-sketchpad__dot {
+  position: relative;
+  isolation: isolate;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* canvas — wrapper carries the pencil frame ink; the paper fills it */
+.ll-sketchpad-canvas {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+}
+.ll-sketchpad__paper {
+  display: block;
+  width: 100%;
+  /* height comes in via customStyle (the sheet sizes to slot content
+     upstream too — here the surface is a sibling, so set it explicitly) */
+}
+.ll-sketchpad__surface {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  touch-action: none;
+}
+.ll-sketchpad__doc {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  pointer-events: none;
+}
+
+/* the a11y status line — visually hidden like upstream's role=status */
+.ll-sketchpad__status {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}

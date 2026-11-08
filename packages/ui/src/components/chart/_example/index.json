@@ -1,0 +1,12 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-chart": "looseleaf-miniprogram/components/chart/chart",
+    "ll-card": "looseleaf-miniprogram/components/card/card",
+    "ll-card-header": "looseleaf-miniprogram/components/card-header/card-header",
+    "ll-card-title": "looseleaf-miniprogram/components/card-title/card-title",
+    "ll-card-description": "looseleaf-miniprogram/components/card-description/card-description",
+    "ll-card-content": "looseleaf-miniprogram/components/card-content/card-content",
+    "ll-button": "looseleaf-miniprogram/components/button/button"
+  }
+}

@@ -1,0 +1,107 @@
+<!-- ll-context-menu demo — mirrors the upstream docs page (#/components/context-menu).
+     Radix opens these on right-click (or the menu key); a phone has
+     neither, so every slip here opens on a long-press of its region. -->
+<view class="demo">
+  <view class="demo-title">Context Menu</view>
+  <view class="sec-desc">A paper slip of rows that opens where you pressed — the desktop right-click menu, kept whole. On touch it opens on a long-press of its region, and the slip lands at the press point. Rows come from the shared dropdown-menu family, the way upstream's three menus share menu-styles.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Right-click anywhere</view>
+    <view class="sec-desc">The shadcn demo: back, forward and reload with keycaps, a sub-menu, ticked rows and a radio group. The slip opens where you clicked (or, here, where you long-pressed the graph sheet).</view>
+    <view class="center-row">
+      <ll-context-menu id="ctxMain" width="288" seed="ctx" aria-label="Notebook menu">
+        <view slot="trigger">
+          <ll-paper stock="graph" seed="region" custom-style="display:grid;place-items:center;width:320px;height:176px;text-align:center;" aria-label="Long-press for the menu">
+            <view>
+              <view class="region-script">Right-click anywhere</view>
+              <view class="region-sub">long-press on touch</view>
+            </view>
+          </ll-paper>
+        </view>
+        <ll-dropdown-menu-item inset bind:select="onMenuPick" data-name="Back">Back <ll-dropdown-menu-shortcut text="⌘[" /></ll-dropdown-menu-item>
+        <ll-dropdown-menu-item inset disabled>Forward <ll-dropdown-menu-shortcut text="⌘]" /></ll-dropdown-menu-item>
+        <ll-dropdown-menu-item inset bind:select="onMenuPick" data-name="Reload">Reload <ll-dropdown-menu-shortcut text="⌘R" /></ll-dropdown-menu-item>
+        <ll-dropdown-menu-sub id="subMain" label="More tools" width="{{208}}" open="{{subOpen}}" bind:change="onMenuChange" data-k="subOpen">
+          <ll-dropdown-menu-item bind:select="onMenuPick" data-name="Save page as…">Save page as… <ll-dropdown-menu-shortcut text="⌘S" /></ll-dropdown-menu-item>
+          <ll-dropdown-menu-item bind:select="onMenuPick" data-name="Create shortcut…">Create shortcut…</ll-dropdown-menu-item>
+          <ll-dropdown-menu-item bind:select="onMenuPick" data-name="Name window…">Name window…</ll-dropdown-menu-item>
+          <ll-dropdown-menu-separator />
+          <ll-dropdown-menu-item bind:select="onMenuPick" data-name="Developer tools">Developer tools</ll-dropdown-menu-item>
+          <ll-dropdown-menu-separator />
+          <ll-dropdown-menu-item variant="destructive" bind:select="onMenuPick" data-name="Delete">
+            <ll-icon name="trash" size="{{16}}" /> Delete
+          </ll-dropdown-menu-item>
+        </ll-dropdown-menu-sub>
+        <ll-dropdown-menu-separator />
+        <ll-dropdown-menu-checkbox-item checked="{{bookmarks}}" bind:change="onTickBookmarks">Show bookmarks <ll-dropdown-menu-shortcut text="⇧⌘B" /></ll-dropdown-menu-checkbox-item>
+        <ll-dropdown-menu-checkbox-item checked="{{urls}}" bind:change="onTickUrls">Show full URLs</ll-dropdown-menu-checkbox-item>
+        <ll-dropdown-menu-separator />
+        <ll-dropdown-menu-radio-group value="{{person}}" bind:change="onPersonChange">
+          <ll-dropdown-menu-label inset>People</ll-dropdown-menu-label>
+          <ll-dropdown-menu-radio-item value="pedro" checked="{{person === 'pedro'}}">Pedro Duarte</ll-dropdown-menu-radio-item>
+          <ll-dropdown-menu-radio-item value="colm" checked="{{person === 'colm'}}">Colm Tuite</ll-dropdown-menu-radio-item>
+        </ll-dropdown-menu-radio-group>
+      </ll-context-menu>
+    </view>
+
+    <view class="sub-h3">On a list row</view>
+    <view class="sec-desc">Each row is its own region, so the menu knows which row you pressed. The chosen row is remembered below the list.</view>
+    <view class="center-row">
+      <ll-paper stock="paper" seed="files" custom-style="display:block;width:100%;max-width:336px;padding:16px;box-sizing:border-box;">
+        <view class="files-script">Notebooks</view>
+        <view class="files-list">
+          <view wx:for="{{files}}" wx:key="name" class="files-row-wrap">
+            <ll-context-menu id="ctxFile{{index}}" width="208" aria-label="{{item.name}} menu">
+              <view slot="trigger">
+                <view class="files-row">
+                  <ll-icon name="{{item.icon}}" size="{{16}}" />
+                  <text>{{item.name}}</text>
+                </view>
+              </view>
+              <ll-dropdown-menu-item id="fileOpen{{index}}" bind:select="onFilePick" data-name="{{item.name}}" data-verb="Opened">
+                <ll-icon name="folder-open" size="{{16}}" /> Open
+              </ll-dropdown-menu-item>
+              <ll-dropdown-menu-item bind:select="onFilePick" data-name="{{item.name}}" data-verb="Renamed">
+                <ll-icon name="pencil" size="{{16}}" /> Rename <ll-dropdown-menu-shortcut text="F2" />
+              </ll-dropdown-menu-item>
+              <ll-dropdown-menu-item bind:select="onFilePick" data-name="{{item.name}}" data-verb="Copied">
+                <ll-icon name="copy" size="{{16}}" /> Duplicate <ll-dropdown-menu-shortcut text="⌘D" />
+              </ll-dropdown-menu-item>
+              <ll-dropdown-menu-separator />
+              <ll-dropdown-menu-item variant="destructive" bind:select="onFilePick" data-name="{{item.name}}" data-verb="Trashed">
+                <ll-icon name="trash" size="{{16}}" /> Move to trash
+              </ll-dropdown-menu-item>
+            </ll-context-menu>
+          </view>
+        </view>
+        <view class="files-note" aria-live="polite">{{picked}}</view>
+      </ll-paper>
+    </view>
+
+    <view class="sub-h3">Pen picker on a sticky note</view>
+    <view class="sec-desc">A composed use: long-press a sticky note to choose the pen it is written with. The menu is a second sticky, in another color so it reads as its own note, taped down; the radio rows tick the choice.</view>
+    <view class="center-row">
+      <ll-context-menu id="ctxPen" width="224" stock="sticky-blue" tape="corner" seed="pen-menu" aria-label="Pen picker">
+        <view slot="trigger">
+          <ll-paper stock="sticky-yellow" seed="pen-note" tape="top" custom-style="display:block;width:256px;padding:20px;padding-top:24px;box-sizing:border-box;" aria-label="Sticky note. Long-press for pens.">
+            <view class="note-script">buy more ink!</view>
+            <view class="note-sub">written with a {{penLabel}} · {{lines}} {{lines === 1 ? 'line' : 'lines'}}</view>
+          </ll-paper>
+        </view>
+        <ll-dropdown-menu-label>Pen</ll-dropdown-menu-label>
+        <ll-dropdown-menu-radio-group value="{{pen}}" bind:change="onPenChange">
+          <ll-dropdown-menu-radio-item id="pen{{item.value}}" wx:for="{{pens}}" wx:key="value" value="{{item.value}}" checked="{{pen === item.value}}">{{item.label}}</ll-dropdown-menu-radio-item>
+        </ll-dropdown-menu-radio-group>
+        <ll-dropdown-menu-separator />
+        <ll-dropdown-menu-item id="penAdd" bind:select="onAddLine">
+          <ll-icon name="plus" size="{{16}}" /> Add a line <ll-dropdown-menu-shortcut text="⌘↵" />
+        </ll-dropdown-menu-item>
+        <ll-dropdown-menu-item id="penRemove" disabled="{{lines < 2}}" bind:select="onRemoveLine">
+          <ll-icon name="minus" size="{{16}}" /> Remove a line
+        </ll-dropdown-menu-item>
+      </ll-context-menu>
+    </view>
+  </view>
+</view>

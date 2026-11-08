@@ -1,0 +1,7 @@
+/* ll-envelope-trigger — an invisible tap target over the whole envelope */
+/* @ll-import tokens */
+.ll-envelope-trigger {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}

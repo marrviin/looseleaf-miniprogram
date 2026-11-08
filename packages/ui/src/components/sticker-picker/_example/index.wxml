@@ -1,0 +1,73 @@
+<!-- ll-sticker-picker demo — mirrors the upstream docs page
+     (#/components/sticker-picker). No arrow-key walk on a phone: touch
+     lights a sticker (peel + tilt) and the tap chooses it. -->
+<view class="demo">
+  <view class="demo-title">Sticker picker</view>
+  <view class="sec-desc">A popover of stickers to choose from: a search field, category chips and a grid. The touched sticker peels its corner; tap sticks it.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">A sticker for the job</view>
+    <view class="sec-desc">Type to search or click a category. The touched sticker peels its corner; tap sticks it into the square.</view>
+    <view class="row">
+      <ll-sticker-picker id="p1" bind:select="onPick">
+        <view slot="trigger">
+          <ll-button variant="outline" aria-label="Add sticker"><ll-icon name="star" />Add sticker</ll-button>
+        </view>
+      </ll-sticker-picker>
+      <view class="chosen" aria-live="polite">
+        <ll-sticker wx:if="{{name}}" name="{{name}}" size="88" label="Chosen: {{name}}" />
+        <view wx:else class="chosen-none">none yet</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Your own set</view>
+    <view class="sec-desc">Offer only the stickers you want, under your own names and words. Here a reaction picker: four to a row, it stays open so you can react more than once (choose one again to take it back), and the latest choice is marked.</view>
+    <view class="row">
+      <ll-sticker-picker id="p2" stickers="{{reactions}}" close-on-select="{{false}}" columns="{{4}}" size="{{48}}" bind:select="onReact">
+        <view slot="trigger">
+          <ll-button variant="secondary" size="sm">React</ll-button>
+        </view>
+      </ll-sticker-picker>
+      <view class="react-row" aria-label="Your reactions">
+        <ll-sticker wx:for="{{mine}}" wx:key="*this" name="{{item}}" size="48" label="{{item}}" />
+        <view wx:if="{{!mine.length}}" class="chosen-none">react away</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">In a comment box</view>
+    <view class="sec-desc">The picker as a composer tool: choose a sticker, it waits beside the text (tap it to take it off), and posting sends both. Recent stickers come first next time.</view>
+    <ll-card>
+      <ll-card-content>
+        <view class="comments">
+          <view wx:for="{{posts}}" wx:key="index" class="comment">
+            <view class="comment-who">{{item.who}}</view>
+            <view class="comment-body">
+              <view wx:if="{{item.text}}">{{item.text}}</view>
+              <view wx:if="{{item.sticker}}" class="comment-sticker">
+                <ll-sticker name="{{item.sticker}}" size="{{item.sticker === 'stamp-approved' ? 96 : 72}}" label="{{item.sticker}}" />
+              </view>
+            </view>
+          </view>
+        </view>
+        <ll-textarea value="{{text}}" placeholder="Write a comment" aria-label="Comment" bind:input="onText" />
+        <view class="composer-row">
+          <ll-sticker-picker id="p3" value="{{sticker}}" recent="{{recent}}" bind:select="onComposerPick">
+            <view slot="trigger">
+              <ll-button variant="ghost" size="icon" aria-label="Add a sticker"><ll-icon name="sparkles" /></ll-button>
+            </view>
+          </ll-sticker-picker>
+          <view wx:if="{{sticker}}" class="picked" bindtap="onUnstick" aria-label="Remove the sticker">
+            <ll-sticker name="{{sticker}}" size="40" />
+          </view>
+          <ll-button class="post-btn" disabled="{{!text && !sticker}}" bind:tap="onPost">Post</ll-button>
+        </view>
+      </ll-card-content>
+    </ll-card>
+  </view>
+</view>

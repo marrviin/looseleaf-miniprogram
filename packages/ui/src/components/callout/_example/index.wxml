@@ -1,0 +1,59 @@
+<!-- ll-callout demo — mirrors the upstream docs page
+     (#/components/callout): note + arrow, the eight directions, notes in
+     a margin, and a form hint that goes away on focus. -->
+<view class="demo">
+  <view class="demo-title">Callout</view>
+  <view class="sec-desc">Handwritten words with a drawn arrow on their tail, pointing at whatever they're about.</view>
+
+  <view class="sec">
+    <view class="sub-h3">A note and its arrow</view>
+    <view class="sec-desc">The arrow points left, at the box to the note's left.</view>
+    <view class="center-row">
+      <view class="dashed-box">the total</view>
+      <ll-callout text="check the date!" seed="c1" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Eight directions</view>
+    <view class="sec-desc">The arrow points where you say; the words sit on its tail.</view>
+    <view class="dir-grid">
+      <ll-callout direction="left" seed="d0" text="check the date!" />
+      <ll-callout direction="right" seed="d1" text="ask sam" />
+      <ll-callout direction="up" seed="d2" text="this again?" />
+      <ll-callout direction="down" seed="d3" text="so true" />
+      <ll-callout direction="up-left" seed="d4" text="nice one" />
+      <ll-callout direction="up-right" seed="d5" text="wait, why?" />
+      <ll-callout direction="down-left" seed="d6" curve="curl" text="move this up" />
+      <ll-callout direction="down-right" seed="d7" text="the best line" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">In the margin of a paragraph</view>
+    <view class="sec-desc">A note beside the line it's about — the good bits get a swipe of yellow, the note rides next to them.</view>
+    <view class="margin-wrap">
+      <ll-paper stock="paper" rules="ruled" seed="margin" custom-style="width:100%;padding:16rpx 24rpx 24rpx 56rpx;box-sizing:border-box;">
+        <view class="margin-para">
+          Most of what I remember from a book is in the margins: an arrow, a question mark, a small argument with a dead author. The good bits get
+          <ll-highlight text="a swipe of yellow" />
+          so I can find them on the next read, and the parts I do not believe get a red pencil.
+        </view>
+      </ll-paper>
+      <ll-callout direction="left" bend="down" seed="m1" text="ha, true" custom-style="position:absolute;right:0;top:60px;max-width:140px;" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">A hint on a form</view>
+    <view class="sec-desc">A hint that points at the field it's about, and goes away when you get there.</view>
+    <view class="form">
+      <view class="form-field">
+        <ll-label>Email</ll-label>
+        <ll-input placeholder="you@example.com" bind:focus="onEmailFocus" />
+        <ll-callout wx:if="{{hint}}" direction="up-right" curve="curved" seed="f1" text="start with this one" custom-style="position:absolute;left:32px;bottom:0;" />
+      </view>
+      <ll-button size="sm" custom-style="align-self:flex-start;" bind:tap="sendLink">Send the link</ll-button>
+    </view>
+  </view>
+</view>

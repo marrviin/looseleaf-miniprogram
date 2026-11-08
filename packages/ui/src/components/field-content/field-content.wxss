@@ -1,0 +1,9 @@
+/* ll-field-content — flex flex-1 flex-col gap-1.5 leading-snug */
+.ll-field-content {
+  display: flex;
+  flex: 1 1 0%;
+  min-width: 0;
+  flex-direction: column;
+  gap: 12rpx; /* gap-1.5 */
+  line-height: 1.375; /* leading-snug */
+}

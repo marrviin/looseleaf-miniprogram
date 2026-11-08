@@ -1,0 +1,48 @@
+<!-- ll-code-block — tokenized code on a slip; header rule ink, diff Strike/Tick -->
+<template name="cb-inner">
+  <view class="ll-code-block-header">
+    <view class="ll-ink-layer" style="{{inkStyle}}" />
+    <view class="ll-code-block-title">{{headerLabel}}</view>
+    <view class="ll-code-block-stats" wx:if="{{stats}}">
+      <text class="is-add">+{{stats.added}}</text>
+      <text class="is-del">-{{stats.removed}}</text>
+    </view>
+    <view class="ll-code-block-actions" wx:if="{{copyable}}">
+      <ll-button variant="ghost" size="xs" aria-label="Copy code" bind:tap="onCopy">
+        <ll-icon name="{{copyIcon}}" size="{{14}}" />
+        <text>{{copyLabel}}</text>
+      </ll-button>
+    </view>
+  </view>
+  <view class="ll-code-block-body">
+    <view class="ll-code-block-pre {{wrap ? 'is-wrap' : ''}}">
+      <view class="ll-code-block-code">
+        <view
+          wx:for="{{lines}}"
+          wx:key="index"
+          class="ll-code-line {{item.add ? 'is-add' : ''}} {{item.del ? 'is-del' : ''}} {{item.meta ? 'is-meta' : ''}} {{item.num !== null ? 'has-num' : ''}}"
+          style="opacity:{{item.dim}};{{item.num !== null ? (isDiff ? 'padding-left:56px;' : 'padding-left:44px;') : (isDiff ? 'padding-left:28px;' : '')}}"
+        >
+          <text wx:if="{{item.num !== null}}" class="ll-code-line__num {{isDiff ? 'is-diff' : ''}}">{{item.num}}</text>
+          <view wx:if="{{item.tick}}" class="ll-code-line__tick" style="background-image:{{item.tick}}" />
+          <view wx:if="{{item.strike}}" class="ll-code-line__strike">
+            <text wx:for="{{item.tokens}}" wx:for-item="t" wx:key="index" class="tk-{{t.type}}">{{t.text}}</text>
+            <view class="ll-code-line__strike-svg" style="background-image:{{item.strike}}" />
+          </view>
+          <block wx:else>
+            <text wx:for="{{item.tokens}}" wx:for-item="t" wx:key="index" class="tk-{{t.type}}">{{t.text}}</text>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<block wx:if="{{tone === 'paper'}}">
+  <ll-paper class="ll-code-block is-paper" stock="{{stock}}" tape="{{tape}}" seed="{{seed}}" custom-style="width:100%;{{customStyle}}">
+    <template is="cb-inner" data="{{inkStyle, headerLabel, stats, copyable, copyIcon, copyLabel, lines, isDiff, wrap}}" />
+  </ll-paper>
+</block>
+<view wx:else class="ll-code-block is-dark" style="width:100%;{{customStyle}}">
+  <template is="cb-inner" data="{{inkStyle, headerLabel, stats, copyable, copyIcon, copyLabel, lines, isDiff, wrap}}" />
+</view>

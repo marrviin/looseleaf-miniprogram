@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-sketchpad": "looseleaf-miniprogram/components/sketchpad/sketchpad",
+    "ll-button": "looseleaf-miniprogram/components/button/button"
+  }
+}

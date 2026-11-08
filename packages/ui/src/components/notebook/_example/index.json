@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "ll-notebook": "looseleaf-miniprogram/components/notebook/notebook",
+    "ll-notebook-page": "looseleaf-miniprogram/components/notebook-page/notebook-page",
+    "ll-notebook-title": "looseleaf-miniprogram/components/notebook-title/notebook-title",
+    "ll-notebook-turn": "looseleaf-miniprogram/components/notebook-turn/notebook-turn",
+    "ll-notebook-cover": "looseleaf-miniprogram/components/notebook-cover/notebook-cover",
+    "ll-notebook-cover-label": "looseleaf-miniprogram/components/notebook-cover-label/notebook-cover-label",
+    "ll-checkbox": "looseleaf-miniprogram/components/checkbox/checkbox",
+    "ll-sticker": "looseleaf-miniprogram/components/sticker/sticker"
+  }
+}

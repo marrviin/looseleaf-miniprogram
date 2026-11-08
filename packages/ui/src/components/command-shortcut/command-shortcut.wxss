@@ -1,0 +1,10 @@
+/* ll-command-shortcut — ms-auto inline-flex items-center gap-1 text-xs
+   text-muted-foreground. */
+.ll-command-shortcut {
+  display: inline-flex;
+  align-items: center;
+  gap: 8rpx; /* gap-1 */
+  margin-left: auto; /* ms-auto */
+  font-size: 18rpx; /* text-xs */
+  color: #4a433c; /* text-muted-foreground */
+}

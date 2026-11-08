@@ -1,0 +1,63 @@
+<!-- ll-alert demo — mirrors the upstream docs page (#/components/alert) -->
+<view class="demo">
+  <view class="demo-title">Alert</view>
+  <view class="sec-desc">An alert draws its box like a person rules a margin note: a felt outline with a wash, a pattern per tone in the gutter, and the icon circled in the alert's marker. A sticky-yellow note stands in for asides.</view>
+
+  <view class="sec">
+    <view class="sub-h3">Default and destructive</view>
+    <view class="sec-desc">The two upstream variants. Destructive is told apart by red hatching in its margin, not by red alone.</view>
+    <view class="al-col">
+      <ll-alert>
+        <ll-icon name="info" size="{{16}}" />
+        <ll-alert-title>Heads up!</ll-alert-title>
+        <ll-alert-description>You can add components to your app using the cli.</ll-alert-description>
+      </ll-alert>
+      <ll-alert variant="destructive">
+        <ll-icon name="circle-alert" size="{{16}}" />
+        <ll-alert-title>Unable to process your payment.</ll-alert-title>
+        <ll-alert-description>
+          <view>Please verify your billing information and try again.</view>
+          <view>• Check your card details</view>
+          <view>• Ensure sufficient funds</view>
+          <view>• Verify billing address</view>
+        </ll-alert-description>
+      </ll-alert>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Tones and patterns</view>
+    <view class="sec-desc">info, success and warning each have their own pattern in the margin: a double blue pencil rule, a strip of green marker, a panel of highlighter.</view>
+    <view class="al-col">
+      <ll-alert variant="info">
+        <ll-icon name="info" size="{{16}}" />
+        <ll-alert-title>New in this version</ll-alert-title>
+        <ll-alert-description>Tabs can now stand up on their side, like binder dividers.</ll-alert-description>
+      </ll-alert>
+      <ll-alert variant="success">
+        <ll-icon name="circle-check" size="{{16}}" />
+        <ll-alert-title>Saved</ll-alert-title>
+        <ll-alert-description>Your changes are on the page. Nothing else to do.</ll-alert-description>
+      </ll-alert>
+      <ll-alert variant="warning">
+        <ll-icon name="triangle-alert" size="{{16}}" />
+        <ll-alert-title>Careful with the highlighter</ll-alert-title>
+        <ll-alert-description>Two coats will bleed through to the next page.</ll-alert-description>
+      </ll-alert>
+      <ll-alert variant="info">
+        <ll-alert-description>No icon and no title: just the box, the rule and one line.</ll-alert-description>
+      </ll-alert>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Sticky note</view>
+    <view class="sec-desc">variant="note" is a sticky note with a taped corner: a Paper, so the sheet turns a little and the text does not.</view>
+    <view class="al-col">
+      <ll-alert variant="note" seed="note" custom-style="max-width:340px;">
+        <ll-alert-title custom-style="font-family:'Kevin Sans Script','Kevin Sans','Bradley Hand',cursive;font-size:24px;line-height:1;">Reminder</ll-alert-title>
+        <ll-alert-description>Bring the good pens. The desk is mint now, so nothing will match.</ll-alert-description>
+      </ll-alert>
+    </view>
+  </view>
+</view>

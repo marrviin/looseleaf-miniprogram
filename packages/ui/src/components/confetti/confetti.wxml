@@ -1,0 +1,4 @@
+<!-- ll-confetti — an absolute overlay the page places inside a relative
+     container; the burst renders as one SMIL-animated SVG background and
+     clears itself after the flight. aria-hidden like upstream. -->
+<view class="ll-confetti ll-class {{layerStyle ? 'is-flying' : ''}}" style="{{layerStyle}}{{customStyle}}" aria-hidden="{{true}}"></view>

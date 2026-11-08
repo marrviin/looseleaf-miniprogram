@@ -1,0 +1,53 @@
+/* ll-field-label — upstream FieldLabel: flex w-fit gap-2 font-hand 15px
+   bold, leading-snug. Card: w-full flex-col, ink layer under the content. */
+/* @ll-import tokens */
+
+.ll-field-label {
+  display: flex;
+  width: fit-content;
+  gap: 16rpx; /* gap-2 */
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 26rpx; /* text-[15px] x .88 */
+  line-height: 1.375; /* leading-snug */
+  font-weight: 700;
+  color: #2a2420; /* text-foreground */
+}
+.ll-field-label--card {
+  width: 100%;
+  flex-direction: column;
+  position: relative;
+  isolation: isolate;
+}
+.ll-field-label--disabled {
+  color: #5a554e; /* group-data-[disabled]/field:text-pencil-text */
+}
+.ll-field-label--invalid {
+  color: #c2412d; /* data-[invalid=true]/field:text-destructive */
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-field-label__content {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  position: relative;
+  z-index: 1;
+}
+.ll-field-label--card .ll-field-label__content {
+  flex-direction: column;
+  align-items: stretch;
+}
+.ll-field-label__required {
+  flex-shrink: 0;
+  width: 24rpx;
+  height: 24rpx;
+  margin-top: 2rpx; /* mt-px */
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

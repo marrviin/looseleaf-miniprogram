@@ -1,0 +1,2 @@
+<!-- ll-carousel-item -->
+<view class="ll-carousel-item {{orientation === 'vertical' ? 'is-vertical' : ''}}" style="{{customStyle}}"><slot /></view>

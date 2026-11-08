@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-spinner": "../spinner/spinner"
+  }
+}

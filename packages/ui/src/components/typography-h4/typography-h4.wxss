@@ -1,0 +1,10 @@
+/* ll-typography-h4 — hand heading */
+/* @ll-import tokens */
+.ll-typography-h4 {
+  font-family: 'Kevin Sans', sans-serif; /* font-hand */
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.375;
+  letter-spacing: -0.01em;
+  color: var(--ll-ink, #2a2420);
+}

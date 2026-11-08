@@ -1,0 +1,12 @@
+<!-- ll-command-item — one command row; highlighted while selected. -->
+<view
+  wx:if="{{!hidden}}"
+  class="ll-command-item {{selected ? 'll-command-item--hi' : ''}} {{disabled ? 'll-command-item--disabled' : ''}}"
+  style="{{customStyle}}"
+  aria-role="option"
+  aria-selected="{{selected}}"
+  aria-disabled="{{disabled}}"
+  bind:tap="onTap"
+>
+  <slot />
+</view>

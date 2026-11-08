@@ -1,0 +1,55 @@
+/* ll-stamp-surface */
+/* @ll-import tokens */
+.ll-stamp-surface {
+  position: relative;
+  isolation: isolate;
+}
+/* the page gives a little under a strike (upstream node.animate 0 2px) */
+.ll-stamp-surface--give {
+  animation: ll-stamp-give 0.19s ease-out;
+}
+@keyframes ll-stamp-give {
+  0% {
+    transform: translateY(0);
+  }
+  35% {
+    transform: translateY(4rpx);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.ll-stamp-surface__layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+.ll-stamp-surface__imp {
+  position: absolute;
+}
+/* only a stamp struck now lands with the thump (restored JSON just appears);
+   the pop scales an inner wrapper so the position transform stays put */
+.ll-stamp-surface__imp--fresh .ll-stamp-surface__pop {
+  animation: ll-stamp-pop 0.3s var(--ll-ease-pop, ease-out);
+}
+@keyframes ll-stamp-pop {
+  from {
+    opacity: 0;
+    transform: scale(1.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.ll-stamp-surface__status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}

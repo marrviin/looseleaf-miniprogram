@@ -1,0 +1,14 @@
+/* ll-carousel-dots */
+.ll-carousel-dots {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: 8px;
+  padding: 16px;
+  margin: 0 -16px -16px;
+}
+.ll-carousel-dots__group {
+  display: flex;
+  flex-shrink: 0;
+}

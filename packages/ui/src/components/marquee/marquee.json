@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-doodle": "../doodle/doodle"
+  }
+}

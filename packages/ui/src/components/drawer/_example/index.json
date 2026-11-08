@@ -1,0 +1,20 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-drawer": "../drawer/drawer",
+    "ll-drawer-header": "../drawer-header/drawer-header",
+    "ll-drawer-title": "../drawer-title/drawer-title",
+    "ll-drawer-description": "../drawer-description/drawer-description",
+    "ll-drawer-footer": "../drawer-footer/drawer-footer",
+    "ll-drawer-close": "../drawer-close/drawer-close",
+    "ll-dialog": "../dialog/dialog",
+    "ll-dialog-header": "../dialog-header/dialog-header",
+    "ll-dialog-title": "../dialog-title/dialog-title",
+    "ll-dialog-description": "../dialog-description/dialog-description",
+    "ll-dialog-footer": "../dialog-footer/dialog-footer",
+    "ll-button": "../button/button",
+    "ll-icon": "../icon/icon",
+    "ll-input": "../input/input",
+    "ll-label": "../label/label"
+  }
+}

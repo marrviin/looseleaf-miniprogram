@@ -1,0 +1,4 @@
+<!-- ll-table-body — <tbody>. -->
+<view class="ll-table-body ll-class" style="{{customStyle}}">
+  <slot />
+</view>

@@ -1,0 +1,6 @@
+/* ll-dropzone-list */
+/* @ll-import tokens */
+.ll-dropzone-list {
+  display: grid;
+  width: 100%;
+}

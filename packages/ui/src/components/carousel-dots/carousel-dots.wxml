@@ -1,0 +1,15 @@
+<!-- ll-carousel-dots — groups of five pencil ticks -->
+<view class="ll-carousel-dots" style="{{customStyle}}" wx:if="{{count > 1}}">
+  <view class="ll-carousel-dots__group" wx:for="{{groups}}" wx:for-item="ticks" wx:key="index">
+    <ll-carousel-dot
+      wx:for="{{ticks}}"
+      wx:for-item="t"
+      wx:key="i"
+      index="{{t.i}}"
+      selected="{{t.i === index}}"
+      slash="{{t.slash}}"
+      bind:tap="scrollTo"
+      data-i="{{t.i}}"
+    />
+  </view>
+</view>

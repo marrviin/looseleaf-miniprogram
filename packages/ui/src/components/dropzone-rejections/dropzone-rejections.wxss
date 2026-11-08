@@ -1,0 +1,14 @@
+/* ll-dropzone-rejections */
+/* @ll-import tokens */
+.ll-dropzone-rejections {
+  display: grid;
+  gap: 4px;
+  font-family: var(--ll-font-hand, sans-serif);
+  font-size: 14px;
+  color: var(--ll-red, #b3261e);
+}
+.ll-dropzone-rejections__line {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}

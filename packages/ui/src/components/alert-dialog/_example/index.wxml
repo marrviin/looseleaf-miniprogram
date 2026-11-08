@@ -1,0 +1,140 @@
+<!-- ll-alert-dialog demo — mirrors the upstream docs page (#/components/alert-dialog).
+     On phone widths the sheet is a bottom sheet: flat, full-width, hazard
+     tape hidden (upstream max-sm rules) — the examples below still pass the
+     desktop props faithfully. Tap the dim: an alert dialog refuses (upstream
+     alert semantics); only the answers close it. -->
+<view class="demo">
+  <view class="demo-title">Alert Dialog</view>
+  <view class="sec-desc">A dialog that asks one question and will not go away until it is answered: no close button, no dismissing by clicking outside, focus starts on the safe answer. For risky questions it can be taped with hazard strips and given a red patch behind its icon.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Delete (danger)</view>
+    <view class="sec-desc">The risky question: hazard tape across the top corners, a red patch behind the icon, and a hatched destructive answer. Focus starts on Cancel.</view>
+    <view class="center-row"><ll-button variant="destructive" bind:tap="openDlg" data-k="dlgDelete">Delete notebook</ll-button></view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Small</view>
+    <view class="sec-desc">size="sm": a narrow, centered sheet with the two answers in equal columns. Good for quick confirmations.</view>
+    <view class="center-row"><ll-button variant="outline" bind:tap="openDlg" data-k="dlgDiscard">Discard draft</ll-button></view>
+
+    <view class="sub-h3">Media tones</view>
+    <view class="sec-desc">The round patch behind the media says what kind of question this is: highlighter for a plain confirmation, sky for information, red pencil for danger.</view>
+    <view class="center-row wrap">
+      <ll-button variant="outline" bind:tap="openDlg" data-k="dlgPublish">Publish</ll-button>
+      <ll-button variant="outline" bind:tap="openDlg" data-k="dlgSignout">Sign out</ll-button>
+      <ll-button variant="outline" bind:tap="openDlg" data-k="dlgClear">Clear history</ll-button>
+    </view>
+
+    <view class="sub-h3">Async action (controlled)</view>
+    <view class="sec-desc">A confirmation that does real work: the action keeps the dialog open while it runs (preventDefault — here the keep-open prop), disables both answers, then closes it and the page reports the result.</view>
+    <view class="center-col">
+      <ll-button variant="destructive" disabled="{{gone}}" bind:tap="openDlg" data-k="dlgAsync">{{gone ? 'Deleted' : 'Delete project'}}</ll-button>
+      <text class="gone-note">{{goneText}}</text>
+    </view>
+
+    <view class="sub-h3">Are you absolutely sure?</view>
+    <view class="sec-desc">The shadcn demo with no extras: an outline trigger, a title, one paragraph and the two answers. Focus starts on Cancel, Escape closes it, a click on the backdrop does not, and focus returns to the trigger.</view>
+    <view class="center-row"><ll-button variant="outline" bind:tap="openDlg" data-k="dlgSure">Show dialog</ll-button></view>
+  </view>
+
+  <!-- 01-delete-notebook: tone danger, seed delete -->
+  <ll-alert-dialog id="dlgDelete" open="{{dlgDelete}}" tone="danger" seed="delete" bind:change="onDlgChange" data-k="dlgDelete" aria-label="Delete this notebook?">
+    <ll-alert-dialog-header media>
+      <ll-alert-dialog-media tone="danger">
+        <ll-icon name="trash" />
+      </ll-alert-dialog-media>
+      <ll-alert-dialog-title>Delete this notebook?</ll-alert-dialog-title>
+      <ll-alert-dialog-description>This will permanently delete "Field notes" and its 48 pages. You cannot undo this.</ll-alert-dialog-description>
+    </ll-alert-dialog-header>
+    <ll-alert-dialog-footer>
+      <ll-alert-dialog-cancel id="cancelDelete">Cancel</ll-alert-dialog-cancel>
+      <ll-alert-dialog-action variant="destructive">Delete notebook</ll-alert-dialog-action>
+    </ll-alert-dialog-footer>
+  </ll-alert-dialog>
+
+  <!-- 02-small: size sm, seed discard -->
+  <ll-alert-dialog id="dlgDiscard" open="{{dlgDiscard}}" size="sm" seed="discard" bind:change="onDlgChange" data-k="dlgDiscard" aria-label="Discard changes?">
+    <ll-alert-dialog-header media size="sm">
+      <ll-alert-dialog-media>
+        <ll-icon name="circle-question-mark" />
+      </ll-alert-dialog-media>
+      <ll-alert-dialog-title>Discard changes?</ll-alert-dialog-title>
+      <ll-alert-dialog-description>You have unsaved edits. They will be lost.</ll-alert-dialog-description>
+    </ll-alert-dialog-header>
+    <ll-alert-dialog-footer size="sm">
+      <ll-alert-dialog-cancel>Keep editing</ll-alert-dialog-cancel>
+      <ll-alert-dialog-action>Discard</ll-alert-dialog-action>
+    </ll-alert-dialog-footer>
+  </ll-alert-dialog>
+
+  <!-- 03-media-tones: three dialogs, seed = tone -->
+  <ll-alert-dialog id="dlgPublish" open="{{dlgPublish}}" seed="default" bind:change="onDlgChange" data-k="dlgPublish" aria-label="Publish now?">
+    <ll-alert-dialog-header media>
+      <ll-alert-dialog-media>
+        <ll-icon name="circle-check" />
+      </ll-alert-dialog-media>
+      <ll-alert-dialog-title>Publish now?</ll-alert-dialog-title>
+      <ll-alert-dialog-description>Everyone with the link will be able to read it. You can unpublish later.</ll-alert-dialog-description>
+    </ll-alert-dialog-header>
+    <ll-alert-dialog-footer>
+      <ll-alert-dialog-cancel>Not yet</ll-alert-dialog-cancel>
+      <ll-alert-dialog-action>Publish</ll-alert-dialog-action>
+    </ll-alert-dialog-footer>
+  </ll-alert-dialog>
+
+  <ll-alert-dialog id="dlgSignout" open="{{dlgSignout}}" seed="info" bind:change="onDlgChange" data-k="dlgSignout" aria-label="Sign out everywhere?">
+    <ll-alert-dialog-header media>
+      <ll-alert-dialog-media tone="info">
+        <ll-icon name="info" />
+      </ll-alert-dialog-media>
+      <ll-alert-dialog-title>Sign out everywhere?</ll-alert-dialog-title>
+      <ll-alert-dialog-description>You will be signed out of every device, including this one.</ll-alert-dialog-description>
+    </ll-alert-dialog-header>
+    <ll-alert-dialog-footer>
+      <ll-alert-dialog-cancel>Not yet</ll-alert-dialog-cancel>
+      <ll-alert-dialog-action>Sign out</ll-alert-dialog-action>
+    </ll-alert-dialog-footer>
+  </ll-alert-dialog>
+
+  <ll-alert-dialog id="dlgClear" open="{{dlgClear}}" seed="danger" bind:change="onDlgChange" data-k="dlgClear" aria-label="Clear all history?">
+    <ll-alert-dialog-header media>
+      <ll-alert-dialog-media tone="danger">
+        <ll-icon name="triangle-alert" />
+      </ll-alert-dialog-media>
+      <ll-alert-dialog-title>Clear all history?</ll-alert-dialog-title>
+      <ll-alert-dialog-description>Every search and every draft will be removed from this device.</ll-alert-dialog-description>
+    </ll-alert-dialog-header>
+    <ll-alert-dialog-footer>
+      <ll-alert-dialog-cancel>Not yet</ll-alert-dialog-cancel>
+      <ll-alert-dialog-action variant="destructive">Clear it</ll-alert-dialog-action>
+    </ll-alert-dialog-footer>
+  </ll-alert-dialog>
+
+  <!-- 04-async-delete: tone danger, seed async; the action keeps it open -->
+  <ll-alert-dialog id="dlgAsync" open="{{dlgAsync}}" tone="danger" seed="async" bind:change="onDlgChange" data-k="dlgAsync" aria-label="Delete the project?">
+    <ll-alert-dialog-header>
+      <ll-alert-dialog-title>Delete the project?</ll-alert-dialog-title>
+      <ll-alert-dialog-description>Its notebooks, drawings and comments go with it.</ll-alert-dialog-description>
+    </ll-alert-dialog-header>
+    <ll-alert-dialog-footer>
+      <ll-alert-dialog-cancel disabled="{{busy}}">Cancel</ll-alert-dialog-cancel>
+      <ll-alert-dialog-action id="actionAsync" variant="destructive" disabled="{{busy}}" keep-open bind:alert-action="onAsyncDelete">{{busy ? 'Deleting…' : 'Yes, delete it'}}</ll-alert-dialog-action>
+    </ll-alert-dialog-footer>
+  </ll-alert-dialog>
+
+  <!-- 50-are-you-sure: no extras, seed sure -->
+  <ll-alert-dialog id="dlgSure" open="{{dlgSure}}" seed="sure" bind:change="onDlgChange" data-k="dlgSure" aria-label="Are you absolutely sure?">
+    <ll-alert-dialog-header>
+      <ll-alert-dialog-title>Are you absolutely sure?</ll-alert-dialog-title>
+      <ll-alert-dialog-description>This action cannot be undone. This will permanently delete your account and remove your data from our servers.</ll-alert-dialog-description>
+    </ll-alert-dialog-header>
+    <ll-alert-dialog-footer>
+      <ll-alert-dialog-cancel>Cancel</ll-alert-dialog-cancel>
+      <ll-alert-dialog-action>Continue</ll-alert-dialog-action>
+    </ll-alert-dialog-footer>
+  </ll-alert-dialog>
+</view>

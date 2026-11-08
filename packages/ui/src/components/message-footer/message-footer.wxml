@@ -1,0 +1,4 @@
+<!-- ll-message-footer -->
+<view class="ll-message-footer ll-class {{isEnd ? 'is-end' : ''}}" style="{{customStyle}}">
+  <slot />
+</view>

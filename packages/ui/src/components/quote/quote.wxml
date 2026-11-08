@@ -1,0 +1,2 @@
+<!-- ll-quote — figure wrapper -->
+<view class="ll-quote" style="{{customStyle}}"><slot /></view>

@@ -1,0 +1,57 @@
+<!-- ll-sticker-picker — upstream sticker-picker.tsx folded into one
+     component: the Popover slip (search field, category chips, the grid,
+     a caption naming the touched sticker) anchored to a trigger slot.
+     Touch lights a sticker (it peels its corner); the tap chooses it.
+     The body resets on open, like upstream's remount. -->
+<view class="ll-spicker ll-class" style="{{customStyle}}">
+  <ll-popover open="{{visible}}" width="{{width}}" padding="24rpx" aria-label="{{ariaLabel || 'Stickers'}}" bind:close="onOutsideClose">
+    <view slot="trigger" class="ll-spicker__trigger" catchtap="onTriggerTap">
+      <slot name="trigger" />
+    </view>
+
+    <view class="ll-spicker__body">
+      <ll-input value="{{query}}" placeholder="{{placeholder}}" aria-label="Search stickers" bind:input="onQuery" />
+
+      <scroll-view wx:if="{{cats.length > 1}}" class="ll-spicker__cats" scroll-x enable-flex aria-role="group" aria-label="Categories">
+        <view class="ll-spicker__cat {{category === 'all' ? 'is-on' : ''}}" data-key="all" catchtap="onCatTap" aria-role="button" aria-label="All">All</view>
+        <view wx:for="{{cats}}" wx:key="key" class="ll-spicker__cat {{category === item.key ? 'is-on' : ''}}" data-key="{{item.key}}" catchtap="onCatTap" aria-role="button" aria-label="{{item.label}}">{{item.label}}</view>
+      </scroll-view>
+
+      <view wx:if="{{sections.length}}" class="ll-spicker__list" aria-role="listbox" aria-label="Stickers">
+        <view wx:for="{{sections}}" wx:for-item="sec" wx:for-index="si" wx:key="key" class="ll-spicker__sec" aria-role="group" aria-label="{{sec.label}}">
+          <view class="ll-spicker__sec-h" aria-hidden="true">{{sec.label}}</view>
+          <view class="ll-spicker__grid" style="grid-template-columns:repeat({{columns}},minmax(0,1fr));">
+            <view
+              wx:for="{{sec.cells}}"
+              wx:for-item="cell"
+              wx:for-index="ci"
+              wx:key="key"
+              class="ll-spicker__opt {{cell.key === activeKey ? 'is-active' : ''}}"
+              data-s="{{si}}"
+              data-i="{{ci}}"
+              data-key="{{cell.key}}"
+              aria-role="option"
+              aria-label="{{cell.label}}"
+              aria-selected="{{cell.sel}}"
+              catch:touchstart="onCellTouch"
+              catchtap="onCellTap"
+            >
+              <view class="ll-spicker__art" style="width:{{cell.w}}px;height:{{cell.h}}px;background-image:url('{{cell.key === activeKey && cell.peelUri ? cell.peelUri : cell.uri}}');" />
+              <view wx:if="{{cell.sel}}" class="ll-spicker__check" aria-hidden="true"><ll-icon name="check" size="14" /></view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view wx:else class="ll-spicker__empty">
+        <ll-mascot pose="search" size="64" />
+        <view class="ll-spicker__empty-t">{{emptyText}}</view>
+      </view>
+
+      <view wx:if="{{sections.length}}" class="ll-spicker__foot" aria-hidden="true">
+        <view class="ll-spicker__foot-name">{{activeLabel}}</view>
+        <view class="ll-spicker__foot-cat">{{activeCat}}</view>
+      </view>
+    </view>
+  </ll-popover>
+</view>

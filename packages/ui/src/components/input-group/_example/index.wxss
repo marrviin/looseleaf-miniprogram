@@ -1,0 +1,69 @@
+.demo {
+  padding: 32rpx;
+  background: var(--ll-paper, #f8f5ee);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+.sec {
+  margin-top: 40rpx;
+}
+.sec-h2 {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin-bottom: 12rpx;
+}
+.sub-h3 {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin: 28rpx 0 6rpx;
+}
+.sec-desc {
+  font-size: 24rpx;
+  color: #8a857c;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+/* the example column: grid w-full max-w-sm gap-4 (or 6) */
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx; /* gap-4 */
+  max-width: 768rpx; /* max-w-sm */
+  padding: 16rpx 0;
+}
+/* form: grid gap-2 */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  max-width: 768rpx;
+}
+.said-line {
+  font-size: 25rpx; /* text-sm x .88 */
+  color: #4a433c; /* text-ink-muted */
+}
+.said-line--bad {
+  color: #c2412d; /* text-red */
+}
+.stack-8 {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+.plain-title {
+  font-size: 25rpx;
+  font-weight: 700;
+  color: #2a2420;
+}
+.plain-desc {
+  font-size: 23rpx;
+  color: #8a857c;
+  line-height: 1.5;
+}

@@ -1,0 +1,51 @@
+<!-- ll-sticker-board demo — mirrors the upstream docs page
+     (#/components/sticker-board). No keyboard on a phone: drag moves a
+     sticker, the ring above a picked one turns it, the corner square sizes
+     it, and the toolbar repeats every key. -->
+<view class="demo">
+  <view class="demo-title">Sticker board</view>
+  <view class="sec-desc">A page you can stick stickers on: drag them anywhere, turn them, size them, stack them. The value is plain JSON and it exports to one standalone SVG.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Stick things down</view>
+    <view class="sec-desc">Drag a sticker anywhere. Pick one and a dashed frame appears with a ring to turn it by and a square to size it; the toolbar does the same.</view>
+    <ll-sticker-board id="board1" default-value="{{start}}" canvas-height="560px" canvas-stock="dot-grid" />
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">The value is JSON</view>
+    <view class="sec-desc">The board keeps no secrets: every sticker is { id, name, x, y, rot, scale, z }. Store it, send it, restore it. addSticker puts a new one on top of the pile; Export hands you the whole page as one SVG.</view>
+    <view class="btn-row">
+      <ll-button wx:for="{{addable}}" wx:key="*this" size="sm" variant="outline" data-name="{{item}}" bind:tap="onAdd">Add {{item}}</ll-button>
+      <ll-button size="sm" variant="ghost" disabled="{{!items.length}}" bind:tap="onClear">Clear</ll-button>
+    </view>
+    <ll-sticker-board id="board2" value="{{items}}" canvas-height="440px" canvas-stock="dot-grid" empty="Press a button to stick something down." bind:valuechange="onValue" bind:export="onExport" />
+    <ll-paper stock="slip" tilt="{{false}}" custom-style="display:block;margin-top:24rpx;padding:16rpx;">
+      <view class="json" aria-label="Board value">{{itemsJson || '[]'}}</view>
+    </ll-paper>
+    <view wx:if="{{exported}}" class="said-line" aria-live="polite">{{exported}}</view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">A reward chart</view>
+    <view class="sec-desc">A read-only board is a display: the stickers a student has earned, lying where the teacher stuck them. No handles, no tab stops, no toolbar actions.</view>
+    <view class="chart-h">Maya's stickers, week 12</view>
+    <ll-sticker-board id="board3" read-only value="{{earned}}" size="{{84}}" label="Maya's earned stickers" canvas-height="420px" canvas-stock="ledger" />
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Board and picker</view>
+    <view class="sec-desc">The picker chooses, addSticker sticks: the new sticker lands in the middle of the page, already picked, so it can be turned and sized straight away.</view>
+    <view class="pick-row">
+      <ll-sticker-picker recent="{{recent}}" bind:select="onPick">
+        <view slot="trigger">
+          <ll-button aria-label="Add sticker"><ll-icon name="plus" />Add sticker</ll-button>
+        </view>
+      </ll-sticker-picker>
+      <view class="said-line" aria-live="polite">{{count4}}</view>
+    </view>
+    <ll-sticker-board id="board4" value="{{b4}}" canvas-height="480px" canvas-stock="dot-grid" empty="Nothing stuck down yet. Add a sticker." bind:valuechange="onValue4" />
+  </view>
+</view>

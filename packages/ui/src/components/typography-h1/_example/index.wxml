@@ -1,0 +1,29 @@
+<!-- ll-typography demo — mirrors the upstream docs page (#/components/typography).
+     One demo page for the whole family; the Prose variant is skipped (a
+     global markdown stylesheet — isolated component styles can't reach the
+     page's raw nodes). -->
+<view class="demo">
+  <view class="demo-title">Typography</view>
+  <view class="sec-desc">Every part in one page: headings with hand rules, a lead line, body text, a list, a quotation, inline code and the small sizes.</view>
+
+  <view class="sec">
+    <view class="sub-h3">The scale</view>
+    <view class="ty-page">
+      <ll-typography-h1>Notes on keeping a notebook</ll-typography-h1>
+      <ll-typography-lead custom-style="margin-top:16px;">A notebook is a small argument you have with yourself, one page at a time.</ll-typography-lead>
+      <ll-typography-p>Most of what I remember from a book is in the margins. Run <ll-typography-inline-code>npm run notes</ll-typography-inline-code> if you want it on the screen.</ll-typography-p>
+      <ll-typography-h2 custom-style="margin-top:32px;">What goes in the margin</ll-typography-h2>
+      <ll-typography-list items="{{marginList}}" custom-style="margin-top:16px;" />
+      <ll-typography-h3 custom-style="margin-top:24px;">A word from someone who knew</ll-typography-h3>
+      <ll-typography-blockquote>The best time to write it down was when it happened.</ll-typography-blockquote>
+      <ll-typography-h4 custom-style="margin-top:24px;">Small print</ll-typography-h4>
+      <view class="ty-row">
+        <ll-typography-large>Large</ll-typography-large>
+        <ll-typography-small>Small</ll-typography-small>
+        <ll-typography-muted>Muted, for captions</ll-typography-muted>
+      </view>
+      <ll-typography-h4 custom-style="margin-top:24px;">Ordered, too</ll-typography-h4>
+      <ll-typography-list ordered items="{{steps}}" />
+    </view>
+  </view>
+</view>

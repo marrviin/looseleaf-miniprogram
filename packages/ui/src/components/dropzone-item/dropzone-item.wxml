@@ -1,0 +1,22 @@
+<!-- ll-dropzone-item — one file: thumbnail or file icon, name, size, an
+     optional highlighter progress line, status mark and the x. The ruled
+     pencil line under the row is the drawing; error makes it red+wavy. -->
+<view class="ll-dropzone-item is-{{status}}" style="{{customStyle}}">
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-dropzone-item__media">
+    <image wx:if="{{preview}}" src="{{preview}}" mode="aspectFill" class="ll-dropzone-item__img" />
+    <ll-icon wx:else name="{{iconName}}" size="24" />
+  </view>
+  <view class="ll-dropzone-item__body">
+    <text class="ll-dropzone-item__name">{{file.name}}</text>
+    <text class="ll-dropzone-item__size {{status === 'error' ? 'is-error' : ''}}">{{sizeLine}}</text>
+    <view wx:if="{{status === 'uploading' && progress !== null}}" class="ll-dropzone-item__bar" aria-label="Uploading {{file.name}}">
+      <view class="ll-dropzone-item__fill" style="width:{{pct}}%;"></view>
+    </view>
+  </view>
+  <ll-icon wx:if="{{status === 'done'}}" name="circle-check" size="18" tone="ui" accent="green" />
+  <ll-icon wx:if="{{status === 'error'}}" name="circle-alert" size="18" tone="ui" accent="red" />
+  <view class="ll-dropzone-item__remove" bind:tap="onRemove" aria-label="{{removeLabel || 'Remove ' + file.name}}">
+    <ll-icon name="x" size="14" />
+  </view>
+</view>

@@ -1,0 +1,132 @@
+.ll-prompt-input {
+  position: relative;
+  display: block;
+  min-width: 0;
+}
+
+/* the suggestion slip hangs above the sheet (upstream bottom-full) */
+.ll-prompt-sugs {
+  position: absolute;
+  left: 16rpx;
+  right: 16rpx;
+  bottom: 100%;
+  margin-bottom: 24rpx;
+  z-index: 20;
+}
+
+.ll-prompt-sug {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding: 12rpx 24rpx;
+  font-size: 26rpx; /* text-[15px] */
+  color: var(--ll-ink, #2a2420);
+}
+.ll-prompt-sug__text {
+  font-weight: 700;
+}
+.ll-prompt-sug__hint {
+  color: var(--ll-ink-muted, #4a433c);
+}
+
+/* the writing-line body — ink layer (z 0) under the textarea (z 1) */
+.ll-prompt-body {
+  position: relative;
+  isolation: isolate;
+  min-height: 96rpx; /* min-h-12 */
+  min-width: 0;
+  flex: 1;
+  padding-bottom: 16rpx;
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-prompt-textarea {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12rpx 8rpx;
+  font-family: 'Kevin Sans', 'PingFang SC', sans-serif; /* font-script */
+  font-size: 46rpx; /* text-[1.65rem] */
+  line-height: 56rpx; /* leading-8 */
+  color: var(--ll-ink-you, #2c4f9e);
+  caret-color: var(--ll-ink-you, #2c4f9e);
+  overflow-y: auto;
+}
+.ll-prompt-placeholder {
+  color: var(--ll-pencil-text, #5a554e);
+}
+
+.ll-prompt-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx;
+  padding-top: 8rpx;
+}
+.ll-prompt-footer__left {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  flex: 1;
+  min-width: 0;
+}
+.ll-prompt-tools {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+.ll-prompt-hint {
+  flex: 1;
+  min-width: 0;
+  padding: 0 8rpx;
+  font-size: 24rpx; /* text-sm */
+  color: var(--ll-ink-muted, #4a433c);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* the paper plane — upstream ll-plane keyframes */
+.ll-prompt-btnicon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+@keyframes ll-plane-fly {
+  0% {
+    transform: none;
+    opacity: 1;
+  }
+  46% {
+    transform: translate(40rpx, -36rpx) rotate(-16deg) scale(0.85);
+    opacity: 0;
+  }
+  47% {
+    transform: translate(-32rpx, 24rpx) rotate(8deg) scale(0.85);
+    opacity: 0;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
+.ll-prompt-btnicon--fly {
+  animation: ll-plane-fly 0.9s ease-in-out both;
+}
+
+/* the chip row above the text (upstream PromptInputAttachments; the
+   empty:hidden case can't be detected here — pages using it add the top
+   padding on their slot content) */
+.ll-prompt-attachments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24rpx;
+  padding: 0 8rpx;
+}

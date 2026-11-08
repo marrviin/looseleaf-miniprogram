@@ -1,0 +1,20 @@
+<!-- ll-native-select — the platform picker in a hand-drawn frame; the
+     chevron is drawn, the popup is the system's own. -->
+<view class="ll-native-select ll-native-select--{{size}} ll-class" style="{{customStyle}}" aria-role="select" aria-label="{{ariaLabel}}">
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <picker
+    class="ll-native-select__picker"
+    mode="selector"
+    range="{{range}}"
+    value="{{picked ? index : 0}}"
+    disabled="{{disabled}}"
+    aria-label="{{ariaLabel}}"
+    bindchange="onChange"
+    bindcancel="onCancel"
+  >
+    <view class="ll-native-select__value {{picked ? '' : 'll-native-select__value--ph'}} {{disabled ? 'll-native-select__value--disabled' : ''}}">{{label}}</view>
+  </picker>
+  <view class="ll-native-select__chevron">
+    <ll-icon name="chevron-down" size="16" ink="{{disabled ? '#5a554e' : '#4a423b'}}" />
+  </view>
+</view>

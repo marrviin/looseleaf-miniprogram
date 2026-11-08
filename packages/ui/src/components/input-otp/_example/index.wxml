@@ -1,0 +1,84 @@
+<!-- ll-input-otp demo — mirrors the upstream docs page
+     (#/components/input-otp): a one-time code as a row of drawn boxes with
+     one real input over the row. The separator groups are the
+     `separatorAfter` prop (upstream InputOTPSeparator children). -->
+<view class="demo">
+  <view class="demo-title">Input OTP</view>
+  <view class="sec-desc">A one-time code as a row of separate hand-drawn boxes. The box that takes the next character wears the blue ring and a blinking pencil stroke; typed characters are written in script; a wrong code turns the boxes red. Underneath is one real input, so paste and the system keyboard just work.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Six digits</view>
+    <view class="sec-desc">Click and type, or paste "482915" (three digits are already in). The box with the caret wears the blue ring and a blinking pencil stroke; each digit writes itself in; the dash is only decoration.</view>
+    <view class="stack-12">
+      <ll-label for="otp-six">One-time code</ll-label>
+      <ll-input-otp id="otpSix" max-length="{{6}}" value="{{six}}" separator-after="{{[2]}}" aria-label="Verification code" data-key="six" bind:change="onOtp" />
+      <view class="said-line" aria-live="polite">{{six === '' ? 'Enter your one-time password.' : 'You entered: ' + six}}</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Letters and digits, a wrong code</view>
+    <view class="sec-desc">pattern lets letters in (anything else is refused, also when pasted). The right code here is AB12; the box starts on AB13, so you can see what a wrong code looks like: red boxes and a message you write. Change the last character to 2 and it clears.</view>
+    <view class="stack-12">
+      <ll-label for="otp-code">Invite code</ll-label>
+      <ll-input-otp id="otpCode" max-length="{{4}}" value="{{code}}" pattern="[0-9A-Za-z]" invalid="{{codeWrong}}" aria-label="Invite code" data-key="code" bind:change="onOtpCode" />
+      <view class="said-line {{codeWrong ? 'said-line--bad' : ''}}" role="{{codeWrong ? 'alert' : ''}}">{{codeSaid}}</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Verify your email</view>
+    <view class="sec-desc">The whole flow: the last digit completes the code (onComplete), which checks it; a wrong one turns the boxes red and offers a fresh start; 246810 is the right code. Resend is a link-style Button.</view>
+    <view class="center-stage">
+      <ll-card seed="verify" tape="corner" custom-style="width:100%;max-width:600rpx">
+        <ll-card-header>
+          <ll-card-title>Check your email</ll-card-title>
+          <ll-card-description>We sent a six-digit code to ada@analytical.engine.</ll-card-description>
+        </ll-card-header>
+        <ll-card-content custom-style="display:flex;flex-direction:column;align-items:center;gap:24rpx;padding:32rpx 0">
+          <ll-input-otp id="otpVerify" max-length="{{6}}" value="{{verify}}" separator-after="{{[2]}}" disabled="{{verifyState === 'done'}}" invalid="{{verifyState === 'wrong'}}" aria-label="Verification code" data-key="verify" bind:change="onOtpVerify" bind:complete="onVerifyComplete" />
+          <view class="said-line {{verifyState === 'wrong' ? 'said-line--bad' : ''}}">{{verifySaid}}</view>
+        </ll-card-content>
+        <ll-card-footer custom-style="justify-content:space-between;gap:24rpx">
+          <ll-button variant="link" size="sm" bind:tap="onVerifyReset">{{verifyState === 'wrong' ? 'Start over' : 'Send it again'}}</ll-button>
+          <ll-button disabled="{{verify.length < 6 || verifyState === 'done'}}" bind:tap="onVerifyCheck">Verify</ll-button>
+        </ll-card-footer>
+      </ll-card>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Three and three</view>
+    <view class="sec-desc">shadcn's `input-otp-demo`: six digits in two groups with the separator between them. Type, paste, or use Backspace; the boxes are drawn, the input behind them is one real field.</view>
+    <view class="center-stage">
+      <ll-input-otp max-length="{{6}}" separator-after="{{[2]}}" aria-label="One-time password" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Digits and letters</view>
+    <view class="sec-desc">shadcn's `input-otp-pattern`: `pattern` takes a regular expression, and anything the pattern refuses is dropped, pasted or typed.</view>
+    <view class="center-stage">
+      <ll-input-otp max-length="{{6}}" pattern="[0-9A-Za-z]" aria-label="Code" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Two-two-two</view>
+    <view class="sec-desc">shadcn's `input-otp-separator`: three groups of two with a separator between each pair. The dash is decoration only; the screen reader hears one six-digit field.</view>
+    <view class="center-stage">
+      <ll-input-otp max-length="{{6}}" separator-after="{{[1, 3]}}" aria-label="One-time password" />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Controlled</view>
+    <view class="sec-desc">shadcn's `input-otp-controlled`: `value` and `onChange` hold the code in your state, and a line under the boxes echoes it back. The line is a live region, so it is read out as you type.</view>
+    <view class="stack-12">
+      <ll-input-otp max-length="{{6}}" value="{{ctl}}" aria-label="One-time password" data-key="ctl" bind:change="onOtp" />
+      <view class="said-line said-line--center" role="status">{{ctl === '' ? 'Enter your one-time password.' : 'You entered: ' + ctl}}</view>
+    </view>
+  </view>
+</view>

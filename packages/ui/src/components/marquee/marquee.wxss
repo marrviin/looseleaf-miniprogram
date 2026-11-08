@@ -1,0 +1,87 @@
+/* ll-marquee — washi tape band + looping ticker.
+   @ll-import tokens */
+:host {
+  display: block;
+}
+.ll-marquee {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  height: 44px;
+  width: 100%;
+  overflow-x: hidden;
+  font-family: 'Kevin Sans', sans-serif;
+}
+.ll-marquee__band {
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-marquee__viewport {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+.ll-marquee__viewport.has-controls {
+  right: 44px;
+}
+.ll-marquee__control {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+}
+.ll-marquee__control-icon {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-marquee__track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  flex-shrink: 0;
+}
+.ll-marquee__group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-size: 24px;
+  line-height: 1;
+  font-weight: 600;
+  color: var(--ll-ink, #2a2420);
+  text-shadow: 0 0 2px var(--ll-slip, #f8f5ee), 0 0 5px var(--ll-slip, #f8f5ee);
+  animation: ll-marquee-group 30s linear infinite;
+}
+.ll-marquee.is-reverse .ll-marquee__group {
+  animation-direction: reverse;
+}
+.ll-marquee.is-paused .ll-marquee__group {
+  animation-play-state: paused;
+}
+.ll-marquee__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding-right: 16px;
+}
+.ll-marquee__text {
+  white-space: nowrap;
+}
+/* Each group slides by its own width (fixed -100% — a var() keyframe gets
+   dropped); identical groups make the wrap seamless. The duration arrives
+   inline (one group width / speed), overriding the 30s fallback here. */
+@keyframes ll-marquee-group {
+  to {
+    transform: translateX(-100%);
+  }
+}

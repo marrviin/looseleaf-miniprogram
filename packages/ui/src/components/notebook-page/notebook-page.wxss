@@ -1,0 +1,21 @@
+/* ll-notebook-page — flex flex-col; the unfold wipe replays each time the
+   is-unfold class is re-applied (page turned to). */
+/* @ll-import tokens */
+.ll-notebook-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.is-unfold {
+  animation: ll-notebook-unfold 0.6s ease-out both;
+}
+
+/* no var() inside keyframes — the webview drops the whole keyframe */
+@keyframes ll-notebook-unfold {
+  from {
+    clip-path: polygon(100% 100%, 100% 100%, 100% 100%, 100% 100%);
+  }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}

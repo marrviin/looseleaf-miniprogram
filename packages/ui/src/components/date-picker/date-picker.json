@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-icon": "../icon/icon",
+    "ll-paper": "../paper/paper",
+    "ll-button": "../button/button",
+    "ll-calendar": "../calendar/calendar"
+  }
+}

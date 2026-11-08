@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "ll-clipboard": "looseleaf-miniprogram/components/clipboard/clipboard",
+    "ll-checkbox": "looseleaf-miniprogram/components/checkbox/checkbox",
+    "ll-label": "looseleaf-miniprogram/components/label/label",
+    "ll-input": "looseleaf-miniprogram/components/input/input",
+    "ll-button": "looseleaf-miniprogram/components/button/button"
+  }
+}

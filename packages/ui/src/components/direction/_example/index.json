@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "ll-direction": "../direction/direction",
+    "ll-paper": "../paper/paper"
+  }
+}

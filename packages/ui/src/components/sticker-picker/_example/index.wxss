@@ -1,0 +1,100 @@
+.demo {
+  padding: 32rpx;
+  background: var(--ll-paper, #f8f5ee);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+.sec {
+  margin-top: 40rpx;
+}
+.sec-h2 {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin-bottom: 12rpx;
+}
+.sub-h3 {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin: 28rpx 0 6rpx;
+}
+.sec-desc {
+  font-size: 24rpx;
+  color: #8a857c;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 32rpx;
+  padding: 16rpx 0;
+}
+
+/* 01 — the chosen square */
+.chosen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 224rpx;
+  height: 224rpx;
+  color: #8a857c;
+}
+.chosen-none,
+.react-row .chosen-none {
+  font-family: 'Kevin Sans Script', 'Kevin Sans', 'Bradley Hand', cursive;
+  font-size: 40rpx;
+  color: #8a857c;
+}
+
+/* 02 — the reaction row */
+.react-row {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  min-height: 112rpx;
+}
+
+/* 03 — the comment box */
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+  margin-bottom: 24rpx;
+}
+.comment {
+  display: flex;
+  align-items: flex-start;
+  gap: 24rpx;
+}
+.comment-who {
+  font-family: 'Kevin Sans Script', 'Kevin Sans', 'Bradley Hand', cursive;
+  font-size: 40rpx;
+  line-height: 1.2;
+  color: #3b6ea5; /* text-ink-you */
+}
+.comment-body {
+  flex: 1;
+  min-width: 0;
+}
+.comment-sticker {
+  margin-top: 8rpx;
+}
+.composer-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-top: 16rpx;
+}
+.picked {
+  line-height: 0;
+}
+.post-btn {
+  margin-left: auto;
+}

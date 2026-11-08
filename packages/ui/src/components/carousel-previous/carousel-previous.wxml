@@ -1,0 +1,6 @@
+<!-- ll-carousel-previous -->
+<view class="ll-carousel-previous is-{{orientation}}" style="{{customStyle}}">
+  <ll-button variant="{{variant}}" size="icon" disabled="{{disabled}}" aria-label="previous slide" bind:tap="onTap">
+    <ll-icon name="{{orientation === 'horizontal' ? 'arrow-left' : 'arrow-up'}}" size="{{16}}" />
+  </ll-button>
+</view>

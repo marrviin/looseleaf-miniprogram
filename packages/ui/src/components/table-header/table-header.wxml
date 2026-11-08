@@ -1,0 +1,4 @@
+<!-- ll-table-header — <thead>; sticky pins it over the scrolling body. -->
+<view class="ll-table-header {{sticky ? 'll-table-header--sticky' : ''}} ll-class" style="{{customStyle}}">
+  <slot />
+</view>

@@ -1,0 +1,9 @@
+/* ll-message-scroller — the root: relative, flex-col */
+.ll-message-scroller {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  flex-direction: column;
+}

@@ -1,0 +1,12 @@
+<!-- ll-table-row — <tr>. The highlighter swipe is one view behind the
+     cells; cap masks (first/last/only column ends) pick its mask list. -->
+<view
+  class="ll-table-row {{selected ? 'll-table-row--selected' : ''}} {{pressed ? 'll-table-row--pressed' : ''}} ll-class"
+  style="{{rootStyle}}{{customStyle ? ';' + customStyle : ''}}"
+  bindtouchstart="onTouchStart"
+  bindtouchend="onTouchEnd"
+  bindtouchcancel="onTouchEnd"
+>
+  <view class="ll-table-row__hl {{first && last ? 'is-only' : first ? 'is-first' : last ? 'is-last' : ''}}" />
+  <slot />
+</view>

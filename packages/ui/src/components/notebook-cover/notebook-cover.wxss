@@ -1,0 +1,45 @@
+/* ll-notebook-cover — h-60 w-44 text-ink; the body keeps clear of the
+   spine (start 20px) and the band (end = max(22px, 15%) + 6px on a
+   176px cover). */
+/* @ll-import tokens */
+.ll-notebook-cover {
+  position: relative;
+  isolation: isolate;
+  box-sizing: border-box;
+  width: 176px; /* w-44 */
+  height: 240px; /* h-60 */
+  color: var(--ll-ink, #2a2420);
+  font-family: 'Kevin Sans', sans-serif;
+}
+
+/* the drawn sheet — everything inside rotates with the seeded tilt */
+.ll-notebook-cover__sheet {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ll-ink-face,
+.ll-ink-cast,
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.ll-ink-layer {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-ink-cast {
+  inset: auto;
+}
+
+/* the label area over the cover */
+.ll-notebook-cover__body {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 52px 32px 0 20px; /* pt-[3.25rem] ps-5 pe-[max(22px,15%)+6px] */
+}

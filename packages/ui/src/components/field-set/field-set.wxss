@@ -1,0 +1,6 @@
+/* ll-field-set — flex flex-col gap-6 */
+.ll-field-set {
+  display: flex;
+  flex-direction: column;
+  gap: 48rpx; /* gap-6 */
+}

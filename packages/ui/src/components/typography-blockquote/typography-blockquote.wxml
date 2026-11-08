@@ -1,0 +1,5 @@
+<!-- ll-typography-blockquote — torn marker bar, script text -->
+<view class="ll-typography-blockquote" style="{{customStyle}}">
+  <view class="ll-typography-blockquote__bar" style="{{barCss}}"></view>
+  <view class="ll-typography-blockquote__text"><slot /></view>
+</view>

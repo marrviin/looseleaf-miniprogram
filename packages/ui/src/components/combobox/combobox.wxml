@@ -1,0 +1,151 @@
+<!-- ll-combobox — three field shapes over one slip. Trigger/editable: the
+     select recipe's pencil box (open spreads it) with the blue felt value
+     or graphite placeholder; chips: the combobox-chips frame holding
+     hang-tag chips (each its own combobox-chip drawing) and the input.
+     The slip: search row with the command-input rule, loading loops,
+     rows with highlighter + felt tick, the "Add ..." row, Stubby's empty. -->
+
+<!-- trigger / editable field -->
+<view
+  wx:if="{{!multiple}}"
+  class="ll-combobox__field {{disabled ? 'll-combobox__field--disabled' : ''}} ll-class"
+  style="{{customStyle}}"
+  catchtap="onFieldTap"
+  aria-role="combobox"
+  aria-disabled="{{disabled}}"
+  aria-label="{{ariaLabel}}"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <input
+    wx:if="{{editable}}"
+    class="ll-combobox__input"
+    value="{{fieldText}}"
+    placeholder="{{placeholder}}"
+    placeholder-class="ll-combobox__placeholder"
+    focus="{{inputFocus}}"
+    disabled="{{disabled || readOnly}}"
+    bindinput="onFieldInput"
+  />
+  <text wx:else class="ll-combobox__value {{hasValue ? '' : 'll-combobox__value--placeholder'}}">{{fieldText}}</text>
+  <view wx:if="{{editable && showClear && hasValue && !disabled && !readOnly}}" class="ll-combobox__clear" catchtap="onClearTap" aria-role="button" aria-label="Clear">
+    <ll-icon name="x" size="{{12}}" ink="#4a433c" />
+  </view>
+  <view class="ll-combobox__icon {{open ? 'll-combobox__icon--open' : ''}}">
+    <ll-icon name="chevrons-up-down" size="{{16}}" ink="{{disabled ? '#5a554e' : '#4a423b'}}" />
+  </view>
+</view>
+
+<!-- chips field (multiple) -->
+<view
+  wx:else
+  class="ll-combobox__field ll-combobox__chips {{disabled ? 'll-combobox__field--disabled' : ''}} ll-class"
+  style="{{customStyle}}"
+  catchtap="onFieldTap"
+  aria-role="combobox"
+  aria-disabled="{{disabled}}"
+  aria-label="{{ariaLabel}}"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-combobox__chips-inner">
+    <view class="ll-combobox__chip" wx:for="{{chips}}" wx:key="value">
+      <view class="ll-combobox__chip-ink" style="{{item.inkStyle}}" />
+      <text class="ll-combobox__chip-label">{{item.label}}</text>
+      <view class="ll-combobox__chip-x" catchtap="onChipRemove" data-value="{{item.value}}" aria-role="button" aria-label="Remove {{item.label}}">
+        <ll-icon name="x" size="{{12}}" ink="#4a433c" />
+      </view>
+    </view>
+    <input
+      class="ll-combobox__chip-input"
+      value="{{query}}"
+      placeholder="{{chipPlaceholder}}"
+      placeholder-class="ll-combobox__placeholder"
+      focus="{{inputFocus}}"
+      disabled="{{disabled || readOnly}}"
+      bindinput="onFieldInput"
+    />
+  </view>
+</view>
+
+<!-- the slip -->
+<block wx:if="{{visible}}">
+  <view class="ll-combobox__catcher" catch:touchmove="noop" catch:tap="onOutsideTap" />
+  <view
+    class="ll-combobox__panel {{closing ? 'll-combobox__panel--closing' : ''}} {{placed ? '' : 'is-placing'}}"
+    style="{{panelStyle}}"
+    catch:tap="noop"
+    aria-role="listbox"
+    aria-label="{{ariaLabel || 'Options'}}"
+  >
+    <ll-paper
+      stock="slip"
+      rules="none"
+      seed="{{seed}}"
+      custom-style="position:relative;display:block;width:100%;box-sizing:border-box;"
+    >
+      <view class="ll-combobox__viewport" style="{{viewportStyle}}">
+        <!-- search row (trigger shape only — the editable/chips field is
+             its own search box) -->
+        <view wx:if="{{!editable}}" class="ll-combobox__search">
+          <view class="ll-combobox__search-ink" style="{{searchInkStyle}}" />
+          <ll-icon name="search" size="{{18}}" />
+          <input
+            class="ll-combobox__search-input"
+            value="{{query}}"
+            placeholder="{{searchPlaceholder}}"
+            placeholder-class="ll-combobox__placeholder"
+            focus="{{searchFocus}}"
+            bindinput="onSearchInput"
+            bindfocus="onSearchFocus"
+            bindblur="onSearchBlur"
+          />
+        </view>
+
+        <view wx:if="{{loading}}" class="ll-combobox__loading" aria-role="progressbar">
+          <ll-spinner variant="loops" size="{{14}}" />
+          <text>{{loadingText}}</text>
+        </view>
+
+        <block wx:for="{{rows}}" wx:key="key">
+          <view wx:if="{{item.type === 'label'}}" class="ll-combobox__group-label">{{item.label}}</view>
+          <ll-rule wx:elif="{{item.type === 'sep'}}" custom-style="width:auto;height:1px;margin:12rpx -8rpx;" />
+          <view
+            wx:elif="{{!item.hidden}}"
+            class="ll-combobox__item {{item.selected ? 'll-combobox__item--hi' : ''}} {{item.disabled ? 'll-combobox__item--disabled' : ''}}"
+            hover-class="{{item.disabled ? '' : 'll-combobox__item--hi'}}"
+            hover-start-time="0"
+            hover-stay-time="80"
+            data-value="{{item.value}}"
+            data-disabled="{{item.disabled}}"
+            catchtap="onItemTap"
+            aria-role="option"
+            aria-disabled="{{item.disabled}}"
+            aria-selected="{{item.checked}}"
+          >
+            <text class="ll-combobox__item-text">{{item.label}}</text>
+            <view wx:if="{{item.checked}}" class="ll-combobox__check">
+              <ll-icon name="check" size="{{16}}" ink="#2c4f9e" />
+            </view>
+          </view>
+        </block>
+
+        <view
+          wx:if="{{createValue}}"
+          class="ll-combobox__item ll-combobox__item--create"
+          hover-class="ll-combobox__item--hi"
+          hover-start-time="0"
+          hover-stay-time="80"
+          catchtap="onCreateTap"
+          aria-role="option"
+        >
+          <ll-icon name="plus" size="{{16}}" ink="#2c4f9e" />
+          <text class="ll-combobox__item-text">Add "{{createValue}}"</text>
+        </view>
+
+        <view wx:if="{{emptyVisible}}" class="ll-combobox__empty">
+          <ll-mascot pose="search" size="{{64}}" />
+          <text>{{emptyText}}</text>
+        </view>
+      </view>
+    </ll-paper>
+  </view>
+</block>

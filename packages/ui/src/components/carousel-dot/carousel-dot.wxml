@@ -1,0 +1,10 @@
+<!-- ll-carousel-dot — one pencil tick -->
+<view
+  class="ll-carousel-dot {{checked ? 'is-checked' : ''}}"
+  style="{{customStyle}}"
+  aria-role="tab"
+  aria-label="Go to slide {{index + 1}}"
+  bind:tap="onTap"
+>
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+</view>

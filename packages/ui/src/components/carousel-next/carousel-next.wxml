@@ -1,0 +1,6 @@
+<!-- ll-carousel-next -->
+<view class="ll-carousel-next is-{{orientation}}" style="{{customStyle}}">
+  <ll-button variant="{{variant}}" size="icon" disabled="{{disabled}}" aria-label="next slide" bind:tap="onTap">
+    <ll-icon name="{{orientation === 'horizontal' ? 'arrow-right' : 'arrow-down'}}" size="{{16}}" />
+  </ll-button>
+</view>

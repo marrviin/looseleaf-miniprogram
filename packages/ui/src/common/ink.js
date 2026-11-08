@@ -90,7 +90,8 @@ function hexToRgba(hex, a) {
 }
 
 /** CSS for one face spec, filling the padded ink layer (w+2pad × h+2pad). */
-function faceCss(spec, pad) {
+function faceCss(spec, frame) {
+  const pad = frame.pad;
   const S = stockOf(spec.stock);
   const tiles = TOOTH_TILES[S.tooth];
   const sizes = tiles.map(([, w, h]) => [w, h]);
@@ -102,12 +103,19 @@ function faceCss(spec, pad) {
   const images = [veilLayer, tiles.map(([t]) => `var(--ll-tex-${t})`).join(','), PAPER_LIGHT].join(',');
   const size = ['100% 100%', sizes.map(([w, h]) => `${w}px ${h}px`).join(','), '100% 100%'].join(',');
   const position = ['0 0', tileOffsets(spec.seed, sizes), '0 0'].join(',');
-  const clip = `path('${spec.evenodd ? 'evenodd, ' : ''}${translatePath(spec.d, pad, pad)}')`;
+  const d = translatePath(spec.d, pad, pad);
+  // Upstream clips the face with clip-path:path() — ignored outright by the
+  // simulator webview (Chromium <88; path() needs 88). An SVG mask via
+  // -webkit-mask-image clips the same way and works everywhere we run.
+  const mask =
+    `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg'` +
+    ` viewBox='0 0 ${frame.w + pad * 2} ${frame.h + pad * 2}'%3E` +
+    `%3Cpath d='${d}'${spec.evenodd ? ` fill-rule='evenodd'` : ''} fill='%23fff'/%3E%3C/svg%3E")`;
   return (
     `left:0;top:0;width:100%;height:100%;` +
     `background-color:var(--ll-${S.base});` +
     `background-image:${images};background-size:${size};background-position:${position};` +
-    `clip-path:${clip};-webkit-clip-path:${clip};`
+    `-webkit-mask-image:${mask};-webkit-mask-size:100% 100%;`
   );
 }
 
@@ -158,7 +166,7 @@ function splitLayer(part, frame) {
       if (piece.cast) out.casts.push(castCss(piece, frame));
     } else {
       if (piece.cast) out.casts.push(castCss(piece, frame));
-      out.faces.push(faceCss(piece, frame.pad));
+      out.faces.push(faceCss(piece, frame));
     }
   }
   if (out.before) out.before = hoisted.defs + out.before;
@@ -503,11 +511,24 @@ export function attachInk() {
       /** Faced variant: pick the one active face set (upstream shows only the
           state's face span; rest is the default), stack under/over strokes. */
       __applyFaced(entry, stack, states) {
-        const faces = [];
+        const d = this.data;
+        // Faces stack like the layer stack (upstream keeps every layer's face
+        // in the DOM and shows the active ones over rest): rest first, then
+        // the active interaction state's face, then on-state faces.
+        const faces = [...(entry.faces.rest || [])];
         if (states.focusVisible && entry.faces.focus) faces.push(...entry.faces.focus);
         else if (states.pressed && entry.faces.pressed) faces.push(...entry.faces.pressed);
         else if (states.hovered && entry.faces.hover) faces.push(...entry.faces.hover);
-        else faces.push(...(entry.faces.rest || []));
+        if (d.open && entry.faces.open) faces.push(...entry.faces.open);
+        if (d.indeterminate && entry.faces.indeterminate) faces.push(...entry.faces.indeterminate);
+        else if (d.checked && entry.faces.checked) faces.push(...entry.faces.checked);
+        // The engine emits faces as left/top 0 + 100%×100% of their parent,
+        // expecting the parent to be the PADDED box (upstream SheetLayers
+        // positions faces at inset:-pad). Our sandwich parents are the
+        // unpadded root, so stretch each face over the padded box instead —
+        // its clip-path coordinates live in that space.
+        const faceStyle = (f) =>
+          typeof f === 'string' ? f.replace(/^left:0;top:0;width:100%;height:100%/, `inset:${-entry.pad}px`) : f;
         const layerStyle = (side) =>
           stack
             .map((u) => (typeof u === 'string' ? (side === 'before' ? u : '') : u[side]))
@@ -519,7 +540,7 @@ export function attachInk() {
           inkFaced: true,
           inkUnderStyle: `inset:${-entry.pad}px;background-image:${layerStyle('before')}`,
           inkOverStyle: `inset:${-entry.pad}px;background-image:${layerStyle('after')}`,
-          inkFaces: faces,
+          inkFaces: faces.map(faceStyle),
           inkCasts: entry.casts,
         });
       },
@@ -572,7 +593,9 @@ export function attachInk() {
             inkFaced: true,
             inkUnderStyle: `inset:${-entry.pad}px;${uri.before ? `background-image:url("${uri.before}")` : ''}`,
             inkOverStyle: `inset:${-entry.pad}px;${uri.after ? `background-image:url("${uri.after}")` : ''}`,
-            inkFaces: entry.disabledFaces || [],
+            inkFaces: (entry.disabledFaces || []).map((f) =>
+              typeof f === 'string' ? f.replace(/^left:0;top:0;width:100%;height:100%/, `inset:${-entry.pad}px`) : f,
+            ),
             inkCasts: entry.disabledCasts || [],
           });
         }

@@ -1,0 +1,18 @@
+<!-- ll-notebook-cover — the faced sheet rotates as one (casts, under
+     strokes, face views, over strokes); the label body stays unrotated. -->
+<view
+  class="ll-notebook-cover ll-class"
+  style="{{customStyle}}"
+  aria-role="img"
+  aria-label="{{ariaLabel}}"
+>
+  <view class="ll-notebook-cover__sheet" style="{{tiltStyle}}" aria-hidden="true">
+    <view class="ll-ink-cast" wx:for="{{inkCasts}}" wx:key="index" style="{{item}}" />
+    <view class="ll-ink-layer" style="{{inkUnderStyle}}" />
+    <view class="ll-ink-face" wx:for="{{inkFaces}}" wx:key="index" style="{{item}}" />
+    <view class="ll-ink-layer" style="{{inkOverStyle}}" />
+  </view>
+  <view class="ll-notebook-cover__body">
+    <slot />
+  </view>
+</view>

@@ -1,0 +1,80 @@
+<!-- ll-sticker-board — upstream sticker-board.tsx folded into one component:
+     the canvas page (a dot-grid Paper) the stickers lie on, and the toolbar.
+     Drag a sticker anywhere; picked stickers show the drawn dashed frame
+     with the ring (turn) and the square (size); the toolbar repeats every
+     key. Stickers are { id, name, x, y, rot, scale, z } all the way down. -->
+<view class="ll-sboard ll-class" style="{{customStyle}}">
+  <view class="ll-sboard__canvas" aria-role="group" aria-label="{{label}}">
+    <ll-paper stock="{{canvasStock}}" tilt="{{false}}" rules="none" custom-style="position:relative;display:block;width:100%;min-height:576rpx;{{canvasHeight ? 'height:' + canvasHeight + ';' : ''}}">
+      <view class="ll-sboard__surface" catch:tap="onSurfaceTap">
+        <view
+          wx:for="{{cells}}"
+          wx:key="id"
+          wx:for-index="ci"
+          class="ll-sboard__item"
+          style="width:{{item.bw * item.scale}}px;height:{{item.bh * item.scale}}px;transform:translate({{item.x - item.bw * item.scale / 2}}px,{{item.y - item.bh * item.scale / 2}}px) rotate({{item.rot}}deg);z-index:{{1 + item.z}};{{item.dragStyle}}"
+          data-ci="{{ci}}"
+          aria-role="group"
+          aria-roledescription="sticker"
+          aria-label="{{item.label}}"
+          aria-current="{{item.id === sel}}"
+          catch:touchstart="onDown"
+          catch:touchmove="onMove"
+          catch:touchend="onUp"
+          catch:touchcancel="onUp"
+          catch:tap="noop"
+        >
+          <view wx:if="{{item.frameStyle}}" class="ll-sboard__frame" style="{{item.frameStyle}}" />
+          <view class="ll-sboard__art" style="{{item.artStyle}}" />
+          <block wx:if="{{item.id === sel && editable}}">
+            <view
+              class="ll-sboard__handle ll-sboard__handle--turn"
+              style="left:50%;top:-{{turnOut}}px;width:{{hit}}px;height:{{hit}}px;"
+              data-ci="{{ci}}"
+              data-mode="turn"
+              catch:touchstart="onDown"
+              catch:touchmove="onMove"
+              catch:touchend="onUp"
+              catch:touchcancel="onUp"
+            />
+            <view
+              class="ll-sboard__handle ll-sboard__handle--size"
+              style="left:calc(100% + {{sizeOut}}px);top:calc(100% + {{sizeOut}}px);width:{{hit}}px;height:{{hit}}px;"
+              data-ci="{{ci}}"
+              data-mode="size"
+              catch:touchstart="onDown"
+              catch:touchmove="onMove"
+              catch:touchend="onUp"
+              catch:touchcancel="onUp"
+            />
+          </block>
+        </view>
+        <view wx:if="{{!cells.length}}" class="ll-sboard__empty">{{empty}}</view>
+      </view>
+    </ll-paper>
+  </view>
+
+  <ll-paper stock="slip" edge="cut" tilt="{{false}}" shadow="hair" rules="none" aria-role="toolbar" aria-label="Sticker tools" custom-style="display:flex;flex-wrap:wrap;align-items:center;column-gap:32rpx;row-gap:16rpx;padding:12rpx 16rpx;box-sizing:border-box;">
+    <view wx:if="{{hasTurn}}" class="ll-sboard__tgroup" aria-role="presentation">
+      <ll-button size="icon-sm" variant="outline" aria-label="Turn left" disabled="{{!sel || !editable}}" bind:tap="onTurnLeft"><view class="ll-sboard__mirror"><ll-icon name="rotate-cw" size="16" /></view></ll-button>
+      <ll-button size="icon-sm" variant="outline" aria-label="Turn right" disabled="{{!sel || !editable}}" bind:tap="onTurnRight"><ll-icon name="rotate-cw" size="16" /></ll-button>
+    </view>
+    <view wx:if="{{hasSize}}" class="ll-sboard__tgroup" aria-role="presentation">
+      <ll-button size="icon-sm" variant="outline" aria-label="Smaller" disabled="{{!sel || !editable}}" bind:tap="onSmaller"><ll-icon name="minus" size="16" /></ll-button>
+      <ll-button size="icon-sm" variant="outline" aria-label="Larger" disabled="{{!sel || !editable}}" bind:tap="onLarger"><ll-icon name="plus" size="16" /></ll-button>
+    </view>
+    <view wx:if="{{hasLayer}}" class="ll-sboard__tgroup" aria-role="presentation">
+      <ll-button size="sm" variant="outline" aria-label="Send to back" disabled="{{!sel || !editable}}" bind:tap="onBack">Back</ll-button>
+      <ll-button size="icon-sm" variant="outline" aria-label="Send backward" disabled="{{!sel || !editable}}" bind:tap="onBackward"><ll-icon name="arrow-down" size="16" /></ll-button>
+      <ll-button size="icon-sm" variant="outline" aria-label="Bring forward" disabled="{{!sel || !editable}}" bind:tap="onForward"><ll-icon name="arrow-up" size="16" /></ll-button>
+      <ll-button size="sm" variant="outline" aria-label="Bring to front" disabled="{{!sel || !editable}}" bind:tap="onFront">Front</ll-button>
+    </view>
+    <view wx:if="{{hasEdit}}" class="ll-sboard__tgroup" aria-role="presentation">
+      <ll-button size="icon-sm" variant="outline" aria-label="Duplicate" disabled="{{!sel || !editable}}" bind:tap="onDuplicate"><ll-icon name="copy" size="16" /></ll-button>
+      <ll-button size="icon-sm" variant="outline" aria-label="Delete" disabled="{{!sel || !editable}}" bind:tap="onDelete"><ll-icon name="trash" size="16" /></ll-button>
+    </view>
+    <view wx:if="{{hasExport}}" class="ll-sboard__tgroup" aria-role="presentation">
+      <ll-button size="sm" variant="outline" aria-label="Export" bind:tap="onExport"><ll-icon name="download" size="16" />Export</ll-button>
+    </view>
+  </ll-paper>
+</view>

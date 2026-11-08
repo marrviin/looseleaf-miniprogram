@@ -1,0 +1,15 @@
+/* ll-bubble — w-fit, max 80% (ghost full width), column of content parts */
+.ll-bubble {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* gap-1 */
+  width: fit-content;
+  max-width: 80%;
+  min-width: 0;
+}
+.ll-bubble.is-end {
+  align-self: flex-end;
+}
+.ll-bubble.is-ghost {
+  max-width: 100%;
+}

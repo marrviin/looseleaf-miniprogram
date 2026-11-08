@@ -1,0 +1,14 @@
+/* ll-table-header — <thead>. Sticky: paper color under the pinned row
+   (--ll-table-bg → --ll-card), --ll-z-sticky. Its row's cells carry the
+   double rule (driven from the row via table tiles). */
+/* @ll-import tokens */
+.ll-table-header {
+  display: table-header-group;
+}
+
+.ll-table-header--sticky {
+  position: sticky;
+  top: 0;
+  z-index: var(--ll-z-sticky, 30);
+  background: var(--ll-table-bg, var(--ll-card, #fbf6e9));
+}

@@ -1,0 +1,104 @@
+.demo {
+  padding: 32rpx;
+  background: var(--ll-paper, #f8f5ee);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+.sec {
+  margin-top: 40rpx;
+}
+.sub-h3 {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin: 28rpx 0 6rpx;
+}
+.sec-desc {
+  font-size: 24rpx;
+  color: #8a857c;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+.cb-center {
+  display: flex;
+  justify-content: center;
+}
+.cb-title {
+  display: block;
+  font-size: 28px;
+  line-height: 28px;
+  font-weight: 700;
+  color: #2a2420;
+}
+.cb-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 28px;
+  margin-top: 8px;
+}
+.cb-item {
+  font-size: 17px;
+  line-height: 28px;
+  color: #2a2420;
+}
+.cb-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32rpx;
+}
+.cb-tone {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+  width: 192px;
+}
+.cb-caption {
+  text-align: center;
+  font-size: 24rpx;
+  color: #2a2420;
+}
+.cb-hand {
+  display: block;
+  font-size: 17px;
+  line-height: 28px;
+  color: #2a2420;
+}
+.cb-you {
+  display: block;
+  margin-top: 8px;
+  font-size: 26rpx;
+  color: #8a857c;
+}
+.cb-visitor {
+  font-size: 28rpx;
+  line-height: 28px;
+  color: #2a2420;
+}
+.cb-sign {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}
+.cb-sign-field {
+  flex: 1;
+}
+.cb-sign-label {
+  font-size: 24rpx;
+  color: #2a2420;
+  margin-bottom: 4rpx;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}

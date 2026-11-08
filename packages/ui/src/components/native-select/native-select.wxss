@@ -1,0 +1,51 @@
+.ll-native-select {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  height: 72rpx; /* h-9 */
+  min-width: 0;
+  font-family: 'Kevin Sans', 'PingFang SC', sans-serif; /* font-hand */
+  font-size: 28rpx; /* text-base */
+}
+.ll-native-select--sm {
+  height: 64rpx; /* h-8 */
+  font-size: 26rpx; /* text-[15px] */
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-native-select__picker {
+  width: 100%;
+  height: 100%;
+}
+.ll-native-select__value {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 80rpx 0 24rpx; /* ps-3 pe-10 */
+  color: var(--ll-input-ink, #2c4f9e);
+  overflow: hidden;
+  white-space: nowrap;
+}
+.ll-native-select__value--ph {
+  color: var(--ll-placeholder, #5a554e);
+}
+.ll-native-select__value--disabled {
+  color: #5a554e; /* disabled:text-pencil-text */
+}
+.ll-native-select__chevron {
+  position: absolute;
+  right: 16rpx; /* end-2 */
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+}

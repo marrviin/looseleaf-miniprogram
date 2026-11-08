@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "ll-carousel": "../carousel/carousel",
+    "ll-carousel-content": "../carousel-content/carousel-content",
+    "ll-carousel-item": "../carousel-item/carousel-item",
+    "ll-carousel-previous": "../carousel-previous/carousel-previous",
+    "ll-carousel-next": "../carousel-next/carousel-next",
+    "ll-carousel-dots": "../carousel-dots/carousel-dots",
+    "ll-paper": "../paper/paper"
+  }
+}

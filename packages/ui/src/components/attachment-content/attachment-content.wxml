@@ -1,0 +1,2 @@
+<!-- ll-attachment-content -->
+<view class="ll-attachment-content" style="{{customStyle}}"><slot /></view>

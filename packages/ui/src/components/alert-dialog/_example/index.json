@@ -1,0 +1,15 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-alert-dialog": "../alert-dialog/alert-dialog",
+    "ll-alert-dialog-header": "../alert-dialog-header/alert-dialog-header",
+    "ll-alert-dialog-title": "../alert-dialog-title/alert-dialog-title",
+    "ll-alert-dialog-description": "../alert-dialog-description/alert-dialog-description",
+    "ll-alert-dialog-media": "../alert-dialog-media/alert-dialog-media",
+    "ll-alert-dialog-footer": "../alert-dialog-footer/alert-dialog-footer",
+    "ll-alert-dialog-action": "../alert-dialog-action/alert-dialog-action",
+    "ll-alert-dialog-cancel": "../alert-dialog-cancel/alert-dialog-cancel",
+    "ll-button": "../button/button",
+    "ll-icon": "../icon/icon"
+  }
+}

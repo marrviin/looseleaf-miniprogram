@@ -1,0 +1,4 @@
+<!-- ll-form-description — the muted helper words under a control -->
+<view class="ll-form-description ll-class" style="{{customStyle}}">
+  <slot />
+</view>

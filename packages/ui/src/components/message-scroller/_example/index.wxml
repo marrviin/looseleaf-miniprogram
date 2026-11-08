@@ -1,0 +1,76 @@
+<!-- ll-message-scroller demo — mirrors the upstream docs page (#/components/message-scroller):
+     intro, then the Examples entries with the page's own copy. -->
+<view class="demo">
+  <view class="demo-title">Message scroller</view>
+  <view class="sec-desc">A scroll view that knows where a conversation starts and ends. When new messages arrive it follows along; when you scroll up to read, it lets go and shows a jump button at the edge.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">A transcript</view>
+    <view class="sec-desc">autoScroll keeps the last line in view as the conversation grows. Scrolling away from the end dims the fades and shows the jump button.</view>
+    <view class="sc-frame">
+      <ll-message-scroller class="sc" auto-scroll>
+        <ll-message-scroller-viewport custom-style="height:420px;">
+          <ll-message-scroller-content>
+            <block wx:for="{{lines}}" wx:key="i">
+              <ll-message align="{{item.you ? 'end' : 'start'}}">
+                <ll-message-avatar wx:if="{{!item.you}}">
+                  <ll-mascot pose="idle" size="{{36}}" seed="scroller-mascot" />
+                </ll-message-avatar>
+                <ll-message-content>
+                  <ll-message-header>{{item.you ? 'you' : 'Stubby'}}</ll-message-header>
+                  <ll-bubble variant="{{item.you ? 'default' : 'muted'}}">
+                    <ll-bubble-content seed="sc-{{index}}">{{item.say}}</ll-bubble-content>
+                  </ll-bubble>
+                </ll-message-content>
+              </ll-message>
+            </block>
+          </ll-message-scroller-content>
+        </ll-message-scroller-viewport>
+        <ll-message-scroller-button direction="end" />
+      </ll-message-scroller>
+    </view>
+    <view class="row"><ll-button size="sm" variant="outline" bind:tap="addLine">Add a line</ll-button></view>
+
+    <view class="sub-h3">Streaming and pinning</view>
+    <view class="sec-desc">While a reply streams in, scrolling up pins your place; the jump button brings you back, and messages can be scrolled to by id with a scroll anchor.</view>
+    <view class="sc-frame">
+      <ll-message-scroller class="sc" auto-scroll>
+        <ll-message-scroller-viewport custom-style="height:380px;">
+          <ll-message-scroller-content>
+            <ll-message-scroller-item wx:for="{{thread}}" wx:key="id" message-id="{{item.id}}" scroll-anchor="{{pinId === item.id}}">
+            <ll-message align="{{item.you ? 'end' : 'start'}}">
+              <ll-message-avatar wx:if="{{!item.you}}">
+                <ll-mascot pose="idle" size="{{36}}" seed="pin-mascot" />
+              </ll-message-avatar>
+              <ll-message-content>
+                <ll-message-header>{{item.you ? 'you' : 'Stubby'}}</ll-message-header>
+                <ll-bubble variant="{{item.you ? 'default' : 'muted'}}">
+                  <ll-bubble-content seed="pin-{{index}}">{{item.say}}</ll-bubble-content>
+                </ll-bubble>
+              </ll-message-content>
+            </ll-message>
+          </ll-message-scroller-item>
+          <ll-message wx:if="{{streamSay}}">
+              <ll-message-content>
+                <ll-message-header>Stubby</ll-message-header>
+                <ll-bubble variant="muted">
+                  <ll-bubble-content seed="pin-stream">
+                    <ll-message-text text="{{streamSay}}" streaming="{{streaming}}" seed="pin-stream-words" />
+                  </ll-bubble-content>
+                </ll-bubble>
+              </ll-message-content>
+            </ll-message>
+          </ll-message-scroller-content>
+        </ll-message-scroller-viewport>
+        <ll-message-scroller-button direction="end" />
+        <ll-message-scroller-button direction="start" />
+      </ll-message-scroller>
+    </view>
+    <view class="row">
+      <ll-button size="sm" variant="outline" bind:tap="stream">Send a message</ll-button>
+      <ll-button size="sm" variant="ghost" bind:tap="pinTag">Pin the tags note</ll-button>
+    </view>
+  </view>
+</view>

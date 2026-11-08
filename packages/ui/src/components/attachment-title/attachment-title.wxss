@@ -1,0 +1,17 @@
+/* ll-attachment-title */
+/* @ll-import tokens */
+.ll-attachment-title {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  font-weight: 700;
+}
+.ll-attachment-title.is-pulsing {
+  animation: ll-attachment-pulse 2s ease-in-out infinite;
+}
+@keyframes ll-attachment-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}

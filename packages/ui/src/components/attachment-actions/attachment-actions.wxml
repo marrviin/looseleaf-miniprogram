@@ -1,0 +1,2 @@
+<!-- ll-attachment-actions -->
+<view class="ll-attachment-actions" style="{{customStyle}}"><slot /></view>

@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ll-select": "../select/select",
+    "ll-label": "../label/label",
+    "ll-button": "../button/button"
+  }
+}

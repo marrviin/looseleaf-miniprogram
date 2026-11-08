@@ -1,0 +1,2 @@
+<!-- ll-alert-title -->
+<view class="ll-alert-title" style="{{customStyle}}"><slot /></view>

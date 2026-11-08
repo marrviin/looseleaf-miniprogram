@@ -1,0 +1,48 @@
+<!-- ll-signature-pad demo — mirrors the upstream docs page
+     (#/components/signature-pad). The hidden form input doesn't port: the
+     agreement form owns the validation and passes `invalid` back. -->
+<view class="demo">
+  <view class="demo-title">Signature Pad</view>
+  <view class="sec-desc">A drawn or typed signature published as an image data URL: one pen on a slip of paper, the sign-here rule underneath, Clear and the typed fallback beside it.</view>
+
+  <view class="sec">
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">Sign with the mouse, a finger or a pen. The brush swells where you lean on it.</view>
+    <view class="col">
+      <ll-signature-pad id="sig1" bindchange="onSaid" />
+      <view class="said-line" aria-live="polite">{{said}}</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Type instead</view>
+    <view class="sec-desc">The typed fallback: the name is hand lettering with a brush swash under it. Anyone who cannot draw gets a signature that is still an image.</view>
+    <view class="col">
+      <ll-signature-pad id="sig2" default-mode="type" bindchange="onTypeSaid" />
+      <view class="said-line" aria-live="polite">{{typeSaid}}</view>
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Agreement form</view>
+    <view class="sec-desc">A real form: the signature is a required field that posts as a data URL. Submit it empty to see the red baseline; sign and it goes through. (The page owns the validation and hands the pad its invalid state.)</view>
+    <ll-card seed="agreement" custom-style="width:100%;max-width:576px">
+      <ll-card-header>
+        <ll-card-title>Studio rental agreement</ll-card-title>
+        <ll-card-description>Three hours, one kettle, no glitter.</ll-card-description>
+      </ll-card-header>
+      <ll-card-content>
+        <view class="agree-row">
+          <ll-checkbox checked="{{agreed}}" bind:change="onAgree" aria-label="I promise, no glitter" />
+          <text class="agree-label">I promise, no glitter</text>
+        </view>
+        <ll-signature-pad id="agree-sig" required pen-color="ink-you" invalid="{{formInvalid}}" bindchange="onAgreeChange" />
+        <view class="said-line" aria-live="polite">{{agreeSaid}}</view>
+      </ll-card-content>
+      <ll-card-footer custom-style="justify-content:space-between">
+        <text class="sent-line">{{sent}}</text>
+        <ll-button bind:tap="onSubmit">Sign and send</ll-button>
+      </ll-card-footer>
+    </ll-card>
+  </view>
+</view>

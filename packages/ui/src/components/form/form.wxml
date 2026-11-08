@@ -1,0 +1,4 @@
+<!-- ll-form — the error provider; the grid is the page's job -->
+<view class="ll-form ll-class" style="{{customStyle}}">
+  <slot />
+</view>

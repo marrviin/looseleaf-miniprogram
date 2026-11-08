@@ -1,0 +1,33 @@
+/* ll-input-group — upstream input-group.tsx host: the Input's pencil box
+   drawn once around everything in the slot. Addons carry their own padding;
+   the group is a flex row (column once a block addon or textarea lands). */
+/* @ll-import tokens */
+
+.ll-input-group {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  height: 72rpx; /* h-9 */
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 28rpx; /* text-base x .88 */
+  color: var(--ll-input-ink, #2c4f9e);
+  caret-color: var(--ll-caret, #2c4f9e);
+}
+/* has-[>textarea] / block addons: the box grows and stacks */
+.ll-input-group--block {
+  height: auto;
+  flex-direction: column;
+  align-items: stretch;
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}

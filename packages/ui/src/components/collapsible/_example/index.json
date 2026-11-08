@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "ll-collapsible": "../collapsible/collapsible",
+    "ll-collapsible-trigger": "../collapsible-trigger/collapsible-trigger",
+    "ll-collapsible-content": "../collapsible-content/collapsible-content",
+    "ll-collapsible-indicator": "../collapsible-indicator/collapsible-indicator",
+    "ll-button": "../button/button",
+    "ll-icon": "../icon/icon",
+    "ll-paper": "../paper/paper"
+  }
+}

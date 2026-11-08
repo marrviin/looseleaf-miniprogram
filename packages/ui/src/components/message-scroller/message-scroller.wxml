@@ -1,0 +1,4 @@
+<!-- ll-message-scroller -->
+<view class="ll-message-scroller ll-class" style="{{customStyle}}" aria-role="group" aria-label="{{label}}">
+  <slot />
+</view>

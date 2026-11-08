@@ -1,0 +1,6 @@
+<!-- ll-dropzone — state + layout (a flex column). The parts subscribe
+     through the relation; lay them out explicitly:
+     <ll-dropzone-area/><ll-dropzone-rejections/><ll-dropzone-list/> -->
+<view class="ll-dropzone {{disabled ? 'is-disabled' : ''}} {{invalid ? 'is-invalid' : ''}}" style="{{customStyle}}">
+  <slot />
+</view>

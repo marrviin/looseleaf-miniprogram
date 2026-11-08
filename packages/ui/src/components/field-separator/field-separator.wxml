@@ -1,0 +1,4 @@
+<!-- ll-field-separator — a rule between fields, optionally with a word. -->
+<view class="ll-field-separator ll-class" style="{{customStyle}}">
+  <ll-separator label="{{label}}" custom-style="width:100%" />
+</view>

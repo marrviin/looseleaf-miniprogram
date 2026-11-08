@@ -1,6 +1,6 @@
 <!-- ll-sticker-sheet demo — mirrors the upstream docs page
      (#/components/sticker-sheet). The third upstream example ("Sheet to
-     board") needs ll-sticker-board — deferred like napkin's 03 was. -->
+     board") peels onto an ll-sticker-board. -->
 <view class="demo">
   <view class="demo-title">Sticker sheet</view>
   <view class="sec-desc">A kiss-cut sheet: press a sticker and it lifts off, leaving its cut outline behind. Press the outline to stick it back. Touch one and its corner curls.</view>
@@ -26,6 +26,11 @@
     </view>
   </view>
 
-  <!-- "Sheet to board" (upstream example 03) needs ll-sticker-board —
-       deferred until that component lands. -->
+  <view class="sec">
+    <view class="sub-h3">Sheet to board</view>
+    <view class="sec-desc">Peel a sticker off the sheet (press it) and it lands on the board, already picked so it can be turned and sized. Press its outline to stick it back on the sheet and off the board.</view>
+    <ll-sticker-sheet title="Sticker sheet" columns="{{3}}" size="{{56}}" stickers="{{names}}" peeled="{{onBoard}}" bindpeel="onBoardPeel" bindstick="onBoardStick" />
+    <view class="board-said" aria-live="polite">{{boardSaid}}</view>
+    <ll-sticker-board id="s2b-board" size="{{76}}" canvas-height="420px" empty="Peel a sticker off the sheet." custom-style="margin-top:24rpx;" bind:valuechange="onBoardValue" />
+  </view>
 </view>

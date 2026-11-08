@@ -1,0 +1,17 @@
+/* ll-alert-dialog-header — grid place-items-center gap-1.5 text-center;
+   with a media: the roomier media/title/description stack (phones).
+   (Upstream's sm+ two-column media-left layout can't be expressed here:
+   the slotted media/title belong to the page scope, and an isolated
+   header's wxss can't place them — the phone stack shows at all widths,
+   like upstream max-sm.) */
+/* @ll-import tokens */
+.ll-alert-dialog-header {
+  display: grid;
+  justify-items: center;
+  row-gap: 12rpx; /* gap-1.5 */
+  text-align: center;
+  font-family: 'Kevin Sans', sans-serif;
+}
+.ll-alert-dialog-header--media {
+  row-gap: 24rpx; /* has-media:gap-x-6 — the roomier stack */
+}

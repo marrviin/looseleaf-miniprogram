@@ -1,0 +1,13 @@
+/* ll-command-loading — flex items-center justify-center gap-2 px-4 py-4
+   font-hand text-sm text-ink-muted. */
+.ll-command-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx; /* gap-2 */
+  box-sizing: border-box;
+  padding: 32rpx; /* px-4 py-4 */
+  font-family: 'Kevin Sans', sans-serif; /* font-hand */
+  font-size: 25rpx; /* text-sm x .88 */
+  color: #4a433c; /* text-ink-muted */
+}

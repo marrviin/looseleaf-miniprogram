@@ -1,0 +1,12 @@
+<!-- ll-handwritten — the text, word by word: real inline text spans with
+     real spaces between them, each carrying its seeded --jy / --jr / --jo.
+     strength 0 (or empty text) renders one plain text node. -->
+<view class="ll-handwritten ll-class" style="{{customStyle}}">
+  <text wx:if="{{plain}}">{{text}}</text>
+  <block wx:else>
+    <block wx:for="{{parts}}" wx:key="index">
+      <text wx:if="{{item.w}}" class="ll-hw__w" style="{{item.s}}">{{item.w}}</text>
+      <text wx:else>{{item.sp}}</text>
+    </block>
+  </block>
+</view>

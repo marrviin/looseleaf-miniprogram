@@ -1,0 +1,64 @@
+.demo {
+  padding: 32rpx;
+  background: var(--ll-paper, #f8f5ee);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.demo-title {
+  font-weight: bold;
+  font-size: 40rpx;
+  margin-bottom: 8rpx;
+}
+.sec {
+  margin-top: 40rpx;
+}
+.sub-h3 {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #2a2420;
+  margin: 28rpx 0 6rpx;
+}
+.sec-desc {
+  font-size: 24rpx;
+  color: #8a857c;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+.pg-body {
+  display: block;
+  font-size: 28rpx;
+  line-height: 1.7;
+  color: #2a2420;
+}
+.pg-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 40rpx;
+}
+.pg-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.pg-legend {
+  font-weight: 700;
+  font-size: 28rpx;
+  color: #2a2420;
+}
+.pg-check {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 28px;
+}
+.pg-check-label {
+  font-size: 28rpx;
+  color: #2a2420;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}

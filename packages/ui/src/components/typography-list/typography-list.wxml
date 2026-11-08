@@ -1,0 +1,7 @@
+<!-- ll-typography-list — disc or decimal markers drawn in the hand -->
+<view class="ll-typography-list {{ordered ? 'is-ordered' : ''}}" style="{{customStyle}}">
+  <view class="ll-typography-list__item" wx:for="{{ordered ? indexes : items}}" wx:key="index">
+    <text class="ll-typography-list__marker">{{ordered ? item + '.' : '•'}}</text>
+    <view class="ll-typography-list__text">{{ordered ? items[item - 1] : item}}</view>
+  </view>
+</view>

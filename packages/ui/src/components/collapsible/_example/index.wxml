@@ -1,0 +1,48 @@
+<!-- ll-collapsible demo — mirrors the upstream docs page -->
+<view class="demo">
+  <view class="demo-title">Collapsible</view>
+  <view class="sec-desc">A section that folds away. The panel slides open and shut; a margin bracket soaks into the paper beside an opened panel, and the indicator chevron turns over with it.</view>
+
+  <view class="sec">
+    <view class="sub-h3">Starred repositories</view>
+    <view class="sec-desc">The classic: a heading with a trigger button, one item always shown and the rest folded away.</view>
+    <ll-collapsible open="{{open}}" bind:openchange="setOpen" custom-style="display:flex;flex-direction:column;gap:8px;">
+      <view class="cl-row">
+        <view class="cl-heading">Starred this week: 3</view>
+        <ll-collapsible-trigger>
+          <ll-button variant="ghost" size="icon-sm" aria-label="Toggle">
+            <ll-icon name="chevrons-up-down" size="{{16}}" />
+          </ll-button>
+        </ll-collapsible-trigger>
+      </view>
+      <ll-paper stock="sticky-yellow" seed="r1" custom-style="margin:0 4px;padding:8px 12px;">
+        <text class="cl-mono">radix-ui/primitives</text>
+      </ll-paper>
+      <ll-collapsible-content custom-style="display:flex;flex-direction:column;gap:8px;">
+        <ll-paper stock="sticky-blue" seed="r2" custom-style="margin:0 4px;padding:8px 12px;">
+          <text class="cl-mono">tailwindlabs/tailwindcss</text>
+        </ll-paper>
+        <ll-paper stock="sticky-green" seed="r3" custom-style="margin:0 4px;padding:8px 12px;">
+          <text class="cl-mono">shadcn-ui/ui</text>
+        </ll-paper>
+      </ll-collapsible-content>
+    </ll-collapsible>
+  </view>
+
+  <view class="sec">
+    <view class="sub-h3">Margin bracket and indicator</view>
+    <view class="sec-desc">bracket writes a brace beside the opened text and lets it soak in; the indicator is the accordion's chevron and turns over with the panel.</view>
+    <ll-collapsible defaultOpen custom-style="max-width:420px;">
+      <ll-collapsible-trigger custom-style="display:flex;align-items:center;gap:6px;padding:0;">
+        <view class="cl-link">What is in the box?</view>
+        <ll-collapsible-indicator />
+      </ll-collapsible-trigger>
+      <ll-collapsible-content bracket="curly" custom-style="padding-top:8px;">
+        <view class="cl-body">
+          <view>One pencil stub, sharpened crooked. Three felt tips that still work. A yellow highlighter, half dry.</view>
+          <view class="cl-mt">A ruler with a chip out of the end.</view>
+        </view>
+      </ll-collapsible-content>
+    </ll-collapsible>
+  </view>
+</view>

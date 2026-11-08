@@ -1,0 +1,20 @@
+<!-- ll-page — the sheet is ll-paper (torn edge, tilt, tape/fastener
+     passthrough); the holes/stain decor is drawn on the paper box under
+     the slot content; layout rides ll-class. -->
+<ll-paper
+  ll-class="{{pageClass}}"
+  stock="{{stock}}"
+  rules="{{rules}}"
+  edge="{{edgeSpec}}"
+  tilt="{{tilt}}"
+  tape="{{tape}}"
+  tape-kind="{{tapeKind}}"
+  fastener="{{fastener}}"
+  fastener-tone="{{fastenerTone}}"
+  seed="{{seed}}"
+  aria-label="{{ariaLabel}}"
+  custom-style="{{widthStyle}}{{customStyle}}"
+>
+  <view wx:if="{{decorOn}}" class="ll-page__decor" style="{{inkStyle}}" aria-hidden="true" />
+  <slot />
+</ll-paper>

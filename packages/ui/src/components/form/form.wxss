@@ -1,0 +1,4 @@
+.ll-form {
+  display: block;
+  min-width: 0;
+}

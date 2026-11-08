@@ -1,0 +1,11 @@
+/* ll-command-group — p-1; heading px-2 py-1.5 font-type text-xs
+   text-ink-muted (typewritten kicker). */
+.ll-command-group {
+  padding: 8rpx; /* p-1 */
+}
+.ll-command-group__heading {
+  padding: 12rpx 16rpx; /* py-1.5 px-2 */
+  font-family: 'IBM Plex Mono', Menlo, monospace; /* font-type */
+  font-size: 20rpx; /* text-xs x .82 (font-type size-adjust) */
+  color: #4a433c; /* text-ink-muted */
+}

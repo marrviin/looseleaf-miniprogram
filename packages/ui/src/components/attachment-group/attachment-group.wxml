@@ -1,0 +1,4 @@
+<!-- ll-attachment-group -->
+<scroll-view class="ll-attachment-group" style="{{customStyle}}" scroll-x enhanced show-scrollbar="{{false}}">
+  <view class="ll-attachment-group__row"><slot /></view>
+</scroll-view>

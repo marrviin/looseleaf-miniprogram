@@ -1,0 +1,3 @@
+<!-- ll-page-content — the body: a growing flex column that pushes the
+     footer down -->
+<view class="ll-page-content ll-class" style="{{customStyle}}"><slot /></view>

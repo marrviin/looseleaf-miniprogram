@@ -1,0 +1,3 @@
+<!-- ll-page-footer — a row at the foot of the sheet (page number,
+     actions), muted, 14px -->
+<view class="ll-page-footer ll-class" style="{{customStyle}}"><slot /></view>

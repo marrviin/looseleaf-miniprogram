@@ -1,0 +1,17 @@
+/* ll-field-legend — mb-3 font-bold; legend: font-script text-[1.6rem]
+   leading-none, label: font-hand text-[15px] */
+.ll-field-legend {
+  margin-bottom: 24rpx; /* mb-3 */
+  font-weight: 700;
+  color: #2a2420;
+}
+.ll-field-legend--legend {
+  font-family: 'Kevin Sans', sans-serif; /* font-script (75% size-adjust) */
+  font-size: 48rpx; /* 1.6rem x .75 */
+  line-height: 1; /* leading-none */
+}
+.ll-field-legend--label {
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 26rpx; /* text-[15px] x .88 */
+  line-height: 1.375;
+}

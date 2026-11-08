@@ -1,0 +1,50 @@
+/* ll-field-error — relative isolate w-fit max-w-full pb-1 text-sm
+   text-destructive (the wavy red pencil underline is the ink layer) */
+/* @ll-import tokens */
+
+.ll-field-error {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  width: fit-content;
+  max-width: 100%;
+  flex-direction: column;
+  gap: 8rpx; /* list gap-1 */
+  box-sizing: border-box;
+  padding-bottom: 8rpx; /* pb-1 */
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 25rpx; /* text-sm x .88 */
+  line-height: 1.5;
+  color: #c2412d; /* text-destructive */
+}
+.ll-ink-layer {
+  position: absolute;
+  inset: 0; /* the runtime style overwrites with inset:-pad px */
+  pointer-events: none;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.ll-field-error__row {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+/* ul ms-4 list-disc */
+.ll-field-error__row:first-child {
+  margin-left: 16rpx;
+}
+.ll-field-error__dot {
+  flex-shrink: 0;
+  width: 7rpx;
+  height: 7rpx;
+  border-radius: 50%;
+  background: #c2412d;
+}
+.ll-field-error__text {
+  min-width: 0;
+}
+.ll-field-error__slot {
+  display: flex;
+  min-width: 0;
+}

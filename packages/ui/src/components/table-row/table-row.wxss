@@ -1,0 +1,60 @@
+/* ll-table-row — <tr>, 44px tall. The tile/geometry vars are inline from
+   the row js; the highlighter swipe layers are enumerated here (a var
+   holding a whole comma list is not applied by the webview — ll-item's
+   lesson), selected is the full swipe, touch-pressed the 40% one. */
+/* @ll-import tokens */
+.ll-table-row {
+  position: relative;
+  isolation: isolate;
+  display: table-row;
+  height: 88rpx; /* h-11 */
+}
+
+/* highlighter swipe: 5px clear of the cell edges, caps at the row ends */
+.ll-table-row__hl {
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  top: 5px;
+  bottom: 5px;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  background-color: var(--ll-hi-select);
+  -webkit-mask-image: linear-gradient(#000, #000);
+  mask-image: linear-gradient(#000, #000);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  transition: opacity 0.15s ease-out;
+}
+.ll-table-row__hl.is-first {
+  -webkit-mask-image: var(--ll-tbl-cap-a), linear-gradient(#000, #000);
+  mask-image: var(--ll-tbl-cap-a), linear-gradient(#000, #000);
+  -webkit-mask-size: 18px 100%, calc(100% - 15px) 100%;
+  mask-size: 18px 100%, calc(100% - 15px) 100%;
+  -webkit-mask-position: left top, right top;
+  mask-position: left top, right top;
+}
+.ll-table-row__hl.is-last {
+  -webkit-mask-image: linear-gradient(#000, #000), var(--ll-tbl-cap-b);
+  mask-image: linear-gradient(#000, #000), var(--ll-tbl-cap-b);
+  -webkit-mask-size: calc(100% - 15px) 100%, 18px 100%;
+  mask-size: calc(100% - 15px) 100%, 18px 100%;
+  -webkit-mask-position: left top, right top;
+  mask-position: left top, right top;
+}
+.ll-table-row__hl.is-only {
+  -webkit-mask-image: var(--ll-tbl-cap-a), linear-gradient(#000, #000), var(--ll-tbl-cap-b);
+  mask-image: var(--ll-tbl-cap-a), linear-gradient(#000, #000), var(--ll-tbl-cap-b);
+  -webkit-mask-size: 18px 100%, calc(100% - 30px) 100%, 18px 100%;
+  mask-size: 18px 100%, calc(100% - 30px) 100%, 18px 100%;
+  -webkit-mask-position: left top, center, right top;
+  mask-position: left top, center, right top;
+}
+
+.ll-table-row--pressed .ll-table-row__hl {
+  opacity: 0.4;
+}
+.ll-table-row--selected .ll-table-row__hl {
+  opacity: 1;
+}

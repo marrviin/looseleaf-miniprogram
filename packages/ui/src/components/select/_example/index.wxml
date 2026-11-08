@@ -1,0 +1,114 @@
+<!-- ll-select demo — mirrors the upstream docs page (#/components/select).
+     The compound <SelectGroup>/<SelectItem> tree folds into an `options`
+     array; every select reports picks through one generic handler. -->
+<view class="demo">
+  <view class="demo-title">Select</view>
+  <view class="sec-desc">A drop-down field. The trigger is a pencil box with a tick before its chevron; the list is a slip of paper set down over or under it, where the row you are on gets the highlighter and the chosen row is bold with a blue tick.</view>
+
+  <view class="sec">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">Press it, slide down the list, and the row under the pointer gets the highlighter. Type a letter to jump; the chosen row is bold with a blue tick.</view>
+    <view class="center-stage">
+      <ll-select
+        id="selDefault"
+        options="{{fruits}}"
+        value="{{fruit}}"
+        placeholder="Pick a fruit"
+        aria-label="Fruit"
+        custom-style="width:190px"
+        data-key="fruit"
+        bind:change="onPick"
+      />
+    </view>
+  </view>
+
+  <view class="sec">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Groups and a long list</view>
+    <view class="sec-desc">Kicker labels, pencil rules between groups, and scroll arrows when the slip runs out of room.</view>
+    <view class="center-stage">
+      <ll-select
+        id="selZones"
+        options="{{zones}}"
+        value="{{tz}}"
+        placeholder="Select a time zone"
+        aria-label="Time zone"
+        content-max-height="{{288}}"
+        custom-style="width:260px"
+        data-key="tz"
+        bind:change="onPick"
+      />
+    </view>
+
+    <view class="sub-h3">Sizes and states</view>
+    <view class="sec-desc">Default and sm, invalid (red pencil box, a bang before the chevron), disabled (dashed, pale) and a disabled row inside the list.</view>
+    <view class="grid2x2">
+      <view class="grid-sm">
+        <ll-label>Default</ll-label>
+        <ll-select options="{{pens}}" placeholder="Pick a pen" aria-label="Default" custom-style="width:190px" />
+      </view>
+      <view class="grid-sm">
+        <ll-label>Small</ll-label>
+        <ll-select options="{{pens}}" size="sm" placeholder="Pick a pen" aria-label="Small" custom-style="width:190px" />
+      </view>
+      <view class="grid-sm">
+        <ll-label>Invalid</ll-label>
+        <ll-select options="{{pens}}" invalid placeholder="Pick a pen" aria-label="Invalid" custom-style="width:190px" />
+        <text class="err-note">Choose a pen to continue.</text>
+      </view>
+      <view class="grid-sm">
+        <ll-label>Disabled</ll-label>
+        <ll-select options="{{pens}}" value="felt" disabled aria-label="Disabled" custom-style="width:190px" />
+      </view>
+    </view>
+
+    <view class="sub-h3">In a form</view>
+    <view class="sec-desc">A controlled select and a required one in one form: the chosen role lands in the status line, `required` blocks the submit until a shift is picked.</view>
+    <view class="stack">
+      <view class="form">
+        <view class="grid-sm">
+          <ll-label for="role">Your role</ll-label>
+          <ll-select options="{{roles}}" value="{{role}}" aria-label="Your role" custom-style="width:100%" data-key="role" bind:change="onPick" />
+        </view>
+        <view class="grid-sm">
+          <ll-label required>Shift</ll-label>
+          <ll-select options="{{shifts}}" value="{{shift}}" placeholder="Morning, evening or night" aria-label="Shift" custom-style="width:100%" data-key="shift" bind:change="onPick" />
+        </view>
+        <view class="form-foot">
+          <ll-button bind:tap="onFileIt">File it</ll-button>
+          <text class="sent-note">{{sent}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="sub-h3">Demo</view>
+    <view class="sec-desc">Official `select-demo`: a 180 px trigger with a placeholder and one labeled group of fruit. The trigger is a drawn field with a hand-drawn chevron; the list is a slip, the pointed-at row wears the highlighter and the chosen one a felt tick.</view>
+    <view class="center-stage">
+      <ll-select
+        options="{{fruits}}"
+        value="{{demo50}}"
+        placeholder="Select a fruit"
+        aria-label="Fruit"
+        custom-style="width:180px"
+        data-key="demo50"
+        bind:change="onPick"
+      />
+    </view>
+
+    <view class="sub-h3">Scrollable</view>
+    <view class="sec-desc">Official `select-scrollable`: twenty-eight time zones in five groups, far taller than the screen allows. The list keeps to the space available and scrolls.</view>
+    <view class="center-stage">
+      <ll-select
+        id="selTz"
+        options="{{timezones}}"
+        placeholder="Select a timezone"
+        aria-label="Timezone"
+        custom-style="width:280px"
+        data-key="tz51"
+        bind:change="onPick"
+      />
+    </view>
+  </view>
+</view>
