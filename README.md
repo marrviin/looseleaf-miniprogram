@@ -7,7 +7,22 @@
 每个组件都由一支"钢笔"在运行时实时绘出:略微歪斜的边框、抖动的下划线、贴纸与胶带——像在便签纸上手写 UI。本项目是 [looseleaf](https://github.com/kevintngo/looseleaf) 的微信小程序移植版,组件统一以 `ll-` 为前缀,原生组件实现、按需引入、开箱即用。
 
 <p align="center">
-  <img src="docs/img/hero.jpg" alt="Looseleaf Miniprogram — 组件目录 / Button / Ticket / Highlight 实机截图" width="830">
+  <img src="docs/img/og.jpg" alt="Looseleaf — 微信小程序手绘组件库:100+ 组件移植自 kevintngo/looseleaf,原生 WXML/WXSS 实现" width="830">
+</p>
+
+## 实机预览
+
+以上均为开发者工具模拟器实机截图(`packages/example`)。
+
+<p align="center">
+  <img src="docs/img/hero.jpg" alt="组件目录 / Button / Polaroid / Highlight 实机截图" width="830">
+</p>
+<p align="center">
+  <img src="docs/img/ticket.jpg" width="300">&nbsp;
+  <img src="docs/img/sticky-note.jpg" width="300">
+  <br>
+  <img src="docs/img/handwritten.jpg" width="300">&nbsp;
+  <img src="docs/img/flip-card.jpg" width="300">
 </p>
 
 ## 组件一览
