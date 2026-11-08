@@ -2,10 +2,10 @@
      Radix switches menus on hover; on touch, tapping another title while
      one is open switches (the bar keeps one open at a time). -->
 <view class="demo">
-  <view class="demo-title">Menubar</view>
+  <ll-page-title underline="highlight" seed="menubar" custom-style="margin-bottom:16rpx;">Menubar</ll-page-title>
   <view class="sec-desc">A desktop-style menu bar: a strip of paper with a pencil ruler along its foot and the menu titles written on it. Touched, a title wears the highlighter; each menu opens the same slip as the dropdown.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Application menu</view>
     <view class="sec-desc">The shadcn demo on a strip of paper: File with a sub-menu and keycaps, Edit, View with ticked rows, Profiles with a radio group. Tap another title while one is open and the menu follows.</view>
@@ -64,7 +64,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Format menu that acts</view>
@@ -105,7 +105,8 @@
             <ll-icon name="book-open" size="22" />
             <text>Looseleaf</text>
           </view>
-          <ll-menubar id="mbHeader" seed="header" aria-label="Application" custom-style="flex:1;min-width:0;">
+          <view class="header-menubar-slot">
+          <ll-menubar id="mbHeader" seed="header" aria-label="Application" custom-style="width:100%;">
             <ll-menubar-menu id="mbNotebook" label="Notebook" aria-label="Notebook">
               <ll-dropdown-menu-item id="hdrNew" bind:select="onHeaderPick" data-name="New notebook">
                 <ll-icon name="file-plus" size="{{16}}" /> New <ll-dropdown-menu-shortcut text="⌘N" />
@@ -130,6 +131,7 @@
               </ll-dropdown-menu-item>
             </ll-menubar-menu>
           </ll-menubar>
+          </view>
           <ll-button variant="ghost" size="icon" aria-label="Account">
             <ll-icon name="circle-user" size="20" />
           </ll-button>

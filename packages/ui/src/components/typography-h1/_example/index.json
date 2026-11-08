@@ -11,6 +11,7 @@
     "ll-typography-muted": "../typography-muted/typography-muted",
     "ll-typography-list": "../typography-list/typography-list",
     "ll-typography-inline-code": "../typography-inline-code/typography-inline-code",
-    "ll-typography-blockquote": "../typography-blockquote/typography-blockquote"
+    "ll-typography-blockquote": "../typography-blockquote/typography-blockquote",
+    "ll-page-title": "../page-title/page-title"
   }
 }

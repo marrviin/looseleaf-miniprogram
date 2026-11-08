@@ -1,10 +1,10 @@
 <!-- ll-marker demo — mirrors the upstream docs page (#/components/marker).
      Bubbles are placeholder views until ll-bubble lands. -->
 <view class="demo">
-  <view class="demo-title">Marker</view>
+  <ll-page-title underline="highlight" seed="marker" custom-style="margin-bottom:16rpx;">Marker</ll-page-title>
   <view class="sec-desc">The pencil line between two days of a conversation, the red one where you stopped reading, and the quiet note that someone joined. A separator, a border or a plain line of small print.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Day separators</view>
     <view class="sec-desc">A ruled pencil line on each side of the day, written in the script font. The lines run level and stop just short of the words.</view>
@@ -21,7 +21,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Where you stopped reading</view>
@@ -42,7 +42,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Borders and events</view>
     <view class="sec-desc">A border marker heads a section with one line under it (pencil or a red wavy one). The default variant is small print with an icon: someone joined, a call started.</view>
     <view class="stack stack--loose">

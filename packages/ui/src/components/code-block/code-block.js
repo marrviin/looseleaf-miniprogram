@@ -82,6 +82,7 @@ createComponent({
   data: {
     lang: 'text',
     isDiff: false,
+    isDark: true,
     lines: [],
     text: '',
     stats: null,
@@ -115,6 +116,7 @@ createComponent({
       this.setData({
         lang: m.lang,
         isDiff: m.isDiff,
+        isDark: this.data.tone !== 'paper',
         lines,
         text: m.text,
         stats: m.stats,

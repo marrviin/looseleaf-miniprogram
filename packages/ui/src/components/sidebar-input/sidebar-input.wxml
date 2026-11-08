@@ -1,0 +1,4 @@
+<!-- ll-sidebar-input — an Input sized for the pad (h-8 w-full). -->
+<view class="ll-sidebar-input {{ll-class}}" style="{{customStyle}}">
+  <ll-input value="{{value}}" placeholder="{{placeholder}}" disabled="{{disabled}}" aria-label="{{ariaLabel}}" bind:input="onInput" />
+</view>

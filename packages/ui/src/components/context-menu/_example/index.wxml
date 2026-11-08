@@ -2,10 +2,10 @@
      Radix opens these on right-click (or the menu key); a phone has
      neither, so every slip here opens on a long-press of its region. -->
 <view class="demo">
-  <view class="demo-title">Context Menu</view>
+  <ll-page-title underline="highlight" seed="context-menu" custom-style="margin-bottom:16rpx;">Context Menu</ll-page-title>
   <view class="sec-desc">A paper slip of rows that opens where you pressed — the desktop right-click menu, kept whole. On touch it opens on a long-press of its region, and the slip lands at the press point. Rows come from the shared dropdown-menu family, the way upstream's three menus share menu-styles.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Right-click anywhere</view>
@@ -13,7 +13,7 @@
     <view class="center-row">
       <ll-context-menu id="ctxMain" width="288" seed="ctx" aria-label="Notebook menu">
         <view slot="trigger">
-          <ll-paper stock="graph" seed="region" custom-style="display:grid;place-items:center;width:320px;height:176px;text-align:center;" aria-label="Long-press for the menu">
+          <ll-paper stock="graph" seed="region" custom-style="display:grid;place-items:center;width:320px;max-width:100%;height:176px;text-align:center;" aria-label="Long-press for the menu">
             <view>
               <view class="region-script">Right-click anywhere</view>
               <view class="region-sub">long-press on touch</view>

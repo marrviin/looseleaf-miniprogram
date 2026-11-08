@@ -3,8 +3,14 @@
 .ll-tabs-list {
   display: inline-flex;
   width: fit-content;
+  /* phone adaptation: clamp to the container and scroll — the triggers are
+     nowrap, so 5+ wide labels would otherwise paint past the edge with no
+     way to reach the clipped tabs (justify-content was center, which is
+     dead code at fit-content width and would make overflowed tabs
+     unreachable on the start side) */
+  max-width: 100%;
+  overflow-x: auto;
   align-items: flex-end; /* items-end */
-  justify-content: center;
   height: 80rpx; /* aria-[orientation=horizontal]:h-10 */
   gap: 8rpx; /* gap-1 */
   color: var(--muted-foreground); /* text-muted-foreground */

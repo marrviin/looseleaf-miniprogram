@@ -1,0 +1,4 @@
+<!-- ll-sidebar-footer — bottom of the pad (flex-col gap-2 p-2). -->
+<view class="ll-sidebar-footer {{ll-class}}" style="{{customStyle}}">
+  <slot />
+</view>

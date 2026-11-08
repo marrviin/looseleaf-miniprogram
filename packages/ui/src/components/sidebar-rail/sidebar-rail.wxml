@@ -1,0 +1,11 @@
+<!-- ll-sidebar-rail — the edge strip; the 2px pencil line shows on hover
+     (upstream hover:after:bg-pencil-mark). -->
+<view
+  wx:if="{{visible}}"
+  class="ll-sidebar-rail is-side-{{side}} {{ll-class}}"
+  style="{{customStyle}}"
+  aria-role="button"
+  aria-label="{{ariaLabel}}"
+  hover-class="is-hover"
+  bind:tap="onTap"
+/>

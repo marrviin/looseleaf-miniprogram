@@ -1,6 +1,5 @@
 .demo {
   padding: 32rpx;
-  background: var(--ll-paper, #f8f5ee);
   min-height: 100vh;
   box-sizing: border-box;
 }
@@ -11,6 +10,7 @@
 }
 .sec {
   margin-top: 40rpx;
+  padding: 32rpx;
 }
 .sec-h2 {
   font-size: 36rpx;
@@ -76,4 +76,30 @@
   margin-top: 8rpx;
   font-size: 26rpx;
   color: #8a857c;
+}
+
+
+/* per-case Stage surface - upstream example meta.stage (kit/Stage.tsx):
+   "desk" = sage linen block, default = dot-grid sheet. */
+.sec--desk {
+  background-color: var(--ll-desk, #a8c8bb);
+  background-image: var(--ll-tex-linen);
+  background-size: 160px 160px;
+  background-repeat: repeat;
+  box-shadow: inset 0 0 18px -2px rgba(58,44,30,0.4);
+}
+.sec--grid {
+  background-color: var(--ll-graph, #f4f7ef);
+  background-image:
+    radial-gradient(circle at center, rgba(142,136,127,0.9) 0 0.8px, transparent 1.15px),
+    radial-gradient(circle at center, rgba(142,136,127,0.9) 0 0.8px, transparent 1.15px),
+    var(--ll-tex-fibre),
+    var(--ll-tex-slip),
+    var(--ll-tex-cloud),
+    linear-gradient(135deg, rgba(255,255,255,0.38), rgba(255,255,255,0) 42%, rgba(58,44,30,0.035));
+  background-size: 20px 20px, 20px 20px, 240px 240px, 128px 128px, 720px 720px, 100% 100%;
+  background-position: 0 0, 10px 10px, 0 0, 0 0, 0 0, 0 0;
+  background-repeat: repeat, repeat, repeat, repeat, repeat, no-repeat;
+  box-shadow: 0 1px 0 rgba(58,44,30,0.2), 0 4px 8px -3px rgba(58,44,30,0.2);
+  border-radius: 2px;
 }

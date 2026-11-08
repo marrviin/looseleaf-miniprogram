@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "ll-marquee": "looseleaf-miniprogram/components/marquee/marquee"
+    "ll-marquee": "looseleaf-miniprogram/components/marquee/marquee",
+    "ll-page-title": "../page-title/page-title"
   }
 }

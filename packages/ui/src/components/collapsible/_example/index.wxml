@@ -1,9 +1,9 @@
 <!-- ll-collapsible demo — mirrors the upstream docs page -->
 <view class="demo">
-  <view class="demo-title">Collapsible</view>
+  <ll-page-title underline="highlight" seed="collapsible" custom-style="margin-bottom:16rpx;">Collapsible</ll-page-title>
   <view class="sec-desc">A section that folds away. The panel slides open and shut; a margin bracket soaks into the paper beside an opened panel, and the indicator chevron turns over with it.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Starred repositories</view>
     <view class="sec-desc">The classic: a heading with a trigger button, one item always shown and the rest folded away.</view>
     <ll-collapsible open="{{open}}" bind:openchange="setOpen" custom-style="display:flex;flex-direction:column;gap:8px;">
@@ -29,7 +29,7 @@
     </ll-collapsible>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Margin bracket and indicator</view>
     <view class="sec-desc">bracket writes a brace beside the opened text and lets it soak in; the indicator is the accordion's chevron and turns over with the panel.</view>
     <ll-collapsible defaultOpen custom-style="max-width:420px;">

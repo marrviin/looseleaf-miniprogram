@@ -9,6 +9,7 @@
     "ll-card-description": "looseleaf-miniprogram/components/card-description/card-description",
     "ll-card-content": "looseleaf-miniprogram/components/card-content/card-content",
     "ll-card-footer": "looseleaf-miniprogram/components/card-footer/card-footer",
-    "ll-checkbox": "looseleaf-miniprogram/components/checkbox/checkbox"
+    "ll-checkbox": "looseleaf-miniprogram/components/checkbox/checkbox",
+    "ll-page-title": "../page-title/page-title"
   }
 }

@@ -1,15 +1,15 @@
 <!-- ll-tear-off demo — mirrors the upstream docs page
      (#/components/tear-off). The body and the stub take named slots. -->
 <view class="demo">
-  <view class="demo-title">Tear-off</view>
+  <ll-page-title underline="highlight" seed="tear-off" custom-style="margin-bottom:16rpx;">Tear-off</ll-page-title>
   <view class="sec-desc">A coupon, ticket or raffle strip with a stub you tear off along a perforated line. Pull the stub and it swings off its far corner, tap it and it comes away; the ticket keeps a torn edge. Calls tear once.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Default</view>
     <view class="sec-desc">Pull the stub away, tap it, or focus it and press Enter. The scissors have already started.</view>
-    <ll-tear-off id="t1" stub-label="Tear off the 10% off coupon" body-custom-style="width:200px;box-sizing:border-box;" stub-custom-style="width:104px;box-sizing:border-box;" bind:tear="onTear1">
+    <ll-tear-off id="t1" stub-label="Tear off the 10% off coupon" body-custom-style="width:400rpx;box-sizing:border-box;" stub-custom-style="width:208rpx;box-sizing:border-box;" bind:tear="onTear1">
       <view slot="body" class="ticket-body">
         <view class="script-h">Studio night</view>
         <view class="ticket-line">Friday, doors at 7</view>
@@ -23,7 +23,7 @@
     <view wx:if="{{said1}}" class="said-line" aria-live="polite">{{said1}}</view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Stub below</view>
     <view class="sec-desc">orientation="vertical" hangs the stub under the ticket, like the free coffee on a punch card. Kraft stock, and it is pulled down.</view>
     <ll-tear-off id="t2" orientation="vertical" torn-message="One free coffee, redeemed." body-stock="kraft" stub-stock="sticky-yellow" body-custom-style="width:224px;box-sizing:border-box;padding:20rpx 40rpx;" stub-custom-style="width:224px;height:80px;box-sizing:border-box;" bind:tear="onTear2">
@@ -38,7 +38,7 @@
     <view wx:if="{{said2}}" class="said-line" aria-live="polite">{{said2}}</view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Coupon book</view>
     <view class="sec-desc">A real use: tear redeems the coupon, and a controlled torn state lets the book be reset. The confetti stays inside the ticket.</view>
     <ll-tear-off id="t3" torn="{{torn3}}" bind:tornchange="onTorn3" bind:tear="onTear3" torn-message="Coupon redeemed." body-custom-style="width:184px;box-sizing:border-box;" stub-custom-style="width:96px;box-sizing:border-box;">

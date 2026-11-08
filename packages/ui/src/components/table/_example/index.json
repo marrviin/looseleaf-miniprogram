@@ -26,6 +26,7 @@
     "ll-dropdown-menu-label": "../dropdown-menu-label/dropdown-menu-label",
     "ll-dropdown-menu-item": "../dropdown-menu-item/dropdown-menu-item",
     "ll-dropdown-menu-separator": "../dropdown-menu-separator/dropdown-menu-separator",
-    "ll-dropdown-menu-checkbox-item": "../dropdown-menu-checkbox-item/dropdown-menu-checkbox-item"
+    "ll-dropdown-menu-checkbox-item": "../dropdown-menu-checkbox-item/dropdown-menu-checkbox-item",
+    "ll-page-title": "../page-title/page-title"
   }
 }

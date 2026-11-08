@@ -15,6 +15,7 @@
     "ll-button": "../button/button",
     "ll-icon": "../icon/icon",
     "ll-input": "../input/input",
-    "ll-label": "../label/label"
+    "ll-label": "../label/label",
+    "ll-page-title": "../page-title/page-title"
   }
 }

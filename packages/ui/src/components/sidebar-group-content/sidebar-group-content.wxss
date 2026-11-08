@@ -1,0 +1,4 @@
+.ll-sidebar-group-content {
+  width: 100%;
+  font-size: 28rpx; /* text-sm x .88 */
+}

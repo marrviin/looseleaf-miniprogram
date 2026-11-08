@@ -1,10 +1,10 @@
 <!-- ll-spinner demo — mirrors the upstream docs page (#/components/spinner).
      Colors are passed to `ink` (backgrounds can't inherit text color). -->
 <view class="demo">
-  <view class="demo-title">Spinner</view>
+  <ll-page-title underline="highlight" seed="spinner" custom-style="margin-bottom:16rpx;">Spinner</ll-page-title>
   <view class="sec-desc">A pencil that will not stop scribbling: a hand-wound spiral whose line is drawn and undrawn round and round, in the color of the text around it. Still, and whole, when motion is reduced. Stubby can write instead, in three frames like a flip book.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Sizes and colors</view>
     <view class="sec-desc">Size it with size-*; the scribble is redrawn for the size (fewer, wider turns when it is small). It draws in whatever text color it sits in. With reduced motion on, every one of these stands still, whole.</view>
@@ -18,7 +18,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">In buttons and badges</view>

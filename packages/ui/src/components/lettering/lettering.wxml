@@ -1,0 +1,13 @@
+<!-- ll-lettering — the line in the script font; the riso pass is a
+     text-shadow with em-literal offsets and a JS-resolved hex (the
+     styleVars string). wobble > 0 splits the text into per-word spans
+     with the seeded Handwritten jitter; the shadow inherits onto them. -->
+<view class="ll-lettering ll-lettering--{{size}} ll-class" style="{{customStyle}};{{styleVars}}" aria-role="heading">
+  <text wx:if="{{plain}}">{{text}}</text>
+  <block wx:else>
+    <block wx:for="{{parts}}" wx:key="index">
+      <text wx:if="{{item.w}}" class="ll-lettering__w" style="{{item.s}}">{{item.w}}</text>
+      <text wx:else>{{item.sp}}</text>
+    </block>
+  </block>
+</view>

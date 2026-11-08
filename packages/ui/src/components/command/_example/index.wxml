@@ -1,10 +1,10 @@
 <!-- ll-command demo — mirrors the upstream docs page (#/components/command).
      Upstream types and uses the arrow keys; on the phone you type and tap. -->
 <view class="demo">
-  <view class="demo-title">Command</view>
+  <ll-page-title underline="highlight" seed="command" custom-style="margin-bottom:16rpx;">Command</ll-page-title>
   <view class="sec-desc">A command palette on a slip of paper. Type and the list is cut down (cmdk's fuzzy match); the first hit wears the highlighter, keys show as pencil keycaps, an empty search gets Stubby with his magnifier.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Default</view>
     <view class="sec-desc">The shadcn demo on a slip. Type "cal" to cut the list down; the row you are on wears the highlighter; Calculator is disabled; the last three end in a keycap.</view>
@@ -53,7 +53,7 @@
     <view class="said-line" aria-live="polite">{{said}}</view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">In a dialog, on a napkin</view>

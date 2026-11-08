@@ -3,10 +3,10 @@
      errors map plays FormProvider). The 50–59 react-hook-form examples are
      the same wiring — the field demos carry them. -->
 <view class="demo">
-  <view class="demo-title">Form</view>
+  <ll-page-title underline="highlight" seed="form" custom-style="margin-bottom:16rpx;">Form</ll-page-title>
   <view class="sec-desc">The page validates and hands the form an errors map; the item's label turns red pencil and the message is written under its field on a wavy red underline. Fix a field and its message goes on the next change.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Default</view>
@@ -32,7 +32,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Every control</view>
     <view class="sec-desc">A select, a radio group, a slider, a switch and a checkbox go red the same way an input does — the item's hasError reaches them through the invalid prop. Save with defaults and read the messages.</view>
     <view class="stack-12">
@@ -77,7 +77,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Server errors</view>
     <view class="sec-desc">An error does not have to come from the schema: after a pretend request the handle "notes" comes back already taken, and the same label, box and underline appear. Change the text and it clears itself.</view>
     <view class="stack-12">

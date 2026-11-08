@@ -2,10 +2,10 @@
      intro, then the Examples entries with the page's own copy. Installation/
      Usage/API reference/Accessibility/Related are intentionally omitted. -->
 <view class="demo">
-  <view class="demo-title">Tabs</view>
+  <ll-page-title underline="highlight" seed="tabs" custom-style="margin-bottom:16rpx;">Tabs</ll-page-title>
   <view class="sec-desc">Index-divider tabs: the active one is lifted and filled with highlighter, and the pencil baseline breaks under it. Also a hairline `line` style with a blue felt underline, and vertical binder tabs. Radix behavior and roving focus are untouched.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Demo</view>

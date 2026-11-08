@@ -50,6 +50,7 @@ import {
   accordionTriggerRecipe,
 } from '@/lib/ink/recipes/accordion-ink';
 import { marginBracketRecipe } from '@/lib/ink/recipes/margin-bracket-ink';
+import { sidebarMarkRecipe, sidebarRuleRecipe } from '@/lib/ink/recipes/sidebar-ink';
 import { buttonGroupTextRecipe } from '@/lib/ink/recipes/button-group-ink';
 import { switchRecipe, switchThumbRecipe } from '@/lib/ink/recipes/switch-ink';
 import { toggleRecipe } from '@/lib/ink/recipes/toggle-ink';
@@ -286,6 +287,10 @@ export const RECIPES = {
   tabs: tabsRecipe,
   'accordion-rule': accordionRuleRecipe,
   'accordion-trigger': accordionTriggerRecipe,
+  // ll-sidebar: the active row's highlighter swipe + margin bracket, and the
+  // pencil line down an open sub-menu's start edge.
+  'sidebar-mark': sidebarMarkRecipe,
+  'sidebar-rule': sidebarRuleRecipe,
   'margin-bracket': marginBracketRecipe,
   'button-group-text': buttonGroupTextRecipe,
   switch: switchRecipe,

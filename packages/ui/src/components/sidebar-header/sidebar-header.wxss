@@ -1,0 +1,7 @@
+.ll-sidebar-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx; /* gap-2 */
+  padding: 16rpx; /* p-2 */
+  box-sizing: border-box;
+}

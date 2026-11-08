@@ -2,10 +2,10 @@
      (#/components/callout): note + arrow, the eight directions, notes in
      a margin, and a form hint that goes away on focus. -->
 <view class="demo">
-  <view class="demo-title">Callout</view>
+  <ll-page-title underline="highlight" seed="callout" custom-style="margin-bottom:16rpx;">Callout</ll-page-title>
   <view class="sec-desc">Handwritten words with a drawn arrow on their tail, pointing at whatever they're about.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">A note and its arrow</view>
     <view class="sec-desc">The arrow points left, at the box to the note's left.</view>
     <view class="center-row">
@@ -14,7 +14,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Eight directions</view>
     <view class="sec-desc">The arrow points where you say; the words sit on its tail.</view>
     <view class="dir-grid">
@@ -29,7 +29,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">In the margin of a paragraph</view>
     <view class="sec-desc">A note beside the line it's about — the good bits get a swipe of yellow, the note rides next to them.</view>
     <view class="margin-wrap">
@@ -40,11 +40,11 @@
           so I can find them on the next read, and the parts I do not believe get a red pencil.
         </view>
       </ll-paper>
-      <ll-callout direction="left" bend="down" seed="m1" text="ha, true" custom-style="position:absolute;right:0;top:60px;max-width:140px;" />
+      <ll-callout direction="left" bend="down" seed="m1" text="ha, true" custom-style="position:absolute;right:0;top:60px;max-width:280rpx;" />
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">A hint on a form</view>
     <view class="sec-desc">A hint that points at the field it's about, and goes away when you get there.</view>
     <view class="form">

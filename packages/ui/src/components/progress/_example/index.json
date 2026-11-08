@@ -3,6 +3,7 @@
   "usingComponents": {
     "ll-progress": "../progress/progress",
     "ll-button": "../button/button",
-    "ll-icon": "../icon/icon"
+    "ll-icon": "../icon/icon",
+    "ll-page-title": "../page-title/page-title"
   }
 }

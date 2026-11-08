@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "ll-tabs": "/components/tabs/tabs",
+    "ll-tabs-list": "/components/tabs-list/tabs-list",
+    "ll-tabs-trigger": "/components/tabs-trigger/tabs-trigger",
+    "ll-icon": "/components/icon/icon"
+  }
+}

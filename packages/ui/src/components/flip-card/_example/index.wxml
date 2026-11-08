@@ -3,10 +3,10 @@
      component: faces are the named slots front/back; 04's own trigger
      button calls toggle() on the component. -->
 <view class="demo">
-  <view class="demo-title">Flip card</view>
+  <ll-page-title underline="highlight" seed="flip-card" custom-style="margin-bottom:16rpx;">Flip card</ll-page-title>
   <view class="sec-desc">A card that turns over — click it, or Tab to it and press Space. The card lifts off the desk as it turns.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Default</view>
     <view class="sec-desc">An index card in front, a slip behind.</view>
     <view class="fc-center">
@@ -23,7 +23,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Notepad flip</view>
     <view class="sec-desc">axis="x" turns it like a page of a top-bound pad. Any paper works for either face.</view>
     <view class="fc-center">
@@ -41,7 +41,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Vocabulary deck</view>
     <view class="sec-desc">A real use: a controlled flip card as a study deck. Turning is the answer; Next shows the front of the following card.</view>
     <view class="fc-center">
@@ -61,7 +61,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Buttons on the faces</view>
     <view class="sec-desc">trigger={{false}} leaves the card free of the overlay, so a face can hold real buttons. The flip button is your own.</view>
     <view class="fc-center">

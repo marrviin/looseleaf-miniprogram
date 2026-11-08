@@ -3,10 +3,10 @@
      here the dim state is a controlled `disabled` prop (no peer selectors
      in WeChat) and `for` binds only native form controls. -->
 <view class="demo">
-  <view class="demo-title">Label</view>
+  <ll-page-title underline="highlight" seed="label" custom-style="margin-bottom:16rpx;">Label</ll-page-title>
   <view class="sec-desc">The words that go with a field, in the bold hand font, with an optional red pencil star for required fields. It fades with a disabled control and hands its click to it.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Default</view>
     <view class="sec-desc">Click the words and the field takes focus.</view>
@@ -18,7 +18,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Required</view>

@@ -14,6 +14,8 @@
 }
 .ll-field-label--card {
   width: 100%;
+  /* demos pass padding via custom-style: keep it inside width:100% */
+  box-sizing: border-box;
   flex-direction: column;
   position: relative;
   isolation: isolate;

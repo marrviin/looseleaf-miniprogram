@@ -1,9 +1,9 @@
 <!-- ll-slider demo — mirrors the upstream docs page (#/components/slider). -->
 <view class="demo">
-  <view class="demo-title">Slider</view>
+  <ll-page-title underline="highlight" seed="slider" custom-style="margin-bottom:16rpx;">Slider</ll-page-title>
   <view class="sec-desc">Pick a number, or two, by dragging a paper knob along a hand-ruled groove. The range is one marker pass drawn full length and revealed by a CSS clip, so nothing is redrawn while you drag. Ticks, a highlighter or blue-felt range, vertical, and range sliders.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Default</view>
     <view class="sec-desc">Drag the knob, or focus it and use the arrow keys, Home, End and Page Up / Down. The marker range follows the value; nothing is redrawn while you drag.</view>
@@ -16,7 +16,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Range, ticks and tones</view>

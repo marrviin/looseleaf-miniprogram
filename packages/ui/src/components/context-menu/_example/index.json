@@ -11,6 +11,7 @@
     "ll-dropdown-menu-radio-group": "../dropdown-menu-radio-group/dropdown-menu-radio-group",
     "ll-dropdown-menu-radio-item": "../dropdown-menu-radio-item/dropdown-menu-radio-item",
     "ll-paper": "../paper/paper",
-    "ll-icon": "../icon/icon"
+    "ll-icon": "../icon/icon",
+    "ll-page-title": "../page-title/page-title"
   }
 }

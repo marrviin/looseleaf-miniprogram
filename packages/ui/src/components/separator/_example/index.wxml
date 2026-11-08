@@ -2,10 +2,10 @@
      The labeled separator takes a label prop (React children have no
      miniprogram equivalent). -->
 <view class="demo">
-  <view class="demo-title">Separator</view>
+  <ll-page-title underline="highlight" seed="separator" custom-style="margin-bottom:16rpx;">Separator</ll-page-title>
   <view class="sec-desc">A rule that visually or semantically separates content, drawn by hand: pencil, ledger dashes, a squiggle, dots, a strip of tape, a running stitch or a torn edge of paper. Horizontal or vertical, with an optional centered label.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Seven ways to draw a line</view>
     <view class="sec-desc">Pencil is the default. The others are for when a divider should say something: ledger dashes, a squiggle, dots, kraft tape, a running stitch, a torn edge.</view>
@@ -17,7 +17,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Or continue with</view>

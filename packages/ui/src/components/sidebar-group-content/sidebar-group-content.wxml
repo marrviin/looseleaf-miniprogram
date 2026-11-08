@@ -1,0 +1,4 @@
+<!-- ll-sidebar-group-content — wraps a group's menu (w-full text-sm). -->
+<view class="ll-sidebar-group-content {{ll-class}}" style="{{customStyle}}">
+  <slot />
+</view>

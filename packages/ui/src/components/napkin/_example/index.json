@@ -8,6 +8,7 @@
     "ll-textarea": "../textarea/textarea",
     "ll-button": "../button/button",
     "ll-doodle": "../doodle/doodle",
-    "ll-sticker": "../sticker/sticker"
+    "ll-sticker": "../sticker/sticker",
+    "ll-page-title": "../page-title/page-title"
   }
 }

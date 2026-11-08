@@ -11,6 +11,7 @@
     "ll-separator": "../separator/separator",
     "ll-button": "../button/button",
     "ll-button-group": "../button-group/button-group",
-    "ll-tooltip": "../tooltip/tooltip"
+    "ll-tooltip": "../tooltip/tooltip",
+    "ll-page-title": "../page-title/page-title"
   }
 }

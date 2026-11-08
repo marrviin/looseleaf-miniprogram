@@ -3,13 +3,13 @@
      opens on a tap of the trigger (openDelay still applies) and the next
      tap anywhere else puts it away. -->
 <view class="demo">
-  <view class="demo-title">Hover Card</view>
-  <view class="sec-desc">A small polaroid that appears when you rest the pointer on a link: photo stock with a thick lower margin for handwriting, a degree or two of tilt, and tape if you like. A preview for sighted pointer users, never the only home of anything. (On touch, tap the link instead.)</view>
+  <ll-page-title underline="highlight" seed="hover-card" custom-style="margin-bottom:16rpx;">Hover Card</ll-page-title>
+  <view class="sec-desc">A small polaroid that appears when you rest the pointer on a link: photo stock with a thick lower margin for handwriting, a degree or two of tilt, and tape if you like. A preview for sighted pointer users, never the only home of anything. (On touch, tap or long-press the link — long-press always works, even when the trigger is a button.)</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Profile</view>
-    <view class="sec-desc">The shadcn demo as a polaroid: hover the link (or tap it) and a small photo with handwriting on its margin lands next to it.</view>
+    <view class="sec-desc">The shadcn demo as a polaroid: hover the link (or tap / long-press it) and a small photo with handwriting on its margin lands next to it.</view>
     <view class="prose-row">Made by
       <ll-hover-card id="hcProfile" seed="profile" aria-label="@looseleaf">
         <view slot="trigger"><ll-button variant="link" custom-style="padding-left:4rpx;padding-right:4rpx;">@looseleaf</ll-button></view>
@@ -22,7 +22,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Taped, with a sticker</view>

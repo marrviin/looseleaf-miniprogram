@@ -1,9 +1,9 @@
 <!-- ll-scribble demo — mirrors the upstream docs page (#/components/scribble). -->
 <view class="demo">
-  <view class="demo-title">Scribble</view>
+  <ll-page-title underline="highlight" seed="scribble" custom-style="margin-bottom:16rpx;">Scribble</ll-page-title>
   <view class="sec-desc">A word scribbled out in ink. The strokes lean, vary in pitch and spill past the letters.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Default</view>
     <view class="sec-desc">A word scribbled out in ink. The strokes lean, vary in pitch and spill past the letters.</view>
@@ -12,7 +12,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Pens</view>

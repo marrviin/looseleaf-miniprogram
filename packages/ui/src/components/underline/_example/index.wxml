@@ -1,9 +1,9 @@
 <!-- ll-underline demo — mirrors the upstream docs page (#/components/underline). -->
 <view class="demo">
-  <view class="demo-title">Underline</view>
+  <ll-page-title underline="highlight" seed="underline" custom-style="margin-bottom:16rpx;">Underline</ll-page-title>
   <view class="sec-desc">A pen line under real words: single, double, wavy or scribbled, in felt, pencil or marker. It follows the phrase line by line when it wraps, and can draw itself on as it scrolls into view.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Default</view>
     <view class="sec-desc">A felt-tip line under a phrase. It rises a little to the right, starts a hair early and runs past the last letter.</view>
@@ -12,7 +12,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Kinds and pens</view>

@@ -179,10 +179,13 @@ createComponent({
       type: String,
       value: '',
     },
-    /** 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'. */
+    /** 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'.
+        Deviation (touch): the default is top-center, not sonner's
+        bottom-right — on a phone a bottom stack sits behind/under the
+        custom tab bar, so slips pop in from the top. */
     position: {
       type: String,
-      value: 'bottom-right',
+      value: 'top-center',
     },
     /** Hold every slip down: 'none' | 'tape' | 'pin'. */
     decoration: {

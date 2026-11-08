@@ -3,6 +3,7 @@
   "usingComponents": {
     "ll-button": "../button/button",
     "ll-icon": "../icon/icon",
-    "ll-spinner": "../spinner/spinner"
+    "ll-spinner": "../spinner/spinner",
+    "ll-page-title": "../page-title/page-title"
   }
 }

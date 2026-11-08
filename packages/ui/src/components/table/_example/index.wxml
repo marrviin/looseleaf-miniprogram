@@ -9,10 +9,10 @@
      have no colspan); the 51 empty state sits under the table for the
      same reason. -->
 <view class="demo">
-  <view class="demo-title">Table</view>
+  <ll-page-title underline="highlight" seed="table" custom-style="margin-bottom:16rpx;">Table</ll-page-title>
   <view class="sec-desc">Rows and columns on a ruled page. Every rule is a pencil pull drawn once by the pen and printed by CSS (so a hundred rows cost no drawings), the header has an accountant's double rule, and a hovered or selected row is a highlighter swipe.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Invoices</view>
     <view class="sec-desc">The whole family: a header with a double rule, rows ruled by hand in pencil, a footer with its own double rule and a caption written underneath. Touch and hold a row to see the swipe.</view>
@@ -51,7 +51,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Data table</view>
@@ -142,7 +142,9 @@
           </ll-button>
         </ll-card-header>
         <ll-card-content>
-          <ll-table>
+          <!-- inside the card: no bleed (the -12px margins would poke the
+               scroller past the card edges); the wide table pans in place -->
+          <ll-table container-style="margin:0;width:100%">
             <ll-table-header>
               <ll-table-row>
                 <ll-table-head>Person</ll-table-head>

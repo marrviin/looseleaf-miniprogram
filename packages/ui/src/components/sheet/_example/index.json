@@ -9,6 +9,7 @@
     "ll-sheet-binding": "../sheet-binding/sheet-binding",
     "ll-button": "../button/button",
     "ll-input": "../input/input",
-    "ll-icon": "../icon/icon"
+    "ll-icon": "../icon/icon",
+    "ll-page-title": "../page-title/page-title"
   }
 }

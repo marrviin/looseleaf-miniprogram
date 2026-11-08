@@ -3,6 +3,7 @@
     "ll-input": "../input/input",
     "ll-button": "../button/button",
     "ll-checkbox": "../checkbox/checkbox",
-    "ll-icon": "../icon/icon"
+    "ll-icon": "../icon/icon",
+    "ll-page-title": "../page-title/page-title"
   }
 }

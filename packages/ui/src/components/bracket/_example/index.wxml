@@ -2,10 +2,10 @@
      The grouping-list example swaps the (not yet ported) callout for a plain
      hand note; revisit when ll-callout lands. -->
 <view class="demo">
-  <view class="demo-title">Bracket</view>
+  <ll-page-title underline="highlight" seed="bracket" custom-style="margin-bottom:16rpx;">Bracket</ll-page-title>
   <view class="sec-desc">A hand-drawn bracket down one side of a stretch of content — square, curly or round — grouping it like a margin note.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Default</view>
     <view class="sec-desc">A square bracket down the start side of two paragraphs.</view>
@@ -17,7 +17,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Kinds and sides</view>

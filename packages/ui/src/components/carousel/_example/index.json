@@ -6,6 +6,7 @@
     "ll-carousel-previous": "../carousel-previous/carousel-previous",
     "ll-carousel-next": "../carousel-next/carousel-next",
     "ll-carousel-dots": "../carousel-dots/carousel-dots",
-    "ll-paper": "../paper/paper"
+    "ll-paper": "../paper/paper",
+    "ll-page-title": "../page-title/page-title"
   }
 }

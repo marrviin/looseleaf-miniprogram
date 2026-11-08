@@ -1,0 +1,4 @@
+<!-- ll-sidebar-menu-sub-item — one sub-row (relative). -->
+<view class="ll-sidebar-menu-sub-item {{ll-class}}" style="{{customStyle}}">
+  <slot />
+</view>

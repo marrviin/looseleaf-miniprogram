@@ -1,0 +1,18 @@
+/* font-type — IBM Plex Mono upstream; x .82 size adjust (calendar rule). */
+.ll-sidebar-group-label {
+  display: flex;
+  height: 64rpx; /* h-8 */
+  flex-shrink: 0;
+  align-items: center;
+  padding: 0 16rpx; /* px-2 */
+  box-sizing: border-box;
+  font-family: 'IBM Plex Mono', Menlo, monospace; /* font-type */
+  font-size: 23rpx; /* text-sm x .82 */
+  letter-spacing: 1rpx; /* tracking-wide */
+  color: var(--ll-ink-muted, #4a433c); /* text-ink-muted */
+  transition: margin var(--ll-dur-sheet, 0.3s) ease-out, opacity var(--ll-dur-sheet, 0.3s) ease-out;
+}
+.ll-sidebar-group-label.is-collapsed {
+  margin-top: -64rpx; /* -mt-8 */
+  opacity: 0;
+}

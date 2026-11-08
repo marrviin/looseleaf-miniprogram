@@ -11,6 +11,7 @@
     "ll-attachment-title": "../attachment-title/attachment-title",
     "ll-attachment-description": "../attachment-description/attachment-description",
     "ll-attachment-actions": "../attachment-actions/attachment-actions",
-    "ll-attachment-action": "../attachment-action/attachment-action"
+    "ll-attachment-action": "../attachment-action/attachment-action",
+    "ll-page-title": "../page-title/page-title"
   }
 }

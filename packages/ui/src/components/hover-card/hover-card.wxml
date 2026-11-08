@@ -2,7 +2,7 @@
      trigger, no arrow, no dim. Touch adaptation: opens on trigger tap
      (openDelay applies), closes on the next tap anywhere else. -->
 <view class="ll-hover-card">
-  <view class="ll-hover-card__trigger" catchtap="onTriggerTap">
+  <view class="ll-hover-card__trigger" catchtap="onTriggerTap" bindlongpress="onTriggerLongPress">
     <slot name="trigger" />
   </view>
 

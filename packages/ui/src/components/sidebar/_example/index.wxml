@@ -1,0 +1,660 @@
+<!-- ll-sidebar demo — mirrors the upstream docs page (#/components/sidebar).
+     Every example pad renders docked inside its frame (the `static` escape
+     hatch — see index.js header note); on a real phone the same markup
+     without `static` gives the Sheet. -->
+<view class="demo">
+  <ll-page-title underline="highlight" seed="sidebar" custom-style="margin-bottom:16rpx;">Sidebar</ll-page-title>
+  <view class="sec-desc">An order pad hung from the top of the screen: cream paper with a torn top edge and a binder clip. Rows carry their own line of the pad's ruling, hover is the highlighter, and the current page is marked with a highlighter swipe and a bracket in the margin. It collapses to icons or slides away, becomes a sheet on phones, and stays cheap for a long menu: only the one active row draws anything.</view>
+
+  <!-- ============ Preview / Demo (50) ============ -->
+  <view class="sec sec--desk">
+    <view class="sec-h2">Preview</view>
+    <view class="sub-h3">Demo</view>
+    <view class="sec-desc">Official `sidebar-demo`: one group of five links and an inset with the trigger. The pad hangs from a binder clip and every link wears the highlighter when pointed at. (Ctrl/Cmd+B has no keyboard here — tap the trigger.)</view>
+    <view class="frame f-320">
+      <ll-sidebar-provider custom-style="min-height:0;height:100%;">
+        <ll-sidebar static seed="official-demo">
+          <ll-sidebar-content>
+            <ll-sidebar-group>
+              <ll-sidebar-group-label>Application</ll-sidebar-group-label>
+              <ll-sidebar-group-content>
+                <ll-sidebar-menu>
+                  <ll-sidebar-menu-item wx:for="{{['house','inbox','calendar','search','settings']}}" wx:key="*this">
+                    <ll-sidebar-menu-button>
+                      <ll-icon name="{{item}}" size="{{16}}" />
+                      <text class="ell">{{item === 'house' ? 'Home' : item === 'inbox' ? 'Inbox' : item === 'calendar' ? 'Calendar' : item === 'search' ? 'Search' : 'Settings'}}</text>
+                    </ll-sidebar-menu-button>
+                  </ll-sidebar-menu-item>
+                </ll-sidebar-menu>
+              </ll-sidebar-group-content>
+            </ll-sidebar-group>
+          </ll-sidebar-content>
+        </ll-sidebar>
+        <ll-sidebar-inset>
+          <view class="inset-header">
+            <ll-sidebar-trigger />
+          </view>
+        </ll-sidebar-inset>
+      </ll-sidebar-provider>
+    </view>
+  </view>
+
+  <!-- ============ Examples ============ -->
+  <view class="sec sec--desk">
+    <view class="sec-h2">Examples</view>
+
+    <!-- 01 — app sidebar -->
+    <view class="sub-h3">App sidebar</view>
+    <view class="sec-desc">The real thing: a team switcher in the header, a group with a collapsible sub-menu, projects with per-row actions and a count, and the account menu in the footer. The current page has the highlighter and the bracket in the margin.</view>
+    <view class="frame f-600">
+      <ll-sidebar-provider custom-style="min-height:0;height:100%;">
+        <ll-sidebar static seed="app">
+          <ll-sidebar-header>
+            <ll-sidebar-menu>
+              <ll-sidebar-menu-item>
+                <ll-dropdown-menu width="{{224}}" align="start" seed="app-team" aria-label="Team switcher">
+                  <ll-sidebar-menu-button slot="trigger" size="lg">
+                    <view class="brand-chip"><ll-icon name="book-open" size="{{16}}" /></view>
+                    <view class="two-line">
+                      <text class="ell bold">Looseleaf</text>
+                      <text class="ell dim">Notebook</text>
+                    </view>
+                    <ll-icon name="chevrons-up-down" size="{{16}}" />
+                  </ll-sidebar-menu-button>
+                  <ll-dropdown-menu-label>Notebooks</ll-dropdown-menu-label>
+                  <ll-dropdown-menu-item data-name="Looseleaf" bind:select="onPick">
+                    Looseleaf <ll-dropdown-menu-shortcut text="⌘1" />
+                  </ll-dropdown-menu-item>
+                  <ll-dropdown-menu-item data-name="Field notes" bind:select="onPick">
+                    Field notes <ll-dropdown-menu-shortcut text="⌘2" />
+                  </ll-dropdown-menu-item>
+                  <ll-dropdown-menu-separator />
+                  <ll-dropdown-menu-item data-name="Add notebook" bind:select="onPick">
+                    <ll-icon name="plus" size="{{16}}" /> Add notebook
+                  </ll-dropdown-menu-item>
+                </ll-dropdown-menu>
+              </ll-sidebar-menu-item>
+            </ll-sidebar-menu>
+          </ll-sidebar-header>
+          <ll-sidebar-content>
+            <ll-sidebar-group>
+              <ll-sidebar-group-label>Platform</ll-sidebar-group-label>
+              <ll-sidebar-group-content>
+                <ll-sidebar-menu>
+                  <ll-sidebar-menu-item>
+                    <ll-sidebar-menu-button><ll-icon name="square-terminal" size="{{16}}" /><text class="ell">Playground</text></ll-sidebar-menu-button>
+                  </ll-sidebar-menu-item>
+                  <ll-sidebar-menu-item>
+                    <ll-sidebar-menu-button><ll-icon name="bot" size="{{16}}" /><text class="ell">Models</text></ll-sidebar-menu-button>
+                  </ll-sidebar-menu-item>
+                  <ll-collapsible default-open>
+                    <ll-sidebar-menu-item>
+                      <ll-collapsible-trigger>
+                        <ll-sidebar-menu-button is-active>
+                          <ll-icon name="book-open" size="{{16}}" />
+                          <text class="ell">Documentation</text>
+                          <ll-collapsible-indicator custom-style="margin-left:auto;" />
+                        </ll-sidebar-menu-button>
+                      </ll-collapsible-trigger>
+                      <ll-collapsible-content>
+                        <ll-sidebar-menu-sub>
+                          <ll-sidebar-menu-sub-item wx:for="{{toc[0].items}}" wx:key="title">
+                            <ll-sidebar-menu-sub-button is-active="{{item.title === 'Get started'}}">
+                              <text class="ell">{{item.title}}</text>
+                            </ll-sidebar-menu-sub-button>
+                          </ll-sidebar-menu-sub-item>
+                        </ll-sidebar-menu-sub>
+                      </ll-collapsible-content>
+                    </ll-sidebar-menu-item>
+                  </ll-collapsible>
+                  <ll-sidebar-menu-item>
+                    <ll-sidebar-menu-button><ll-icon name="settings" size="{{16}}" /><text class="ell">Settings</text></ll-sidebar-menu-button>
+                  </ll-sidebar-menu-item>
+                </ll-sidebar-menu>
+              </ll-sidebar-group-content>
+            </ll-sidebar-group>
+            <ll-sidebar-group>
+              <ll-sidebar-group-label>Projects</ll-sidebar-group-label>
+              <ll-sidebar-group-content>
+                <ll-sidebar-menu>
+                  <ll-sidebar-menu-item>
+                    <ll-sidebar-menu-button><ll-icon name="frame" size="{{16}}" /><text class="ell">Design engineering</text></ll-sidebar-menu-button>
+                    <ll-dropdown-menu side="right" align="start" width="{{192}}" seed="app-proj-1" aria-label="Actions for Design engineering">
+                      <ll-sidebar-menu-action slot="trigger" aria-label="Actions for Design engineering">
+                        <ll-icon name="ellipsis" size="{{16}}" />
+                      </ll-sidebar-menu-action>
+                      <ll-dropdown-menu-item><ll-icon name="folder" size="{{16}}" /> View project</ll-dropdown-menu-item>
+                      <ll-dropdown-menu-item><ll-icon name="share" size="{{16}}" /> Share</ll-dropdown-menu-item>
+                      <ll-dropdown-menu-separator />
+                      <ll-dropdown-menu-item variant="destructive"><ll-icon name="trash" size="{{16}}" /> Delete</ll-dropdown-menu-item>
+                    </ll-dropdown-menu>
+                  </ll-sidebar-menu-item>
+                  <ll-sidebar-menu-item>
+                    <ll-sidebar-menu-button><ll-icon name="chart-pie" size="{{16}}" /><text class="ell">Sales & marketing</text></ll-sidebar-menu-button>
+                    <ll-sidebar-menu-badge>12</ll-sidebar-menu-badge>
+                  </ll-sidebar-menu-item>
+                  <ll-sidebar-menu-item>
+                    <ll-sidebar-menu-button><ll-icon name="map" size="{{16}}" /><text class="ell">Travel</text></ll-sidebar-menu-button>
+                    <ll-dropdown-menu side="right" align="start" width="{{192}}" seed="app-proj-3" aria-label="Actions for Travel">
+                      <ll-sidebar-menu-action slot="trigger" aria-label="Actions for Travel">
+                        <ll-icon name="ellipsis" size="{{16}}" />
+                      </ll-sidebar-menu-action>
+                      <ll-dropdown-menu-item><ll-icon name="folder" size="{{16}}" /> View project</ll-dropdown-menu-item>
+                      <ll-dropdown-menu-item><ll-icon name="share" size="{{16}}" /> Share</ll-dropdown-menu-item>
+                      <ll-dropdown-menu-separator />
+                      <ll-dropdown-menu-item variant="destructive"><ll-icon name="trash" size="{{16}}" /> Delete</ll-dropdown-menu-item>
+                    </ll-dropdown-menu>
+                  </ll-sidebar-menu-item>
+                </ll-sidebar-menu>
+              </ll-sidebar-group-content>
+            </ll-sidebar-group>
+          </ll-sidebar-content>
+          <ll-sidebar-footer>
+            <ll-sidebar-menu>
+              <ll-sidebar-menu-item>
+                <ll-dropdown-menu side="right" align="end" width="{{224}}" seed="app-account" aria-label="Account">
+                  <ll-sidebar-menu-button slot="trigger" size="lg">
+                    <ll-avatar custom-style="width:64rpx;height:64rpx;flex-shrink:0;"><ll-avatar-fallback>JD</ll-avatar-fallback></ll-avatar>
+                    <view class="two-line">
+                      <text class="ell bold">Jo Delacroix</text>
+                      <text class="ell dim">jo@looseleaf.example</text>
+                    </view>
+                    <ll-icon name="chevrons-up-down" size="{{16}}" />
+                  </ll-sidebar-menu-button>
+                  <ll-dropdown-menu-item><ll-icon name="credit-card" size="{{16}}" /> Billing</ll-dropdown-menu-item>
+                  <ll-dropdown-menu-item><ll-icon name="bell" size="{{16}}" /> Notifications</ll-dropdown-menu-item>
+                  <ll-dropdown-menu-separator />
+                  <ll-dropdown-menu-item variant="destructive"><ll-icon name="log-out" size="{{16}}" /> Log out</ll-dropdown-menu-item>
+                </ll-dropdown-menu>
+              </ll-sidebar-menu-item>
+            </ll-sidebar-menu>
+          </ll-sidebar-footer>
+        </ll-sidebar>
+        <ll-sidebar-inset>
+          <view class="inset-pad">
+            <view class="inset-row">
+              <ll-sidebar-trigger />
+              <text class="script-h2">Get started</text>
+            </view>
+            <view class="inset-note">The page beside the pad. Collapse it with the button, or by clicking the strip on its edge.</view>
+            <ll-button variant="secondary" size="sm" custom-style="margin-top:16rpx;"><ll-icon name="sparkles" size="{{16}}" /> Continue</ll-button>
+          </view>
+        </ll-sidebar-inset>
+      </ll-sidebar-provider>
+    </view>
+
+    <!-- 02 — collapse to icons -->
+    <view class="sub-h3">Collapse to icons</view>
+    <view class="sec-desc">collapsible="icon" shrinks the pad to a 3rem strip: labels fade, the margin bracket steps aside, the binder clip comes off. The state is controlled here so the page can read it.</view>
+    <view class="frame f-460">
+      <ll-sidebar-provider custom-style="min-height:0;height:100%;" open="{{iconsOpen}}" bind:change="onIconsChange">
+        <ll-sidebar static collapsible="icon" seed="icons">
+          <ll-sidebar-header>
+            <ll-sidebar-menu>
+              <ll-sidebar-menu-item>
+                <ll-sidebar-menu-button size="lg">
+                  <ll-icon name="book-open" size="{{16}}" />
+                  <text class="bold">Looseleaf</text>
+                </ll-sidebar-menu-button>
+              </ll-sidebar-menu-item>
+            </ll-sidebar-menu>
+          </ll-sidebar-header>
+          <ll-sidebar-content>
+            <ll-sidebar-group>
+              <ll-sidebar-group-label>Application</ll-sidebar-group-label>
+              <ll-sidebar-group-content>
+                <ll-sidebar-menu>
+                  <ll-sidebar-menu-item wx:for="{{iconsItems}}" wx:key="title">
+                    <ll-sidebar-menu-button is-active="{{iconsCurrent === item.title}}" data-title="{{item.title}}" bind:tap="onIconsPick">
+                      <ll-icon name="{{item.icon}}" size="{{16}}" />
+                      <text class="ell">{{item.title}}</text>
+                    </ll-sidebar-menu-button>
+                    <ll-sidebar-menu-badge wx:if="{{item.count}}">{{item.count}}</ll-sidebar-menu-badge>
+                  </ll-sidebar-menu-item>
+                </ll-sidebar-menu>
+              </ll-sidebar-group-content>
+            </ll-sidebar-group>
+          </ll-sidebar-content>
+          <ll-sidebar-rail />
+        </ll-sidebar>
+        <ll-sidebar-inset>
+          <view class="inset-pad">
+            <view class="inset-row">
+              <ll-sidebar-trigger />
+              <text class="script-h2">{{iconsCurrent}}</text>
+            </view>
+            <view class="inset-note">The pad is {{iconsOpen ? 'open' : 'collapsed to icons'}}. Tap the edge strip to collapse it back.</view>
+          </view>
+        </ll-sidebar-inset>
+      </ll-sidebar-provider>
+    </view>
+
+    <!-- 03 — variants and sides -->
+    <view class="sub-h3">Variants and sides</view>
+    <view class="sec-desc">sidebar docks to the edge and casts its shadow toward the page; floating is set down on the desk and turned a little; inset leaves a margin and makes the page itself a sheet of paper. Either side of the screen works, and the clip and torn edge follow.</view>
+    <view class="frame f-400">
+      <ll-sidebar-provider custom-style="min-height:0;height:100%;">
+        <ll-sidebar wx:if="{{side === 'left'}}" static variant="{{variant}}" side="left" seed="variants">
+          <ll-sidebar-content>
+            <ll-sidebar-group>
+              <ll-sidebar-group-label>Dashboard</ll-sidebar-group-label>
+              <ll-sidebar-group-content>
+                <ll-sidebar-menu>
+                  <ll-sidebar-menu-item wx:for="{{variantItems}}" wx:key="index">
+                    <ll-sidebar-menu-button is-active="{{index === 0}}">
+                      <ll-icon name="{{item[1]}}" size="{{16}}" />
+                      <text class="ell">{{item[0]}}</text>
+                    </ll-sidebar-menu-button>
+                  </ll-sidebar-menu-item>
+                </ll-sidebar-menu>
+              </ll-sidebar-group-content>
+            </ll-sidebar-group>
+          </ll-sidebar-content>
+        </ll-sidebar>
+        <ll-sidebar-inset>
+          <view class="inset-pad">
+            <view class="inset-row wrap">
+              <ll-sidebar-trigger />
+              <ll-toggle-group type="single" variant="outline" value="{{variant}}" bind:change="onVariant" aria-label="Variant">
+                <ll-toggle value="sidebar">sidebar</ll-toggle>
+                <ll-toggle value="floating">floating</ll-toggle>
+                <ll-toggle value="inset">inset</ll-toggle>
+              </ll-toggle-group>
+              <ll-toggle-group type="single" variant="outline" value="{{side}}" bind:change="onSide" aria-label="Side">
+                <ll-toggle value="left">left</ll-toggle>
+                <ll-toggle value="right">right</ll-toggle>
+              </ll-toggle-group>
+            </view>
+            <view class="inset-note">{{variant === 'inset' ? 'This page is a sheet of paper set on the desk, beside the pad.' : 'This page is plain: the pad hangs beside it.'}}</view>
+          </view>
+        </ll-sidebar-inset>
+        <ll-sidebar wx:if="{{side === 'right'}}" static variant="{{variant}}" side="right" seed="variants">
+          <ll-sidebar-content>
+            <ll-sidebar-group>
+              <ll-sidebar-group-label>Dashboard</ll-sidebar-group-label>
+              <ll-sidebar-group-content>
+                <ll-sidebar-menu>
+                  <ll-sidebar-menu-item wx:for="{{variantItems}}" wx:key="index">
+                    <ll-sidebar-menu-button is-active="{{index === 0}}">
+                      <ll-icon name="{{item[1]}}" size="{{16}}" />
+                      <text class="ell">{{item[0]}}</text>
+                    </ll-sidebar-menu-button>
+                  </ll-sidebar-menu-item>
+                </ll-sidebar-menu>
+              </ll-sidebar-group-content>
+            </ll-sidebar-group>
+          </ll-sidebar-content>
+        </ll-sidebar>
+      </ll-sidebar-provider>
+    </view>
+
+    <!-- 04 — search and loading -->
+    <view class="sub-h3">Search and loading</view>
+    <view class="sec-desc">A long menu stays cheap: 40 notebooks are 40 list items with no drawing each, only the current one draws its mark. The search field filters them, the plus on the label adds one, and Reload shows loading rows (their widths come from a seed, so they are the same every time).</view>
+    <view class="frame f-560">
+      <ll-sidebar-provider custom-style="min-height:0;height:100%;">
+        <ll-sidebar static seed="search">
+          <ll-sidebar-header>
+            <ll-sidebar-input aria-label="Search notebooks" placeholder="Search notebooks…" value="{{q}}" bind:input="onSearchInput" />
+          </ll-sidebar-header>
+          <ll-sidebar-content>
+            <ll-sidebar-group>
+              <ll-sidebar-group-label>Notebooks</ll-sidebar-group-label>
+              <ll-sidebar-group-action aria-label="New notebook" bind:tap="onAddNotebook">
+                <ll-icon name="plus" size="{{16}}" />
+              </ll-sidebar-group-action>
+              <ll-sidebar-group-content>
+                <ll-sidebar-menu>
+                  <block wx:if="{{searchLoading}}">
+                    <ll-sidebar-menu-item wx:for="{{[0, 1, 2, 3, 4, 5, 6]}}" wx:key="*this">
+                      <ll-sidebar-menu-skeleton show-icon seed="sk-{{index}}" />
+                    </ll-sidebar-menu-item>
+                  </block>
+                  <block wx:else>
+                    <ll-sidebar-menu-item wx:for="{{searchNames}}" wx:key="*this">
+                      <ll-sidebar-menu-button is-active="{{searchCurrent === item}}" data-name="{{item}}" bind:tap="onPickNotebook">
+                        <ll-icon name="file-text" size="{{16}}" />
+                        <text class="ell">{{item}}</text>
+                      </ll-sidebar-menu-button>
+                    </ll-sidebar-menu-item>
+                    <view wx:if="{{searchNames.length === 0}}" class="empty-row">No notebook matches “{{q}}”.</view>
+                  </block>
+                </ll-sidebar-menu>
+              </ll-sidebar-group-content>
+            </ll-sidebar-group>
+          </ll-sidebar-content>
+        </ll-sidebar>
+        <ll-sidebar-inset>
+          <view class="inset-pad">
+            <text class="script-h2">{{searchCurrent}}</text>
+            <view class="inset-note">{{searchLoading ? 'Loading notebooks…' : searchNames.length + ' notebooks shown.'}}</view>
+            <ll-button variant="outline" size="sm" custom-style="margin-top:16rpx;" disabled="{{searchLoading}}" bind:tap="onSearchReload">
+              <ll-icon name="rotate-cw" size="{{16}}" /> Reload
+            </ll-button>
+          </view>
+        </ll-sidebar-inset>
+      </ll-sidebar-provider>
+    </view>
+
+    <!-- 51 — header and footer -->
+    <view class="sub-h3">Header and footer</view>
+    <view class="sec-desc">Official `sidebar-header` and `sidebar-footer` in one pad: a workspace switcher on top whose menu opens downward, and an account menu at the bottom that opens upward (`side="top"`).</view>
+    <view class="frame f-360">
+      <ll-sidebar-provider custom-style="min-height:0;height:100%;">
+        <ll-sidebar static seed="official-header-footer">
+          <ll-sidebar-header>
+            <ll-sidebar-menu>
+              <ll-sidebar-menu-item>
+                <ll-dropdown-menu width="{{240}}" seed="hf-workspace" aria-label="Workspace switcher">
+                  <ll-sidebar-menu-button slot="trigger">
+                    Select Workspace
+                    <ll-icon name="chevron-down" size="{{16}}" custom-style="margin-left:auto;" />
+                  </ll-sidebar-menu-button>
+                  <ll-dropdown-menu-item><text>Acme Inc</text></ll-dropdown-menu-item>
+                  <ll-dropdown-menu-item><text>Acme Corp.</text></ll-dropdown-menu-item>
+                </ll-dropdown-menu>
+              </ll-sidebar-menu-item>
+            </ll-sidebar-menu>
+          </ll-sidebar-header>
+          <ll-sidebar-content />
+          <ll-sidebar-footer>
+            <ll-sidebar-menu>
+              <ll-sidebar-menu-item>
+                <ll-dropdown-menu side="top" width="{{240}}" seed="hf-account" aria-label="Account menu">
+                  <ll-sidebar-menu-button slot="trigger">
+                    Username
+                    <ll-icon name="chevron-up" size="{{16}}" custom-style="margin-left:auto;" />
+                  </ll-sidebar-menu-button>
+                  <ll-dropdown-menu-item><text>Account</text></ll-dropdown-menu-item>
+                  <ll-dropdown-menu-item><text>Billing</text></ll-dropdown-menu-item>
+                  <ll-dropdown-menu-item><text>Sign out</text></ll-dropdown-menu-item>
+                </ll-dropdown-menu>
+              </ll-sidebar-menu-item>
+            </ll-sidebar-menu>
+          </ll-sidebar-footer>
+        </ll-sidebar>
+        <ll-sidebar-inset>
+          <view class="inset-header">
+            <ll-sidebar-trigger />
+          </view>
+        </ll-sidebar-inset>
+      </ll-sidebar-provider>
+    </view>
+
+    <!-- 52 — group -->
+    <view class="sub-h3">Group</view>
+    <view class="sec-desc">Official `sidebar-group`: a `SidebarGroup` is a label (a typewriter kicker) over a menu. Two buttons here; a pad can hold as many groups as it likes.</view>
+    <view class="frame f-230">
+      <ll-sidebar-provider custom-style="min-height:0;height:100%;">
+        <ll-sidebar static seed="official-group">
+          <ll-sidebar-content>
+            <ll-sidebar-group>
+              <ll-sidebar-group-label>Help</ll-sidebar-group-label>
+              <ll-sidebar-group-content>
+                <ll-sidebar-menu>
+                  <ll-sidebar-menu-item>
+                    <ll-sidebar-menu-button><ll-icon name="life-buoy" size="{{16}}" /> Support</ll-sidebar-menu-button>
+                  </ll-sidebar-menu-item>
+                  <ll-sidebar-menu-item>
+                    <ll-sidebar-menu-button><ll-icon name="send" size="{{16}}" /> Feedback</ll-sidebar-menu-button>
+                  </ll-sidebar-menu-item>
+                </ll-sidebar-menu>
+              </ll-sidebar-group-content>
+            </ll-sidebar-group>
+          </ll-sidebar-content>
+        </ll-sidebar>
+      </ll-sidebar-provider>
+    </view>
+
+    <!-- 53 — collapsible group -->
+    <view class="sub-h3">Collapsible group</view>
+    <view class="sec-desc">Official `sidebar-group-collapsible`: the group label becomes the trigger of a Collapsible, with a chevron that turns over as it opens. The label wears the highlighter on hover, where shadcn tints it with the accent color.</view>
+    <view class="frame f-230">
+      <ll-sidebar-provider custom-style="min-height:0;height:100%;">
+        <ll-sidebar static seed="official-group-collapsible">
+          <ll-sidebar-content>
+            <ll-collapsible default-open>
+              <ll-sidebar-group>
+                <ll-collapsible-trigger>
+                  <view class="group-label-trigger">
+                    Help
+                    <ll-collapsible-indicator custom-style="margin-left:auto;" />
+                  </view>
+                </ll-collapsible-trigger>
+                <ll-collapsible-content>
+                  <ll-sidebar-group-content>
+                    <ll-sidebar-menu>
+                      <ll-sidebar-menu-item>
+                        <ll-sidebar-menu-button><ll-icon name="life-buoy" size="{{16}}" /> Support</ll-sidebar-menu-button>
+                      </ll-sidebar-menu-item>
+                      <ll-sidebar-menu-item>
+                        <ll-sidebar-menu-button><ll-icon name="send" size="{{16}}" /> Feedback</ll-sidebar-menu-button>
+                      </ll-sidebar-menu-item>
+                    </ll-sidebar-menu>
+                  </ll-sidebar-group-content>
+                </ll-collapsible-content>
+              </ll-sidebar-group>
+            </ll-collapsible>
+          </ll-sidebar-content>
+        </ll-sidebar>
+      </ll-sidebar-provider>
+    </view>
+
+    <!-- 54 — group action -->
+    <view class="sub-h3">Group action</view>
+    <view class="sec-desc">Official `sidebar-group-action`: a `SidebarGroupAction` is a small button in the corner of a group, next to its label. Here the plus posts a toast.</view>
+    <view class="frame f-250">
+      <ll-sidebar-provider custom-style="min-height:0;height:100%;">
+        <ll-sidebar static seed="official-group-action">
+          <ll-sidebar-content>
+            <ll-sidebar-group>
+              <ll-sidebar-group-label>Projects</ll-sidebar-group-label>
+              <ll-sidebar-group-action title="Add Project" aria-label="Add Project" bind:tap="onGroupAction">
+                <ll-icon name="plus" size="{{16}}" />
+              </ll-sidebar-group-action>
+              <ll-sidebar-group-content>
+                <ll-sidebar-menu>
+                  <ll-sidebar-menu-item>
+                    <ll-sidebar-menu-button><ll-icon name="frame" size="{{16}}" /><text class="ell">Design Engineering</text></ll-sidebar-menu-button>
+                  </ll-sidebar-menu-item>
+                  <ll-sidebar-menu-item>
+                    <ll-sidebar-menu-button><ll-icon name="chart-pie" size="{{16}}" /><text class="ell">Sales & Marketing</text></ll-sidebar-menu-button>
+                  </ll-sidebar-menu-item>
+                  <ll-sidebar-menu-item>
+                    <ll-sidebar-menu-button><ll-icon name="map" size="{{16}}" /><text class="ell">Travel</text></ll-sidebar-menu-button>
+                  </ll-sidebar-menu-item>
+                </ll-sidebar-menu>
+              </ll-sidebar-group-content>
+            </ll-sidebar-group>
+          </ll-sidebar-content>
+        </ll-sidebar>
+      </ll-sidebar-provider>
+    </view>
+
+    <!-- 55 — menu -->
+    <view class="sub-h3">Menu</view>
+    <view class="sec-desc">Official `sidebar-menu`: five projects as `SidebarMenuButton` around links. Each row carries its own line of the pad's ruling, painted by CSS, so this list costs no drawing per row; only a current page (`isActive`) draws a mark.</view>
+    <view class="frame f-260">
+      <ll-sidebar-provider custom-style="min-height:0;height:100%;">
+        <ll-sidebar static seed="official-menu">
+          <ll-sidebar-content>
+            <ll-sidebar-group>
+              <ll-sidebar-group-label>Projects</ll-sidebar-group-label>
+              <ll-sidebar-group-content>
+                <ll-sidebar-menu>
+                  <ll-sidebar-menu-item wx:for="{{menuProjects}}" wx:key="name">
+                    <ll-sidebar-menu-button>
+                      <ll-icon name="{{item.icon}}" size="{{16}}" />
+                      <text class="ell">{{item.name}}</text>
+                    </ll-sidebar-menu-button>
+                  </ll-sidebar-menu-item>
+                </ll-sidebar-menu>
+              </ll-sidebar-group-content>
+            </ll-sidebar-group>
+          </ll-sidebar-content>
+        </ll-sidebar>
+      </ll-sidebar-provider>
+    </view>
+
+    <!-- 56 — menu action and badge -->
+    <view class="sub-h3">Menu action and badge</view>
+    <view class="sec-desc">Official `sidebar-menu-action` and `sidebar-menu-badge` in one pad. Top group: each row has a `SidebarMenuAction` (a small button that opens a menu). Bottom group: a `SidebarMenuBadge` writes a count in the margin in blue felt tip. Action and badge share the same corner, so a row takes one or the other.</view>
+    <view class="frame f-380">
+      <ll-sidebar-provider custom-style="min-height:0;height:100%;">
+        <ll-sidebar static seed="official-menu-action">
+          <ll-sidebar-content>
+            <ll-sidebar-group>
+              <ll-sidebar-group-label>Projects</ll-sidebar-group-label>
+              <ll-sidebar-group-content>
+                <ll-sidebar-menu>
+                  <ll-sidebar-menu-item wx:for="{{actionRows}}" wx:key="name">
+                    <ll-sidebar-menu-button>
+                      <ll-icon name="{{item.icon}}" size="{{16}}" />
+                      <text class="ell">{{item.name}}</text>
+                    </ll-sidebar-menu-button>
+                    <ll-dropdown-menu side="right" align="start" width="{{192}}" seed="ma-{{index}}" aria-label="More">
+                      <ll-sidebar-menu-action slot="trigger" aria-label="More">
+                        <ll-icon name="ellipsis" size="{{16}}" />
+                      </ll-sidebar-menu-action>
+                      <ll-dropdown-menu-item><text>Edit Project</text></ll-dropdown-menu-item>
+                      <ll-dropdown-menu-item><text>Delete Project</text></ll-dropdown-menu-item>
+                    </ll-dropdown-menu>
+                  </ll-sidebar-menu-item>
+                </ll-sidebar-menu>
+              </ll-sidebar-group-content>
+            </ll-sidebar-group>
+            <ll-sidebar-group>
+              <ll-sidebar-group-label>Unread</ll-sidebar-group-label>
+              <ll-sidebar-group-content>
+                <ll-sidebar-menu>
+                  <ll-sidebar-menu-item wx:for="{{badgeRows}}" wx:key="name">
+                    <ll-sidebar-menu-button>
+                      <ll-icon name="{{item.icon}}" size="{{16}}" />
+                      <text class="ell">{{item.name}}</text>
+                    </ll-sidebar-menu-button>
+                    <ll-sidebar-menu-badge>{{item.badge}}</ll-sidebar-menu-badge>
+                  </ll-sidebar-menu-item>
+                </ll-sidebar-menu>
+              </ll-sidebar-group-content>
+            </ll-sidebar-group>
+          </ll-sidebar-content>
+        </ll-sidebar>
+      </ll-sidebar-provider>
+    </view>
+
+    <!-- 57 — menu sub -->
+    <view class="sub-h3">Menu sub</view>
+    <view class="sec-desc">Official `sidebar-menu-sub`: a table of contents, each section a button over an indented `SidebarMenuSub` that is always open. A pencil line runs down the start of each sub-list. The content scrolls inside the pad when it is taller than the pad.</view>
+    <view class="frame f-420">
+      <ll-sidebar-provider custom-style="min-height:0;height:100%;">
+        <ll-sidebar static seed="official-menu-sub">
+          <ll-sidebar-content>
+            <ll-sidebar-group>
+              <ll-sidebar-group-content>
+                <ll-sidebar-menu>
+                  <ll-sidebar-menu-item wx:for="{{toc}}" wx:key="slug" wx:for-item="group">
+                    <ll-sidebar-menu-button><text class="ell">{{group.title}}</text></ll-sidebar-menu-button>
+                    <ll-sidebar-menu-sub>
+                      <ll-sidebar-menu-sub-item wx:for="{{group.items}}" wx:key="slug" wx:for-item="sub">
+                        <ll-sidebar-menu-sub-button is-active="{{sub.title === tocActive}}">
+                          <text class="ell">{{sub.title}}</text>
+                        </ll-sidebar-menu-sub-button>
+                      </ll-sidebar-menu-sub-item>
+                    </ll-sidebar-menu-sub>
+                  </ll-sidebar-menu-item>
+                </ll-sidebar-menu>
+              </ll-sidebar-group-content>
+            </ll-sidebar-group>
+          </ll-sidebar-content>
+        </ll-sidebar>
+      </ll-sidebar-provider>
+    </view>
+
+    <!-- 58 — menu collapsible -->
+    <view class="sub-h3">Menu collapsible</view>
+    <view class="sec-desc">Official `sidebar-menu-collapsible`: the same table of contents with each section folding open and shut. The first section starts open, and the chevron turns from the collapsible's state.</view>
+    <view class="frame f-420">
+      <ll-sidebar-provider custom-style="min-height:0;height:100%;">
+        <ll-sidebar static seed="official-menu-collapsible">
+          <ll-sidebar-content>
+            <ll-sidebar-group>
+              <ll-sidebar-group-content>
+                <ll-sidebar-menu>
+                  <block wx:for="{{toc}}" wx:key="slug" wx:for-item="group" wx:for-index="gi">
+                    <ll-collapsible default-open="{{gi === 0}}">
+                      <ll-sidebar-menu-item>
+                        <ll-collapsible-trigger>
+                          <ll-sidebar-menu-button>
+                            <text class="ell">{{group.title}}</text>
+                            <ll-collapsible-indicator custom-style="margin-left:auto;" />
+                          </ll-sidebar-menu-button>
+                        </ll-collapsible-trigger>
+                        <ll-collapsible-content>
+                          <ll-sidebar-menu-sub>
+                            <ll-sidebar-menu-sub-item wx:for="{{group.items}}" wx:key="slug" wx:for-item="sub">
+                              <ll-sidebar-menu-sub-button is-active="{{sub.title === tocActive}}">
+                                <text class="ell">{{sub.title}}</text>
+                              </ll-sidebar-menu-sub-button>
+                            </ll-sidebar-menu-sub-item>
+                          </ll-sidebar-menu-sub>
+                        </ll-collapsible-content>
+                      </ll-sidebar-menu-item>
+                    </ll-collapsible>
+                  </block>
+                </ll-sidebar-menu>
+              </ll-sidebar-group-content>
+            </ll-sidebar-group>
+          </ll-sidebar-content>
+        </ll-sidebar>
+      </ll-sidebar-provider>
+    </view>
+
+    <!-- 59 — controlled and loading -->
+    <view class="sub-h3">Controlled and loading</view>
+    <view class="sec-desc">Official `sidebar-controlled` and `sidebar-rsc` in one pad. Controlled: `open` and `onOpenChange` on the provider, with the state kept in the page so any button can open and close the pad. Loading: `SidebarMenuSkeleton` rows (with icons) stand in while the projects load, then are swapped for the list; Reload runs it again.</view>
+    <view class="frame f-360">
+      <ll-sidebar-provider id="provider-59" custom-style="min-height:0;height:100%;" open="{{ctrlOpen}}" bind:change="onCtrlChange">
+        <ll-sidebar static seed="official-controlled">
+          <ll-sidebar-content>
+            <ll-sidebar-group>
+              <ll-sidebar-group-label>Projects</ll-sidebar-group-label>
+              <ll-sidebar-group-content>
+                <ll-sidebar-menu>
+                  <block wx:if="{{ctrlLoaded}}">
+                    <ll-sidebar-menu-item wx:for="{{ctrlProjects}}" wx:key="*this">
+                      <ll-sidebar-menu-button>
+                        <ll-icon name="{{ctrlIcons[index]}}" size="{{16}}" />
+                        <text class="ell">{{item}}</text>
+                      </ll-sidebar-menu-button>
+                    </ll-sidebar-menu-item>
+                  </block>
+                  <block wx:else>
+                    <ll-sidebar-menu-item wx:for="{{ctrlProjects}}" wx:key="*this">
+                      <ll-sidebar-menu-skeleton show-icon seed="{{item}}" />
+                    </ll-sidebar-menu-item>
+                  </block>
+                </ll-sidebar-menu>
+              </ll-sidebar-group-content>
+            </ll-sidebar-group>
+          </ll-sidebar-content>
+        </ll-sidebar>
+        <ll-sidebar-inset>
+          <view class="inset-pad">
+            <view class="inset-row">
+              <ll-button size="sm" variant="ghost" bind:tap="onCtrlToggle">
+                <ll-icon name="{{ctrlOpen ? 'panel-left-close' : 'panel-left-open'}}" size="{{16}}" />
+                {{ctrlOpen ? 'Close' : 'Open'}} Sidebar
+              </ll-button>
+              <ll-button size="sm" variant="outline" disabled="{{!ctrlLoaded}}" bind:tap="onCtrlReload">
+                <ll-icon name="rotate-cw" size="{{16}}" /> Reload
+              </ll-button>
+            </view>
+          </view>
+        </ll-sidebar-inset>
+      </ll-sidebar-provider>
+    </view>
+  </view>
+</view>
+
+<!-- 54's toaster (upstream parks it bottom-right inside the frame) -->
+<ll-toaster id="t-group-action" toaster-id="sidebar-group-action" />

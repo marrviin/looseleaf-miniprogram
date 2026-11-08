@@ -13,6 +13,7 @@
     "ll-dropdown-menu-radio-item": "../dropdown-menu-radio-item/dropdown-menu-radio-item",
     "ll-paper": "../paper/paper",
     "ll-icon": "../icon/icon",
-    "ll-button": "../button/button"
+    "ll-button": "../button/button",
+    "ll-page-title": "../page-title/page-title"
   }
 }

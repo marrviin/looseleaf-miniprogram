@@ -1,0 +1,4 @@
+.ll-sidebar-input {
+  height: 64rpx; /* h-8 */
+  width: 100%;
+}

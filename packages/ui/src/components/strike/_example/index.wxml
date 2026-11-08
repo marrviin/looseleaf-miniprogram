@@ -1,9 +1,9 @@
 <!-- ll-strike demo — mirrors the upstream docs page (#/components/strike). -->
 <view class="demo">
-  <view class="demo-title">Strike</view>
+  <ll-page-title underline="highlight" seed="strike" custom-style="margin-bottom:16rpx;">Strike</ll-page-title>
   <view class="sec-desc">A red pencil through real words: one line, two lines, or a cross-out. The text stays readable and real underneath, so a price that was 49 can still be copied and read by a screen reader.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Default</view>
     <view class="sec-desc">Red pencil through the old plan. The line tilts a little and pokes out past both ends.</view>
@@ -12,7 +12,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Kinds and pens</view>

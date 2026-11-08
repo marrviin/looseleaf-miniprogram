@@ -24,6 +24,7 @@
     "ll-dialog-description": "../dialog-description/dialog-description",
     "ll-dialog-footer": "../dialog-footer/dialog-footer",
     "ll-input": "../input/input",
-    "ll-textarea": "../textarea/textarea"
+    "ll-textarea": "../textarea/textarea",
+    "ll-page-title": "../page-title/page-title"
   }
 }

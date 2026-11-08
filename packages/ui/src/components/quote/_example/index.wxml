@@ -1,9 +1,9 @@
 <!-- ll-quote demo — mirrors the upstream docs page -->
 <view class="demo">
-  <view class="demo-title">Quote</view>
+  <ll-page-title underline="highlight" seed="quote" custom-style="margin-bottom:16rpx;">Quote</ll-page-title>
   <view class="sec-desc">A pull quote: big quotation marks drawn in the gutters, the words in the script font, the source below. Three sizes of marks — the padding grows with them — felt pens instead of marker, and a pencil rule down the edge for a long quotation.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Default</view>
     <ll-quote custom-style="max-width:420px;">
       <ll-quote-text>The best time to write it down was when it happened; the second best is now, before the coffee gets cold.</ll-quote-text>
@@ -11,7 +11,7 @@
     </ll-quote>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Sizes, pens and the rule</view>
     <view class="qt-grid">
       <ll-quote>

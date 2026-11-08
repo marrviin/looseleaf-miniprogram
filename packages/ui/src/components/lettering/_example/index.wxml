@@ -1,0 +1,49 @@
+<!-- ll-lettering demo — mirrors the upstream docs page (#/components/lettering).
+     All docs-page examples are in: Default, Sizes colors duotone and
+     wobble, A poster. -->
+<view class="demo">
+  <ll-page-title underline="highlight" seed="lettering" custom-style="margin-bottom:16rpx;">Lettering</ll-page-title>
+  <view class="sec-desc">Display titles in the script font with a riso print look: ink with a second color printed a hair off register. The offset is an em-literal text-shadow, so the words are real text at any size. No gradients, no filters.</view>
+
+  <view class="sec sec--grid">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Default</view>
+    <view class="sec-desc">Ink with a marker-colored second pass, printed a hair out of register.</view>
+    <view class="stack stack--center">
+      <ll-lettering text="Hello, paper" />
+    </view>
+
+    <view class="sub-h3">Sizes, colors, duotone and wobble</view>
+    <view class="sec-desc">Five sizes; the second color is a token; a duotone print adds a third pass; wobble writes each word a hair off the baseline.</view>
+    <view class="stack">
+      <view class="row row--baseline row--wrap">
+        <ll-lettering size="sm" text="small" />
+        <ll-lettering size="md" text="medium" />
+        <ll-lettering size="lg" text="large" />
+      </view>
+      <view class="row row--wrap">
+        <ll-lettering size="md" tone="teal" text="teal" />
+        <ll-lettering size="md" tone="grape" text="grape" />
+        <ll-lettering size="md" tone="bubblegum" text="bubblegum" />
+        <ll-lettering size="md" tone="grass" text="grass" />
+      </view>
+      <view class="row row--wrap">
+        <ll-lettering size="lg" duotone="sky" text="Two colors" />
+        <ll-lettering size="lg" tone="teal" wobble="{{1.6}}" text="hand cut words" />
+      </view>
+    </view>
+
+    <view class="sub-h3">A poster</view>
+    <view class="sec-desc">Hero lettering, a lead line and a sticker on a sheet of paper.</view>
+    <view class="stack stack--center">
+      <ll-paper stock="paper" tilt tape="both" seed="poster" custom-style="position:relative;width:100%;max-width:840rpx;padding:72rpx 64rpx 64rpx;box-sizing:border-box">
+        <!-- phone adaptation: xl (96px) script pushes "Paper" past the sheet
+             at stage width; lg keeps the hero look and wraps cleanly -->
+        <ll-lettering size="lg" tone="marker" wobble="{{0.6}}" seed="poster" text="Paper Club" />
+        <view class="poster-lead">Third Thursday of the month. Bring something you wrote on the back of something else.</view>
+        <ll-sticker name="wow" size="{{80}}" rotate="{{12}}" custom-style="position:absolute;right:24rpx;bottom:16rpx" />
+      </ll-paper>
+    </view>
+  </view>
+</view>

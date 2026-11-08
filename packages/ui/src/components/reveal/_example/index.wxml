@@ -5,10 +5,10 @@
      each line its own ll-reveal with an incremental delay — that is the
      documented substitute. -->
 <view class="demo">
-  <view class="demo-title">Reveal</view>
+  <ll-page-title underline="highlight" seed="reveal" custom-style="margin-bottom:16rpx;">Reveal</ll-page-title>
   <view class="sec-desc">A wrapper that plays one of the theme's arrival keyframes — wipe, soak, drop, pop, toss — when its content comes into view.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Default</view>
     <view class="sec-desc">The heading is drawn on left to right as it comes into view, once, with a marker tip writing it (nib). Replay mounts it again; on a long page it waits until you scroll to it.</view>
     <view class="rv-col">
@@ -18,7 +18,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Five arrivals</view>
     <view class="sec-desc">wipe, soak, drop, pop and toss, each one of the theme's keyframes. They play when they are on screen; scroll away and back with once turned off.</view>
     <view class="rv-row">
@@ -30,7 +30,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">A list that arrives line by line</view>
     <view class="sec-desc">A real use: stagger makes direct children arrive one after another, each drying like wet ink. Slotted children can't be animated from inside the component here, so each line carries its own ll-reveal and delay.</view>
     <view class="rv-list">

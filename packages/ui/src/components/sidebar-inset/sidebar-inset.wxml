@@ -1,0 +1,4 @@
+<!-- ll-sidebar-inset — the page beside the pad (upstream main). -->
+<view class="ll-sidebar-inset {{ll-class}}" style="{{customStyle}}">
+  <slot />
+</view>

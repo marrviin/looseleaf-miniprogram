@@ -8,6 +8,7 @@
     "ll-pagination-previous": "../pagination-previous/pagination-previous",
     "ll-pagination-next": "../pagination-next/pagination-next",
     "ll-pagination-ellipsis": "../pagination-ellipsis/pagination-ellipsis",
-    "ll-icon": "../icon/icon"
+    "ll-icon": "../icon/icon",
+    "ll-page-title": "../page-title/page-title"
   }
 }

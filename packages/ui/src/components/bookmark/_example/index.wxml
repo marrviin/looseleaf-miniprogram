@@ -2,10 +2,10 @@
      (#/components/bookmark). The "Page markers" notebook panel needs
      ll-notebook (not in this batch) — only the Paper panel is shown. -->
 <view class="demo">
-  <view class="demo-title">Bookmark</view>
+  <ll-page-title underline="highlight" seed="bookmark" custom-style="margin-bottom:16rpx;">Bookmark</ll-page-title>
   <view class="sec-desc">A cloth ribbon bookmark that is a toggle button: a whisper pencil ghost at rest, the woven ribbon when pressed. Press it: the ghost becomes a ribbon that settles in with a little turn.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">A bookmark</view>
     <view class="sec-desc">Press it: the ghost becomes a ribbon. It is a toggle button, so its state is `aria-pressed`.</view>
@@ -16,7 +16,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Examples</view>
     <view class="sub-h3">Eight ribbons</view>
     <view class="sec-desc">Every stationery accent. Each ribbon is woven and edge-stitched, lit from the upper left, a hair off straight.</view>
@@ -25,7 +25,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Page markers</view>
     <view class="sec-desc">`BookmarkRibbon` is the ribbon with no behavior: decoration that hangs out of the top of a sheet. (The notebook panel of the upstream example needs ll-notebook, not ported yet.)</view>
     <view class="row">
@@ -37,7 +37,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">A reading list</view>
     <view class="sec-desc">A real use: save articles for later. Each card holds a Bookmark; the count follows. State lives in your app, as with any toggle.</view>
     <view class="list">

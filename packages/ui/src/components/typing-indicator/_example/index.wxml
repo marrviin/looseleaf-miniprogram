@@ -2,10 +2,10 @@
      (#/components/typing-indicator). 02/03 need Bubble/Message (not ported
      yet); the active toggle from 02 is shown in a plain box instead. -->
 <view class="demo">
-  <view class="demo-title">Typing indicator</view>
+  <ll-page-title underline="highlight" seed="typing-indicator" custom-style="margin-bottom:16rpx;">Typing indicator</ll-page-title>
   <view class="sec-desc">The little animation that says someone is writing: three felt dots popping in one after another with Stubby's pencil hopping back to start again, or a cursive scrawl revealed left to right. Blue felt (`pen="you"`) is the person on the other end.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Three dots and a scrawl</view>
     <view class="sec-desc">The pencil writes the dots one after another, walks back and starts again. The second variant scrawls a line of cursive instead.</view>
@@ -25,7 +25,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Active toggle</view>

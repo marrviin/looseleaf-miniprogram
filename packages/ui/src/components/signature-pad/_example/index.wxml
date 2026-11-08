@@ -2,10 +2,10 @@
      (#/components/signature-pad). The hidden form input doesn't port: the
      agreement form owns the validation and passes `invalid` back. -->
 <view class="demo">
-  <view class="demo-title">Signature Pad</view>
+  <ll-page-title underline="highlight" seed="signature-pad" custom-style="margin-bottom:16rpx;">Signature Pad</ll-page-title>
   <view class="sec-desc">A drawn or typed signature published as an image data URL: one pen on a slip of paper, the sign-here rule underneath, Clear and the typed fallback beside it.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Default</view>
     <view class="sec-desc">Sign with the mouse, a finger or a pen. The brush swells where you lean on it.</view>
     <view class="col">
@@ -14,7 +14,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Type instead</view>
     <view class="sec-desc">The typed fallback: the name is hand lettering with a brush swash under it. Anyone who cannot draw gets a signature that is still an image.</view>
     <view class="col">
@@ -23,7 +23,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Agreement form</view>
     <view class="sec-desc">A real form: the signature is a required field that posts as a data URL. Submit it empty to see the red baseline; sign and it goes through. (The page owns the validation and hands the pad its invalid state.)</view>
     <ll-card seed="agreement" custom-style="width:100%;max-width:576px">

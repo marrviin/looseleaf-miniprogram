@@ -1,9 +1,9 @@
 <!-- ll-textarea demo — mirrors the upstream docs page (#/components/textarea). -->
 <view class="demo">
-  <view class="demo-title">Textarea</view>
+  <ll-page-title underline="highlight" seed="textarea" custom-style="margin-bottom:16rpx;">Textarea</ll-page-title>
   <view class="sec-desc">A multi-line text field on paper: a pencil box around a real textarea that grows with its text, with optional hand-ruled lines on the baselines, a drawn resize handle and a character counter.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Default</view>
     <view class="sec-desc">Grows with what you write. The resize handle in the corner is drawn by hand over the browser's own.</view>
@@ -13,7 +13,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Ruled paper</view>

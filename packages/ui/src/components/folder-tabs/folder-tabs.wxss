@@ -8,4 +8,11 @@
   gap: 4px;
   box-sizing: border-box;
   padding: 0 16px;
+  /* phone adaptation: many tabs overflow a narrow folder — pan sideways.
+     overflow-x:auto forces overflow-y:auto too, which would clip the tabs'
+     cast shadows hanging below the strip; padding gives them room inside
+     the scroll box and the negative margin keeps the layout position. */
+  overflow-x: auto;
+  padding-bottom: 10px;
+  margin-bottom: -10px;
 }

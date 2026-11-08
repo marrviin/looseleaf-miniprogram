@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "ll-mascot": "../mascot/mascot"
+    "ll-mascot": "../mascot/mascot",
+    "ll-page-title": "../page-title/page-title"
   }
 }

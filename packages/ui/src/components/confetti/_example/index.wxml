@@ -2,10 +2,10 @@
      ConfettiTrigger doesn't survive as a tag: each button calls burst() on
      the section's layer. -->
 <view class="demo">
-  <view class="demo-title">Confetti</view>
+  <ll-page-title underline="highlight" seed="confetti" custom-style="margin-bottom:16rpx;">Confetti</ll-page-title>
   <view class="sec-desc">Paper pieces thrown from a point: a cone that slows like paper, sways, flips and fades. Every burst is seeded — same seed, same fall.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Default</view>
     <view class="sec-desc">Tap the button. Pieces leave it in a cone, slow down like paper, sway and fade.</view>
     <view class="stage">
@@ -16,7 +16,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Ring, streamers, one color</view>
     <view class="sec-desc">spread 360 sends a ring; shapes and colors narrow the pieces. A Valentine's burst of pink dots and stars.</view>
     <view class="stage stage-tall">
@@ -29,7 +29,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Finishing the list</view>
     <view class="sec-desc">A real use: confetti stays inside the card and goes off when the last task is ticked. Untick one and tick it again for another go.</view>
     <ll-paper stock="card" tilt="{{false}}" custom-style="position:relative;width:576rpx;padding:40rpx">

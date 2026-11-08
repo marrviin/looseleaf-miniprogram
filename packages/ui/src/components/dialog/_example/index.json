@@ -8,6 +8,7 @@
     "ll-dialog-body": "../dialog-body/dialog-body",
     "ll-dialog-footer": "../dialog-footer/dialog-footer",
     "ll-button": "../button/button",
-    "ll-input": "../input/input"
+    "ll-input": "../input/input",
+    "ll-page-title": "../page-title/page-title"
   }
 }

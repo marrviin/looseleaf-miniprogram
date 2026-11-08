@@ -3,10 +3,10 @@
      Simple pager, Table footer) with the page's own copy. Installation/Usage/
      API reference/Accessibility/Related are intentionally omitted. -->
 <view class="demo">
-  <view class="demo-title">Pagination</view>
+  <ll-page-title underline="highlight" seed="pagination" custom-style="margin-bottom:16rpx;">Pagination</ll-page-title>
   <view class="sec-desc">Page links as drawn buttons: each number is a Button around your own link, the page you are on is a block of highlighter, the arrows and the ellipsis are hand-drawn. It is just links, so it works with any router, or with plain hrefs and no JavaScript at all.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Demo</view>
@@ -44,14 +44,14 @@
     <view class="center grid-gap">
       <ll-pagination>
         <ll-pagination-content>
-          <ll-pagination-item><ll-pagination-previous disabled="{{page === 1}}" bind:tap="goPrev" /></ll-pagination-item>
+          <ll-pagination-item><ll-pagination-previous size="sm" disabled="{{page === 1}}" bind:tap="goPrev" /></ll-pagination-item>
           <block wx:for="{{items}}" wx:key="index">
             <ll-pagination-item>
-              <ll-pagination-link wx:if="{{item.kind === 'page'}}" is-active="{{item.p === page}}" aria-label="Page {{item.p}}" data-page="{{item.p}}" bind:tap="go">{{item.p}}</ll-pagination-link>
+              <ll-pagination-link size="sm" wx:if="{{item.kind === 'page'}}" is-active="{{item.p === page}}" aria-label="Page {{item.p}}" data-page="{{item.p}}" bind:tap="go">{{item.p}}</ll-pagination-link>
               <ll-pagination-ellipsis wx:else />
             </ll-pagination-item>
           </block>
-          <ll-pagination-item><ll-pagination-next disabled="{{page === last}}" bind:tap="goNext" /></ll-pagination-item>
+          <ll-pagination-item><ll-pagination-next size="sm" disabled="{{page === last}}" bind:tap="goNext" /></ll-pagination-item>
         </ll-pagination-content>
       </ll-pagination>
       <view class="live">Page {{page}} of {{last}}</view>

@@ -10,6 +10,7 @@
     "ll-message-footer": "looseleaf-miniprogram/components/message-footer/message-footer",
     "ll-message-text": "looseleaf-miniprogram/components/message-text/message-text",
     "ll-mascot": "looseleaf-miniprogram/components/mascot/mascot",
-    "ll-button": "looseleaf-miniprogram/components/button/button"
+    "ll-button": "looseleaf-miniprogram/components/button/button",
+    "ll-page-title": "../page-title/page-title"
   }
 }

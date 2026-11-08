@@ -5,10 +5,10 @@
      tooltips and dropdowns open via the controlled `open` props (automation
      can't tap inside virtualHost triggers). -->
 <view class="demo">
-  <view class="demo-title">Input Group</view>
+  <ll-page-title underline="highlight" seed="input-group" custom-style="margin-bottom:16rpx;">Input Group</ll-page-title>
   <view class="sec-desc">One hand-drawn field around an icon, some text, a button and the control, so a search box or a URL field is a single box instead of three. The box takes the control's focus, invalid and disabled states, and grows with a textarea. The same parts as shadcn's Input Group.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Default</view>
     <view class="sec-desc">One hand-drawn box around an icon, the field and some text. Click anywhere on an addon and the field takes focus; the focus ring goes around the whole group.</view>
@@ -31,7 +31,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Buttons and states</view>
@@ -60,7 +60,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Comment box</view>
     <view class="sec-desc">Block addons stack above or below a textarea inside the same drawn box: a header line on top, a counter and a send button underneath. The box grows with the text and is redrawn to fit.</view>
     <view class="groups">
@@ -79,7 +79,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Subscribe form</view>
     <view class="sec-desc">A real-world use: a labeled group in a form. The label points at the control, the marker button is part of the same box, and a bad address turns the whole group red.</view>
     <view class="form">
@@ -95,7 +95,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Four groups</view>
     <view class="sec-desc">shadcn's `input-group-demo`: a search with a result count, a URL with a prefix and a tooltip button, a prompt box with a menu and a send button, and a field with a verified badge. The badge is a drawn `badge-check` where the original has a filled circle.</view>
     <view class="groups">
@@ -134,7 +134,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Labels</view>
     <view class="sec-desc">shadcn's `input-group-label`: a Label can be an addon, so the @ in front of a handle is a real label for the field, or a title above it (`block-start`) with a help button at the far end.</view>
     <view class="groups">
@@ -155,7 +155,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Text addons</view>
     <view class="sec-desc">shadcn's `input-group-text`: `InputGroupText` sets plain words beside the field (a currency sign, a scheme, a domain) or under a textarea as a counter. The text is part of the box, not the value.</view>
     <view class="groups">
@@ -182,7 +182,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Tooltips</view>
     <view class="sec-desc">shadcn's `input-group-tooltip`: help buttons that explain themselves. Two sit at the end as ghost icon buttons; in the third the note opens to the left (`side="left"`), on the leading addon.</view>
     <view class="groups">
@@ -216,7 +216,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Buttons</view>
     <view class="sec-desc">shadcn's `input-group-button`: a copy button that turns into a tick, a popover from the button in the leading addon, a star that toggles, and a text button that ends the box. The original's `useCopyToClipboard` hook is a few lines of state here.</view>
     <view class="groups">
@@ -251,7 +251,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Inside a button group</view>
     <view class="sec-desc">shadcn's `input-group-button-group`: an InputGroup as the middle of a ButtonGroup, with `https://` and `.com` as text cells on either side. The first cell is a Label (`asChild`), so it focuses the field.</view>
     <view class="groups">
@@ -266,7 +266,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Dropdowns</view>
     <view class="sec-desc">shadcn's `input-group-dropdown`: a menu opened from a button inside the box, once as an ellipsis icon and once as a labeled `Search In...` with a chevron. The menu drops from the button; the box stays put.</view>
     <view class="groups">
@@ -295,7 +295,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Spinners</view>
     <view class="sec-desc">shadcn's `input-group-spinner`: `data-disabled` on the group dims the whole box while something is working, with a Spinner or a spinning icon in either addon and a word or two of status.</view>
     <view class="groups">
@@ -324,7 +324,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Textarea with header and footer</view>
     <view class="sec-desc">shadcn's `input-group-textarea`: a code box with a file name and two icon buttons above (`block-start` plus `border-b`) and a cursor position and a Run button below. The corner-down-left glyph is not drawn yet, so Run wears a play icon.</view>
     <view class="groups">
@@ -346,7 +346,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Icons</view>
     <view class="sec-desc">shadcn's `input-group-icon`: icons as addons, at the start, at the end, or two together. They are drawn glyphs, not fonts, so each one is a slightly different line.</view>
     <view class="groups">
@@ -373,7 +373,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Custom control</view>
     <view class="sec-desc">shadcn's `input-group-custom`: any control can be the group's field if it carries `data-slot="input-group-control"`. The original uses react-textarea-autosize; this one is the group's own textarea, which grows with the text without a package.</view>
     <view class="groups">

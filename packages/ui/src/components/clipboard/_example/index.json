@@ -4,6 +4,7 @@
     "ll-checkbox": "looseleaf-miniprogram/components/checkbox/checkbox",
     "ll-label": "looseleaf-miniprogram/components/label/label",
     "ll-input": "looseleaf-miniprogram/components/input/input",
-    "ll-button": "looseleaf-miniprogram/components/button/button"
+    "ll-button": "looseleaf-miniprogram/components/button/button",
+    "ll-page-title": "../page-title/page-title"
   }
 }

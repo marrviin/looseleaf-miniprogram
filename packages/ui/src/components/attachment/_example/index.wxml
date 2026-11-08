@@ -3,10 +3,10 @@
      the wall. There is no file dialog behind the trigger here; taps are
      reported to the page. -->
 <view class="demo">
-  <view class="demo-title">Attachment</view>
+  <ll-page-title underline="highlight" seed="attachment" custom-style="margin-bottom:16rpx;">Attachment</ll-page-title>
   <view class="sec-desc">A file on a slip of paper. Done (a clipped slip), uploading (a pencil bar), processing (the same bar, pulsing), error (red pencil and a retry) and idle (a dashed slot waiting for a file).</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">The five states</view>
     <view class="sec-desc">Done, uploading, processing, error and idle — the outline, the wash and the bar change with the state.</view>
     <view class="stack-16">
@@ -63,7 +63,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">A live upload</view>
     <view class="sec-desc">The hatched fill is drawn once and clipped to the value, so a fast upload never redraws anything. The finished slip gets its clip and press restarts the run.</view>
     <view class="stack-12">
@@ -83,7 +83,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Prints on the wall</view>
     <view class="sec-desc">orientation="vertical" is a photo with a white border, taped up. A group scrolls sideways and snaps when its prints are wider than the box.</view>
     <ll-attachment-group custom-style="max-width:100%;">

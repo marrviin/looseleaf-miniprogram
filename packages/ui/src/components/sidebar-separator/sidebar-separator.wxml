@@ -1,0 +1,4 @@
+<!-- ll-sidebar-separator — a pencil rule, mx-2. -->
+<view class="ll-sidebar-separator {{ll-class}}" style="{{customStyle}}">
+  <ll-separator />
+</view>

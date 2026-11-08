@@ -1,13 +1,12 @@
 <!-- ll-card demo — mirrors the upstream docs page (#/components/card).
      All docs-page examples are in: Settings (Preview), Stat cards, Guest
      book, Article card, On every stock, Pinned/clipped/stapled, Login,
-     Create project. Create project's Select lands with the select port
-     (the field is a placeholder there). -->
+     Create project. -->
 <view class="demo">
-  <view class="demo-title">Card</view>
+  <ll-page-title underline="highlight" seed="card" custom-style="margin-bottom:16rpx;">Card</ll-page-title>
   <view class="sec-desc">A card is a sheet of paper: header, title, description, action, content and footer with shadcn's spacing, on any stock and edge. Dividers are drawn pencil rules, and a card can be taped, pinned or clipped to the desk.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Settings card</view>
     <view class="sec-desc">The whole family: a title and description, an action tucked into the header, content, and a footer with a pencil rule above it.</view>
@@ -32,7 +31,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Stat cards</view>
@@ -167,7 +166,7 @@
     </view>
 
     <view class="sub-h3">Create project</view>
-    <view class="sec-desc">The shadcn demo: a card around a small form. A text field, a Select (its list opens in `position="popper"` so it lines up with the trigger) and a footer with the two answers pushed apart. Deploy reports what it would do. (The Select lands with its own port; the field is a placeholder until then.)</view>
+    <view class="sec-desc">The shadcn demo: a card around a small form. A text field, a Select (its list opens in `position="popper"` so it lines up with the trigger) and a footer with the two answers pushed apart. Deploy reports what it would do.</view>
     <view class="stack-card">
       <ll-card seed="create">
         <ll-card-header>
@@ -181,8 +180,7 @@
           </view>
           <view class="field">
             <text class="label">Framework</text>
-            <!-- ll-select lands later — placeholder for now -->
-            <view class="select-placeholder" aria-label="Framework">Select</view>
+            <ll-select id="card-select" options="{{frameworks}}" value="{{cpFramework}}" placeholder="Select" aria-label="Framework" custom-style="width:100%" bind:change="onFramework" />
           </view>
           <text class="status" aria-live="polite">{{cpStatus}}</text>
         </ll-card-content>

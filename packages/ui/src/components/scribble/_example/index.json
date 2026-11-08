@@ -4,6 +4,7 @@
     "ll-scribble": "../scribble/scribble",
     "ll-strike": "../strike/strike",
     "ll-highlight": "../highlight/highlight",
-    "ll-paper": "../paper/paper"
+    "ll-paper": "../paper/paper",
+    "ll-page-title": "../page-title/page-title"
   }
 }

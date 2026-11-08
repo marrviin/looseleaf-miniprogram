@@ -13,6 +13,7 @@
     "ll-card-footer": "../card-footer/card-footer",
     "ll-input": "../input/input",
     "ll-button": "../button/button",
-    "ll-icon": "../icon/icon"
+    "ll-icon": "../icon/icon",
+    "ll-page-title": "../page-title/page-title"
   }
 }

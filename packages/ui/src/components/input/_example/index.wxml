@@ -1,11 +1,12 @@
 <!-- ll-input demo — mirrors the upstream docs page (#/components/input).
-     Types: date needs <picker>, file needs wx.chooseMedia — both land with
-     their own ports; the type section carries password + number until then. -->
+     All docs-page examples are in. Types: date is the system <picker>
+     around a read-only field, file opens wx.chooseMedia and the picked
+     name is the field's own text. -->
 <view class="demo">
-  <view class="demo-title">Input</view>
+  <ll-page-title underline="highlight" seed="input" custom-style="margin-bottom:16rpx;">Input</ll-page-title>
   <view class="sec-desc">A one-line text field: a pencil box on paper around a real input, with blue felt for what you type. It draws its own hover, focus ring, invalid (red pencil and a !), disabled (dashes) and read-only (printed) states.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Default</view>
     <view class="sec-desc">A label and a field. What you type is blue felt; the placeholder is graphite.</view>
@@ -15,7 +16,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">States</view>
@@ -39,9 +40,20 @@
         <ll-input type="number" value="{{qty}}" bind:input="onQtyInput" custom-style="width:192rpx" aria-label="Quantity" />
       </view>
       <view class="stack stack--tight">
+        <text class="label">Due</text>
+        <!-- the system date picker in the drawn field (the native-select
+             approach): the field is read-only, the picker owns the tap -->
+        <picker mode="date" value="{{due}}" bindchange="onDueChange">
+          <ll-input value="{{due}}" readOnly placeholder="Pick a date" aria-label="Due" />
+        </picker>
+      </view>
+      <view class="stack stack--tight">
         <text class="label">Picture</text>
-        <!-- file input needs wx.chooseMedia; lands with the picker port -->
-        <text class="note">file — needs wx.chooseMedia, lands with the picker port</text>
+        <!-- the native file button is the field here: tap it and the
+             system picture picker opens; the name is the field's text -->
+        <view bind:tap="onFileTap">
+          <ll-input id="input-file" value="{{fileName}}" readOnly placeholder="no picture yet" aria-label="Picture" />
+        </view>
       </view>
     </view>
 

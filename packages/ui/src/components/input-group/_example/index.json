@@ -17,6 +17,7 @@
     "ll-button-group": "../button-group/button-group",
     "ll-button-group-text": "../button-group-text/button-group-text",
     "ll-spinner": "../spinner/spinner",
-    "ll-separator": "../separator/separator"
+    "ll-separator": "../separator/separator",
+    "ll-page-title": "../page-title/page-title"
   }
 }

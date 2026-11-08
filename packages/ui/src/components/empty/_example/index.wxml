@@ -4,10 +4,10 @@
      ported; 03's drag-and-drop has no touch equivalent, so the file list is
      fed by the button alone. -->
 <view class="demo">
-  <view class="demo-title">Empty</view>
+  <ll-page-title underline="highlight" seed="empty" custom-style="margin-bottom:16rpx;">Empty</ll-page-title>
   <view class="sec-desc">What a page says when there is nothing on it yet: media, a title in the script font, a line of explanation and an action. The media can be an icon on a slip of paper, Stubby the pencil stub in one of his poses, or a doodle; `framed` draws the sketched, dashed placeholder frame.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Icon tile</view>
     <view class="sec-desc">The upstream layout: media, title, description and an action. `variant="icon"` puts the icon on a little slip of paper with a hatched shadow; the title is in the script font. (The 24px icon is passed explicitly — the tile cannot size a child component from outside.)</view>
@@ -34,7 +34,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Stubby</view>

@@ -9,6 +9,8 @@
     "ll-card-footer": "../card-footer/card-footer",
     "ll-button": "../button/button",
     "ll-switch": "../switch/switch",
-    "ll-input": "../input/input"
+    "ll-input": "../input/input",
+    "ll-select": "../select/select",
+    "ll-page-title": "../page-title/page-title"
   }
 }

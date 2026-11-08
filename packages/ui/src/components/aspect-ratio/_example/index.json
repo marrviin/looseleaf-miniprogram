@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "ll-aspect-ratio": "../aspect-ratio/aspect-ratio",
-    "ll-doodle": "../doodle/doodle"
+    "ll-doodle": "../doodle/doodle",
+    "ll-page-title": "../page-title/page-title"
   }
 }

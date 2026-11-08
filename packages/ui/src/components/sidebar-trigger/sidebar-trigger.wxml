@@ -1,0 +1,4 @@
+<!-- ll-sidebar-trigger — ghost icon button, panel-left glyph. -->
+<ll-button variant="ghost" size="icon" aria-label="{{ariaLabel}}" custom-style="width:56rpx;height:56rpx;min-width:56rpx;" bind:tap="onTap">
+  <ll-icon name="panel-left" size="16" />
+</ll-button>

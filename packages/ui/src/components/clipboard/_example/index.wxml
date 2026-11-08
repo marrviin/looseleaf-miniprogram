@@ -2,10 +2,10 @@
      (#/components/clipboard). The board is one drawn sheet holding one
      sheet of real DOM paper. -->
 <view class="demo">
-  <view class="demo-title">Clipboard</view>
+  <ll-page-title underline="highlight" seed="clipboard" custom-style="margin-bottom:16rpx;">Clipboard</ll-page-title>
   <view class="sec-desc">A board with a spring clip holding a sheet of paper. The board is one drawn sheet; the clip is drawn over the paper it holds. The sheet is real content.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">A clipboard</view>
     <view class="sec-desc">Hardboard with the grain of its fiber, a chrome spring clip over the paper, and a checklist on the ruled sheet (each row is one 28 px line).</view>
     <view class="cb-center">
@@ -21,7 +21,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Hardboard and plastic</view>
     <view class="sec-desc">The same board in hardboard and in colored plastic. The paper stays cream, so nothing on it changes contrast.</view>
     <view class="cb-wrap">
@@ -34,7 +34,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Graph paper and tape</view>
     <view class="sec-desc">The paper is a Paper: graph rules, a strip of tape across a corner, a small extra note taped on top.</view>
     <view class="cb-center">
@@ -47,7 +47,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">A sign-in sheet</view>
     <view class="sec-desc">A real form on the paper: a name, a visit, a button, and the visitors so far listed as they sign.</view>
     <view class="cb-center">

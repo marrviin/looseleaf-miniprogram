@@ -1,0 +1,18 @@
+<!-- ll-sidebar-menu-button — the row's button. The ink layer carries the
+     active highlighter + margin bracket (or the outline pencil box); the
+     pad's ruling line is the ::after. Tap bubbles for dropdown triggers. -->
+<view
+  class="ll-sidebar-menu-button is-{{sizeCls}} {{parity ? 'is-even' : 'is-odd'}} {{collapsed ? 'is-collapsed' : ''}} {{isActive ? 'is-active' : ''}} {{variantCls === 'outline' ? 'is-outline' : ''}} {{disabled ? 'is-disabled' : ''}} {{ll-class}}"
+  style="{{customStyle}}"
+  hover-class="{{disabled ? '' : 'is-swipe'}}"
+  hover-start-time="0"
+  aria-role="{{url ? 'link' : 'button'}}"
+  aria-label="{{ariaLabel}}"
+  aria-disabled="{{disabled}}"
+  bind:tap="onTap"
+>
+  <view wx:if="{{marked}}" class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-sidebar-menu-button__content">
+    <slot />
+  </view>
+</view>

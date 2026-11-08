@@ -1,10 +1,10 @@
 <!-- ll-bubble demo — mirrors the upstream docs page (#/components/bubble):
      intro, then the Examples entries with the page's own copy. -->
 <view class="demo">
-  <view class="demo-title">Bubble</view>
+  <ll-page-title underline="highlight" seed="bubble" custom-style="margin-bottom:16rpx;">Bubble</ll-page-title>
   <view class="sec-desc">A chat bubble drawn like a person draws one: a single felt-tip stroke round a pillowy box, a solid fill (blue for what you send, gray or highlighter for the rest) and a tail on the sender's side. Also a folded note or a sticky note.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Variants</view>

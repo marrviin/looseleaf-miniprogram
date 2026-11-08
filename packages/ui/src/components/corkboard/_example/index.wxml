@@ -3,10 +3,10 @@
      Installation/Usage/API reference/Accessibility/Related are
      intentionally omitted. -->
 <view class="demo">
-  <view class="demo-title">Corkboard</view>
+  <ll-page-title underline="highlight" seed="corkboard" custom-style="margin-bottom:16rpx;">Corkboard</ll-page-title>
   <view class="sec-desc">A wooden-framed corkboard with notes you can pick up. Drag them with a pointer, or focus one and use the arrow keys to move it and R to turn it. Positions are plain JSON you can store and restore.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Default</view>
@@ -14,7 +14,7 @@
     <view class="board-wrap">
       <ll-corkboard id="board" custom-style="height:360px;">
         <ll-corkboard-note note-id="mum" id="note-mum" x="{{20}}" y="{{26}}">Call mum about Sunday</ll-corkboard-note>
-        <ll-corkboard-note note-id="ink" id="note-ink" x="{{168}}" y="{{64}}" stock="sticky-pink" rotate="{{2.5}}">Buy more ink!! (the blue felt)</ll-corkboard-note>
+        <ll-corkboard-note note-id="ink" id="note-ink" x="{{112}}" y="{{64}}" stock="sticky-pink" rotate="{{2.5}}">Buy more ink!! (the blue felt)</ll-corkboard-note>
         <ll-corkboard-note note-id="tape" id="note-tape" x="{{80}}" y="{{190}}" stock="sticky-green" pinned="{{false}}" rotate="{{-2}}">Tape it up before Friday</ll-corkboard-note>
       </ll-corkboard>
     </view>
@@ -28,9 +28,9 @@
           <view>1. a thing that boils</view>
           <view>2. a thing that tears</view>
         </ll-corkboard-note>
-        <ll-corkboard-note note-id="tag" id="note-tag" x="{{180}}" y="{{64}}" stock="kraft" rotate="{{-4}}" pin-color="tomato" custom-style="width:160px;">fragile, hand-drawn</ll-corkboard-note>
+        <ll-corkboard-note note-id="tag" id="note-tag" x="{{112}}" y="{{64}}" stock="kraft" rotate="{{-4}}" pin-color="tomato" custom-style="width:160px;">fragile, hand-drawn</ll-corkboard-note>
         <ll-corkboard-note note-id="photo" id="note-photo" x="{{12}}" y="{{240}}" stock="photo" rotate="{{3}}" pin-color="sky" custom-style="width:176px;">summer, 1987</ll-corkboard-note>
-        <ll-corkboard-note note-id="sticky" id="note-sticky" x="{{180}}" y="{{224}}" bare rotate="{{1.5}}" pin-color="grape" label="Sticky note">
+        <ll-corkboard-note note-id="sticky" id="note-sticky" x="{{112}}" y="{{224}}" bare rotate="{{1.5}}" pin-color="grape" label="Sticky note">
           <ll-sticky-note color="orange" tilt="{{false}}" custom-style="width:160px;padding:16px;font-size:20px;">pick me up: a real StickyNote</ll-sticky-note>
         </ll-corkboard-note>
       </ll-corkboard>

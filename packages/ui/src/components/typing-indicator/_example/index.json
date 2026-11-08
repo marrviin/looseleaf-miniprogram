@@ -2,6 +2,7 @@
   "component": true,
   "usingComponents": {
     "ll-typing-indicator": "../typing-indicator/typing-indicator",
-    "ll-button": "../button/button"
+    "ll-button": "../button/button",
+    "ll-page-title": "../page-title/page-title"
   }
 }

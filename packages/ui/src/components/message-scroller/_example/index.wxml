@@ -1,10 +1,10 @@
 <!-- ll-message-scroller demo — mirrors the upstream docs page (#/components/message-scroller):
      intro, then the Examples entries with the page's own copy. -->
 <view class="demo">
-  <view class="demo-title">Message scroller</view>
+  <ll-page-title underline="highlight" seed="message-scroller" custom-style="margin-bottom:16rpx;">Message scroller</ll-page-title>
   <view class="sec-desc">A scroll view that knows where a conversation starts and ends. When new messages arrive it follows along; when you scroll up to read, it lets go and shows a jump button at the edge.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">A transcript</view>

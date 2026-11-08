@@ -1,11 +1,32 @@
 /* Global example styles + font loading snippet.
- * Looseleaf tokens ship once in the npm package and are imported here —
- * CSS custom properties defined on `page` inherit into every component.
+ * Looseleaf tokens ship once in the staged common/ tree (main package) and
+ * are imported here — CSS custom properties defined on `page` inherit into
+ * every component, including ones staged inside subpackages.
  * (Components' wxss must not re-declare them; see docs/component-guide.md.) */
-@import 'miniprogram_npm/looseleaf-miniprogram/common/style/tokens.wxss';
+@import '/common/style/tokens.wxss';
+
+/* Paper texture tiles (PNG data URIs, baked from upstream
+ * textures-paper.generated.ts) ship once here too — upstream injects them on
+ * :root (textures.ts textureVars), so the miniprogram equivalent is `page`.
+ * Components must NOT re-inline the chunk; the vars inherit everywhere. */
+@import '/common/style/paper-tiles.wxss';
 
 page {
-  background: #f8f5ee;
+  /* The whole docs read as one big sheet of paper stock: --ll-paper color,
+   * the paper tooth tiles (fibre/relief/cloud, upstream .ll-paper::before
+   * via --ll-tex-paper) and the paper-light sheen (ink.js PAPER_LIGHT).
+   * The stack is also published as --ll-paper-bg-* vars so fixed surfaces
+   * (the custom tab bar) paint the exact same stock as the page. */
+  --ll-paper-bg-color: var(--ll-paper, #f8f5ee);
+  --ll-paper-bg-image: var(--ll-tex-fibre), var(--ll-tex-relief),
+    var(--ll-tex-cloud),
+    linear-gradient(135deg, rgba(255,255,255,0.38), rgba(255,255,255,0) 42%, rgba(58,44,30,0.035));
+  --ll-paper-bg-size: 240px 240px, 192px 192px, 720px 720px, 100% 100%;
+  --ll-paper-bg-repeat: repeat, repeat, repeat, no-repeat;
+  background-color: var(--ll-paper-bg-color);
+  background-image: var(--ll-paper-bg-image);
+  background-size: var(--ll-paper-bg-size);
+  background-repeat: var(--ll-paper-bg-repeat);
   font-family:
     'Kevin Sans',
     -apple-system,

@@ -5,10 +5,10 @@
      and 17 (tooltip variants) fold into the sections below; grayscale
      (18) has no web filter here, so only the patterns toggle carries. -->
 <view class="demo">
-  <view class="demo-title">Chart</view>
+  <ll-page-title underline="highlight" seed="chart" custom-style="margin-bottom:16rpx;">Chart</ll-page-title>
   <view class="sec-desc">Bars, lines and areas colored in with a marker that misses the outline a little; pies with pencil-patterned slices; a dial with a red felt needle. Every series carries a pattern, a marker shape and a dash so the chart still reads in black and white. Tap the drawing: a highlighter lights the point and a slip of paper names it.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Bar chart</view>
     <view class="sec-desc">Numbers on top, and the best day circled by hand. Tap a column: a highlighter lights it and the slip names it.</view>
     <view class="col">
@@ -25,7 +25,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Grouped, stacked, sideways</view>
     <view class="sec-desc">One dataset, four ways to lay it out. Each series keeps its color and its pencil pattern, so the bars stay apart in grayscale. Negative values hang below the line.</view>
     <view class="col">
@@ -46,13 +46,13 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Line chart</view>
     <view class="sec-desc">A felt line per series, with a marker shape and a dash pattern for each so lines survive black-and-white print. The legend switches series off.</view>
     <ll-chart type="line" data="{{visitors}}" x-key="month" label="Visitors by device, January to June" annotations="{{[{ at: 'max', series: 'desktop', text: 'launch', pen: 'red' }]}}" config="{{cfgDevices}}" />
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Area chart</view>
     <view class="sec-desc">The space under the line is washed with the series color and shaded in pencil: hatching, dots, cross-hatching. Stacked areas add up; the tooltip lists every layer.</view>
     <ll-card seed="area">
@@ -66,7 +66,7 @@
     </ll-card>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Pie and donut</view>
     <view class="sec-desc">Slices colored in with a marker, separated by felt lines, each with its own pencil pattern. The donut's hole is DOM text: it shows the total.</view>
     <view class="pair">
@@ -80,13 +80,13 @@
     <view class="said-line" aria-live="polite">{{pieSaid}}</view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Radar chart</view>
     <view class="sec-desc">A pencil web with a washed and shaded shape per series. Tap a spoke: the tooltip reads every series on it.</view>
     <ll-chart type="radar" data="{{skills}}" x-key="skill" max="{{100}}" label="Skills of Ada and Bo" config="{{cfgSkills}}" style="height: 640rpx;" />
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Radial bars and gauge</view>
     <view class="sec-desc">Concentric arcs in pale tracks, one ring per row, and a dial with marker zones and a red felt needle. The gauge reads its value, minimum and maximum.</view>
     <view class="pair">
@@ -99,7 +99,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Sparklines</view>
     <view class="sec-desc">One felt pull and a red dot at the end, a shaded area, or a row of marker bars. A sparkline is a picture with a spoken summary.</view>
     <view class="pair">
@@ -116,7 +116,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Heat map</view>
     <view class="sec-desc">A half year of days, each square colored in a shade of one marker; or any grid of your own. Tap a square and the slip names it.</view>
     <view class="col col--stack">
@@ -125,13 +125,13 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Tally chart</view>
     <view class="sec-desc">Counts as hand-tallied marks: four uprights and a slash across for every five, in the color of the row. When a row is too long for the width, each mark starts to stand for more and says so.</view>
     <ll-chart type="tally" data="{{[{ drink: 'Tea', cups: 23 }, { drink: 'Coffee', cups: 14 }, { drink: 'Cocoa', cups: 8 }, { drink: 'Water', cups: 31 }]}}" name-key="drink" value-key="cups" label="Cups drunk today" style="height: 400rpx;" />
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Scatter and bubbles</view>
     <view class="sec-desc">Points on two number lines, each series with its own marker shape (circle, square, triangle). Give a size key and the points grow into bubbles.</view>
     <view class="col col--stack">
@@ -140,7 +140,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Annotations and goal lines</view>
     <view class="sec-desc">A note is a hand-drawn loop, an arrow and a line of script; a highlight marks a stretch of days with a highlighter. Add a dashed goal line.</view>
     <view class="col">
@@ -154,7 +154,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Legend and hidden series</view>
     <view class="sec-desc">Every legend entry is a button: switch a series off (struck through) and on again. A series keeps its color, marker and dash while it is away. Control it from outside with hidden-series.</view>
     <view class="col">
@@ -167,7 +167,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Empty and loading</view>
     <view class="sec-desc">A chart with nothing to draw sketches its axes and a wandering pencil line and says so; a loading chart pulses dashed ghost bars. Neither is interactive.</view>
     <view class="col">
@@ -184,7 +184,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Color is not the only channel</view>
     <view class="sec-desc">Every series carries a pencil pattern (hatching, dots, cross-hatching, rules, scribble) on its marks, and a marker shape and a dash pattern on its lines. Switch the patterns off to see what plain color would have left you.</view>
     <view class="col">

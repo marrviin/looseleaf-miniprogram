@@ -663,7 +663,27 @@ createComponent({
           };
         }
       }
-      this.setData({ cursorBehind, cursorAbove, tip });
+      this.setData({ cursorBehind, cursorAbove, tip }, () => {
+        // phone adaptation: the slip is centered on the tapped point, so near
+        // an edge its half runs off the stage. Measure it once and shift with
+        // margin-left — the same clamp the popovers do after placement.
+        if (!tip) return;
+        this.createSelectorQuery()
+          .select('.ll-chart__tip')
+          .boundingClientRect()
+          .select('.ll-chart__stage')
+          .boundingClientRect()
+          .exec((res) => {
+            const tipRect = res && res[0];
+            const stageRect = res && res[1];
+            if (!tipRect || !stageRect || !stageRect.width) return;
+            const pad = 4;
+            let dx = 0;
+            if (tipRect.left < stageRect.left + pad) dx = stageRect.left + pad - tipRect.left;
+            else if (tipRect.right > stageRect.right - pad) dx = stageRect.right - pad - tipRect.right;
+            if (dx) this.setData({ 'tip.style': `${tip.style}margin-left:${dx.toFixed(1)}px;` });
+          });
+      });
     },
     __clearActive() {
       if (this.__activeIdx == null && !this.data.tip) return;

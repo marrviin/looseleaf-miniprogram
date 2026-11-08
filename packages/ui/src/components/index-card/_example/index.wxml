@@ -1,10 +1,10 @@
 <!-- ll-index-card demo — mirrors the upstream docs page
      (#/components/index-card). -->
 <view class="demo">
-  <view class="demo-title">Index card</view>
+  <ll-page-title underline="highlight" seed="index-card" custom-style="margin-bottom:16rpx;">Index card</ll-page-title>
   <view class="sec-desc">A 3 x 5 card of cream stock with a red header rule and blue lines every 30 px. Header, body and footer parts lay out on the printed rules; the card can have its rod hole punched at the foot, a colored flag stuck over its edge, and a pile of cards behind it.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">An index card</view>
     <view class="sec-desc">A red header rule, blue lines every 30 px, and text that sits on them. The title goes above the red line; the footer at the foot.</view>
@@ -26,7 +26,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Rod hole, flag, pile</view>
@@ -53,7 +53,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Taped, clipped, stacked</view>
     <view class="sec-desc">Paper's tape and fasteners work on a card as on any sheet. Cards turn under a quarter of a degree, so the printed lines stay level under the text.</view>
     <view class="stack">
@@ -79,7 +79,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Flashcards</view>
     <view class="sec-desc">A real use: a pile of flashcards. Press a button to flip the top card between the question and the answer; the pile behind it shows how many are left.</view>
     <view class="stack stack--center">

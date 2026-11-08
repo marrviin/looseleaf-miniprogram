@@ -1,9 +1,9 @@
 <!-- ll-switch demo — mirrors the upstream docs page (#/components/switch). -->
 <view class="demo">
-  <view class="demo-title">Switch</view>
+  <ll-page-title underline="highlight" seed="switch" custom-style="margin-bottom:16rpx;">Switch</ll-page-title>
   <view class="sec-desc">An on/off switch drawn as one clean felt pill: the terracotta marker fills the track when it is on, and a paper coin for a thumb slides across. Radix Switch underneath.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Default</view>
     <view class="sec-desc">Flip it: the marker fills the track and the paper coin slides across. The label toggles it too.</view>
@@ -13,11 +13,12 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Sizes and states</view>
     <view class="sec-desc">Default and sm, off and on, invalid (red pencil outline that stays red when it is on) and disabled (dashed pencil, graphite fill). The thumb's side and the fill carry the state, so it never rests on color alone.</view>
+    <scroll-view scroll-x class="grid-scroll" show-scrollbar="{{false}}">
     <view class="grid">
       <view class="grid-row grid-row--head">
         <text class="grid-cell grid-name" />
@@ -28,6 +29,7 @@
         <ll-switch wx:for="{{r.cells}}" wx:for-item="c" wx:key="ci" size="{{r.sm ? 'sm' : 'default'}}" checked="{{c.checked}}" invalid="{{c.invalid}}" disabled="{{c.disabled}}" aria-label="{{r.name}} {{c.label}}" />
       </view>
     </view>
+    </scroll-view>
     <view class="row row--locked">
       <ll-switch disabled checked aria-label="Locked" />
       <text class="label label--dim">Locked by your administrator</text>

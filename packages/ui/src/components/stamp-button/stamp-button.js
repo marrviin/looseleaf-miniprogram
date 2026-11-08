@@ -80,9 +80,13 @@ createComponent({
     onDown() {
       if (this.data.disabled) return;
       this.setData({ pressed: true });
+      // stack the recipe's pressed layer (heavier ink wash) over rest,
+      // like ll-button's touch wiring
+      this.__inkTouchStart();
     },
     onUp() {
       if (this.data.pressed) this.setData({ pressed: false });
+      this.__inkTouchEnd();
     },
     onPress() {
       if (this.data.disabled) return;

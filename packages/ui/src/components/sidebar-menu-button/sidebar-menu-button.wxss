@@ -1,0 +1,102 @@
+/* ll-sidebar-menu-button — sidebar.tsx sidebarMenuButtonVariants.
+   Sizes ×2 rpx; font ×0.88 (text-base 16px → 28rpx). The ruling line is
+   the ::after with --ll-pad-rule + an odd/even alpha mask (upstream's
+   group-odd/even mask-image gradients, written as rgba alphas because the
+   webview mask reads the alpha channel). */
+
+.ll-sidebar-menu-button {
+  position: relative;
+  z-index: 0; /* isolate */
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 16rpx; /* gap-2 */
+  min-height: 64rpx; /* h-8 */
+  padding: 16rpx; /* p-2 */
+  box-sizing: border-box;
+  text-align: left;
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 28rpx; /* text-base x .88 */
+  color: var(--ll-ink, #2a2420); /* text-sidebar-foreground */
+  transition: width var(--ll-dur-sheet, 0.3s) ease-out, height var(--ll-dur-sheet, 0.3s) ease-out,
+    padding var(--ll-dur-sheet, 0.3s) ease-out;
+}
+.ll-sidebar-menu-button__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  align-items: center;
+  gap: 16rpx;
+}
+/* text-start; upstream truncates the last span — the demo passes its own
+   label span, so truncation lives there */
+
+/* sizes */
+.ll-sidebar-menu-button.is-sm {
+  min-height: 56rpx; /* h-7 */
+  font-size: 26rpx; /* text-[15px] x .88 */
+}
+.ll-sidebar-menu-button.is-lg {
+  min-height: 96rpx; /* h-12 */
+}
+
+/* the pad's ruling line — one per row, drawn by CSS (no ink per row) */
+.ll-sidebar-menu-button::after {
+  content: '';
+  position: absolute;
+  left: 8rpx; /* inset-x-1 */
+  right: 8rpx;
+  bottom: -4rpx; /* -bottom-0.5 */
+  height: 2rpx; /* h-px */
+  background-color: #b2c3dc; /* var(--ll-pad-rule) */
+  pointer-events: none;
+}
+.ll-sidebar-menu-button.is-odd::after {
+  -webkit-mask-image: linear-gradient(90deg, rgba(42, 36, 32, 1), rgba(42, 36, 32, 0.78) 45%, rgba(42, 36, 32, 1));
+  mask-image: linear-gradient(90deg, rgba(42, 36, 32, 1), rgba(42, 36, 32, 0.78) 45%, rgba(42, 36, 32, 1));
+}
+.ll-sidebar-menu-button.is-even::after {
+  -webkit-mask-image: linear-gradient(90deg, rgba(42, 36, 32, 0.82), rgba(42, 36, 32, 1) 55%, rgba(42, 36, 32, 0.86));
+  mask-image: linear-gradient(90deg, rgba(42, 36, 32, 0.82), rgba(42, 36, 32, 1) 55%, rgba(42, 36, 32, 0.86));
+}
+
+/* touch feedback — upstream hover:ll-swipe (highlighter) */
+.ll-sidebar-menu-button.is-swipe {
+  background-color: rgba(248, 220, 76, 0.62); /* var(--ll-hi-select) */
+  border-radius: 6rpx 16rpx 8rpx 18rpx / 16rpx 6rpx 18rpx 8rpx;
+}
+.ll-sidebar-menu-button.is-active.is-swipe {
+  background-color: transparent; /* the ink mark owns the highlight */
+}
+
+/* disabled */
+.ll-sidebar-menu-button.is-disabled {
+  color: #5a554e; /* text-pencil-text */
+  pointer-events: none;
+}
+
+/* outline variant: the ink recipe draws the pencil box; no ruling behind it
+   would fight the box, upstream keeps the line — keep it. */
+
+/* collapsed to icons: a 32px square, content fades out (labels stay in the
+   tree for the accessible name, as upstream) */
+.ll-sidebar-menu-button.is-collapsed {
+  width: 64rpx;
+  min-height: 64rpx;
+  max-width: 64rpx;
+  padding: 16rpx;
+  justify-content: center;
+  overflow: hidden;
+}
+.ll-sidebar-menu-button.is-collapsed::after {
+  display: none;
+}
+.ll-sidebar-menu-button.is-collapsed .ll-sidebar-menu-button__content {
+  opacity: 0;
+  white-space: nowrap;
+}
+.ll-sidebar-menu-button.is-lg.is-collapsed {
+  padding: 0;
+}

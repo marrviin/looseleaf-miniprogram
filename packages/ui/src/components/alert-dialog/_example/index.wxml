@@ -4,17 +4,17 @@
      desktop props faithfully. Tap the dim: an alert dialog refuses (upstream
      alert semantics); only the answers close it. -->
 <view class="demo">
-  <view class="demo-title">Alert Dialog</view>
+  <ll-page-title underline="highlight" seed="alert-dialog" custom-style="margin-bottom:16rpx;">Alert Dialog</ll-page-title>
   <view class="sec-desc">A dialog that asks one question and will not go away until it is answered: no close button, no dismissing by clicking outside, focus starts on the safe answer. For risky questions it can be taped with hazard strips and given a red patch behind its icon.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Delete (danger)</view>
     <view class="sec-desc">The risky question: hazard tape across the top corners, a red patch behind the icon, and a hatched destructive answer. Focus starts on Cancel.</view>
     <view class="center-row"><ll-button variant="destructive" bind:tap="openDlg" data-k="dlgDelete">Delete notebook</ll-button></view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Small</view>

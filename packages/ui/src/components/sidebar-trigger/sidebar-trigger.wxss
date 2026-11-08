@@ -1,0 +1,2 @@
+/* ll-trigger parks its styles on the button it wraps; upstream is size-7
+   (28px) — carried in the custom-style above. */

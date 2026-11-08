@@ -5,6 +5,7 @@
     "ll-paper": "../paper/paper",
     "ll-input": "../input/input",
     "ll-label": "../label/label",
-    "ll-button": "../button/button"
+    "ll-button": "../button/button",
+    "ll-page-title": "../page-title/page-title"
   }
 }

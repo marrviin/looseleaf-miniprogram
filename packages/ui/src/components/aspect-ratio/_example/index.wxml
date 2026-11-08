@@ -1,9 +1,9 @@
 <!-- ll-aspect-ratio demo — mirrors the upstream docs page -->
 <view class="demo">
-  <view class="demo-title">Aspect Ratio</view>
+  <ll-page-title underline="highlight" seed="aspect-ratio" custom-style="margin-bottom:16rpx;">Aspect Ratio</ll-page-title>
   <view class="sec-desc">The same width, four ratios: 16:9, 4:3, 1:1 and 3:4, each a small print with a white border. Change the width of the container and each box keeps its shape.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="ar-grid">
       <view class="ar-cell" wx:for="{{ratios}}" wx:key="label">
         <view class="ar-print {{item.turn}}">

@@ -1,6 +1,5 @@
 // ll-card demo — mirrors the upstream docs page (#/components/card).
-// All card examples from the docs page are in; Create project's Select
-// lands with the select port (the field is a placeholder there).
+// All card examples from the docs page are in.
 Component({
   options: { styleIsolation: 'apply-shared' },
   data: {
@@ -28,8 +27,16 @@ Component({
     // 50-login
     loginEmail: '',
     loginPw: '',
-    // 51-create-project (framework waits for ll-select)
+    // 51-create-project — framework select (upstream position="popper"; the
+    // slip already lines up with the trigger, so no extra prop)
+    frameworks: [
+      { value: 'next', label: 'Next.js' },
+      { value: 'sveltekit', label: 'SvelteKit' },
+      { value: 'astro', label: 'Astro' },
+      { value: 'nuxt', label: 'Nuxt.js' },
+    ],
     cpName: '',
+    cpFramework: '',
     cpStatus: '',
   },
   methods: {
@@ -56,8 +63,11 @@ Component({
     onCpName(e) {
       this.setData({ cpName: e.detail.value });
     },
+    onFramework(e) {
+      this.setData({ cpFramework: e.detail.value });
+    },
     onDeploy() {
-      this.setData({ cpStatus: `Deploying "${this.data.cpName || 'untitled'}" on no framework` });
+      this.setData({ cpStatus: `Deploying "${this.data.cpName || 'untitled'}" on ${this.data.cpFramework || 'no framework'}` });
     },
     onCancel() {
       this.setData({ cpStatus: 'Nothing deployed.' });

@@ -25,6 +25,14 @@ Component({
     ],
     agree: false,
     sent: '',
+    // 50-with-description — checkbox first, then the label/help column;
+    // the locked row dims through the FieldLabel's disabled prop
+    descTerms: true,
+    descPolicy: false,
+    // 51-choice-cards — FieldLabel wrapped around a whole Field makes the
+    // row one big target (checked card = highlighter wash + felt outline)
+    cardNotify: true,
+    cardDigest: false,
   },
   methods: {
     toggleTerms() {
@@ -55,6 +63,15 @@ Component({
     },
     onAgreeChange(e) {
       this.setData({ agree: e.detail.value, sent: '' });
+    },
+    onDescChange(e) {
+      this.setData({ [e.currentTarget.dataset.key]: !!e.detail.value });
+    },
+    onCardNotify() {
+      this.setData({ cardNotify: !this.data.cardNotify });
+    },
+    onCardDigest() {
+      this.setData({ cardDigest: !this.data.cardDigest });
     },
     save() {
       if (!this.data.agree) {

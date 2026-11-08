@@ -1,0 +1,15 @@
+.ll-sidebar-group-action {
+  position: absolute;
+  top: 24rpx; /* top-3 */
+  right: 24rpx; /* end-3 */
+  display: flex;
+  width: 48rpx; /* w-6 */
+  height: 48rpx;
+  align-items: center;
+  justify-content: center;
+  color: var(--ll-ink, #2a2420); /* text-sidebar-foreground */
+}
+.ll-sidebar-group-action.is-swipe {
+  background-color: rgba(248, 220, 76, 0.62);
+  border-radius: 6rpx 16rpx 8rpx 18rpx / 16rpx 6rpx 18rpx 8rpx;
+}

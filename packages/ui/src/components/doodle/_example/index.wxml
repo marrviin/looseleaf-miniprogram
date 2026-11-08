@@ -1,9 +1,9 @@
 <!-- ll-doodle demo — mirrors the upstream docs page (#/components/doodle). -->
 <view class="demo">
-  <view class="demo-title">Doodle</view>
+  <ll-page-title underline="highlight" seed="doodle" custom-style="margin-bottom:16rpx;">Doodle</ll-page-title>
   <view class="sec-desc">Margin doodles: a star, a sun, a flower, a mushroom. Line-led, with one flat fill in register. Use them in the decoration layer, on empty states and in corners of cards.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Default</view>
     <view class="sec-desc">96 px: line-led, one marker fill that misses the outline, a light pencil shading in the lower right.</view>
@@ -12,13 +12,13 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Sizes are redrawn</view>
     <view class="sec-desc">Below 72 px a doodle switches to its 48 px drawing: the silhouette and one identifying detail, drawn with a heavier line.</view>
     <view class="stack">
-      <view class="row" wx:for="{{['sun', 'mushroom']}}" wx:for-item="name" wx:key="*this" style="align-items:flex-end;">
+      <view class="row row--wrap" wx:for="{{['sun', 'mushroom']}}" wx:for-item="name" wx:key="*this" style="align-items:flex-end;">
         <view class="size-fig" wx:for="{{sizes}}" wx:for-item="s" wx:key="*this">
           <ll-doodle name="{{name}}" size="{{s}}" />
           <view class="fig-cap">{{s}}</view>
@@ -27,7 +27,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">In the margin</view>
     <view class="sec-desc">Doodles live in the decoration layer: turned a few degrees, tucked in the corner of a card, next to a title.</view>
     <view class="stack">
@@ -37,7 +37,7 @@
         </view>
         <view class="slip-title">Weekend list</view>
         <view class="slip-body">Pick flowers, find the good mushrooms, call it a day.</view>
-        <view class="row" style="margin-top:24rpx;align-items:flex-end;">
+        <view class="row row--wrap" style="margin-top:24rpx;align-items:flex-end;">
           <ll-doodle name="flower" size="{{48}}" rotate="{{-6}}" />
           <ll-doodle name="mushroom" size="{{48}}" rotate="{{5}}" flip="{{true}}" />
           <ll-doodle name="sun" size="{{48}}" />
@@ -46,7 +46,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Every doodle drawn so far</view>
     <view class="sec-desc">Grows by itself as the doodle batches land.</view>
     <view class="gallery">

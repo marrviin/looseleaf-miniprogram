@@ -9,6 +9,7 @@
     "ll-sticker": "../sticker/sticker",
     "ll-avatar": "../avatar/avatar",
     "ll-avatar-fallback": "../avatar-fallback/avatar-fallback",
-    "ll-icon": "../icon/icon"
+    "ll-icon": "../icon/icon",
+    "ll-page-title": "../page-title/page-title"
   }
 }

@@ -1,9 +1,9 @@
 <!-- ll-progress demo — mirrors the upstream docs page (#/components/progress). -->
 <view class="demo">
-  <view class="demo-title">Progress</view>
+  <ll-page-title underline="highlight" seed="progress" custom-style="margin-bottom:16rpx;">Progress</ll-page-title>
   <view class="sec-desc">A bar somebody hatched in pencil and is coloring in with a marker. The marker is one full-length pass revealed by a CSS clip up to the value, so changing the value is a transition, not a redraw. Without a value it becomes a scribble sliding across.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Default</view>
     <view class="sec-desc">A pencil-hatched box colored in with a marker as far as the value says. Change the value and the marker glides to it (a CSS clip on a full-length pass; nothing is redrawn).</view>
@@ -12,7 +12,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Sizes, tones and waiting</view>

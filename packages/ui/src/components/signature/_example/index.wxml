@@ -2,17 +2,17 @@
      (#/components/signature): a name and its pen tail, the flourish
      options, and the end of a letter signed in. -->
 <view class="demo">
-  <view class="demo-title">Signature</view>
+  <ll-page-title underline="highlight" seed="signature" custom-style="margin-bottom:16rpx;">Signature</ll-page-title>
   <view class="sec-desc">A name signed in the script font with the pen's flourish under it — a swoosh that loops and flicks up past the last letter. The name is ordinary text; the flourish is a drawing.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">A name and its pen tail</view>
     <view class="row-baseline">
       <ll-signature>Ada Lovelace</ll-signature>
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Flourishes, sizes and pens</view>
     <view class="sec-desc">A swoosh, an underline, none; three sizes; blue, ink and red pens. A signature keeps its own size in a row, so names of different sizes sit on one baseline.</view>
     <view class="group-block">
@@ -41,7 +41,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">The end of a letter</view>
     <view class="sec-desc">Sign it: the name is written left to right, then the flourish follows the pen.</view>
     <view class="stack-12">

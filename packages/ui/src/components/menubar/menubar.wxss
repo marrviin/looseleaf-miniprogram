@@ -18,6 +18,9 @@
   gap: 8rpx; /* gap-1 */
   flex: 1;
   min-width: 0;
+  /* phone adaptation: the titles are nowrap and the bar is one 80rpx row —
+     more than ~4 titles need sideways scroll instead of painting past it */
+  overflow-x: auto;
 }
 
 /* ink overlay — common/ink.js draws the recipe at the element's real size

@@ -5,8 +5,6 @@
   scroll-x="{{true}}"
   scroll-y="{{sticky}}"
   scroll-top="{{scrollTop}}"
-  enhanced="{{true}}"
-  show-scrollbar="{{false}}"
 >
   <view class="ll-table ll-class" style="{{customStyle}}">
     <slot />

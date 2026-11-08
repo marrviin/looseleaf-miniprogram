@@ -2,6 +2,7 @@
   "component": true,
   "usingComponents": {
     "ll-flip-card": "looseleaf-miniprogram/components/flip-card/flip-card",
-    "ll-button": "looseleaf-miniprogram/components/button/button"
+    "ll-button": "looseleaf-miniprogram/components/button/button",
+    "ll-page-title": "../page-title/page-title"
   }
 }

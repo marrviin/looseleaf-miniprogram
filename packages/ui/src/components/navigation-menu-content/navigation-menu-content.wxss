@@ -5,6 +5,9 @@
   z-index: 1011; /* over the shared slip (1010) */
   padding: 16rpx 20rpx 16rpx 16rpx; /* p-2 pe-2.5 */
   width: max-content; /* md:w-auto */
+  /* phone adaptation: same viewport backstop the dropdown/popover panels
+     carry — max-content alone can run past the screen on wide panel content */
+  max-width: calc(100vw - 16rpx);
 }
 /* No-viewport mode: the panel draws its own slip, dropped under the item
    (upstream: absolute! top-full mt-2 z-popover, ll-paper ll-stock-slip

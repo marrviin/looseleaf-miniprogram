@@ -1,7 +1,7 @@
 /* ll-desk — upstream .ll-desk: sage bookcloth; the vignette + linen tile
-   are composed inline (deskStyle) so lamp can retune the shade; the tile
-   var is baked on .ll-desk by script/bake-paper-tiles.mjs. */
-/* @ll-import paper-tiles */
+   are composed inline (deskStyle) so lamp can retune the shade; the linen
+   tile var comes from the app-level paper-tiles import (page-level vars
+   inherit into components — see script/bake-paper-tiles.mjs). */
 .ll-desk {
   position: relative;
   isolation: isolate; /* keep the objects layer's z-index:-1 above page bg */

@@ -61,7 +61,7 @@ const FASTENERS = {
   clip: { draw: clip, opts: () => ({ height: 62 }), place: { top: -20, right: 32 } },
   pin: { draw: pin, opts: () => ({ size: 24 }), place: { top: -8, center: -12 } },
   staple: { draw: staple, opts: () => ({ length: 20 }), place: { top: 8, left: 8 } },
-  'binder-clip': { draw: binderClip, opts: () => ({ width: 52 }), place: { top: -40, center: -26 } },
+  'binder-clip': { draw: binderClip, opts: () => ({ width: 52 }), place: { top: -25, center: -26 } },
 };
 
 /** Upstream Tape/Fastener rotate through CSS clamp(±2.5 × --ll-tilt-max)=±5deg

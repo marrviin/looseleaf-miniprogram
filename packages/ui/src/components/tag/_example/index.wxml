@@ -2,10 +2,10 @@
      asChild link tags render as tappable tags (React-slot has no
      miniprogram equivalent); the eyelet swing on hover needs a mouse. -->
 <view class="demo">
-  <view class="demo-title">Label tag</view>
+  <ll-page-title underline="highlight" seed="tag" custom-style="margin-bottom:16rpx;">Label tag</ll-page-title>
   <view class="sec-desc">A card with clipped corners, a hole with its patch and brass eyelet, and a loop of natural twine. Everything drawn is one sheet: it turns and casts one shadow.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">A hang tag</view>
     <view class="sec-desc">A card with clipped corners, a hole with its patch and brass eyelet, and a loop of natural twine. Everything drawn is one sheet: it turns and casts one shadow.</view>
@@ -18,7 +18,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Examples</view>
     <view class="sub-h3">Shapes, stocks, string</view>
     <view class="sec-desc">Price tag, arched, and a luggage tag; kraft, white and colored card; natural or colored twine; a brass eyelet, a steel one, or a bare hole.</view>

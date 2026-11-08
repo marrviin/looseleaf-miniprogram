@@ -1,9 +1,9 @@
 <!-- ll-seal demo — mirrors the upstream docs page (#/components/seal). -->
 <view class="demo">
-  <view class="demo-title">Seal</view>
+  <ll-page-title underline="highlight" seed="seal" custom-style="margin-bottom:16rpx;">Seal</ll-page-title>
   <view class="sec-desc">Rosettes, scalloped seals, medals, ringed seals with rim lettering and wax seals, drawn like the stickers without the white edge. Use one as a verified mark beside a name, an award on a card, or the stamp of approval on a certificate.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Seals</view>
     <view class="sec-desc">A scalloped seal, a starburst, a rosette with a ribbon hanging from it, a medal, a shield, a plate and a tag: one generator, eight shapes, any stationery color.</view>
@@ -20,7 +20,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Examples</view>
     <view class="sub-h3">Marks, rings and wax</view>
     <view class="sec-desc">A hand-drawn check or star takes the place of the words (it survives at 16 px where letters do not). A ringed seal carries lettering round its rim. Wax takes an initial, a check or a star.</view>
@@ -39,7 +39,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Verified, awarded, sealed</view>
     <view class="sec-desc">In ordinary UI: a verified mark beside a name at 20 px, a best-seller seal pinned to a card corner, and a certificate with a rosette, a ringed seal and a wax seal.</view>
     <view class="cert-grid">

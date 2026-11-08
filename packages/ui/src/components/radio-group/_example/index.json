@@ -2,6 +2,7 @@
   "usingComponents": {
     "ll-radio-group": "../radio-group/radio-group",
     "ll-radio": "../radio/radio",
-    "ll-button": "../button/button"
+    "ll-button": "../button/button",
+    "ll-page-title": "../page-title/page-title"
   }
 }

@@ -5,12 +5,14 @@
 .ll-stamp-button {
   position: relative;
   display: inline-flex;
-  align-items: flex-end;
+  /* items-center pb-2: the label centers in the die area (content box
+     spans pt 60rpx .. h-16rpx), not flex-end which hugged the bottom edge */
+  align-items: center;
   justify-content: center;
   box-sizing: border-box;
   margin: 0 !important; /* UA sets margin-left/right: auto, which scatters flex siblings */
   height: 136rpx; /* 68px */
-  padding: 60rpx 24rpx 0; /* paddingTop STAMP_KNOB (30px), px-6 */
+  padding: 60rpx 48rpx 16rpx; /* paddingTop STAMP_KNOB (30px), px-6, pb-2 */
   /* Reset the native <button> UA styles: fixed width (~184px, UA !important)
      and overflow: hidden would stretch the tool and clip the ink layer's
      hand-drawn stroke overhang. */

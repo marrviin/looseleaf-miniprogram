@@ -23,3 +23,15 @@
 .ll-carousel-next.is-vertical {
   bottom: -48px;
 }
+
+/* phone adaptation: on a full-width carousel the parked-outside arrows fall
+   off the screen (and .ll-carousel doesn't clip), so on narrow viewports the
+   horizontal arrows park inside the track instead */
+@media (max-width: 500px) {
+  .ll-carousel-previous.is-horizontal {
+    left: 8rpx;
+  }
+  .ll-carousel-next.is-horizontal {
+    right: 8rpx;
+  }
+}

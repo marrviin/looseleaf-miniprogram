@@ -2,6 +2,13 @@
   "component": true,
   "usingComponents": {
     "ll-checkbox": "../checkbox/checkbox",
-    "ll-button": "../button/button"
+    "ll-field": "../field/field",
+    "ll-field-group": "../field-group/field-group",
+    "ll-field-content": "../field-content/field-content",
+    "ll-field-label": "../field-label/field-label",
+    "ll-field-title": "../field-title/field-title",
+    "ll-field-description": "../field-description/field-description",
+    "ll-button": "../button/button",
+    "ll-page-title": "../page-title/page-title"
   }
 }

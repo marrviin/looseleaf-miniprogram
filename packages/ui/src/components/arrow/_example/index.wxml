@@ -1,9 +1,9 @@
 <!-- ll-arrow demo — mirrors the upstream docs page -->
 <view class="demo">
-  <view class="demo-title">Arrow</view>
+  <ll-page-title underline="highlight" seed="arrow" custom-style="margin-bottom:16rpx;">Arrow</ll-page-title>
   <view class="sec-desc">A hand-drawn arrow: eight directions in two pens, then the curl and the five heads. Point it at another element and it flies to just short of the target.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Directions, shafts and heads</view>
     <view class="aw-grid">
       <ll-arrow wx:for="{{dirs}}" wx:key="*this" direction="{{item}}" custom-style="width:64px;height:48px;" />
@@ -21,7 +21,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Pointing at an element</view>
     <view class="sec-desc">Give it a selector and the arrow leaves its small box and stops just short of the target, wherever the layout puts it.</view>
     <view class="aw-point">
@@ -33,20 +33,22 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">With a label</view>
     <view class="sec-desc">Text inside an Arrow is its label: real handwritten text, placed outside the tail on the side the arrow leaves from.</view>
     <view class="aw-label-wrap">
-      <ll-paper tilt seed="guestbook" custom-style="max-width:300px;">
+      <ll-paper tilt seed="guestbook" custom-style="max-width:100%;">
         <view class="aw-card-head">
           <view class="aw-script is-title">Guest book</view>
           <view class="aw-cap is-left">Sign on the line</view>
         </view>
         <view class="aw-line" />
       </ll-paper>
+      <view class="aw-arrow">
       <ll-arrow direction="down-left" curve="curved" tone="blue" bend="up" custom-style="width:96px;height:80px;">
         your name
       </ll-arrow>
+      </view>
     </view>
   </view>
 </view>

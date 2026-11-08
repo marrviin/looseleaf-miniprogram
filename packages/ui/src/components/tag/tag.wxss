@@ -1,9 +1,8 @@
 /* ll-tag — everything drawn (paper, patch, eyelet, twine) is one sheet ink
    layer rendered at the element's real size; the box only lays out the text.
    The stock face is CSS (upstream .ll-face): stock color + tooth texture
-   tiles (paper-tiles chunk) + paper-light gradient, clipped to the sheet. */
+   tiles (page-level vars, see script/bake-paper-tiles.mjs) + paper-light gradient, clipped to the sheet. */
 /* @ll-import tokens */
-/* @ll-import paper-tiles */
 .ll-tag {
   position: relative;
   display: flex;

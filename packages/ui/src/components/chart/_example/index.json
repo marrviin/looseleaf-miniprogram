@@ -7,6 +7,7 @@
     "ll-card-title": "looseleaf-miniprogram/components/card-title/card-title",
     "ll-card-description": "looseleaf-miniprogram/components/card-description/card-description",
     "ll-card-content": "looseleaf-miniprogram/components/card-content/card-content",
-    "ll-button": "looseleaf-miniprogram/components/button/button"
+    "ll-button": "looseleaf-miniprogram/components/button/button",
+    "ll-page-title": "../page-title/page-title"
   }
 }

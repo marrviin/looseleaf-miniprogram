@@ -4,10 +4,10 @@
      Size pairs) with the page's own copy. Installation/Usage/API reference/
      Accessibility/Related are intentionally omitted. -->
 <view class="demo">
-  <view class="demo-title">Button</view>
+  <ll-page-title underline="highlight" seed="button" custom-style="margin-bottom:16rpx;">Button</ll-page-title>
   <view class="sec-desc">The thing you press. A marker-filled primary, a highlighter secondary, an inked outline, a whisper-box ghost, a solid red destructive and a hand-underlined link, in every shadcn size.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Variants</view>
     <view class="sec-desc">Six ways to hold a pen: marker, red pencil, ink, highlighter, pencil whisper and blue felt.</view>
@@ -23,7 +23,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Sizes</view>

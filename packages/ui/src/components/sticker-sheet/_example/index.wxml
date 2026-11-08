@@ -2,20 +2,22 @@
      (#/components/sticker-sheet). The third upstream example ("Sheet to
      board") peels onto an ll-sticker-board. -->
 <view class="demo">
-  <view class="demo-title">Sticker sheet</view>
+  <ll-page-title underline="highlight" seed="sticker-sheet" custom-style="margin-bottom:16rpx;">Sticker sheet</ll-page-title>
   <view class="sec-desc">A kiss-cut sheet: press a sticker and it lifts off, leaving its cut outline behind. Press the outline to stick it back. Touch one and its corner curls.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">A sheet to peel</view>
     <view class="sec-desc">Press a sticker (or Enter) and it lifts off, leaving its kiss-cut outline behind. Press the outline to stick it back. Hover one and its corner curls.</view>
     <view class="row">
-      <ll-sticker-sheet id="sheet-one" title="Sticker sheet no. 4" stickers="{{names}}" default-peeled="{{['done', 'hundred']}}" bindpeel="onPeel" bindstick="onStick" />
+      <!-- phone adaptation: default 4×72px cells (cell = size+22 ≈ 400px) don't
+           fit the stage; 48px keeps the 4-column grid inside it -->
+      <ll-sticker-sheet id="sheet-one" title="Sticker sheet no. 4" size="{{48}}" stickers="{{names}}" default-peeled="{{['done', 'hundred']}}" bindpeel="onPeel" bindstick="onStick" />
     </view>
     <view wx:if="{{log}}" class="sheet-log" aria-role="status">{{log}}</view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Examples</view>
     <view class="sub-h3">Backing paper and size</view>
     <view class="sec-desc">The backing is release paper with a sheen (glassine, the default), kraft or plain paper. Columns and size set the grid; shorthand `stickers` skips the items when you do not need labels or ids.</view>
@@ -26,7 +28,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Sheet to board</view>
     <view class="sec-desc">Peel a sticker off the sheet (press it) and it lands on the board, already picked so it can be turned and sized. Press its outline to stick it back on the sheet and off the board.</view>
     <ll-sticker-sheet title="Sticker sheet" columns="{{3}}" size="{{56}}" stickers="{{names}}" peeled="{{onBoard}}" bindpeel="onBoardPeel" bindstick="onBoardStick" />

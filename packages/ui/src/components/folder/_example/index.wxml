@@ -3,10 +3,10 @@
      Installation/Usage/API reference/Accessibility/Related are
      intentionally omitted. -->
 <view class="demo">
-  <view class="demo-title">Folder</view>
+  <ll-page-title underline="highlight" seed="folder" custom-style="margin-bottom:16rpx;">Folder</ll-page-title>
   <view class="sec-desc">A folder with tabs: the front tab is the folder's color and runs into the body; the others stand behind it. Radix behavior is untouched.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">A folder with tabs</view>

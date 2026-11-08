@@ -24,6 +24,7 @@
     "ll-kbd": "../kbd/kbd",
     "ll-empty-media": "../empty-media/empty-media",
     "ll-dropdown-menu": "../dropdown-menu/dropdown-menu",
-    "ll-dropdown-menu-item": "../dropdown-menu-item/dropdown-menu-item"
+    "ll-dropdown-menu-item": "../dropdown-menu-item/dropdown-menu-item",
+    "ll-page-title": "../page-title/page-title"
   }
 }

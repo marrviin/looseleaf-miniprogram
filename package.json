@@ -13,9 +13,13 @@
     "bake:paper-tiles": "node script/bake-paper-tiles.mjs",
     "build:ink": "node script/bundle-ink.mjs",
     "lint": "eslint .",
-    "test": "npm run test --workspaces --if-present"
+    "test": "npm run test --workspaces --if-present",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "npm run build && changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^3.0.3",
     "@commitlint/cli": "^19.6.0",
     "@commitlint/config-conventional": "^19.6.0",
     "culori": "^4.0.2",
@@ -24,5 +28,6 @@
   },
   "engines": {
     "node": ">=20"
-  }
+  },
+  "packageManager": "pnpm@12.18.0"
 }

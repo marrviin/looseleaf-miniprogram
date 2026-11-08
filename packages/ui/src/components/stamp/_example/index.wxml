@@ -1,9 +1,9 @@
 <!-- ll-stamp demo — mirrors the upstream docs page (#/components/stamp). -->
 <view class="demo">
-  <view class="demo-title">Stamp</view>
+  <ll-page-title underline="highlight" seed="stamp" custom-style="margin-bottom:16rpx;">Stamp</ll-page-title>
   <view class="sec-desc">A rubber stamp: solid ink pressed through a worn pad, double-rule border, typewriter capitals, a slight tilt and sometimes the ghost of a first impression. For APPROVED, PAID, DRAFT and friends.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Presets</view>
     <view class="sec-desc">Ink pressed through a worn pad: about 86 percent of it survives, patches are missed, the border wobbles and the whole stamp tilts a few degrees.</view>
@@ -15,7 +15,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
     <view class="sub-h3">Shapes and inks</view>
     <view class="sec-desc">A box, a ring with rim text, a twelve-point seal, and big diagonal letters. Pad inks are red, blue felt, green or ink, never a stationery accent.</view>
@@ -27,7 +27,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">On a document</view>
     <view class="sec-desc">Stamps go on top of real content and never block it: the svg ignores the pointer and keeps its own name for screen readers.</view>
     <view class="doc-stage">

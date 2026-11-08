@@ -1,9 +1,9 @@
 <!-- ll-alert demo — mirrors the upstream docs page (#/components/alert) -->
 <view class="demo">
-  <view class="demo-title">Alert</view>
+  <ll-page-title underline="highlight" seed="alert" custom-style="margin-bottom:16rpx;">Alert</ll-page-title>
   <view class="sec-desc">An alert draws its box like a person rules a margin note: a felt outline with a wash, a pattern per tone in the gutter, and the icon circled in the alert's marker. A sticky-yellow note stands in for asides.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Default and destructive</view>
     <view class="sec-desc">The two upstream variants. Destructive is told apart by red hatching in its margin, not by red alone.</view>
     <view class="al-col">
@@ -25,7 +25,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Tones and patterns</view>
     <view class="sec-desc">info, success and warning each have their own pattern in the margin: a double blue pencil rule, a strip of green marker, a panel of highlighter.</view>
     <view class="al-col">
@@ -50,7 +50,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Sticky note</view>
     <view class="sec-desc">variant="note" is a sticky note with a taped corner: a Paper, so the sheet turns a little and the text does not.</view>
     <view class="al-col">

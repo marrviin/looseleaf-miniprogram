@@ -2,10 +2,10 @@
      asChild ribbons render as interactive ribbons (React-slot has no
      miniprogram equivalent); the 1px hover lift needs a mouse. -->
 <view class="demo">
-  <view class="demo-title">Ribbon</view>
+  <ll-page-title underline="highlight" seed="ribbon" custom-style="margin-bottom:16rpx;">Ribbon</ll-page-title>
   <view class="sec-desc">A ribbon label: a band of colored paper with words on it, folded ends and all. For a section heading, a New flag on a card, a price label or a call to action.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">A banner</view>
     <view class="sec-desc">A band of colored paper with folded, swallow-tailed ends. The words are real text; the paper is drawn behind them and grows with them.</view>
@@ -16,7 +16,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
     <view class="sub-h3">Variants and colors</view>
     <view class="sec-desc">Banner (folded tails), swallow (a V notch at both ends) and flag (square at the start). The colors are the ones ink stays readable on; `paper` is a plain white ribbon.</view>
@@ -31,7 +31,7 @@
     <view class="tap-note" wx:if="{{lastTone}}">tapped: {{lastTone}}</view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">On cards and as links</view>
     <view class="sec-desc">A flag pinned to a card edge, a banner as a section heading, and a ribbon that is a link: `asChild` puts the drawing on your element, which lifts on hover and takes the drawn focus ring.</view>
     <view class="cards-grid">

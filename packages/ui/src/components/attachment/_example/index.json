@@ -12,6 +12,7 @@
     "ll-attachment-group": "../attachment-group/attachment-group",
     "ll-button": "../button/button",
     "ll-icon": "../icon/icon",
-    "ll-doodle": "../doodle/doodle"
+    "ll-doodle": "../doodle/doodle",
+    "ll-page-title": "../page-title/page-title"
   }
 }

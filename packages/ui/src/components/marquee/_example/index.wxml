@@ -4,10 +4,10 @@
      an `items` array here and the star separator is drawn by the component.
      The announcement bar's links become plain lines for the same reason. -->
 <view class="demo">
-  <view class="demo-title">Marquee</view>
+  <ll-page-title underline="highlight" seed="marquee" custom-style="margin-bottom:16rpx;">Marquee</ll-page-title>
   <view class="sec-desc">A washi tape strip with ticker lines looping across it — point at it and it stops (on the web); the round button pauses it for good.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Default</view>
     <view class="sec-desc">The default washi stripes at 60px per second; the round button pauses it for good.</view>
     <view class="mq-row">
@@ -15,7 +15,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Tapes and directions</view>
     <view class="sec-desc">Any tape from the desk: masking, striped, gingham. direction="end" runs it the other way, speed sets px per second. (washi-dots is for short, large words: its white dots are as big as small letters.)</view>
     <view class="mq-col">
@@ -25,7 +25,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Announcement bar</view>
     <view class="sec-desc">A real use: the strip above a site header. Upstream puts links inside the loop; slotted links can't be stamped per copy here, so the lines stay plain.</view>
     <view class="mq-col">

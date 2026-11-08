@@ -14,6 +14,7 @@
     "ll-button": "../button/button",
     "ll-popover": "../popover/popover",
     "ll-icon": "../icon/icon",
-    "ll-kbd": "../kbd/kbd"
+    "ll-kbd": "../kbd/kbd",
+    "ll-page-title": "../page-title/page-title"
   }
 }
