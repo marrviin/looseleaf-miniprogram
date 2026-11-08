@@ -22,8 +22,6 @@ const addDays = (p, n) => {
   const t = new Date(Date.UTC(p.y, p.m, p.d + n));
   return { y: t.getUTCFullYear(), m: t.getUTCMonth(), d: t.getUTCDate() };
 };
-const monthOf = (isoStr) => (isoStr ? isoStr.slice(0, 7) : '');
-
 // ---------- formatting (the few date-fns patterns worth their keep) ----------
 const ordinal = (n) => {
   const s = ['th', 'st', 'nd', 'rd'];
@@ -61,30 +59,12 @@ const monthFromWord = (w) => {
     ? MONTHS_SHORT.findIndex((m) => m.toLowerCase() === s.slice(0, 3))
     : -1;
 };
-// [regex, groups → {y, m, d} | null] — tried after the requested format
-const PATTERNS = [
-  [/^(\d{4})[-/](\d{1,2})[-/](\d{1,2})$/, (a, b, c) => validYmd(+a, +b - 1, +c)],
-  [/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/, (a, b, c) => validYmd(+c, +a - 1, +b)],
-  [/^(\d{1,2})\.(\d{1,2})\.(\d{4})$/, (a, b, c) => validYmd(+c, +b - 1, +a)],
-  [/^([a-zA-Z]+)\.?\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(\d{4})$/, (a, b, c) => {
-    const m = monthFromWord(a);
-    return m === -1 ? null : validYmd(+c, m, +b);
-  }],
-  [/^(\d{1,2})(?:st|nd|rd|th)?\s+([a-zA-Z]+)\.?,?\s+(\d{4})$/, (a, b, c) => {
-    const m = monthFromWord(b);
-    return m === -1 ? null : validYmd(+c, m, +a);
-  }],
-];
 /** Two-digit years sit within 50 years of the reference (1950–2049 without
     one) — upstream's date-fns pivot. */
 const pivotYear = (yy, refY) => {
   const base = refY - 50;
   return base + ((yy - (base % 100) + 100) % 100);
 };
-const NUMERIC_YY = [
-  [/^(\d{1,2})\/(\d{1,2})\/(\d{2})$/, (a, b, yy, refY) => validYmd(pivotYear(+yy, refY), +a - 1, +b)],
-  [/^(\d{1,2})\.(\d{1,2})\.(\d{2})$/, (a, b, yy, refY) => validYmd(pivotYear(+yy, refY), +b - 1, +a)],
-];
 
 function parseDateInput(text, format, todayIso) {
   const s = String(text || '').trim();

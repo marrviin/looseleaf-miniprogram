@@ -10,7 +10,6 @@
  * tiles (fibre 240, relief 192 / slip 128, cloud 720), defined on .ll-card so
  * component-scoped styles can see them.
  */
-import { createRequire } from 'node:module';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -20,7 +19,6 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const UPSTREAM = '/Users/panmenglin/github/looseleaf';
 
-const require = createRequire(path.join(UPSTREAM, 'package.json'));
 // Node >= 23 strips types on import, but not under node_modules — copy to a
 // plain temp dir instead.
 const tmp = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'll-paper-tiles-')), 'paper-tiles.generated.ts');

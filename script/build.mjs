@@ -24,8 +24,6 @@ const uiDist = path.join(root, 'packages/ui/dist');
 const exampleDir = path.join(root, 'packages/example');
 const examplePages = path.join(exampleDir, 'pages');
 
-const COMPONENT_EXTS = ['.js', '.json', '.wxml', '.wxss'];
-
 // ---------------------------------------------------------------------------
 // 1. Build packages/ui/dist
 // ---------------------------------------------------------------------------
@@ -105,11 +103,22 @@ console.log(`✓ built packages/ui/dist (${components.length} components)`);
 
 // Stage the publish-facing docs next to packages/ui/package.json — npm packs
 // README.md and LICENSE from the package root automatically, and without them
-// the npmjs page would be empty and license-less.
+// the npmjs page would be empty and license-less. Relative links are rewritten
+// to absolute GitHub URLs at stage time: npmjs.com renders the README outside
+// the repo tree, so `docs/img/og.jpg`, `./docs/components.md` and friends would
+// 404 there (images served straight off raw.githubusercontent).
+const REPO_BLOB = 'https://github.com/marrviin/looseleaf-miniprogram/blob/main';
+const REPO_RAW = 'https://raw.githubusercontent.com/marrviin/looseleaf-miniprogram/main';
 for (const doc of ['README.md', 'README.en.md', 'LICENSE']) {
-  fs.copyFileSync(path.join(root, doc), path.join(root, 'packages/ui', doc));
+  let body = fs.readFileSync(path.join(root, doc), 'utf8');
+  if (doc.startsWith('README')) {
+    body = body
+      .replaceAll('](./', `](${REPO_BLOB}/`)
+      .replaceAll('src="docs/img/', `src="${REPO_RAW}/docs/img/`);
+  }
+  fs.writeFileSync(path.join(root, 'packages/ui', doc), body);
 }
-console.log('✓ staged README.md / README.en.md / LICENSE into packages/ui');
+console.log('✓ staged README.md / README.en.md / LICENSE into packages/ui (links → absolute GitHub URLs)');
 
 // ---------------------------------------------------------------------------
 // 1.5. Stage dist into the example as subpackages.
@@ -252,6 +261,7 @@ const CATEGORY_OF = {
   mascot: ['Stickers & doodles', 'Mascot'],
   menubar: ['Navigation', 'Menubar'],
   message: ['Chat', 'Message'],
+  'message-group': ['Chat', 'Message Group'],
   'message-scroller': ['Chat', 'Message Scroller'],
   'native-select': ['Forms', 'Native Select'],
   notebook: ['Paper', 'Notebook'],
@@ -600,12 +610,12 @@ fs.writeFileSync(
     '  background-repeat: repeat;',
     '}',
     '.desk {',
-    '  /* 40px = the custom tab bar (ll-tabs-list height:80rpx, tabs-list.wxss). */',
-    '  height: calc(100vh - 40px - env(safe-area-inset-bottom));',
+    '  /* 48px = the custom tab bar reserve (see .about-page). */',
+    '  height: calc(100vh - 48px - env(safe-area-inset-bottom));',
     '  box-sizing: border-box;',
     '  /* top padding also gives the binder-clip handles room (fastener draws',
     '     40px above the pad top edge) */',
-    '  padding: 48rpx 20rpx 20rpx;',
+    '  padding: 48rpx 20rpx 0;',
     '  background-color: var(--ll-desk, #a8c8bb);',
     '  background-image: var(--ll-tex-linen);',
     '  background-size: 160px 160px;',
@@ -693,13 +703,13 @@ fs.writeFileSync(
     '      <ll-card-description>a shadcn/ui edition, hand-drawn · Web</ll-card-description>',
     '    </ll-card-header>',
     '    <ll-card-content class="about-content">',
-    '      <view class="about-desc">A shadcn/ui-flavored paper UI kit that draws its ink strokes at runtime — crooked borders, wobbly underlines, paper textures and tape, like handwriting UI on a sticky note.</view>',
-    '      <view class="about-row"><text class="about-label">Stack</text><text class="about-value">React + Tailwind, reusing shadcn/ui component semantics</text></view>',
-    '      <view class="about-row"><text class="about-label">System</text><text class="about-value">paper / ink / palette / density tokens + handwritten fonts</text></view>',
-    '      <view class="about-row"><text class="about-label">Author</text><text class="about-value">kevintngo</text></view>',
+    '      <text class="about-desc" user-select>A shadcn/ui-flavored paper UI kit that draws its ink strokes at runtime — crooked borders, wobbly underlines, paper textures and tape, like handwriting UI on a sticky note.</text>',
+    '      <view class="about-row"><text class="about-label">Stack</text><text class="about-value" user-select>React + Tailwind, reusing shadcn/ui component semantics</text></view>',
+    '      <view class="about-row"><text class="about-label">System</text><text class="about-value" user-select>paper / ink / palette / density tokens + handwritten fonts</text></view>',
+    '      <view class="about-row"><text class="about-label">Author</text><text class="about-value" user-select>kevintngo</text></view>',
     '    </ll-card-content>',
     '    <ll-card-footer rule="dashed" custom-style="justify-content:flex-start">',
-    '      <text class="about-link">github.com/kevintngo/looseleaf</text>',
+    '      <text class="about-link" bindtap="copyLink" data-url="github.com/kevintngo/looseleaf">github.com/kevintngo/looseleaf</text>',
     '    </ll-card-footer>',
     '  </ll-card>',
     '  <ll-card seed="about-port" tape="corner" custom-style="margin-top:40rpx">',
@@ -708,13 +718,13 @@ fs.writeFileSync(
     '      <ll-card-description>微信小程序移植版 · 原生实现</ll-card-description>',
     '    </ll-card-header>',
     '    <ll-card-content class="about-content">',
-    '      <view class="about-desc">无 WebView、无跨端框架，纯 WXML + WXSS + Component 实现，组件统一以 ll- 为前缀。</view>',
-    '      <view class="about-row"><text class="about-label">墨迹</text><text class="about-value">笔画按元素真实尺寸逐个绘制，每个实例都是独一无二的手迹</text></view>',
-    '      <view class="about-row"><text class="about-label">组件</text><text class="about-value">{{total}} 个，按 {{cats}} 类组织，API 与上游一一对应</text></view>',
-    '      <view class="about-row"><text class="about-label">作者</text><text class="about-value">marrviin</text></view>',
+    '      <text class="about-desc" user-select>无 WebView、无跨端框架，纯 WXML + WXSS + Component 实现，组件统一以 ll- 为前缀。</text>',
+    '      <view class="about-row"><text class="about-label">墨迹</text><text class="about-value" user-select>笔画按元素真实尺寸逐个绘制，每个实例都是独一无二的手迹</text></view>',
+    '      <view class="about-row"><text class="about-label">组件</text><text class="about-value" user-select>{{total}} 个，按 {{cats}} 类组织，API 与上游一一对应</text></view>',
+    '      <view class="about-row"><text class="about-label">作者</text><text class="about-value" user-select>marrviin</text></view>',
     '    </ll-card-content>',
     '    <ll-card-footer rule="dashed" custom-style="justify-content:flex-start">',
-    '      <text class="about-link">github.com/marrviin/looseleaf-miniprogram</text>',
+    '      <text class="about-link" bindtap="copyLink" data-url="github.com/marrviin/looseleaf-miniprogram">github.com/marrviin/looseleaf-miniprogram</text>',
     '    </ll-card-footer>',
     '  </ll-card>',
     '</view>',
@@ -737,8 +747,8 @@ fs.writeFileSync(
     '  background-repeat: repeat;',
     '}',
     '.about-page {',
-    '  height: calc(100vh - 40px - env(safe-area-inset-bottom));',
-    '  padding: 96rpx 40rpx 20rpx;',
+    '  height: calc(100vh - 48px - env(safe-area-inset-bottom));',
+    '  padding: 0rpx 48rpx;',
     '  box-sizing: border-box;',
     '  overflow-y: auto;',
     '  background-color: var(--ll-desk, #a8c8bb);',
@@ -747,7 +757,7 @@ fs.writeFileSync(
     '  background-repeat: repeat;',
     '}',
     '.about-content { display: flex; flex-direction: column; gap: 20rpx; }',
-    '.about-desc { font-size: 26rpx; line-height: 1.7; color: #3a352e; }',
+    '.about-desc { display: block; font-size: 26rpx; line-height: 1.7; color: #3a352e; }',
     '.about-row { display: flex; gap: 20rpx; }',
     ".about-label { flex-shrink: 0; font-family: 'Kevin Sans', sans-serif; font-size: 26rpx; font-weight: 600; color: #2a2420; }",
     '.about-value { font-size: 26rpx; line-height: 1.6; color: #3a352e; }',
@@ -756,7 +766,25 @@ fs.writeFileSync(
 );
 fs.writeFileSync(
   path.join(examplePages, 'about', 'index.js'),
-  [`Page({`, `  data: { total: ${totalComps}, cats: ${catalogCats.length} },`, ...syncTabBar, `});`, ''].join('\n'),
+  [
+    `Page({`,
+    `  data: { total: ${totalComps}, cats: ${catalogCats.length} },`,
+    ...syncTabBar,
+    `  // links can't open in a miniprogram — tap copies the repo URL (wx shows its own toast)`,
+    `  copyLink(e) {`,
+    `    const url = e.currentTarget.dataset.url;`,
+    `    if (url) wx.setClipboardData({ data: url });`,
+    `  },`,
+    `  // share lands on the components catalog, not this page`,
+    `  onShareAppMessage() {`,
+    `    return { title: '${totalComps} 个手绘风小程序组件，在线可玩', path: '/pages/index/index' };`,
+    `  },`,
+    `  onShareTimeline() {`,
+    `    return { title: '${totalComps} 个手绘风小程序组件，在线可玩' };`,
+    `  },`,
+    `});`,
+    '',
+  ].join('\n'),
 );
 fs.writeFileSync(
   path.join(examplePages, 'about', 'index.json'),
@@ -808,14 +836,28 @@ fs.writeFileSync(
     `      if (!cur) return;`,
     `      const cur2 = this.data.tabs.find((t) => t.url === '/' + cur.route);`,
     `      if (!cur2) return;`,
-    `      // unconditional: a tap on this instance already moved ll-tabs'`,
-    `      // internal current — same-value setData still fires the observer,`,
-    `      // which re-adopts the route's key and re-syncs every trigger.`,
+    `      // Route already mirrored: usually skip — a same-value setData still`,
+    `      // fires ll-tabs' value observer → full trigger re-sync → every`,
+    `      // trigger re-applies its ink layer (the redundant second sync a tap`,
+    `      // triggers). BUT each tab page owns its own bar instance, and the`,
+    `      // in-bar tap that navigated AWAY from here moved THIS instance's`,
+    `      // ll-tabs internal current off its route (selected never followed).`,
+    `      // Returning while current is stale paints the wrong highlight on`,
+    `      // the way back (Home → tap About → tap Home: bar shows About).`,
+    `      // Only an early return is safe when ll-tabs still agrees.`,
+    `      if (cur2.key === this.data.selected && this.__tapped !== cur2.key) return;`,
+    `      // Same-value setData is fine here: ll-tabs' value observer adopts`,
+    `      // its stale internal current back from the value prop, and the`,
+    `      // re-sync only restacks already-cached ink URIs (no re-draw).`,
+    `      this.__tapped = null;`,
     `      this.setData({ selected: cur2.key });`,
     `    },`,
     `    // ll-tabs change → switchTab; the destination page's onShow → sync()`,
     `    // re-highlights from the route (each tab page owns a bar instance).`,
+    `    // Remember the tapped key: it moved this instance's internal current,`,
+    `    // so sync() knows a same-value re-adopt is needed to undo it.`,
     `    onTabsChange(e) {`,
+    `      this.__tapped = e.detail.value;`,
     `      const t = this.data.tabs.find((t) => t.key === e.detail.value);`,
     `      if (t) wx.switchTab({ url: t.url });`,
     `    },`,

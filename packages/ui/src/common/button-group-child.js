@@ -13,7 +13,7 @@
 // be the same relative path passed to the behavior's `groupKey`.
 export const BUTTON_GROUP_CHILD_RELATION = buttonGroupChildRelation('../button-group/button-group');
 
-export function buttonGroupChildRelation(groupKey) {
+export function buttonGroupChildRelation(_groupKey) {
   return {
     type: 'ancestor',
     linked() {

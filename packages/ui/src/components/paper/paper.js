@@ -106,7 +106,6 @@ createComponent({
       // Upstream clamps every sheet rotation to ±--ll-tilt-max (2deg).
       let deg = 0;
       if (d.tilt !== false) {
-        const max = typeof d.tilt === 'number' ? Math.abs(d.tilt) : S.tilt;
         const raw =
           typeof d.tilt === 'number' ? d.tilt : tiltFor(`tilt:${seedKey || 'll-paper'}`, S.tilt);
         deg = clamp(Math.round(raw * 100) / 100, 2);

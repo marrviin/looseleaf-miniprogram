@@ -22,8 +22,6 @@ export function parseRootVars(css = fs.readFileSync(UPSTREAM_CSS, 'utf8')) {
   return vars;
 }
 
-const escRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
 /**
  * Resolve var()/color-mix()/rgb() down to a static value.
  * `vars` maps --name -> raw value; recursion terminates because :root values

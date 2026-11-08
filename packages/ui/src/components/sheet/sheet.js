@@ -7,14 +7,6 @@ ensureHandFont();
     long before the wx:if clears. */
 const EXIT_MS = 300;
 
-function isPhone() {
-  try {
-    return (wx.getSystemInfoSync().windowWidth || 375) < 640;
-  } catch (e) {
-    return true;
-  }
-}
-
 /** The edge of the paper that faces the middle of the screen. */
 const INNER = { right: 'left', left: 'right', top: 'bottom', bottom: 'top' };
 

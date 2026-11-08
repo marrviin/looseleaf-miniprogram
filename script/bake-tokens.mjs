@@ -13,13 +13,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { resolveTokens, parseRootVars, resolveValue } from './lib/upstream-tokens.mjs';
+import { resolveTokens } from './lib/upstream-tokens.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.join(root, 'packages/ui/src/common/style/tokens.wxss');
 
 const tokens = resolveTokens();
-const raw = parseRootVars();
 
 // Split into base palette (--ll-*) and shadcn-style semantic aliases.
 const base = [...tokens.entries()].filter(([k]) => k.startsWith('--ll-'));

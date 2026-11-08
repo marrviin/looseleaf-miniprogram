@@ -1,11 +1,7 @@
 import { createComponent } from '../../common/component';
 import { stickerFace, kissCut, stickerLabel, hasSticker, tiltFor } from '../../common/ink-engine';
-import { svgDataUri, resolvePaint } from '../../common/ink';
+import { resolvePaint } from '../../common/ink';
 import { props, validators } from './props';
-
-// Upstream BACKINGS.glassine tint: color-mix(in srgb, var(--ll-sky) 13%,
-// var(--ll-paper)) — color-mix is unsupported in the webview, precomputed.
-const GLASSINE_TINT = '#e1ebed';
 
 const cellOf = (px) => Math.round(px + 22);
 const DRAG_AT = 6;

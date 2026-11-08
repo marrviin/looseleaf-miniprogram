@@ -111,7 +111,6 @@ createComponent({
       if (fire) this.triggerEvent('change', { value: has ? next : null });
     },
     __animate(dir) {
-      const d = this.data;
       this.__limitN = (this.__limitN || 0) + 1;
       this.setData({ tick: `${dir === 1 ? 'up' : 'down'}-${this.__limitN % 2 ? 'a' : 'b'}` });
     },
@@ -230,7 +229,7 @@ createComponent({
       this.setData({ draft: { text: e.detail.value, base: this.data.shown } });
       return e.detail.value;
     },
-    onBlur(e) {
+    onBlur(_e) {
       const d = this.data;
       if (!d.draft || d.draft.base !== d.shown) {
         this.setData({ draft: null });

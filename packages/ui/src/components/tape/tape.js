@@ -3,9 +3,6 @@ import { props } from './props';
 import { tape, tiltFor } from '../../common/ink-engine';
 import { svgDataUri } from '../../common/ink';
 
-/** Upstream dropShadow('tape') flattened (--ll-shade #3a2c1e). */
-const DROP_TAPE = 'drop-shadow(0 0.6px 0.8px rgba(58,44,30,0.18))';
-
 const clamp5 = (v) => Math.max(-5, Math.min(5, v));
 
 /** Upstream `Tape` — a decorative strip drawn by the paper props' own

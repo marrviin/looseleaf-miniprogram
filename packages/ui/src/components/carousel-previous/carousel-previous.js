@@ -16,7 +16,7 @@ createComponent({
     '../carousel/carousel': { type: 'ancestor' },
   },
   methods: {
-    __onCarousel({ index, count, orientation }) {
+    __onCarousel({ index, count: _count, orientation }) {
       const disabled = index <= 0;
       this.setData({ orientation, disabled });
     },

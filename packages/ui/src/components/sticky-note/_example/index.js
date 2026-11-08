@@ -28,7 +28,7 @@ Component({
       return { id, done: e.detail.done };
     },
     /** Verification hook: press a board note's tick box. */
-    tickBoard(id, done) {
+    tickBoard(id, _done) {
       const note = this.selectComponent(`#note-${id}`);
       if (!note) return { ok: false };
       note.toggleDone();

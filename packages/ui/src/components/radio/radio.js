@@ -60,7 +60,7 @@ createComponent({
       setTimeout(() => this.__renderInk(), 0);
     },
     /** Called by the group whenever its value/disabled/invalid change. */
-    __onGroup(groupData) {
+    __onGroup(_groupData) {
       this.__recompute();
     },
     onTap() {

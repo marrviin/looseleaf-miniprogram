@@ -14,7 +14,6 @@ ensureHandFont();
     opens on long-press and closes on the next tap anywhere (or via the
     controlled `open` prop; skipDelayDuration has no equivalent). */
 const MARGIN = 8; // collisionPadding
-const ARROW_W = 24; // res.w 18 + pad*2 3
 const ARROW_H = 22; // res.h 16 + pad*2 3
 
 /** The drawn pointer faces DOWN; the box rotates per side (Radix's

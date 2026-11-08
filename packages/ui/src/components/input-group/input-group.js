@@ -24,7 +24,7 @@ function stripHideOn(uri, token) {
   let svg;
   try {
     svg = decodeURIComponent(uri.slice(URI_PREFIX.length));
-  } catch (e) {
+  } catch {
     return uri;
   }
   let out = '';

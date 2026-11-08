@@ -20,3 +20,7 @@ packages/example/project.config.json
 .content-forge/
 .tmp/
 .tmp-shots/
+# OG 图源文件(1MB 级 PNG,发布图在 docs/img),不入库
+public/
+# 写作草稿(推广文章),不入库
+articles/
