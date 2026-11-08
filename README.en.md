@@ -23,17 +23,7 @@ All shots are real simulator screenshots from `packages/example`.
 
 ## Components
 
-Of the **104 components** in the upstream [looseleaf](https://github.com/kevintngo/looseleaf) docs site, **100 have been ported**; 4 are skipped due to mini program platform limits — per-component status lives in [docs/components.en.md](./docs/components.en.md).
-
-A few highlights:
-
-**Hand-drawn paper** paper · index-card · polaroid · sticky-note · napkin · ticket · receipt · envelope · notebook · tape · sticker-board
-
-**Marker annotations** highlight · underline · circled · bracket · scribble · stamp · seal · ribbon · lettering
-
-**Interaction** confetti · flip-card · hover-card · signature · dropzone · command · combobox · sidebar
-
-Base & form components (button / card / input / select / table / tabs…), navigation (breadcrumb / pagination / menu…) and overlays (dialog / sheet / toast / dropdown-menu…) are fully covered too. The full per-component comparison table is in [docs/components.en.md](./docs/components.en.md); clone the repo and open `packages/example` in WeChat DevTools to browse every demo, mirroring the upstream docs site.
+Of the **123 components** in the upstream [looseleaf](https://github.com/kevintngo/looseleaf), **119 have been ported** (117 of them playable in the example mini program); 4 are skipped due to mini program platform limits — per-component status lives in [docs/components.en.md](./docs/components.en.md).
 
 ## Features
 
@@ -41,7 +31,7 @@ Base & form components (button / card / input / select / table / tabs…), navig
 - **A complete design system** — upstream tokens (paper, ink, palette, density) are precomputed into WXSS at build time; paper grain, tape and binding textures included
 - **Handwriting font** — Kevin Sans ships with the library; headings and body text are all "handwritten"
 - **Native mini program components** — no WebView, no cross-platform framework; pure WXML + WXSS + Component, import per component and keep your bundle lean
-- **Upstream-faithful API** — variants and props mirror the upstream docs one to one, so there is zero mental overhead moving between them
+- **Upstream-faithful API** — variants and props mirror the upstream docs one to one, so nothing needs relearning when moving between them
 
 ## Mini program adaptations
 

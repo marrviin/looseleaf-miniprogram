@@ -12,7 +12,7 @@
 
 ## 实机预览
 
-以上均为开发者工具模拟器实机截图(`packages/example`)。
+以下均为开发者工具模拟器实机截图(`packages/example`)。
 
 <p align="center">
   <img src="docs/img/hero.jpg" alt="组件目录 / Button / Polaroid / Highlight 实机截图" width="830">
@@ -23,17 +23,7 @@
 
 ## 组件一览
 
-上游 [looseleaf](https://github.com/kevintngo/looseleaf) 文档站的 104 个组件,**100 个已移植**,4 个因小程序平台限制跳过——逐组件状态见 [docs/components.md](./docs/components.md)。
-
-挑几个招牌的:
-
-**手绘纸品** paper · index-card · polaroid · sticky-note · napkin · ticket · receipt · envelope · notebook · tape · sticker-board
-
-**马克笔标注** highlight · underline · circled · bracket · scribble · stamp · seal · ribbon · lettering
-
-**交互增强** confetti · flip-card · hover-card · signature · dropzone · command · combobox · sidebar
-
-基础与表单(button / card / input / select / table / tabs…)、导航(breadcrumb / pagination / menu…)与浮层(dialog / sheet / toast / dropdown-menu…)同样是全量覆盖。完整的逐组件对照表见 [docs/components.md](./docs/components.md);克隆仓库用微信开发者工具打开 `packages/example` 即可浏览与上游文档站一一对应的全部 demo。
+上游 [looseleaf](https://github.com/kevintngo/looseleaf) 的 123 个组件,**119 个已移植**(其中 117 个在示例小程序里在线可玩),4 个因小程序平台限制跳过——逐组件状态见 [docs/components.md](./docs/components.md)。
 
 ## 特性
 
@@ -41,7 +31,7 @@
 - **完整设计体系** — 上游 tokens(纸张、墨水、色板、密度)构建期预计算进 WXSS,纸纹、胶带、装订等质感一应俱全
 - **手写字体** — Kevin Sans 随组件库注入,标题与正文都是"手写"的
 - **原生小程序实现** — 无 WebView / 无跨端框架,纯 WXML + WXSS + Component,按需引入,体积可控
-- **遵循上游 API** — 组件的 variant、props 与上游文档一一对应,迁移心智成本为零
+- **遵循上游 API** — 组件的 variant、props 与上游文档一一对应,迁移时无需重新学习
 
 ## 小程序适配
 
