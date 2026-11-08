@@ -1,0 +1,36 @@
+<!-- ll-message-group demo — mirrors the upstream docs page
+     (#/components/message), Examples → Group: consecutive messages from one
+     sender. The earlier ones carry an empty MessageAvatar to hold the
+     column, so the words line up and the face appears once, on the last. -->
+<view class="demo">
+  <ll-page-title underline="highlight" seed="message-group" custom-style="margin-bottom:16rpx;">MessageGroup</ll-page-title>
+  <view class="sec-desc">Consecutive messages from one sender. The earlier ones carry an empty MessageAvatar to hold the column, so the words line up and the face appears once, on the last.</view>
+
+  <view class="sec sec--grid">
+    <view class="sec-h2">Examples</view>
+
+    <view class="sub-h3">Group</view>
+    <view class="mg-col">
+      <ll-message-group>
+        <ll-message>
+          <ll-message-avatar></ll-message-avatar>
+          <ll-message-content>
+            <ll-bubble variant="muted">
+              <ll-bubble-content seed="mg-1">I checked the registry addresses.</ll-bubble-content>
+            </ll-bubble>
+          </ll-message-content>
+        </ll-message>
+        <ll-message>
+          <ll-message-avatar>
+            <ll-avatar><ll-avatar-fallback>CN</ll-avatar-fallback></ll-avatar>
+          </ll-message-avatar>
+          <ll-message-content>
+            <ll-bubble variant="muted">
+              <ll-bubble-content seed="mg-2">The component and example JSON now live under the UI registry.</ll-bubble-content>
+            </ll-bubble>
+          </ll-message-content>
+        </ll-message>
+      </ll-message-group>
+    </view>
+  </view>
+</view>

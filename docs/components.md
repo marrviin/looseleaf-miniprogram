@@ -2,7 +2,7 @@
 
 [English](./components.en.md) | 简体中文
 
-对照上游 [looseleaf](https://github.com/kevintngo/looseleaf) 文档站的 **104 个组件:100 个已移植,4 个因小程序平台限制跳过**。
+对照上游 [looseleaf](https://github.com/kevintngo/looseleaf) 的 **123 个组件:119 个已移植,4 个因小程序平台限制跳过**。
 组件名即上游名,小程序中以 `ll-` 前缀注册(如 `ll-button`),API 与上游文档一一对应;"说明"列是移植时的实现要点。
 
 > 实际渲染效果请克隆仓库,用微信开发者工具打开 `packages/example` 浏览与上游文档站一一对应的 demo。
@@ -21,8 +21,11 @@
 
 | 组件 | 状态 | 说明 |
 |---|---|---|
+| calendar | ✅ | — |
 | checkbox | ✅ | — |
 | combobox | ✅ | trigger / editable / chips 三种形态 |
+| date-picker | ✅ | — |
+| dropzone | ✅ | 家族 7 组件：area/description/icon/item/list/rejections/title |
 | field | ✅ | 家族 10 组件：field + label / title / description / error / group / set / legend / separator / content |
 | form | ✅ | form / item / label / description / message 家族；errors map 对应上游 FormProvider |
 | input | ✅ | — |
@@ -33,6 +36,7 @@
 | radio-group | ✅ | — |
 | rating | ✅ | — |
 | select | ✅ | 单组件 options 数组 + slip 弹层 |
+| signature-pad | ✅ | — |
 | slider | ✅ | — |
 | stepper | ✅ | (tally 并入 stepper-tally) |
 | sticker-picker | ✅ | — |
@@ -99,6 +103,12 @@
 | item | ✅ | (cell/list 家族) |
 | table | ✅ | 家族 7 组件：table + body / caption / cell / footer / head / header / row |
 
+## 图表
+
+| 组件 | 状态 | 说明 |
+|---|---|---|
+| chart | ✅ | — |
+
 ## 纸品
 
 | 组件 | 状态 | 说明 |
@@ -128,11 +138,13 @@
 | arrow | ✅ | pointAt 在挂载时一次量测，不随布局变化重算 |
 | asterisk | ✅ | — |
 | bracket | ✅ | — |
+| callout | ✅ | — |
 | circled | ✅ | — |
 | highlight | ✅ | — |
 | quote | ✅ | quote-text + quote-attribution；引号墨迹按 tone/weight/size/rule |
 | ribbon | ✅ | — |
 | scribble | ✅ | — |
+| signature | ✅ | — |
 | squiggle | ✅ | — |
 | strike | ✅ | — |
 | tally | ✅ | (并入 stepper-tally) |
@@ -153,8 +165,12 @@
 
 | 组件 | 状态 | 说明 |
 |---|---|---|
+| attachment | ✅ | 家族 10 组件：content/description/group/media/progress/title/trigger/action(s) |
+| bubble | ✅ | (含 group/reactions) |
 | code-block | ✅ | 折叠为单组件，语法高亮内置 |
 | marker | ✅ | (marker-content/icon/rule) |
+| message | ✅ | 家族 avatar/content/footer/header/text；scroller、group 独立成组件 |
+| message-scroller | ✅ | viewport/item/button/content 家族 |
 | prompt-input | ✅ | 与 attachment 家族联动 |
 | typing-indicator | ✅ | (loading 家族) |
 
@@ -163,8 +179,13 @@
 | 组件 | 状态 | 说明 |
 |---|---|---|
 | boil | ⏭️ | 每帧重绘的是任意 slot 内容——小程序 slot 属页面样式域，组件无法逐帧重渲染 |
+| confetti | ✅ | — |
 | corkboard | ✅ | — |
+| flip-card | ✅ | — |
+| marquee | ✅ | — |
 | peel-corner | ⏭️ | 依赖指针拖拽物理（pointer capture + rAF 补间），实现成本高 |
+| reveal | ✅ | — |
+| sketchpad | ✅ | — |
 | sticker-board | ✅ | — |
 | tear-off | ✅ | Body/Stub 折入单组件，具名 slot |
 
@@ -172,8 +193,11 @@
 
 | 组件 | 状态 | 说明 |
 |---|---|---|
+| handwritten | ✅ | — |
 | kbd | ✅ | — |
+| lettering | ✅ | — |
 | typography | ✅ | h1–h4 / p / lead / muted / small / large / list / inline-code / blockquote 系列；Prose 未移植（小程序样式隔离无法作用于 slot 内 markdown） |
+| typewriter | ✅ | — |
 
 ## 图标
 

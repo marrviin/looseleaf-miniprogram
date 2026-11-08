@@ -2,7 +2,7 @@
 
 English | [简体中文](./components.md)
 
-Against the upstream [looseleaf](https://github.com/kevintngo/looseleaf) docs site's **104 components: 100 ported, 4 skipped due to mini program platform limits**.
+Against the upstream [looseleaf](https://github.com/kevintngo/looseleaf)'s **123 components: 119 ported, 4 skipped due to mini program platform limits**.
 Component names match upstream; register them with the `ll-` prefix in the mini program (e.g. `ll-button`). APIs mirror the upstream docs one to one; the "Notes" column records implementation highlights from the port.
 
 > To see the components rendered, clone the repo and open `packages/example` in WeChat DevTools — the demos mirror the upstream docs site one to one.
@@ -21,8 +21,11 @@ Component names match upstream; register them with the `ll-` prefix in the mini 
 
 | Component | Status | Notes |
 |---|---|---|
+| calendar | ✅ | — |
 | checkbox | ✅ | — |
 | combobox | ✅ | trigger / editable / chips modes |
+| date-picker | ✅ | — |
+| dropzone | ✅ | family of 7: area / description / icon / item / list / rejections / title |
 | field | ✅ | family of 10: field + label / title / description / error / group / set / legend / separator / content |
 | form | ✅ | family of form / item / label / description / message; errors map mirrors upstream FormProvider |
 | input | ✅ | — |
@@ -33,6 +36,7 @@ Component names match upstream; register them with the `ll-` prefix in the mini 
 | radio-group | ✅ | — |
 | rating | ✅ | — |
 | select | ✅ | single component: options array + slip layer |
+| signature-pad | ✅ | — |
 | slider | ✅ | — |
 | stepper | ✅ | (tally folded into stepper-tally) |
 | sticker-picker | ✅ | — |
@@ -99,6 +103,12 @@ Component names match upstream; register them with the `ll-` prefix in the mini 
 | item | ✅ | (cell / list family) |
 | table | ✅ | family of 7: table + body / caption / cell / footer / head / header / row |
 
+## Charts
+
+| Component | Status | Notes |
+|---|---|---|
+| chart | ✅ | — |
+
 ## Paper
 
 | Component | Status | Notes |
@@ -128,11 +138,13 @@ Component names match upstream; register them with the `ll-` prefix in the mini 
 | arrow | ✅ | pointAt measures once at attach, no re-measure on layout changes |
 | asterisk | ✅ | — |
 | bracket | ✅ | — |
+| callout | ✅ | — |
 | circled | ✅ | — |
 | highlight | ✅ | — |
 | quote | ✅ | quote-text + quote-attribution; quote-mark ink varies by tone / weight / size / rule |
 | ribbon | ✅ | — |
 | scribble | ✅ | — |
+| signature | ✅ | — |
 | squiggle | ✅ | — |
 | strike | ✅ | — |
 | tally | ✅ | (folded into stepper-tally) |
@@ -153,8 +165,12 @@ Component names match upstream; register them with the `ll-` prefix in the mini 
 
 | Component | Status | Notes |
 |---|---|---|
+| attachment | ✅ | family of 10: content / description / group / media / progress / title / trigger / action(s) |
+| bubble | ✅ | (includes group / reactions) |
 | code-block | ✅ | folded into a single component, syntax highlighting built in |
 | marker | ✅ | (marker-content / icon / rule) |
+| message | ✅ | family avatar / content / footer / header / text; scroller and group are their own components |
+| message-scroller | ✅ | viewport / item / button / content family |
 | prompt-input | ✅ | works with the attachment family |
 | typing-indicator | ✅ | (loading family) |
 
@@ -163,8 +179,13 @@ Component names match upstream; register them with the `ll-` prefix in the mini 
 | Component | Status | Notes |
 |---|---|---|
 | boil | ⏭️ | the per-frame redraw target is arbitrary slot content — mini program slots live in the page's style scope, so the component cannot re-render them every frame |
+| confetti | ✅ | — |
 | corkboard | ✅ | — |
+| flip-card | ✅ | — |
+| marquee | ✅ | — |
 | peel-corner | ⏭️ | relies on pointer-drag physics (pointer capture + rAF tweening), too costly to port |
+| reveal | ✅ | — |
+| sketchpad | ✅ | — |
 | sticker-board | ✅ | — |
 | tear-off | ✅ | Body / Stub folded into the single component, named slots |
 
@@ -172,8 +193,11 @@ Component names match upstream; register them with the `ll-` prefix in the mini 
 
 | Component | Status | Notes |
 |---|---|---|
+| handwritten | ✅ | — |
 | kbd | ✅ | — |
+| lettering | ✅ | — |
 | typography | ✅ | h1–h4 / p / lead / muted / small / large / list / inline-code / blockquote set; Prose not ported (mini program style isolation cannot reach markdown inside slots) |
+| typewriter | ✅ | — |
 
 ## Icons
 

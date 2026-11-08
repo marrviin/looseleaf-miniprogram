@@ -88,6 +88,7 @@
         "pages/marker/index",
         "pages/menubar/index",
         "pages/message/index",
+        "pages/message-group/index",
         "pages/message-scroller/index",
         "pages/navigation-menu/index",
         "pages/pagination/index",
