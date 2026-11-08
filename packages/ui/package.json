@@ -1,6 +1,6 @@
 {
   "name": "looseleaf-miniprogram",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Looseleaf, drawn by hand — hand-drawn UI components for WeChat Mini Program, ported from looseleaf.",
   "keywords": [
     "weapp",
