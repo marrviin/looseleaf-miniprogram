@@ -1,0 +1,5 @@
+.ll-sidebar-separator {
+  margin-left: 16rpx; /* mx-2 */
+  margin-right: 16rpx;
+  width: auto;
+}

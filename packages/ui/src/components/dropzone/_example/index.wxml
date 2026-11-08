@@ -4,10 +4,10 @@
      The file dialog is wx.chooseMessageFile behind the area tap; the page
      can also push files in through add() for tests. -->
 <view class="demo">
-  <view class="demo-title">Dropzone</view>
+  <ll-page-title underline="highlight" seed="dropzone" custom-style="margin-bottom:16rpx;">Dropzone</ll-page-title>
   <view class="sec-desc">A stitched area that takes files — tap it to pick from a chat, and the family (area, icon, title, description, rejections, list, item) arranges itself inside.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Drop or browse</view>
     <view class="sec-desc">Images up to 2 MB, at most four. Rejected files are listed on red lines under the zone; accepted ones become ruled rows.</view>
     <view class="stack-12">
@@ -24,7 +24,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Attach files, with progress</view>
     <view class="sec-desc">The page drives each row's status: a highlighter line fills, a green tick lands when it's done, and a failed row gets a red wavy rule. Remove pulls the row back out.</view>
     <view class="stack-12">
@@ -56,7 +56,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">One file: a profile picture</view>
     <view class="sec-desc">multiple=false holds a single photo. Once one is in, the area shows it as a crooked print; picking again replaces it.</view>
     <view class="stack-12">
@@ -80,7 +80,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Required, in a form</view>
     <view class="sec-desc">The zone is a form field: submitting with nothing attached turns it invalid and writes a red line under it.</view>
     <view class="stack-12">

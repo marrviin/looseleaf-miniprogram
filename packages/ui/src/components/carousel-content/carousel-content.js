@@ -6,7 +6,6 @@ import { props } from './props';
     item — slot content is invisible to this component's own query, so the
     items measure themselves through the relation. A touch swipe past 40px
     advances (keyboard/drag plugins are web-only). */
-const GAP = 16;
 const SWIPE = 40;
 
 createComponent({
@@ -37,7 +36,10 @@ createComponent({
       this.__index = index;
       this.__measure();
     },
-    /** Slide width (horizontal) or height (vertical) from the first item. */
+    /** Slide width (horizontal) or height (vertical) from the first item,
+        plus the viewport's own box for the end clamp (upstream embla's
+        containScroll:'trimSnaps': the last snaps pull the track's end
+        flush to the viewport's far edge instead of trailing blank). */
     __measure() {
       const items = this.getRelationNodes('../carousel-item/carousel-item') || [];
       const first = items[0];
@@ -49,9 +51,20 @@ createComponent({
           return;
         }
         this.__retapes = 0;
-        const pitch = (this.data.orientation === 'vertical' ? rect.height : rect.width) + GAP;
-        const offset = -(this.__index || 0) * pitch;
-        if (offset !== this.data.offset) this.setData({ offset });
+        const vertical = this.data.orientation === 'vertical';
+        // the gap rides inside the slide (ps-4), so the pitch IS the slide box
+        const pitch = vertical ? rect.height : rect.width;
+        const count = items.length;
+        this.createSelectorQuery()
+          .select('.ll-carousel-content')
+          .boundingClientRect((view) => {
+            const span = (vertical ? view.height : view.width) || 0;
+            const total = count * pitch;
+            const maxScroll = Math.max(0, total - span);
+            const offset = -Math.min((this.__index || 0) * pitch, maxScroll);
+            if (offset !== this.data.offset) this.setData({ offset });
+          })
+          .exec();
       });
     },
     onTouchStart(e) {

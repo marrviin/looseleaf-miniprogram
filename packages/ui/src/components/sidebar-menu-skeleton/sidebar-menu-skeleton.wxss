@@ -1,0 +1,8 @@
+.ll-sidebar-menu-skeleton {
+  display: flex;
+  height: 64rpx; /* h-8 */
+  align-items: center;
+  gap: 16rpx; /* gap-2 */
+  padding: 0 16rpx; /* px-2 */
+  box-sizing: border-box;
+}

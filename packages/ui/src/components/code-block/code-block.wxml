@@ -8,8 +8,11 @@
       <text class="is-del">-{{stats.removed}}</text>
     </view>
     <view class="ll-code-block-actions" wx:if="{{copyable}}">
-      <ll-button variant="ghost" size="xs" aria-label="Copy code" bind:tap="onCopy">
-        <ll-icon name="{{copyIcon}}" size="{{14}}" />
+      <!-- upstream CodeBlockCopy: ghost xs + text-ink-muted font-type font-normal
+           — the base button's black --ll-ink reads wrong on the header slip;
+           muted follows the tone (paper #4a433c / dark #c9c3b6) -->
+      <ll-button variant="ghost" size="xs" aria-label="Copy code" custom-style="color:{{isDark ? '#c9c3b6' : '#4a433c'}};font-weight:400;letter-spacing:1px;" bind:tap="onCopy">
+        <ll-icon name="{{copyIcon}}" size="{{14}}" ink="{{isDark ? '#c9c3b6' : '#4a433c'}}" />
         <text>{{copyLabel}}</text>
       </ll-button>
     </view>
@@ -40,9 +43,9 @@
 
 <block wx:if="{{tone === 'paper'}}">
   <ll-paper class="ll-code-block is-paper" stock="{{stock}}" tape="{{tape}}" seed="{{seed}}" custom-style="width:100%;{{customStyle}}">
-    <template is="cb-inner" data="{{inkStyle, headerLabel, stats, copyable, copyIcon, copyLabel, lines, isDiff, wrap}}" />
+    <template is="cb-inner" data="{{inkStyle, headerLabel, stats, copyable, copyIcon, copyLabel, lines, isDiff, wrap, isDark}}" />
   </ll-paper>
 </block>
 <view wx:else class="ll-code-block is-dark" style="width:100%;{{customStyle}}">
-  <template is="cb-inner" data="{{inkStyle, headerLabel, stats, copyable, copyIcon, copyLabel, lines, isDiff, wrap}}" />
+  <template is="cb-inner" data="{{inkStyle, headerLabel, stats, copyable, copyIcon, copyLabel, lines, isDiff, wrap, isDark}}" />
 </view>

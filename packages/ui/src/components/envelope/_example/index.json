@@ -6,6 +6,7 @@
     "ll-envelope-trigger": "../envelope-trigger/envelope-trigger",
     "ll-envelope-letter": "../envelope-letter/envelope-letter",
     "ll-envelope-address": "../envelope-address/envelope-address",
-    "ll-envelope-sender": "../envelope-sender/envelope-sender"
+    "ll-envelope-sender": "../envelope-sender/envelope-sender",
+    "ll-page-title": "../page-title/page-title"
   }
 }

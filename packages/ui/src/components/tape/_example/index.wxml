@@ -1,9 +1,9 @@
 <!-- ll-tape demo — mirrors the upstream docs page (#/components/tape). -->
 <view class="demo">
-  <view class="demo-title">Tape</view>
+  <ll-page-title underline="highlight" seed="tape" custom-style="margin-bottom:16rpx;">Tape</ll-page-title>
   <view class="sec-desc">A strip of masking, washi, kraft or cellophane tape, drawn: translucent, with slit lines along its edges, crinkles and torn or pinked ends. Stick it across a corner, use it as a label, or let Paper place it for you.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Kinds</view>
     <view class="sec-desc">Crepe masking tape, four printed washi patterns, gummed kraft and nearly invisible cellophane. Every strip has slit lines along its edges and crinkles where it was pressed down.</view>
@@ -15,7 +15,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Holding a card</view>
@@ -34,7 +34,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Ends and sizes</view>
     <view class="sec-desc">Tear it, pink it, cut it straight. Any length and width; the middle stretches, the ends keep their teeth.</view>
     <view class="stack">
@@ -45,7 +45,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">A label on tape</view>
     <view class="sec-desc">Write on it: put the tape behind a line of text. The strip is decoration, so the label is real text a screen reader reads.</view>
     <view class="stack row--wrap" style="flex-direction:row;flex-wrap:wrap;gap:64rpx;">

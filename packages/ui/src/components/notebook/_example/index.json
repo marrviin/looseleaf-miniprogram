@@ -7,6 +7,7 @@
     "ll-notebook-cover": "looseleaf-miniprogram/components/notebook-cover/notebook-cover",
     "ll-notebook-cover-label": "looseleaf-miniprogram/components/notebook-cover-label/notebook-cover-label",
     "ll-checkbox": "looseleaf-miniprogram/components/checkbox/checkbox",
-    "ll-sticker": "looseleaf-miniprogram/components/sticker/sticker"
+    "ll-sticker": "looseleaf-miniprogram/components/sticker/sticker",
+    "ll-page-title": "../page-title/page-title"
   }
 }

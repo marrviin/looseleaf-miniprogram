@@ -2,6 +2,7 @@
   "usingComponents": {
     "ll-toggle-group": "../toggle-group/toggle-group",
     "ll-toggle": "../toggle/toggle",
-    "ll-icon": "../icon/icon"
+    "ll-icon": "../icon/icon",
+    "ll-page-title": "../page-title/page-title"
   }
 }

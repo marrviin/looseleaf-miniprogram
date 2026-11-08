@@ -13,7 +13,10 @@
   color: var(--ll-card-foreground, var(--ll-ink));
 }
 .ll-attachment.is-horizontal {
-  min-width: 160px;
+  /* min(160px, 100%): the floor still wins over the root max-width:100% in
+     a narrow flex row (min-width beats max-width), so the floor itself has
+     to give way on narrow screens */
+  min-width: min(160px, 100%);
   align-items: center;
   column-gap: 8px;
 }

@@ -1,7 +1,7 @@
 // ll-input demo — mirrors the upstream docs page (#/components/input).
-// Upstream example 03-types: date needs <picker> and file needs
-// wx.chooseMedia — both land with their own ports; the type section here
-// carries password + number until then. Labels are plain text.
+// All docs-page examples are in. Types: Due is the system date picker
+// around a read-only field; Picture opens wx.chooseMedia and the picked
+// file's name is the field's own text. Labels are plain text.
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
 Component({
@@ -14,6 +14,8 @@ Component({
     printed: 'Order #2049',
     pw: 'hunter2hunter2',
     qty: '3',
+    due: '',
+    fileName: '',
     search: '',
     suName: '',
     suEmail: '',
@@ -32,6 +34,22 @@ Component({
     },
     onQtyInput(e) {
       this.setData({ qty: e.detail.value });
+    },
+    onDueChange(e) {
+      this.setData({ due: e.detail.value });
+    },
+    onFileTap() {
+      wx.chooseMedia({
+        count: 1,
+        mediaType: ['image'],
+        success: (res) => this.showFileName(res.tempFiles?.[0]?.tempFilePath || ''),
+      });
+    },
+    /** The picked picture's name is the field's own text (upstream: the
+        native file button is a highlighter swatch, the name the value). */
+    showFileName(path) {
+      const name = String(path || '').split('/').pop();
+      this.setData({ fileName: name || 'picture' });
     },
     onSearchInput(e) {
       this.setData({ search: e.detail.value });

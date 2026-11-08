@@ -2,10 +2,10 @@
      (#/components/notebook). Pages are ll-notebook-page descendants; the
      corner button is ll-notebook-turn. -->
 <view class="demo">
-  <view class="demo-title">Notebook</view>
+  <ll-page-title underline="highlight" seed="notebook" custom-style="margin-bottom:16rpx;">Notebook</ll-page-title>
   <view class="sec-desc">An open notebook on the desk: ruled paper with a red margin, bound with a wire spiral, binder rings or a stab-stitched spine, its holes punched, more pages peeking out underneath. The words sit on the lines.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">A spiral notebook</view>
     <view class="sec-desc">Wire coils through punched holes, ruled lines with a red margin, and two more pages peeking out underneath.</view>
     <view class="nb-center">
@@ -23,7 +23,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Four bindings</view>
     <view class="sec-desc">A wire spiral, binder rings, a stab-stitched spine in tomato thread, and a reporter's pad bound on top. The holes are punched through and the desk shows in them.</view>
     <view class="nb-grid">
@@ -54,7 +54,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Turning pages</view>
     <view class="sec-desc">curl folds the corner and ll-notebook-turn is the button over it. Pages are named with value; only the current one is shown, and a turned page unfolds from the dog-ear (a clip-path wipe, no 3D). Current page: {{weekPage}}.</view>
     <view class="nb-center">
@@ -79,7 +79,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">A packing list</view>
     <view class="sec-desc">A real notebook page: one checkbox per ruled line (each row is exactly 28 px, so the boxes and words sit on the lines), and a sticker stuck to the corner.</view>
     <view class="nb-center">
@@ -96,7 +96,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">On the shelf</view>
     <view class="sec-desc">The closed notebook: cloth over board, a darker spine stitched to it, an elastic band, and a paper label. Any stationery color, or black.</view>
     <view class="nb-shelf">

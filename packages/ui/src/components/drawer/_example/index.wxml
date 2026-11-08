@@ -3,17 +3,17 @@
      (25% of the edge, or a flick). Example 04's phone branch is the one a
      375pt screen always takes; the wide-screen dialog is wired too. -->
 <view class="demo">
-  <view class="demo-title">Drawer</view>
+  <ll-page-title underline="highlight" seed="drawer" custom-style="margin-bottom:16rpx;">Drawer</ll-page-title>
   <view class="sec-desc">A slip of paper you pull up from the bottom of the screen (or in from any edge), built on vaul. From the bottom it is torn off a pad along its top edge with a strip of tape as the grab tab; drag it, flick it away, or give it snap points.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Move goal</view>
     <view class="sec-desc">The shadcn demo: a slip pulled up from the bottom, torn along its top edge and taped down by its grab tab. Drag the tape, flick it away, or press Escape.</view>
     <view class="center-row"><ll-button variant="outline" bind:tap="openDlg" data-k="dlgGoal">Open drawer</ll-button></view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Snap points</view>

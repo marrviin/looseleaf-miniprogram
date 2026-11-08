@@ -3,10 +3,10 @@
      2026-09-15), like the upstream pages. The hidden-input form submit of
      example 05 is folded: the summary reads the page state. -->
 <view class="demo">
-  <view class="demo-title">Date Picker</view>
+  <ll-page-title underline="highlight" seed="date-picker" custom-style="margin-bottom:16rpx;">Date Picker</ll-page-title>
   <view class="sec-desc">A date field with a calendar on a slip: type a date (Sep 17, 2026, 9/17/26, 2026-09-17, tomorrow) or open the calendar and circle one; presets sit in a row beside it; the range version takes two months when the screen allows and closes when you have chosen both ends. Dates cross the boundary as YYYY-MM-DD strings.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Type it or pick it</view>
@@ -26,7 +26,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">With presets</view>
     <view class="sec-desc">A row of shortcuts in the slip. Presets can be keywords — today, tomorrow, in-a-week, next-month — so "in a week" is worked out when you choose it, not when the page was drawn.</view>
     <view class="col">
@@ -43,7 +43,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">A date range</view>
     <view class="sec-desc">Two ends in one field. Type "Sep 9, 2026 to Sep 24, 2026" or open the slip: each week of the range gets one highlighter swipe, and the slip puts itself away when the second end is chosen (one month at a time on a phone).</view>
     <view class="col">
@@ -61,7 +61,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">As a button</view>
     <view class="sec-desc">typeable="{{false}}" makes the whole field a button that shows the date, like a Select. Below it: invalid, disabled, and a dropdown caption for far-away dates such as birthdays.</view>
     <view class="col col--stack">
@@ -93,7 +93,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Reserve a table</view>
     <view class="sec-desc">In a real form: Mondays are closed, so they are hatched and refused when typed, and the summary reads what would be submitted.</view>
     <view class="center-stage">

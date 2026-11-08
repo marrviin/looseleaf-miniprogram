@@ -2,10 +2,10 @@
      (#/components/sticker-picker). No arrow-key walk on a phone: touch
      lights a sticker (peel + tilt) and the tap chooses it. -->
 <view class="demo">
-  <view class="demo-title">Sticker picker</view>
+  <ll-page-title underline="highlight" seed="sticker-picker" custom-style="margin-bottom:16rpx;">Sticker picker</ll-page-title>
   <view class="sec-desc">A popover of stickers to choose from: a search field, category chips and a grid. The touched sticker peels its corner; tap sticks it.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">A sticker for the job</view>
@@ -23,7 +23,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Your own set</view>
     <view class="sec-desc">Offer only the stickers you want, under your own names and words. Here a reaction picker: four to a row, it stays open so you can react more than once (choose one again to take it back), and the latest choice is marked.</view>
     <view class="row">
@@ -39,7 +39,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">In a comment box</view>
     <view class="sec-desc">The picker as a composer tool: choose a sticker, it waits beside the text (tap it to take it off), and posting sends both. Recent stickers come first next time.</view>
     <ll-card>

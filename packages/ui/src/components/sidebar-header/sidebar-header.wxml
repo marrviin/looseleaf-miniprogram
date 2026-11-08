@@ -1,0 +1,4 @@
+<!-- ll-sidebar-header — top of the pad (flex-col gap-2 p-2). -->
+<view class="ll-sidebar-header {{ll-class}}" style="{{customStyle}}">
+  <slot />
+</view>

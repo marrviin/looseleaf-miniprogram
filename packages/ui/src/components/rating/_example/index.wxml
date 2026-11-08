@@ -1,9 +1,9 @@
 <!-- ll-rating demo — mirrors the upstream docs page (#/components/rating). -->
 <view class="demo">
-  <view class="demo-title">Rating</view>
+  <ll-page-title underline="highlight" seed="rating" custom-style="margin-bottom:16rpx;">Rating</ll-page-title>
   <view class="sec-desc">Stars, hearts or suns somebody drew, where you pick how many are filled. Hover previews, half steps are optional, and it is a real radio group (arrow keys, form value), or a plain read-only display with a text alternative. New in Looseleaf: shadcn has no rating.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Default</view>
     <view class="sec-desc">Hover to preview, click to choose. It is a radio group: Tab lands on the chosen glyph, then arrow keys, Home and End change the value. (No hover on a phone — taps pick directly.)</view>
@@ -13,7 +13,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Glyphs, halves and sizes</view>

@@ -1,9 +1,9 @@
 <!-- ll-stepper demo — mirrors the upstream docs page (#/components/stepper). -->
 <view class="demo">
-  <view class="demo-title">Stepper</view>
+  <ll-page-title underline="highlight" seed="stepper" custom-style="margin-bottom:16rpx;">Stepper</ll-page-title>
   <view class="sec-desc">A number you can nudge: minus, the value, plus. One hand-drawn box with a tick before each button, the number in script, buttons that repeat while you hold them, and a rattle of the box when there is nowhere left to go. The value is a real input, so it types and pastes.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Quantity</view>
     <view class="sec-desc">Press the plus, hold it to run, or type. At 10 the plus has nothing left and rattles the box.</view>
@@ -14,7 +14,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Steps, decimals and units</view>

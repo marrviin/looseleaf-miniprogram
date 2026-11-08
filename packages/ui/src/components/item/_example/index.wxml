@@ -5,10 +5,10 @@
      them (ll-doodle is not ported yet); rain-cloud→cloud,
      light-bulb→sparkle. -->
 <view class="demo">
-  <view class="demo-title">Item</view>
+  <ll-page-title underline="highlight" seed="item" custom-style="margin-bottom:16rpx;">Item</ll-page-title>
   <view class="sec-desc">A row for lists of things: an icon or photo, a title with a line of description, some actions. Rows sit on ruled paper, a link row lights up under a highlighter swipe, and none of it carries ink of its own, so a list of hundreds costs nothing.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Variants and sizes</view>

@@ -1,0 +1,12 @@
+<!-- ll-sidebar-group-action — small corner button (icon via slot). -->
+<view
+  wx:if="{{!collapsed}}"
+  class="ll-sidebar-group-action {{ll-class}}"
+  style="{{customStyle}}"
+  aria-role="button"
+  aria-label="{{ariaLabel}}"
+  hover-class="is-swipe"
+  bind:tap="noop"
+>
+  <slot />
+</view>

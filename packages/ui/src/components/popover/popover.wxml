@@ -3,7 +3,7 @@
      optional felt-tip arrow, pin/tape fasteners. Controlled via `open`;
      the trigger tap emits `change`. -->
 <view class="ll-popover">
-  <view class="ll-popover__trigger" catchtap="onTriggerTap">
+  <view class="ll-popover__trigger" catchtap="onTriggerTap" bindlongpress="onTriggerLongPress">
     <slot name="trigger" />
   </view>
 

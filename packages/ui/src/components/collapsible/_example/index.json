@@ -6,6 +6,7 @@
     "ll-collapsible-indicator": "../collapsible-indicator/collapsible-indicator",
     "ll-button": "../button/button",
     "ll-icon": "../icon/icon",
-    "ll-paper": "../paper/paper"
+    "ll-paper": "../paper/paper",
+    "ll-page-title": "../page-title/page-title"
   }
 }

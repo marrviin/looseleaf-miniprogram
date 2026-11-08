@@ -8,6 +8,7 @@
     "ll-card": "../card/card",
     "ll-card-header": "../card-header/card-header",
     "ll-card-title": "../card-title/card-title",
-    "ll-card-content": "../card-content/card-content"
+    "ll-card-content": "../card-content/card-content",
+    "ll-page-title": "../page-title/page-title"
   }
 }

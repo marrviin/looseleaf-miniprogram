@@ -1,9 +1,9 @@
 <!-- ll-squiggle demo — mirrors the upstream docs page (#/components/squiggle). -->
 <view class="demo">
-  <view class="demo-title">Squiggle</view>
+  <ll-page-title underline="highlight" seed="squiggle" custom-style="margin-bottom:16rpx;">Squiggle</ll-page-title>
   <view class="sec-desc">A hand-drawn line across the width — wave, zig-zag, loops, scallops, dashes or dots — between paragraphs or sections.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Default</view>
     <view class="sec-desc">A wavy line across the width, between two paragraphs.</view>
@@ -14,7 +14,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Six kinds, and vertical</view>

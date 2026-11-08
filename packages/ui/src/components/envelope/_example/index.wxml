@@ -3,10 +3,10 @@
      Installation/Usage/API reference/Accessibility/Related are
      intentionally omitted. -->
 <view class="demo">
-  <view class="demo-title">Envelope</view>
+  <ll-page-title underline="highlight" seed="envelope" custom-style="margin-bottom:16rpx;">Envelope</ll-page-title>
   <view class="sec-desc">Press it: the flap stands up behind and the letter slides out. Each stamp is perforated; each has a postmark over it.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">An envelope</view>

@@ -4,10 +4,10 @@
      handle row selections (automation can't tap into virtualHost
      components, and the trigger tap bubble handles real users). -->
 <view class="demo">
-  <view class="demo-title">Dropdown Menu</view>
+  <ll-page-title underline="highlight" seed="dropdown-menu" custom-style="margin-bottom:16rpx;">Dropdown Menu</ll-page-title>
   <view class="sec-desc">A menu written on a slip of paper that drops from a button. The row under the pointer or the keyboard wears the highlighter, a ticked row is a pencil box with a felt-tip tick over it, shortcuts are drawn keycaps, and a destructive row hatches in red pencil instead. Sub-menus, typeahead and focus handling are Radix's.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Account menu</view>
     <view class="sec-desc">The shadcn demo on a slip: a typewriter label, rows with drawn icons and keycaps, a disabled row, a sub-menu, and a destructive row last.</view>
@@ -54,7 +54,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Ticks and dots</view>

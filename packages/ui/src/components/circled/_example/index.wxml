@@ -1,9 +1,9 @@
 <!-- ll-circled demo — mirrors the upstream docs page (#/components/circled). -->
 <view class="demo">
-  <view class="demo-title">Circled</view>
+  <ll-page-title underline="highlight" seed="circled" custom-style="margin-bottom:16rpx;">Circled</ll-page-title>
   <view class="sec-desc">A hand loop around real words: a circle, a box or a pair of brackets, drawn once over the whole phrase.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Default</view>
     <view class="sec-desc">A loop around a word. It overshoots where it started, like a hand that did not quite stop.</view>
@@ -12,7 +12,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Shapes and pens</view>

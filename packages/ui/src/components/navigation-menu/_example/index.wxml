@@ -3,10 +3,10 @@
      50-demo's List/Simple items omitted (hidden md:block upstream); the
      featured card drops the Mascot (not ported). -->
 <view class="demo">
-  <view class="demo-title">Navigation Menu</view>
+  <ll-page-title underline="highlight" seed="navigation-menu" custom-style="margin-bottom:16rpx;">Navigation Menu</ll-page-title>
   <view class="sec-desc">A site's top navigation strip. A trigger opens its panel over a shared slip of paper under the strip; the felt-tip underline glides under the open item. One strip can mix triggers, plain links and an active page.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Getting started</view>
     <view class="sec-desc">The shadcn demo on an index strip: a featured card beside three rows, a two-column panel of components, and a plain tab. Move from Getting started to Components: the slip resizes, the panels slide inside it and the felt-tip underline glides along.</view>
@@ -73,7 +73,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">A slip under each tab</view>
@@ -103,7 +103,7 @@
       <ll-paper stock="paper" seed="header" custom-style="width:100%;">
         <view class="header">
           <view class="header__logo script"><ll-icon name="book-open" size="{{22}}" /> Looseleaf</view>
-          <ll-navigation-menu aria-label="Main" custom-style="max-width:none;flex:none;">
+          <ll-navigation-menu aria-label="Main" custom-style="min-width:0;">
             <ll-navigation-menu-list>
               <ll-navigation-menu-item>
                 <ll-navigation-menu-trigger seed="h1">Product</ll-navigation-menu-trigger>

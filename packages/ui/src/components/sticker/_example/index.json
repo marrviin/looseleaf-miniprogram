@@ -9,6 +9,7 @@
     "ll-tabs": "../tabs/tabs",
     "ll-tabs-list": "../tabs-list/tabs-list",
     "ll-tabs-trigger": "../tabs-trigger/tabs-trigger",
-    "ll-tabs-content": "../tabs-content/tabs-content"
+    "ll-tabs-content": "../tabs-content/tabs-content",
+    "ll-page-title": "../page-title/page-title"
   }
 }

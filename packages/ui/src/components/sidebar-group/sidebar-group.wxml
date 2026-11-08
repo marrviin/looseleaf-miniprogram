@@ -1,0 +1,4 @@
+<!-- ll-sidebar-group — a section of the pad (relative flex-col p-2). -->
+<view class="ll-sidebar-group {{ll-class}}" style="{{customStyle}}">
+  <slot />
+</view>

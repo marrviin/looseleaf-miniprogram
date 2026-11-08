@@ -1,0 +1,29 @@
+/* ll-sidebar-rail — absolute strip straddling the pad's page-facing edge
+   (w-4 -translate-x-1/2). Side left → hangs off the right edge; right →
+   the left edge. */
+.ll-sidebar-rail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 20;
+  width: 32rpx;
+  transition: all linear var(--ll-dur-press, 0.09s);
+}
+.ll-sidebar-rail.is-side-left {
+  right: -32rpx;
+}
+.ll-sidebar-rail.is-side-right {
+  left: 0;
+}
+.ll-sidebar-rail::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4rpx;
+  margin-left: -2rpx;
+}
+.ll-sidebar-rail.is-hover::after {
+  background-color: #8a857c; /* bg-pencil-mark */
+}

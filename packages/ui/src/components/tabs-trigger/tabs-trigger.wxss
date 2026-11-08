@@ -14,6 +14,8 @@
   font-family: 'Kevin Sans', sans-serif;
   font-size: 26rpx; /* text-[15px] x .88 */
   font-weight: 700;
+  line-height: 1; /* hand-font glyphs ride high in the default line box —
+                     center the glyph, not the box (same as ll-button) */
   white-space: nowrap;
   color: var(--muted-foreground); /* text-muted-foreground */
   transition: translate 160ms ease, color 160ms ease; /* duration-(--ll-dur-hover) */

@@ -1,0 +1,4 @@
+<!-- ll-sidebar-menu-item — one row (upstream li, relative group). -->
+<view class="ll-sidebar-menu-item {{ll-class}}" style="{{customStyle}}">
+  <slot />
+</view>

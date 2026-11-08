@@ -2,10 +2,10 @@
      intro, then the Examples entries with the page's own copy. Installation/
      Usage/API reference/Accessibility/Related are intentionally omitted. -->
 <view class="demo">
-  <view class="demo-title">Breadcrumb</view>
+  <ll-page-title underline="highlight" seed="breadcrumb" custom-style="margin-bottom:16rpx;">Breadcrumb</ll-page-title>
   <view class="sec-desc">The path to the page you are on, written in a notebook: names between pencil slashes, links that wear the highlighter when pointed at, and the current page underlined twice in blue felt. Swap the slash for a chevron or any node, and fold the middle of a long path into a dropdown.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Demo</view>

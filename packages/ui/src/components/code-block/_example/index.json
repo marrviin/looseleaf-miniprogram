@@ -6,6 +6,7 @@
     "ll-message-header": "../message-header/message-header",
     "ll-mascot": "../mascot/mascot",
     "ll-bubble": "../bubble/bubble",
-    "ll-bubble-content": "../bubble-content/bubble-content"
+    "ll-bubble-content": "../bubble-content/bubble-content",
+    "ll-page-title": "../page-title/page-title"
   }
 }

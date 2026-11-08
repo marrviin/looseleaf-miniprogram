@@ -4,10 +4,10 @@
      Note: the miniprogram panels open without the height animation (the
      reduced-motion behavior upstream) and the brace appears finished. -->
 <view class="demo">
-  <view class="demo-title">Accordion</view>
+  <ll-page-title underline="highlight" seed="accordion" custom-style="margin-bottom:16rpx;">Accordion</ll-page-title>
   <view class="sec-desc">Ruled rows that open. Each row sits on a hand-pulled pencil rule; a touched row gets a highlighter swipe, and an opened row turns its chevron over, writes a margin brace beside its text. Radix behavior is untouched.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Questions</view>

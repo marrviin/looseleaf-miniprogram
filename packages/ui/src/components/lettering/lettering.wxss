@@ -1,0 +1,37 @@
+/* ll-lettering */
+/* @ll-import tokens */
+.ll-lettering {
+  display: block;
+  font-family: 'Kevin Sans Script', 'Kevin Sans', 'Bradley Hand', cursive;
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  color: var(--ll-ink, #2a2420);
+  /* the riso pass rides on the inline style (an em-literal text-shadow
+     string built in JS — vars/calc inside text-shadow are exactly what
+     the webview mangles) */
+}
+.ll-lettering--sm {
+  font-size: 30px;
+}
+.ll-lettering--md {
+  font-size: 48px;
+}
+.ll-lettering--lg {
+  font-size: 60px;
+}
+.ll-lettering--xl {
+  font-size: 96px;
+}
+.ll-lettering--hero {
+  font-size: 128px;
+}
+/* The wobbled word span — the Handwritten treatment (inline text, a hair
+   off the baseline and a touch lighter, scaled by the global
+   --ll-jitter-k). The riso text-shadow inherits onto it. */
+.ll-lettering__w {
+  display: inline;
+  position: relative;
+  top: calc(var(--jy, 0px) * var(--ll-jitter-k, 1));
+  color: color-mix(in srgb, currentColor calc((1 - (1 - var(--jo, 1)) * var(--ll-jitter-k, 1)) * 100%), transparent);
+}

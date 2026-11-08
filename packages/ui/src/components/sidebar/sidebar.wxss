@@ -1,0 +1,97 @@
+/* ll-sidebar — the pad shell. Docked geometry mirrors upstream
+   sidebar.tsx: a transparent gap reserving --sidebar-width, and a fixed
+   (or, with `static`, absolutely anchored) container holding the Paper. */
+
+.ll-sidebar {
+  position: relative;
+  color: var(--ll-ink, #2a2420); /* --sidebar-foreground */
+}
+
+/* inside clip (phone sheet / collapsible=none) — a fixed-size drawing box */
+.ll-sidebar__clip {
+  position: absolute;
+  z-index: 3; /* --ll-z-prop */
+  pointer-events: none;
+}
+
+/* --- phone sheet body -------------------------------------------------- */
+.ll-sidebar__body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 16rpx; /* upstream pt-2 */
+}
+.ll-sidebar__body.is-clipped {
+  padding-top: 88rpx; /* upstream INSIDE_CLIP_PAD pt-11 */
+}
+
+/* --- docked ------------------------------------------------------------ */
+.ll-sidebar__gap {
+  position: relative;
+  width: var(--sidebar-width, 16rem);
+  background: transparent;
+  transition: width var(--ll-dur-sheet, 0.3s) ease-out;
+}
+.is-desktop.is-side-right .ll-sidebar__gap {
+  transform: rotate(180deg);
+}
+.is-desktop.is-collapsed.is-offcanvas .ll-sidebar__gap {
+  width: 0;
+}
+.is-desktop.is-collapsed.is-icon .ll-sidebar__gap {
+  width: var(--sidebar-width-icon, 3rem);
+}
+.is-desktop.is-floating.is-collapsed.is-icon .ll-sidebar__gap,
+.is-desktop.is-inset.is-collapsed.is-icon .ll-sidebar__gap {
+  width: calc(var(--sidebar-width-icon, 3rem) + 16px);
+}
+
+.ll-sidebar__container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 10;
+  height: 100vh;
+  width: var(--sidebar-width, 16rem);
+  padding-top: 16rpx; /* upstream pt-4 */
+  display: none;
+  box-sizing: border-box;
+  transition: left var(--ll-dur-sheet, 0.3s) ease-out, right var(--ll-dur-sheet, 0.3s) ease-out,
+    width var(--ll-dur-sheet, 0.3s) ease-out;
+}
+/* the demo-frame escape hatch: anchor to the nearest positioned ancestor */
+.ll-sidebar__container.is-static {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: auto;
+}
+.is-desktop .ll-sidebar__container {
+  display: flex;
+}
+.is-side-left .ll-sidebar__container {
+  left: 0;
+}
+.is-side-right .ll-sidebar__container {
+  right: 0;
+}
+.is-side-left.is-collapsed.is-offcanvas .ll-sidebar__container {
+  left: calc(var(--sidebar-width, 16rem) * -1);
+}
+.is-side-right.is-collapsed.is-offcanvas .ll-sidebar__container {
+  right: calc(var(--sidebar-width, 16rem) * -1);
+}
+.is-floating .ll-sidebar__container,
+.is-inset .ll-sidebar__container {
+  padding: 16rpx 16rpx 16rpx;
+  padding-top: 32rpx;
+}
+.is-icon.is-collapsed .ll-sidebar__container {
+  width: var(--sidebar-width-icon, 3rem);
+}
+.is-floating.is-collapsed.is-icon .ll-sidebar__container,
+.is-inset.is-collapsed.is-icon .ll-sidebar__container {
+  width: calc(var(--sidebar-width-icon, 3rem) + 16px + 2px);
+}

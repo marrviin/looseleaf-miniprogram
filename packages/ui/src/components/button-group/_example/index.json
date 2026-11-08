@@ -22,6 +22,7 @@
     "ll-dropdown-menu-radio-group": "../dropdown-menu-radio-group/dropdown-menu-radio-group",
     "ll-dropdown-menu-radio-item": "../dropdown-menu-radio-item/dropdown-menu-radio-item",
     "ll-popover": "../popover/popover",
-    "ll-separator": "../separator/separator"
+    "ll-separator": "../separator/separator",
+    "ll-page-title": "../page-title/page-title"
   }
 }

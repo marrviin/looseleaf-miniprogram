@@ -3,6 +3,7 @@
     "ll-corkboard": "looseleaf-miniprogram/components/corkboard/corkboard",
     "ll-corkboard-note": "looseleaf-miniprogram/components/corkboard-note/corkboard-note",
     "ll-sticky-note": "looseleaf-miniprogram/components/sticky-note/sticky-note",
-    "ll-button": "looseleaf-miniprogram/components/button/button"
+    "ll-button": "looseleaf-miniprogram/components/button/button",
+    "ll-page-title": "../page-title/page-title"
   }
 }

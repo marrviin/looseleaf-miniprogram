@@ -3,6 +3,7 @@
     "ll-alert": "../alert/alert",
     "ll-alert-title": "../alert-title/alert-title",
     "ll-alert-description": "../alert-description/alert-description",
-    "ll-icon": "../icon/icon"
+    "ll-icon": "../icon/icon",
+    "ll-page-title": "../page-title/page-title"
   }
 }

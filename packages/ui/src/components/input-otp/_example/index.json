@@ -9,6 +9,7 @@
     "ll-card-description": "../card-description/card-description",
     "ll-card-content": "../card-content/card-content",
     "ll-card-footer": "../card-footer/card-footer",
-    "ll-button": "../button/button"
+    "ll-button": "../button/button",
+    "ll-page-title": "../page-title/page-title"
   }
 }

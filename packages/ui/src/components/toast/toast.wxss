@@ -7,7 +7,6 @@
    Deviations (touch): the stack always renders expanded (no hover-to-
    expand); timers pause while a slip is held, and slips swipe away. */
 /* @ll-import tokens */
-/* @ll-import paper-tiles */
 
 /* ---- the stack ------------------------------------------------------- */
 
@@ -132,7 +131,8 @@
 
 /* the sheet: faceStyle (from toast.js) carries color/tooth/paper-light/
    shadow + the type tilt; rotated behind upright content like .ll-paper.
-   class="ll-face" picks up the paper texture vars from paper-tiles. */
+   class="ll-face" picks up the paper texture vars inherited from the
+   app-level paper-tiles import. */
 .slip__face {
   position: absolute;
   inset: 0;

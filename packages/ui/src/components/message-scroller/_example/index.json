@@ -13,6 +13,7 @@
     "ll-bubble-content": "looseleaf-miniprogram/components/bubble-content/bubble-content",
     "ll-message-text": "looseleaf-miniprogram/components/message-text/message-text",
     "ll-mascot": "looseleaf-miniprogram/components/mascot/mascot",
-    "ll-button": "looseleaf-miniprogram/components/button/button"
+    "ll-button": "looseleaf-miniprogram/components/button/button",
+    "ll-page-title": "../page-title/page-title"
   }
 }

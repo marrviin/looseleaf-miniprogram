@@ -1,0 +1,5 @@
+<!-- ll-sidebar-provider — upstream SidebarProvider: a flex min-h-svh row
+     holding the pad and (usually) the inset page beside it. -->
+<view class="ll-sidebar-provider {{ll-class}}" style="{{customStyle}}">
+  <slot />
+</view>

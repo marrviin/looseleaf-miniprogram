@@ -1,9 +1,9 @@
 <!-- ll-receipt demo — mirrors the upstream docs page (#/components/receipt). -->
 <view class="demo">
-  <view class="demo-title">Receipt</view>
+  <ll-page-title underline="highlight" seed="receipt" custom-style="margin-bottom:16rpx;">Receipt</ll-page-title>
   <view class="sec-desc">A till roll: pinked at both ends, typed, the lines a description list. The total is bigger; nothing else is.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">A receipt</view>
     <view class="sec-desc">Pinked at both ends, typed, the lines a description list. The total is bigger; nothing else is.</view>
@@ -25,7 +25,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Examples</view>
     <view class="sub-h3">Circled, barcoded, clipped</view>
     <view class="sec-desc">The total circled in red felt tip, a barcode whose bars come from the number under it, and a paper clip to keep it with the invoice.</view>
@@ -47,32 +47,32 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Four ways to cut it</view>
     <view class="sec-desc">`ends` is the cut of both ends: the tear bar's sawtooth, a perforation, a hand tear, or a plain guillotine.</view>
     <view class="ends-grid">
-      <ll-receipt ends="zig" seed="zig" custom-style="width:310rpx" aria-label="Receipt, zig ends">
+      <ll-receipt ends="zig" seed="zig" custom-style="width:270rpx;max-width:100%" aria-label="Receipt, zig ends">
         <ll-receipt-header><view class="receipt-headline">zig</view></ll-receipt-header>
         <ll-receipt-lines>
           <ll-receipt-line price="2.20">tea</ll-receipt-line>
         </ll-receipt-lines>
         <ll-receipt-total>2.20</ll-receipt-total>
       </ll-receipt>
-      <ll-receipt ends="perf" seed="perf" custom-style="width:310rpx" aria-label="Receipt, perf ends">
+      <ll-receipt ends="perf" seed="perf" custom-style="width:270rpx;max-width:100%" aria-label="Receipt, perf ends">
         <ll-receipt-header><view class="receipt-headline">perf</view></ll-receipt-header>
         <ll-receipt-lines>
           <ll-receipt-line price="2.20">tea</ll-receipt-line>
         </ll-receipt-lines>
         <ll-receipt-total>2.20</ll-receipt-total>
       </ll-receipt>
-      <ll-receipt ends="torn" seed="torn" custom-style="width:310rpx" aria-label="Receipt, torn ends">
+      <ll-receipt ends="torn" seed="torn" custom-style="width:270rpx;max-width:100%" aria-label="Receipt, torn ends">
         <ll-receipt-header><view class="receipt-headline">torn</view></ll-receipt-header>
         <ll-receipt-lines>
           <ll-receipt-line price="2.20">tea</ll-receipt-line>
         </ll-receipt-lines>
         <ll-receipt-total>2.20</ll-receipt-total>
       </ll-receipt>
-      <ll-receipt ends="cut" seed="cut" custom-style="width:310rpx" aria-label="Receipt, cut ends">
+      <ll-receipt ends="cut" seed="cut" custom-style="width:270rpx;max-width:100%" aria-label="Receipt, cut ends">
         <ll-receipt-header><view class="receipt-headline">cut</view></ll-receipt-header>
         <ll-receipt-lines>
           <ll-receipt-line price="2.20">tea</ll-receipt-line>
@@ -82,7 +82,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">An order summary</view>
     <view class="sec-desc">A real checkout: quantities you can change, a total that follows, and the barcode of the order number. The receipt is ordinary DOM; only the ink is drawn.</view>
     <view class="order-row">

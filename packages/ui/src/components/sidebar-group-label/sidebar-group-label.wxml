@@ -1,0 +1,4 @@
+<!-- ll-sidebar-group-label — typewriter kicker; fades out on icon collapse. -->
+<view class="ll-sidebar-group-label {{collapsed ? 'is-collapsed' : ''}} {{ll-class}}" style="{{customStyle}}">
+  <slot />
+</view>

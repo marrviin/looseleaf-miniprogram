@@ -4,6 +4,7 @@
     "ll-confetti": "looseleaf-miniprogram/components/confetti/confetti",
     "ll-button": "looseleaf-miniprogram/components/button/button",
     "ll-checkbox": "looseleaf-miniprogram/components/checkbox/checkbox",
-    "ll-paper": "looseleaf-miniprogram/components/paper/paper"
+    "ll-paper": "looseleaf-miniprogram/components/paper/paper",
+    "ll-page-title": "../page-title/page-title"
   }
 }

@@ -2,7 +2,6 @@
    (upstream ::before / svg[data-ink=sheet] + .ll-face), rotated by the seeded
    tilt while the content stays put; tape and fastener props float above. */
 /* @ll-import tokens */
-/* @ll-import paper-tiles */
 .ll-paper {
   position: relative;
   isolation: isolate; /* keep the z-index:-1 sheet from falling behind page backgrounds (upstream isolates the ink host) */

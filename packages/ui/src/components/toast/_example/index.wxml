@@ -3,17 +3,17 @@
      toast() API; here each ll-toaster is reached with selectComponent and
      its methods carry the same names. Swipe a slip to dismiss it. -->
 <view class="demo">
-  <view class="demo-title">Sonner</view>
+  <ll-page-title underline="highlight" seed="toast" custom-style="margin-bottom:16rpx;">Sonner</ll-page-title>
   <view class="sec-desc">Toasts as slips of paper tossed onto the desk. A guest check for success, a pink sticky for errors, yellow for warnings, blue for news; stacked, swipeable, with drawn icons, action buttons, promise toasts and tape or a pin to hold them down. Built on the sonner package: you keep its `toast()` API. (The sonner stack is re-implemented on a module store; pages drive it through the ll-toaster's methods.)</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Demo</view>
     <view class="sec-desc">Official `sonner-demo`: one button, one toast with a description and an Undo action. The slip is tossed onto the desk; Undo is a highlighted word, not a filled button. Official code mounts `Toaster` once at the app root; here the example mounts its own so it works on its own.</view>
     <view class="center-row"><ll-button variant="outline" bind:tap="showDemo">Show Toast</ll-button></view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Types</view>

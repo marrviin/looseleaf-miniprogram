@@ -6,6 +6,8 @@
   display: inline-block;
   align-self: flex-start;
   justify-self: start;
+  max-width: 100%;
+  overflow-x: auto;
   padding-bottom: 12px;
   font-family: 'Kevin Sans Script', 'Kevin Sans', 'Bradley Hand', cursive;
   line-height: 1;
@@ -16,13 +18,14 @@
   color: var(--ll-ink, #2a2420);
 }
 .ll-signature.is-sm {
-  font-size: 28px;
+  /* phone scale (was 28/44/64 - desktop sizes made lg overflow and pan) */
+  font-size: 22px;
 }
 .ll-signature.is-md {
-  font-size: 44px;
+  font-size: 32px;
 }
 .ll-signature.is-lg {
-  font-size: 64px;
+  font-size: 44px;
 }
 .ll-signature__name {
   position: relative;

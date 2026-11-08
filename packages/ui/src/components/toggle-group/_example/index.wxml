@@ -1,10 +1,10 @@
 <!-- ll-toggle-group demo — mirrors the upstream docs page (#/components/toggle-group).
      Omitted: 05 "In a field" (Field family not ported yet). -->
 <view class="demo">
-  <view class="demo-title">Toggle Group</view>
+  <ll-page-title underline="highlight" seed="toggle-group" custom-style="margin-bottom:16rpx;">Toggle Group</ll-page-title>
   <view class="sec-desc">A row of toggles that belong together: pick one (alignment) or several (bold, italic, underline). Joined outline items share one hand-drawn box with a pencil seam between them; the highlighter body marks what is on.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Pick one</view>
     <view class="sec-desc">type=single: one item is on, clicking it again clears it. Joined outline items share one box; the seam between two items is a short pencil stroke at the edge they share.</view>
@@ -18,7 +18,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Pick several</view>

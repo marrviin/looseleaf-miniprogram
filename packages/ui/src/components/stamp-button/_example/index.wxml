@@ -4,10 +4,10 @@
      boundary here, so the page plays match-maker: bind:stamp →
      surface.strike(detail). -->
 <view class="demo">
-  <view class="demo-title">Stamp button</view>
+  <ll-page-title underline="highlight" seed="stamp-button" custom-style="margin-bottom:16rpx;">Stamp button</ll-page-title>
   <view class="sec-desc">A button that is a rubber stamp: a wooden knob on an inked die, in the color of the impression it will leave. Press it and APPROVED, PAID or VOID lands on the page with a thump. The stamps on a page are JSON, so they can be state.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Stamp the page</view>
@@ -29,7 +29,7 @@
     <view class="said-line" aria-live="polite">{{said1}}</view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Inks and shapes</view>
     <view class="sec-desc">The tool takes the color of the pad it will leave: green, red, blue felt, black. Any preset from the sticker sheet works, or give the words and the shape yourself.</view>
     <ll-stamp-surface id="surface2">
@@ -46,7 +46,7 @@
     <view class="said-line" aria-live="polite">{{said2}}</view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">An approval</view>
     <view class="sec-desc">A real review step: the stamps are the state. Approving or rejecting leaves its impression on the expense report (a second decision replaces the first), the status badge follows it, and Reset clears the page.</view>
     <ll-stamp-surface id="surface3" value="{{marks}}" bind:valuechange="onMarks3">

@@ -1,0 +1,12 @@
+.ll-sidebar-content {
+  display: flex;
+  flex: 1 1 0;
+  min-height: 0;
+  flex-direction: column;
+  gap: 16rpx; /* gap-2 */
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.ll-sidebar-content.is-collapsed {
+  overflow: hidden;
+}

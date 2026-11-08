@@ -2,10 +2,10 @@
      Keyboard drawing has no miniprogram counterpart; the SVG download in 05
      becomes a clipboard copy. -->
 <view class="demo">
-  <view class="demo-title">Sketchpad</view>
+  <ll-page-title underline="highlight" seed="sketchpad" custom-style="margin-bottom:16rpx;">Sketchpad</ll-page-title>
   <view class="sec-desc">A drawing pad with five pens and an eraser: pressure swells the felt, pencil has tooth, the brush runs dry, the marker bleeds, the highlighter washes behind. Undo, redo and clear sit beside the pens.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Default</view>
     <view class="sec-desc">Draw with a finger. Every line is written by the same pen as the buttons: pressure swells it, felt pools where you stop, pencil has tooth.</view>
     <view class="col">
@@ -14,13 +14,13 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Every pen</view>
     <view class="sec-desc">Felt, brush, pencil, marker and highlighter on one page. Same points, five materials: the grain and the blend come from the pen, not from the data.</view>
     <ll-sketchpad read-only width="{{640}}" height="{{330}}" default-value="{{page}}" />
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Replay</view>
     <view class="sec-desc">A read-only sketchpad that draws itself on again, stroke after stroke, along each center line.</view>
     <view class="col">
@@ -29,13 +29,13 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Your own toolbar</view>
     <view class="sec-desc">A pencil-and-eraser sketchbook on graph paper, four colors, taped to the desk, with a plot already begun. (The upstream example composes its own toolbar row; here the tools, colors and wipe label come in as props.)</view>
     <ll-sketchpad id="plot-pad" tools="{{plotTools}}" colors="{{plotColors}}" default-tool="pencil" clear-label="Wipe" width="{{520}}" height="{{340}}" default-value="{{plot}}" paper="graph" paper-tape="both" paper-tape-kind="washi-dots" label="Sketchbook page" />
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Postcard</view>
     <view class="sec-desc">A real use: draw a card, watch a live thumbnail (the same strokes, read-only), copy the JSON to keep it in your database, or copy the SVG.</view>
     <view class="card-grid">

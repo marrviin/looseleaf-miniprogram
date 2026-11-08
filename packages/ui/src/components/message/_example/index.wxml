@@ -1,10 +1,10 @@
 <!-- ll-message demo — mirrors the upstream docs page (#/components/message):
      intro, then the Examples entries with the page's own copy. -->
 <view class="demo">
-  <view class="demo-title">Message</view>
+  <ll-page-title underline="highlight" seed="message" custom-style="margin-bottom:16rpx;">Message</ll-page-title>
   <view class="sec-desc">The row of a chat message: an avatar, a column with a header, the bubbles and a footer, aligned to the start or the end. Also MessageText, which sets a reply word by word so streaming text soaks in like wet ink.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">A thread</view>

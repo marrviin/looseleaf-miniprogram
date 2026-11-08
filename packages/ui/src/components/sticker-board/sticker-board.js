@@ -265,6 +265,24 @@ createComponent({
       };
       // upstream node.style.zIndex = 1000000 while dragging
       this.setData({ [`cells[${ci}].dragStyle`]: `z-index:1000000;` });
+      // cx/cy are viewport coords, so the attach-time canvas box goes stale
+      // the moment the page scrolls (the ring/size gestures died on it —
+      // drag survived because it only uses deltas). Re-measure per touch
+      // and re-derive the angle/origin once the fresh box lands.
+      this.createSelectorQuery()
+        .select('.ll-sboard__canvas')
+        .boundingClientRect((rect) => {
+          if (!rect || !rect.width) return;
+          this.__canvas = { w: rect.width, h: rect.height, left: rect.left, top: rect.top };
+          const g = this.__drag;
+          if (!g || g.id !== it.id) return;
+          g.canvas = this.__canvasBox();
+          g.cx = rect.left + it.x;
+          g.cy = rect.top + it.y;
+          g.a0 = Math.atan2(g.sy - g.cy, g.sx - g.cx);
+          g.d0 = Math.max(4, Math.hypot(g.sx - g.cx, g.sy - g.cy));
+        })
+        .exec();
     },
     onMove(e) {
       const d = this.__drag;

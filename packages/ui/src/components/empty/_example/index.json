@@ -17,6 +17,7 @@
     "ll-input": "../input/input",
     "ll-avatar": "../avatar/avatar",
     "ll-avatar-fallback": "../avatar-fallback/avatar-fallback",
-    "ll-avatar-group": "../avatar-group/avatar-group"
+    "ll-avatar-group": "../avatar-group/avatar-group",
+    "ll-page-title": "../page-title/page-title"
   }
 }

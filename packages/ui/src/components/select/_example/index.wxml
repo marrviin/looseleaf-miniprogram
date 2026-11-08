@@ -2,10 +2,10 @@
      The compound <SelectGroup>/<SelectItem> tree folds into an `options`
      array; every select reports picks through one generic handler. -->
 <view class="demo">
-  <view class="demo-title">Select</view>
+  <ll-page-title underline="highlight" seed="select" custom-style="margin-bottom:16rpx;">Select</ll-page-title>
   <view class="sec-desc">A drop-down field. The trigger is a pencil box with a tick before its chevron; the list is a slip of paper set down over or under it, where the row you are on gets the highlighter and the chosen row is bold with a blue tick.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Default</view>
     <view class="sec-desc">Press it, slide down the list, and the row under the pointer gets the highlighter. Type a letter to jump; the chosen row is bold with a blue tick.</view>
@@ -23,7 +23,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Groups and a long list</view>

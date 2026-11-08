@@ -1,9 +1,9 @@
 <!-- ll-radio-group demo — mirrors the upstream docs page (#/components/radio-group). -->
 <view class="demo">
-  <view class="demo-title">Radio Group</view>
+  <ll-page-title underline="highlight" seed="radio-group" custom-style="margin-bottom:16rpx;">Radio Group</ll-page-title>
   <view class="sec-desc">Pick exactly one. Each choice is a hand-circled ring; picking it colors the dot in with a terracotta blot and writes a felt spiral into it. Radix Radio Group underneath: roving focus, arrow keys, form value, orientation and direction.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Default</view>
     <view class="sec-desc">Pick one. The choice is circled, then colored in: a terracotta blot with a felt spiral written into it. Arrow keys move the choice.</view>
@@ -15,7 +15,7 @@
     </ll-radio-group>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Sizes and states</view>

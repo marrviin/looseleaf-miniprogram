@@ -2,10 +2,10 @@
      (#/components/sticky-note). Paper's `curl` is not ported; the curled
      note renders flat for now. -->
 <view class="demo">
-  <view class="demo-title">Sticky note</view>
+  <ll-page-title underline="highlight" seed="sticky-note" custom-style="margin-bottom:16rpx;">Sticky note</ll-page-title>
   <view class="sec-desc">A square of colored paper with a gum band, turned a little more than a page. Five pads, any size, written in marker. It can curl a corner, hang from a pin or a strip of tape, and grow a tick box that is ticked with a felt pen.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Five pads</view>
     <view class="sec-desc">Yellow, green, orange, pink and blue, each turned by its own seeded angle. The first word says what the note is.</view>
@@ -17,7 +17,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Examples</view>
     <view class="sub-h3">Curled, pinned, taped</view>
     <view class="sec-desc">`curl` lifts the bottom-right corner; `fastener` and `tape` hold a note up. Any size works: the text wraps and the sheet follows. (ll-paper's curl is not ported yet — the first note renders flat.)</view>
@@ -40,7 +40,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Done</view>
     <view class="sec-desc">Pass `done` and the note gets a pencil tick box. Add `onDoneChange` and the box can be pressed: the tick is written with a felt pen and the text struck through. A note that loads done just shows it.</view>
     <view class="notes-row notes-row--loose">
@@ -55,7 +55,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">A team board</view>
     <view class="sec-desc">A real board: notes you tick off as the week goes, laid on a card. Each note is a labeled group with its own checkbox; the tick is written when you press it.</view>
     <view class="board">

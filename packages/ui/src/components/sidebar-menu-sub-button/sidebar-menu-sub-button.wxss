@@ -1,0 +1,24 @@
+.ll-sidebar-menu-sub-button {
+  display: flex;
+  min-height: 56rpx; /* min-h-7 */
+  min-width: 0;
+  align-items: center;
+  gap: 16rpx; /* gap-2 */
+  padding: 4rpx 16rpx; /* px-2 py-0.5 */
+  box-sizing: border-box;
+  font-family: 'Kevin Sans', sans-serif;
+  font-size: 28rpx; /* text-base x .88 (md) */
+  line-height: 1.375; /* leading-snug */
+  color: var(--ll-ink, #2a2420); /* text-sidebar-foreground */
+}
+.ll-sidebar-menu-sub-button.is-sm {
+  font-size: 26rpx; /* text-[15px] x .88 */
+}
+.ll-sidebar-menu-sub-button.is-active {
+  font-weight: 700; /* data-[active]:font-bold */
+}
+.ll-sidebar-menu-sub-button.is-swipe,
+.ll-sidebar-menu-sub-button.is-active {
+  background-color: rgba(248, 220, 76, 0.62); /* ll-swipe */
+  border-radius: 6rpx 16rpx 8rpx 18rpx / 16rpx 6rpx 18rpx 8rpx;
+}

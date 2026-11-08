@@ -2,6 +2,7 @@
   "usingComponents": {
     "ll-textarea": "../textarea/textarea",
     "ll-input": "../input/input",
-    "ll-button": "../button/button"
+    "ll-button": "../button/button",
+    "ll-page-title": "../page-title/page-title"
   }
 }

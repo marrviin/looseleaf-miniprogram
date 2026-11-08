@@ -7,6 +7,9 @@
   display: flex;
   align-items: center;
   gap: 24rpx; /* gap-3 */
+  /* inside cards the row must shrink to the content box so the slots
+     flex-shrink (min-w-6) instead of painting past the card edge */
+  max-width: 100%;
   max-width: 100%;
   font-family: 'Kevin Sans', sans-serif;
   isolation: isolate;

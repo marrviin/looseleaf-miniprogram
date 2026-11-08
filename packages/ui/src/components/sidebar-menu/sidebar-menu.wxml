@@ -1,0 +1,4 @@
+<!-- ll-sidebar-menu — the list of rows (upstream ul, gap-1). -->
+<view class="ll-sidebar-menu {{ll-class}}" style="{{customStyle}}">
+  <slot />
+</view>

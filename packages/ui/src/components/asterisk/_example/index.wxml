@@ -2,10 +2,10 @@
      Upstream's href footnote link has no miniprogram anchor equivalent; the
      footnote example keeps the named glyph and the note text. -->
 <view class="demo">
-  <view class="demo-title">Asterisk</view>
+  <ll-page-title underline="highlight" seed="asterisk" custom-style="margin-bottom:16rpx;">Asterisk</ll-page-title>
   <view class="sec-desc">A hand-drawn footnote glyph after the words — asterisk, star, dagger or double dagger — raised like a superscript.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Default</view>
     <view class="sec-desc">A red-pencil asterisk after a word, raised like a superscript.</view>
@@ -14,7 +14,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Marks and pens</view>

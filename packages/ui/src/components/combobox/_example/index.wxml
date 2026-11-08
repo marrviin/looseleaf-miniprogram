@@ -3,10 +3,10 @@
      50 keeps its menu, 51/52 keep their by-hand Popover/Command/Drawer shells;
      05's hidden `name` input becomes the change handler's value. -->
 <view class="demo">
-  <view class="demo-title">Combobox</view>
+  <ll-page-title underline="highlight" seed="combobox" custom-style="margin-bottom:16rpx;">Combobox</ll-page-title>
   <view class="sec-desc">A field you can search. Press it and a command list opens on a slip; type to narrow it, tap to choose. It can be a single-select, an editable field, or a multi-select whose choices are hand-drawn hang-tags you can take back; it can offer to create what you typed and wait for results from a server.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Framework picker</view>
     <view class="sec-desc">The shadcn recipe: press the field, type to narrow ("svelte" finds SvelteKit), tap to choose. The chosen row ends in a blue tick. Try a word that matches nothing to meet Stubby.</view>
@@ -27,7 +27,7 @@
     <view class="said-line" aria-live="polite">{{fwSaid || 'Framework: Next.js (default)'}}</view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Labels as hang-tags</view>

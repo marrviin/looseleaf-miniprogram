@@ -3,10 +3,10 @@
      global markdown stylesheet — isolated component styles can't reach the
      page's raw nodes). -->
 <view class="demo">
-  <view class="demo-title">Typography</view>
+  <ll-page-title underline="highlight" seed="typography-h1" custom-style="margin-bottom:16rpx;">Typography</ll-page-title>
   <view class="sec-desc">Every part in one page: headings with hand rules, a lead line, body text, a list, a quotation, inline code and the small sizes.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">The scale</view>
     <view class="ty-page">
       <ll-typography-h1>Notes on keeping a notebook</ll-typography-h1>

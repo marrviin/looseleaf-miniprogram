@@ -1,0 +1,57 @@
+<!-- ll-sidebar — the pad. Phone: the same pad in a Sheet. Wide window (or
+     `static`, the docs-demo escape hatch): gap + fixed/anchored Paper.
+     collapsible="none": a static Paper wherever you put it. -->
+<ll-sheet
+  wx:if="{{renderMobile && collapsibleCls !== 'none'}}"
+  side="{{sideCls}}"
+  open="{{activeOpen}}"
+  stock="{{stock}}"
+  rules="none"
+  binding="none"
+  seed="{{seed}}"
+  show-close-button="{{false}}"
+  aria-label="Sidebar"
+>
+  <view class="ll-sidebar__body {{clipAuto ? 'is-clipped' : ''}}">
+    <view wx:if="{{clipAuto}}" class="ll-sidebar__clip" style="{{clipStyle}}" aria-hidden="true" />
+    <slot />
+  </view>
+</ll-sheet>
+
+<view
+  wx:elif="{{collapsibleCls === 'none'}}"
+  class="ll-sidebar is-none ll-sidebar--none {{ll-class}}"
+  style="{{customStyle}};width:var(--sidebar-width,16rem);height:100%;"
+>
+  <ll-paper stock="{{stock}}" tilt="{{false}}" rules="none" seed="{{seed}}" shadow="{{paperShadow}}" custom-style="display:flex;flex-direction:column;width:100%;height:100%;box-sizing:border-box;{{clipAuto ? 'padding-top:88rpx;' : 'padding-top:16rpx;'}}">
+    <view wx:if="{{clipAuto}}" class="ll-sidebar__clip" style="{{clipStyle}}" aria-hidden="true" />
+    <slot />
+  </ll-paper>
+</view>
+
+<view
+  wx:else
+  class="ll-sidebar is-desktop is-{{variantCls}} is-side-{{sideCls}} {{collapsed ? 'is-collapsed' : ''}} {{ll-class}}"
+  style="{{customStyle}}"
+  data-state="{{activeOpen ? 'expanded' : 'collapsed'}}"
+  data-side="{{sideCls}}"
+  data-variant="{{variantCls}}"
+>
+  <view class="ll-sidebar__gap" />
+  <view class="ll-sidebar__container {{static ? 'is-static' : ''}}">
+    <ll-paper
+      stock="{{stock}}"
+      tilt="{{variantCls === 'floating'}}"
+      rules="none"
+      seed="{{seed}}"
+      shadow-css="{{dockedShadow}}"
+      fastener="{{clipAuto && !collapsed ? 'binder-clip' : ''}}"
+      shadow="{{paperShadow}}"
+      custom-style="display:flex;flex-direction:column;width:100%;height:100%;box-sizing:border-box;{{clipAuto && !collapsed ? 'padding-top:72rpx;' : ''}}"
+    >
+      <view class="ll-sidebar__body">
+        <slot />
+      </view>
+    </ll-paper>
+  </view>
+</view>

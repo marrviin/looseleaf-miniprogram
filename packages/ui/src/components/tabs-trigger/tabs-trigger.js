@@ -19,6 +19,7 @@ createComponent({
     llInkSelector: '.ll-tabs-trigger',
     checked: false,
     tabVariant: 'default',
+    tabBaseline: true,
     tabOrientation: 'horizontal',
   },
   relations: {
@@ -48,6 +49,7 @@ createComponent({
       this.__inkParams = () => ({
         variant: this.data.tabVariant,
         orientation: this.data.tabOrientation,
+        baseline: this.data.tabBaseline,
         disabled: this.data.disabled,
       });
     },
@@ -59,15 +61,17 @@ createComponent({
       this.__inkParams = () => ({
         variant: this.data.tabVariant,
         orientation: ctx.orientation,
+        baseline: this.data.tabBaseline,
         disabled: this.data.disabled,
       });
       this.setData({ checked, tabOrientation: ctx.orientation });
       setTimeout(() => this.__measureInk(), 60);
     },
-    /** ll-tabs-list syncs the drawing variant. */
+    /** ll-tabs-list syncs the drawing variant + baseline flag. */
     __onList(list) {
-      if (list.variant === this.data.tabVariant) return;
-      this.setData({ tabVariant: list.variant });
+      const baseline = list.baseline !== false;
+      if (list.variant === this.data.tabVariant && baseline === this.data.tabBaseline) return;
+      this.setData({ tabVariant: list.variant, tabBaseline: baseline });
       setTimeout(() => this.__measureInk(), 60);
     },
     onTap() {

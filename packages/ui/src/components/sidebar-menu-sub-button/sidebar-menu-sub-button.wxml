@@ -1,0 +1,12 @@
+<!-- ll-sidebar-menu-sub-button — the sub-row's link; active is bold on
+     the highlighter. -->
+<view
+  class="ll-sidebar-menu-sub-button is-{{sizeCls}} {{isActive ? 'is-active' : ''}} {{ll-class}}"
+  style="{{customStyle}}"
+  aria-role="link"
+  aria-label="{{ariaLabel}}"
+  aria-current="{{isActive ? 'page' : ''}}"
+  hover-class="is-swipe"
+>
+  <slot />
+</view>

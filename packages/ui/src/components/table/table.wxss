@@ -6,15 +6,33 @@
 /* @ll-import tokens */
 .ll-table-container {
   position: relative;
+  /* bleed via negative margins + flex stretch (align-self default): the
+     margin box fills the parent + 24px. calc(100%+24px) mis-resolves in a
+     WeChat flex cross axis and made the scroller wider than the stage. */
   margin: -12px;
-  width: calc(100% + 24px);
   max-width: none;
   padding: 12px;
+  /* bleed scroll container: wide tables pan inside the stage instead of
+     painting past its edge (upstream scrolls on narrow viewports).
+     scroll-view clips natively; don't set overflow here (it interferes). */
+  min-width: 0;
+}
+
+/* hide the native scroll bars (enhanced=false; show-scrollbar needs it) */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+  display: none;
 }
 
 .ll-table {
   display: table;
-  width: 100%;
+  /* drive the scroll: a width:100% display:table overflows the scroll-view's
+     inner wrapper invisibly (min-content > wrapper) and paints unclipped;
+     width:max-content makes the wrapper's scrollWidth real so scroll-x pans */
+  width: max-content;
+  min-width: 100%;
   border-collapse: separate;
   border-spacing: 0;
   caption-side: bottom;

@@ -2,10 +2,10 @@
      (#/components/native-select): the system picker in a hand-drawn frame.
      The system picker is a flat list, so the groups example folds flat. -->
 <view class="demo">
-  <view class="demo-title">Native select</view>
+  <ll-page-title underline="highlight" seed="native-select" custom-style="margin-bottom:16rpx;">Native select</ll-page-title>
   <view class="sec-desc">The platform's own picker in a hand-drawn frame: its popup, its mobile wheel. The chevron is drawn; an option with an empty value reads as a placeholder. Tapping a select opens the system picker.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Default</view>
@@ -16,7 +16,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Groups, sizes and states</view>
     <view class="sec-desc">The system picker is a flat list, so the pen and pencil groups fold flat (headers dropped — the drawn select keeps its groups). A small size, an invalid select (red pencil box and a bang before the chevron) and a disabled one (dashed, pale).</view>
     <view class="stack-12">
@@ -32,7 +32,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Shipping form</view>
     <view class="sec-desc">A real-world use: a native select next to inputs in a form. The region select follows the country and stays disabled until one is picked. Ship it clears the sheet.</view>
     <view class="stack-12">

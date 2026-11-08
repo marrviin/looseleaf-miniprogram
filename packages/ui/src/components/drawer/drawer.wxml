@@ -16,13 +16,15 @@
     aria-role="dialog"
     aria-label="{{ariaLabel}}"
   >
+    <!-- safe-area foot (sheet.js convention): every side except top keeps
+         the slot's content clear of the home indicator -->
     <ll-paper
       stock="{{stock}}"
       edge="{{paperEdge}}"
       tilt="{{false}}"
       rules="none"
       seed="{{seed}}"
-      custom-style="display:flex;flex-direction:column;width:100%;height:100%;box-sizing:border-box;"
+      custom-style="display:flex;flex-direction:column;width:100%;height:100%;box-sizing:border-box;{{direction !== 'top' ? 'padding-bottom:env(safe-area-inset-bottom);' : ''}}"
     >
       <ll-tape
         wx:if="{{tapeVisible}}"

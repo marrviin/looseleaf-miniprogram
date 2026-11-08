@@ -8,6 +8,7 @@
     "ll-ticket-description": "../ticket-description/ticket-description",
     "ll-ticket-number": "../ticket-number/ticket-number",
     "ll-tape": "../tape/tape",
-    "ll-button": "../button/button"
+    "ll-button": "../button/button",
+    "ll-page-title": "../page-title/page-title"
   }
 }

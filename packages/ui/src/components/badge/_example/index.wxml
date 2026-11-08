@@ -4,10 +4,10 @@
      page's own copy. Installation/Usage/API reference/Accessibility/Related
      are intentionally omitted. -->
 <view class="demo">
-  <view class="demo-title">Badge</view>
+  <ll-page-title underline="highlight" seed="badge" custom-style="margin-bottom:16rpx;">Badge</ll-page-title>
   <view class="sec-desc">A small mark that sits next to a word: a marker stamp, a highlighter swipe, a red-hatched warning, a circled word, and a count that can be written as tally marks. Same variants and asChild as shadcn.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Variants</view>
     <view class="sec-desc">A marker stamp, a highlighter swipe, a red-hatched pill, a circled word, and two that only show up when they are links.</view>
@@ -21,7 +21,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Sizes, icons and tones</view>

@@ -1,0 +1,8 @@
+<!-- ll-sidebar-menu-sub — the nested list; the ink layer draws the pencil
+     line down its start edge. -->
+<view class="ll-sidebar-menu-sub {{collapsed ? 'is-collapsed' : ''}} {{ll-class}}" style="{{customStyle}}">
+  <view class="ll-ink-layer" style="{{inkStyle}}" />
+  <view class="ll-sidebar-menu-sub__content">
+    <slot />
+  </view>
+</view>

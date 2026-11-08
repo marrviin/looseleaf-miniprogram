@@ -1,11 +1,11 @@
 <!-- ll-checkbox demo — mirrors the upstream docs page (#/components/checkbox).
-     Upstream examples 50/51 (description rows, choice cards) need the Field
-     family and land with the field port. -->
+     All docs-page examples are in: Default, States, Select all, In a form,
+     With a description (50), The whole card is the checkbox (51). -->
 <view class="demo">
-  <view class="demo-title">Checkbox</view>
+  <ll-page-title underline="highlight" seed="checkbox" custom-style="margin-bottom:16rpx;">Checkbox</ll-page-title>
   <view class="sec-desc">A hand-drawn box you tick. Checking fills it with solid marker and writes a heavy felt tick over it, stroke by stroke; a dash means partly checked. Radix behavior, keyboard and form support are untouched.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Default</view>
     <view class="sec-desc">Tick it and watch the felt tick get written. Clicking the label works too.</view>
@@ -15,7 +15,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">States and sizes</view>
@@ -68,5 +68,54 @@
         <text class="status">{{sent}}</text>
       </view>
     </view>
+
+    <view class="sub-h3">With a description</view>
+    <view class="sec-desc">A label and a line of help beside the box. Field keeps the box level with the first line of text however long the help runs, and a disabled Field dims the label and the help together with the disabled box.</view>
+    <ll-field-group custom-style="max-width:596rpx;gap:40rpx">
+      <ll-field orientation="horizontal">
+        <ll-checkbox checked="{{descTerms}}" data-key="descTerms" bind:change="onDescChange" aria-label="Accept terms and conditions" />
+        <ll-field-content>
+          <ll-field-label for="cb-terms">Accept terms and conditions</ll-field-label>
+          <ll-field-description>By clicking this checkbox, you agree to the terms and conditions.</ll-field-description>
+        </ll-field-content>
+      </ll-field>
+      <ll-field orientation="horizontal">
+        <ll-checkbox id="cb-policy" checked="{{descPolicy}}" data-key="descPolicy" bind:change="onDescChange" aria-label="Accept terms and conditions" />
+        <ll-field-content>
+          <ll-field-label for="cb-policy">Accept terms and conditions</ll-field-label>
+          <ll-field-description>You agree to our Terms of Service and Privacy Policy.</ll-field-description>
+        </ll-field-content>
+      </ll-field>
+      <ll-field orientation="horizontal">
+        <ll-checkbox disabled aria-label="Enable notifications" />
+        <ll-field-content>
+          <ll-field-label for="cb-locked" disabled>Enable notifications</ll-field-label>
+          <ll-field-description custom-style="color:#5a554e">Switched off by your administrator.</ll-field-description>
+        </ll-field-content>
+      </ll-field>
+    </ll-field-group>
+
+    <view class="sub-h3">The whole card is the checkbox</view>
+    <view class="sec-desc">The shadcn demo's bordered label. Wrap a Field in a FieldLabel and the pair becomes a hand-drawn card; when the box inside is ticked the card gets a highlighter wash and a felt outline. Tap anywhere on a card.</view>
+    <ll-field-group custom-style="max-width:596rpx;gap:32rpx">
+      <ll-field-label card checked="{{cardNotify}}" bind:tap="onCardNotify" custom-style="padding:32rpx">
+        <ll-field orientation="horizontal">
+          <ll-checkbox checked="{{cardNotify}}" aria-label="Enable notifications" />
+          <ll-field-content>
+            <ll-field-title>Enable notifications</ll-field-title>
+            <ll-field-description>You can enable or disable notifications at any time.</ll-field-description>
+          </ll-field-content>
+        </ll-field>
+      </ll-field-label>
+      <ll-field-label id="cb-card-digest" card checked="{{cardDigest}}" bind:tap="onCardDigest" custom-style="padding:32rpx">
+        <ll-field orientation="horizontal">
+          <ll-checkbox checked="{{cardDigest}}" aria-label="Weekly digest" />
+          <ll-field-content>
+            <ll-field-title>Weekly digest</ll-field-title>
+            <ll-field-description>One email on Friday with everything you missed.</ll-field-description>
+          </ll-field-content>
+        </ll-field>
+      </ll-field-label>
+    </ll-field-group>
   </view>
 </view>

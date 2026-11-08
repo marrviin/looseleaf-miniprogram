@@ -1,0 +1,17 @@
+<view class="tabbar">
+  <ll-tabs value="{{selected}}" bind:change="onTabsChange">
+    <!-- overflow:hidden kills the list's own overflow-x:auto scroller;
+         baseline=false drops the pencil baseline (bottom-nav look) -->
+    <ll-tabs-list baseline="{{false}}" custom-style="width:100%;overflow:hidden;">
+      <!-- padding:0 — the trigger ships with 4rpx bottom padding (to sit
+           ON the baseline); without the line, center it truly -->
+      <ll-tabs-trigger wx:for="{{tabs}}" wx:key="key" value="{{item.key}}" aria-label="{{item.text}}" custom-style="padding:0;">
+        <!-- fixed ink: a bound ink regenerates the icon's data URI on
+             every switch (draw + decode = the tap flicker); the demo
+             icons keep one ink and let the trigger text color move -->
+        <ll-icon name="{{item.icon}}" size="{{16}}" />
+        {{item.text}}
+      </ll-tabs-trigger>
+    </ll-tabs-list>
+  </ll-tabs>
+</view>

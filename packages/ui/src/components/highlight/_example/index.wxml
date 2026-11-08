@@ -1,9 +1,9 @@
 <!-- ll-highlight demo — mirrors the upstream docs page (#/components/highlight). -->
 <view class="demo">
-  <view class="demo-title">Highlight</view>
+  <ll-page-title underline="highlight" seed="highlight" custom-style="margin-bottom:16rpx;">Highlight</ll-page-title>
   <view class="sec-desc">A swipe of highlighter behind the words, drawn once per line at whatever width the text lands on.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Default</view>
     <view class="sec-desc">A swipe behind a phrase. Select the text, copy it: it is still just words.</view>
@@ -12,7 +12,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Tones and weights</view>

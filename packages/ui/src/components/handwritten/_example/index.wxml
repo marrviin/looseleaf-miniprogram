@@ -3,10 +3,10 @@
      strengths, and a sticky note. Code, links and forms stay outside —
      the miniprogram component writes plain text only. -->
 <view class="demo">
-  <view class="demo-title">Handwritten</view>
+  <ll-page-title underline="highlight" seed="handwritten" custom-style="margin-bottom:16rpx;">Handwritten</ll-page-title>
   <view class="sec-desc">Text that looks written, not typeset: every word sits a hair off the baseline and a touch lighter, by a seeded amount. The words stay real text.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Typeset, written</view>
     <view class="sec-desc">The same words, the same size — first typeset, then written.</view>
     <view class="stack-8">
@@ -15,7 +15,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Strength</view>
     <view class="sec-desc">0.5, 1 and 2 — a careful hand, the default, a hurried one in a bus in the rain.</view>
     <view class="stack-8 para">
@@ -25,7 +25,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">A sticky note</view>
     <view class="sec-desc">Handwritten inside a sticky note: the sheet turns a little, the words only jitter.</view>
     <ll-paper stock="sticky-yellow" tilt seed="sticky" custom-style="width:448rpx;padding:40rpx;box-sizing:border-box;">

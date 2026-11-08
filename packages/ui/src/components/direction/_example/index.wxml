@@ -1,9 +1,9 @@
 <!-- ll-direction demo — the provider stub (minimal port) -->
 <view class="demo">
-  <view class="demo-title">Direction</view>
+  <ll-page-title underline="highlight" seed="direction" custom-style="margin-bottom:16rpx;">Direction</ll-page-title>
   <view class="sec-desc">DirectionProvider hands a reading direction ('ltr' | 'rtl') to everything below it. The miniprogram has no DOM attribute cascade or ink context, so descendants opt in through the component relation and read the dir from their ancestor — the text mirror-folding the web build does is not portable. Kept as a provider stub.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Reading direction</view>
     <ll-direction dir="rtl" custom-style="width:100%;max-width:420px;">
       <ll-paper stock="index-card" seed="rtl" custom-style="margin:0;">

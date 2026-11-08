@@ -147,6 +147,15 @@ createComponent({
         this.__show();
       }
     },
+    /** Long-press also opens: the trigger usually holds an ll-button, whose
+        catchtap swallows the tap before it bubbles to the wrapper — the
+        longpress event still reaches us (WeChat suppresses the inner tap
+        after a long-press, so the button doesn't also fire). */
+    onTriggerLongPress() {
+      if (this.data.closing || this.data.open) return;
+      this.triggerEvent('change', { value: true });
+      this.__show();
+    },
     onOutsideTap() {
       this.triggerEvent('close');
       this.triggerEvent('change', { value: false });

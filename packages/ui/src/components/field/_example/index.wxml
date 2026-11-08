@@ -4,10 +4,10 @@
      (checked/value/invalid), and choice-card taps come back as `tap`
      events on ll-field-label. -->
 <view class="demo">
-  <view class="demo-title">Field</view>
+  <ll-page-title underline="highlight" seed="field" custom-style="margin-bottom:16rpx;">Field</ll-page-title>
   <view class="sec-desc">The words around a control: a label, a help line, an error, a legend over a set of them. Nothing is drawn but the controls; Field is layout and words.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Default</view>
     <view class="sec-desc">A set of labeled controls: a legend in the script font, fields that stack label, control and help, and the gaps between them. Nothing is drawn but the controls; Field is layout and words.</view>
@@ -32,7 +32,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Orientations</view>

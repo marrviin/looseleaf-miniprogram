@@ -2,8 +2,19 @@ node_modules/
 dist/
 .DS_Store
 *.log
+# staged into packages/ui by `npm run build` (npm packs them automatically)
+packages/ui/README.md
+packages/ui/README.en.md
+packages/ui/LICENSE
+# development-process docs, kept out of the repo
+PLAN.md
+docs/PORT-TODO.md
+docs/component-guide.md
 packages/example/pages/*
 !packages/example/pages/.gitkeep
+packages/example/components/
+packages/example/common/
+packages/example/pkg-*/
 packages/example/miniprogram_npm/
 packages/example/project.config.json
 .content-forge/

@@ -9,6 +9,7 @@
     "ll-message-content": "looseleaf-miniprogram/components/message-content/message-content",
     "ll-message-header": "looseleaf-miniprogram/components/message-header/message-header",
     "ll-message-footer": "looseleaf-miniprogram/components/message-footer/message-footer",
-    "ll-mascot": "looseleaf-miniprogram/components/mascot/mascot"
+    "ll-mascot": "looseleaf-miniprogram/components/mascot/mascot",
+    "ll-page-title": "../page-title/page-title"
   }
 }

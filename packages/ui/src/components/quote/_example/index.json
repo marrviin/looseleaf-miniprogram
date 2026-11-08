@@ -2,6 +2,7 @@
   "usingComponents": {
     "ll-quote": "../quote/quote",
     "ll-quote-text": "../quote-text/quote-text",
-    "ll-quote-attribution": "../quote-attribution/quote-attribution"
+    "ll-quote-attribution": "../quote-attribution/quote-attribution",
+    "ll-page-title": "../page-title/page-title"
   }
 }

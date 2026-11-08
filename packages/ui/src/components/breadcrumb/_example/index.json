@@ -10,6 +10,7 @@
     "ll-breadcrumb-ellipsis": "../breadcrumb-ellipsis/breadcrumb-ellipsis",
     "ll-dropdown-menu": "../dropdown-menu/dropdown-menu",
     "ll-dropdown-menu-item": "../dropdown-menu-item/dropdown-menu-item",
-    "ll-icon": "../icon/icon"
+    "ll-icon": "../icon/icon",
+    "ll-page-title": "../page-title/page-title"
   }
 }

@@ -2,10 +2,10 @@
      The demo portraits are pre-rasterized PNGs (packages/example/assets/) —
      WeChat <image> cannot render SVG data URIs like the upstream docs. -->
 <view class="demo">
-  <view class="demo-title">Avatar</view>
+  <ll-page-title underline="highlight" seed="avatar" custom-style="margin-bottom:16rpx;">Avatar</ll-page-title>
   <view class="sec-desc">A face, circled in felt tip. The picture is circled by a hand-drawn loop; without one the initials sit on a disc of marker in a stationery color chosen from the name. A status dot goes on the corner, and a group overlaps its faces and ends in a sketched "+3".</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Photo and initials</view>
     <view class="sec-desc">A picture circled by hand, and what shows while there is none: initials on a disc of marker whose color is chosen from the name. The four sizes are `sm`, `default`, `lg` and `xl`; `AvatarBadge` puts a status dot on the corner.</view>
@@ -31,7 +31,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Color from the name</view>

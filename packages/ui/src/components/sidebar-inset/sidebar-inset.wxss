@@ -1,0 +1,13 @@
+/* ll-sidebar-inset — relative flex-1 column. Upstream wears the paper stock
+   (ll-paper ll-stock-paper ll-tooth-cold); the sheet look in inset variant
+   is a desktop nicety — here the page carries the paper background and the
+   inset variant's desk margins follow the pad's state. */
+.ll-sidebar-inset {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  background-color: var(--ll-paper, #f8f5ee);
+}

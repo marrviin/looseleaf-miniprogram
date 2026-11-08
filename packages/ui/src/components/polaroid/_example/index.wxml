@@ -1,10 +1,10 @@
 <!-- ll-polaroid demo — mirrors the upstream docs page
      (#/components/polaroid). -->
 <view class="demo">
-  <view class="demo-title">Polaroid</view>
+  <ll-page-title underline="highlight" seed="polaroid" custom-style="margin-bottom:16rpx;">Polaroid</ll-page-title>
   <view class="sec-desc">An instant photograph: a white frame with the thick foot, a recessed square window and a caption in script. Put a real image in the window, or let it draw a little scene in marker and felt tip. Tape it, pin it, clip it, pile it up.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">A polaroid</view>
     <view class="sec-desc">The frame, the recessed window, the caption in the foot. Here the window holds a drawn scene; a real photograph goes in the same place.</view>
@@ -16,7 +16,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Four scenes, four ways to hold it up</view>
@@ -41,7 +41,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Developing</view>
     <view class="sec-desc">`develop` starts the picture milky and clears it. Press the button and it happens again; with reduced motion the picture is just there.</view>
     <view class="stack" style="align-items:center;">
@@ -53,7 +53,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">A photo wall</view>
     <view class="sec-desc">A real composition: photographs at different tilts, overlapping a little. The window takes anything: here every picture is a drawn scene, in an app it would be an img. (Upstream sticks a Sticker on the third one — ll-sticker lands in a later batch.)</view>
     <view class="wall">

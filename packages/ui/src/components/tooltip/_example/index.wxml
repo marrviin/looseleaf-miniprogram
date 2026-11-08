@@ -4,10 +4,10 @@
      tooltips, so nothing is lost). Demo opens notes via the controlled
      `open`, one at a time. -->
 <view class="demo">
-  <view class="demo-title">Tooltip</view>
+  <ll-page-title underline="highlight" seed="tooltip" custom-style="margin-bottom:16rpx;">Tooltip</ll-page-title>
   <view class="sec-desc">A sticky note stuck next to a control, with a felt-tip arrow pointing at it. It names an icon button or adds a hint, opens on hover and keyboard focus with a shared delay, and never hides anything a person needs to be able to read. Touch: press and hold the control to open its note; the next tap closes it (the provider's shared delay has no touch equivalent).</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Demo</view>
     <view class="sec-desc">Official `tooltip-demo`: a Hover button with the note "Add to library". The note is a sticky with a felt-tip arrow, opened by hover and keyboard focus. Radix needs a `TooltipProvider` above every tooltip (shadcn's docs site supplies it at the root), so the example wraps its own.</view>
@@ -19,7 +19,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Icon toolbar</view>

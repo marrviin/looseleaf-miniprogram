@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "ll-lettering": "../lettering/lettering",
+    "ll-paper": "../paper/paper",
+    "ll-sticker": "../sticker/sticker",
+    "ll-page-title": "../page-title/page-title"
+  }
+}

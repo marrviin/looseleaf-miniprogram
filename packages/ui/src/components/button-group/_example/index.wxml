@@ -7,10 +7,10 @@
      mail-check → mail, calendar-plus → calendar, list-filter → filter,
      volume-off → mic. Installation/Usage/API/A11y/Related omitted. -->
 <view class="demo">
-  <view class="demo-title">Button Group</view>
+  <ll-page-title underline="highlight" seed="button-group" custom-style="margin-bottom:16rpx;">Button Group</ll-page-title>
   <view class="sec-desc">Buttons, fields and printed cells joined into one row (or column) that share their seams: the edge two neighbors have in common is drawn once, by the one before, or by a pencil separator you put between them.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">A row of buttons</view>
@@ -87,6 +87,7 @@
 
     <view class="sub-h3">A mail toolbar (groups in a group)</view>
     <view class="sec-desc">The shadcn demo: a ButtonGroup of ButtonGroups. A back button, two text buttons, and a Snooze button joined to a menu trigger whose slip has groups, a destructive row and a sub-menu with a radio choice. Groups put a gap between them; each keeps its own seams.</view>
+    <scroll-view scroll-x class="row-scroll" show-scrollbar="{{false}}">
     <view class="center">
       <ll-button-group aria-label="Message actions">
         <ll-button-group>
@@ -127,6 +128,7 @@
         </ll-button-group>
       </ll-button-group>
     </view>
+    </scroll-view>
 
     <view class="sub-h3">Nested: pages and arrows</view>
     <view class="sec-desc">Two groups inside one: five numbered buttons and a previous/next pair. The page you are on is a highlighter button (`aria-current="page"`), the arrows stop at the ends, and the status line says where you are.</view>
@@ -145,6 +147,7 @@
 
     <view class="sub-h3">Sizes</view>
     <view class="sec-desc">A group takes the size of its buttons: give every child the same `size` and the same height, and use the matching square size (`icon-sm`, `icon`, `icon-lg`) for the icon button at the end. Extra small is ours.</view>
+    <scroll-view scroll-x class="row-scroll" show-scrollbar="{{false}}">
     <view class="stack-col-start">
       <ll-button-group aria-label="Extra small">
         <ll-button variant="outline" size="xs">Extra small</ll-button>
@@ -171,6 +174,7 @@
         <ll-button variant="outline" size="icon-lg" aria-label="Add"><ll-icon name="plus" size="{{20}}" /></ll-button>
       </ll-button-group>
     </view>
+    </scroll-view>
 
     <view class="sub-h3">A button with a menu (Follow)</view>
     <view class="sec-desc">A split button the way social apps use it: the main action toggles (Follow / Following, with `aria-pressed`) and the chevron opens every other thing you can do with the conversation. The menu's last row is the destructive one.</view>

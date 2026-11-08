@@ -1,0 +1,4 @@
+<!-- ll-sidebar-menu-badge — the blue felt count in the margin. -->
+<view wx:if="{{!collapsed}}" class="ll-sidebar-menu-badge {{ll-class}}" style="{{customStyle}}">
+  <slot />
+</view>

@@ -2,6 +2,7 @@
   "component": true,
   "usingComponents": {
     "ll-tape": "../tape/tape",
-    "ll-paper": "../paper/paper"
+    "ll-paper": "../paper/paper",
+    "ll-page-title": "../page-title/page-title"
   }
 }

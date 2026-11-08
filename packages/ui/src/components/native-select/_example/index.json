@@ -4,6 +4,7 @@
     "ll-native-select": "../native-select/native-select",
     "ll-label": "../label/label",
     "ll-input": "../input/input",
-    "ll-button": "../button/button"
+    "ll-button": "../button/button",
+    "ll-page-title": "../page-title/page-title"
   }
 }

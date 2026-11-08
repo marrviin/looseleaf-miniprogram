@@ -3,10 +3,10 @@
      Arabic, rtl, Eastern numerals) has no i18n runtime on this side and is
      not ported. Fixed dates everywhere, like the upstream pages. -->
 <view class="demo">
-  <view class="demo-title">Calendar</view>
+  <ll-page-title underline="highlight" seed="calendar" custom-style="margin-bottom:16rpx;">Calendar</ll-page-title>
   <view class="sec-desc">A ruled month grid: the chosen day circled in marker (four hands, by date), today underlined in blue felt, disabled days hatched out, range weeks swiped in one highlighter band per row with chisel ends. Dates cross the boundary as YYYY-MM-DD strings.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Planner page</view>
@@ -29,7 +29,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">A range across two months</view>
     <view class="sec-desc">Pick a first and a last day and each week gets one highlighter swipe with chisel ends; week numbers go in the margin behind a red pencil rule. The swipe re-ends itself as you move either end.</view>
     <view class="center-stage">
@@ -50,7 +50,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Dropdowns and limits</view>
     <view class="sec-desc">Month and year are picker fields in pencil boxes, so jumping to a birthday takes two taps. Weekends and the past are hatched out and cannot be chosen; the arrows stop at the ends of the range.</view>
     <view class="center-stage">
@@ -72,7 +72,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Book a call</view>
     <view class="sec-desc">A calendar on a card with time slots beside it: the chosen day drives the slots, the chosen slot drives the button. Weekends are closed, so they are hatched.</view>
     <view class="center-stage">

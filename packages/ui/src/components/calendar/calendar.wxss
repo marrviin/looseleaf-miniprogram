@@ -1,6 +1,17 @@
 .ll-cal {
   display: block;
   min-width: 0;
+  /* phone adaptation: the cell grid is a fixed 80rpx pitch (a drawn, ruled
+     sheet — the cells can't shrink), so in narrow slips (sheet/drawer/
+     date-picker on small phones) let the whole month scroll sideways
+     instead of clipping */
+  overflow-x: auto;
+  /* overflow-x:auto forces overflow-y to auto too, which cut the sheet's
+     binder clip (it stands ~40px above the sheet) in half; the padding
+     gives the overhang room inside the scroll box, the negative margin
+     keeps the layout position */
+  padding-top: 44px;
+  margin-top: -44px;
   --ll-cal-cell: 80rpx; /* [--cell:2.5rem] */
   --ll-cal-wn: 64rpx; /* [--wn:2rem] */
 }

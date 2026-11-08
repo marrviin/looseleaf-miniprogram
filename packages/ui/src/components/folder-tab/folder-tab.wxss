@@ -4,6 +4,11 @@
   position: relative;
   box-sizing: border-box;
   height: 36px;
+  /* upstream h-9 items-center justify-center px-6 pt-1 — the label centers
+     in the tab box, not top-anchored text (which left it hugging low) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   /* upstream px-6 (24px) — tightened to 16px so four tabs fit a 375px screen */
   padding: 4px 16px 0;
   flex-shrink: 0;

@@ -2,6 +2,7 @@
   "component": true,
   "usingComponents": {
     "ll-sketchpad": "looseleaf-miniprogram/components/sketchpad/sketchpad",
-    "ll-button": "looseleaf-miniprogram/components/button/button"
+    "ll-button": "looseleaf-miniprogram/components/button/button",
+    "ll-page-title": "../page-title/page-title"
   }
 }

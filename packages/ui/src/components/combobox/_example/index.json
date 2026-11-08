@@ -28,6 +28,7 @@
     "ll-drawer": "../drawer/drawer",
     "ll-drawer-header": "../drawer-header/drawer-header",
     "ll-drawer-title": "../drawer-title/drawer-title",
-    "ll-drawer-description": "../drawer-description/drawer-description"
+    "ll-drawer-description": "../drawer-description/drawer-description",
+    "ll-page-title": "../page-title/page-title"
   }
 }

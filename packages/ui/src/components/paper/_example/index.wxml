@@ -2,10 +2,10 @@
      renders Paper everywhere; its full docs page lands with the P3 sheet
      work). Stocks (cut edges, pure CSS), drawn edges, tape, fasteners, tilt. -->
 <view class="demo">
-  <view class="demo-title">Paper</view>
+  <ll-page-title underline="highlight" seed="paper" custom-style="margin-bottom:16rpx;">Paper</ll-page-title>
   <view class="sec-desc">The sheet every overlay is drawn on: any stock, any edge, held down by tape or a fastener, turned by a seeded tilt. Cut edges are pure CSS upstream; torn, deckle, crimp, zig and perf edges are drawn ink.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Stocks</view>
     <view class="sec-desc">Paper, card, slip, index-card, kraft, photo — and the sticky family, whose gum strip is the darker veil at the top.</view>
     <view class="grid2">
@@ -20,7 +20,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Edges</view>
     <view class="sec-desc">Pad torn on top, a sheet torn all around, parchment's deckle, a receipt's zig, a napkin's crimp.</view>
     <view class="grid2">
@@ -31,7 +31,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Tape and fasteners</view>
     <view class="sec-desc">Masking, washi and kraft tape; clip, pin, staple and binder clip.</view>
     <view class="grid2">
@@ -46,7 +46,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Tilt</view>
     <view class="sec-desc">true turns by the stock's seeded angle; a number turns by that many degrees; false lays it flat. The text never turns.</view>
     <view class="grid2">

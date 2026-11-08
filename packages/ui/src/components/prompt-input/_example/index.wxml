@@ -4,10 +4,10 @@
      The 04 attachments example stands in for the Attachment chips (that
      component lands in D11) with plain chip views. -->
 <view class="demo">
-  <view class="demo-title">Prompt input</view>
+  <ll-page-title underline="highlight" seed="prompt-input" custom-style="margin-bottom:16rpx;">Prompt input</ll-page-title>
   <view class="sec-desc">The composer: a napkin sheet with a drawn writing line, the text in blue script, a send button on the right that flies the paper plane and turns into a stop button while a reply streams.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">The composer</view>
@@ -25,7 +25,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">While a reply streams</view>
     <view class="sec-desc">With status streaming the send button is a stop button and sending waits; you can keep typing the next message. lockWhileStreaming makes the text read-only instead.</view>
     <view class="stack-12">
@@ -37,7 +37,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Slash commands and @mentions</view>
     <view class="sec-desc">The composer knows no data. triggers says which characters open the slip, and you hand it the choices as suggestions; it filters by the word being typed and replaces it on tap. The list opens on load here because the text starts on "Thanks @".</view>
     <view class="stack-12">
@@ -55,7 +55,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">With attachments</view>
     <view class="sec-desc">Chips in the row above the text, a file button in the tools, a send that also works with no words when allowEmpty is set. Pick a file to add a chip; the remove button takes it away again.</view>
     <view class="stack-12">

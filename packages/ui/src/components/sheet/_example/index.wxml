@@ -2,17 +2,17 @@
      The page is a Paper flush to its edge, bound along the edge facing the
      middle; side sheets are physical (side=right slides from the right). -->
 <view class="demo">
-  <view class="demo-title">Sheet</view>
+  <ll-page-title underline="highlight" seed="sheet" custom-style="margin-bottom:16rpx;">Sheet</ll-page-title>
   <view class="sec-desc">A notebook page that slides in from the edge of the screen. It is bound along the edge that faces the middle: spiral wire through punched holes, three binder holes, a perforated tear line, or torn out of a pad. Good for settings, filters, carts and mobile navigation.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Notebook settings</view>
     <view class="sec-desc">The usage example: a settings page from the right, spiral-bound along its left edge, with the footer pushed to the bottom.</view>
     <view class="center-row"><ll-button variant="outline" bind:tap="openSh" data-k="shSettings">Open settings</ll-button></view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Four sides</view>

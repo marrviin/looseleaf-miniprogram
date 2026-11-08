@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "ll-switch": "../switch/switch",
-    "ll-button": "../button/button"
+    "ll-button": "../button/button",
+    "ll-page-title": "../page-title/page-title"
   }
 }

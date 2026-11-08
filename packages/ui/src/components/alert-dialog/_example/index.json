@@ -10,6 +10,7 @@
     "ll-alert-dialog-action": "../alert-dialog-action/alert-dialog-action",
     "ll-alert-dialog-cancel": "../alert-dialog-cancel/alert-dialog-cancel",
     "ll-button": "../button/button",
-    "ll-icon": "../icon/icon"
+    "ll-icon": "../icon/icon",
+    "ll-page-title": "../page-title/page-title"
   }
 }

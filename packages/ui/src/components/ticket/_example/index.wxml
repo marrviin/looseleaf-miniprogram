@@ -2,10 +2,10 @@
      (#/components/ticket). The "Taped to the page" example uses the
      standalone ll-tape (ported) — angle via custom-style rotate. -->
 <view class="demo">
-  <view class="demo-title">Ticket</view>
+  <ll-page-title underline="highlight" seed="ticket" custom-style="margin-bottom:16rpx;">Ticket</ll-page-title>
   <view class="sec-desc">A printed ticket: concave corners, a bite out of both edges where the stub tears off, and a row of holes along the tear. The whole silhouette is drawn, holes and all.</view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Admit one</view>
     <view class="sec-desc">Kraft stock, the stub on the end, the serial in the red-ink mix.</view>
@@ -26,7 +26,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sec-h2">Examples</view>
     <view class="sub-h3">Stocks, stubs, used</view>
     <view class="sec-desc">Kraft, cream, cinema yellow and tram-ticket pink. The stub can be at the start, wider, or not there; a punched hole says it has been used.</view>
@@ -71,7 +71,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Taped to the page</view>
     <view class="sec-desc">A ticket is an ordinary positioned box: tape and stamps go on it with plain styles. Its shadow follows the notches and the holes.</view>
     <view class="row">
@@ -90,7 +90,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Your tickets</view>
     <view class="sec-desc">A real list: tickets with an action, a status, and a punched hole once used. The state lives in your app; the ticket only shows it.</view>
     <view class="stack stack--wide">

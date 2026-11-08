@@ -3,17 +3,17 @@
      hidden (upstream max-sm rules) — the examples below still pass the
      desktop props faithfully. -->
 <view class="demo">
-  <view class="demo-title">Dialog</view>
+  <ll-page-title underline="highlight" seed="dialog" custom-style="margin-bottom:16rpx;">Dialog</ll-page-title>
   <view class="sec-desc">A modal window that is a sheet of paper dropped on the desk: it lands with a small tilt that settles, the page behind goes dim under a lamp, and the close button is a doodled x. Tape it, pin it, tear its edge; on a phone it becomes a sheet at the bottom of the screen.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Preview</view>
     <view class="sub-h3">Edit profile</view>
     <view class="sec-desc">The classic: a form in a dialog. Washi tape across the top corners, the doodled x, and a sheet that drops onto the dimmed page.</view>
     <view class="center-row"><ll-button variant="outline" bind:tap="openDlg" data-k="dlgEdit">Edit profile</ll-button></view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Paper, edges and props</view>

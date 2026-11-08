@@ -1,0 +1,10 @@
+<!-- ll-sidebar-content — the scrolling middle (overflow-auto). -->
+<scroll-view
+  class="ll-sidebar-content {{collapsed ? 'is-collapsed' : ''}} {{ll-class}}"
+  style="{{customStyle}}"
+  scroll-y="{{!collapsed}}"
+  enhanced
+  show-scrollbar="{{false}}"
+>
+  <slot />
+</scroll-view>

@@ -10,6 +10,7 @@
     "ll-navigation-menu-indicator": "../navigation-menu-indicator/navigation-menu-indicator",
     "ll-icon": "../icon/icon",
     "ll-paper": "../paper/paper",
-    "ll-button": "../button/button"
+    "ll-button": "../button/button",
+    "ll-page-title": "../page-title/page-title"
   }
 }

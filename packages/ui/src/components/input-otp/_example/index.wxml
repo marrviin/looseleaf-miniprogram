@@ -3,10 +3,10 @@
      one real input over the row. The separator groups are the
      `separatorAfter` prop (upstream InputOTPSeparator children). -->
 <view class="demo">
-  <view class="demo-title">Input OTP</view>
+  <ll-page-title underline="highlight" seed="input-otp" custom-style="margin-bottom:16rpx;">Input OTP</ll-page-title>
   <view class="sec-desc">A one-time code as a row of separate hand-drawn boxes. The box that takes the next character wears the blue ring and a blinking pencil stroke; typed characters are written in script; a wrong code turns the boxes red. Underneath is one real input, so paste and the system keyboard just work.</view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sec-h2">Examples</view>
 
     <view class="sub-h3">Six digits</view>
@@ -18,7 +18,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Letters and digits, a wrong code</view>
     <view class="sec-desc">pattern lets letters in (anything else is refused, also when pasted). The right code here is AB12; the box starts on AB13, so you can see what a wrong code looks like: red boxes and a message you write. Change the last character to 2 and it clears.</view>
     <view class="stack-12">
@@ -28,7 +28,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--desk">
     <view class="sub-h3">Verify your email</view>
     <view class="sec-desc">The whole flow: the last digit completes the code (onComplete), which checks it; a wrong one turns the boxes red and offers a fresh start; 246810 is the right code. Resend is a link-style Button.</view>
     <view class="center-stage">
@@ -49,7 +49,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Three and three</view>
     <view class="sec-desc">shadcn's `input-otp-demo`: six digits in two groups with the separator between them. Type, paste, or use Backspace; the boxes are drawn, the input behind them is one real field.</view>
     <view class="center-stage">
@@ -57,7 +57,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Digits and letters</view>
     <view class="sec-desc">shadcn's `input-otp-pattern`: `pattern` takes a regular expression, and anything the pattern refuses is dropped, pasted or typed.</view>
     <view class="center-stage">
@@ -65,7 +65,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Two-two-two</view>
     <view class="sec-desc">shadcn's `input-otp-separator`: three groups of two with a separator between each pair. The dash is decoration only; the screen reader hears one six-digit field.</view>
     <view class="center-stage">
@@ -73,7 +73,7 @@
     </view>
   </view>
 
-  <view class="sec">
+  <view class="sec sec--grid">
     <view class="sub-h3">Controlled</view>
     <view class="sec-desc">shadcn's `input-otp-controlled`: `value` and `onChange` hold the code in your state, and a line under the boxes echoes it back. The line is a live region, so it is read out as you type.</view>
     <view class="stack-12">
