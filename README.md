@@ -18,11 +18,7 @@
   <img src="docs/img/hero.jpg" alt="组件目录 / Button / Polaroid / Highlight 实机截图" width="830">
 </p>
 <p align="center">
-  <img src="docs/img/ticket.jpg" width="300">&nbsp;
-  <img src="docs/img/sticky-note.jpg" width="300">
-  <br>
-  <img src="docs/img/handwritten.jpg" width="300">&nbsp;
-  <img src="docs/img/flip-card.jpg" width="300">
+  <img src="docs/img/gallery.jpg" alt="Ticket / Sticky note / Handwritten / Flip card 实机截图" width="830">
 </p>
 
 ## 组件一览
