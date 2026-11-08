@@ -18,11 +18,7 @@ All shots are real simulator screenshots from `packages/example`.
   <img src="docs/img/hero.jpg" alt="Component catalog / Button / Polaroid / Highlight, real simulator screenshots" width="830">
 </p>
 <p align="center">
-  <img src="docs/img/ticket.jpg" width="300">&nbsp;
-  <img src="docs/img/sticky-note.jpg" width="300">
-  <br>
-  <img src="docs/img/handwritten.jpg" width="300">&nbsp;
-  <img src="docs/img/flip-card.jpg" width="300">
+  <img src="docs/img/gallery.jpg" alt="Ticket / Sticky note / Handwritten / Flip card, real simulator screenshots" width="830">
 </p>
 
 ## Components
