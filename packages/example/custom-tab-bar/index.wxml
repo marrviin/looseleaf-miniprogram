@@ -1,5 +1,5 @@
 <view class="tabbar">
-  <ll-tabs value="{{selected}}" bind:change="onTabsChange">
+  <ll-tabs class="bar-tabs" value="{{selected}}" bind:change="onTabsChange">
     <!-- overflow:hidden kills the list's own overflow-x:auto scroller;
          baseline=false drops the pencil baseline (bottom-nav look) -->
     <ll-tabs-list baseline="{{false}}" custom-style="width:100%;overflow:hidden;">
