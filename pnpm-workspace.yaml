@@ -2,3 +2,7 @@ packages:
   - packages/*
 patchedDependencies:
   miniprogram-simulate@1.6.2: patches/miniprogram-simulate@1.6.2.patch
+# core-js@2 (via miniprogram-simulate's dep chain) has a postinstall that only
+# prints an ad — explicitly ignored so CI's ERR_PNPM_IGNORED_BUILDS passes.
+ignoredBuiltDependencies:
+  - core-js
