@@ -46,7 +46,18 @@
         "pages/switch/index",
         "pages/textarea/index",
         "pages/toggle/index",
-        "pages/toggle-group/index"
+        "pages/toggle-group/index",
+        "pages/accordion-stress/index",
+        "pages/button-stress/index",
+        "pages/card-stress/index",
+        "pages/checkbox-stress/index",
+        "pages/field-stress/index",
+        "pages/input-stress/index",
+        "pages/label-stress/index",
+        "pages/rating-stress/index",
+        "pages/stepper-stress/index",
+        "pages/switch-stress/index",
+        "pages/textarea-stress/index"
       ]
     },
     {
@@ -67,7 +78,15 @@
         "pages/skeleton/index",
         "pages/spinner/index",
         "pages/toast/index",
-        "pages/tooltip/index"
+        "pages/tooltip/index",
+        "pages/alert-dialog-stress/index",
+        "pages/dialog-stress/index",
+        "pages/drawer-stress/index",
+        "pages/dropdown-menu-stress/index",
+        "pages/empty-stress/index",
+        "pages/popover-stress/index",
+        "pages/sheet-stress/index",
+        "pages/tooltip-stress/index"
       ]
     },
     {
@@ -98,7 +117,12 @@
         "pages/tabs/index",
         "pages/typewriter/index",
         "pages/typing-indicator/index",
-        "pages/typography-h1/index"
+        "pages/typography-h1/index",
+        "pages/badge-stress/index",
+        "pages/breadcrumb-stress/index",
+        "pages/item-stress/index",
+        "pages/pagination-stress/index",
+        "pages/tabs-stress/index"
       ]
     },
     {
@@ -133,7 +157,8 @@
         "pages/tag/index",
         "pages/tape/index",
         "pages/ticket/index",
-        "pages/underline/index"
+        "pages/underline/index",
+        "pages/tag-stress/index"
       ]
     },
     {

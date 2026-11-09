@@ -43,6 +43,31 @@ export default [
     },
   },
   {
+    // jest suites: ESM imports + jest globals; unit tests may use require for
+    // generated fixtures, simulate helpers are CJS by design.
+    files: ['packages/ui/tests/**/*.js', 'packages/ui/tests/**/*.cjs'],
+    languageOptions: {
+      sourceType: 'module',
+      globals: {
+        describe: 'readonly',
+        test: 'readonly',
+        it: 'readonly',
+        expect: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
+        beforeAll: 'readonly',
+        afterAll: 'readonly',
+        jest: 'readonly',
+        require: 'readonly',
+        global: 'readonly',
+        module: 'writable',
+        __dirname: 'readonly',
+        document: 'readonly',
+        window: 'readonly',
+      },
+    },
+  },
+  {
     // Vendored esbuild bundle of the upstream ink engine — it runs through a
     // browser fallback chain (window/reportError guarded at runtime).
     files: ['**/ink-engine.js'],

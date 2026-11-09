@@ -24,3 +24,6 @@ packages/example/project.config.json
 public/
 # 写作草稿(推广文章),不入库
 articles/
+
+# 测试产物(automator 截图 / visual diff),不入库
+test-artifacts/

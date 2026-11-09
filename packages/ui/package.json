@@ -15,7 +15,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "node ../../script/build.mjs"
+    "build": "node ../../script/build.mjs",
+    "test": "jest"
   },
   "repository": {
     "type": "git",

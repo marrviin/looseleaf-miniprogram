@@ -1,0 +1,50 @@
+diff --git a/src/index.js b/src/index.js
+index 666b58dfa211aa86e528bb6340b2358388bcbf01..680c3e305d32fdcf757c892ebe04927bd5fc82d9 100644
+--- a/src/index.js
++++ b/src/index.js
+@@ -33,7 +33,10 @@ global.Component = options => {
+     Object.keys(definition.relations).forEach(key => {
+       const value = definition.relations[key]
+       const componentPath = _.isAbsolute(key) ? key : path.join(path.dirname(component.path), key)
+-      const id = pathToIdMap[componentPath]
++      // [ll-patch] fall back to the cross-load registry so relations to
++      // components loaded in an earlier load() call also resolve
++      const id = pathToIdMap[componentPath] || pathToIdMap[path.resolve(componentPath)] ||
++        (window.__LL_COMPONENT_PATH_IDS__ || {})[path.resolve(componentPath)]
+       if (id) {
+         // 将涉及到的自定义组件路径转成 id
+         value.target = id
+@@ -44,6 +47,9 @@ global.Component = options => {
+   }
+ 
+   jComponent.register(definition)
++  // [ll-patch] record the manager id for cross-load reuse (see register())
++  window.__LL_COMPONENT_PATH_IDS__ = window.__LL_COMPONENT_PATH_IDS__ || {}
++  window.__LL_COMPONENT_PATH_IDS__[require('path').resolve(component.path)] = component.id
+ }
+ 
+ /**
+@@ -90,6 +96,23 @@ function register(componentPath, tagName, cache, hasRegisterCache) {
+   if (hasRegisterCache[componentPath]) return hasRegisterCache[componentPath]
+   hasRegisterCache[componentPath] = id
+ 
++  // [ll-patch] Cross-load reuse registry. Under jest, a component module that
++  // was already required will NOT re-execute on re-require (jest keeps its own
++  // module registry; the `delete require.cache` in utils.runJs is a no-op), so
++  // re-registering the same component path would mint a fresh id whose
++  // Component() never runs — the manager is never cached and the parent's
++  // template compile dies with "component <tag> not found". Reuse the first
++  // registration's id for the same resolved path within the jsdom window
++  // (per test file), which also lets relations resolve across load() calls
++  // (see the pathToIdMap fallback in global.Component).
++  const registry = (window.__LL_COMPONENT_PATH_IDS__ =
++    window.__LL_COMPONENT_PATH_IDS__ || {})
++  const registryKey = require('path').resolve(componentPath)
++  if (registry[registryKey]) {
++    hasRegisterCache[registryKey] = registry[registryKey]
++    return registry[registryKey]
++  }
++
+   const component = {
+     id,
+     path: componentPath,

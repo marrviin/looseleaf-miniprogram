@@ -1,0 +1,46 @@
+name: Nightly e2e
+
+# L3/L4 — DevTools automation smoke + visual regression over the example app.
+# Needs the WeChat DevTools GUI, so this runs on a macos runner (or locally).
+# Screenshot baselines are per-device; --update them deliberately after
+# intended visual changes, from the same machine/DevTools version.
+
+on:
+  schedule:
+    - cron: '17 21 * * *' # daily 05:17 Asia/Shanghai
+  workflow_dispatch:
+
+jobs:
+  automator:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        device: [iphone15pro] # add iphone-se / ipad once baselines exist
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      # Install DevTools via cask; skip (don't fail) when unavailable — the
+      # runner image changes over time and the cask may lag.
+      - name: Install WeChat DevTools
+        continue-on-error: true
+        run: brew install --cask wechatwebdevtools
+      - name: Automation smoke + screenshots
+        id: smoke
+        continue-on-error: false
+        env:
+          WECHAT_DEVTOOLS_CLI: /Applications/wechatwebdevtools.app/Contents/MacOS/cli
+        run: node script/automator-smoke.mjs --device ${{ matrix.device }}
+      - name: Visual diff vs baselines
+        run: node script/visual-diff.mjs --device ${{ matrix.device }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: shots-${{ matrix.device }}
+          path: test-artifacts/
+          retention-days: 14

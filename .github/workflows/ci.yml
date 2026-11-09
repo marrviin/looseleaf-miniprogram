@@ -18,6 +18,11 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm build
-      # TODO(M2): miniprogram-automator e2e against packages/example
+      # L0 — static release gates (json integrity, package size, palette)
+      - run: node script/check-gates.mjs
+      # L1 + L2 — unit + miniprogram-simulate suites (packages/ui)
+      - run: pnpm --filter looseleaf-miniprogram test
+      # L3 remains local/nightly: DevTools automation needs a GUI (see
+      # nightly-e2e.yml)
       - name: npm package publish-readiness check
         run: node script/check-npm-package.mjs
