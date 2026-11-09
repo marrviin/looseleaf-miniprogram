@@ -27,8 +27,10 @@ createComponent({
     },
     '../navigation-menu-item/navigation-menu-item': {
       type: 'ancestor',
-      linked() {
-        setTimeout(() => this.__resolveValue(), 0);
+      // __resolveValue lives on the ITEM — ask the newly-linked item to
+      // resolve (`this.__resolveValue()` threw in the real runtime).
+      linked(item) {
+        setTimeout(() => item.__resolveValue(), 0);
       },
     },
     // Pairs with the list's descendant declaration (indicator probing).

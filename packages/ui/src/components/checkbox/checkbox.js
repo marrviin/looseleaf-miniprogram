@@ -22,13 +22,13 @@ createComponent({
     },
   },
   observers: {
-    size: {
-      // attachInk also watches `size` for the re-measure; this mirrors the
-      // px into the box style.
-      handler() {
-        const n = Number(this.data.size);
-        this.setData({ px: Math.max(8, Math.round(Number.isFinite(n) && n > 0 ? n : 16)) });
-      },
+    // attachInk also watches `size` for the re-measure; this mirrors the
+    // px into the box style. NOTE: the `{ handler() {} }` object form throws
+    // `t.apply is not a function` in the real runtime (caught by the L3
+    // console sweep) — observers must be plain functions.
+    size() {
+      const n = Number(this.data.size);
+      this.setData({ px: Math.max(8, Math.round(Number.isFinite(n) && n > 0 ? n : 16)) });
     },
     'disabled, invalid'() {
       this.__inkParams = () => ({ disabled: !!this.data.disabled, invalid: !!this.data.invalid });

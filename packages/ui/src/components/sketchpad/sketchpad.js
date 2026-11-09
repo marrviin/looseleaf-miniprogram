@@ -562,14 +562,17 @@ createComponent({
       this.__clearTimers();
       st.replaying = true;
       this.setData({ replaying: true, liveStyle: '' });
-      this.__renderDoc([]);
+      // dim expects a Set of stroke ids — replay dims EVERY committed stroke
+      // while the live layer redraws them one by one (an array threw
+      // `dim.has is not a function` in the real runtime).
+      this.__renderDoc(new Set(st.strokes.map((s) => s.id)));
       let t = 0.2;
       const timers = [];
       st.strokes.forEach((s, i) => {
         const dur = Math.min(2.4, Math.max(0.14, strokeMarkup(s).length / (420 * st.replaySpeed)));
         const at = (t + dur) * 1000;
         t += dur + 0.08;
-        timers.push(setTimeout(() => this.__renderDoc(st.strokes.slice(0, i + 1)), at));
+        timers.push(setTimeout(() => this.__renderDoc(new Set(st.strokes.slice(i + 1).map((s) => s.id))), at));
       });
       timers.push(setTimeout(() => {
         st.replaying = false;

@@ -32,8 +32,11 @@ createComponent({
     },
     '../navigation-menu-item/navigation-menu-item': {
       type: 'ancestor',
-      linked() {
-        setTimeout(() => this.__resolveValue(), 0);
+      // __resolveValue lives on the ITEM (this component only has
+      // __ensureValue/__onValue) — ask the newly-linked item to resolve.
+      // `this.__resolveValue()` threw in the real runtime (L3 console sweep).
+      linked(item) {
+        setTimeout(() => item.__resolveValue(), 0);
       },
     },
     // In-panel links style themselves as rows (ll-swipe on active).
