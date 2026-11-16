@@ -21,6 +21,12 @@ All shots are real simulator screenshots from `packages/example`.
   <img src="docs/img/gallery.jpg" alt="Ticket / Sticky note / Handwritten / Flip card, real simulator screenshots" width="830">
 </p>
 
+**Try it on your phone** — scan the WeChat mini program code:
+
+<p align="center">
+  <img src="docs/img/qrcode-preview.png" alt="WeChat mini program code — scan to preview looseleaf-miniprogram" width="220">
+</p>
+
 ## Components
 
 Of the **123 components** in the upstream [looseleaf](https://github.com/kevintngo/looseleaf), **119 have been ported** (117 of them playable in the example mini program); 4 are skipped due to mini program platform limits — per-component status lives in [docs/components.en.md](./docs/components.en.md).

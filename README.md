@@ -21,6 +21,12 @@
   <img src="docs/img/gallery.jpg" alt="Ticket / Sticky note / Handwritten / Flip card 实机截图" width="830">
 </p>
 
+**扫码实机体验**(微信小程序码):
+
+<p align="center">
+  <img src="docs/img/qrcode-preview.png" alt="微信小程序码,扫码预览 looseleaf-miniprogram 组件库" width="220">
+</p>
+
 ## 组件一览
 
 上游 [looseleaf](https://github.com/kevintngo/looseleaf) 的 123 个组件,**119 个已移植**(其中 117 个在示例小程序里在线可玩),4 个因小程序平台限制跳过——逐组件状态见 [docs/components.md](./docs/components.md)。
